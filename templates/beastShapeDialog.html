@@ -1,0 +1,32 @@
+<form class="flexcol">
+  <div id="typeSelect">
+    <legend>Select Beast Type:</legend>
+    <input type="radio" name="typeSelect" id="animalSelect" value="animal" checked>
+    <label for="animalSelect">Animal</label>
+    {{#if mBeastSizes.length}} <input type="radio" name="typeSelect" id="magicalBeastSelect" value="magicalBeast">
+    <label for="magicalBeastSelect">Magical Beast</label>{{/if}}
+  </div>
+  <div id="sizeSelect">
+    <legend>Select Animal Size:</legend>
+    {{#each animalSizes}}
+    <input type="radio" name="sizeSelect" id="{{this.size}}Select" value="{{this.label}}" {{#if this.default}}checked{{/if}}>
+    <label for="{{this.size}}Select">{{this.size}}</label>
+    {{/each}}
+  </div>
+  <div id="creatureSelect">
+    <legend>Select Form:</legend>
+    <select id="formSelect">
+      {{#each animalOptions}}
+        <option value="{{this.name}}">{{this.name}}</option>
+      {{/each}}
+    </select>
+  </div>
+  <div id="changePreview">
+    {{{previewHtml}}}
+  </div>
+  <footer class="sheet-footer flexrow">
+    <button type="button" name="submit" id="submitButton">
+        <i class="fa fa-check"></i> OK
+    </button>
+  </footer>
+</form>

@@ -1,0 +1,25 @@
+<form class="flexcol">
+  <div id="sizeSelect">
+    <legend>Select Plant Size:</legend>
+    {{#each plantSizes}}
+    <input type="radio" name="sizeSelect" id="{{this.size}}Select" value="{{this.label}}" {{#if this.default}}checked{{/if}}>
+    <label for="{{this.size}}Select">{{this.size}}</label>
+    {{/each}}
+  </div>
+  <div id="creatureSelect">
+    <legend>Select Form:</legend>
+    <select id="formSelect">
+      {{#each plantOptions}}
+        <option value="{{this.name}}">{{this.name}}</option>
+      {{/each}}
+    </select>
+  </div>
+  <div id="changePreview">
+    {{{previewHtml}}}
+  </div>
+  <footer class="sheet-footer flexrow">
+    <button type="button" name="submit" id="submitButton">
+        <i class="fa fa-check"></i> OK
+    </button>
+  </footer>
+</form>

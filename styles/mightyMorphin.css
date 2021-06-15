@@ -1,0 +1,38 @@
+#mighty-morphin-beastShape form, #mighty-morphin-elementalBody form, #mighty-morphin-plantShape form {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+#typeSelect label {
+    display: inline-block;
+    width: 100px;
+}
+
+#sizeSelect label {
+    display: inline-block;
+    width: 65px;
+}
+
+#formSelect {
+    width: 250px;
+}
+
+#mighty-morphin-beastShape #changePreview .previewLabel {
+    display: inline-block;
+    width: 130px;
+    font-weight: bold;
+}
+
+#mighty-morphin-elementalBody #changePreview .previewLabel {
+    display: inline-block;
+    width: 140px;
+    font-weight: bold;
+}
+
+#mighty-morphin-plantShape #changePreview .previewLabel {
+    display: inline-block;
+    width: 140px;
+    font-weight: bold;
+}
