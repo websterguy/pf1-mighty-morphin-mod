@@ -23,3 +23,11 @@ Currently supports buff generation and application of effects of the following s
 * Druid Wild Shape (As Beast Shape, Elemental Body, and Plant Shape)
 
 Effects such as Beast Shape include creating attacks, replacing speeds, replacing senses, etc.
+
+## Future Plans
+
+Implementing other form changes, such as Alter Self, Monstrous Physique, etc.
+
+## Known Issues
+
+System sometimes throws errors when toggling buffs off (It's unclear if this is a PF1 system issue or a Foundry core issue, but it's not this mod). If it happens and the buff icon gets stuck, the only real solution is to refresh the program/browser window.
