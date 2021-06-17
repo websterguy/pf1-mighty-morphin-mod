@@ -27,7 +27,6 @@ Effects such as Beast Shape include creating attacks, replacing speeds, replacin
 ## Future Plans
 
 * Implementing other form changes, such as Alter Self, Monstrous Physique, etc.
-* Possibly make options for replacing token images with form name matching
 
 ## Known Issues
 
