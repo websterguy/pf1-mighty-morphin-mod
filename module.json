@@ -2,7 +2,7 @@
     "name": "pf1-mighty-morphin",
     "title": "PF1 Might Morphin Mod",
     "description": "Mod to automate polymorph effects for Foundry VTT PF1e system",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "manifestPlusVersion": "1.0.0",
     "minimumCoreVersion": "0.8.6",
     "compatibleCoreVersion": "0.8.6",
@@ -28,11 +28,11 @@
     ],
     "packs": [
         {
-            "name":"macros",
-            "label":"Morphin Sample Macros",
-            "path":"packs/macros.db",
-            "entity":"Macro",
-            "package":"pf1-mighty-morphin"
+            "name": "macros",
+            "label": "Morphin Sample Macros",
+            "path": "packs/macros.db",
+            "entity": "Macro",
+            "package": "pf1-mighty-morphin"
         }
     ],
     "url": "https://github.com/websterguy/pf1-mighty-morphin-mod",

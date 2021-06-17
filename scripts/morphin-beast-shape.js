@@ -43,11 +43,11 @@ export class MorphinBeastShape extends FormApplication {
         this.shapeOptions = {};
         // Find options to shapeshift into based on the valid size choices above and sort them alphabetically
         this.shapeOptions.animal = MorphinOptions.animal.filter(o => this.sizes.animal.includes(o.size));
-        this.shapeOptions.animal.sort((a, b) => {return a.name > b.name ? 1 : -1;});
+        this.shapeOptions.animal.sort((a, b) => { return a.name > b.name ? 1 : -1; });
         this.shapeOptions.magicalBeast = MorphinOptions.magicalBeast.filter(o => this.sizes.magicalBeast.includes(o.size));
-        this.shapeOptions.magicalBeast.sort((a, b) => {return a.name > b.name ? 1 : -1;});
+        this.shapeOptions.magicalBeast.sort((a, b) => { return a.name > b.name ? 1 : -1; });
     }
-    
+
     /** @inheritdoc */
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
@@ -70,7 +70,7 @@ export class MorphinBeastShape extends FormApplication {
         data.animalOptions = this.shapeOptions.animal.filter(o => o.size === defaultSize);
 
         // Create radio button data for animal sizes, set the one for the default size as the default checked button
-        data.animalSizes = this.sizes.animal.map(o => {return o === defaultSize ? {label: o, size: CONFIG.PF1.actorSizes[o], default: true} : {label: o, size: CONFIG.PF1.actorSizes[o]};});
+        data.animalSizes = this.sizes.animal.map(o => { return o === defaultSize ? { label: o, size: CONFIG.PF1.actorSizes[o], default: true } : { label: o, size: CONFIG.PF1.actorSizes[o] }; });
         data.mBeastSizes = this.sizes.magicalBeast;
 
         // Get the animal that will be the first shown in the form dropdown and build the preview of the changes the form will provide
@@ -96,18 +96,18 @@ export class MorphinBeastShape extends FormApplication {
         // Loop over the attacks and create the items
         for (let i = 0; i < MorphinChanges.changes[chosenForm].attacks.length; i++) {
             let attack = duplicate(MorphinChanges.changes[chosenForm].attacks[i]); // get the attack data
-            
+
             // Remove any special property if it's no allowed at this level
             if (!!attack.special) {
                 for (let j = 0; j < attack.special.length; j++) {
                     const specialElement = attack.special[j];
-                    
+
                     if (!MorphinBeastShape.allowedSpecials[this.level].includes(specialElement)) {
-                        delete(attack.special[i]);
+                        delete (attack.special[i]);
                     }
                 }
             }
-            
+
             itemsToEmbed.push(MightyMorphinApp.createAttack(this.actorId, newSize, attack, oneAttack, MorphinChanges.changes[chosenForm].effect, this.source, 'natural'));
         }
 
@@ -115,24 +115,24 @@ export class MorphinBeastShape extends FormApplication {
         if (!!MorphinChanges.changes[chosenForm].specialAttack) {
             for (let i = 0; i < MorphinChanges.changes[chosenForm].specialAttack.length; i++) {
                 let attack = duplicate(MorphinChanges.changes[chosenForm].specialAttack[i]);
-                
+
                 // Remove any special property if it's no allowed at this level
                 if (!!attack.special) {
                     for (let j = 0; j < attack.special.length; j++) {
                         const specialElement = attack.special[j];
-                        
+
                         if (!MorphinBeastShape.allowedSpecials[this.level].includes(specialElement)) {
-                            delete(attack.special[i]);
+                            delete (attack.special[i]);
                         }
                     }
                 }
-                
+
                 itemsToEmbed.push(MightyMorphinApp.createAttack(this.actorId, newSize, attack, false, MorphinChanges.changes[chosenForm].effect, this.source, 'misc'));
             }
         }
 
         let shifter = game.actors.get(this.actorId);
-   
+
         // Add base polymorph size stat changes to the spell's normal changes if necessary
         if (!!this.polymorphChanges.length) this.changes = this.changes.concat(this.polymorphChanges);
 
@@ -159,55 +159,55 @@ export class MorphinBeastShape extends FormApplication {
         let strChange = 0;
         for (let i = 0; i < this.changes.length; i++) {
             const change = this.changes[i];
-            
+
             if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
         }
 
         // Set up adjustments to strength carry bonus and carry multiplier so actor's encumbrance doesn't change
         // Store the current values
-        let carryBonusFlag = {'data.abilities.str.carryBonus': shifter.data.data.abilities.str.carryBonus, 'data.abilities.str.carryMultiplier': shifter.data.data.abilities.str.carryMultiplier};
+        let carryBonusFlag = { 'data.abilities.str.carryBonus': shifter.data.data.abilities.str.carryBonus, 'data.abilities.str.carryMultiplier': shifter.data.data.abilities.str.carryMultiplier };
         // Subtract the buff strength change from current carry bonus, decreasing carry strength if buff adds or increasing carry strength if buff subtracts
-        let carryBonusChange = {'data.abilities.str.carryBonus': (!!shifter.data.data.abilities.str.carryBonus ? shifter.data.data.abilities.str.carryBonus : 0) - strChange};
+        let carryBonusChange = { 'data.abilities.str.carryBonus': (!!shifter.data.data.abilities.str.carryBonus ? shifter.data.data.abilities.str.carryBonus : 0) - strChange };
         // Counteract the size change's natural increase or decrease to carry multiplier
         let carryMult = shifter.data.data.abilities.str.carryMultiplier * CONFIG.PF1.encumbranceMultipliers.normal[this.actorSize] / CONFIG.PF1.encumbranceMultipliers.normal[newSize];
-        carryBonusChange = mergeObject(carryBonusChange, {'data.abilities.str.carryMultiplier': carryMult});
-        
+        carryBonusChange = mergeObject(carryBonusChange, { 'data.abilities.str.carryMultiplier': carryMult });
+
         let armorChangeFlag = [];
         let armorToChange = [];
         // Double armor and shield AC when moving from tiny or below to small or above, halve it if the other way
         let smallSizes = ['fine', 'dim', 'tiny']; // sizes with half armor AC, also use dex for climb and swim instead of str
         let armorChangeNeeded = (smallSizes.includes(newSize) && !smallSizes.includes(this.actorSize)) || (!smallSizes.includes(newSize) && smallSizes.includes(this.actorSize));
-        
+
         let armorAndShields = shifter.items.filter(o => o.data.type === 'equipment' && (o.data.data.equipmentType === 'armor' || o.data.data.equipmentType === 'shield'));
 
         // Cycle through all armor and shield items to process them
         for (let item of armorAndShields) {
-            let originalArmor = armorChangeNeeded ? {armor: {value: item.data.data.armor.value}} : {};
+            let originalArmor = armorChangeNeeded ? { armor: { value: item.data.data.armor.value } } : {};
             // If this is not Wild Shape or it is Wild Shape but the armor isn't Wild enchanted, armor must be removed
             let armorIsWild = item.name.includes('Wild');
-            let originalEquipped = (armorIsWild && this.source === 'Wild Shape') ? {} : {equipped: item.data.data.equipped};
+            let originalEquipped = (armorIsWild && this.source === 'Wild Shape') ? {} : { equipped: item.data.data.equipped };
             originalArmor = mergeObject(originalArmor, originalEquipped);
-            
+
             if (!!originalArmor) {
-                armorChangeFlag.push({_id: item.id, data: originalArmor});
+                armorChangeFlag.push({ _id: item.id, data: originalArmor });
                 // take off armor if it's not wild armor or this is not beast shape from wild shape
-                let equipChange = (armorIsWild && this.source === 'Wild Shape') ? {} : {equipped: false};
-                let armorChange = armorChangeNeeded ? (smallSizes.includes(this.actorSize) ? {armor: {value: item.data.data.armor.value * 2}} : {armor: {value: Math.floor(item.data.data.armor.value / 2)}}) : {};
+                let equipChange = (armorIsWild && this.source === 'Wild Shape') ? {} : { equipped: false };
+                let armorChange = armorChangeNeeded ? (smallSizes.includes(this.actorSize) ? { armor: { value: item.data.data.armor.value * 2 } } : { armor: { value: Math.floor(item.data.data.armor.value / 2) } }) : {};
                 equipChange = mergeObject(equipChange, armorChange);
-                armorToChange.push({_id: item.id, data: equipChange});
+                armorToChange.push({ _id: item.id, data: equipChange });
             }
         }
-        
+
         // change ability mods for climb and swim to str if moving from tiny or below to small or above, change to dex if moving the other way
         let originalSkillMod = {};
         let skillModChange = {};
         if (armorChangeNeeded) {
-            originalSkillMod = {'data.skills.clm.ability': shifter.data.data.skills.clm.ability, 'data.skills.swm.ability': shifter.data.data.skills.swm.ability};
-            skillModChange = {'data.skills.clm.ability': (smallSizes.includes(this.actorSize) ? 'str' : 'dex'), 'data.skills.swm.ability': (smallSizes.includes(this.actorSize) ? 'str' : 'dex')};
+            originalSkillMod = { 'data.skills.clm.ability': shifter.data.data.skills.clm.ability, 'data.skills.swm.ability': shifter.data.data.skills.swm.ability };
+            skillModChange = { 'data.skills.clm.ability': (smallSizes.includes(this.actorSize) ? 'str' : 'dex'), 'data.skills.swm.ability': (smallSizes.includes(this.actorSize) ? 'str' : 'dex') };
         }
 
         // Process speed changes
-        let originalSpeed = {'data.attributes.speed': shifter.data.data.attributes.speed};
+        let originalSpeed = { 'data.attributes.speed': shifter.data.data.attributes.speed };
         let newSpeeds = duplicate(shifter.data.data.attributes.speed);
         let speedTypes = Object.keys(newSpeeds);
         for (let i = 0; i < speedTypes.length; i++) {
@@ -221,29 +221,29 @@ export class MorphinBeastShape extends FormApplication {
                 newSpeeds[speedTypes[i]].base = 0;
             }
         }
-        let speedChanges = {'data.attributes.speed': newSpeeds};
+        let speedChanges = { 'data.attributes.speed': newSpeeds };
 
         // Process senses changes
-        let originalSenses = {'data.traits.senses': shifter.data.data.traits.senses};
+        let originalSenses = { 'data.traits.senses': shifter.data.data.traits.senses };
         let sensesString = '';
         for (let i = 0; i < this.senses.length; i++) {
             const sensesEnumValue = this.senses[i];
             if (sensesString.length > 0) sensesString += '; ';
             sensesString += `${MorphinChanges.SENSES[Object.keys(MorphinChanges.SENSES)[sensesEnumValue - 1]].name}`; // element 1 = SENSES[0] = LOWLIGHT
         }
-        let sensesChanges = {'data.traits.senses': sensesString};
+        let sensesChanges = { 'data.traits.senses': sensesString };
 
         // Process resistances changes
-        let originalEres = {'data.traits.eres': shifter.data.data.traits.eres};
+        let originalEres = { 'data.traits.eres': shifter.data.data.traits.eres };
         let eresString = this.eres || '';
 
         // Process vulnerabilities changes
-        let originalDv = {'data.traits.dv': shifter.data.data.traits.dv};
-        let newDv = {value: [], custom: ''};
+        let originalDv = { 'data.traits.dv': shifter.data.data.traits.dv };
+        let newDv = { value: [], custom: '' };
         if (!!this.dv) {
             for (let i = 0; i < this.dv.length; i++) {
                 const vulnerability = this.dv[i];
-                
+
                 // If it's a system known damage type, can toggle its setting. Otherwise add it as a custom
                 if (!!CONFIG.PF1.damageTypes[vulnerability]) newDv.value.push(vulnerability);
                 else newDv.custom += (newDv.custom.length > 0 ? '; ' : '') + vulnerability;
@@ -253,7 +253,7 @@ export class MorphinBeastShape extends FormApplication {
         // Energy resistances and vulnerabilities are only on beast shape iv
         if (this.level === 4) {
             originalSenses = mergeObject(originalSenses, mergeObject(originalEres, originalDv));
-            sensesChanges = mergeObject(sensesChanges, mergeObject({'data.traits.eres': eresString}, {'data.traits.dv': newDv}));
+            sensesChanges = mergeObject(sensesChanges, mergeObject({ 'data.traits.eres': eresString }, { 'data.traits.dv': newDv }));
         }
 
         // Create special ability features
@@ -270,7 +270,7 @@ export class MorphinBeastShape extends FormApplication {
 
             for (let i = 0; i < this.special.length; i++) {
                 const specialName = this.special[i];
-            
+
                 if (!!specialName) { // make sure it wasn't deleted for being invalid at this spell level
                     let specialToCreate = duplicate(specialData);
                     specialToCreate.name = `${specialName} (${this.source})`;
@@ -279,18 +279,36 @@ export class MorphinBeastShape extends FormApplication {
             }
         }
 
+        // Find image to change token to if it exists
+        let newImage = await MightyMorphinApp.findImage(chosenForm);
+
+        // Prepare data for image change
+        let oldImage = { img: '' };
+        let oldProtoImage = { token: { img: '' } };
+        let protoImageChange = !!newImage ? { 'token.img': newImage } : {};
+        if (!!newImage) {
+            let token = canvas.tokens.ownedTokens.find(o => o.data.actorId === this.actorId);
+            if (!!token) {
+                oldImage.img = token.data.img;
+                await token.update({ 'img': newImage });
+            }
+            oldProtoImage.token.img = shifter.data.token.img;
+        }
+
         // Create the items on the actor, then create an array of their ids to delete them later
         let itemsCreated = await shifter.createEmbeddedDocuments('Item', itemsToEmbed);
         itemsCreated = itemsCreated.map(o => o.id);
 
         // Turn on the buff created
         buff = shifter.items.find(o => o.type === 'buff' && o.name === this.source);
-        let buffUpdate = [{_id: buff.id, 'data.changes': this.changes, 'data.active': true}];
-        
+        let buffUpdate = [{ _id: buff.id, 'data.changes': this.changes, 'data.active': true }];
+
         // Set the flags for all changes made
-        let dataFlag = mergeObject({'data.traits.size': this.actorSize}, mergeObject(carryBonusFlag, mergeObject(originalSkillMod, mergeObject(originalSpeed, originalSenses))));
-        let flags = {source: this.source, buffName: this.source, data: dataFlag, armor: armorChangeFlag, itemsCreated: itemsCreated};
-        await shifter.update(mergeObject({'data.traits.size': newSize, 'flags.mightyMorphin': flags}, mergeObject(carryBonusChange, mergeObject(skillModChange, mergeObject(speedChanges, sensesChanges)))));
+        let dataFlag = mergeObject({ 'data.traits.size': this.actorSize }, mergeObject(carryBonusFlag, mergeObject(originalSkillMod, mergeObject(originalSpeed, originalSenses))));
+        if (!!newImage) { dataFlag = mergeObject(dataFlag, oldProtoImage); };
+        let flags = { source: this.source, buffName: this.source, data: dataFlag, armor: armorChangeFlag, itemsCreated: itemsCreated };
+        if (!!newImage) { flags = mergeObject(flags, { tokenImg: oldImage }); };
+        await shifter.update(mergeObject({ 'data.traits.size': newSize, 'flags.mightyMorphin': flags }, mergeObject(carryBonusChange, mergeObject(skillModChange, mergeObject(speedChanges, mergeObject(sensesChanges, protoImageChange))))));
 
         // update items on the actor
         if (!!armorToChange.length) await shifter.updateEmbeddedDocuments('Item', armorToChange.concat(buffUpdate));
@@ -321,7 +339,7 @@ export class MorphinBeastShape extends FormApplication {
      */
     async updateSizeChoices(event, sizeSelectDiv) {
         // create options for the selected type, set medium as the default size
-        let newOptions = this.sizes[event.target.value].map(o => {return o === 'med' ? {label: o, size: CONFIG.PF1.actorSizes[o], default: true} : {label: o, size: CONFIG.PF1.actorSizes[o]};});
+        let newOptions = this.sizes[event.target.value].map(o => { return o === 'med' ? { label: o, size: CONFIG.PF1.actorSizes[o], default: true } : { label: o, size: CONFIG.PF1.actorSizes[o] }; });
 
         let newOptionsHtml = `<legend>Select ${event.target.value === 'animal' ? 'Animal' : 'Magical Beast'} Size</legend>`;
 
@@ -365,14 +383,14 @@ export class MorphinBeastShape extends FormApplication {
         this.changes = MorphinChanges.changes.beastShape[chosenType][this.chosenForm.size].changes;
         for (let i = 0; i < this.changes.length; i++) {
             const change = this.changes[i];
-            
+
             if (!!change.target && change.target === 'ability') { // stat change
                 if (data.scoreChanges.length > 0) data.scoreChanges += ', ';
                 data.scoreChanges += `${change.subTarget.charAt(0).toUpperCase()}${change.subTarget.slice(1)} ${(change.value > 0 ? '+' : '')}${change.value}`;
             }
             else if (!change.target && change.subTarget == 'nac') { // natural AC change
                 if (data.scoreChanges.length > 0) data.scoreChanges += ', ';
-                data.scoreChanges += `Natural AC ${(change.value > 0 ? '+' : '')}${change.value}`;                
+                data.scoreChanges += `Natural AC ${(change.value > 0 ? '+' : '')}${change.value}`;
             }
         }
 
@@ -395,7 +413,7 @@ export class MorphinBeastShape extends FormApplication {
                         break;
                     case 4:
                         this.speeds[speedName] = Math.min(120, this.speeds[speedName]);
-                        break;                
+                        break;
                 }
             }
 
@@ -427,7 +445,7 @@ export class MorphinBeastShape extends FormApplication {
                     case 3:
                     case 4:
                         this.speeds[speedName] = Math.min(90, this.speeds[speedName]);
-                        break;                
+                        break;
                 }
             }
 
@@ -435,7 +453,7 @@ export class MorphinBeastShape extends FormApplication {
                 switch (this.level) {
                     case 1:
                     case 2:
-                        delete(this.speeds[speedName]);
+                        delete (this.speeds[speedName]);
                         i--;
                         continue; // skip this speed
                     case 3:
@@ -446,7 +464,7 @@ export class MorphinBeastShape extends FormApplication {
                         break;
                 }
             }
-            
+
             if (data.speedChanges.length > 1) data.speedChanges += ', ';
             data.speedChanges += `${speedName} ${this.speeds[speedName]} ft`;
         }
@@ -456,7 +474,7 @@ export class MorphinBeastShape extends FormApplication {
         let attackList = MorphinChanges.changes[this.chosenForm.name].attacks;
         for (let i = 0; i < attackList.length; i++) {
             const attack = attackList[i];
-            
+
             let attackSpecial = '';
             if (!!attack.special) { // process any specials associated with the attack
                 for (let j = 0; j < attack.special.length; j++) {
@@ -479,12 +497,12 @@ export class MorphinBeastShape extends FormApplication {
         let specialAttackList = MorphinChanges.changes[this.chosenForm.name].specialAttack || [];
         for (let i = 0; i < specialAttackList.length; i++) {
             const specialAttack = specialAttackList[i];
-            
+
             // Make sure the special attack is allowed at this level of spell before processing it
             let valid = true;
             for (let j = 0; j < (specialAttack.special?.length || 0); j++) {
                 const special = specialAttack.special[j];
-                
+
                 if (!MorphinBeastShape.allowedSpecials[this.level].includes(special)) valid = false;
             }
 
@@ -521,7 +539,7 @@ export class MorphinBeastShape extends FormApplication {
             // limit blindsense
             if (senseEnumValue >= MorphinChanges.SENSES.BLINDSENSE10.value && senseEnumValue <= MorphinChanges.SENSES.BLINDSENSE60.value) {
                 if (this.level < 3) {
-                    delete(this.senses[i]);
+                    delete (this.senses[i]);
                     continue;
                 }
                 else if (this.level === 3) this.senses[i] = Math.min(senseEnumValue, MorphinChanges.SENSES.BLINDSENSE30.value);
@@ -531,7 +549,7 @@ export class MorphinBeastShape extends FormApplication {
             // limit tremorsense
             if (senseEnumValue >= MorphinChanges.SENSES.TREMORSENSE10.value && senseEnumValue <= MorphinChanges.SENSES.TREMORSENSE60.value) {
                 if (this.level < 4) {
-                    delete(this.senses[i]);
+                    delete (this.senses[i]);
                     continue;
                 }
                 else if (this.level === 4) this.senses[i] = Math.min(senseEnumValue, MorphinChanges.SENSES.TREMORSENSE60.value);
@@ -551,7 +569,7 @@ export class MorphinBeastShape extends FormApplication {
 
             // Check just the first word of the special text, so something like 'jet 200ft' matches 'jet'
             if (!MorphinBeastShape.allowedSpecials[this.level].includes(specialName.split(' ')[0])) {
-                delete(this.special[i]);
+                delete (this.special[i]);
                 continue;
             }
             else {
@@ -578,7 +596,7 @@ export class MorphinBeastShape extends FormApplication {
             <p><span class="previewLabel">Senses: </span><span id="senses">${data.senses}</span></p>
             <p><span class="previewLabel">Special Abilities: </span><span id="specials">${data.special}</span></p>
             ${this.level === 4 ? '<p><span class="previewLabel">Energy Resistances: </span><span id="eres">' + data.eres + '</span></p>' +
-            '<p><span class="previewLabel">Vulnerabilities: </span><span id="dv">' + data.dv + '</span></p>' : ''}`;
+                '<p><span class="previewLabel">Vulnerabilities: </span><span id="dv">' + data.dv + '</span></p>' : ''}`;
 
         return newHtml;
     }
@@ -596,10 +614,10 @@ export class MorphinBeastShape extends FormApplication {
         // form type radio button changed (animal/magical beast). Update allowed sizes for this spell level, update the form choices, update preview
         $('#typeSelect').on('change', async (event) => {
             await this.updateSizeChoices(event, $('#sizeSelect')[0]);
-            await this.updateFormChoices({target: {value: 'med'}}, $('#formSelect')[0], $('input[name="typeSelect"]:checked')[0].value);
+            await this.updateFormChoices({ target: { value: 'med' } }, $('#formSelect')[0], $('input[name="typeSelect"]:checked')[0].value);
             $('#changePreview')[0].innerHTML = await this.buildPreviewTemplate($('#formSelect')[0].value, $('input[name="typeSelect"]:checked')[0].value);
         });
-        
+
         // selected form changed, update the preview
         $('#formSelect').on('change', async (event) => {
             $('#changePreview')[0].innerHTML = await this.buildPreviewTemplate($('#formSelect')[0].value, $('input[name="typeSelect"]:checked')[0].value);

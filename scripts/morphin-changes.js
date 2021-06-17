@@ -252,7 +252,7 @@ MorphinChanges.changes = {
                 ]
             }
         }
-    }, 
+    },
     plantShape: {
         plant: {
             sm: {
@@ -5655,7 +5655,7 @@ MorphinChanges.changes = {
             land: 30,
             burrow: 30
         },
-        senses: [ ],
+        senses: [],
         eres: [
             'Acid 20'
         ]
@@ -5769,7 +5769,7 @@ MorphinChanges.changes = {
         speed: {
             land: 10
         },
-        senses: [ ],
+        senses: [],
         dv: [
             'electricity'
         ],
@@ -5926,7 +5926,7 @@ MorphinChanges.changes = {
         speed: {
             land: 10
         },
-        senses: [ ],
+        senses: [],
         dv: [
             'fire'
         ],
@@ -5963,7 +5963,7 @@ MorphinChanges.changes = {
         speed: {
             land: 40
         },
-        senses: [ ],
+        senses: [],
         eres: [
             'Electricity 10', 'Fire 10'
         ],
@@ -5982,7 +5982,7 @@ MorphinChanges.changes = {
         speed: {
             land: 5
         },
-        senses: [ 
+        senses: [
             1
         ],
         eres: [
@@ -6001,7 +6001,7 @@ MorphinChanges.changes = {
             land: 40,
             climb: 40
         },
-        senses: [ 
+        senses: [
             1
         ],
         dr: [
@@ -6020,7 +6020,7 @@ MorphinChanges.changes = {
             land: 30,
             swim: 30
         },
-        senses: [ 
+        senses: [
             1
         ],
         effect: {
@@ -6035,7 +6035,7 @@ MorphinChanges.changes = {
         speed: {
             land: 30
         },
-        senses: [ 
+        senses: [
             1
         ]
     },
@@ -6047,7 +6047,7 @@ MorphinChanges.changes = {
         speed: {
             land: 20
         },
-        senses: [ 
+        senses: [
             1, 7
         ]
     },
@@ -6060,7 +6060,7 @@ MorphinChanges.changes = {
             land: 30,
             climb: 30
         },
-        senses: [ 
+        senses: [
             1
         ]
     },
@@ -6073,7 +6073,7 @@ MorphinChanges.changes = {
         speed: {
             land: 20
         },
-        senses: [ 
+        senses: [
             1
         ],
         eres: [
@@ -6090,7 +6090,7 @@ MorphinChanges.changes = {
             land: 30,
             burrow: 15
         },
-        senses: [ 
+        senses: [
             1
         ],
         dr: [
@@ -6109,7 +6109,7 @@ MorphinChanges.changes = {
         speed: {
             land: 40
         },
-        senses: [ 
+        senses: [
             1, 7
         ],
         eres: [
@@ -6127,7 +6127,7 @@ MorphinChanges.changes = {
         speed: {
             land: 30
         },
-        senses: [ 
+        senses: [
             1, 7
         ],
         regen: [
@@ -6150,7 +6150,7 @@ MorphinChanges.changes = {
             climbs: 20,
             swim: 40
         },
-        senses: [ ],
+        senses: [],
         effect: {
             'Constrict': { note: 'Constrict: Same damage as Slam' }
         },
@@ -6170,7 +6170,7 @@ MorphinChanges.changes = {
             land: 20,
             swim: 20
         },
-        senses: [ 
+        senses: [
             1, 7
         ],
         effect: {
@@ -6191,7 +6191,7 @@ MorphinChanges.changes = {
             climbs: 10,
             swim: 20
         },
-        senses: [ 
+        senses: [
             1
         ],
         effect: {
@@ -6212,7 +6212,7 @@ MorphinChanges.changes = {
         speed: {
             land: 30
         },
-        senses: [ 
+        senses: [
             1
         ],
         regen: [
@@ -6228,7 +6228,7 @@ MorphinChanges.changes = {
         speed: {
             land: 10
         },
-        senses: [ 
+        senses: [
             1
         ],
         effect: {
@@ -6246,7 +6246,7 @@ MorphinChanges.changes = {
         speed: {
             land: 20
         },
-        senses: [ 
+        senses: [
             1
         ],
         eres: [
@@ -6261,7 +6261,7 @@ MorphinChanges.changes = {
         speed: {
             land: 20
         },
-        senses: [ 
+        senses: [
             1
         ]
     },
@@ -6274,7 +6274,7 @@ MorphinChanges.changes = {
         speed: {
             land: 30
         },
-        senses: [ 
+        senses: [
             1
         ],
         dr: [
@@ -6289,7 +6289,7 @@ MorphinChanges.changes = {
         speed: {
             land: 30
         },
-        senses: [ 
+        senses: [
             1
         ],
         eres: [
@@ -6304,7 +6304,7 @@ MorphinChanges.changes = {
         speed: {
             land: 5
         },
-        senses: [ ],
+        senses: [],
         eres: [
             'Electricity 5', 'Fire 5'
         ],
@@ -6321,7 +6321,7 @@ MorphinChanges.changes = {
         speed: {
             land: 30
         },
-        senses: [ 
+        senses: [
             1, 7
         ],
         eres: [
@@ -6339,7 +6339,7 @@ MorphinChanges.changes = {
         speed: {
             land: 30
         },
-        senses: [ 
+        senses: [
             1
         ],
         eres: [
@@ -6361,7 +6361,7 @@ MorphinChanges.changes = {
             land: 20,
             swim: 10
         },
-        senses: [ 
+        senses: [
             1, 7
         ],
         dr: [
@@ -6377,7 +6377,7 @@ MorphinChanges.changes = {
         speed: {
             land: 20
         },
-        senses: [ 
+        senses: [
             1, 7
         ],
         dr: [
@@ -6398,7 +6398,7 @@ MorphinChanges.changes = {
         speed: {
             land: 10
         },
-        senses: [ 
+        senses: [
             1
         ],
         dr: [
@@ -6414,7 +6414,7 @@ MorphinChanges.changes = {
         speed: {
             land: 15
         },
-        senses: [ 
+        senses: [
             1
         ],
         eres: [
@@ -6429,7 +6429,7 @@ MorphinChanges.changes = {
         speed: {
             land: 30
         },
-        senses: [ 
+        senses: [
             1, 7
         ],
         dv: [
@@ -6448,7 +6448,7 @@ MorphinChanges.changes = {
             land: 30,
             fly: 60
         },
-        senses: [ 
+        senses: [
             1
         ],
         regen: [
@@ -6467,7 +6467,7 @@ MorphinChanges.changes = {
             land: 30,
             fly: 50
         },
-        senses: [ 
+        senses: [
             1
         ],
         eres: [
@@ -6482,7 +6482,7 @@ MorphinChanges.changes = {
         speed: {
             land: 20
         },
-        senses: [ 
+        senses: [
             1, 7
         ],
         dr: [
@@ -6504,7 +6504,7 @@ MorphinChanges.changes = {
             land: 20,
             climb: 20
         },
-        senses: [ 
+        senses: [
             1
         ]
     },
@@ -6516,7 +6516,7 @@ MorphinChanges.changes = {
         speed: {
             land: 20
         },
-        senses: [ 
+        senses: [
             1, 7
         ],
         eres: [
@@ -6537,7 +6537,7 @@ MorphinChanges.changes = {
         speed: {
             land: 40
         },
-        senses: [ 
+        senses: [
             1
         ],
         regen: [
@@ -6552,7 +6552,7 @@ MorphinChanges.changes = {
         speed: {
             land: 10
         },
-        senses: [ 
+        senses: [
             1
         ]
     },
@@ -6564,7 +6564,7 @@ MorphinChanges.changes = {
         speed: {
             land: 10
         },
-        senses: [ 
+        senses: [
             1
         ],
         effect: {
@@ -6579,7 +6579,7 @@ MorphinChanges.changes = {
         speed: {
             land: 5
         },
-        senses: [ ]
+        senses: []
     },
     'Cactus Leshy': {
         size: 'sm',
@@ -6589,7 +6589,7 @@ MorphinChanges.changes = {
         speed: {
             land: 20
         },
-        senses: [ 
+        senses: [
             1, 7
         ],
         eres: [
@@ -6605,7 +6605,7 @@ MorphinChanges.changes = {
         speed: {
             land: 20
         },
-        senses: [ 
+        senses: [
             1, 4
         ],
         eres: [
@@ -6624,7 +6624,7 @@ MorphinChanges.changes = {
         speed: {
             land: 20
         },
-        senses: [ 
+        senses: [
             1, 7
         ],
         eres: [
@@ -6639,7 +6639,7 @@ MorphinChanges.changes = {
         speed: {
             land: 20
         },
-        senses: [ 
+        senses: [
             1, 7
         ],
         eres: [
@@ -6654,7 +6654,7 @@ MorphinChanges.changes = {
         speed: {
             land: 20
         },
-        senses: [ 
+        senses: [
             1, 7
         ],
         eres: [
@@ -6670,7 +6670,7 @@ MorphinChanges.changes = {
             land: 20,
             swim: 30
         },
-        senses: [ 
+        senses: [
             1
         ],
         eres: [
@@ -6679,13 +6679,13 @@ MorphinChanges.changes = {
     },
     'Leaf Leshy': {
         size: 'sm',
-        attacks: [ ],
+        attacks: [],
         speed: {
             land: 20,
             climb: 10,
             fly: 10
         },
-        senses: [ 
+        senses: [
             1, 7
         ],
         eres: [
@@ -6701,7 +6701,7 @@ MorphinChanges.changes = {
             land: 5,
             fly: 40
         },
-        senses: [ 
+        senses: [
             1
         ],
         effect: {
@@ -6720,7 +6720,7 @@ MorphinChanges.changes = {
             land: 20,
             climb: 20
         },
-        senses: [ 
+        senses: [
             1, 7
         ],
         eres: [
@@ -6735,7 +6735,7 @@ MorphinChanges.changes = {
         speed: {
             land: 30
         },
-        senses: [ 
+        senses: [
             1, 7
         ],
         eres: [
@@ -6753,7 +6753,7 @@ MorphinChanges.changes = {
             burrow: 10,
             climb: 40
         },
-        senses: [ 
+        senses: [
             1
         ],
         effect: {
@@ -6762,12 +6762,12 @@ MorphinChanges.changes = {
     },
     'Mindslaver Mold': {
         size: 'sm',
-        attacks: [ ],
+        attacks: [],
         speed: {
             land: 5,
             climb: 5
         },
-        senses: [ 
+        senses: [
             1
         ],
         eres: [
@@ -6783,7 +6783,7 @@ MorphinChanges.changes = {
             land: 20,
             swim: 20
         },
-        senses: [ 
+        senses: [
             1
         ],
         dr: [
@@ -6801,28 +6801,28 @@ MorphinChanges.changes = {
             burrow: 20,
             climb: 20
         },
-        senses: [ 
+        senses: [
             1, 7
         ]
     },
     'Nulmind': {
         size: 'sm',
-        attacks: [ ],
+        attacks: [],
         speed: {
             land: 10,
             climb: 10
         },
-        senses: [ 
+        senses: [
             1
         ]
     },
     'Phycomid': {
         size: 'sm',
-        attacks: [ ],
+        attacks: [],
         speed: {
             land: 10
         },
-        senses: [ ],
+        senses: [],
         eres: [
             'Acid 20'
         ]
@@ -6836,7 +6836,7 @@ MorphinChanges.changes = {
             land: 20,
             swim: 20
         },
-        senses: [ 
+        senses: [
             1, 7
         ],
         eres: [
@@ -6851,7 +6851,7 @@ MorphinChanges.changes = {
         speed: {
             land: 20
         },
-        senses: [ 
+        senses: [
             1, 7
         ],
         eres: [
@@ -6869,7 +6869,7 @@ MorphinChanges.changes = {
             fly: 40,
             climb: 10
         },
-        senses: [ 
+        senses: [
             1, 7
         ],
         eres: [
@@ -6887,7 +6887,7 @@ MorphinChanges.changes = {
         speed: {
             land: 30
         },
-        senses: [ 
+        senses: [
             1, 7
         ],
         dr: [
@@ -6905,7 +6905,7 @@ MorphinChanges.changes = {
         speed: {
             land: 5
         },
-        senses: [ 
+        senses: [
             1
         ],
         eres: [

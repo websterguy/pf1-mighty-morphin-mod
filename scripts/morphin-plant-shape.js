@@ -38,9 +38,9 @@ export class MorphinPlantShape extends FormApplication {
         this.shapeOptions = {};
         // Find options to shapeshift into based on the valid size choices above and sort them alphabetically
         this.shapeOptions.plant = MorphinOptions.plant.filter(o => this.sizes.plant.includes(o.size));
-        this.shapeOptions.plant.sort((a, b) => {return a.name > b.name ? 1 : -1;});
+        this.shapeOptions.plant.sort((a, b) => { return a.name > b.name ? 1 : -1; });
     }
-    
+
     /** @inheritdoc */
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
@@ -61,9 +61,9 @@ export class MorphinPlantShape extends FormApplication {
         // Set the default size to the largest available plant
         let defaultSize = this.sizes.plant[this.sizes.plant.length - 1];
         data.plantOptions = this.shapeOptions.plant.filter(o => o.size === defaultSize);
-        
+
         // Create radio button data for plant sizes, set the one for the default size as the default checked button
-        data.plantSizes = this.sizes.plant.map(o => {return o === defaultSize ? {label: o, size: CONFIG.PF1.actorSizes[o], default: true} : {label: o, size: CONFIG.PF1.actorSizes[o]};});
+        data.plantSizes = this.sizes.plant.map(o => { return o === defaultSize ? { label: o, size: CONFIG.PF1.actorSizes[o], default: true } : { label: o, size: CONFIG.PF1.actorSizes[o] }; });
 
         // Get the plant that will be the first shown in the form dropdown and build the preview of the changes the form will provide
         data.defaultChoice = data.plantOptions[0];
@@ -88,18 +88,18 @@ export class MorphinPlantShape extends FormApplication {
         // Loop over the attacks and create the items
         for (let i = 0; i < MorphinChanges.changes[chosenForm].attacks.length; i++) {
             let attack = duplicate(MorphinChanges.changes[chosenForm].attacks[i]);
-            
+
             // Remove the special if it's no allowed at this level
             if (!!attack.special) {
                 for (let j = 0; j < attack.special.length; j++) {
                     const specialElement = attack.special[j];
-                    
+
                     if (!MorphinPlantShape.allowedSpecials[this.level].includes(specialElement)) {
-                        delete(attack.special[i]);
+                        delete (attack.special[i]);
                     }
                 }
             }
-            
+
             itemsToEmbed.push(MightyMorphinApp.createAttack(this.actorId, newSize, attack, oneAttack, MorphinChanges.changes[chosenForm].effect, this.source, 'natural'));
         }
 
@@ -107,18 +107,18 @@ export class MorphinPlantShape extends FormApplication {
         if (!!MorphinChanges.changes[chosenForm].specialAttack) {
             for (let i = 0; i < MorphinChanges.changes[chosenForm].specialAttack.length; i++) {
                 let attack = duplicate(MorphinChanges.changes[chosenForm].specialAttack[i]);
-                
+
                 // Remove any special property if it's no allowed at this level
                 if (!!attack.special) {
                     for (let j = 0; j < attack.special.length; j++) {
                         const specialElement = attack.special[j];
-                        
+
                         if (!MorphinPlantShape.allowedSpecials[this.level].includes(specialElement)) {
-                            delete(attack.special[i]);
+                            delete (attack.special[i]);
                         }
                     }
                 }
-                
+
                 itemsToEmbed.push(MightyMorphinApp.createAttack(this.actorId, newSize, attack, false, MorphinChanges.changes[chosenForm].effect, this.source, 'misc'));
             }
         }
@@ -127,7 +127,7 @@ export class MorphinPlantShape extends FormApplication {
 
         // Add base polymorph size stat changes to the spell's normal changes if necessary
         if (!!this.polymorphChanges.length) this.changes = this.changes.concat(this.polymorphChanges);
-        
+
         let buff = shifter.items.find(o => o.type === 'buff' && o.name === this.source);
         // If the buff doesn't already exist on the actor, create it
         if (!buff) {
@@ -143,7 +143,7 @@ export class MorphinPlantShape extends FormApplication {
             buffData.name = this.source;
             buffData.type = 'buff';
             buffData.img = (this.source === 'Wild Shape' ? 'systems/pf1/icons/skills/green_21.jpg' : 'systems/pf1/icons/spells/vines-plain-2.jpg');
-            
+
             itemsToEmbed.push(buffData);
         }
 
@@ -151,53 +151,53 @@ export class MorphinPlantShape extends FormApplication {
         let strChange = 0;
         for (let i = 0; i < this.changes.length; i++) {
             const change = this.changes[i];
-            
+
             if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
         }
 
         // Set up adjustments to strength carry bonus and carry multiplier so actor's encumbrance doesn't change
         // Store the current values
-        let carryBonusFlag = {'data.abilities.str.carryBonus': shifter.data.data.abilities.str.carryBonus, 'data.abilities.str.carryMultiplier': shifter.data.data.abilities.str.carryMultiplier};
+        let carryBonusFlag = { 'data.abilities.str.carryBonus': shifter.data.data.abilities.str.carryBonus, 'data.abilities.str.carryMultiplier': shifter.data.data.abilities.str.carryMultiplier };
         // Subtract the buff strength change from current carry bonus, decreasing carry strength if buff adds or increasing carry strength if buff subtracts
-        let carryBonusChange = {'data.abilities.str.carryBonus': (!!shifter.data.data.abilities.str.carryBonus ? shifter.data.data.abilities.str.carryBonus : 0) - strChange};
+        let carryBonusChange = { 'data.abilities.str.carryBonus': (!!shifter.data.data.abilities.str.carryBonus ? shifter.data.data.abilities.str.carryBonus : 0) - strChange };
         // Counteract the size change's natural increase or decrease to carry multiplier
         let carryMult = shifter.data.data.abilities.str.carryMultiplier * CONFIG.PF1.encumbranceMultipliers.normal[this.actorSize] / CONFIG.PF1.encumbranceMultipliers.normal[newSize];
-        carryBonusChange = mergeObject(carryBonusChange, {'data.abilities.str.carryMultiplier': carryMult});
-        
+        carryBonusChange = mergeObject(carryBonusChange, { 'data.abilities.str.carryMultiplier': carryMult });
+
         let armorChangeFlag = [];
         let armorToChange = [];
         // Double armor and shield AC when moving from tiny or below to small or above, halve it if the other way
         let smallSizes = ['fine', 'dim', 'tiny']; // sizes with half armor AC, also use dex for climb and swim instead of str
         let armorChangeNeeded = (smallSizes.includes(newSize) && !smallSizes.includes(this.actorSize)) || (!smallSizes.includes(newSize) && smallSizes.includes(this.actorSize));
-        
+
         let armorAndShields = shifter.items.filter(o => o.data.type === 'equipment' && (o.data.data.equipmentType === 'armor' || o.data.data.equipmentType === 'shield'));
 
         for (let item of armorAndShields) {
             let armorIsWild = item.name.includes('Wild');
-            let originalArmor = armorChangeNeeded ? {armor: {value: item.data.data.armor.value}} : {};
-            let originalEquipped = (armorIsWild && this.source === 'Wild Shape') ? {} : {equipped: item.data.data.equipped};
+            let originalArmor = armorChangeNeeded ? { armor: { value: item.data.data.armor.value } } : {};
+            let originalEquipped = (armorIsWild && this.source === 'Wild Shape') ? {} : { equipped: item.data.data.equipped };
             originalArmor = mergeObject(originalArmor, originalEquipped);
-            
+
             if (!!originalArmor) {
-                armorChangeFlag.push({_id: item.id, data: originalArmor});
+                armorChangeFlag.push({ _id: item.id, data: originalArmor });
                 // take off armor if it's not wild armor or this is not plant shape from wild shape
-                let equipChange = (armorIsWild && this.source === 'Wild Shape') ? {} : {equipped: false};
-                let armorChange = armorChangeNeeded ? (smallSizes.includes(this.actorSize) ? {armor: {value: item.data.data.armor.value * 2}} : {armor: {value: Math.floor(item.data.data.armor.value / 2)}}) : {};
+                let equipChange = (armorIsWild && this.source === 'Wild Shape') ? {} : { equipped: false };
+                let armorChange = armorChangeNeeded ? (smallSizes.includes(this.actorSize) ? { armor: { value: item.data.data.armor.value * 2 } } : { armor: { value: Math.floor(item.data.data.armor.value / 2) } }) : {};
                 equipChange = mergeObject(equipChange, armorChange);
-                armorToChange.push({_id: item.id, data: equipChange});
+                armorToChange.push({ _id: item.id, data: equipChange });
             }
         }
-        
+
         // change ability mods for climb and swim to str if moving from tiny or below to small or above, change to dex if moving the other way
         let originalSkillMod = {};
         let skillModChange = {};
         if (armorChangeNeeded) {
-            originalSkillMod = {'data.skills.clm.ability': shifter.data.data.skills.clm.ability, 'data.skills.swm.ability': shifter.data.data.skills.swm.ability};
-            skillModChange = {'data.skills.clm.ability': (smallSizes.includes(this.actorSize) ? 'str' : 'dex'), 'data.skills.swm.ability': (smallSizes.includes(this.actorSize) ? 'str' : 'dex')};
+            originalSkillMod = { 'data.skills.clm.ability': shifter.data.data.skills.clm.ability, 'data.skills.swm.ability': shifter.data.data.skills.swm.ability };
+            skillModChange = { 'data.skills.clm.ability': (smallSizes.includes(this.actorSize) ? 'str' : 'dex'), 'data.skills.swm.ability': (smallSizes.includes(this.actorSize) ? 'str' : 'dex') };
         }
 
         // Process speed changes
-        let originalSpeed = {'data.attributes.speed': shifter.data.data.attributes.speed};
+        let originalSpeed = { 'data.attributes.speed': shifter.data.data.attributes.speed };
         let newSpeeds = duplicate(shifter.data.data.attributes.speed);
         let speedTypes = Object.keys(newSpeeds);
         for (let i = 0; i < speedTypes.length; i++) {
@@ -211,55 +211,55 @@ export class MorphinPlantShape extends FormApplication {
                 newSpeeds[speedTypes[i]].base = 0;
             }
         }
-        let speedChanges = {'data.attributes.speed': newSpeeds};
+        let speedChanges = { 'data.attributes.speed': newSpeeds };
 
         // Process senses changes
-        let originalSenses = {'data.traits.senses': shifter.data.data.traits.senses};
+        let originalSenses = { 'data.traits.senses': shifter.data.data.traits.senses };
         let sensesString = '';
         for (let i = 0; i < this.senses.length; i++) {
             const sensesEnumValue = this.senses[i];
             if (sensesString.length > 0) sensesString += '; ';
             sensesString += `${MorphinChanges.SENSES[Object.keys(MorphinChanges.SENSES)[sensesEnumValue - 1]].name}`; // element 1 = SENSES[0] = LOWLIGHT
         }
-        let sensesChanges = {'data.traits.senses': sensesString};
+        let sensesChanges = { 'data.traits.senses': sensesString };
 
         // Process resistances changes
-        let originalEres = {'data.traits.eres': shifter.data.data.traits.eres};
+        let originalEres = { 'data.traits.eres': shifter.data.data.traits.eres };
         let eresString = this.eres || '';
 
         // Process vulnerabilities changes
-        let originalDv = {'data.traits.dv': shifter.data.data.traits.dv};
-        let newDv = {value: [], custom: ''};
+        let originalDv = { 'data.traits.dv': shifter.data.data.traits.dv };
+        let newDv = { value: [], custom: '' };
         if (!!this.dv) {
             for (let i = 0; i < this.dv.length; i++) {
                 const element = this.dv[i];
-                
+
                 if (!!CONFIG.PF1.damageTypes[element]) newDv.value.push(element);
                 else newDv.custom += (newDv.custom.length > 0 ? '; ' : '') + element;
             }
         }
 
         // Process DR changes
-        let originalDr = {'data.traits.dr': shifter.data.data.traits.dr};
+        let originalDr = { 'data.traits.dr': shifter.data.data.traits.dr };
         let drString = this.dr || '';
 
         // Process regen changes
-        let originalRegen = {'data.traits.regen': shifter.data.data.traits.regen};
+        let originalRegen = { 'data.traits.regen': shifter.data.data.traits.regen };
         let regenString = this.regen || '';
 
         originalSenses = mergeObject(originalSenses, originalDv);
-        sensesChanges = mergeObject(sensesChanges, {'data.traits.dv': newDv});
+        sensesChanges = mergeObject(sensesChanges, { 'data.traits.dv': newDv });
 
         if (this.level >= 2) {
             originalSenses = mergeObject(originalSenses, originalEres);
-            sensesChanges = mergeObject(sensesChanges, {'data.traits.eres': eresString});
+            sensesChanges = mergeObject(sensesChanges, { 'data.traits.eres': eresString });
         }
 
         if (this.level === 3) {
             originalSenses = mergeObject(originalSenses, originalDr);
-            sensesChanges = mergeObject(sensesChanges, {'data.traits.dr': drString});
+            sensesChanges = mergeObject(sensesChanges, { 'data.traits.dr': drString });
             originalSenses = mergeObject(originalSenses, originalRegen);
-            sensesChanges = mergeObject(sensesChanges, {'data.traits.regen': regenString});
+            sensesChanges = mergeObject(sensesChanges, { 'data.traits.regen': regenString });
         }
 
         // Create special ability features
@@ -276,28 +276,45 @@ export class MorphinPlantShape extends FormApplication {
 
             for (let i = 0; i < this.special.length; i++) {
                 const specialName = this.special[i];
-            
+
                 if (!!specialName) { // make sure it wasn't deleted for being invalid at this spell level
                     let specialToCreate = duplicate(specialData);
                     specialToCreate.name = `${specialName} (${this.source})`;
                     itemsToEmbed.push(specialToCreate);
                 }
             }
-
         }
-        
+
+        // Find image to change token to if it exists
+        let newImage = await MightyMorphinApp.findImage(chosenForm);
+
+        // Prepare data for image change
+        let oldImage = { img: '' };
+        let oldProtoImage = { token: { img: '' } };
+        let protoImageChange = !!newImage ? { 'token.img': newImage } : {};
+        if (!!newImage) {
+            let token = canvas.tokens.ownedTokens.find(o => o.data.actorId === this.actorId);
+            if (!!token) {
+                oldImage.img = token.data.img;
+                await token.update({ 'img': newImage });
+            }
+            oldProtoImage.token.img = shifter.data.token.img;
+        }
+
         // Create the items on the actor, then create an array of their ids to delete them later
         let itemsCreated = await shifter.createEmbeddedDocuments('Item', itemsToEmbed);
         itemsCreated = itemsCreated.map(o => o.id);
 
         // Turn on the buff created
         buff = shifter.items.find(o => o.type === 'buff' && o.name === this.source);
-        let buffUpdate = [{_id: buff.id, 'data.changes': this.changes, 'data.active': true}];
-        
+        let buffUpdate = [{ _id: buff.id, 'data.changes': this.changes, 'data.active': true }];
+
         // Set the flags for all changes made
-        let dataFlag = mergeObject({'data.traits.size': this.actorSize}, mergeObject(carryBonusFlag, mergeObject(originalSkillMod, mergeObject(originalSpeed, originalSenses))));
-        let flags = {source: 'Beast Shape', buffName: this.source, data: dataFlag, armor: armorChangeFlag, itemsCreated: itemsCreated};
-        await shifter.update(mergeObject({'data.traits.size': newSize, 'flags.mightyMorphin': flags}, mergeObject(carryBonusChange, mergeObject(skillModChange, mergeObject(speedChanges, sensesChanges)))));
+        let dataFlag = mergeObject({ 'data.traits.size': this.actorSize }, mergeObject(carryBonusFlag, mergeObject(originalSkillMod, mergeObject(originalSpeed, originalSenses))));
+        if (!!newImage) { dataFlag = mergeObject(dataFlag, oldProtoImage); };
+        let flags = { source: 'Beast Shape', buffName: this.source, data: dataFlag, armor: armorChangeFlag, itemsCreated: itemsCreated };
+        if (!!newImage) { flags = mergeObject(flags, { tokenImg: oldImage }); };
+        await shifter.update(mergeObject({ 'data.traits.size': newSize, 'flags.mightyMorphin': flags }, mergeObject(carryBonusChange, mergeObject(skillModChange, mergeObject(speedChanges, mergeObject(sensesChanges, protoImageChange))))));
 
         // update items on the actor
         if (!!armorToChange.length) await shifter.updateEmbeddedDocuments('Item', armorToChange.concat(buffUpdate));
@@ -348,14 +365,14 @@ export class MorphinPlantShape extends FormApplication {
         this.changes = MorphinChanges.changes.plantShape.plant[this.chosenForm.size].changes;
         for (let i = 0; i < this.changes.length; i++) {
             const change = this.changes[i];
-            
+
             if (!!change.target && change.target === 'ability') { // stat change
                 if (data.scoreChanges.length > 0) data.scoreChanges += ', ';
                 data.scoreChanges += `${change.subTarget.charAt(0).toUpperCase()}${change.subTarget.slice(1)} ${(change.value > 0 ? '+' : '')}${change.value}`;
             }
             else if (!change.target && change.subTarget == 'nac') { // natural AC change
                 if (data.scoreChanges.length > 0) data.scoreChanges += ', ';
-                data.scoreChanges += `Natural AC ${(change.value > 0 ? '+' : '')}${change.value}`;                
+                data.scoreChanges += `Natural AC ${(change.value > 0 ? '+' : '')}${change.value}`;
             }
         }
 
@@ -364,7 +381,7 @@ export class MorphinPlantShape extends FormApplication {
         this.speeds = duplicate(MorphinChanges.changes[this.chosenForm.name].speed);
         for (let i = 0; i < Object.keys(this.speeds).length; i++) {
             const element = Object.keys(this.speeds)[i];
-            
+
             if (data.speedChanges.length > 1) data.speedChanges += ', ';
             data.speedChanges += `${element} ${this.speeds[element]} ft`;
         }
@@ -374,7 +391,7 @@ export class MorphinPlantShape extends FormApplication {
         let attackList = MorphinChanges.changes[this.chosenForm.name].attacks;
         for (let i = 0; i < attackList.length; i++) {
             const element = attackList[i];
-            
+
             let attackSpecial = '';
             if (!!element.special) { // process any specials associated with the attack
                 for (let j = 0; j < element.special.length; j++) {
@@ -397,12 +414,12 @@ export class MorphinPlantShape extends FormApplication {
         let specialAttackList = MorphinChanges.changes[this.chosenForm.name].specialAttack || [];
         for (let i = 0; i < specialAttackList.length; i++) {
             const element = specialAttackList[i];
-            
+
             // Make sure the special attack is allowed at this level of spell before processing it
             let valid = true;
             for (let j = 0; j < (element.special?.length || 0); j++) {
                 const special = element.special[j];
-                
+
                 if (!MorphinPlantShape.allowedSpecials[this.level].includes(special)) valid = false;
             }
 
@@ -431,7 +448,7 @@ export class MorphinPlantShape extends FormApplication {
         data.senses = !!this.senses.length ? '' : 'None';
         for (let i = 0; i < this.senses.length; i++) {
             const element = this.senses[i];
-            
+
             if (data.senses.length > 0) data.senses += ', ';
             data.senses += `${MorphinChanges.SENSES[Object.keys(MorphinChanges.SENSES)[element - 1]].name}`; // element 1 = SENSES[0] = LOWLIGHT
         }
@@ -444,7 +461,7 @@ export class MorphinPlantShape extends FormApplication {
 
             // Check just the first word of the special text, so something like 'jet 200ft' matches 'jet'
             if (!MorphinPlantShape.allowedSpecials[this.level].includes(specialName.split(' ')[0])) {
-                delete(this.special[i]);
+                delete (this.special[i]);
                 continue;
             }
             else {
@@ -453,7 +470,7 @@ export class MorphinPlantShape extends FormApplication {
                 data.special += specialName;
             }
         }
-        
+
         data.dv = MorphinChanges.changes[this.chosenForm.name].dv?.join(', ') || 'None';
         this.dv = MorphinChanges.changes[this.chosenForm.name].dv || [];
 
@@ -493,7 +510,7 @@ export class MorphinPlantShape extends FormApplication {
         $('#sizeSelect').on('change', async (event) => {
             await this.updateFormChoices(event, $('#formSelect')[0]);
             $('#changePreview')[0].innerHTML = await this.buildPreviewTemplate($('#formSelect')[0].value);
-        });        
+        });
 
         // selected form changed, update the preview
         $('#formSelect').on('change', async (event) => {
