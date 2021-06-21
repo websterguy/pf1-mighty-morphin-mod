@@ -35,6 +35,6 @@ jobs:
         draft: false
         prerelease: false
         token: ${{ secrets.GITHUB_TOKEN }}
-        artifacts: './module.json, ./pf1-mighty-morphin.zip'
+        artifacts: './module.json, ./pf1-mighty-morphin-v${{github.event.release.tag_name}}.zip'
         tag: ${{ github.event.release.tag_name }}
         body: ${{ github.event.release.body }}
