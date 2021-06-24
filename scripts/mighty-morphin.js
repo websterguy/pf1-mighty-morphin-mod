@@ -594,7 +594,10 @@ export class MightyMorphinApp {
      */
     static updateImageFolder() {
         let folder = game.settings.get('pf1-mighty-morphin', 'imagePath');
-        if (!!folder.length && folder.charAt(folder.length - 1) === '/') folder.slice(0, folder.length - 2);
+        if (!!folder.length && folder.charAt(folder.length - 1) === '/') {
+            folder = folder.slice(0, folder.length - 1);
+            game.settings.set('pf1-mighty-morphin', 'imagePath', folder);
+        }
         MightyMorphinApp.imageFolder = folder;
     }
 
