@@ -1,11 +1,12 @@
 import { MightyMorphinApp } from './mighty-morphin.js';
 import { MorphinChanges } from './morphin-changes.js';
 import { MorphinOptions } from './morphin-options.js';
+import { MorphinPolymorphDialog } from './morphin-polymorph-dialog.js';
 
 /**
  * Application for selecting a shape from the Beast Shape spell to change into and then applying that shape to an actor
  */
-export class MorphinBeastShape extends FormApplication {
+export class MorphinBeastShape extends MorphinPolymorphDialog {
     /**
      * @inheritdoc
      * @param {number} level The level of beast shape to use 1 - 4
@@ -13,12 +14,7 @@ export class MorphinBeastShape extends FormApplication {
      * @param {string} source The source of the beast shape effect
      */
     constructor(level, actorId, source) {
-        super();
-        this.level = level;
-        this.actorId = actorId;
-        this.actorSize = game.actors.get(actorId).data.data.traits.size;
-        this.sizes = {};
-        this.source = source;
+        super(level, actorId, source);
 
         // Add all possible sizes for the given spell level
         switch (level) {
@@ -40,7 +36,6 @@ export class MorphinBeastShape extends FormApplication {
                 break;
         }
 
-        this.shapeOptions = {};
         // Find options to shapeshift into based on the valid size choices above and sort them alphabetically
         this.shapeOptions.animal = MorphinOptions.animal.filter(o => this.sizes.animal.includes(o.size));
         this.shapeOptions.animal.sort((a, b) => { return a.name > b.name ? 1 : -1; });
@@ -228,8 +223,10 @@ export class MorphinBeastShape extends FormApplication {
         let sensesString = '';
         for (let i = 0; i < this.senses.length; i++) {
             const sensesEnumValue = this.senses[i];
-            if (sensesString.length > 0) sensesString += '; ';
-            sensesString += `${MorphinChanges.SENSES[Object.keys(MorphinChanges.SENSES)[sensesEnumValue - 1]].name}`; // element 1 = SENSES[0] = LOWLIGHT
+            if (!!sensesEnumValue) {
+                if (sensesString.length > 0) sensesString += '; ';
+                sensesString += `${MorphinChanges.SENSES[Object.keys(MorphinChanges.SENSES)[sensesEnumValue - 1]].name}`; // element 1 = SENSES[0] = LOWLIGHT
+            }
         }
         let sensesChanges = { 'data.traits.senses': sensesString };
 
@@ -560,6 +557,7 @@ export class MorphinBeastShape extends FormApplication {
                 data.senses += `${MorphinChanges.SENSES[Object.keys(MorphinChanges.SENSES)[senseEnumValue - 1]].name}`; // enum value 1 = SENSES[0] = LOWLIGHT
             }
         }
+        if (!data.senses.length) data.senses = 'None';
 
         // Process special qualities
         data.special = 'None';
@@ -604,27 +602,6 @@ export class MorphinBeastShape extends FormApplication {
     /** @inheritdoc */
     activateListeners(html) {
         super.activateListeners(html);
-
-        // size radio button changed, update the form choices for the new size, then update the preview to the first form in the list
-        $('#sizeSelect').on('change', async (event) => {
-            await this.updateFormChoices(event, $('#formSelect')[0], $('input[name="typeSelect"]:checked')[0].value);
-            $('#changePreview')[0].innerHTML = await this.buildPreviewTemplate($('#formSelect')[0].value, $('input[name="typeSelect"]:checked')[0].value);
-        });
-
-        // form type radio button changed (animal/magical beast). Update allowed sizes for this spell level, update the form choices, update preview
-        $('#typeSelect').on('change', async (event) => {
-            await this.updateSizeChoices(event, $('#sizeSelect')[0]);
-            await this.updateFormChoices({ target: { value: 'med' } }, $('#formSelect')[0], $('input[name="typeSelect"]:checked')[0].value);
-            $('#changePreview')[0].innerHTML = await this.buildPreviewTemplate($('#formSelect')[0].value, $('input[name="typeSelect"]:checked')[0].value);
-        });
-
-        // selected form changed, update the preview
-        $('#formSelect').on('change', async (event) => {
-            $('#changePreview')[0].innerHTML = await this.buildPreviewTemplate($('#formSelect')[0].value, $('input[name="typeSelect"]:checked')[0].value);
-        });
-
-        // Submit clicked, apply to the actor
-        $('#submitButton').on('click', async (event) => await this.applyChanges(event, $('#formSelect')[0].value, $('input[name="typeSelect"]:checked')[0].value));
     }
 }
 
