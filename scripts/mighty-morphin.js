@@ -2,6 +2,7 @@ import { MorphinChanges } from './morphin-changes.js';
 import { MorphinBeastShape } from './morphin-beast-shape.js';
 import { MorphinElementalBody } from './morphin-elemental-body.js';
 import { MorphinPlantShape } from './morphin-plant-shape.js';
+import DirectoryPicker from './DirectoryPicker.js';
 
 /**
  * Class for functions exposed to users of pf1 system and helpers
@@ -608,12 +609,13 @@ export class MightyMorphinApp {
      * @returns string containing the path to the image matching the form
      */
     static async findImage(formName) {
-        let imageList = await FilePicker.browse('data', MightyMorphinApp.imageFolder);
+        let imageDir = DirectoryPicker.parse(MightyMorphinApp.imageFolder);
+        let imageList = await FilePicker.browse(imageDir.activeSource, imageDir.current);
         let sanitizedFormName = formName.replace(/[^a-zA-Z0-9]/gm, '');
         let foundImage = '';
         for (const image of imageList.files) {
             for (const ext of CONST.IMAGE_FILE_EXTENSIONS) {
-                if (image === `${!!MightyMorphinApp.imageFolder ? MightyMorphinApp.imageFolder + '/' : ''}${sanitizedFormName}.${ext}`) {
+                if (image === `${!!imageDir.current ? imageDir.current + '/' : ''}${sanitizedFormName}.${ext}`) {
                     foundImage = image;
                     break;
                 }

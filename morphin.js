@@ -1,4 +1,5 @@
 import { MightyMorphinApp } from './scripts/mighty-morphin.js';
+import DirectoryPicker from './scripts/DirectoryPicker.js';
 
 // Expose functions to users
 Hooks.once('init', () => {
@@ -18,10 +19,10 @@ Hooks.once('init', () => {
 // Set up static sizes from the system's info
 Hooks.once('ready', async () => {
   MightyMorphinApp.sizes = Object.keys(CONFIG.PF1.actorSizes);
-  await initializeSettings();
+  initializeSettings();
 });
 
-Hooks.once('setup', function () {
+Hooks.once('init', function () {
   registerSettings();
 });
 
@@ -32,11 +33,10 @@ export const registerSettings = function () {
   game.settings.register('pf1-mighty-morphin', 'imagePath', {
     name: 'Form Token Image Path',
     hint: 'Set path to a folder to search for form token images to change to. Images must be an exact match to form name with only letters (no spaces or non-letter/number characters, case sensitive)',
-    default: '',
+    default: '[data]',
     scope: 'world',
-    type: String,
-    config: true,
-    onChange: _ => MightyMorphinApp.updateImageFolder()
+    type: DirectoryPicker.Directory,
+    config: true
   });
 };
 
