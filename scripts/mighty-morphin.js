@@ -614,7 +614,7 @@ export class MightyMorphinApp {
         let sanitizedFormName = formName.replace(/[^a-zA-Z0-9]/gm, '');
         let foundImage = '';
         for (const image of imageList.files) {
-            for (const ext of CONST.IMAGE_FILE_EXTENSIONS) {
+            for (const ext of Object.keys(CONST.IMAGE_FILE_EXTENSIONS)) {
                 if (image === `${!!imageDir.current ? imageDir.current + '/' : ''}${sanitizedFormName}.${ext}`) {
                     foundImage = image;
                     break;
