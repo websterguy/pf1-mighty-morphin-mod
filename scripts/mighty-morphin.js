@@ -352,7 +352,7 @@ export class MightyMorphinApp {
 
                 if (!!shifter.data.flags.mightyMorphin.tokenImg) {
                     let token = canvas.tokens.ownedTokens.find(o => o.data.actorId === shifter.id);
-                    await token.update(shifter.data.flags.mightyMorphin.tokenImg);
+                    await token.document.update(shifter.data.flags.mightyMorphin.tokenImg);
                 }
 
                 // Revert all data that was replaced to its original and remove the flags
