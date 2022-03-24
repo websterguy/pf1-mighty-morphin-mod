@@ -481,13 +481,9 @@ export class MightyMorphinApp {
 
                 // Make sure the special hasn't been deleted (if it was invalid for this level of the spell)
                 if (!!specialName) {
-                    // new line if there's already a note
-                    if (attackData.data.effectNotes.length > 0) {
-                        attackData.data.effectNotes += '\n';
-                    }
                     // If there's details about this special in the effects object, process it. Otherwise the note is just the special name
                     if (!!effects[specialName]) {
-                        attackData.data.effectNotes += effects[specialName].note;
+                        attackData.data.effectNotes.push(effects[specialName].note);
                         // Set the save if it exists
                         if (effects[specialName].saveDesc) {
                             attackData.data.save.type = effects[specialName].type;
@@ -496,7 +492,7 @@ export class MightyMorphinApp {
                         }
                     }
                     else {
-                        attackData.data.effectNotes += specialName;
+                        attackData.data.effectNotes.push(specialName);
                     }
 
                     // Set the description for the whole attack if there is a description
