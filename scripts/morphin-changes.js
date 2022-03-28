@@ -1332,6 +1332,25 @@ MorphinChanges.changes = {
             'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature’s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a –4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature’s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' }
         }
     },
+    'Bore Worm, Monarch': {
+        size: 'lg',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1, nonCrit: ['2d6', 'Acid']}
+        ],
+        speed: {
+            land: 20,
+            burrow: 40
+        },
+        senses: [
+            25
+        ],
+        di: [
+            'acid', 'mind-affecting'
+        ],
+        dr: [
+            '10/Piercing'
+        ]
+    },
     'Camel': {
         size: 'lg',
         attacks: [
