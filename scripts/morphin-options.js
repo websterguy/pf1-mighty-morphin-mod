@@ -70,6 +70,7 @@ MorphinOptions.animal = [
     { name: 'Arsinoitherium', size: 'lg' },
     { name: 'Aurochs', size: 'lg' },
     { name: 'Axe Beak', size: 'lg' },
+    { name: 'Bore Worm, Monarch', size: 'lg' },
     { name: 'Bison', size: 'lg' },
     { name: 'Camel', size: 'lg' },
     { name: 'Ceratosaurus', size: 'lg' },
