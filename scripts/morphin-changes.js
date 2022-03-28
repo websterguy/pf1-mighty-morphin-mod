@@ -1344,6 +1344,9 @@ MorphinChanges.changes = {
         senses: [
             25
         ],
+        dv: [
+            'water'
+        ],
         di: [
             'acid', 'mind-affecting'
         ],
