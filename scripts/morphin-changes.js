@@ -1348,7 +1348,7 @@ MorphinChanges.changes = {
             'water'
         ],
         di: [
-            'acid', 'mind-affecting'
+            'Acid', 'mind-affecting'
         ],
         dr: [
             '10/Piercing'
