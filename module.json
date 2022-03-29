@@ -1,6 +1,6 @@
 {
-    "name": "pf1-mighty-morphin-iselda",
-    "title": "PF1 Might Morphin Mod Fork",
+    "name": "pf1-mighty-morphin",
+    "title": "PF1 Might Morphin Mod",
     "description": "Mod to automate polymorph effects for Foundry VTT PF1e system",
     "version": "0.3.0.0",
     "manifestPlusVersion": "1.0.0",
