@@ -589,14 +589,15 @@ export class MightyMorphinApp {
     /**
      * Updates setting for folder containing form images
      */
-    static updateImageFolder() {
-        let folder = game.settings.get('pf1-mighty-morphin', 'imagePath');
-        if (!!folder.length && folder.charAt(folder.length - 1) === '/') {
-            folder = folder.slice(0, folder.length - 1);
-            game.settings.set('pf1-mighty-morphin', 'imagePath', folder);
-        }
-        MightyMorphinApp.imageFolder = folder;
-    }
+    // static updateImageFolder() {
+    //     let folder = game.settings.get('pf1-mighty-morphin', 'imagePath');
+    //     if (!!folder.length && folder.charAt(folder.length - 1) === '/') {
+    //         folder = folder.slice(0, folder.length - 1);
+    //         game.settings.set('pf1-mighty-morphin', 'imagePath', folder);
+    //     }
+
+    //     MightyMorphinApp.imageFolder = folder;
+    // }
 
     /**
      * Searches for an image matching the passed form in the configured folder
@@ -605,13 +606,14 @@ export class MightyMorphinApp {
      * @returns string containing the path to the image matching the form
      */
     static async findImage(formName) {
-        let imageDir = DirectoryPicker.parse(MightyMorphinApp.imageFolder);
+        let imageDir = MightyMorphinApp.imageFolder;
         let imageList = await FilePicker.browse(imageDir.activeSource, imageDir.current);
         let sanitizedFormName = formName.replace(/[^a-zA-Z0-9]/gm, '');
         let foundImage = '';
         for (const image of imageList.files) {
+            let imageName = image.split('/').pop();
             for (const ext of Object.keys(CONST.IMAGE_FILE_EXTENSIONS)) {
-                if (image === `${!!imageDir.current ? imageDir.current + '/' : ''}${sanitizedFormName}.${ext}`) {
+                if (imageName === `${sanitizedFormName}.${ext}`) {
                     foundImage = image;
                     break;
                 }
