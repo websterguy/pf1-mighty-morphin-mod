@@ -44,5 +44,6 @@ export const registerSettings = function () {
  * Initializes module settings from values in menu
  */
 export const initializeSettings = function () {
-  MightyMorphinApp.imageFolder = game.settings.get('pf1-mighty-morphin', 'imagePath');
+  DirectoryPicker.verifyPath(DirectoryPicker.parse(game.settings.get('pf1-mighty-morphin', 'imagePath')));
+  MightyMorphinApp.imageFolder = DirectoryPicker.parse(game.settings.get('pf1-mighty-morphin', 'imagePath'));
 };
