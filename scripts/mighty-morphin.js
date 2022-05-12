@@ -607,20 +607,26 @@ export class MightyMorphinApp {
      */
     static async findImage(formName) {
         let imageDir = MightyMorphinApp.imageFolder;
-        let imageList = await FilePicker.browse(imageDir.activeSource, imageDir.current);
-        let sanitizedFormName = formName.replace(/[^a-zA-Z0-9]/gm, '');
         let foundImage = '';
-        for (const image of imageList.files) {
-            let imageName = image.split('/').pop();
-            for (const ext of Object.keys(CONST.IMAGE_FILE_EXTENSIONS)) {
-                if (imageName === `${sanitizedFormName}.${ext}`) {
-                    foundImage = image;
-                    break;
+        try {
+            let imageList = await FilePicker.browse(imageDir.activeSource, imageDir.current);
+            let sanitizedFormName = formName.replace(/[^a-zA-Z0-9]/gm, '');
+            for (const image of imageList.files) {
+                let imageName = image.split('/').pop();
+                for (const ext of Object.keys(CONST.IMAGE_FILE_EXTENSIONS)) {
+                    if (imageName === `${sanitizedFormName}.${ext}`) {
+                        foundImage = image;
+                        break;
+                    }
                 }
+                if (!!foundImage) break;
             }
-            if (!!foundImage) break;
         }
-
+        catch (e) {
+            error.log('Mighty Morphin Mod: ', e);
+            warn.log('Mighty Morphin Mod: To enable token image switching, player must have Foundry permission to "Use File Browser"');
+        }
+        
         return foundImage;
     }
 }
