@@ -623,8 +623,8 @@ export class MightyMorphinApp {
             }
         }
         catch (e) {
-            error.log('Mighty Morphin Mod: ', e);
-            warn.log('Mighty Morphin Mod: To enable token image switching, player must have Foundry permission to "Use File Browser"');
+            console.error('Mighty Morphin Mod: ', e);
+            console.warn('Mighty Morphin Mod: To enable token image switching, player must have Foundry permission to "Use File Browser"');
         }
         
         return foundImage;
