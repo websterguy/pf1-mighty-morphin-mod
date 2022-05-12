@@ -329,8 +329,15 @@ export class MightyMorphinApp {
             // Undo listed buffs
             if (['Enlarge Person', 'Reduce Person', 'Legendary Proportions', 'Frightful Aspect', 'Animal Growth'].includes(changes.source)) {
                 // Revert all armor changes that exist
-                if (!!shifter.data.flags.mightyMorphin.armor.length) {
-                    await shifter.updateEmbeddedDocuments('Item', shifter.data.flags.mightyMorphin.armor);
+                 if (!!shifter.data.flags.mightyMorphin.armor.length) {
+                    let armorFlag = shifter.data.flags.mightyMorphin.armor;
+                    let armorExisting = [];
+                    let armorItem;
+                    armorFlag.forEach(a => {
+                        armorItem = shifter.items.get(a._id);
+                        if (!!armorItem) armorExisting.push(a);
+                    });
+                    await shifter.updateEmbeddedDocuments('Item', armorExisting);
                 }
 
                 // Revert all actor data to its original and remove the flags
@@ -347,7 +354,14 @@ export class MightyMorphinApp {
             else if (['Beast Shape', 'Elemental Body', 'Plant Shape', 'Wild Shape'].includes(changes.source)) {
                 // Reverse any changes to armor
                 if (!!shifter.data.flags.mightyMorphin.armor.length) {
-                    await shifter.updateEmbeddedDocuments('Item', shifter.data.flags.mightyMorphin.armor);
+                    let armorFlag = shifter.data.flags.mightyMorphin.armor;
+                    let armorExisting = [];
+                    let armorItem;
+                    armorFlag.forEach(a => {
+                        armorItem = shifter.items.get(a._id);
+                        if (!!armorItem) armorExisting.push(a);
+                    });
+                    await shifter.updateEmbeddedDocuments('Item', armorExisting);
                 }
 
                 if (!!shifter.data.flags.mightyMorphin.tokenImg) {
