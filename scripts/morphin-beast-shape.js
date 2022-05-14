@@ -220,15 +220,14 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
 
         // Process senses changes
         let originalSenses = { 'data.traits.senses': shifter.data.data.traits.senses };
-        let sensesString = '';
+        let senseObject = {};
         for (let i = 0; i < this.senses.length; i++) {
             const sensesEnumValue = this.senses[i];
             if (!!sensesEnumValue) {
-                if (sensesString.length > 0) sensesString += '; ';
-                sensesString += `${MorphinChanges.SENSES[Object.keys(MorphinChanges.SENSES)[sensesEnumValue - 1]].name}`; // element 1 = SENSES[0] = LOWLIGHT
+                senseObject = mergeObject(senseObject, MorphinChanges.SENSES[Object.keys(MorphinChanges.SENSES)[sensesEnumValue - 1]].setting); // element 1 = SENSES[0] = LOWLIGHT
             }
         }
-        let sensesChanges = { 'data.traits.senses': sensesString };
+        let sensesChanges = { 'data.traits.senses': senseObject };
 
         // Process resistances changes
         let originalEres = { 'data.traits.eres': shifter.data.data.traits.eres };
