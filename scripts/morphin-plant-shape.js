@@ -215,7 +215,7 @@ export class MorphinPlantShape extends FormApplication {
 
         // Process senses changes
         let originalSenses = { 'data.traits.senses': shifter.data.data.traits.senses };
-        let senseObject = {};
+        let senseObject = { 'dv': 0, 'ts': 0, 'bs': 0, 'bse': 0, 'll': { 'enabled': false, 'multiplier': { 'dim': 2, 'bright': 2 } }, 'sid': false, 'tr': false, 'si': false, 'sc': false, 'custom': '' };
         for (let i = 0; i < this.senses.length; i++) {
             const sensesEnumValue = this.senses[i];
             if (!!sensesEnumValue) {
