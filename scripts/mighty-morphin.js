@@ -477,6 +477,7 @@ export class MightyMorphinApp {
         attackData['data.uses.per'] = attack.charges ? 'day' : '';
         attackData['data.uses.maxFormula'] = '' + attack.charges;
         attackData['data.uses.value'] = attack.charges || 0;
+        attackData['data.enh'] = attack.enh || null;
 
         // Create extra attacks if the attack count is over 1, label the extras starting at 2 (Claw 2)
         let extraAttacks = [];

@@ -82,6 +82,7 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
      * @param {string} chosenForm The name of the form chosen
      */
     async applyChanges(event, chosenForm) {
+        let shifter = game.actors.get(this.actorId);
         let newSize = MorphinChanges.changes[chosenForm].size;
 
         let itemsToEmbed = [];
@@ -89,9 +90,12 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
         let oneAttack = MorphinChanges.changes[chosenForm].attacks.length === 1;
 
         // Loop over the attacks and create the items
+        const amuletItem = shifter.items.find(o => o.name.toLowerCase().includes('amulet of mighty fists') && o.data.data.equipped);
+        let bonusSearch = /\+(\d+)/.exec(amuletItem?.name);
+        let amuletBonus = !!bonusSearch ? bonusSearch[1] : null;
         for (let i = 0; i < MorphinChanges.changes[chosenForm].attacks.length; i++) {
             let attack = duplicate(MorphinChanges.changes[chosenForm].attacks[i]); // get the attack data
-
+            attack.enh = amuletBonus;
             // Remove any special property if it's no allowed at this level
             if (!!attack.special) {
                 for (let j = 0; j < attack.special.length; j++) {
@@ -125,8 +129,6 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
                 itemsToEmbed.push(MightyMorphinApp.createAttack(this.actorId, newSize, attack, false, MorphinChanges.changes[chosenForm].effect, this.source, 'misc'));
             }
         }
-
-        let shifter = game.actors.get(this.actorId);
 
         // Add base polymorph size stat changes to the spell's normal changes if necessary
         if (!!this.polymorphChanges.length) this.changes = this.changes.concat(this.polymorphChanges);
