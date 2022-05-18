@@ -3037,7 +3037,7 @@ MorphinChanges.changes = {
         size: 'huge',
         attacks: [
             { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
-            { name: 'Tail Slap', diceCount: 1, diceSize: 6, count: 1 }
+            { name: 'Wing', diceCount: 1, diceSize: 6, count: 2 }
         ],
         speed: {
             land: 30,
