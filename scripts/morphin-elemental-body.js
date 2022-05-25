@@ -92,7 +92,7 @@ export class MorphinElementalBody extends FormApplication {
         let amuletBonus = !!bonusSearch ? bonusSearch[1] : null;
         for (let i = 0; i < MorphinChanges.changes[chosenForm].attacks.length; i++) {
             let attack = duplicate(MorphinChanges.changes[chosenForm].attacks[i]);
-            attack.enh = amuletBonus;
+            attack.enh = parseInt(amuletBonus);
 
             itemsToEmbed.push(MightyMorphinApp.createAttack(this.actorId, newSize, attack, oneAttack, MorphinChanges.changes[chosenForm].effect, this.source, 'natural'));
         }
@@ -316,7 +316,10 @@ export class MorphinElementalBody extends FormApplication {
         // update items on the actor
         if (!!armorToChange.length) await shifter.updateEmbeddedDocuments('Item', armorToChange.concat(buffUpdate));
         else await shifter.updateEmbeddedDocuments('Item', buffUpdate);
-
+        
+        canvas.tokens.releaseAll();
+        canvas.tokens.ownedTokens.find(o => o.data.actorId === this.actorId).control();
+        
         await this.close();
     }
 
