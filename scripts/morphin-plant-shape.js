@@ -96,7 +96,7 @@ export class MorphinPlantShape extends FormApplication {
             // Remove the special if it's no allowed at this level
             if (!!attack.special) {
                 for (let j = 0; j < attack.special.length; j++) {
-                    attack.enh = amuletBonus;
+                    attack.enh = parseInt(amuletBonus);
                     const specialElement = attack.special[j];
 
                     if (!MorphinPlantShape.allowedSpecials[this.level].includes(specialElement)) {
@@ -324,6 +324,9 @@ export class MorphinPlantShape extends FormApplication {
         if (!!armorToChange.length) await shifter.updateEmbeddedDocuments('Item', armorToChange.concat(buffUpdate));
         else await shifter.updateEmbeddedDocuments('Item', buffUpdate);
 
+        canvas.tokens.releaseAll();
+        canvas.tokens.ownedTokens.find(o => o.data.actorId === this.actorId).control();
+        
         await this.close();
     }
 
