@@ -383,6 +383,9 @@ export class MightyMorphinApp {
                 // Remove any attacks or other features created by the effect
                 let itemsOnActor = shifter.items.filter(o => changes.itemsCreated.includes(o.id)).map(o => o.id);
                 await shifter.deleteEmbeddedDocuments('Item', itemsOnActor);
+                
+                canvas.tokens.releaseAll();
+                canvas.tokens.ownedTokens.find(o => o.data.actorId === shifter.id).control();
             }
         }
         else if (!!shifter && !shifter.data.flags.mightyMorphin) {
@@ -454,7 +457,7 @@ export class MightyMorphinApp {
 
         // Create attack Item template
         for (const template of game.data.system.template.Item.attack.templates) {
-            mergeObject(attackData.data, game.data.system.template.Item.templates[template]);
+            mergeObject(attackData.data, duplicate(game.data.system.template.Item.templates[template]));
         }
         mergeObject(attackData.data, duplicate(game.data.system.template.Item.attack));
         delete attackData.data.templates;
@@ -469,13 +472,13 @@ export class MightyMorphinApp {
         attackData['data.actionType'] = attack.attackType || 'mwak'; // melee, ranged, save, combat man., etc
         attackData['data.activation.type'] = 'attack';
         attackData['data.duration.units'] = 'inst';
-        attackData['data.range.value'] = '' + attack.range;
+        attackData['data.range.value'] = '' + (attack.range ?? '');
         attackData['data.range.units'] = attack.attackType === 'rwak' ? 'ft' : 'melee'; // if ranged attack, range in feet. Else melee
         attackData['data.ability.critRange'] = attack.crit || 20;
         attackData['data.ability.critMult'] = attack.critMult || 2;
         attackData['data.range.maxIncrements'] = attack.increment || '';
         attackData['data.uses.per'] = attack.charges ? 'day' : '';
-        attackData['data.uses.maxFormula'] = '' + attack.charges;
+        attackData['data.uses.maxFormula'] = '' + (attack.charges ?? '');
         attackData['data.uses.value'] = attack.charges || 0;
         attackData['data.enh'] = attack.enh || null;
 
