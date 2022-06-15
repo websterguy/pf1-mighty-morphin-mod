@@ -188,7 +188,7 @@ export class MightyMorphinApp {
     /**
      * Applies Frightful Aspect buff and effects to selected actor
      */
-    static async frightfulAspect() {
+    static async frightfulAspect(cl = 0) {
         let shifter = MightyMorphinApp.getSingleActor(); // Ensure only a single actor is being processed
         let changeData = MorphinChanges.changes.frightfulAspect; // get buff data
 
@@ -198,10 +198,10 @@ export class MightyMorphinApp {
             let shifterSize = shifter.data.data.traits.size;
 
             // Get caster level from user for effect scaling
-            let casterLevel = await Dialog.prompt({
+            let casterLevel = cl === 0 ? await Dialog.prompt({
                 content: '<label>Input Caster Level</label><input type="number">',
                 callback: (html) => html.find('input').val()
-            });
+            }) : cl;
 
             // Create the buff if it doesn't exist, otherwise toggle it on
             if (!buff) {
@@ -215,8 +215,7 @@ export class MightyMorphinApp {
 
                 // Create the buff on the actor, change the icon, populate the changes, turn it on
                 let buffAdded = await shifter.createEmbeddedDocuments('Item', [buff.data]);
-                await buffAdded[0].update({ 'img': 'systems/pf1/icons/skills/affliction_08.jpg', 'data.changes': changeData.changes, 'data.active': true });
-                console.log(buffAdded);
+                await buffAdded[0].update({ 'img': 'systems/pf1/icons/skills/affliction_08.jpg', 'data.changes': changeData.changes, 'data.active': true }); 
             }
             else {
                 buff.update({ 'data.active': true });
@@ -342,7 +341,7 @@ export class MightyMorphinApp {
 
                 // Revert all actor data to its original and remove the flags
                 if (!!changes.data) {
-                    await shifter.update({ 'data.traits.size': changes.size, 'data': changes.data, 'flags.-=mightyMorphin': null });
+                    await shifter.update({ 'data': changes.data, 'data.traits.size': changes.size, 'flags.-=mightyMorphin': null });
                 }
                 else {
                     await shifter.update({ 'data.traits.size': changes.size, 'flags.-=mightyMorphin': null });
