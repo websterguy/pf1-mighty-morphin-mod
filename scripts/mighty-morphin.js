@@ -246,7 +246,8 @@ export class MightyMorphinApp {
 
             // Replace old spell resistance if new is higher, store old
             let oldSR = shifter.data.data.attributes.sr.formula;
-            let newSR = shifter.data.data.attributes.sr.total > (10 + parseInt(casterLevel)) ? oldSR : (10 + parseInt(casterLevel));
+            let faSR = 10 + Math.floor(parseInt(casterLevel) / 2);
+            let newSR = shifter.data.data.attributes.sr.total > faSR ? oldSR : faSR;
 
             // Update the actor data and store flags
             await shifter.update({ 'data.traits.size': newSize, 'data.traits.dr': newDR, 'data.attributes.sr.formula': `${newSR}`, 'flags.mightyMorphin': { source: 'Frightful Aspect', buffName: 'Frightful Aspect', size: shifterSize, armor: armorChangeFlag, data: { traits: { dr: oldDR }, attributes: { sr: { formula: oldSR } } } } });
