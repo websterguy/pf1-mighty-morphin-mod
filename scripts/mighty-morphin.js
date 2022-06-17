@@ -453,6 +453,7 @@ export class MightyMorphinApp {
      */
     static createAttack(actorId, formSize, attack, onlyAttack, effects = {}, source = '', type = 'natural') {
         let attackData = { data: {} };
+        
         const actorData = game.actors.get(actorId).data; // get actor's data for reference
 
         // Create attack Item template
@@ -467,20 +468,24 @@ export class MightyMorphinApp {
         attackData['type'] = 'attack';
 
         // If attack is labeled as a a primary attack or that attack type is usually primary, or it is the only attack, it is primary
-        attackData['data.primaryAttack'] = ((attack.primaryAttack || (!!MightyMorphinApp.naturalAttacks[attack.name] && MightyMorphinApp.naturalAttacks[attack.name].primaryAttack)) || onlyAttack);
-        attackData['data.attackType'] = type; // weapon, natural, misc, class ability, etc
-        attackData['data.actionType'] = attack.attackType || 'mwak'; // melee, ranged, save, combat man., etc
-        attackData['data.activation.type'] = 'attack';
-        attackData['data.duration.units'] = 'inst';
-        attackData['data.range.value'] = '' + (attack.range ?? '');
-        attackData['data.range.units'] = attack.attackType === 'rwak' ? 'ft' : 'melee'; // if ranged attack, range in feet. Else melee
-        attackData['data.ability.critRange'] = attack.crit || 20;
-        attackData['data.ability.critMult'] = attack.critMult || 2;
-        attackData['data.range.maxIncrements'] = attack.increment || '';
-        attackData['data.uses.per'] = attack.charges ? 'day' : '';
-        attackData['data.uses.maxFormula'] = '' + (attack.charges ?? '');
-        attackData['data.uses.value'] = attack.charges || 0;
-        attackData['data.enh'] = attack.enh || null;
+        attackData['data']['enh'] = attack.enh || null;
+        attackData['data']['primaryAttack'] = ((attack.primaryAttack || (!!MightyMorphinApp.naturalAttacks[attack.name] && MightyMorphinApp.naturalAttacks[attack.name].primaryAttack)) || onlyAttack);
+        attackData['data']['attackType'] = type; // weapon, natural, misc, class ability, etc
+
+        let subAction = game.pf1.documentComponents.ItemAction.defaultData;
+
+        subAction['actionType'] = attack.attackType || 'mwak'; // melee, ranged, save, combat man., etc
+        subAction['activation']['type'] = 'attack';
+        subAction['duration']['units'] = 'inst';
+        subAction['range']['value'] = '' + (attack.range ?? '');
+        subAction['range']['units'] = attack.attackType === 'rwak' ? 'ft' : 'melee'; // if ranged attack, range in feet. Else melee
+        subAction['ability']['critRange'] = attack.crit || 20;
+        subAction['ability']['critMult'] = attack.critMult || 2;
+        subAction['range']['maxIncrements'] = attack.increment || '';
+        subAction['uses']['per'] = attack.charges ? 'day' : '';
+        subAction['uses']['maxFormula'] = '' + (attack.charges ?? '');
+        subAction['uses']['value'] = attack.charges || 0;
+        subAction['name'] = attack.name;
 
         // Create extra attacks if the attack count is over 1, label the extras starting at 2 (Claw 2)
         let extraAttacks = [];
@@ -488,8 +493,8 @@ export class MightyMorphinApp {
             extraAttacks = extraAttacks.concat([['', `${attack.name} ${i + 1}`]]);
         }
         if (!!extraAttacks.length) {
-            attackData['data.attackParts'] = extraAttacks;
-            attackData['data.attackName'] = `${attack.name} 1`;
+            subAction['attackParts'] = extraAttacks;
+            subAction['attackName'] = `${attack.name} 1`;
         }
 
         // set attack notes for each special
@@ -501,16 +506,16 @@ export class MightyMorphinApp {
                 if (!!specialName) {
                     // If there's details about this special in the effects object, process it. Otherwise the note is just the special name
                     if (!!effects[specialName]) {
-                        attackData.data.effectNotes.push(effects[specialName].note);
+                        subAction.effectNotes.push(effects[specialName].note);
                         // Set the save if it exists
                         if (effects[specialName].saveDesc) {
-                            attackData.data.save.type = effects[specialName].type;
-                            attackData.data.save.dc = 10;
-                            attackData.data.save.description = effects[specialName].saveDesc;
+                            subAction.save.type = effects[specialName].type;
+                            subAction.save.dc = '10';
+                            subAction.save.description = effects[specialName].saveDesc;
                         }
                     }
                     else {
-                        attackData.data.effectNotes.push(specialName);
+                        subAction.effectNotes.push(specialName);
                     }
 
                     // Set the description for the whole attack if there is a description
@@ -520,31 +525,33 @@ export class MightyMorphinApp {
         }
 
         // Set attack ability to dex if weapon finesse feat and dex >= str or it's a ranged attack. Otherwise it's the actor's normal melee stat or strength
-        if (!!attack.attackAbility) attackData['data.ability.attack'] = attack.attackAbility;
-        else if ((!!actorData.items.find(o => o.type === 'feat' && o.name === 'Weapon Finesse') && actorData.data.abilities.dex.total >= actorData.data.abilities.str.total) || attack.attackType === 'rwak')
-            attackData['data.ability.attack'] = 'dex';
-        else attackData['data.ability.attack'] = getProperty(actorData, 'data.attributes.attack.meleeAbility') || 'str';
+        if (!!attack.attackAbility) subAction['ability']['attack'] = attack.attackAbility;
+        else if ((!!actorData.items.find(o => o.type === 'feat' && o.name === 'Weapon Finesse') && actorData.data.abilities.dex.total >= actorData.data.abilities.str.total) || attack.attackType === 'rwak') subAction['ability']['attack'] = 'dex';
+        else subAction['ability']['attack'] = getProperty(actorData, 'data.attributes.attack.meleeAbility') || 'str';
 
         // ability damage is strength unless it's a ranged attack
-        attackData['data.ability.damage'] = attack.type === 'rwak' ? '' : 'str';
+        subAction['ability']['damage'] = attack.type === 'rwak' ? '' : 'str';
 
         // ability damage multiplier is the passed multiplier or 1.5 for an only attack, 1 for a primary attack, .5 secondary
-        attackData['data.ability.damageMult'] = attack.mult || (onlyAttack ? 1.5 : (attackData.data.primaryAttack) ? 1 : 0.5);
+        subAction['ability']['damageMult'] = attack.mult || (onlyAttack ? 1.5 : (attackData.data.primaryAttack) ? 1 : 0.5);
 
         // Create attack sizeRoll with the passed dice stats, the actor's size, and the attack type's damage type (or '' if attack name not in naturalAttacks)
         if (attack.diceSize !== 0) {
-            attackData['data.damage.parts'] = [[`sizeRoll(${attack.diceCount}, ${attack.diceSize}, @size, ${MightyMorphinApp.sizes.indexOf(formSize)})`, (attack.type || MightyMorphinApp.naturalAttacks[attack.name]?.type) || '']];
+            subAction['damage']['parts'] = [[`sizeRoll(${attack.diceCount}, ${attack.diceSize}, @size, ${MightyMorphinApp.sizes.indexOf(formSize)})`, (attack.type || MightyMorphinApp.naturalAttacks[attack.name]?.type) || '']];
 
             // Create non-crit bonus damage
-            if (attack.nonCrit) attackData['data.damage.nonCritParts'] = [attack.nonCrit];
+            if (attack.nonCrit) subAction['damage']['nonCritParts'] = [attack.nonCrit];
         }
         else {
             // use the data from nonCrit as the primary damage when diceSize is 0, because it's damage that doesn't scale from size
-            if (attack.nonCrit) attackData['data.damage.parts'] = [attack.nonCrit];
+            if (attack.nonCrit) subAction['damage']['parts'] = [attack.nonCrit];
         }
 
         // Get the image for this attack name
         attackData['img'] = MightyMorphinApp.naturalAttacks[attack.name]?.img || 'systems/pf1/icons/items/inventory/monster-paw-bear.jpg';
+        subAction['img'] = MightyMorphinApp.naturalAttacks[attack.name]?.img || 'systems/pf1/icons/items/inventory/monster-paw-bear.jpg';
+
+        attackData['data']['actions'] = [subAction];
 
         return attackData;
     }
