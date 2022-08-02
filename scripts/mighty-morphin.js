@@ -537,7 +537,7 @@ export class MightyMorphinApp {
 
         // Create attack sizeRoll with the passed dice stats, the actor's size, and the attack type's damage type (or '' if attack name not in naturalAttacks)
         if (attack.diceSize !== 0) {
-            subAction['damage']['parts'] = [[`sizeRoll(${attack.diceCount}, ${attack.diceSize}, @size, ${MightyMorphinApp.sizes.indexOf(formSize)})`, (attack.type || MightyMorphinApp.naturalAttacks[attack.name]?.type) || '']];
+            subAction['damage']['parts'] = [[`sizeRoll(${attack.diceCount}, ${attack.diceSize}, @size, ${MightyMorphinApp.sizes.indexOf(formSize)})`, {values: ((attack.type || MightyMorphinApp.naturalAttacks[attack.name]?.type) || []), custom: ''}]];
 
             // Create non-crit bonus damage
             if (attack.nonCrit) subAction['damage']['nonCritParts'] = [attack.nonCrit];
@@ -661,15 +661,15 @@ MightyMorphinApp.imageFolder = '';
 
 // Attack data used by createAttacks function
 MightyMorphinApp.naturalAttacks = {
-    'Bite': { img: 'systems/pf1/icons/items/inventory/monster-head.jpg', type: 'B,P, and S', primaryAttack: true },
-    'Claw': { img: 'systems/pf1/icons/skills/blood_06.jpg', type: 'B and S', primaryAttack: true },
-    'Gore': { img: 'systems/pf1/icons/items/inventory/monster-horn.jpg', type: 'P', primaryAttack: true },
-    'Hoof': { img: 'systems/pf1/icons/items/inventory/monster-hoof.jpg', type: 'B', primaryAttack: false },
-    'Tentacle': { img: 'systems/pf1/icons/items/inventory/monster-octopus.jpg', type: 'B', primaryAttack: false },
-    'Wing': { img: 'systems/pf1/icons/skills/blue_02.jpg', type: 'B', primaryAttack: false },
-    'Pincers': { img: 'systems/pf1/icons/items/inventory/monster-claw.jpg', type: 'B', primaryAttack: false },
-    'Tail Slap': { img: 'systems/pf1/icons/items/inventory/monster-tail.jpg', type: 'B', primaryAttack: false },
-    'Slam': { img: 'systems/pf1/icons/items/inventory/monster-forearm.jpg', type: 'B', primaryAttack: true },
-    'Sting': { img: 'systems/pf1/icons/items/inventory/monster-scorpion.jpg', type: 'P', primaryAttack: true },
-    'Talons': { img: 'systems/pf1/icons/items/inventory/monster-talon-green.jpg', type: 'S', primaryAttack: true }
+    'Bite': { img: 'systems/pf1/icons/items/inventory/monster-head.jpg', type: ['bludgeoning','piercing','slashing'], primaryAttack: true },
+    'Claw': { img: 'systems/pf1/icons/skills/blood_06.jpg', type: ['bludgeoning', 'slashing'], primaryAttack: true },
+    'Gore': { img: 'systems/pf1/icons/items/inventory/monster-horn.jpg', type: ['piercing'], primaryAttack: true },
+    'Hoof': { img: 'systems/pf1/icons/items/inventory/monster-hoof.jpg', type: ['bludgeoning'], primaryAttack: false },
+    'Tentacle': { img: 'systems/pf1/icons/items/inventory/monster-octopus.jpg', type: ['bludgeoning'], primaryAttack: false },
+    'Wing': { img: 'systems/pf1/icons/skills/blue_02.jpg', type: ['bludgeoning'], primaryAttack: false },
+    'Pincers': { img: 'systems/pf1/icons/items/inventory/monster-claw.jpg', type: ['bludgeoning'], primaryAttack: false },
+    'Tail Slap': { img: 'systems/pf1/icons/items/inventory/monster-tail.jpg', type: ['bludgeoning'], primaryAttack: false },
+    'Slam': { img: 'systems/pf1/icons/items/inventory/monster-forearm.jpg', type: ['bludgeoning'], primaryAttack: true },
+    'Sting': { img: 'systems/pf1/icons/items/inventory/monster-scorpion.jpg', type: ['piercing'], primaryAttack: true },
+    'Talons': { img: 'systems/pf1/icons/items/inventory/monster-talon-green.jpg', type: ['slashing'], primaryAttack: true }
 };
