@@ -195,21 +195,21 @@ export class MorphinPlantShape extends FormApplication {
         }
 
         // Process speed changes
-        let originalSpeed = { 'data.attributes.speed': shifter.data.data.attributes.speed };
+        let originalManeuverability = { 'data.attributes.speed.fly.maneuverability': shifter.data.data.attributes.speed.fly.maneuverability };
         let newSpeeds = duplicate(shifter.data.data.attributes.speed);
         let speedTypes = Object.keys(newSpeeds);
+        let maneuverabilityChange = {};
         for (let i = 0; i < speedTypes.length; i++) {
             // Find the speed the form gives for the type
             let speed = this.speeds[speedTypes[i]];
+            let speedChange = {formula: '0', operator: 'set', subTarget: speedTypes[i] + 'Speed', modifier: 'base', priority: 100, value: 0};
             if (!!speed) { // if the form has this speed add it
-                newSpeeds[speedTypes[i]].base = speed;
-                if (speedTypes[i] === 'fly') newSpeeds['fly'].maneuverability = this.level === 1 ? 'average' : 'good';
+                speedChange.formula = speed.toString();
+                speedChange.value = speed;
+                if (speedTypes[i] === 'fly') maneuverabilityChange = {'data.attributes.speed.fly.maneuverability': (this.level === 1 ? 'average' : 'good')};
             }
-            else { // if the form doesn't have the speed, the shifter doesn't get it
-                newSpeeds[speedTypes[i]].base = 0;
-            }
+            this.changes.push(speedChange);
         }
-        let speedChanges = { 'data.attributes.speed': newSpeeds };
 
         // Process senses changes
         let originalSenses = { 'data.traits.senses': shifter.data.data.traits.senses };
@@ -309,11 +309,11 @@ export class MorphinPlantShape extends FormApplication {
         let buffUpdate = [{ _id: buff.id, 'data.changes': this.changes, 'data.active': true }];
 
         // Set the flags for all changes made
-        let dataFlag = mergeObject({ 'data.traits.size': this.actorSize }, mergeObject(originalSkillMod, mergeObject(originalSpeed, originalSenses)));
+        let dataFlag = mergeObject({ 'data.traits.size': this.actorSize }, mergeObject(originalSkillMod, mergeObject(originalManeuverability, originalSenses)));
         if (!!newImage) { dataFlag = mergeObject(dataFlag, oldProtoImage); };
         let flags = { source: 'Beast Shape', buffName: this.source, data: dataFlag, armor: armorChangeFlag, itemsCreated: itemsCreated };
         if (!!newImage) { flags = mergeObject(flags, { tokenImg: oldImage }); };
-        await shifter.update(mergeObject({ 'data.traits.size': newSize, 'flags.mightyMorphin': flags }, mergeObject(skillModChange, mergeObject(speedChanges, mergeObject(sensesChanges, protoImageChange)))));
+        await shifter.update(mergeObject({ 'data.traits.size': newSize, 'flags.mightyMorphin': flags }, mergeObject(skillModChange, mergeObject(maneuverabilityChange, mergeObject(sensesChanges, protoImageChange)))));
 
         // update items on the actor
         if (!!armorToChange.length) await shifter.updateEmbeddedDocuments('Item', armorToChange.concat(buffUpdate));
