@@ -64,9 +64,6 @@ export class MightyMorphinApp {
                 buff.update({ 'data.active': true, 'data.changes': newChanges });
             }
 
-            // Find the size the number of steps away from current, number of steps provided by changeData
-            let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
-
             let armorChangeFlag = [];
             let armorToChange = [];
             // Double armor and shield AC when moving from tiny to small (tiny and below armor AC is half normal)
@@ -229,8 +226,6 @@ export class MightyMorphinApp {
                 buff.update({ 'data.active': true, 'data.changes': newChanges });
             }
 
-            let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
-
             let armorChangeFlag = [];
             let armorToChange = [];
             // Double armor and shield AC when moving from tiny to small (tiny and below armor AC is half normal)
@@ -318,8 +313,6 @@ export class MightyMorphinApp {
 
                 buff.update({ 'data.active': true, 'data.changes': newChanges });
             }
-
-            let newSize = changeData.size;
 
             let armorChangeFlag = [];
             let armorToChange = [];
@@ -409,9 +402,6 @@ export class MightyMorphinApp {
 
                 buff.update({ 'data.active': true, 'data.changes': newChanges });
             }
-
-            // Find the size the number of steps away from current, number of steps provided by changeData
-            let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
 
             let armorChangeFlag = [];
             let armorToChange = [];
