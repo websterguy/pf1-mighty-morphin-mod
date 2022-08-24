@@ -456,7 +456,7 @@ MorphinChanges.changes = {
         attacks: [
             { name: 'Bite', diceCount: 1, diceSize: 6, count: 1 },
             { name: 'Claw', diceCount: 1, diceSize: 4, count: 2 },
-            { name: 'Tail', diceCount: 1, diceSize: 4, count: 1, type: 'B and P' }
+            { name: 'Tail', diceCount: 1, diceSize: 4, count: 1, type: ['bludgeoning','piercing'] }
         ],
         speed: {
             land: 30,
@@ -1058,7 +1058,7 @@ MorphinChanges.changes = {
         size: 'sm',
         attacks: [
             { name: 'Bite', diceCount: 1, diceSize: 6, count: 1 },
-            { name: 'Tail', diceCount: 1, diceSize: 6, count: 1, type: 'Electricity', special: ['Touch'] }
+            { name: 'Tail', diceCount: 1, diceSize: 6, count: 1, type: ['electric'], special: ['Touch'] }
         ],
         speed: {
             land: 5,
@@ -1154,7 +1154,7 @@ MorphinChanges.changes = {
         size: 'sm',
         attacks: [
             { name: 'Bite', diceCount: 1, diceSize: 4, count: 1 },
-            { name: 'Tail Slap', diceCount: 1, diceSize: 4, count: 1, type: 'P', primaryAttack: true }
+            { name: 'Tail Slap', diceCount: 1, diceSize: 4, count: 1, type: ['piercing'], primaryAttack: true }
         ],
         speed: {
             land: 40
@@ -1893,7 +1893,7 @@ MorphinChanges.changes = {
     'Kentrosaurus': {
         size: 'lg',
         attacks: [
-            { name: 'Tail', diceCount: 2, diceSize: 6, count: 1, type: 'P' }
+            { name: 'Tail', diceCount: 2, diceSize: 6, count: 1, type: ['piercing'] }
         ],
         speed: {
             land: 40
@@ -3239,8 +3239,8 @@ MorphinChanges.changes = {
     'Delgeth': {
         size: 'med',
         attacks: [
-            { name: 'Gore', diceCount: 1, diceSize: 8, count: 1, nonCrit: ['1d6', 'Fire'] },
-            { name: 'Hoof', diceCount: 1, diceSize: 4, count: 2, nonCrit: ['1d6', 'Fire'] }
+            { name: 'Gore', diceCount: 1, diceSize: 8, count: 1, nonCrit: ['1d6', {values: ['fire'], custom: ''}] },
+            { name: 'Hoof', diceCount: 1, diceSize: 4, count: 2, nonCrit: ['1d6', {values: ['fire'], custom: ''}] }
         ],
         speed: {
             land: 50,
@@ -3268,8 +3268,8 @@ MorphinChanges.changes = {
     'Galvo': {
         size: 'med',
         attacks: [
-            { name: 'Bite', diceCount: 1, diceSize: 6, count: 1, nonCrit: ['2d6', 'Electricity'] },
-            { name: 'Slam', diceCount: 1, diceSize: 4, count: 2, nonCrit: ['2d6', 'Electricity'] }
+            { name: 'Bite', diceCount: 1, diceSize: 6, count: 1, nonCrit: ['2d6', {values: ['electric'], custom: ''}] },
+            { name: 'Slam', diceCount: 1, diceSize: 4, count: 2, nonCrit: ['2d6', {values: ['electric'], custom: ''}] }
         ],
         speed: {
             land: 40
@@ -3755,7 +3755,7 @@ MorphinChanges.changes = {
     'Shasalqu': {
         size: 'sm',
         attacks: [
-            { name: 'Tail Slap', diceCount: 1, diceSize: 8, count: 1, nonCrit: ['1d6', 'Cold'] }
+            { name: 'Tail Slap', diceCount: 1, diceSize: 8, count: 1, nonCrit: ['1d6', {values: ['cold'], custom: ''}] }
         ],
         speed: {
             land: 30
@@ -3907,7 +3907,7 @@ MorphinChanges.changes = {
     'Ankheg': {
         size: 'lg',
         attacks: [
-            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1, special: ['Grab'], nonCrit: ['1d4', 'Acid'] }
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1, special: ['Grab'], nonCrit: ['1d4', {values: ['acid'], custom: ''}] }
         ],
         speed: {
             land: 30,
@@ -4028,7 +4028,7 @@ MorphinChanges.changes = {
             { name: 'Claw', diceCount: 1, diceSize: 6, count: 2 }
         ],
         specialAttack: [
-            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: ['6d8', 'see desc'] }
+            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: ['6d8', {values: [], custom: 'see desc'}] }
         ],
         speed: {
             land: 30,
@@ -4089,7 +4089,7 @@ MorphinChanges.changes = {
             { name: 'Bite', diceCount: 2, diceSize: 8, count: 1, special: ['Poison'] }
         ],
         specialAttack: [
-            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: ['8d6', 'Acid'] }
+            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: ['8d6', {values: ['acid'], custom: ''}] }
         ],
         speed: {
             land: 20,
@@ -4264,7 +4264,7 @@ MorphinChanges.changes = {
     'Glacier Toad': {
         size: 'lg',
         attacks: [
-            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1, special: ['Grab'], nonCrit: ['1d6', 'Cold'] }
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1, special: ['Grab'], nonCrit: ['1d6', {values: ['cold'], custom: ''}] }
         ],
         speed: {
             land: 30,
@@ -4530,7 +4530,7 @@ MorphinChanges.changes = {
             { name: 'Hoof', diceCount: 1, diceSize: 6, count: 2 }
         ],
         specialAttack: [
-            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], nonCrit: ['5d6', 'Fire'] }
+            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], nonCrit: ['5d6', {values: ['fire'], custom: ''}] }
         ],
         speed: {
             land: 60,
@@ -5000,10 +5000,10 @@ MorphinChanges.changes = {
     'Winter Wolf': {
         size: 'lg',
         attacks: [
-            { name: 'Bite', diceCount: 1, diceSize: 8, count: 1, nonCrit: ['1d6', 'Cold'], special: ['Trip'] }
+            { name: 'Bite', diceCount: 1, diceSize: 8, count: 1, nonCrit: ['1d6', {values: ['cold'], custom: ''}], special: ['Trip'] }
         ],
         specialAttack: [
-            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], nonCrit: ['6d6', 'Cold'] }
+            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], nonCrit: ['6d6', {values: ['cold'], custom: ''}] }
         ],
         speed: {
             land: 50
@@ -5168,7 +5168,7 @@ MorphinChanges.changes = {
     'Ostovite': {
         size: 'tiny',
         attacks: [
-            { name: 'Bite', diceCount: 1, diceSize: 2, count: 1, nonCrit: ['1d6', 'Acid'] }
+            { name: 'Bite', diceCount: 1, diceSize: 2, count: 1, nonCrit: ['1d6', {values: ['acid'], custom: ''}] }
         ],
         speed: {
             land: 30
@@ -5220,10 +5220,10 @@ MorphinChanges.changes = {
     'Sun Falcon': {
         size: 'tiny',
         attacks: [
-            { name: 'Talon', diceCount: 1, diceSize: 3, count: 2, nonCrit: ['1d6', 'Fire'] }
+            { name: 'Talon', diceCount: 1, diceSize: 3, count: 2, nonCrit: ['1d6', {values: ['fire'], custom: ''}] }
         ],
         specialAttack: [
-            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], nonCrit: ['3d6', 'Fire'] }
+            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], nonCrit: ['3d6', {values: ['fire'], custom: ''}] }
         ],
         speed: {
             land: 10,
@@ -5285,7 +5285,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 2, diceSize: 6, count: 2 }
         ],
         specialAttack: [
-            { name: 'Whirlwind', diceCount: 2, diceSize: 6, special: ['Whirlwind'], type: 'b', attackType: 'save' }
+            { name: 'Whirlwind', diceCount: 2, diceSize: 6, special: ['Whirlwind'], type: ['bludgeoning'], attackType: 'save' }
         ],
         speed: {
             fly: 100
@@ -5331,7 +5331,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 2, diceSize: 6, count: 2, special: ['Burn'] }
         ],
         specialAttack: [
-            { name: 'Burn', diceCount: 2, diceSize: 6, count: 1, type: 'Fire', attackType: 'save' }
+            { name: 'Burn', diceCount: 2, diceSize: 6, count: 1, type: ['fire'], attackType: 'save' }
         ],
         speed: {
             land: 60
@@ -5364,7 +5364,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 2, diceSize: 6, count: 2 }
         ],
         specialAttack: [
-            { name: 'Vortex', diceCount: 2, diceSize: 6, special: ['Vortex'], type: 'b', attackType: 'save' }
+            { name: 'Vortex', diceCount: 2, diceSize: 6, special: ['Vortex'], type: ['bludgeoning'], attackType: 'save' }
         ],
         speed: {
             land: 20,
@@ -5389,7 +5389,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 1, diceSize: 8, count: 2 }
         ],
         specialAttack: [
-            { name: 'Whirlwind', diceCount: 1, diceSize: 8, special: ['Whirlwind'], type: 'b', attackType: 'save' }
+            { name: 'Whirlwind', diceCount: 1, diceSize: 8, special: ['Whirlwind'], type: ['bludgeoning'], attackType: 'save' }
         ],
         speed: {
             fly: 100
@@ -5432,7 +5432,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 1, diceSize: 8, count: 2, special: ['Burn'] }
         ],
         specialAttack: [
-            { name: 'Burn', diceCount: 1, diceSize: 8, count: 1, type: 'Fire', attackType: 'save' }
+            { name: 'Burn', diceCount: 1, diceSize: 8, count: 1, type: ['fire'], attackType: 'save' }
         ],
         speed: {
             land: 50
@@ -5465,7 +5465,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 1, diceSize: 8, count: 2 }
         ],
         specialAttack: [
-            { name: 'Vortex', diceCount: 1, diceSize: 8, special: ['Vortex'], type: 'b', attackType: 'save' }
+            { name: 'Vortex', diceCount: 1, diceSize: 8, special: ['Vortex'], type: ['bludgeoning'], attackType: 'save' }
         ],
         speed: {
             land: 20,
@@ -5490,7 +5490,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 1, diceSize: 6, count: 1 }
         ],
         specialAttack: [
-            { name: 'Whirlwind', diceCount: 1, diceSize: 6, special: ['Whirlwind'], type: 'b', attackType: 'save' }
+            { name: 'Whirlwind', diceCount: 1, diceSize: 6, special: ['Whirlwind'], type: ['bludgeoning'], attackType: 'save' }
         ],
         speed: {
             fly: 100
@@ -5530,7 +5530,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 1, diceSize: 6, count: 1, special: ['Burn'] }
         ],
         specialAttack: [
-            { name: 'Burn', diceCount: 1, diceSize: 6, count: 1, type: 'Fire', attackType: 'save' }
+            { name: 'Burn', diceCount: 1, diceSize: 6, count: 1, type: ['fire'], attackType: 'save' }
         ],
         speed: {
             land: 50
@@ -5560,7 +5560,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 1, diceSize: 8, count: 1 }
         ],
         specialAttack: [
-            { name: 'Vortex', diceCount: 1, diceSize: 8, special: ['Vortex'], type: 'b', attackType: 'save' }
+            { name: 'Vortex', diceCount: 1, diceSize: 8, special: ['Vortex'], type: ['bludgeoning'], attackType: 'save' }
         ],
         speed: {
             land: 20,
@@ -5582,7 +5582,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 1, diceSize: 4, count: 1 }
         ],
         specialAttack: [
-            { name: 'Whirlwind', diceCount: 1, diceSize: 4, special: ['Whirlwind'], type: 'b', attackType: 'save' }
+            { name: 'Whirlwind', diceCount: 1, diceSize: 4, special: ['Whirlwind'], type: ['bludgeoning'], attackType: 'save' }
         ],
         speed: {
             fly: 100
@@ -5622,7 +5622,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 1, diceSize: 4, count: 1, special: ['Burn'] }
         ],
         specialAttack: [
-            { name: 'Burn', diceCount: 1, diceSize: 4, count: 1, type: 'Fire', attackType: 'save' }
+            { name: 'Burn', diceCount: 1, diceSize: 4, count: 1, type: ['fire'], attackType: 'save' }
         ],
         speed: {
             land: 50
@@ -5652,7 +5652,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 1, diceSize: 6, count: 1 }
         ],
         specialAttack: [
-            { name: 'Vortex', diceCount: 1, diceSize: 6, special: ['Vortex'], type: 'b', attackType: 'save' }
+            { name: 'Vortex', diceCount: 1, diceSize: 6, special: ['Vortex'], type: ['bludgeoning'], attackType: 'save' }
         ],
         speed: {
             land: 20,
@@ -5686,7 +5686,7 @@ MorphinChanges.changes = {
         size: 'huge',
         attacks: [
             { name: 'Bite', diceCount: 2, diceSize: 6, count: 1 },
-            { name: 'Vine', diceCount: 1, diceSize: 8, count: 4, primaryAttack: true, type: 'B and P', special: ['Grab'] }
+            { name: 'Vine', diceCount: 1, diceSize: 8, count: 4, primaryAttack: true, type: ['bludgeoning', 'piercing'], special: ['Grab'] }
         ],
         speed: {
             land: 10
@@ -5765,7 +5765,7 @@ MorphinChanges.changes = {
     'Giant Sundew': {
         size: 'huge',
         attacks: [
-            { name: 'Slam', diceCount: 2, diceSize: 6, count: 2, nonCrit: ['1d6', 'Acid'], special: ['Constrict'] }
+            { name: 'Slam', diceCount: 2, diceSize: 6, count: 2, nonCrit: ['1d6', {values: ['acid'], custom: ''}], special: ['Constrict'] }
         ],
         speed: {
             land: 20
@@ -5793,7 +5793,7 @@ MorphinChanges.changes = {
         },
         senses: [],
         dv: [
-            'electricity'
+            'electric'
         ],
         effect: {
             'Constrict': { note: 'Constrict: Same damage as Vine' }
@@ -6244,7 +6244,7 @@ MorphinChanges.changes = {
     'Viper Vine': {
         size: 'lg',
         attacks: [
-            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1, nonCrit: ['3d6', 'Acid'] },
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1, nonCrit: ['3d6', {values: ['acid'], custom: ''}] },
             { name: 'Tentacle', diceCount: 1, diceSize: 6, count: 4, special: ['Grab', 'Constrict'] }
         ],
         speed: {
@@ -6514,7 +6514,7 @@ MorphinChanges.changes = {
             'Cold 10', 'Fire 10', 'Sonic 10'
         ],
         dv: [
-            'electricity'
+            'electric'
         ]
     },
     'Phantom Fungus': {
@@ -6621,7 +6621,7 @@ MorphinChanges.changes = {
     'Calathgar': {
         size: 'sm',
         attacks: [
-            { name: 'Flower', diceCount: 1, diceSize: 6, count: 1, nonCrit: ['1d6', 'Cold'] },
+            { name: 'Flower', diceCount: 1, diceSize: 6, count: 1, nonCrit: ['1d6', {values: ['cold'], custom: ''}] },
             { name: 'Tendril', diceCount: 1, diceSize: 4, count: 1 }
         ],
         speed: {
@@ -6736,7 +6736,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 1, diceSize: 4, count: 1 }
         ],
         specialAttack: [
-            { name: 'Constrict', diceCount: 0, diceSize: 0, count: 1, attackType: 'mcman', nonCrit: ['2d4', 'Acid'] }
+            { name: 'Constrict', diceCount: 0, diceSize: 0, count: 1, attackType: 'mcman', nonCrit: ['2d4', {values: ['acid'], custom: ''}] }
         ],
         speed: {
             land: 20,
@@ -6922,7 +6922,7 @@ MorphinChanges.changes = {
     'Xtabay': {
         size: 'sm',
         attacks: [
-            { name: 'Sting', diceCount: 1, diceSize: 3, count: 2, nonCrit: ['1d2', 'Acid'] }
+            { name: 'Sting', diceCount: 1, diceSize: 3, count: 2, nonCrit: ['1d2', {values: ['acid'], custom: ''}] }
         ],
         speed: {
             land: 5
@@ -6937,29 +6937,43 @@ MorphinChanges.changes = {
 
 };
 
+MorphinChanges.allowedSpecials = {
+    beastShape: {
+        '1': ['Touch'],
+        '2': ['Touch', 'Grab', 'Pounce', 'Trip'],
+        '3': ['Touch', 'Grab', 'Pounce', 'Trip', 'Constrict', 'Ferocity', 'Jet', 'Poison', 'Rake', 'Trample', 'Web'],
+        '4': ['Touch', 'Grab', 'Pounce', 'Trip', 'Constrict', 'Ferocity', 'Jet', 'Poison', 'Rake', 'Trample', 'Web', 'Breath Weapon', 'Rend', 'Roar', 'Spikes']
+    }
+};
+
+MorphinChanges.buffIcons = {
+    beastShape: 'systems/pf1/icons/spells/wild-jade-3.jpg',
+    wildShape: 'systems/pf1/icons/skills/green_21.jpg'
+};
+
 MorphinChanges.SENSES = Object.freeze({
-    LOWLIGHT: { value: 1, name: 'Low-Light Vision' },
-    DARKVISION10: { value: 2, name: 'Darkvision 10ft' },
-    DARKVISION20: { value: 3, name: 'Darkvision 20ft' },
-    DARKVISION30: { value: 4, name: 'Darkvision 30ft' },
-    DARKVISION40: { value: 5, name: 'Darkvision 40ft' },
-    DARKVISION50: { value: 6, name: 'Darkvision 50ft' },
-    DARKVISION60: { value: 7, name: 'Darkvision 60ft' },
-    DARKVISION70: { value: 8, name: 'Darkvision 70ft' },
-    DARKVISION80: { value: 9, name: 'Darkvision 80ft' },
-    DARKVISION90: { value: 10, name: 'Darkvision 90ft' },
-    SCENT: { value: 11, name: 'Scent' },
-    BLINDSENSE10: { value: 12, name: 'Blindsense 10ft' },
-    BLINDSENSE20: { value: 13, name: 'Blindsense 20ft' },
-    BLINDSENSE30: { value: 14, name: 'Blindsense 30ft' },
-    BLINDSENSE40: { value: 15, name: 'Blindsense 40ft' },
-    BLINDSENSE50: { value: 16, name: 'Blindsense 50ft' },
-    BLINDSENSE60: { value: 17, name: 'Blindsense 60ft' },
-    TREMORSENSE10: { value: 18, name: 'Tremorsense 10ft' },
-    TREMORSENSE15: { value: 19, name: 'Tremorsense 15ft' },
-    TREMORSENSE20: { value: 20, name: 'Tremorsense 20ft' },
-    TREMORSENSE30: { value: 21, name: 'Tremorsense 30ft' },
-    TREMORSENSE40: { value: 22, name: 'Tremorsense 40ft' },
-    TREMORSENSE50: { value: 24, name: 'Tremorsense 50ft' },
-    TREMORSENSE60: { value: 25, name: 'Tremorsense 60ft' }
+    LOWLIGHT: { value: 1, name: 'Low-Light Vision', setting: {ll: {enabled: true}} },
+    DARKVISION10: { value: 2, name: 'Darkvision 10ft', setting: {dv: 10} },
+    DARKVISION20: { value: 3, name: 'Darkvision 20ft', setting: {dv: 20} },
+    DARKVISION30: { value: 4, name: 'Darkvision 30ft', setting: {dv: 30} },
+    DARKVISION40: { value: 5, name: 'Darkvision 40ft', setting: {dv: 40} },
+    DARKVISION50: { value: 6, name: 'Darkvision 50ft', setting: {dv: 50} },
+    DARKVISION60: { value: 7, name: 'Darkvision 60ft', setting: {dv: 60} },
+    DARKVISION70: { value: 8, name: 'Darkvision 70ft', setting: {dv: 70} },
+    DARKVISION80: { value: 9, name: 'Darkvision 80ft', setting: {dv: 80} },
+    DARKVISION90: { value: 10, name: 'Darkvision 90ft', setting: {dv: 90} },
+    SCENT: { value: 11, name: 'Scent', setting: {custom: 'Scent'} },
+    BLINDSENSE10: { value: 12, name: 'Blindsense 10ft', setting: {bs: 10} },
+    BLINDSENSE20: { value: 13, name: 'Blindsense 20ft', setting: {bs: 20} },
+    BLINDSENSE30: { value: 14, name: 'Blindsense 30ft', setting: {bs: 30} },
+    BLINDSENSE40: { value: 15, name: 'Blindsense 40ft', setting: {bs: 40} },
+    BLINDSENSE50: { value: 16, name: 'Blindsense 50ft', setting: {bs: 50} },
+    BLINDSENSE60: { value: 17, name: 'Blindsense 60ft', setting: {bs: 60} },
+    TREMORSENSE10: { value: 18, name: 'Tremorsense 10ft', setting: {ts: 10} },
+    TREMORSENSE15: { value: 19, name: 'Tremorsense 15ft', setting: {ts: 15} },
+    TREMORSENSE20: { value: 20, name: 'Tremorsense 20ft', setting: {ts: 20} },
+    TREMORSENSE30: { value: 21, name: 'Tremorsense 30ft', setting: {ts: 30} },
+    TREMORSENSE40: { value: 22, name: 'Tremorsense 40ft', setting: {ts: 40} },
+    TREMORSENSE50: { value: 24, name: 'Tremorsense 50ft', setting: {ts: 50} },
+    TREMORSENSE60: { value: 25, name: 'Tremorsense 60ft', setting: {ts: 60} }
 });

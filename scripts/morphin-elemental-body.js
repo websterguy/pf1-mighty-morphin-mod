@@ -79,6 +79,7 @@ export class MorphinElementalBody extends FormApplication {
      * @param {string} chosenForm The name of the form chosen
      */
     async applyChanges(event, chosenForm) {
+        let shifter = game.actors.get(this.actorId);
         let newSize = MorphinChanges.changes[chosenForm].size;
 
         let itemsToEmbed = [];
@@ -86,8 +87,12 @@ export class MorphinElementalBody extends FormApplication {
         let oneAttack = MorphinChanges.changes[chosenForm].attacks.length === 1;
 
         // Loop over the attacks and create the items
+        const amuletItem = shifter.items.find(o => o.name.toLowerCase().includes('amulet of mighty fists') && o.data.data.equipped);
+        let bonusSearch = /\+(\d+)/.exec(amuletItem?.name);
+        let amuletBonus = !!bonusSearch ? bonusSearch[1] : null;
         for (let i = 0; i < MorphinChanges.changes[chosenForm].attacks.length; i++) {
             let attack = duplicate(MorphinChanges.changes[chosenForm].attacks[i]);
+            attack.enh = parseInt(amuletBonus);
 
             itemsToEmbed.push(MightyMorphinApp.createAttack(this.actorId, newSize, attack, oneAttack, MorphinChanges.changes[chosenForm].effect, this.source, 'natural'));
         }
@@ -100,8 +105,6 @@ export class MorphinElementalBody extends FormApplication {
                 itemsToEmbed.push(MightyMorphinApp.createAttack(this.actorId, newSize, attack, false, MorphinChanges.changes[chosenForm].effect, this.source, 'misc'));
             }
         }
-
-        let shifter = game.actors.get(this.actorId);
 
         // Add base polymorph size stat changes to the spell's normal changes if necessary
         if (!!this.polymorphChanges.length) this.changes = this.changes.concat(this.polymorphChanges);
@@ -137,13 +140,8 @@ export class MorphinElementalBody extends FormApplication {
         }
 
         // Set up adjustments to strength carry bonus and carry multiplier so actor's encumbrance doesn't change
-        // Store the current values
-        let carryBonusFlag = { 'data.abilities.str.carryBonus': shifter.data.data.abilities.str.carryBonus, 'data.abilities.str.carryMultiplier': shifter.data.data.abilities.str.carryMultiplier };
-        // Subtract the buff strength change from current carry bonus, decreasing carry strength if buff adds or increasing carry strength if buff subtracts
-        let carryBonusChange = { 'data.abilities.str.carryBonus': (!!shifter.data.data.abilities.str.carryBonus ? shifter.data.data.abilities.str.carryBonus : 0) - strChange };
-        // Counteract the size change's natural increase or decrease to carry multiplier
-        let carryMult = shifter.data.data.abilities.str.carryMultiplier * CONFIG.PF1.encumbranceMultipliers.normal[this.actorSize] / CONFIG.PF1.encumbranceMultipliers.normal[newSize];
-        carryBonusChange = mergeObject(carryBonusChange, { 'data.abilities.str.carryMultiplier': carryMult });
+        let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
+        this.changes.concat(carryBonusChanges);
 
         let armorChangeFlag = [];
         let armorToChange = [];
@@ -180,30 +178,32 @@ export class MorphinElementalBody extends FormApplication {
         }
 
         // Process speed changes
-        let originalSpeed = { 'data.attributes.speed': shifter.data.data.attributes.speed };
+        let originalManeuverability = { 'data.attributes.speed.fly.maneuverability': shifter.data.data.attributes.speed.fly.maneuverability };
         let newSpeeds = duplicate(shifter.data.data.attributes.speed);
         let speedTypes = Object.keys(newSpeeds);
+        let maneuverabilityChange = {};
         for (let i = 0; i < speedTypes.length; i++) {
+            // Find the speed the form gives for the type
             let speed = this.speeds[speedTypes[i]];
-            if (!!speed) {
-                newSpeeds[speedTypes[i]].base = speed;
-                if (speedTypes[i] === 'fly') newSpeeds['fly'].maneuverability = 'perfect';
+            let speedChange = {formula: '0', operator: 'set', subTarget: speedTypes[i] + 'Speed', modifier: 'base', priority: 100, value: 0};
+            if (!!speed) { // if the form has this speed add it
+                speedChange.formula = speed.toString();
+                speedChange.value = speed;
+                if (speedTypes[i] === 'fly') maneuverabilityChange = {'data.attributes.speed.fly.maneuverability': (this.level === 1 ? 'average' : 'good')};
             }
-            else {
-                newSpeeds[speedTypes[i]].base = 0;
-            }
+            this.changes.push(speedChange);
         }
-        let speedChanges = { 'data.attributes.speed': newSpeeds };
 
         // Process senses changes
         let originalSenses = { 'data.traits.senses': shifter.data.data.traits.senses };
-        let sensesString = '';
+        let senseObject = { 'dv': 0, 'ts': 0, 'bs': 0, 'bse': 0, 'll': { 'enabled': false, 'multiplier': { 'dim': 2, 'bright': 2 } }, 'sid': false, 'tr': false, 'si': false, 'sc': false, 'custom': '' };
         for (let i = 0; i < this.senses.length; i++) {
             const sensesEnumValue = this.senses[i];
-            if (sensesString.length > 0) sensesString += '; ';
-            sensesString += `${MorphinChanges.SENSES[Object.keys(MorphinChanges.SENSES)[sensesEnumValue - 1]].name}`; // element 1 = SENSES[0] = LOWLIGHT
+            if (!!sensesEnumValue) {
+                senseObject = mergeObject(senseObject, MorphinChanges.SENSES[Object.keys(MorphinChanges.SENSES)[sensesEnumValue - 1]].setting); // element 1 = SENSES[0] = LOWLIGHT
+            }
         }
-        let sensesChanges = { 'data.traits.senses': sensesString };
+        let sensesChanges = { 'data.traits.senses': senseObject };
 
         // Process resistances changes
         let originalEres = { 'data.traits.eres': shifter.data.data.traits.eres };
@@ -303,16 +303,19 @@ export class MorphinElementalBody extends FormApplication {
         buff = shifter.items.find(o => o.type === 'buff' && o.name === this.source);
         let buffUpdate = [{ _id: buff.id, 'data.changes': this.changes, 'data.active': true }];
 
-        let dataFlag = mergeObject({ 'data.traits.size': this.actorSize }, mergeObject(carryBonusFlag, mergeObject(originalSkillMod, mergeObject(originalSpeed, originalSenses))));
+        let dataFlag = mergeObject({ 'data.traits.size': this.actorSize }, mergeObject(originalSkillMod, mergeObject(originalManeuverability, originalSenses)));
         if (!!newImage) { dataFlag = mergeObject(dataFlag, oldProtoImage); };
         let flags = { source: 'Beast Shape', buffName: this.source, data: dataFlag, armor: armorChangeFlag, itemsCreated: itemsCreated };
         if (!!newImage) { flags = mergeObject(flags, { tokenImg: oldImage }); };
-        await shifter.update(mergeObject({ 'data.traits.size': newSize, 'flags.mightyMorphin': flags }, mergeObject(carryBonusChange, mergeObject(skillModChange, mergeObject(speedChanges, mergeObject(sensesChanges, protoImageChange))))));
+        await shifter.update(mergeObject({ 'data.traits.size': newSize, 'flags.mightyMorphin': flags }, mergeObject(skillModChange, mergeObject(maneuverabilityChange, mergeObject(sensesChanges, protoImageChange)))));
 
         // update items on the actor
         if (!!armorToChange.length) await shifter.updateEmbeddedDocuments('Item', armorToChange.concat(buffUpdate));
         else await shifter.updateEmbeddedDocuments('Item', buffUpdate);
-
+        
+        canvas.tokens.releaseAll();
+        canvas.tokens.ownedTokens.find(o => o.data.actorId === this.actorId).control();
+        
         await this.close();
     }
 
