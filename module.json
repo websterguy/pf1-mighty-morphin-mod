@@ -2,9 +2,9 @@
     "name": "pf1-mighty-morphin",
     "title": "PF1 Might Morphin Mod",
     "description": "Mod to automate polymorph effects for Foundry VTT PF1e system",
-    "version": "0.3.0.0",
+    "version": "0.3.0",
     "manifestPlusVersion": "1.0.0",
-    "minimumCoreVersion": "0.8.6",
+    "minimumCoreVersion": "9",
     "compatibleCoreVersion": "9",
     "authors": [
         {
@@ -32,10 +32,11 @@
             "label": "Morphin Sample Macros",
             "path": "packs/macros.db",
             "entity": "Macro",
-            "package": "pf1-mighty-morphin-iselda"
+            "package": "pf1-mighty-morphin"
         }
     ],
-    "url": "https://github.com/d0ub7/pf1-mighty-morphin-mod",
-    "manifest": "https://raw.githubusercontent.com/d0ub7/pf1-mighty-morphin-mod/master/module.json",
-    "download": "https://codeload.github.com/d0ub7/pf1-mighty-morphin-mod/zip/refs/tags/0.3.0.2"
+    "minimumSystemVersion": "0.81.1",
+    "url": "https://github.com/websterguy/pf1-mighty-morphin-mod",
+    "manifest": "https://github.com/websterguy/pf1-mighty-morphin-mod/releases/latest/download/module.json",
+    "download": "https://github.com/websterguy/pf1-mighty-morphin-mod/releases/download/0.1.0/pf1-mighty-morphin.zip"
 }
