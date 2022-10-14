@@ -16,7 +16,7 @@ export class MorphinPlantShape extends FormApplication {
         super();
         this.level = level;
         this.actorId = actorId;
-        this.actorSize = game.actors.get(actorId).data.data.traits.size;
+        this.actorSize = game.actors.get(actorId).system.traits.size;
         this.sizes = {};
         this.sizes.animal = [];
         this.sizes.magicalBeast = [];
@@ -87,7 +87,7 @@ export class MorphinPlantShape extends FormApplication {
         let oneAttack = MorphinChanges.changes[chosenForm].attacks.length === 1;
 
         // Loop over the attacks and create the items
-        const amuletItem = shifter.items.find(o => o.name.toLowerCase().includes('amulet of mighty fists') && o.data.data.equipped);
+        const amuletItem = shifter.items.find(o => o.name.toLowerCase().includes('amulet of mighty fists') && o.system.equipped);
         let bonusSearch = /\+(\d+)/.exec(amuletItem?.name);
         let amuletBonus = !!bonusSearch ? bonusSearch[1] : null;
         for (let i = 0; i < MorphinChanges.changes[chosenForm].attacks.length; i++) {
@@ -135,12 +135,12 @@ export class MorphinPlantShape extends FormApplication {
         // If the buff doesn't already exist on the actor, create it
         if (!buff) {
             // Create buff Item template
-            let buffData = { data: {} };
-            buffData.data = duplicate(game.data.system.template.Item.buff);
-            for (let t of buffData.data.templates) {
-                mergeObject(buffData.data, duplicate(game.system.template.Item.templates[t]));
+            let buffData = { system: {} };
+            buffData.system = duplicate(game.system.template.Item.buff);
+            for (let t of buffData.system.templates) {
+                mergeObject(buffData.system, duplicate(game.system.template.Item.templates[t]));
             }
-            delete buffData.data.templates;
+            delete buffData.system.templates;
 
             // Populate needed data
             buffData.name = this.source;
@@ -168,19 +168,19 @@ export class MorphinPlantShape extends FormApplication {
         let smallSizes = ['fine', 'dim', 'tiny']; // sizes with half armor AC, also use dex for climb and swim instead of str
         let armorChangeNeeded = (smallSizes.includes(newSize) && !smallSizes.includes(this.actorSize)) || (!smallSizes.includes(newSize) && smallSizes.includes(this.actorSize));
 
-        let armorAndShields = shifter.items.filter(o => o.data.type === 'equipment' && (o.data.data.equipmentType === 'armor' || o.data.data.equipmentType === 'shield'));
+        let armorAndShields = shifter.items.filter(o => o.type === 'equipment' && (o.system.equipmentType === 'armor' || o.system.equipmentType === 'shield'));
 
         for (let item of armorAndShields) {
             let armorIsWild = item.name.includes('Wild');
-            let originalArmor = armorChangeNeeded ? { armor: { value: item.data.data.armor.value } } : {};
-            let originalEquipped = (armorIsWild && this.source === 'Wild Shape') ? {} : { equipped: item.data.data.equipped };
+            let originalArmor = armorChangeNeeded ? { armor: { value: item.system.armor.value } } : {};
+            let originalEquipped = (armorIsWild && this.source === 'Wild Shape') ? {} : { equipped: item.system.equipped };
             originalArmor = mergeObject(originalArmor, originalEquipped);
 
             if (!!originalArmor) {
                 armorChangeFlag.push({ _id: item.id, data: originalArmor });
                 // take off armor if it's not wild armor or this is not plant shape from wild shape
                 let equipChange = (armorIsWild && this.source === 'Wild Shape') ? {} : { equipped: false };
-                let armorChange = armorChangeNeeded ? (smallSizes.includes(this.actorSize) ? { armor: { value: item.data.data.armor.value * 2 } } : { armor: { value: Math.floor(item.data.data.armor.value / 2) } }) : {};
+                let armorChange = armorChangeNeeded ? (smallSizes.includes(this.actorSize) ? { armor: { value: item.system.armor.value * 2 } } : { armor: { value: Math.floor(item.system.armor.value / 2) } }) : {};
                 equipChange = mergeObject(equipChange, armorChange);
                 armorToChange.push({ _id: item.id, data: equipChange });
             }
@@ -190,13 +190,13 @@ export class MorphinPlantShape extends FormApplication {
         let originalSkillMod = {};
         let skillModChange = {};
         if (armorChangeNeeded) {
-            originalSkillMod = { 'data.skills.clm.ability': shifter.data.data.skills.clm.ability, 'data.skills.swm.ability': shifter.data.data.skills.swm.ability };
-            skillModChange = { 'data.skills.clm.ability': (smallSizes.includes(this.actorSize) ? 'str' : 'dex'), 'data.skills.swm.ability': (smallSizes.includes(this.actorSize) ? 'str' : 'dex') };
+            originalSkillMod = { 'skills.clm.ability': shifter.system.skills.clm.ability, 'skills.swm.ability': shifter.system.skills.swm.ability };
+            skillModChange = { 'skills.clm.ability': (smallSizes.includes(this.actorSize) ? 'str' : 'dex'), 'skills.swm.ability': (smallSizes.includes(this.actorSize) ? 'str' : 'dex') };
         }
 
         // Process speed changes
-        let originalManeuverability = { 'data.attributes.speed.fly.maneuverability': shifter.data.data.attributes.speed.fly.maneuverability };
-        let newSpeeds = duplicate(shifter.data.data.attributes.speed);
+        let originalManeuverability = { 'attributes.speed.fly.maneuverability': shifter.system.attributes.speed.fly.maneuverability };
+        let newSpeeds = duplicate(shifter.system.attributes.speed);
         let speedTypes = Object.keys(newSpeeds);
         let maneuverabilityChange = {};
         for (let i = 0; i < speedTypes.length; i++) {
@@ -206,13 +206,13 @@ export class MorphinPlantShape extends FormApplication {
             if (!!speed) { // if the form has this speed add it
                 speedChange.formula = speed.toString();
                 speedChange.value = speed;
-                if (speedTypes[i] === 'fly') maneuverabilityChange = {'data.attributes.speed.fly.maneuverability': (this.level === 1 ? 'average' : 'good')};
+                if (speedTypes[i] === 'fly') maneuverabilityChange = {'system.attributes.speed.fly.maneuverability': (this.level === 1 ? 'average' : 'good')};
             }
             this.changes.push(speedChange);
         }
 
         // Process senses changes
-        let originalSenses = { 'data.traits.senses': shifter.data.data.traits.senses };
+        let originalSenses = { 'system.traits.senses': shifter.system.traits.senses };
         let senseObject = { 'dv': 0, 'ts': 0, 'bs': 0, 'bse': 0, 'll': { 'enabled': false, 'multiplier': { 'dim': 2, 'bright': 2 } }, 'sid': false, 'tr': false, 'si': false, 'sc': false, 'custom': '' };
         for (let i = 0; i < this.senses.length; i++) {
             const sensesEnumValue = this.senses[i];
@@ -220,14 +220,14 @@ export class MorphinPlantShape extends FormApplication {
                 senseObject = mergeObject(senseObject, MorphinChanges.SENSES[Object.keys(MorphinChanges.SENSES)[sensesEnumValue - 1]].setting); // element 1 = SENSES[0] = LOWLIGHT
             }
         }
-        let sensesChanges = { 'data.traits.senses': senseObject };
+        let sensesChanges = { 'system.traits.senses': senseObject };
 
         // Process resistances changes
-        let originalEres = { 'data.traits.eres': shifter.data.data.traits.eres };
+        let originalEres = { 'system.traits.eres': shifter.system.traits.eres };
         let eresString = this.eres || '';
 
         // Process vulnerabilities changes
-        let originalDv = { 'data.traits.dv': shifter.data.data.traits.dv };
+        let originalDv = { 'system.traits.dv': shifter.system.traits.dv };
         let newDv = { value: [], custom: '' };
         if (!!this.dv) {
             for (let i = 0; i < this.dv.length; i++) {
@@ -239,39 +239,39 @@ export class MorphinPlantShape extends FormApplication {
         }
 
         // Process DR changes
-        let originalDr = { 'data.traits.dr': shifter.data.data.traits.dr };
+        let originalDr = { 'system.traits.dr': shifter.system.traits.dr };
         let drString = this.dr || '';
 
         // Process regen changes
-        let originalRegen = { 'data.traits.regen': shifter.data.data.traits.regen };
+        let originalRegen = { 'system.traits.regen': shifter.system.traits.regen };
         let regenString = this.regen || '';
 
         originalSenses = mergeObject(originalSenses, originalDv);
-        sensesChanges = mergeObject(sensesChanges, { 'data.traits.dv': newDv });
+        sensesChanges = mergeObject(sensesChanges, { 'system.traits.dv': newDv });
 
         if (this.level >= 2) {
             originalSenses = mergeObject(originalSenses, originalEres);
-            sensesChanges = mergeObject(sensesChanges, { 'data.traits.eres': eresString });
+            sensesChanges = mergeObject(sensesChanges, { 'system.traits.eres': eresString });
         }
 
         if (this.level === 3) {
             originalSenses = mergeObject(originalSenses, originalDr);
-            sensesChanges = mergeObject(sensesChanges, { 'data.traits.dr': drString });
+            sensesChanges = mergeObject(sensesChanges, { 'system.traits.dr': drString });
             originalSenses = mergeObject(originalSenses, originalRegen);
-            sensesChanges = mergeObject(sensesChanges, { 'data.traits.regen': regenString });
+            sensesChanges = mergeObject(sensesChanges, { 'system.traits.regen': regenString });
         }
 
         // Create special ability features
         if (!!this.special) {
             // create blank template for misc feature
-            let specialData = { data: {} };
-            specialData.data = duplicate(game.data.system.template.Item.feat);
-            for (let t of specialData.data.templates) {
-                mergeObject(specialData.data, duplicate(game.system.template.Item.templates[t]));
+            let specialData = { system: {} };
+            specialData.system = duplicate(game.system.template.Item.feat);
+            for (let t of specialData.system.templates) {
+                mergeObject(specialData.system, duplicate(game.system.template.Item.templates[t]));
             }
-            delete specialData.data.templates;
+            delete specialData.system.templates;
             specialData.type = 'feat';
-            specialData.data.featType = 'misc';
+            specialData.system.featType = 'misc';
 
             for (let i = 0; i < this.special.length; i++) {
                 const specialName = this.special[i];
@@ -292,12 +292,12 @@ export class MorphinPlantShape extends FormApplication {
         let oldProtoImage = { token: { img: '' } };
         let protoImageChange = !!newImage ? { 'token.img': newImage } : {};
         if (!!newImage) {
-            let token = canvas.tokens.ownedTokens.find(o => o.data.actorId === this.actorId);
+            let token = canvas.tokens.ownedTokens.find(o => o.actor.id === this.actorId);
             if (!!token) {
-                oldImage.img = token.data.img;
+                oldImage.img = token.img;
                 await token.document.update({ 'img': newImage });
             }
-            oldProtoImage.token.img = shifter.data.token.img;
+            oldProtoImage.token.img = shifter.token.img;
         }
 
         // Create the items on the actor, then create an array of their ids to delete them later
@@ -306,21 +306,21 @@ export class MorphinPlantShape extends FormApplication {
 
         // Turn on the buff created
         buff = shifter.items.find(o => o.type === 'buff' && o.name === this.source);
-        let buffUpdate = [{ _id: buff.id, 'data.changes': this.changes, 'data.active': true }];
+        let buffUpdate = [{ _id: buff.id, 'system.changes': this.changes, 'system.active': true }];
 
         // Set the flags for all changes made
-        let dataFlag = mergeObject({ 'data.traits.size': this.actorSize }, mergeObject(originalSkillMod, mergeObject(originalManeuverability, originalSenses)));
-        if (!!newImage) { dataFlag = mergeObject(dataFlag, oldProtoImage); };
-        let flags = { source: 'Beast Shape', buffName: this.source, data: dataFlag, armor: armorChangeFlag, itemsCreated: itemsCreated };
+        let systemFlag = mergeObject({ 'system.traits.size': this.actorSize }, mergeObject(originalSkillMod, mergeObject(originalManeuverability, originalSenses)));
+        if (!!newImage) { systemFlag = mergeObject(systemFlag, oldProtoImage); };
+        let flags = { source: 'Beast Shape', buffName: this.source, system: systemFlag.system, armor: armorChangeFlag, itemsCreated: itemsCreated };
         if (!!newImage) { flags = mergeObject(flags, { tokenImg: oldImage }); };
-        await shifter.update(mergeObject({ 'data.traits.size': newSize, 'flags.mightyMorphin': flags }, mergeObject(skillModChange, mergeObject(maneuverabilityChange, mergeObject(sensesChanges, protoImageChange)))));
+        await shifter.update(mergeObject({ 'system.traits.size': newSize, 'flags.mightyMorphin': flags }, mergeObject(skillModChange, mergeObject(maneuverabilityChange, mergeObject(sensesChanges, protoImageChange)))));
 
         // update items on the actor
         if (!!armorToChange.length) await shifter.updateEmbeddedDocuments('Item', armorToChange.concat(buffUpdate));
         else await shifter.updateEmbeddedDocuments('Item', buffUpdate);
 
         canvas.tokens.releaseAll();
-        canvas.tokens.ownedTokens.find(o => o.data.actorId === this.actorId).control();
+        canvas.tokens.ownedTokens.find(o => o.actor.id === this.actorId).control();
         
         await this.close();
     }

@@ -16,7 +16,7 @@ export class MorphinElementalBody extends FormApplication {
         super();
         this.level = level;
         this.actorId = actorId;
-        this.actorSize = game.actors.get(actorId).data.data.traits.size;
+        this.actorSize = game.actors.get(actorId).system.traits.size;
         this.sizes = {};
         this.source = source;
 
@@ -87,7 +87,7 @@ export class MorphinElementalBody extends FormApplication {
         let oneAttack = MorphinChanges.changes[chosenForm].attacks.length === 1;
 
         // Loop over the attacks and create the items
-        const amuletItem = shifter.items.find(o => o.name.toLowerCase().includes('amulet of mighty fists') && o.data.data.equipped);
+        const amuletItem = shifter.items.find(o => o.name.toLowerCase().includes('amulet of mighty fists') && o.system.equipped);
         let bonusSearch = /\+(\d+)/.exec(amuletItem?.name);
         let amuletBonus = !!bonusSearch ? bonusSearch[1] : null;
         for (let i = 0; i < MorphinChanges.changes[chosenForm].attacks.length; i++) {
@@ -113,12 +113,12 @@ export class MorphinElementalBody extends FormApplication {
         // If the buff doesn't already exist on the actor, create it
         if (!buff) {
             // Create buff Item template
-            let buffData = { data: {} };
-            buffData.data = duplicate(game.data.system.template.Item.buff);
-            for (let t of buffData.data.templates) {
-                mergeObject(buffData.data, duplicate(game.system.template.Item.templates[t]));
+            let buffData = { system: {} };
+            buffData.system = duplicate(game.system.template.Item.buff);
+            for (let t of buffData.system.templates) {
+                mergeObject(buffData.system, duplicate(game.system.template.Item.templates[t]));
             }
-            delete buffData.data.templates;
+            delete buffData.system.templates;
 
             // Populate needed data
             buffData.name = this.source;
@@ -128,7 +128,7 @@ export class MorphinElementalBody extends FormApplication {
             itemsToEmbed.push(buffData);
         }
         else {
-            buff.update({ 'data.changes': this.changes, 'data.active': true });
+            buff.update({ 'system.changes': this.changes, 'system.active': true });
         }
 
         // Calculate the amount of strength the actor is gaining or losing 
@@ -149,21 +149,21 @@ export class MorphinElementalBody extends FormApplication {
         let smallSizes = ['fine', 'dim', 'tiny']; // sizes with half armor AC, also use dex for climb and swim instead of str
         let armorChangeNeeded = (smallSizes.includes(newSize) && !smallSizes.includes(this.actorSize)) || (!smallSizes.includes(newSize) && smallSizes.includes(this.actorSize));
 
-        let armorAndShields = shifter.items.filter(o => o.data.type === 'equipment' && (o.data.data.equipmentType === 'armor' || o.data.data.equipmentType === 'shield'));
+        let armorAndShields = shifter.items.filter(o => o.type === 'equipment' && (o.system.equipmentType === 'armor' || o.system.equipmentType === 'shield'));
 
         // Cycle through all armor and shield items to process them
         for (let item of armorAndShields) {
-            let originalArmor = armorChangeNeeded ? { armor: { value: item.data.data.armor.value } } : {};
+            let originalArmor = armorChangeNeeded ? { armor: { value: item.system.armor.value } } : {};
             // If this is not Wild Shape or it is Wild Shape but the armor isn't Wild enchanted, armor must be removed
             let armorIsWild = item.name.includes('Wild');
-            let originalEquipped = (armorIsWild && this.source === 'Wild Shape') ? {} : { equipped: item.data.data.equipped };
+            let originalEquipped = (armorIsWild && this.source === 'Wild Shape') ? {} : { equipped: item.system.equipped };
             originalArmor = mergeObject(originalArmor, originalEquipped);
 
             if (!!originalArmor) {
                 armorChangeFlag.push({ _id: item.id, data: originalArmor });
                 // take off armor if it's not wild armor or this is not beast shape from wild shape
                 let equipChange = (armorIsWild && this.source === 'Wild Shape') ? {} : { equipped: false };
-                let armorChange = armorChangeNeeded ? (smallSizes.includes(this.actorSize) ? { armor: { value: item.data.data.armor.value * 2 } } : { armor: { value: Math.floor(item.data.data.armor.value / 2) } }) : {};
+                let armorChange = armorChangeNeeded ? (smallSizes.includes(this.actorSize) ? { armor: { value: item.system.armor.value * 2 } } : { armor: { value: Math.floor(item.system.armor.value / 2) } }) : {};
                 equipChange = mergeObject(equipChange, armorChange);
                 armorToChange.push({ _id: item.id, data: equipChange });
             }
@@ -173,13 +173,13 @@ export class MorphinElementalBody extends FormApplication {
         let originalSkillMod = {};
         let skillModChange = {};
         if (armorChangeNeeded) {
-            originalSkillMod = { 'data.skills.clm.ability': shifter.data.data.skills.clm.ability, 'data.skills.swm.ability': shifter.data.data.skills.swm.ability };
-            skillModChange = { 'data.skills.clm.ability': (smallSizes.includes(this.actorSize) ? 'str' : 'dex'), 'data.skills.swm.ability': (smallSizes.includes(this.actorSize) ? 'str' : 'dex') };
+            originalSkillMod = { 'system.skills.clm.ability': shifter.system.skills.clm.ability, 'system.skills.swm.ability': shifter.system.skills.swm.ability };
+            skillModChange = { 'system.skills.clm.ability': (smallSizes.includes(this.actorSize) ? 'str' : 'dex'), 'system.skills.swm.ability': (smallSizes.includes(this.actorSize) ? 'str' : 'dex') };
         }
 
         // Process speed changes
-        let originalManeuverability = { 'data.attributes.speed.fly.maneuverability': shifter.data.data.attributes.speed.fly.maneuverability };
-        let newSpeeds = duplicate(shifter.data.data.attributes.speed);
+        let originalManeuverability = { 'system.attributes.speed.fly.maneuverability': shifter.system.attributes.speed.fly.maneuverability };
+        let newSpeeds = duplicate(shifter.system.attributes.speed);
         let speedTypes = Object.keys(newSpeeds);
         let maneuverabilityChange = {};
         for (let i = 0; i < speedTypes.length; i++) {
@@ -189,13 +189,13 @@ export class MorphinElementalBody extends FormApplication {
             if (!!speed) { // if the form has this speed add it
                 speedChange.formula = speed.toString();
                 speedChange.value = speed;
-                if (speedTypes[i] === 'fly') maneuverabilityChange = {'data.attributes.speed.fly.maneuverability': (this.level === 1 ? 'average' : 'good')};
+                if (speedTypes[i] === 'fly') maneuverabilityChange = {'system.attributes.speed.fly.maneuverability': (this.level === 1 ? 'average' : 'good')};
             }
             this.changes.push(speedChange);
         }
 
         // Process senses changes
-        let originalSenses = { 'data.traits.senses': shifter.data.data.traits.senses };
+        let originalSenses = { 'system.traits.senses': shifter.system.traits.senses };
         let senseObject = { 'dv': 0, 'ts': 0, 'bs': 0, 'bse': 0, 'll': { 'enabled': false, 'multiplier': { 'dim': 2, 'bright': 2 } }, 'sid': false, 'tr': false, 'si': false, 'sc': false, 'custom': '' };
         for (let i = 0; i < this.senses.length; i++) {
             const sensesEnumValue = this.senses[i];
@@ -203,14 +203,14 @@ export class MorphinElementalBody extends FormApplication {
                 senseObject = mergeObject(senseObject, MorphinChanges.SENSES[Object.keys(MorphinChanges.SENSES)[sensesEnumValue - 1]].setting); // element 1 = SENSES[0] = LOWLIGHT
             }
         }
-        let sensesChanges = { 'data.traits.senses': senseObject };
+        let sensesChanges = { 'system.traits.senses': senseObject };
 
         // Process resistances changes
-        let originalEres = { 'data.traits.eres': shifter.data.data.traits.eres };
+        let originalEres = { 'system.traits.eres': shifter.system.traits.eres };
         let eresString = this.eres || '';
 
         // Process vulnerabilities changes
-        let originalDv = { 'data.traits.dv': shifter.data.data.traits.dv };
+        let originalDv = { 'system.traits.dv': shifter.system.traits.dv };
         let newDv = { value: [], custom: '' };
         if (!!this.dv) {
             for (let i = 0; i < this.dv.length; i++) {
@@ -223,11 +223,11 @@ export class MorphinElementalBody extends FormApplication {
         }
 
         // Process DR changes
-        let originalDr = { 'data.traits.dr': shifter.data.data.traits.dr };
+        let originalDr = { 'system.traits.dr': shifter.system.traits.dr };
         let drString = this.dr || '';
 
         // Process damage immunity changes
-        let originalDi = { 'data.traits.di': shifter.data.data.traits.di };
+        let originalDi = { 'system.traits.di': shifter.system.traits.di };
         let newDi = { value: [], custom: '' };
         if (!!this.di) {
             for (let i = 0; i < this.di.length; i++) {
@@ -241,31 +241,31 @@ export class MorphinElementalBody extends FormApplication {
 
         // replace eres and dv
         originalSenses = mergeObject(originalSenses, mergeObject(originalEres, originalDv));
-        sensesChanges = mergeObject(sensesChanges, mergeObject({ 'data.traits.eres': eresString }, { 'data.traits.dv': newDv }));
+        sensesChanges = mergeObject(sensesChanges, mergeObject({ 'system.traits.eres': eresString }, { 'system.traits.dv': newDv }));
 
         // replace DR if elemental body III or IV
         if (this.level >= 3) {
             originalSenses = mergeObject(originalSenses, originalDr);
-            sensesChanges = mergeObject(sensesChanges, { 'data.traits.dr': drString });
+            sensesChanges = mergeObject(sensesChanges, { 'system.traits.dr': drString });
         }
 
         // replace immunities if ebIV
         if (this.level === 4) {
             originalSenses = mergeObject(originalSenses, originalDi);
-            sensesChanges = mergeObject(sensesChanges, { 'data.traits.di': newDi });
+            sensesChanges = mergeObject(sensesChanges, { 'system.traits.di': newDi });
         }
 
         // Create special ability features
         if (!!this.special) {
             // create blank template for misc feature
-            let specialData = { data: {} };
-            specialData.data = duplicate(game.data.system.template.Item.feat);
-            for (let t of specialData.data.templates) {
-                mergeObject(specialData.data, duplicate(game.system.template.Item.templates[t]));
+            let specialData = { system: {} };
+            specialData.system = duplicate(game.system.template.Item.feat);
+            for (let t of specialData.system.templates) {
+                mergeObject(specialData.system, duplicate(game.system.template.Item.templates[t]));
             }
-            delete specialData.data.templates;
+            delete specialData.system.templates;
             specialData.type = 'feat';
-            specialData.data.featType = 'misc';
+            specialData.system.featType = 'misc';
 
 
             for (let i = 0; i < this.special.length; i++) {
@@ -287,12 +287,12 @@ export class MorphinElementalBody extends FormApplication {
         let oldProtoImage = { token: { img: '' } };
         let protoImageChange = !!newImage ? { 'token.img': newImage } : {};
         if (!!newImage) {
-            let token = canvas.tokens.ownedTokens.find(o => o.data.actorId === this.actorId);
+            let token = canvas.tokens.ownedTokens.find(o => o.actor.id === this.actorId);
             if (!!token) {
-                oldImage.img = token.data.img;
+                oldImage.img = token.img;
                 await token.document.update({ 'img': newImage });
             }
-            oldProtoImage.token.img = shifter.data.token.img;
+            oldProtoImage.token.img = shifter.token.img;
         }
 
         // Create the items on the actor, then create an array of their ids to delete them later
@@ -301,20 +301,20 @@ export class MorphinElementalBody extends FormApplication {
 
         // Turn on the buff created
         buff = shifter.items.find(o => o.type === 'buff' && o.name === this.source);
-        let buffUpdate = [{ _id: buff.id, 'data.changes': this.changes, 'data.active': true }];
+        let buffUpdate = [{ _id: buff.id, 'system.changes': this.changes, 'system.active': true }];
 
-        let dataFlag = mergeObject({ 'data.traits.size': this.actorSize }, mergeObject(originalSkillMod, mergeObject(originalManeuverability, originalSenses)));
-        if (!!newImage) { dataFlag = mergeObject(dataFlag, oldProtoImage); };
-        let flags = { source: 'Beast Shape', buffName: this.source, data: dataFlag, armor: armorChangeFlag, itemsCreated: itemsCreated };
+        let systemFlag = mergeObject({ 'system.traits.size': this.actorSize }, mergeObject(originalSkillMod, mergeObject(originalManeuverability, originalSenses)));
+        if (!!newImage) { systemFlag = mergeObject(systemFlag, oldProtoImage); };
+        let flags = { source: 'Beast Shape', buffName: this.source, system: systemFlag.system, armor: armorChangeFlag, itemsCreated: itemsCreated };
         if (!!newImage) { flags = mergeObject(flags, { tokenImg: oldImage }); };
-        await shifter.update(mergeObject({ 'data.traits.size': newSize, 'flags.mightyMorphin': flags }, mergeObject(skillModChange, mergeObject(maneuverabilityChange, mergeObject(sensesChanges, protoImageChange)))));
+        await shifter.update(mergeObject({ 'system.traits.size': newSize, 'flags.mightyMorphin': flags }, mergeObject(skillModChange, mergeObject(maneuverabilityChange, mergeObject(sensesChanges, protoImageChange)))));
 
         // update items on the actor
         if (!!armorToChange.length) await shifter.updateEmbeddedDocuments('Item', armorToChange.concat(buffUpdate));
         else await shifter.updateEmbeddedDocuments('Item', buffUpdate);
         
         canvas.tokens.releaseAll();
-        canvas.tokens.ownedTokens.find(o => o.data.actorId === this.actorId).control();
+        canvas.tokens.ownedTokens.find(o => o.actor.id === this.actorId).control();
         
         await this.close();
     }
