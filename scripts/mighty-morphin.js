@@ -603,7 +603,7 @@ export class MightyMorphinApp {
         attackData['system']['primaryAttack'] = ((attack.primaryAttack || (!!MightyMorphinApp.naturalAttacks[attack.name] && MightyMorphinApp.naturalAttacks[attack.name].primaryAttack)) || onlyAttack);
         attackData['system']['attackType'] = type; // weapon, natural, misc, class ability, etc
 
-        let subAction = game.pf1.documentComponents.ItemAction.defaultData;
+        let subAction = globalThis.pf1.components.ItemAction.defaultData;
 
         subAction['actionType'] = attack.attackType || 'mwak'; // melee, ranged, save, combat man., etc
         subAction['activation']['type'] = 'attack';
