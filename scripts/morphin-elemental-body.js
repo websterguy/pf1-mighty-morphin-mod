@@ -283,16 +283,16 @@ export class MorphinElementalBody extends FormApplication {
         let newImage = await MightyMorphinApp.findImage(chosenForm);
 
         // Prepare data for image change
-        let oldImage = { img: '' };
-        let oldProtoImage = { token: { img: '' } };
-        let protoImageChange = !!newImage ? { 'token.img': newImage } : {};
+        let oldImage = { texture: { src: '' } };
+        let oldProtoImage = { prototypeToken: { texture: { src: '' } } };
+        let protoImageChange = !!newImage ? { 'token.texture.src': newImage } : {};
         if (!!newImage) {
             let token = canvas.tokens.ownedTokens.find(o => o.actor.id === this.actorId);
             if (!!token) {
-                oldImage.img = token.img;
-                await token.document.update({ 'img': newImage });
+                oldImage.texture.src = token.document.texture.src;
+                await token.document.update({ 'texture.src': newImage });
             }
-            oldProtoImage.token.img = shifter.token.img;
+            oldProtoImage.prototypeToken.texture.src = shifter.prototypeToken.texture.src;
         }
 
         // Create the items on the actor, then create an array of their ids to delete them later

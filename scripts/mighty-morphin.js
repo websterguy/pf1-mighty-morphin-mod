@@ -481,8 +481,8 @@ export class MightyMorphinApp {
 
                 // Revert all data that was replaced to its original and remove the flags
                 let updates = {};
-                if (!!changes.token) {
-                    updates = { system: changes.system, token: changes.token, 'flags.-=mightyMorphin': null };
+                if (!!changes.prototypeToken) {
+                    updates = { system: changes.system, prototypeToken: changes.prototypeToken, 'flags.-=mightyMorphin': null };
                 }
                 else {
                     updates = { system: changes.system, 'flags.-=mightyMorphin': null };
