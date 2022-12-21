@@ -287,7 +287,7 @@ export class MorphinElementalBody extends FormApplication {
         let oldProtoImage = { token: { img: '' } };
         let protoImageChange = !!newImage ? { 'token.img': newImage } : {};
         if (!!newImage) {
-            let token = canvas.tokens.ownedTokens.find(o => o.actorId === this.actorId);
+            let token = canvas.tokens.ownedTokens.find(o => o.data.actorId === this.actorId);
             if (!!token) {
                 oldImage.img = token.data.img;
                 await token.document.update({ 'img': newImage });
@@ -314,7 +314,7 @@ export class MorphinElementalBody extends FormApplication {
         else await shifter.updateEmbeddedDocuments('Item', buffUpdate);
         
         canvas.tokens.releaseAll();
-        canvas.tokens.ownedTokens.find(o => o.actorId === this.actorId).control();
+        canvas.tokens.ownedTokens.find(o => o.data.actorId === this.actorId).control();
         
         await this.close();
     }
