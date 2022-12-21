@@ -585,7 +585,7 @@ export class MightyMorphinApp {
     static createAttack(actorId, formSize, attack, onlyAttack, effects = {}, source = '', type = 'natural') {
         let attackData = { data: {} };
         
-        const actorData = game.actors.get(actorId).data; // get actor's data for reference
+        const actorData = game.actors.get(actorId).system; // get actor's data for reference
 
         // Create attack Item template
         for (const template of game.system.template.Item.attack.templates) {
@@ -603,7 +603,7 @@ export class MightyMorphinApp {
         attackData['data']['primaryAttack'] = ((attack.primaryAttack || (!!MightyMorphinApp.naturalAttacks[attack.name] && MightyMorphinApp.naturalAttacks[attack.name].primaryAttack)) || onlyAttack);
         attackData['data']['attackType'] = type; // weapon, natural, misc, class ability, etc
 
-        let subAction = game.pf1.documentComponents.ItemAction.defaultData;
+        let subAction = globalThis.pf1.components.ItemAction.defaultData;
 
         subAction['actionType'] = attack.attackType || 'mwak'; // melee, ranged, save, combat man., etc
         subAction['activation']['type'] = 'attack';
