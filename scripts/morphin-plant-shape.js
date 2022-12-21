@@ -294,10 +294,10 @@ export class MorphinPlantShape extends FormApplication {
         if (!!newImage) {
             let token = canvas.tokens.ownedTokens.find(o => o.document.actorId === this.actorId);
             if (!!token) {
-                oldImage.img = token.data.img;
+                oldImage.img = token.document.texture.src;
                 await token.document.update({ 'img': newImage });
             }
-            oldProtoImage.token.img = shifter.data.token.img;
+            oldProtoImage.token.img = shifter.prototypeToken.texture.src;
         }
 
         // Create the items on the actor, then create an array of their ids to delete them later

@@ -657,7 +657,7 @@ export class MightyMorphinApp {
 
         // Set attack ability to dex if weapon finesse feat and dex >= str or it's a ranged attack. Otherwise it's the actor's normal melee stat or strength
         if (!!attack.attackAbility) subAction['ability']['attack'] = attack.attackAbility;
-        else if ((!!actorData.items.find(o => o.type === 'feat' && o.name === 'Weapon Finesse') && actorData.data.abilities.dex.total >= actorData.data.abilities.str.total) || attack.attackType === 'rwak') subAction['ability']['attack'] = 'dex';
+        else if ((!!actorData.items.find(o => o.type === 'feat' && o.name === 'Weapon Finesse') && actorData.system.abilities.dex.total >= actorData.system.abilities.str.total) || attack.attackType === 'rwak') subAction['ability']['attack'] = 'dex';
         else subAction['ability']['attack'] = getProperty(actorData, 'system.attributes.attack.meleeAbility') || 'str';
 
         // ability damage is strength unless it's a ranged attack
