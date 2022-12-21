@@ -138,7 +138,7 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
         if (!buff) {
             // Create buff Item template
             let buffData = { data: {} };
-            buffData.data = duplicate(game.data.system.template.Item.buff);
+            buffData.data = duplicate(game.system.template.Item.buff);
             for (let t of buffData.data.templates) {
                 mergeObject(buffData.data, duplicate(game.system.template.Item.templates[t]));
             }
@@ -253,7 +253,7 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
         if (!!this.special) {
             // create blank template for misc feature
             let specialData = { data: {} };
-            specialData.data = duplicate(game.data.system.template.Item.feat);
+            specialData.data = duplicate(game.system.template.Item.feat);
             for (let t of specialData.data.templates) {
                 mergeObject(specialData.data, duplicate(game.system.template.Item.templates[t]));
             }

@@ -27,7 +27,7 @@ export class MightyMorphinApp {
             // Create the buff if it doesn't exist, otherwise toggle it on
             if (!buff) {
                 // Create template buff Item
-                let buffData = duplicate(game.data.system.template.Item.buff);
+                let buffData = duplicate(game.system.template.Item.buff);
                 for (let t of buffData.templates) {
                     mergeObject(buffData, duplicate(game.system.template.Item.templates[t]));
                 }
@@ -107,7 +107,7 @@ export class MightyMorphinApp {
             // Create the buff if it doesn't exist, otherwise toggle it on
             if (!buff) {
                 // Create template buff Item
-                let buffData = duplicate(game.data.system.template.Item.buff);
+                let buffData = duplicate(game.system.template.Item.buff);
                 for (let t of buffData.templates) {
                     mergeObject(buffData, duplicate(game.system.template.Item.templates[t]));
                 }
@@ -186,7 +186,7 @@ export class MightyMorphinApp {
             // Create the buff if it doesn't exist, otherwise toggle it on
             if (!buff) {
                 // Create template buff Item
-                let buffData = duplicate(game.data.system.template.Item.buff);
+                let buffData = duplicate(game.system.template.Item.buff);
                 for (let t of buffData.templates) {
                     mergeObject(buffData, duplicate(game.system.template.Item.templates[t]));
                 }
@@ -274,7 +274,7 @@ export class MightyMorphinApp {
             // Create the buff if it doesn't exist, otherwise toggle it on
             if (!buff) {
                 // Create template buff Item
-                let buffData = duplicate(game.data.system.template.Item.buff);
+                let buffData = duplicate(game.system.template.Item.buff);
                 for (let t of buffData.templates) {
                     mergeObject(buffData, duplicate(game.system.template.Item.templates[t]));
                 }
@@ -363,7 +363,7 @@ export class MightyMorphinApp {
             // Create the buff if it doesn't exist, otherwise toggle it on
             if (!buff) {
                 // Create template buff Item
-                let buffData = duplicate(game.data.system.template.Item.buff);
+                let buffData = duplicate(game.system.template.Item.buff);
                 for (let t of buffData.templates) {
                     mergeObject(buffData, duplicate(game.system.template.Item.templates[t]));
                 }
@@ -588,10 +588,10 @@ export class MightyMorphinApp {
         const actorData = game.actors.get(actorId).data; // get actor's data for reference
 
         // Create attack Item template
-        for (const template of game.data.system.template.Item.attack.templates) {
-            mergeObject(attackData.data, duplicate(game.data.system.template.Item.templates[template]));
+        for (const template of game.system.template.Item.attack.templates) {
+            mergeObject(attackData.data, duplicate(game.system.template.Item.templates[template]));
         }
-        mergeObject(attackData.data, duplicate(game.data.system.template.Item.attack));
+        mergeObject(attackData.data, duplicate(game.system.template.Item.attack));
         delete attackData.data.templates;
 
         // Begin filling in data
