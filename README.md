@@ -1,7 +1,7 @@
 # Mighty Morphin Mod
 ## Installation
 
-https://github.com/d0ub7/pf1-mighty-morphin-mod/releases/latest/download/module.json
+https://github.com/websterguy/pf1-mighty-morphin-mod/releases/latest/download/module.json
 
 ## Usage
 
