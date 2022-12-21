@@ -280,7 +280,7 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
         let oldProtoImage = { token: { img: '' } };
         let protoImageChange = !!newImage ? { 'token.img': newImage } : {};
         if (!!newImage) {
-            let token = canvas.tokens.ownedTokens.find(o => o.data.actorId === this.actorId);
+            let token = canvas.tokens.ownedTokens.find(o => o.document.actorId === this.actorId);
             if (!!token) {
                 oldImage.img = token.data.img;
                 await token.document.update({ 'img': newImage });
@@ -308,7 +308,7 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
         else await shifter.updateEmbeddedDocuments('Item', buffUpdate);
         
         canvas.tokens.releaseAll();
-        canvas.tokens.ownedTokens.find(o => o.data.actorId === this.actorId).control();
+        canvas.tokens.ownedTokens.find(o => o.document.actorId === this.actorId).control();
         
         await this.close();
     }

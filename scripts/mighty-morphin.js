@@ -475,7 +475,7 @@ export class MightyMorphinApp {
                 }
 
                 if (!!shifter.flags.mightyMorphin.tokenImg) {
-                    let token = canvas.tokens.ownedTokens.find(o => o.data.actorId === shifter.id);
+                    let token = canvas.tokens.ownedTokens.find(o => o.document.actorId === shifter.id);
                     await token.document.update(shifter.flags.mightyMorphin.tokenImg);
                 }
 
@@ -495,7 +495,7 @@ export class MightyMorphinApp {
                 await shifter.deleteEmbeddedDocuments('Item', itemsOnActor);
                 
                 canvas.tokens.releaseAll();
-                canvas.tokens.ownedTokens.find(o => o.data.actorId === shifter.id).control();
+                canvas.tokens.ownedTokens.find(o => o.document.actorId === shifter.id).control();
             }
         }
         else if (!!shifter && !shifter.flags.mightyMorphin) {
