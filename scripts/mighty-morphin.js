@@ -585,7 +585,7 @@ export class MightyMorphinApp {
     static createAttack(actorId, formSize, attack, onlyAttack, effects = {}, source = '', type = 'natural') {
         let attackData = { data: {} };
         
-        const actorData = game.actors.get(actorId).system; // get actor's data for reference
+        const actorData = game.actors.get(actorId); // get actor's data for reference
 
         // Create attack Item template
         for (const template of game.system.template.Item.attack.templates) {
