@@ -148,7 +148,7 @@ export class MightyMorphinApp {
             let armorToChange = [];
             // Double armor and shield AC when moving from tiny to small (tiny and below armor AC is half normal)
             if (shifterSize === 'tiny') {
-                let armorAndShields = shifter.items.filter(o => o.data.type === 'equipment' && (o.equipmentType === 'armor' || o.equipmentType === 'shield'));
+                let armorAndShields = shifter.items.filter(o => o.type === 'equipment' && (o.equipmentType === 'armor' || o.equipmentType === 'shield'));
 
                 for (let item of armorAndShields) {
                     armorChangeFlag.push({ _id: item.id, data: { armor: { value: item.armor.value } } }); // store original armor data in flags
@@ -227,7 +227,7 @@ export class MightyMorphinApp {
             let armorToChange = [];
             // Double armor and shield AC when moving from tiny to small (tiny and below armor AC is half normal)
             if (shifterSize === 'tiny') {
-                let armorAndShields = shifter.items.filter(o => o.data.type === 'equipment' && (o.equipmentType === 'armor' || o.equipmentType === 'shield'));
+                let armorAndShields = shifter.items.filter(o => o.type === 'equipment' && (o.equipmentType === 'armor' || o.equipmentType === 'shield'));
 
                 for (let item of armorAndShields) {
                     armorChangeFlag.push({ _id: item.id, data: { armor: { value: item.armor.value } } }); // store original armor data in flags
@@ -315,7 +315,7 @@ export class MightyMorphinApp {
             let armorToChange = [];
             // Double armor and shield AC when moving from tiny or smaller (tiny and below armor AC is half normal)
             if (MightyMorphinApp.sizes.indexOf(shifterSize) < 3) {
-                let armorAndShields = shifter.items.filter(o => o.data.type === 'equipment' && (o.equipmentType === 'armor' || o.equipmentType === 'shield'));
+                let armorAndShields = shifter.items.filter(o => o.type === 'equipment' && (o.equipmentType === 'armor' || o.equipmentType === 'shield'));
 
                 for (let item of armorAndShields) {
                     armorChangeFlag.push({ _id: item.id, data: { armor: { value: item.armor.value } } }); // store original armor data in flags
@@ -404,7 +404,7 @@ export class MightyMorphinApp {
             let armorToChange = [];
             // Halve armor and shield AC when moving from small to tiny (tiny and below armor AC is half normal)
             if (shifterSize === 'sm') {
-                let armorAndShields = shifter.items.filter(o => o.data.type === 'equipment' && (o.equipmentType === 'armor' || o.equipmentType === 'shield'));
+                let armorAndShields = shifter.items.filter(o => o.type === 'equipment' && (o.equipmentType === 'armor' || o.equipmentType === 'shield'));
 
                 for (let item of armorAndShields) {
                     armorChangeFlag.push({ _id: item.id, data: { armor: { value: item.armor.value } } }); // store original armor data in flags
@@ -475,7 +475,7 @@ export class MightyMorphinApp {
                 }
 
                 if (!!shifter.flags.mightyMorphin.tokenImg) {
-                    let token = canvas.tokens.ownedTokens.find(o => o.data.actorId === shifter.id);
+                    let token = canvas.tokens.ownedTokens.find(o => o.actorId === shifter.id);
                     await token.document.update(shifter.flags.mightyMorphin.tokenImg);
                 }
 
@@ -495,7 +495,7 @@ export class MightyMorphinApp {
                 await shifter.deleteEmbeddedDocuments('Item', itemsOnActor);
                 
                 canvas.tokens.releaseAll();
-                canvas.tokens.ownedTokens.find(o => o.data.actorId === shifter.id).control();
+                canvas.tokens.ownedTokens.find(o => o.actorId === shifter.id).control();
             }
         }
         else if (!!shifter && !shifter.flags.mightyMorphin) {

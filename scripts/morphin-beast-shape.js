@@ -170,7 +170,7 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
         let smallSizes = ['fine', 'dim', 'tiny']; // sizes with half armor AC, also use dex for climb and swim instead of str
         let armorChangeNeeded = (smallSizes.includes(newSize) && !smallSizes.includes(this.actorSize)) || (!smallSizes.includes(newSize) && smallSizes.includes(this.actorSize));
 
-        let armorAndShields = shifter.items.filter(o => o.data.type === 'equipment' && (o.equipmentType === 'armor' || o.equipmentType === 'shield'));
+        let armorAndShields = shifter.items.filter(o => o.type === 'equipment' && (o.equipmentType === 'armor' || o.equipmentType === 'shield'));
 
         // Cycle through all armor and shield items to process them
         for (let item of armorAndShields) {
@@ -280,7 +280,7 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
         let oldProtoImage = { token: { img: '' } };
         let protoImageChange = !!newImage ? { 'token.img': newImage } : {};
         if (!!newImage) {
-            let token = canvas.tokens.ownedTokens.find(o => o.data.actorId === this.actorId);
+            let token = canvas.tokens.ownedTokens.find(o => o.actorId === this.actorId);
             if (!!token) {
                 oldImage.img = token.data.img;
                 await token.document.update({ 'img': newImage });
@@ -308,7 +308,7 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
         else await shifter.updateEmbeddedDocuments('Item', buffUpdate);
         
         canvas.tokens.releaseAll();
-        canvas.tokens.ownedTokens.find(o => o.data.actorId === this.actorId).control();
+        canvas.tokens.ownedTokens.find(o => o.actorId === this.actorId).control();
         
         await this.close();
     }
