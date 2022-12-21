@@ -338,7 +338,7 @@ export class MightyMorphinApp {
             let newSR = shifter.system.attributes.sr.total > faSR ? oldSR : faSR;
 
             // Update the actor data and store flags
-            await shifter.update({ 'data.traits.size': newSize, 'data.traits.dr': newDR, 'data.attributes.sr.formula': `${newSR}`, 'flags.mightyMorphin': { source: 'Frightful Aspect', buffName: 'Frightful Aspect', size: shifterSize, armor: armorChangeFlag, data: { traits: { dr: oldDR }, attributes: { sr: { formula: oldSR } } } } });
+            await shifter.update({ 'data.traits.size': newSize, 'data.traits.dr': newDR, 'system.attributes.sr.formula': `${newSR}`, 'flags.mightyMorphin': { source: 'Frightful Aspect', buffName: 'Frightful Aspect', size: shifterSize, armor: armorChangeFlag, data: { traits: { dr: oldDR }, attributes: { sr: { formula: oldSR } } } } });
         }
         else if (!!shifter?.flags.mightyMorphin) {
             ui.notifications.warn(shifter.name + ' is already under the effects of a change from ' + shifter.flags.mightyMorphin.source);
@@ -658,7 +658,7 @@ export class MightyMorphinApp {
         // Set attack ability to dex if weapon finesse feat and dex >= str or it's a ranged attack. Otherwise it's the actor's normal melee stat or strength
         if (!!attack.attackAbility) subAction['ability']['attack'] = attack.attackAbility;
         else if ((!!actorData.items.find(o => o.type === 'feat' && o.name === 'Weapon Finesse') && actorData.data.abilities.dex.total >= actorData.data.abilities.str.total) || attack.attackType === 'rwak') subAction['ability']['attack'] = 'dex';
-        else subAction['ability']['attack'] = getProperty(actorData, 'data.attributes.attack.meleeAbility') || 'str';
+        else subAction['ability']['attack'] = getProperty(actorData, 'system.attributes.attack.meleeAbility') || 'str';
 
         // ability damage is strength unless it's a ranged attack
         subAction['ability']['damage'] = attack.type === 'rwak' ? '' : 'str';
