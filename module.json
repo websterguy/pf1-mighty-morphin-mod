@@ -2,7 +2,7 @@
     "name": "pf1-mighty-morphin",
     "title": "PF1 Might Morphin Mod",
     "description": "Mod to automate polymorph effects for Foundry VTT PF1e system",
-    "version": "0.3.4.5",
+    "version": "0.3.11",
     "manifestPlusVersion": "1.0.0",
     "minimumCoreVersion": "10",
     "compatibleCoreVersion": "10",
