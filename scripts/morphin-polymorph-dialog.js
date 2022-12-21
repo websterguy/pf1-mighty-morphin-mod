@@ -16,7 +16,7 @@ export class MorphinPolymorphDialog extends FormApplication {
         super();
         this.level = level;
         this.actorId = actorId;
-        this.actorSize = game.actors.get(actorId).data.data.traits.size;
+        this.actorSize = game.actors.get(actorId).system.traits.size;
         this.sizes = {};
         this.source = source;
         this.shapeOptions = {};

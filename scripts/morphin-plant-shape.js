@@ -16,7 +16,7 @@ export class MorphinPlantShape extends FormApplication {
         super();
         this.level = level;
         this.actorId = actorId;
-        this.actorSize = game.actors.get(actorId).data.data.traits.size;
+        this.actorSize = game.actors.get(actorId).system.traits.size;
         this.sizes = {};
         this.sizes.animal = [];
         this.sizes.magicalBeast = [];
@@ -168,11 +168,11 @@ export class MorphinPlantShape extends FormApplication {
         let smallSizes = ['fine', 'dim', 'tiny']; // sizes with half armor AC, also use dex for climb and swim instead of str
         let armorChangeNeeded = (smallSizes.includes(newSize) && !smallSizes.includes(this.actorSize)) || (!smallSizes.includes(newSize) && smallSizes.includes(this.actorSize));
 
-        let armorAndShields = shifter.items.filter(o => o.data.type === 'equipment' && (o.data.data.equipmentType === 'armor' || o.data.data.equipmentType === 'shield'));
+        let armorAndShields = shifter.items.filter(o => o.data.type === 'equipment' && (o.equipmentType === 'armor' || o.equipmentType === 'shield'));
 
         for (let item of armorAndShields) {
             let armorIsWild = item.name.includes('Wild');
-            let originalArmor = armorChangeNeeded ? { armor: { value: item.data.data.armor.value } } : {};
+            let originalArmor = armorChangeNeeded ? { armor: { value: item.armor.value } } : {};
             let originalEquipped = (armorIsWild && this.source === 'Wild Shape') ? {} : { equipped: item.data.data.equipped };
             originalArmor = mergeObject(originalArmor, originalEquipped);
 
@@ -180,7 +180,7 @@ export class MorphinPlantShape extends FormApplication {
                 armorChangeFlag.push({ _id: item.id, data: originalArmor });
                 // take off armor if it's not wild armor or this is not plant shape from wild shape
                 let equipChange = (armorIsWild && this.source === 'Wild Shape') ? {} : { equipped: false };
-                let armorChange = armorChangeNeeded ? (smallSizes.includes(this.actorSize) ? { armor: { value: item.data.data.armor.value * 2 } } : { armor: { value: Math.floor(item.data.data.armor.value / 2) } }) : {};
+                let armorChange = armorChangeNeeded ? (smallSizes.includes(this.actorSize) ? { armor: { value: item.armor.value * 2 } } : { armor: { value: Math.floor(item.armor.value / 2) } }) : {};
                 equipChange = mergeObject(equipChange, armorChange);
                 armorToChange.push({ _id: item.id, data: equipChange });
             }
@@ -190,13 +190,13 @@ export class MorphinPlantShape extends FormApplication {
         let originalSkillMod = {};
         let skillModChange = {};
         if (armorChangeNeeded) {
-            originalSkillMod = { 'data.skills.clm.ability': shifter.data.data.skills.clm.ability, 'data.skills.swm.ability': shifter.data.data.skills.swm.ability };
+            originalSkillMod = { 'data.skills.clm.ability': shifter.system.system.skills.clm.ability, 'data.skills.swm.ability': shifter.system.system.skills.swm.ability };
             skillModChange = { 'data.skills.clm.ability': (smallSizes.includes(this.actorSize) ? 'str' : 'dex'), 'data.skills.swm.ability': (smallSizes.includes(this.actorSize) ? 'str' : 'dex') };
         }
 
         // Process speed changes
-        let originalManeuverability = { 'data.attributes.speed.fly.maneuverability': shifter.data.data.attributes.speed.fly.maneuverability };
-        let newSpeeds = duplicate(shifter.data.data.attributes.speed);
+        let originalManeuverability = { 'data.attributes.speed.fly.maneuverability': shifter.system.attributes.speed.fly.maneuverability };
+        let newSpeeds = duplicate(shifter.system.attributes.speed);
         let speedTypes = Object.keys(newSpeeds);
         let maneuverabilityChange = {};
         for (let i = 0; i < speedTypes.length; i++) {
@@ -212,7 +212,7 @@ export class MorphinPlantShape extends FormApplication {
         }
 
         // Process senses changes
-        let originalSenses = { 'data.traits.senses': shifter.data.data.traits.senses };
+        let originalSenses = { 'data.traits.senses': shifter.system.traits.senses };
         let senseObject = { 'dv': 0, 'ts': 0, 'bs': 0, 'bse': 0, 'll': { 'enabled': false, 'multiplier': { 'dim': 2, 'bright': 2 } }, 'sid': false, 'tr': false, 'si': false, 'sc': false, 'custom': '' };
         for (let i = 0; i < this.senses.length; i++) {
             const sensesEnumValue = this.senses[i];
@@ -223,11 +223,11 @@ export class MorphinPlantShape extends FormApplication {
         let sensesChanges = { 'data.traits.senses': senseObject };
 
         // Process resistances changes
-        let originalEres = { 'data.traits.eres': shifter.data.data.traits.eres };
+        let originalEres = { 'data.traits.eres': shifter.system.traits.eres };
         let eresString = this.eres || '';
 
         // Process vulnerabilities changes
-        let originalDv = { 'data.traits.dv': shifter.data.data.traits.dv };
+        let originalDv = { 'data.traits.dv': shifter.system.traits.dv };
         let newDv = { value: [], custom: '' };
         if (!!this.dv) {
             for (let i = 0; i < this.dv.length; i++) {
@@ -239,11 +239,11 @@ export class MorphinPlantShape extends FormApplication {
         }
 
         // Process DR changes
-        let originalDr = { 'data.traits.dr': shifter.data.data.traits.dr };
+        let originalDr = { 'data.traits.dr': shifter.system.traits.dr };
         let drString = this.dr || '';
 
         // Process regen changes
-        let originalRegen = { 'data.traits.regen': shifter.data.data.traits.regen };
+        let originalRegen = { 'data.traits.regen': shifter.system.traits.regen };
         let regenString = this.regen || '';
 
         originalSenses = mergeObject(originalSenses, originalDv);

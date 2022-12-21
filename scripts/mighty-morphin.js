@@ -17,9 +17,9 @@ export class MightyMorphinApp {
         let changeData = MorphinChanges.changes.enlargePerson; // get buff data
 
         // Only continue if a single actor and it is not already under any effects provided by this module
-        if (!!shifter && !shifter.data.flags.mightyMorphin) {
+        if (!!shifter && !shifter.flags.mightyMorphin) {
             let buff = shifter.items.find(o => o.type === 'buff' && o.name === 'Enlarge Person');
-            let shifterSize = shifter.data.data.traits.size;
+            let shifterSize = shifter.system.traits.size;
 
             // Find the size the number of steps away from current, number of steps provided by changeData
             let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
@@ -49,7 +49,7 @@ export class MightyMorphinApp {
                 await buffAdded[0].update({ 'img': 'systems/pf1/icons/skills/yellow_14.jpg', 'data.changes': changes, 'data.active': true });
             }
             else {
-                let oldChanges = buff.data.data.changes;
+                let oldChanges = buff.system.changes;
                 let newChanges = [];
                 
                 let strChange = 0;
@@ -68,11 +68,11 @@ export class MightyMorphinApp {
             let armorToChange = [];
             // Double armor and shield AC when moving from tiny to small (tiny and below armor AC is half normal)
             if (shifterSize === 'tiny') {
-                let armorAndShields = shifter.items.filter(o => o.data.type === 'equipment' && (o.data.data.equipmentType === 'armor' || o.data.data.equipmentType === 'shield'));
+                let armorAndShields = shifter.items.filter(o => o.type === 'equipment' && (o.equipmentType === 'armor' || o.equipmentType === 'shield'));
 
                 for (let item of armorAndShields) {
-                    armorChangeFlag.push({ _id: item.id, data: { armor: { value: item.data.data.armor.value } } }); // store original armor data in flags
-                    armorToChange.push({ _id: item.id, data: { armor: { value: (item.data.data.armor.value * 2) } } }); // change to push to actor's item
+                    armorChangeFlag.push({ _id: item.id, data: { armor: { value: item.armor.value } } }); // store original armor data in flags
+                    armorToChange.push({ _id: item.id, data: { armor: { value: (item.armor.value * 2) } } }); // change to push to actor's item
                 }
             }
 
@@ -84,8 +84,8 @@ export class MightyMorphinApp {
             // Update the actor size and store flags
             await shifter.update({ 'data.traits.size': newSize, 'flags.mightyMorphin': { source: 'Enlarge Person', buffName: 'Enlarge Person', size: shifterSize, armor: armorChangeFlag } });
         }
-        else if (!!shifter?.data.flags.mightyMorphin) {
-            ui.notifications.warn(shifter.name + ' is already under the effects of a change from ' + shifter.data.flags.mightyMorphin.source);
+        else if (!!shifter?.flags.mightyMorphin) {
+            ui.notifications.warn(shifter.name + ' is already under the effects of a change from ' + shifter.flags.mightyMorphin.source);
         }
     }
 
@@ -97,9 +97,9 @@ export class MightyMorphinApp {
         let changeData = MorphinChanges.changes.animalGrowth; // get buff data
 
         // Only continue if a single actor and it is not already under any effects provided by this module
-        if (!!shifter && !shifter.data.flags.mightyMorphin) {
+        if (!!shifter && !shifter.flags.mightyMorphin) {
             let buff = shifter.items.find(o => o.type === 'buff' && o.name === 'Animal Growth');
-            let shifterSize = shifter.data.data.traits.size;
+            let shifterSize = shifter.system.traits.size;
 
             // Find the size the number of steps away from current, number of steps provided by changeData
             let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
@@ -129,7 +129,7 @@ export class MightyMorphinApp {
                 await buffAdded[0].update({ 'img': 'systems/pf1/icons/spells/wild-orange-3.jpg', 'data.changes': changes, 'data.active': true });
             }
            else {
-                let oldChanges = buff.data.data.changes;
+                let oldChanges = buff.system.changes;
                 let newChanges = [];
                 
                 let strChange = 0;
@@ -148,11 +148,11 @@ export class MightyMorphinApp {
             let armorToChange = [];
             // Double armor and shield AC when moving from tiny to small (tiny and below armor AC is half normal)
             if (shifterSize === 'tiny') {
-                let armorAndShields = shifter.items.filter(o => o.data.type === 'equipment' && (o.data.data.equipmentType === 'armor' || o.data.data.equipmentType === 'shield'));
+                let armorAndShields = shifter.items.filter(o => o.data.type === 'equipment' && (o.equipmentType === 'armor' || o.equipmentType === 'shield'));
 
                 for (let item of armorAndShields) {
-                    armorChangeFlag.push({ _id: item.id, data: { armor: { value: item.data.data.armor.value } } }); // store original armor data in flags
-                    armorToChange.push({ _id: item.id, data: { armor: { value: (item.data.data.armor.value * 2) } } }); // change to push to actor's item
+                    armorChangeFlag.push({ _id: item.id, data: { armor: { value: item.armor.value } } }); // store original armor data in flags
+                    armorToChange.push({ _id: item.id, data: { armor: { value: (item.armor.value * 2) } } }); // change to push to actor's item
                 }
             }
 
@@ -164,8 +164,8 @@ export class MightyMorphinApp {
             // Update the actor size and store flags
             await shifter.update({ 'data.traits.size': newSize, 'flags.mightyMorphin': { source: 'Animal Growth', buffName: 'Animal Growth', size: shifterSize, armor: armorChangeFlag } });
         }
-        else if (!!shifter?.data.flags.mightyMorphin) {
-            ui.notifications.warn(shifter.name + ' is already under the effects of a change from ' + shifter.data.flags.mightyMorphin.source);
+        else if (!!shifter?.flags.mightyMorphin) {
+            ui.notifications.warn(shifter.name + ' is already under the effects of a change from ' + shifter.flags.mightyMorphin.source);
         }
     }
 
@@ -177,9 +177,9 @@ export class MightyMorphinApp {
         let changeData = MorphinChanges.changes.legendaryProportions; // get buff data
 
         // Only continue if a single actor and it is not already under any effects provided by this module
-        if (!!shifter && !shifter.data.flags.mightyMorphin) {
+        if (!!shifter && !shifter.flags.mightyMorphin) {
             let buff = shifter.items.find(o => o.type === 'buff' && o.name === 'Legendary Proportions');
-            let shifterSize = shifter.data.data.traits.size;
+            let shifterSize = shifter.system.traits.size;
             
             let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
 
@@ -208,7 +208,7 @@ export class MightyMorphinApp {
                 await buffAdded[0].update({ 'img': 'systems/pf1/icons/skills/yellow_14.jpg', 'data.changes': changes, 'data.active': true });
             }
             else {
-                let oldChanges = buff.data.data.changes;
+                let oldChanges = buff.system.changes;
                 let newChanges = [];
                 
                 let strChange = 0;
@@ -227,11 +227,11 @@ export class MightyMorphinApp {
             let armorToChange = [];
             // Double armor and shield AC when moving from tiny to small (tiny and below armor AC is half normal)
             if (shifterSize === 'tiny') {
-                let armorAndShields = shifter.items.filter(o => o.data.type === 'equipment' && (o.data.data.equipmentType === 'armor' || o.data.data.equipmentType === 'shield'));
+                let armorAndShields = shifter.items.filter(o => o.data.type === 'equipment' && (o.equipmentType === 'armor' || o.equipmentType === 'shield'));
 
                 for (let item of armorAndShields) {
-                    armorChangeFlag.push({ _id: item.id, data: { armor: { value: item.data.data.armor.value } } }); // store original armor data in flags
-                    armorToChange.push({ _id: item.id, data: { armor: { value: (item.data.data.armor.value * 2) } } }); // change to push to actor's item
+                    armorChangeFlag.push({ _id: item.id, data: { armor: { value: item.armor.value } } }); // store original armor data in flags
+                    armorToChange.push({ _id: item.id, data: { armor: { value: (item.armor.value * 2) } } }); // change to push to actor's item
                 }
             }
 
@@ -240,14 +240,14 @@ export class MightyMorphinApp {
                 await shifter.updateEmbeddedDocuments('Item', armorToChange);
             }
 
-            let oldDR = shifter.data.data.traits.dr;
+            let oldDR = shifter.system.traits.dr;
             let newDR = (!!oldDR ? oldDR + '; ' : '') + '10/adamantine';
 
             // Update the actor size and store flags
             await shifter.update({ 'data.traits.size': newSize, 'data.traits.dr': newDR, 'flags.mightyMorphin': { source: 'Legendary Proportions', buffName: 'Legendary Proportions', size: shifterSize, armor: armorChangeFlag, data: { traits: { dr: oldDR } } } });
         }
-        else if (!!shifter?.data.flags.mightyMorphin) {
-            ui.notifications.warn(shifter.name + ' is already under the effects of a change from ' + shifter.data.flags.mightyMorphin.source);
+        else if (!!shifter?.flags.mightyMorphin) {
+            ui.notifications.warn(shifter.name + ' is already under the effects of a change from ' + shifter.flags.mightyMorphin.source);
         }
     }
 
@@ -259,9 +259,9 @@ export class MightyMorphinApp {
         let changeData = MorphinChanges.changes.frightfulAspect; // get buff data
 
         // Only continue if a single actor and it is not already under any effects provided by this module
-        if (!!shifter && !shifter.data.flags.mightyMorphin) {
+        if (!!shifter && !shifter.flags.mightyMorphin) {
             let buff = shifter.items.find(o => o.type === 'buff' && o.name === 'Frightful Aspect');
-            let shifterSize = shifter.data.data.traits.size;
+            let shifterSize = shifter.system.traits.size;
 
             let newSize = changeData.size;
 
@@ -296,7 +296,7 @@ export class MightyMorphinApp {
                 await buffAdded[0].update({ 'img': 'systems/pf1/icons/skills/affliction_08.jpg', 'data.changes': changes, 'data.active': true });
             }
             else {
-                let oldChanges = buff.data.data.changes;
+                let oldChanges = buff.system.changes;
                 let newChanges = [];
                 
                 let strChange = 0;
@@ -315,11 +315,11 @@ export class MightyMorphinApp {
             let armorToChange = [];
             // Double armor and shield AC when moving from tiny or smaller (tiny and below armor AC is half normal)
             if (MightyMorphinApp.sizes.indexOf(shifterSize) < 3) {
-                let armorAndShields = shifter.items.filter(o => o.data.type === 'equipment' && (o.data.data.equipmentType === 'armor' || o.data.data.equipmentType === 'shield'));
+                let armorAndShields = shifter.items.filter(o => o.data.type === 'equipment' && (o.equipmentType === 'armor' || o.equipmentType === 'shield'));
 
                 for (let item of armorAndShields) {
-                    armorChangeFlag.push({ _id: item.id, data: { armor: { value: item.data.data.armor.value } } }); // store original armor data in flags
-                    armorToChange.push({ _id: item.id, data: { armor: { value: (item.data.data.armor.value * 2) } } }); // change to push to actor's item
+                    armorChangeFlag.push({ _id: item.id, data: { armor: { value: item.armor.value } } }); // store original armor data in flags
+                    armorToChange.push({ _id: item.id, data: { armor: { value: (item.armor.value * 2) } } }); // change to push to actor's item
                 }
             }
 
@@ -329,19 +329,19 @@ export class MightyMorphinApp {
             }
 
             // Add effect DR to existing (if any), and store old DR
-            let oldDR = shifter.data.data.traits.dr;
+            let oldDR = shifter.system.traits.dr;
             let newDR = (!!oldDR ? oldDR + '; ' : '') + '10/magic';
 
             // Replace old spell resistance if new is higher, store old
-            let oldSR = shifter.data.data.attributes.sr.formula;
+            let oldSR = shifter.system.attributes.sr.formula;
             let faSR = 10 + Math.floor(parseInt(casterLevel) / 2);
-            let newSR = shifter.data.data.attributes.sr.total > faSR ? oldSR : faSR;
+            let newSR = shifter.system.attributes.sr.total > faSR ? oldSR : faSR;
 
             // Update the actor data and store flags
             await shifter.update({ 'data.traits.size': newSize, 'data.traits.dr': newDR, 'data.attributes.sr.formula': `${newSR}`, 'flags.mightyMorphin': { source: 'Frightful Aspect', buffName: 'Frightful Aspect', size: shifterSize, armor: armorChangeFlag, data: { traits: { dr: oldDR }, attributes: { sr: { formula: oldSR } } } } });
         }
-        else if (!!shifter?.data.flags.mightyMorphin) {
-            ui.notifications.warn(shifter.name + ' is already under the effects of a change from ' + shifter.data.flags.mightyMorphin.source);
+        else if (!!shifter?.flags.mightyMorphin) {
+            ui.notifications.warn(shifter.name + ' is already under the effects of a change from ' + shifter.flags.mightyMorphin.source);
         }
     }
 
@@ -353,9 +353,9 @@ export class MightyMorphinApp {
         let changeData = MorphinChanges.changes.reducePerson; // get buff data
 
         // Only continue if a single actor and it is not already under any effects provided by this module
-        if (!!shifter && !shifter.data.flags.mightyMorphin) {
+        if (!!shifter && !shifter.flags.mightyMorphin) {
             let buff = shifter.items.find(o => o.type === 'buff' && o.name === 'Reduce Person');
-            let shifterSize = shifter.data.data.traits.size;
+            let shifterSize = shifter.system.traits.size;
 
             // Find the size the number of steps away from current, number of steps provided by changeData
             let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
@@ -385,7 +385,7 @@ export class MightyMorphinApp {
                 await buffAdded[0].update({ 'img': 'systems/pf1/icons/races/ratfolk.png', 'data.changes': changes, 'data.active': true });
             }
             else {
-                let oldChanges = buff.data.data.changes;
+                let oldChanges = buff.system.changes;
                 let newChanges = [];
                 
                 let strChange = 0;
@@ -404,11 +404,11 @@ export class MightyMorphinApp {
             let armorToChange = [];
             // Halve armor and shield AC when moving from small to tiny (tiny and below armor AC is half normal)
             if (shifterSize === 'sm') {
-                let armorAndShields = shifter.items.filter(o => o.data.type === 'equipment' && (o.data.data.equipmentType === 'armor' || o.data.data.equipmentType === 'shield'));
+                let armorAndShields = shifter.items.filter(o => o.data.type === 'equipment' && (o.equipmentType === 'armor' || o.equipmentType === 'shield'));
 
                 for (let item of armorAndShields) {
-                    armorChangeFlag.push({ _id: item.id, data: { armor: { value: item.data.data.armor.value } } }); // store original armor data in flags
-                    armorToChange.push({ _id: item.id, data: { armor: { value: Math.floor(item.data.data.armor.value / 2) } } }); // change to push to actor's item
+                    armorChangeFlag.push({ _id: item.id, data: { armor: { value: item.armor.value } } }); // store original armor data in flags
+                    armorToChange.push({ _id: item.id, data: { armor: { value: Math.floor(item.armor.value / 2) } } }); // change to push to actor's item
                 }
             }
 
@@ -420,8 +420,8 @@ export class MightyMorphinApp {
             // Update the actor size and store flags
             await shifter.update({ 'data.traits.size': newSize, 'flags.mightyMorphin': { source: 'Reduce Person', buffName: 'Reduce Person', size: shifterSize, armor: armorChangeFlag } });
         }
-        else if (!!shifter?.data.flags.mightyMorphin) {
-            ui.notifications.warn(shifter.name + ' is already under the effects of a change from ' + shifter.data.flags.mightyMorphin.source);
+        else if (!!shifter?.flags.mightyMorphin) {
+            ui.notifications.warn(shifter.name + ' is already under the effects of a change from ' + shifter.flags.mightyMorphin.source);
         }
     }
 
@@ -432,15 +432,15 @@ export class MightyMorphinApp {
         let shifter = MightyMorphinApp.getSingleActor(); // Ensure only a single actor is being processed
 
         // Only continue if a single actor and it is already under any effects provided by this module
-        if (!!shifter && !!shifter.data.flags.mightyMorphin) {
+        if (!!shifter && !!shifter.flags.mightyMorphin) {
             // Get flags from the actor with the changes applied to it
-            let changes = duplicate(shifter.data.flags.mightyMorphin);
+            let changes = duplicate(shifter.flags.mightyMorphin);
 
             // Undo listed buffs
             if (['Enlarge Person', 'Reduce Person', 'Legendary Proportions', 'Frightful Aspect', 'Animal Growth'].includes(changes.source)) {
                 // Revert all armor changes that exist
-                 if (!!shifter.data.flags.mightyMorphin.armor.length) {
-                    let armorFlag = shifter.data.flags.mightyMorphin.armor;
+                 if (!!shifter.flags.mightyMorphin.armor.length) {
+                    let armorFlag = shifter.flags.mightyMorphin.armor;
                     let armorExisting = [];
                     let armorItem;
                     armorFlag.forEach(a => {
@@ -463,8 +463,8 @@ export class MightyMorphinApp {
             // Undo listed buffs
             else if (['Beast Shape', 'Elemental Body', 'Plant Shape', 'Wild Shape'].includes(changes.source)) {
                 // Reverse any changes to armor
-                if (!!shifter.data.flags.mightyMorphin.armor.length) {
-                    let armorFlag = shifter.data.flags.mightyMorphin.armor;
+                if (!!shifter.flags.mightyMorphin.armor.length) {
+                    let armorFlag = shifter.flags.mightyMorphin.armor;
                     let armorExisting = [];
                     let armorItem;
                     armorFlag.forEach(a => {
@@ -474,9 +474,9 @@ export class MightyMorphinApp {
                     await shifter.updateEmbeddedDocuments('Item', armorExisting);
                 }
 
-                if (!!shifter.data.flags.mightyMorphin.tokenImg) {
+                if (!!shifter.flags.mightyMorphin.tokenImg) {
                     let token = canvas.tokens.ownedTokens.find(o => o.data.actorId === shifter.id);
-                    await token.document.update(shifter.data.flags.mightyMorphin.tokenImg);
+                    await token.document.update(shifter.flags.mightyMorphin.tokenImg);
                 }
 
                 // Revert all data that was replaced to its original and remove the flags
@@ -498,7 +498,7 @@ export class MightyMorphinApp {
                 canvas.tokens.ownedTokens.find(o => o.data.actorId === shifter.id).control();
             }
         }
-        else if (!!shifter && !shifter.data.flags.mightyMorphin) {
+        else if (!!shifter && !shifter.flags.mightyMorphin) {
             ui.notifications.warn(shifter.name + ' is not under any change effects');
         }
     }
@@ -560,9 +560,9 @@ export class MightyMorphinApp {
     static generateCapacityChange(shifter, newSize, strChange) {
         // Set up adjustments to strength carry bonus and carry multiplier so actor's encumbrance doesn't change
         // Subtract the buff strength change from current carry bonus, decreasing carry strength if buff adds or increasing carry strength if buff subtracts
-        let carryBonusChange = (!!shifter.data.data.details.carryCapacity.bonus.user ? shifter.data.data.details.carryCapacity.bonus.user : 0) - strChange ;
+        let carryBonusChange = (!!shifter.system.details.carryCapacity.bonus.user ? shifter.system.details.carryCapacity.bonus.user : 0) - strChange ;
         // Counteract the size change's natural increase or decrease to carry multiplier
-        let carryMultChange = (shifter.data.data.details.carryCapacity.multiplier.total * CONFIG.PF1.encumbranceMultipliers.normal[shifter.data.data.traits.size] / CONFIG.PF1.encumbranceMultipliers.normal[newSize]) - shifter.data.data.details.carryCapacity.multiplier.total;
+        let carryMultChange = (shifter.system.details.carryCapacity.multiplier.total * CONFIG.PF1.encumbranceMultipliers.normal[shifter.system.traits.size] / CONFIG.PF1.encumbranceMultipliers.normal[newSize]) - shifter.system.details.carryCapacity.multiplier.total;
         let changes = [
             { formula: carryBonusChange.toString(), operator: 'add', subTarget: 'carryStr', modifier: 'untyped', priority: 0, value: carryBonusChange },
             { formula: carryMultChange.toString(), operator: 'add', subTarget: 'carryMult', modifier: 'untyped', priority: 0, value: carryMultChange }
@@ -697,11 +697,11 @@ export class MightyMorphinApp {
         let shifter = MightyMorphinApp.getSingleActor();
 
         // Create beast shape form if a single actor chosen not already under effects from this mod
-        if (!!shifter && !shifter.data.flags.mightyMorphin) {
+        if (!!shifter && !shifter.flags.mightyMorphin) {
             let dia = new MorphinBeastShape(level, shifter.id, source).render(true);
         }
-        else if (!!shifter?.data.flags.mightyMorphin) {
-            ui.notifications.warn(shifter.name + ' is already under the effects of a change from ' + shifter.data.flags.mightyMorphin.source);
+        else if (!!shifter?.flags.mightyMorphin) {
+            ui.notifications.warn(shifter.name + ' is already under the effects of a change from ' + shifter.flags.mightyMorphin.source);
         }
 
     }
@@ -716,11 +716,11 @@ export class MightyMorphinApp {
         let shifter = MightyMorphinApp.getSingleActor();
 
         // Create elemental body form if a single actor chosen not already under effects from this mod
-        if (!!shifter && !shifter.data.flags.mightyMorphin) {
+        if (!!shifter && !shifter.flags.mightyMorphin) {
             let dia = new MorphinElementalBody(level, shifter.id, source).render(true);
         }
-        else if (!!shifter?.data.flags.mightyMorphin) {
-            ui.notifications.warn(shifter.name + ' is already under the effects of a change from ' + shifter.data.flags.mightyMorphin.source);
+        else if (!!shifter?.flags.mightyMorphin) {
+            ui.notifications.warn(shifter.name + ' is already under the effects of a change from ' + shifter.flags.mightyMorphin.source);
         }
     }
 
@@ -734,11 +734,11 @@ export class MightyMorphinApp {
         let shifter = MightyMorphinApp.getSingleActor();
 
         // Create plant shape form if a single actor chosen not already under effects from this mod
-        if (!!shifter && !shifter.data.flags.mightyMorphin) {
+        if (!!shifter && !shifter.flags.mightyMorphin) {
             let dia = new MorphinPlantShape(level, shifter.id, source).render(true);
         }
-        else if (!!shifter?.data.flags.mightyMorphin) {
-            ui.notifications.warn(shifter.name + ' is already under the effects of a change from ' + shifter.data.flags.mightyMorphin.source);
+        else if (!!shifter?.flags.mightyMorphin) {
+            ui.notifications.warn(shifter.name + ' is already under the effects of a change from ' + shifter.flags.mightyMorphin.source);
         }
     }
 
