@@ -199,8 +199,8 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
         }
 
         // Process speed changes
-        let originalManeuverability = { 'data.attributes.speed.fly.maneuverability': shifter.system.attributes.speed.speed.fly.maneuverability };
-        let newSpeeds = duplicate(shifter.system.attributes.speed.speed);
+        let originalManeuverability = { 'data.attributes.speed.fly.maneuverability': shifter.system.attributes.speed.fly.maneuverability };
+        let newSpeeds = duplicate(shifter.system.attributes.speed);
         let speedTypes = Object.keys(newSpeeds);
         let maneuverabilityChange = {};
         for (let i = 0; i < speedTypes.length; i++) {
