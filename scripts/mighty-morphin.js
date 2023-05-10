@@ -52,9 +52,20 @@ export class MightyMorphinApp {
                 let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
                 let changes = changeData.changes.concat(carryBonusChanges);
 
+                let strChange = 0;
+                for (let i = 0; i < changeData.changes.length; i++) {
+                    const change = changeData.changes[i];
+
+                    if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
+                }
+
+                let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
+                let changes = changeData.changes.concat(carryBonusChanges);
+
                 // Create the buff on the actor, change the icon, populate the changes, turn it on
                 let buffAdded = await shifter.createEmbeddedDocuments('Item', [buff.data]);
                 await buffAdded[0].update({ 'img': 'systems/pf1/icons/skills/yellow_14.jpg', 'data.duration': durationData, 'data.changes': changes, 'data.active': true });
+
             }
             else {
                 let oldChanges = buff.data.data.changes;
@@ -70,6 +81,7 @@ export class MightyMorphinApp {
                 newChanges = newChanges.concat(carryBonusChanges);
 
                 buff.update({ 'data.duration': durationData, 'data.changes': newChanges, 'data.active': true });
+
             }
 
             let armorChangeFlag = [];
@@ -120,6 +132,7 @@ export class MightyMorphinApp {
                 durationData = {value: duration.toString(), units: 'minute'};
             }
 
+
             // Create the buff if it doesn't exist, otherwise toggle it on
             if (!buff) {
                 // Create template buff Item
@@ -140,11 +153,22 @@ export class MightyMorphinApp {
                 let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
                 let changes = changeData.changes.concat(carryBonusChanges);
 
+                let strChange = 0;
+                for (let i = 0; i < changeData.changes.length; i++) {
+                    const change = changeData.changes[i];
+
+                    if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
+                }
+
+                let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
+                let changes = changeData.changes.concat(carryBonusChanges);
+
                 // Create the buff on the actor, change the icon, populate the changes, turn it on
                 let buffAdded = await shifter.createEmbeddedDocuments('Item', [buff.data]);
                 await buffAdded[0].update({ 'img': 'systems/pf1/icons/spells/wild-orange-3.jpg', 'data.duration': durationData, 'data.changes': changes, 'data.active': true });
             }
             else {
+
                 let oldChanges = buff.data.data.changes;
                 let newChanges = [];
                 
@@ -158,6 +182,7 @@ export class MightyMorphinApp {
                 newChanges = newChanges.concat(carryBonusChanges);
 
                 buff.update({ 'data.duration': durationData, 'data.changes': newChanges, 'data.active': true });
+
             }
 
             let armorChangeFlag = [];
@@ -198,6 +223,8 @@ export class MightyMorphinApp {
         if (!!shifter && !shifter.data.flags.mightyMorphin) {
             let buff = shifter.items.find(o => o.type === 'buff' && o.name === 'Legendary Proportions');
             let shifterSize = shifter.data.data.traits.size;
+            
+            let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
 
             let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
 
@@ -230,6 +257,7 @@ export class MightyMorphinApp {
                 // Create the buff on the actor, change the icon, populate the changes, turn it on
                 let buffAdded = await shifter.createEmbeddedDocuments('Item', [buff.data]);
                 await buffAdded[0].update({ 'img': 'systems/pf1/icons/skills/yellow_14.jpg', 'data.duration': durationData, 'data.changes': changes, 'data.active': true });
+
             }
             else {
                 let oldChanges = buff.data.data.changes;
@@ -245,6 +273,7 @@ export class MightyMorphinApp {
                 newChanges = newChanges.concat(carryBonusChanges);
 
                 buff.update({ 'data.duration': durationData, 'data.changes': newChanges, 'data.active': true});
+
             }
 
             let armorChangeFlag = [];
@@ -281,6 +310,7 @@ export class MightyMorphinApp {
      * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
      */
     static async frightfulAspect({ cl = 0, durationLevel = 0 } = {}) {
+
         let shifter = MightyMorphinApp.getSingleActor(); // Ensure only a single actor is being processed
         let changeData = MorphinChanges.changes.frightfulAspect; // get buff data
 
@@ -326,6 +356,7 @@ export class MightyMorphinApp {
                 // Create the buff on the actor, change the icon, populate the changes, turn it on
                 let buffAdded = await shifter.createEmbeddedDocuments('Item', [buff.data]);
                 await buffAdded[0].update({ 'img': 'systems/pf1/icons/skills/affliction_08.jpg', 'data.duration': durationData, 'data.changes': changes, 'data.active': true });
+
             }
             else {
                 let oldChanges = buff.data.data.changes;
@@ -424,6 +455,7 @@ export class MightyMorphinApp {
                 // Create the buff on the actor, change the icon, populate the changes, turn it on
                 let buffAdded = await shifter.createEmbeddedDocuments('Item', [buff.data]);
                 await buffAdded[0].update({ 'img': 'systems/pf1/icons/races/ratfolk.png', 'data.duration': durationData, 'data.changes': changes, 'data.active': true });
+
             }
             else {
                 let oldChanges = buff.data.data.changes;
@@ -439,6 +471,7 @@ export class MightyMorphinApp {
                 newChanges = newChanges.concat(carryBonusChanges);
 
                 buff.update({ 'data.duration': durationData, 'data.changes': newChanges, 'data.active': true });
+
             }
 
             let armorChangeFlag = [];
@@ -589,6 +622,27 @@ export class MightyMorphinApp {
         }
         return actors[0];
     }
+    
+    /**
+     * Calculates encumbrance bonus/penalty needed to maintain current encumbrance when size changes
+     * 
+     * @param {Object} shifter The actor that is changing sizes
+     * @param {string} newSize The system-defined abbreviation of the size the actor is changing to
+     * @param {number} strChange The amount of strength the actor is gaining (negative number is strength loss)
+     * @returns {Array.Object} Array of Changes targeting carry strength bonus and carry multiplier
+     */
+    static generateCapacityChange(shifter, newSize, strChange) {
+        // Set up adjustments to strength carry bonus and carry multiplier so actor's encumbrance doesn't change
+        // Subtract the buff strength change from current carry bonus, decreasing carry strength if buff adds or increasing carry strength if buff subtracts
+        let carryBonusChange = (!!shifter.data.data.details.carryCapacity.bonus.user ? shifter.data.data.details.carryCapacity.bonus.user : 0) - strChange ;
+        // Counteract the size change's natural increase or decrease to carry multiplier
+        let carryMultChange = (shifter.data.data.details.carryCapacity.multiplier.total * CONFIG.PF1.encumbranceMultipliers.normal[shifter.data.data.traits.size] / CONFIG.PF1.encumbranceMultipliers.normal[newSize]) - shifter.data.data.details.carryCapacity.multiplier.total;
+        let changes = [
+            { formula: carryBonusChange.toString(), operator: 'add', subTarget: 'carryStr', modifier: 'untyped', priority: 0, value: carryBonusChange },
+            { formula: carryMultChange.toString(), operator: 'add', subTarget: 'carryMult', modifier: 'untyped', priority: 0, value: carryMultChange }
+        ];
+        return changes;
+    }
 
     /**
      * Calculates encumbrance bonus/penalty needed to maintain current encumbrance when size changes
@@ -649,7 +703,6 @@ export class MightyMorphinApp {
 
         subAction['actionType'] = attack.attackType || 'mwak'; // melee, ranged, save, combat man., etc
         subAction['activation']['type'] = 'attack';
-        
         subAction['unchainedAction'] = { 'activation': { 'cost': 1, 'type': 'action' } };
         subAction['duration']['units'] = 'inst';
         subAction['range']['value'] = '' + (attack.range ?? '');
@@ -664,6 +717,7 @@ export class MightyMorphinApp {
         subAction['measureTemplate']['type'] = attack.templateShape || '';
         subAction['measureTemplate']['size'] = attack.templateSize || '';
         subAction['spellArea'] = attack.area || '';
+
 
         // Create extra attacks if the attack count is over 1, label the extras starting at 2 (Claw 2)
         let extraAttacks = [];
@@ -710,6 +764,7 @@ export class MightyMorphinApp {
         // ability damage is strength unless it's a ranged attack
         subAction['ability']['damage'] = (attack.type === 'rwak' || attack.damageAbility === '') ? '' : 'str';
 
+
         // ability damage multiplier is the passed multiplier or 1.5 for an only attack, 1 for a primary attack, .5 secondary
         subAction['ability']['damageMult'] = attack.mult || (onlyAttack ? 1.5 : (attackData.data.primaryAttack) ? 1 : 0.5);
 
@@ -731,6 +786,7 @@ export class MightyMorphinApp {
 
         attackData['data']['actions'] = [subAction];
         attackData['data']['unchainedAction'] = { 'activation': { 'cost': 1, 'type': 'action' } };
+
 
         return attackData;
     }

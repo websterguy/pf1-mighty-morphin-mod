@@ -4011,6 +4011,7 @@ MorphinChanges.changes = {
             { name: 'Breath Weapon Green', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: ['6d8', {values: ['acid'], custom: ''}], damageAbility: '', attackType: 'none', area: '20-ft cone', templateShape: 'cone',  templateSize: '20' },
             { name: 'Breath Weapon Red', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: ['6d8', {values: ['fire'], custom: ''}], damageAbility: '', attackType: 'none', area: '20-ft cone', templateShape: 'cone',  templateSize: '20' },
             { name: 'Breath Weapon White', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: ['6d8', {values: ['cold'], custom: ''}], damageAbility: '', attackType: 'none', area: '20-ft cone', templateShape: 'cone',  templateSize: '20' }
+
         ],
         speed: {
             land: 30,
@@ -4072,6 +4073,7 @@ MorphinChanges.changes = {
         ],
         specialAttack: [
             { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: ['8d6', {values: ['acid'], custom: ''}], damageAbility: '', attackType: 'none', area: '30-ft line', templateShape: 'ray',  templateSize: '30' }
+
         ],
         speed: {
             land: 20,
@@ -4513,6 +4515,7 @@ MorphinChanges.changes = {
         ],
         specialAttack: [
             { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], nonCrit: ['5d6', {values: ['fire'], custom: ''}], damageAbility: '', attackType: 'none', area: '15-ft cone', templateShape: 'cone',  templateSize: '15' }
+
         ],
         speed: {
             land: 60,
@@ -4986,6 +4989,7 @@ MorphinChanges.changes = {
         ],
         specialAttack: [
             { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], nonCrit: ['6d6', {values: ['cold'], custom: ''}], damageAbility: '', attackType: 'none', area: '15-ft cone', templateShape: 'cone',  templateSize: '15' }
+
         ],
         speed: {
             land: 50
@@ -5206,6 +5210,7 @@ MorphinChanges.changes = {
         ],
         specialAttack: [
             { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], nonCrit: ['3d6', {values: ['fire'], custom: ''}], damageAbility: '', attackType: 'none', area: '30-ft line', templateShape: 'ray',  templateSize: '30' }
+
         ],
         speed: {
             land: 10,
@@ -6936,6 +6941,7 @@ MorphinChanges.allowedSpecials = {
         '2': ['Whirlwind', 'Burn', 'Vortex'],
         '3': ['Whirlwind', 'Burn', 'Vortex'],
         '4': ['Whirlwind', 'Burn', 'Vortex']
+
     }
 };
 
@@ -6944,6 +6950,7 @@ MorphinChanges.buffIcons = {
     wildShape: 'systems/pf1/icons/skills/green_21.jpg',
     plantShape: 'systems/pf1/icons/spells/vines-plain-2.jpg',
     elementalBody: 'systems/pf1/icons/spells/wind-grasp-magenta-2.jpg'
+
 };
 
 MorphinChanges.SENSES = Object.freeze({
