@@ -11,8 +11,10 @@ export class MightyMorphinApp {
 
     /**
      * Applies Enlarge Person buff and effects to selected actor
+     * 
+     * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
      */
-    static async enlargePerson() {
+    static async enlargePerson({ durationLevel = 0 } = {}) {
         let shifter = MightyMorphinApp.getSingleActor(); // Ensure only a single actor is being processed
         let changeData = MorphinChanges.changes.enlargePerson; // get buff data
 
@@ -20,6 +22,15 @@ export class MightyMorphinApp {
         if (!!shifter && !shifter.data.flags.mightyMorphin) {
             let buff = shifter.items.find(o => o.type === 'buff' && o.name === 'Enlarge Person');
             let shifterSize = shifter.data.data.traits.size;
+
+            // Find the size the number of steps away from current, number of steps provided by changeData
+            let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
+
+            let durationData = {};
+            if (!!durationLevel) {
+                let duration = durationLevel;
+                durationData = {value: duration.toString(), units: 'minute'};
+            }
 
             // Create the buff if it doesn't exist, otherwise toggle it on
             if (!buff) {
@@ -30,17 +41,36 @@ export class MightyMorphinApp {
                 }
                 delete buffData.templates;
                 buff = await Item.create({ name: 'Enlarge Person', type: 'buff', data: buffData }, { temporary: true });
+                
+                let strChange = 0;
+                for (let i = 0; i < changeData.changes.length; i++) {
+                    const change = changeData.changes[i];
+
+                    if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
+                }
+
+                let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
+                let changes = changeData.changes.concat(carryBonusChanges);
 
                 // Create the buff on the actor, change the icon, populate the changes, turn it on
                 let buffAdded = await shifter.createEmbeddedDocuments('Item', [buff.data]);
-                await buffAdded[0].update({ 'img': 'systems/pf1/icons/skills/yellow_14.jpg', 'data.changes': changeData.changes, 'data.active': true });
+                await buffAdded[0].update({ 'img': 'systems/pf1/icons/skills/yellow_14.jpg', 'data.duration': durationData, 'data.changes': changes, 'data.active': true });
             }
             else {
-                buff.update({ 'data.active': true });
-            }
+                let oldChanges = buff.data.data.changes;
+                let newChanges = [];
+                
+                let strChange = 0;
+                for (const change of oldChanges) {
+                    if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
+                    if (!!change.subTarget && change.subTarget !== 'carryStr' && change.subTarget !== 'carryMult') newChanges.push(change);
+                }
 
-            // Find the size the number of steps away from current, number of steps provided by changeData
-            let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
+                let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
+                newChanges = newChanges.concat(carryBonusChanges);
+
+                buff.update({ 'data.duration': durationData, 'data.changes': newChanges, 'data.active': true });
+            }
 
             let armorChangeFlag = [];
             let armorToChange = [];
@@ -69,8 +99,10 @@ export class MightyMorphinApp {
 
     /**
      * Applies Animal Growth buff and effects to selected actor
+     * 
+     * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
      */
-    static async animalGrowth() {
+    static async animalGrowth({ durationLevel = 0 } = {}) {
         let shifter = MightyMorphinApp.getSingleActor(); // Ensure only a single actor is being processed
         let changeData = MorphinChanges.changes.animalGrowth; // get buff data
 
@@ -78,6 +110,15 @@ export class MightyMorphinApp {
         if (!!shifter && !shifter.data.flags.mightyMorphin) {
             let buff = shifter.items.find(o => o.type === 'buff' && o.name === 'Animal Growth');
             let shifterSize = shifter.data.data.traits.size;
+
+            // Find the size the number of steps away from current, number of steps provided by changeData
+            let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
+
+            let durationData = {};
+            if (!!durationLevel) {
+                let duration = durationLevel;
+                durationData = {value: duration.toString(), units: 'minute'};
+            }
 
             // Create the buff if it doesn't exist, otherwise toggle it on
             if (!buff) {
@@ -88,17 +129,36 @@ export class MightyMorphinApp {
                 }
                 delete buffData.templates;
                 buff = await Item.create({ name: 'Animal Growth', type: 'buff', data: buffData }, { temporary: true });
+                
+                let strChange = 0;
+                for (let i = 0; i < changeData.changes.length; i++) {
+                    const change = changeData.changes[i];
+
+                    if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
+                }
+
+                let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
+                let changes = changeData.changes.concat(carryBonusChanges);
 
                 // Create the buff on the actor, change the icon, populate the changes, turn it on
                 let buffAdded = await shifter.createEmbeddedDocuments('Item', [buff.data]);
-                await buffAdded[0].update({ 'img': 'systems/pf1/icons/spells/wild-orange-3.jpg', 'data.changes': changeData.changes, 'data.active': true });
+                await buffAdded[0].update({ 'img': 'systems/pf1/icons/spells/wild-orange-3.jpg', 'data.duration': durationData, 'data.changes': changes, 'data.active': true });
             }
             else {
-                buff.update({ 'data.active': true });
-            }
+                let oldChanges = buff.data.data.changes;
+                let newChanges = [];
+                
+                let strChange = 0;
+                for (const change of oldChanges) {
+                    if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
+                    if (!!change.subTarget && change.subTarget !== 'carryStr' && change.subTarget !== 'carryMult') newChanges.push(change);
+                }
 
-            // Find the size the number of steps away from current, number of steps provided by changeData
-            let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
+                let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
+                newChanges = newChanges.concat(carryBonusChanges);
+
+                buff.update({ 'data.duration': durationData, 'data.changes': newChanges, 'data.active': true });
+            }
 
             let armorChangeFlag = [];
             let armorToChange = [];
@@ -127,8 +187,10 @@ export class MightyMorphinApp {
 
     /**
      * Applies Legendary Proportions buff and effects to selected actor
+     * 
+     * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
      */
-    static async legendaryProportions() {
+    static async legendaryProportions({ durationLevel = 0 } = {}) {
         let shifter = MightyMorphinApp.getSingleActor(); // Ensure only a single actor is being processed
         let changeData = MorphinChanges.changes.legendaryProportions; // get buff data
 
@@ -136,6 +198,14 @@ export class MightyMorphinApp {
         if (!!shifter && !shifter.data.flags.mightyMorphin) {
             let buff = shifter.items.find(o => o.type === 'buff' && o.name === 'Legendary Proportions');
             let shifterSize = shifter.data.data.traits.size;
+
+            let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
+
+            let durationData = {};
+            if (!!durationLevel) {
+                let duration = durationLevel;
+                durationData = {value: duration.toString(), units: 'minute'};
+            }
 
             // Create the buff if it doesn't exist, otherwise toggle it on
             if (!buff) {
@@ -146,16 +216,36 @@ export class MightyMorphinApp {
                 }
                 delete buffData.templates;
                 buff = await Item.create({ name: 'Legendary Proportions', type: 'buff', data: buffData }, { temporary: true });
+                
+                let strChange = 0;
+                for (let i = 0; i < changeData.changes.length; i++) {
+                    const change = changeData.changes[i];
+
+                    if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
+                }
+
+                let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
+                let changes = changeData.changes.concat(carryBonusChanges);
 
                 // Create the buff on the actor, change the icon, populate the changes, turn it on
                 let buffAdded = await shifter.createEmbeddedDocuments('Item', [buff.data]);
-                await buffAdded[0].update({ 'img': 'systems/pf1/icons/skills/yellow_14.jpg', 'data.changes': changeData.changes, 'data.active': true });
+                await buffAdded[0].update({ 'img': 'systems/pf1/icons/skills/yellow_14.jpg', 'data.duration': durationData, 'data.changes': changes, 'data.active': true });
             }
             else {
-                buff.update({ 'data.active': true });
-            }
+                let oldChanges = buff.data.data.changes;
+                let newChanges = [];
+                
+                let strChange = 0;
+                for (const change of oldChanges) {
+                    if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
+                    if (!!change.subTarget && change.subTarget !== 'carryStr' && change.subTarget !== 'carryMult') newChanges.push(change);
+                }
 
-            let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
+                let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
+                newChanges = newChanges.concat(carryBonusChanges);
+
+                buff.update({ 'data.duration': durationData, 'data.changes': newChanges, 'data.active': true});
+            }
 
             let armorChangeFlag = [];
             let armorToChange = [];
@@ -187,8 +277,10 @@ export class MightyMorphinApp {
 
     /**
      * Applies Frightful Aspect buff and effects to selected actor
+     * 
+     * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
      */
-    static async frightfulAspect() {
+    static async frightfulAspect({ cl = 0, durationLevel = 0 } = {}) {
         let shifter = MightyMorphinApp.getSingleActor(); // Ensure only a single actor is being processed
         let changeData = MorphinChanges.changes.frightfulAspect; // get buff data
 
@@ -197,11 +289,19 @@ export class MightyMorphinApp {
             let buff = shifter.items.find(o => o.type === 'buff' && o.name === 'Frightful Aspect');
             let shifterSize = shifter.data.data.traits.size;
 
+            let newSize = changeData.size;
+
+            let durationData = {};
+            if (!!durationLevel) {
+                let duration = durationLevel;
+                durationData = {value: duration.toString(), units: 'minute'};
+            }
+
             // Get caster level from user for effect scaling
-            let casterLevel = await Dialog.prompt({
+            let casterLevel = cl === 0 ? await Dialog.prompt({
                 content: '<label>Input Caster Level</label><input type="number">',
                 callback: (html) => html.find('input').val()
-            });
+            }) : cl;
 
             // Create the buff if it doesn't exist, otherwise toggle it on
             if (!buff) {
@@ -212,17 +312,37 @@ export class MightyMorphinApp {
                 }
                 delete buffData.templates;
                 buff = await Item.create({ name: 'Frightful Aspect', type: 'buff', data: buffData }, { temporary: true });
+                
+                let strChange = 0;
+                for (let i = 0; i < changeData.changes.length; i++) {
+                    const change = changeData.changes[i];
+
+                    if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
+                }
+
+                let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
+                let changes = changeData.changes.concat(carryBonusChanges);
 
                 // Create the buff on the actor, change the icon, populate the changes, turn it on
                 let buffAdded = await shifter.createEmbeddedDocuments('Item', [buff.data]);
-                await buffAdded[0].update({ 'img': 'systems/pf1/icons/skills/affliction_08.jpg', 'data.changes': changeData.changes, 'data.active': true });
-                console.log(buffAdded);
+                await buffAdded[0].update({ 'img': 'systems/pf1/icons/skills/affliction_08.jpg', 'data.duration': durationData, 'data.changes': changes, 'data.active': true });
             }
             else {
-                buff.update({ 'data.active': true });
+                let oldChanges = buff.data.data.changes;
+                let newChanges = [];
+                
+                let strChange = 0;
+                for (const change of oldChanges) {
+                    if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
+                    if (!!change.subTarget && change.subTarget !== 'carryStr' && change.subTarget !== 'carryMult') newChanges.push(change);
+                }
+
+                let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
+                newChanges = newChanges.concat(carryBonusChanges);
+
+                buff.update({ 'data.duration': durationData, 'data.changes': newChanges, 'data.active': true });
             }
 
-            let newSize = changeData.size;
 
             let armorChangeFlag = [];
             let armorToChange = [];
@@ -247,7 +367,8 @@ export class MightyMorphinApp {
 
             // Replace old spell resistance if new is higher, store old
             let oldSR = shifter.data.data.attributes.sr.formula;
-            let newSR = shifter.data.data.attributes.sr.total > (10 + parseInt(casterLevel)) ? oldSR : (10 + parseInt(casterLevel));
+            let faSR = 10 + Math.floor(parseInt(casterLevel) / 2);
+            let newSR = shifter.data.data.attributes.sr.total > faSR ? oldSR : faSR;
 
             // Update the actor data and store flags
             await shifter.update({ 'data.traits.size': newSize, 'data.traits.dr': newDR, 'data.attributes.sr.formula': `${newSR}`, 'flags.mightyMorphin': { source: 'Frightful Aspect', buffName: 'Frightful Aspect', size: shifterSize, armor: armorChangeFlag, data: { traits: { dr: oldDR }, attributes: { sr: { formula: oldSR } } } } });
@@ -259,8 +380,10 @@ export class MightyMorphinApp {
 
     /**
      * Applies Reduce Person buff and effects to selected actor
+     * 
+     * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
      */
-    static async reducePerson() {
+    static async reducePerson({ durationLevel = 0 } = {}) {
         let shifter = MightyMorphinApp.getSingleActor(); // Ensure only a single actor is being processed
         let changeData = MorphinChanges.changes.reducePerson; // get buff data
 
@@ -268,6 +391,15 @@ export class MightyMorphinApp {
         if (!!shifter && !shifter.data.flags.mightyMorphin) {
             let buff = shifter.items.find(o => o.type === 'buff' && o.name === 'Reduce Person');
             let shifterSize = shifter.data.data.traits.size;
+
+            // Find the size the number of steps away from current, number of steps provided by changeData
+            let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
+
+            let durationData = {};
+            if (!!durationLevel) {
+                let duration = durationLevel;
+                durationData = {value: duration.toString(), units: 'minute'};
+            }
 
             // Create the buff if it doesn't exist, otherwise toggle it on
             if (!buff) {
@@ -278,17 +410,36 @@ export class MightyMorphinApp {
                 }
                 delete buffData.templates;
                 buff = await Item.create({ name: 'Reduce Person', type: 'buff', data: buffData }, { temporary: true });
+                
+                let strChange = 0;
+                for (let i = 0; i < changeData.changes.length; i++) {
+                    const change = changeData.changes[i];
+
+                    if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
+                }
+
+                let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
+                let changes = changeData.changes.concat(carryBonusChanges);
 
                 // Create the buff on the actor, change the icon, populate the changes, turn it on
                 let buffAdded = await shifter.createEmbeddedDocuments('Item', [buff.data]);
-                await buffAdded[0].update({ 'img': 'systems/pf1/icons/races/ratfolk.png', 'data.changes': changeData.changes, 'data.active': true });
+                await buffAdded[0].update({ 'img': 'systems/pf1/icons/races/ratfolk.png', 'data.duration': durationData, 'data.changes': changes, 'data.active': true });
             }
             else {
-                buff.update({ 'data.active': true });
-            }
+                let oldChanges = buff.data.data.changes;
+                let newChanges = [];
+                
+                let strChange = 0;
+                for (const change of oldChanges) {
+                    if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
+                    if (!!change.subTarget && change.subTarget !== 'carryStr' && change.subTarget !== 'carryMult') newChanges.push(change);
+                }
 
-            // Find the size the number of steps away from current, number of steps provided by changeData
-            let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
+                let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
+                newChanges = newChanges.concat(carryBonusChanges);
+
+                buff.update({ 'data.duration': durationData, 'data.changes': newChanges, 'data.active': true });
+            }
 
             let armorChangeFlag = [];
             let armorToChange = [];
@@ -342,7 +493,7 @@ export class MightyMorphinApp {
 
                 // Revert all actor data to its original and remove the flags
                 if (!!changes.data) {
-                    await shifter.update({ 'data.traits.size': changes.size, 'data': changes.data, 'flags.-=mightyMorphin': null });
+                    await shifter.update({ 'data': changes.data, 'data.traits.size': changes.size, 'flags.-=mightyMorphin': null });
                 }
                 else {
                     await shifter.update({ 'data.traits.size': changes.size, 'flags.-=mightyMorphin': null });
@@ -383,6 +534,9 @@ export class MightyMorphinApp {
                 // Remove any attacks or other features created by the effect
                 let itemsOnActor = shifter.items.filter(o => changes.itemsCreated.includes(o.id)).map(o => o.id);
                 await shifter.deleteEmbeddedDocuments('Item', itemsOnActor);
+                
+                canvas.tokens.releaseAll();
+                canvas.tokens.ownedTokens.find(o => o.data.actorId === shifter.id).control();
             }
         }
         else if (!!shifter && !shifter.data.flags.mightyMorphin) {
@@ -437,6 +591,27 @@ export class MightyMorphinApp {
     }
 
     /**
+     * Calculates encumbrance bonus/penalty needed to maintain current encumbrance when size changes
+     * 
+     * @param {Object} shifter The actor that is changing sizes
+     * @param {string} newSize The system-defined abbreviation of the size the actor is changing to
+     * @param {number} strChange The amount of strength the actor is gaining (negative number is strength loss)
+     * @returns {Array.Object} Array of Changes targeting carry strength bonus and carry multiplier
+     */
+    static generateCapacityChange(shifter, newSize, strChange) {
+        // Set up adjustments to strength carry bonus and carry multiplier so actor's encumbrance doesn't change
+        // Subtract the buff strength change from current carry bonus, decreasing carry strength if buff adds or increasing carry strength if buff subtracts
+        let carryBonusChange = (!!shifter.data.data.details.carryCapacity.bonus.user ? shifter.data.data.details.carryCapacity.bonus.user : 0) - strChange ;
+        // Counteract the size change's natural increase or decrease to carry multiplier
+        let carryMultChange = (shifter.data.data.details.carryCapacity.multiplier.total * CONFIG.PF1.encumbranceMultipliers.normal[shifter.data.data.traits.size] / CONFIG.PF1.encumbranceMultipliers.normal[newSize]) - shifter.data.data.details.carryCapacity.multiplier.total;
+        let changes = [
+            { formula: carryBonusChange.toString(), operator: 'add', subTarget: 'carryStr', modifier: 'untyped', priority: 0, value: carryBonusChange },
+            { formula: carryMultChange.toString(), operator: 'add', subTarget: 'carryMult', modifier: 'untyped', priority: 0, value: carryMultChange }
+        ];
+        return changes;
+    }
+
+    /**
      * Creates an attack and returns it
      * 
      * @param {string} actorId id of the actor that is changing shape
@@ -450,11 +625,12 @@ export class MightyMorphinApp {
      */
     static createAttack(actorId, formSize, attack, onlyAttack, effects = {}, source = '', type = 'natural') {
         let attackData = { data: {} };
+        
         const actorData = game.actors.get(actorId).data; // get actor's data for reference
 
         // Create attack Item template
         for (const template of game.data.system.template.Item.attack.templates) {
-            mergeObject(attackData.data, game.data.system.template.Item.templates[template]);
+            mergeObject(attackData.data, duplicate(game.data.system.template.Item.templates[template]));
         }
         mergeObject(attackData.data, duplicate(game.data.system.template.Item.attack));
         delete attackData.data.templates;
@@ -464,20 +640,30 @@ export class MightyMorphinApp {
         attackData['type'] = 'attack';
 
         // If attack is labeled as a a primary attack or that attack type is usually primary, or it is the only attack, it is primary
-        attackData['data.primaryAttack'] = ((attack.primaryAttack || (!!MightyMorphinApp.naturalAttacks[attack.name] && MightyMorphinApp.naturalAttacks[attack.name].primaryAttack)) || onlyAttack);
-        attackData['data.attackType'] = type; // weapon, natural, misc, class ability, etc
-        attackData['data.actionType'] = attack.attackType || 'mwak'; // melee, ranged, save, combat man., etc
-        attackData['data.activation.type'] = 'attack';
-        attackData['data.duration.units'] = 'inst';
-        attackData['data.range.value'] = '' + attack.range;
-        attackData['data.range.units'] = attack.attackType === 'rwak' ? 'ft' : 'melee'; // if ranged attack, range in feet. Else melee
-        attackData['data.ability.critRange'] = attack.crit || 20;
-        attackData['data.ability.critMult'] = attack.critMult || 2;
-        attackData['data.range.maxIncrements'] = attack.increment || '';
-        attackData['data.uses.per'] = attack.charges ? 'day' : '';
-        attackData['data.uses.maxFormula'] = '' + attack.charges;
-        attackData['data.uses.value'] = attack.charges || 0;
-        attackData['data.enh'] = attack.enh || null;
+        attackData['data']['enh'] = attack.enh || null;
+        attackData['data']['primaryAttack'] = ((attack.primaryAttack || (!!MightyMorphinApp.naturalAttacks[attack.name] && MightyMorphinApp.naturalAttacks[attack.name].primaryAttack)) || onlyAttack);
+        attackData['data']['attackType'] = type; // weapon, natural, misc, class ability, etc
+
+        let subAction = game.pf1.documentComponents.ItemAction.defaultData;
+
+
+        subAction['actionType'] = attack.attackType || 'mwak'; // melee, ranged, save, combat man., etc
+        subAction['activation']['type'] = 'attack';
+        
+        subAction['unchainedAction'] = { 'activation': { 'cost': 1, 'type': 'action' } };
+        subAction['duration']['units'] = 'inst';
+        subAction['range']['value'] = '' + (attack.range ?? '');
+        subAction['range']['units'] = attack.attackType === 'none' ? 'none' : attack.attackType === 'rwak' ? 'ft' : 'melee'; // if ranged attack, range in feet. Else melee
+        subAction['ability']['critRange'] = attack.crit || 20;
+        subAction['ability']['critMult'] = attack.critMult || 2;
+        subAction['range']['maxIncrements'] = attack.increment || '';
+        subAction['uses']['per'] = attack.charges ? 'day' : '';
+        subAction['uses']['maxFormula'] = '' + (attack.charges ?? '');
+        subAction['uses']['value'] = attack.charges || 0;
+        subAction['name'] = attack.name;
+        subAction['measureTemplate']['type'] = attack.templateShape || '';
+        subAction['measureTemplate']['size'] = attack.templateSize || '';
+        subAction['spellArea'] = attack.area || '';
 
         // Create extra attacks if the attack count is over 1, label the extras starting at 2 (Claw 2)
         let extraAttacks = [];
@@ -485,8 +671,8 @@ export class MightyMorphinApp {
             extraAttacks = extraAttacks.concat([['', `${attack.name} ${i + 1}`]]);
         }
         if (!!extraAttacks.length) {
-            attackData['data.attackParts'] = extraAttacks;
-            attackData['data.attackName'] = `${attack.name} 1`;
+            subAction['attackParts'] = extraAttacks;
+            subAction['attackName'] = `${attack.name} 1`;
         }
 
         // set attack notes for each special
@@ -498,16 +684,16 @@ export class MightyMorphinApp {
                 if (!!specialName) {
                     // If there's details about this special in the effects object, process it. Otherwise the note is just the special name
                     if (!!effects[specialName]) {
-                        attackData.data.effectNotes.push(effects[specialName].note);
+                        subAction.effectNotes.push(effects[specialName].note);
                         // Set the save if it exists
                         if (effects[specialName].saveDesc) {
-                            attackData.data.save.type = effects[specialName].type;
-                            attackData.data.save.dc = 10;
-                            attackData.data.save.description = effects[specialName].saveDesc;
+                            subAction.save.type = effects[specialName].type;
+                            subAction.save.dc = '10';
+                            subAction.save.description = effects[specialName].saveDesc;
                         }
                     }
                     else {
-                        attackData.data.effectNotes.push(specialName);
+                        subAction.effectNotes.push(specialName);
                     }
 
                     // Set the description for the whole attack if there is a description
@@ -517,31 +703,34 @@ export class MightyMorphinApp {
         }
 
         // Set attack ability to dex if weapon finesse feat and dex >= str or it's a ranged attack. Otherwise it's the actor's normal melee stat or strength
-        if (!!attack.attackAbility) attackData['data.ability.attack'] = attack.attackAbility;
-        else if ((!!actorData.items.find(o => o.type === 'feat' && o.name === 'Weapon Finesse') && actorData.data.abilities.dex.total >= actorData.data.abilities.str.total) || attack.attackType === 'rwak')
-            attackData['data.ability.attack'] = 'dex';
-        else attackData['data.ability.attack'] = getProperty(actorData, 'data.attributes.attack.meleeAbility') || 'str';
+        if (!!attack.attackAbility) subAction['ability']['attack'] = attack.attackAbility;
+        else if ((!!actorData.items.find(o => o.type === 'feat' && o.name === 'Weapon Finesse') && actorData.data.abilities.dex.total >= actorData.data.abilities.str.total) || attack.attackType === 'rwak') subAction['ability']['attack'] = 'dex';
+        else subAction['ability']['attack'] = getProperty(actorData, 'data.attributes.attack.meleeAbility') || 'str';
 
         // ability damage is strength unless it's a ranged attack
-        attackData['data.ability.damage'] = attack.type === 'rwak' ? '' : 'str';
+        subAction['ability']['damage'] = (attack.type === 'rwak' || attack.damageAbility === '') ? '' : 'str';
 
         // ability damage multiplier is the passed multiplier or 1.5 for an only attack, 1 for a primary attack, .5 secondary
-        attackData['data.ability.damageMult'] = attack.mult || (onlyAttack ? 1.5 : (attackData.data.primaryAttack) ? 1 : 0.5);
+        subAction['ability']['damageMult'] = attack.mult || (onlyAttack ? 1.5 : (attackData.data.primaryAttack) ? 1 : 0.5);
 
         // Create attack sizeRoll with the passed dice stats, the actor's size, and the attack type's damage type (or '' if attack name not in naturalAttacks)
         if (attack.diceSize !== 0) {
-            attackData['data.damage.parts'] = [[`sizeRoll(${attack.diceCount}, ${attack.diceSize}, @size, ${MightyMorphinApp.sizes.indexOf(formSize)})`, (attack.type || MightyMorphinApp.naturalAttacks[attack.name]?.type) || '']];
+            subAction['damage']['parts'] = [[`sizeRoll(${attack.diceCount}, ${attack.diceSize}, @size, ${MightyMorphinApp.sizes.indexOf(formSize)})`, {values: ((attack.type || MightyMorphinApp.naturalAttacks[attack.name]?.type) || []), custom: ''}]];
 
             // Create non-crit bonus damage
-            if (attack.nonCrit) attackData['data.damage.nonCritParts'] = [attack.nonCrit];
+            if (attack.nonCrit) subAction['damage']['nonCritParts'] = [attack.nonCrit];
         }
         else {
             // use the data from nonCrit as the primary damage when diceSize is 0, because it's damage that doesn't scale from size
-            if (attack.nonCrit) attackData['data.damage.parts'] = [attack.nonCrit];
+            if (attack.nonCrit) subAction['damage']['parts'] = [attack.nonCrit];
         }
 
         // Get the image for this attack name
         attackData['img'] = MightyMorphinApp.naturalAttacks[attack.name]?.img || 'systems/pf1/icons/items/inventory/monster-paw-bear.jpg';
+        subAction['img'] = MightyMorphinApp.naturalAttacks[attack.name]?.img || 'systems/pf1/icons/items/inventory/monster-paw-bear.jpg';
+
+        attackData['data']['actions'] = [subAction];
+        attackData['data']['unchainedAction'] = { 'activation': { 'cost': 1, 'type': 'action' } };
 
         return attackData;
     }
@@ -550,14 +739,17 @@ export class MightyMorphinApp {
      * Creates the Beast Shape buff and effects on the actor using the MorphinBeastShape class
      * 
      * @param {number} level The level of beast shape spell being cast (1-4)
+     * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
      * @param {string} [source='Beast Shape'] The source of the beast shape spell effect
      */
-    static async beastShape(level, source = 'Beast Shape') {
+    static async beastShape({level, durationLevel = 0, source = 'Beast Shape'} = {}) {
+        if (!!level) level = 1;
+
         let shifter = MightyMorphinApp.getSingleActor();
 
         // Create beast shape form if a single actor chosen not already under effects from this mod
         if (!!shifter && !shifter.data.flags.mightyMorphin) {
-            let dia = new MorphinBeastShape(level, shifter.id, source).render(true);
+            let dia = new MorphinBeastShape(level, durationLevel, shifter.id, source).render(true);
         }
         else if (!!shifter?.data.flags.mightyMorphin) {
             ui.notifications.warn(shifter.name + ' is already under the effects of a change from ' + shifter.data.flags.mightyMorphin.source);
@@ -569,14 +761,17 @@ export class MightyMorphinApp {
      * Creates the Elemental Body buff and effects on the actor using the MorphinElementalBody class
      * 
      * @param {number} level The level of elemental body spell being cast (1-4)
+     * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
      * @param {string} [source='Elemental Body'] The source of the elemental body spell effect
      */
-    static async elementalBody(level, source = 'Elemental Body') {
+    static async elementalBody({level, durationLevel = 0, source = 'Elemental Body'} = {}) {
+        if (!!level) level = 1;
+        
         let shifter = MightyMorphinApp.getSingleActor();
 
         // Create elemental body form if a single actor chosen not already under effects from this mod
         if (!!shifter && !shifter.data.flags.mightyMorphin) {
-            let dia = new MorphinElementalBody(level, shifter.id, source).render(true);
+            let dia = new MorphinElementalBody(level, durationLevel, shifter.id, source).render(true);
         }
         else if (!!shifter?.data.flags.mightyMorphin) {
             ui.notifications.warn(shifter.name + ' is already under the effects of a change from ' + shifter.data.flags.mightyMorphin.source);
@@ -587,14 +782,17 @@ export class MightyMorphinApp {
      * Creates the Plant Shape buff and effects on the actor using the MorphinElementalBody class
      * 
      * @param {number} level The level of plant shape spell being cast (1-3)
+     * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
      * @param {string} [source='Plant Shape'] The source of the splant shape spell effect
      */
-    static async plantShape(level, source = 'Plant Shape') {
+    static async plantShape({level, durationLevel = 0, source = 'Plant Shape'} = {}) {
+        if (!!level) level = 1;
+        
         let shifter = MightyMorphinApp.getSingleActor();
 
         // Create plant shape form if a single actor chosen not already under effects from this mod
         if (!!shifter && !shifter.data.flags.mightyMorphin) {
-            let dia = new MorphinPlantShape(level, shifter.id, source).render(true);
+            let dia = new MorphinPlantShape(level, durationLevel, shifter.id, source).render(true);
         }
         else if (!!shifter?.data.flags.mightyMorphin) {
             ui.notifications.warn(shifter.name + ' is already under the effects of a change from ' + shifter.data.flags.mightyMorphin.source);
@@ -651,15 +849,15 @@ MightyMorphinApp.imageFolder = '';
 
 // Attack data used by createAttacks function
 MightyMorphinApp.naturalAttacks = {
-    'Bite': { img: 'systems/pf1/icons/items/inventory/monster-head.jpg', type: 'B,P, and S', primaryAttack: true },
-    'Claw': { img: 'systems/pf1/icons/skills/blood_06.jpg', type: 'B and S', primaryAttack: true },
-    'Gore': { img: 'systems/pf1/icons/items/inventory/monster-horn.jpg', type: 'P', primaryAttack: true },
-    'Hoof': { img: 'systems/pf1/icons/items/inventory/monster-hoof.jpg', type: 'B', primaryAttack: false },
-    'Tentacle': { img: 'systems/pf1/icons/items/inventory/monster-octopus.jpg', type: 'B', primaryAttack: false },
-    'Wing': { img: 'systems/pf1/icons/skills/blue_02.jpg', type: 'B', primaryAttack: false },
-    'Pincers': { img: 'systems/pf1/icons/items/inventory/monster-claw.jpg', type: 'B', primaryAttack: false },
-    'Tail Slap': { img: 'systems/pf1/icons/items/inventory/monster-tail.jpg', type: 'B', primaryAttack: false },
-    'Slam': { img: 'systems/pf1/icons/items/inventory/monster-forearm.jpg', type: 'B', primaryAttack: true },
-    'Sting': { img: 'systems/pf1/icons/items/inventory/monster-scorpion.jpg', type: 'P', primaryAttack: true },
-    'Talons': { img: 'systems/pf1/icons/items/inventory/monster-talon-green.jpg', type: 'S', primaryAttack: true }
+    'Bite': { img: 'systems/pf1/icons/items/inventory/monster-head.jpg', type: ['bludgeoning','piercing','slashing'], primaryAttack: true },
+    'Claw': { img: 'systems/pf1/icons/skills/blood_06.jpg', type: ['bludgeoning', 'slashing'], primaryAttack: true },
+    'Gore': { img: 'systems/pf1/icons/items/inventory/monster-horn.jpg', type: ['piercing'], primaryAttack: true },
+    'Hoof': { img: 'systems/pf1/icons/items/inventory/monster-hoof.jpg', type: ['bludgeoning'], primaryAttack: false },
+    'Tentacle': { img: 'systems/pf1/icons/items/inventory/monster-octopus.jpg', type: ['bludgeoning'], primaryAttack: false },
+    'Wing': { img: 'systems/pf1/icons/skills/blue_02.jpg', type: ['bludgeoning'], primaryAttack: false },
+    'Pincers': { img: 'systems/pf1/icons/items/inventory/monster-claw.jpg', type: ['bludgeoning'], primaryAttack: false },
+    'Tail Slap': { img: 'systems/pf1/icons/items/inventory/monster-tail.jpg', type: ['bludgeoning'], primaryAttack: false },
+    'Slam': { img: 'systems/pf1/icons/items/inventory/monster-forearm.jpg', type: ['bludgeoning'], primaryAttack: true },
+    'Sting': { img: 'systems/pf1/icons/items/inventory/monster-scorpion.jpg', type: ['piercing'], primaryAttack: true },
+    'Talons': { img: 'systems/pf1/icons/items/inventory/monster-talon-green.jpg', type: ['slashing'], primaryAttack: true }
 };
