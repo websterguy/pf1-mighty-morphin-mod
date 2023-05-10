@@ -13,8 +13,10 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
      * @param {string} actorId The id of the actor that will change shape
      * @param {string} source The source of the beast shape effect
      */
-    constructor(level, actorId, source) {
-        super(level, actorId, source);
+    constructor(level, durationLevel, actorId, source) {
+        super(level, durationLevel, actorId, source);
+
+        this.spell = 'beastShape';
 
         // Add all possible sizes for the given spell level
         switch (level) {
@@ -75,242 +77,9 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
         return data;
     }
 
-    /**
-     * Processes and applies all changes from the passed form to the actor
-     * 
-     * @param {object} event The clicked button event
-     * @param {string} chosenForm The name of the form chosen
-     */
+    /** @inheritdoc */
     async applyChanges(event, chosenForm) {
-        let shifter = game.actors.get(this.actorId);
-        let newSize = MorphinChanges.changes[chosenForm].size;
-
-        let itemsToEmbed = [];
-        // Find out if this is the only natural attack the form has
-        let oneAttack = MorphinChanges.changes[chosenForm].attacks.length === 1;
-
-        // Loop over the attacks and create the items
-        const amuletItem = shifter.items.find(o => o.name.toLowerCase().includes('amulet of mighty fists') && o.data.data.equipped);
-        let bonusSearch = /\+(\d+)/.exec(amuletItem?.name);
-        let amuletBonus = !!bonusSearch ? bonusSearch[1] : null;
-        for (let i = 0; i < MorphinChanges.changes[chosenForm].attacks.length; i++) {
-            let attack = duplicate(MorphinChanges.changes[chosenForm].attacks[i]); // get the attack data
-            attack.enh = parseInt(amuletBonus);
-            // Remove any special property if it's no allowed at this level
-            if (!!attack.special) {
-                for (let j = 0; j < attack.special.length; j++) {
-                    const specialElement = attack.special[j];
-
-                    if (!MorphinBeastShape.allowedSpecials[this.level].includes(specialElement)) {
-                        delete (attack.special[i]);
-                    }
-                }
-            }
-
-            itemsToEmbed.push(MightyMorphinApp.createAttack(this.actorId, newSize, attack, oneAttack, MorphinChanges.changes[chosenForm].effect, this.source, 'natural'));
-        }
-
-        // Loop over special attacks and create the items
-        if (!!MorphinChanges.changes[chosenForm].specialAttack) {
-            for (let i = 0; i < MorphinChanges.changes[chosenForm].specialAttack.length; i++) {
-                let attack = duplicate(MorphinChanges.changes[chosenForm].specialAttack[i]);
-
-                // Remove any special property if it's no allowed at this level
-                if (!!attack.special) {
-                    for (let j = 0; j < attack.special.length; j++) {
-                        const specialElement = attack.special[j];
-
-                        if (!MorphinBeastShape.allowedSpecials[this.level].includes(specialElement)) {
-                            delete (attack.special[i]);
-                        }
-                    }
-                }
-
-                itemsToEmbed.push(MightyMorphinApp.createAttack(this.actorId, newSize, attack, false, MorphinChanges.changes[chosenForm].effect, this.source, 'misc'));
-            }
-        }
-
-        // Add base polymorph size stat changes to the spell's normal changes if necessary
-        if (!!this.polymorphChanges.length) this.changes = this.changes.concat(this.polymorphChanges);
-
-        let buff = shifter.items.find(o => o.type === 'buff' && o.name === this.source);
-        // If the buff doesn't already exist on the actor, create it
-        if (!buff) {
-            // Create buff Item template
-            let buffData = { data: {} };
-            buffData.data = duplicate(game.data.system.template.Item.buff);
-            for (let t of buffData.data.templates) {
-                mergeObject(buffData.data, duplicate(game.system.template.Item.templates[t]));
-            }
-            delete buffData.data.templates;
-
-            // Populate needed data
-            buffData.name = this.source;
-            buffData.type = 'buff';
-            buffData.img = (this.source === 'Wild Shape' ? 'systems/pf1/icons/skills/green_21.jpg' : 'systems/pf1/icons/spells/wild-jade-3.jpg');
-
-            itemsToEmbed.push(buffData);
-        }
-
-        // Calculate the amount of strength the actor is gaining or losing 
-        let strChange = 0;
-        for (let i = 0; i < this.changes.length; i++) {
-            const change = this.changes[i];
-
-            if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
-        }
-
-        // Set up adjustments to strength carry bonus and carry multiplier so actor's encumbrance doesn't change
-        let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
-        this.changes.concat(carryBonusChanges);
-
-        let armorChangeFlag = [];
-        let armorToChange = [];
-        // Double armor and shield AC when moving from tiny or below to small or above, halve it if the other way
-        let smallSizes = ['fine', 'dim', 'tiny']; // sizes with half armor AC, also use dex for climb and swim instead of str
-        let armorChangeNeeded = (smallSizes.includes(newSize) && !smallSizes.includes(this.actorSize)) || (!smallSizes.includes(newSize) && smallSizes.includes(this.actorSize));
-
-        let armorAndShields = shifter.items.filter(o => o.data.type === 'equipment' && (o.data.data.equipmentType === 'armor' || o.data.data.equipmentType === 'shield'));
-
-        // Cycle through all armor and shield items to process them
-        for (let item of armorAndShields) {
-            let originalArmor = armorChangeNeeded ? { armor: { value: item.data.data.armor.value } } : {};
-            // If this is not Wild Shape or it is Wild Shape but the armor isn't Wild enchanted, armor must be removed
-            let armorIsWild = item.name.includes('Wild');
-            let originalEquipped = (armorIsWild && this.source === 'Wild Shape') ? {} : { equipped: item.data.data.equipped };
-            originalArmor = mergeObject(originalArmor, originalEquipped);
-
-            if (!!originalArmor) {
-                armorChangeFlag.push({ _id: item.id, data: originalArmor });
-                // take off armor if it's not wild armor or this is not beast shape from wild shape
-                let equipChange = (armorIsWild && this.source === 'Wild Shape') ? {} : { equipped: false };
-                let armorChange = armorChangeNeeded ? (smallSizes.includes(this.actorSize) ? { armor: { value: item.data.data.armor.value * 2 } } : { armor: { value: Math.floor(item.data.data.armor.value / 2) } }) : {};
-                equipChange = mergeObject(equipChange, armorChange);
-                armorToChange.push({ _id: item.id, data: equipChange });
-            }
-        }
-
-        // change ability mods for climb and swim to str if moving from tiny or below to small or above, change to dex if moving the other way
-        let originalSkillMod = {};
-        let skillModChange = {};
-        if (armorChangeNeeded) {
-            originalSkillMod = { 'data.skills.clm.ability': shifter.data.data.skills.clm.ability, 'data.skills.swm.ability': shifter.data.data.skills.swm.ability };
-            skillModChange = { 'data.skills.clm.ability': (smallSizes.includes(this.actorSize) ? 'str' : 'dex'), 'data.skills.swm.ability': (smallSizes.includes(this.actorSize) ? 'str' : 'dex') };
-        }
-
-        // Process speed changes
-        let originalManeuverability = { 'data.attributes.speed.fly.maneuverability': shifter.data.data.attributes.speed.fly.maneuverability };
-        let newSpeeds = duplicate(shifter.data.data.attributes.speed);
-        let speedTypes = Object.keys(newSpeeds);
-        let maneuverabilityChange = {};
-        for (let i = 0; i < speedTypes.length; i++) {
-            // Find the speed the form gives for the type
-            let speed = this.speeds[speedTypes[i]];
-            let speedChange = {formula: '0', operator: 'set', subTarget: speedTypes[i] + 'Speed', modifier: 'base', priority: 100, value: 0};
-            if (!!speed) { // if the form has this speed add it
-                speedChange.formula = speed.toString();
-                speedChange.value = speed;
-                if (speedTypes[i] === 'fly') maneuverabilityChange = {'data.attributes.speed.fly.maneuverability': (this.level === 1 ? 'average' : 'good')};
-            }
-            this.changes.push(speedChange);
-        }
-
-        // Process senses changes
-        let originalSenses = { 'data.traits.senses': shifter.data.data.traits.senses };
-        let senseObject = { 'dv': 0, 'ts': 0, 'bs': 0, 'bse': 0, 'll': { 'enabled': false, 'multiplier': { 'dim': 2, 'bright': 2 } }, 'sid': false, 'tr': false, 'si': false, 'sc': false, 'custom': '' };
-        for (let i = 0; i < this.senses.length; i++) {
-            const sensesEnumValue = this.senses[i];
-            if (!!sensesEnumValue) {
-                senseObject = mergeObject(senseObject, MorphinChanges.SENSES[Object.keys(MorphinChanges.SENSES)[sensesEnumValue - 1]].setting); // element 1 = SENSES[0] = LOWLIGHT
-            }
-        }
-        let sensesChanges = { 'data.traits.senses': senseObject };
-
-        // Process resistances changes
-        let originalEres = { 'data.traits.eres': shifter.data.data.traits.eres };
-        let eresString = this.eres || '';
-
-        // Process vulnerabilities changes
-        let originalDv = { 'data.traits.dv': shifter.data.data.traits.dv };
-        let newDv = { value: [], custom: '' };
-        if (!!this.dv) {
-            for (let i = 0; i < this.dv.length; i++) {
-                const vulnerability = this.dv[i];
-
-                // If it's a system known damage type, can toggle its setting. Otherwise add it as a custom
-                if (!!CONFIG.PF1.damageTypes[vulnerability]) newDv.value.push(vulnerability);
-                else newDv.custom += (newDv.custom.length > 0 ? '; ' : '') + vulnerability;
-            }
-        }
-
-        // Energy resistances and vulnerabilities are only on beast shape iv
-        if (this.level === 4) {
-            originalSenses = mergeObject(originalSenses, mergeObject(originalEres, originalDv));
-            sensesChanges = mergeObject(sensesChanges, mergeObject({ 'data.traits.eres': eresString }, { 'data.traits.dv': newDv }));
-        }
-
-        // Create special ability features
-        if (!!this.special) {
-            // create blank template for misc feature
-            let specialData = { data: {} };
-            specialData.data = duplicate(game.data.system.template.Item.feat);
-            for (let t of specialData.data.templates) {
-                mergeObject(specialData.data, duplicate(game.system.template.Item.templates[t]));
-            }
-            delete specialData.data.templates;
-            specialData.type = 'feat';
-            specialData.data.featType = 'misc';
-
-            for (let i = 0; i < this.special.length; i++) {
-                const specialName = this.special[i];
-
-                if (!!specialName) { // make sure it wasn't deleted for being invalid at this spell level
-                    let specialToCreate = duplicate(specialData);
-                    specialToCreate.name = `${specialName} (${this.source})`;
-                    itemsToEmbed.push(specialToCreate);
-                }
-            }
-        }
-
-        // Find image to change token to if it exists
-        let newImage = await MightyMorphinApp.findImage(chosenForm);
-
-        // Prepare data for image change
-        let oldImage = { img: '' };
-        let oldProtoImage = { token: { img: '' } };
-        let protoImageChange = !!newImage ? { 'token.img': newImage } : {};
-        if (!!newImage) {
-            let token = canvas.tokens.ownedTokens.find(o => o.data.actorId === this.actorId);
-            if (!!token) {
-                oldImage.img = token.data.img;
-                await token.document.update({ 'img': newImage });
-            }
-            oldProtoImage.token.img = shifter.data.token.img;
-        }
-
-        // Create the items on the actor, then create an array of their ids to delete them later
-        let itemsCreated = await shifter.createEmbeddedDocuments('Item', itemsToEmbed);
-        itemsCreated = itemsCreated.map(o => o.id);
-
-        // Turn on the buff created
-        buff = shifter.items.find(o => o.type === 'buff' && o.name === this.source);
-        let buffUpdate = [{ _id: buff.id, 'data.changes': this.changes, 'data.active': true }];
-
-        // Set the flags for all changes made
-        let dataFlag = mergeObject({ 'data.traits.size': this.actorSize }, mergeObject(originalSkillMod, mergeObject(originalManeuverability, originalSenses)));
-        if (!!newImage) { dataFlag = mergeObject(dataFlag, oldProtoImage); };
-        let flags = { source: this.source, buffName: this.source, data: dataFlag, armor: armorChangeFlag, itemsCreated: itemsCreated };
-        if (!!newImage) { flags = mergeObject(flags, { tokenImg: oldImage }); };
-        await shifter.update(mergeObject({ 'data.traits.size': newSize, 'flags.mightyMorphin': flags }, mergeObject(skillModChange, mergeObject(maneuverabilityChange, mergeObject(sensesChanges, protoImageChange)))));
-
-        // update items on the actor
-        if (!!armorToChange.length) await shifter.updateEmbeddedDocuments('Item', armorToChange.concat(buffUpdate));
-        else await shifter.updateEmbeddedDocuments('Item', buffUpdate);
-        
-        canvas.tokens.releaseAll();
-        canvas.tokens.ownedTokens.find(o => o.data.actorId === this.actorId).control();
-        
-        await this.close();
+        super.applyChanges(event, chosenForm);
     }
 
     /**
@@ -475,15 +244,14 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
             if (!!attack.special) { // process any specials associated with the attack
                 for (let j = 0; j < attack.special.length; j++) {
                     const specialName = attack.special[j];
-                    if (MorphinBeastShape.allowedSpecials[this.level].includes(specialName)) { // ignore specials the spell doesn't allow
+                    if (MorphinChanges.allowedSpecials[this.spell][this.level].includes(specialName)) { // ignore specials the spell doesn't allow
                         if (attackSpecial.length > 0) attackSpecial += ', ';
                         attackSpecial += specialName;
                     }
                 }
             }
-
             let damageDice = attack.diceSize === 0 ? '' : `${attack.diceCount}d${attack.diceSize}`;
-            if (attack.nonCrit) damageDice += (!!damageDice.length ? ' plus ' : '') + `${attack.nonCrit[0]} ${attack.nonCrit[1]}`;
+            if (attack.nonCrit) damageDice += (!!damageDice.length ? ' plus ' : '') + `${attack.nonCrit[0]} ${!!attack.nonCrit[1].values.toString() ? attack.nonCrit[1].values.toString() : attack.nonCrit[1].custom}`;
             if (data.attacks.length > 0) data.attacks += ', ';
             data.attacks += `${attack.count > 1 ? attack.count + ' ' : ''}${attack.name} (${!!damageDice ? damageDice : '0'}${!!attackSpecial ? ' plus ' + attackSpecial : ''})`;
         }
@@ -499,7 +267,7 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
             for (let j = 0; j < (specialAttack.special?.length || 0); j++) {
                 const special = specialAttack.special[j];
 
-                if (!MorphinBeastShape.allowedSpecials[this.level].includes(special)) valid = false;
+                if (!MorphinChanges.allowedSpecials[this.spell][this.level].includes(special)) valid = false;
             }
 
             if (valid) {
@@ -507,15 +275,14 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
                 if (!!specialAttack.special) {
                     for (let j = 0; j < specialAttack.special.length; j++) {
                         const specialName = specialAttack.special[j];
-                        if (MorphinBeastShape.allowedSpecials[this.level].includes(specialName)) {
+                        if (MorphinChanges.allowedSpecials[this.spell][this.level].includes(specialName)) {
                             if (attackSpecial.length > 0) attackSpecial += ', ';
                             attackSpecial += specialName;
                         }
                     }
                 }
-
                 let damageDice = specialAttack.diceSize === 0 ? '' : `${specialAttack.diceCount}d${specialAttack.diceSize}`;
-                if (specialAttack.nonCrit) damageDice += (!!damageDice.length ? ' plus ' : '') + `${specialAttack.nonCrit[0]} ${specialAttack.nonCrit[1]}`;
+                if (specialAttack.nonCrit) damageDice += (!!damageDice.length ? ' plus ' : '') + `${specialAttack.nonCrit[0]} ${!!specialAttack.nonCrit[1].values.toString() ? specialAttack.nonCrit[1].values.toString() : specialAttack.nonCrit[1].custom}`;
                 if (data.specialAttacks.length > 0) data.specialAttacks += ', ';
                 data.specialAttacks += `${specialAttack.count > 1 ? specialAttack.count + ' ' : ''}${specialAttack.name} (${!!damageDice ? damageDice : '0'}${!!attackSpecial ? ' plus ' + attackSpecial : ''})`;
             }
@@ -565,7 +332,7 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
             const specialName = this.special[i];
 
             // Check just the first word of the special text, so something like 'jet 200ft' matches 'jet'
-            if (!MorphinBeastShape.allowedSpecials[this.level].includes(specialName.split(' ')[0])) {
+            if (!MorphinChanges.allowedSpecials[this.spell][this.level].includes(specialName.split(' ')[0])) {
                 delete (this.special[i]);
                 continue;
             }
@@ -599,15 +366,44 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
     }
 
     /** @inheritdoc */
+    processEres(dr) {
+        return '';
+    }
+
+    /** @inheritdoc */
+    processEres(eres) {
+        // Eres only on beast shape iv
+        if (this.level === 4) return eres;
+        return '';
+    }
+
+    /** @inheritdoc */
+    processDv(dv) {
+        // Dv only on beast shape iv
+        if (this.level === 4) return dv;
+        else return { value: [], custom: '' };
+    }
+    
+    /** @inheritdoc */
+    processDi(di) {
+        return { value: [], custom: '' };
+    }
+
+    /** @inheritdoc */
+    processRegen(regen) {
+        return '';
+    }
+
+    /** @inheritdoc */
     activateListeners(html) {
         super.activateListeners(html);
     }
 }
 
 // The allowed special properties and attacks for beast shape I-IV
-MorphinBeastShape.allowedSpecials = {
-    '1': ['Touch'],
-    '2': ['Touch', 'Grab', 'Pounce', 'Trip'],
-    '3': ['Touch', 'Grab', 'Pounce', 'Trip', 'Constrict', 'Ferocity', 'Jet', 'Poison', 'Rake', 'Trample', 'Web'],
-    '4': ['Touch', 'Grab', 'Pounce', 'Trip', 'Constrict', 'Ferocity', 'Jet', 'Poison', 'Rake', 'Trample', 'Web', 'Breath Weapon', 'Rend', 'Roar', 'Spikes']
-};
+// MorphinBeastShape.allowedSpecials = {
+//     '1': ['Touch'],
+//     '2': ['Touch', 'Grab', 'Pounce', 'Trip'],
+//     '3': ['Touch', 'Grab', 'Pounce', 'Trip', 'Constrict', 'Ferocity', 'Jet', 'Poison', 'Rake', 'Trample', 'Web'],
+//     '4': ['Touch', 'Grab', 'Pounce', 'Trip', 'Constrict', 'Ferocity', 'Jet', 'Poison', 'Rake', 'Trample', 'Web', 'Breath Weapon', 'Rend', 'Roar', 'Spikes']
+// };

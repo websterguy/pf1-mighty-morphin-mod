@@ -3517,7 +3517,7 @@ MorphinChanges.changes = {
             { name: 'Bite', diceCount: 1, diceSize: 8, count: 2, special: ['Poison'] }
         ],
         specialAttack: [
-            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'] }
+            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], damageAbility: '', attackType: 'none', area: '30-ft line', templateShape: 'ray',  templateSize: '30' }
         ],
         speed: {
             land: 20,
@@ -3530,7 +3530,7 @@ MorphinChanges.changes = {
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) Bite or breath weapon—contact or injury; save Fort DC 10+SL+Mod; frequency 1/round for 2 rounds; initial effect blinded and paralyzed for 1 round; secondary effect blinded for 2d4 rounds; cure 2 consecutive saves.', type: 'fort', saveDesc: 'Fort Cures' },
-            'Breath': { note: 'Breath area: 30ft line. Creatures in area blinded and save vs poison', type: 'ref', saveDesc: 'Reflex avoids both', description: '<p>Once every 1d4 rounds, as a standard action, a uraeus’s head can expel a 30-footline of poison. All creatures in the area are blinded for 1 round and must save against poison (Reflex DC 10 + spell level + caster stat mod negates both). As a full-round action, a uraeus can either expel two lines or bite with one head and breathe poison with the other. Each head tracks its breath weapon’s availability separately.</p><p>Bite or breath weapon—contact or injury; save Fort DC 10+SL+Mod; frequency 1/round for 2 rounds; initial effect blinded and paralyzed for 1 round; secondary effect blinded for 2d4 rounds; cure 2 consecutive saves.</p>' }
+            'Breath': { note: 'Breath area: 30ft line. Creatures in area blinded and save vs poison', type: 'ref', saveDesc: 'Reflex avoids both', description: '<p>Once every 1d4 rounds, as a standard action, a uraeus’s head can expel a 30-foot line of poison. All creatures in the area are blinded for 1 round and must save against poison (Reflex DC 10 + spell level + caster stat mod negates both). As a full-round action, a uraeus can either expel two lines or bite with one head and breathe poison with the other. Each head tracks its breath weapon’s availability separately.</p><p>Bite or breath weapon—contact or injury; save Fort DC 10+SL+Mod; frequency 1/round for 2 rounds; initial effect blinded and paralyzed for 1 round; secondary effect blinded for 2d4 rounds; cure 2 consecutive saves.</p>' }
         }
     },
     'Worg': {
@@ -3953,7 +3953,7 @@ MorphinChanges.changes = {
             { name: 'Hoof', diceCount: 1, diceSize: 8, count: 2 }
         ],
         specialAttack: [
-            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'] },
+            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], damageAbility: '', attackType: 'none', area: '60-ft cone', templateShape: 'cone',  templateSize: '60' },
             { name: 'Trample', diceCount: 4, diceSize: 6, count: 1, special: ['Trample'], mult: 1.5, attackType: 'mcman' }
         ],
         speed: {
@@ -4006,7 +4006,12 @@ MorphinChanges.changes = {
             { name: 'Claw', diceCount: 1, diceSize: 6, count: 2 }
         ],
         specialAttack: [
-            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: ['6d8', {values: [], custom: 'see desc'}] }
+            { name: 'Breath Weapon Black', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: ['6d8', {values: ['acid'], custom: ''}], damageAbility: '', attackType: 'none', area: '40-ft line', templateShape: 'ray',  templateSize: '40' },
+            { name: 'Breath Weapon Blue', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: ['6d8', {values: ['lightning'], custom: ''}], damageAbility: '', attackType: 'none', area: '40-ft line', templateShape: 'ray',  templateSize: '40' },
+            { name: 'Breath Weapon Green', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: ['6d8', {values: ['acid'], custom: ''}], damageAbility: '', attackType: 'none', area: '20-ft cone', templateShape: 'cone',  templateSize: '20' },
+            { name: 'Breath Weapon Red', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: ['6d8', {values: ['fire'], custom: ''}], damageAbility: '', attackType: 'none', area: '20-ft cone', templateShape: 'cone',  templateSize: '20' },
+            { name: 'Breath Weapon White', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: ['6d8', {values: ['cold'], custom: ''}], damageAbility: '', attackType: 'none', area: '20-ft cone', templateShape: 'cone',  templateSize: '20' }
+
         ],
         speed: {
             land: 30,
@@ -4067,7 +4072,8 @@ MorphinChanges.changes = {
             { name: 'Bite', diceCount: 2, diceSize: 8, count: 1, special: ['Poison'] }
         ],
         specialAttack: [
-            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: ['8d6', {values: ['acid'], custom: ''}] }
+            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: ['8d6', {values: ['acid'], custom: ''}], damageAbility: '', attackType: 'none', area: '30-ft line', templateShape: 'ray',  templateSize: '30' }
+
         ],
         speed: {
             land: 20,
@@ -4323,7 +4329,7 @@ MorphinChanges.changes = {
             { name: 'Hoof', diceCount: 1, diceSize: 6, count: 1 }
         ],
         specialAttack: [
-            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'] },
+            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], damageAbility: '', attackType: 'none', area: '60-ft cone', templateShape: 'cone',  templateSize: '60' },
             { name: 'Trample', diceCount: 2, diceSize: 8, count: 1, special: ['Trample'], mult: 1.5, attackType: 'mcman' }
 
         ],
@@ -4470,7 +4476,7 @@ MorphinChanges.changes = {
             { name: 'Claw', diceCount: 1, diceSize: 3, count: 2 }
         ],
         specialAttack: [
-            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'] }
+            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], damageAbility: '', attackType: 'none', area: '30-ft cone', templateShape: 'cone',  templateSize: '30' }
         ],
         speed: {
             land: 40
@@ -4508,7 +4514,8 @@ MorphinChanges.changes = {
             { name: 'Hoof', diceCount: 1, diceSize: 6, count: 2 }
         ],
         specialAttack: [
-            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], nonCrit: ['5d6', {values: ['fire'], custom: ''}] }
+            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], nonCrit: ['5d6', {values: ['fire'], custom: ''}], damageAbility: '', attackType: 'none', area: '15-ft cone', templateShape: 'cone',  templateSize: '15' }
+
         ],
         speed: {
             land: 60,
@@ -4858,7 +4865,7 @@ MorphinChanges.changes = {
         ],
         specialAttack: [
             { name: 'Trample', diceCount: 1, diceSize: 8, count: 1, special: ['Trample'], mult: 1.5, attackType: 'mcman' },
-            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], charges: 3 }
+            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], charges: 3, damageAbility: '', attackType: 'none', area: '30-ft cone', templateShape: 'cone',  templateSize: '30' }
         ],
         speed: {
             land: 80
@@ -4981,7 +4988,8 @@ MorphinChanges.changes = {
             { name: 'Bite', diceCount: 1, diceSize: 8, count: 1, nonCrit: ['1d6', {values: ['cold'], custom: ''}], special: ['Trip'] }
         ],
         specialAttack: [
-            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], nonCrit: ['6d6', {values: ['cold'], custom: ''}] }
+            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], nonCrit: ['6d6', {values: ['cold'], custom: ''}], damageAbility: '', attackType: 'none', area: '15-ft cone', templateShape: 'cone',  templateSize: '15' }
+
         ],
         speed: {
             land: 50
@@ -5201,7 +5209,8 @@ MorphinChanges.changes = {
             { name: 'Talon', diceCount: 1, diceSize: 3, count: 2, nonCrit: ['1d6', {values: ['fire'], custom: ''}] }
         ],
         specialAttack: [
-            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], nonCrit: ['3d6', {values: ['fire'], custom: ''}] }
+            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], nonCrit: ['3d6', {values: ['fire'], custom: ''}], damageAbility: '', attackType: 'none', area: '30-ft line', templateShape: 'ray',  templateSize: '30' }
+
         ],
         speed: {
             land: 10,
@@ -6920,13 +6929,28 @@ MorphinChanges.allowedSpecials = {
         '1': ['Touch'],
         '2': ['Touch', 'Grab', 'Pounce', 'Trip'],
         '3': ['Touch', 'Grab', 'Pounce', 'Trip', 'Constrict', 'Ferocity', 'Jet', 'Poison', 'Rake', 'Trample', 'Web'],
-        '4': ['Touch', 'Grab', 'Pounce', 'Trip', 'Constrict', 'Ferocity', 'Jet', 'Poison', 'Rake', 'Trample', 'Web', 'Breath Weapon', 'Rend', 'Roar', 'Spikes']
+        '4': ['Touch', 'Grab', 'Pounce', 'Trip', 'Constrict', 'Ferocity', 'Jet', 'Poison', 'Rake', 'Trample', 'Web', 'Breath', 'Rend', 'Roar', 'Spikes']
+    },
+    plantShape: {
+        '1': ['Touch', 'Constrict', 'Grab', 'Poison'],
+        '2': ['Touch', 'Constrict', 'Grab', 'Poison'],
+        '3': ['Touch', 'Constrict', 'Grab', 'Poison', 'Trample']
+    },
+    elementalBody: {
+        '1': ['Whirlwind', 'Burn', 'Vortex'],
+        '2': ['Whirlwind', 'Burn', 'Vortex'],
+        '3': ['Whirlwind', 'Burn', 'Vortex'],
+        '4': ['Whirlwind', 'Burn', 'Vortex']
+
     }
 };
 
 MorphinChanges.buffIcons = {
     beastShape: 'systems/pf1/icons/spells/wild-jade-3.jpg',
-    wildShape: 'systems/pf1/icons/skills/green_21.jpg'
+    wildShape: 'systems/pf1/icons/skills/green_21.jpg',
+    plantShape: 'systems/pf1/icons/spells/vines-plain-2.jpg',
+    elementalBody: 'systems/pf1/icons/spells/wind-grasp-magenta-2.jpg'
+
 };
 
 MorphinChanges.SENSES = Object.freeze({
