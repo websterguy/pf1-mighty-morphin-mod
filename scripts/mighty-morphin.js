@@ -41,16 +41,6 @@ export class MightyMorphinApp {
                 }
                 delete buffData.templates;
                 buff = await Item.create({ name: 'Enlarge Person', type: 'buff', data: buffData }, { temporary: true });
-                
-                let strChange = 0;
-                for (let i = 0; i < changeData.changes.length; i++) {
-                    const change = changeData.changes[i];
-
-                    if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
-                }
-
-                let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
-                let changes = changeData.changes.concat(carryBonusChanges);
 
                 let strChange = 0;
                 for (let i = 0; i < changeData.changes.length; i++) {
@@ -142,16 +132,6 @@ export class MightyMorphinApp {
                 }
                 delete buffData.templates;
                 buff = await Item.create({ name: 'Animal Growth', type: 'buff', data: buffData }, { temporary: true });
-                
-                let strChange = 0;
-                for (let i = 0; i < changeData.changes.length; i++) {
-                    const change = changeData.changes[i];
-
-                    if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
-                }
-
-                let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
-                let changes = changeData.changes.concat(carryBonusChanges);
 
                 let strChange = 0;
                 for (let i = 0; i < changeData.changes.length; i++) {
@@ -224,8 +204,6 @@ export class MightyMorphinApp {
             let buff = shifter.items.find(o => o.type === 'buff' && o.name === 'Legendary Proportions');
             let shifterSize = shifter.data.data.traits.size;
             
-            let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
-
             let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
 
             let durationData = {};
