@@ -1,11 +1,12 @@
 {
-    "name": "pf1-mighty-morphin",
+    "id": "pf1-mighty-morphin",
     "title": "PF1 Might Morphin Mod",
     "description": "Mod to automate polymorph effects for Foundry VTT PF1e system",
-    "version": "0.3.0",
-    "manifestPlusVersion": "1.0.0",
-    "minimumCoreVersion": "9",
-    "compatibleCoreVersion": "9",
+    "version": "0.4.0",
+    "compatibility": {
+        "minimum": 10,
+        "verified": "10.291"
+    },
     "authors": [
         {
             "name": "websterguy",
@@ -13,9 +14,18 @@
             "discord": "websterguy#1136"
         }
     ],
-    "system": [
-        "pf1"
-    ],
+    "relationships": {
+        "systems": [
+            {
+              "id": "pf1",
+              "type": "system",
+              "compatibility": {
+                "minimum": "0.82.5",
+                "verified": "0.82.5"
+              }
+            }
+        ]
+    },
     "esmodules": [
         "morphin.js",
         "scripts/mighty-morphin.js"
@@ -35,7 +45,6 @@
             "package": "pf1-mighty-morphin"
         }
     ],
-    "minimumSystemVersion": "0.81.1",
     "url": "https://github.com/websterguy/pf1-mighty-morphin-mod",
     "manifest": "https://github.com/websterguy/pf1-mighty-morphin-mod/releases/latest/download/module.json",
     "download": "https://github.com/websterguy/pf1-mighty-morphin-mod/releases/download/0.1.0/pf1-mighty-morphin.zip"
