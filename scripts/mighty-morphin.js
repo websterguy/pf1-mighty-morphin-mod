@@ -286,6 +286,7 @@ export class MightyMorphinApp {
      * Applies Frightful Aspect buff and effects to selected actor
      * 
      * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
+     * @param {number} [cl=0] The caster level of the spell effect used for scaling
      */
     static async frightfulAspect({ cl = 0, durationLevel = 0 } = {}) {
 
@@ -386,6 +387,109 @@ export class MightyMorphinApp {
             ui.notifications.warn(shifter.name + ' is already under the effects of a change from ' + shifter.flags['pf1-mighty-morphin'].source);
         }
     }
+
+    /**
+     * Applies Righteous Might buff and effects to selected actor
+     * 
+     * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
+     * @param {number} [cl=0] The caster level of the spell effect used for scaling
+     * @param {boolean} [drEvil=true] Setting for making the DR evil (true) or good (false)
+     */
+        static async righteousMight({ cl = 0, durationLevel = 0, drEvil = true } = {}) {
+
+            let shifter = MightyMorphinApp.getSingleActor(); // Ensure only a single actor is being processed
+            let changeData = MorphinChanges.changes.righteousMight; // get buff data
+    
+            // Only continue if a single actor and it is not already under any effects provided by this module
+            if (!!shifter && !shifter.flags['pf1-mighty-morphin']) {
+                let buff = shifter.items.find(o => o.type === 'buff' && o.name === 'Righteous Might');
+                let shifterSize = shifter.system.traits.size;
+    
+                let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
+    
+                let durationData = {};
+                if (!!durationLevel) {
+                    let duration = durationLevel;
+                    durationData = {value: duration.toString(), units: 'round'};
+                }
+    
+                // Get caster level from user for effect scaling
+                let casterLevel = cl === 0 ? await Dialog.prompt({
+                    content: '<label>Input Caster Level</label><input type="number">',
+                    callback: (html) => html.find('input').val()
+                }) : cl;
+    
+                // Create the buff if it doesn't exist, otherwise toggle it on
+                if (!buff) {
+                    // Create template buff Item
+                    let buffData = duplicate(game.system.template.Item.buff);
+                    for (let t of buffData.templates) {
+                        mergeObject(buffData, duplicate(game.system.template.Item.templates[t]));
+                    }
+                    delete buffData.templates;
+                    buff = await Item.create({ name: 'Righteous Might', type: 'buff', system: buffData }, { temporary: true });
+                    
+                    let strChange = 0;
+                    for (let i = 0; i < changeData.changes.length; i++) {
+                        const change = changeData.changes[i];
+    
+                        if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
+                    }
+    
+                    let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
+                    let changes = changeData.changes.concat(carryBonusChanges);
+    
+                    // Create the buff on the actor, change the icon, populate the changes, turn it on
+                    let buffAdded = await shifter.createEmbeddedDocuments('Item', [buff]);
+                    await buffAdded[0].update({ 'img': 'systems/pf1/icons/skills/red_01.jpg', 'system.duration': durationData, 'system.changes': changes, 'system.active': true });
+    
+                }
+                else {
+                    let oldChanges = buff.system.changes;
+                    let newChanges = [];
+                    
+                    let strChange = 0;
+                    for (const change of oldChanges) {
+                        if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
+                        if (!!change.subTarget && change.subTarget !== 'carryStr' && change.subTarget !== 'carryMult') newChanges.push(change);
+                    }
+    
+                    let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
+                    newChanges = newChanges.concat(carryBonusChanges);
+    
+                    buff.update({ 'system.duration': durationData, 'system.changes': newChanges, 'system.active': true });
+                }
+    
+    
+                let armorChangeFlag = [];
+                let armorToChange = [];
+                // Double armor and shield AC when moving from tiny or smaller (tiny and below armor AC is half normal)
+                if (MightyMorphinApp.sizes.indexOf(shifterSize) < 3) {
+                    let armorAndShields = shifter.items.filter(o => o.type === 'equipment' && (o.system.equipmentType === 'armor' || o.system.equipmentType === 'shield'));
+    
+                    for (let item of armorAndShields) {
+                        armorChangeFlag.push({ _id: item.id, system: { armor: { value: item.system.armor.value } } }); // store original armor data in flags
+                        armorToChange.push({ _id: item.id, system: { armor: { value: (item.system.armor.value * 2) } } }); // change to push to actor's item
+                    }
+                }
+    
+                // Update all items that were found to need updates
+                if (!!armorToChange.length) {
+                    await shifter.updateEmbeddedDocuments('Item', armorToChange);
+                }
+    
+                // Add effect DR to existing (if any), and store old DR
+                let oldDR = shifter.system.traits.dr;
+                let newDR = `${(!!oldDR ? oldDR + '; ' : '') + (cl >= 15 ? 10 : 5)}/${drEvil ? 'evil' : 'good'}`;
+
+    
+                // Update the actor data and store flags
+                await shifter.update({ 'system.traits.size': newSize, 'system.traits.dr': newDR, 'flags.pf1-mighty-morphin': { source: 'Righteous Might', buffName: 'Righteous Might', size: shifterSize, armor: armorChangeFlag, data: { traits: { dr: oldDR } } } });
+            }
+            else if (!!shifter?.flags['pf1-mighty-morphin']) {
+                ui.notifications.warn(shifter.name + ' is already under the effects of a change from ' + shifter.flags['pf1-mighty-morphin'].source);
+            }
+        }
 
     /**
      * Applies Reduce Person buff and effects to selected actor
@@ -489,7 +593,7 @@ export class MightyMorphinApp {
             let changes = duplicate(shifter.flags['pf1-mighty-morphin']);
 
             // Undo listed buffs
-            if (['Enlarge Person', 'Reduce Person', 'Legendary Proportions', 'Frightful Aspect', 'Animal Growth'].includes(changes.source)) {
+            if (['Enlarge Person', 'Reduce Person', 'Legendary Proportions', 'Frightful Aspect', 'Animal Growth', 'Righteous Might'].includes(changes.source)) {
                 // Revert all armor changes that exist
                  if (!!shifter.flags['pf1-mighty-morphin'].armor.length) {
                     let armorFlag = shifter.flags['pf1-mighty-morphin'].armor;

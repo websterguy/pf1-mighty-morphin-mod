@@ -9,6 +9,7 @@ Hooks.once('init', () => {
   game.mightyMorphin.animalGrowth = MightyMorphinApp.animalGrowth;
   game.mightyMorphin.legendaryProportions = MightyMorphinApp.legendaryProportions;
   game.mightyMorphin.frightfulAspect = MightyMorphinApp.frightfulAspect;
+  game.mightyMorphin.righteousMight = MightyMorphinApp.righteousMight;
   game.mightyMorphin.reducePerson = MightyMorphinApp.reducePerson;
   game.mightyMorphin.revert = MightyMorphinApp.revert;
   game.mightyMorphin.beastShape = MightyMorphinApp.beastShape;

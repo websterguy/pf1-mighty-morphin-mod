@@ -45,6 +45,15 @@ MorphinChanges.changes = {
         ],
         size: 'lg'
     },
+    righteousMight: {
+        changes: [
+            { formula: '4', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'size', priority: 0, value: 4 },
+            { formula: '4', operator: 'add', target: 'ability', subTarget: 'con', modifier: 'size', priority: 0, value: 4 },
+            { formula: '-2', operator: 'add', target: 'ability', subTarget: 'dex', modifier: 'size', priority: 0, value: -2 },
+            { formula: '2', operator: 'add', subTarget: 'nac', modifier: 'enh', priority: 0, value: 2 }
+        ],
+        size: 1
+    },
     reducePerson: {
         changes: [
             { formula: '-2', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'size', priority: 0, value: -2 },
