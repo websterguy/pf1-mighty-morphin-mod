@@ -36,6 +36,13 @@
     "templates": [
         "templates/beastShapeDialog.html"
     ],
+    "languages": [
+        {
+            "lang": "en",
+            "name": "English",
+            "path": "lang/en.json"
+        }
+    ],
     "packs": [
         {
             "name": "macros",

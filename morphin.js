@@ -32,8 +32,8 @@ Hooks.once('init', function () {
  */
 export const registerSettings = function () {
   game.settings.register('pf1-mighty-morphin', 'imagePath', {
-    name: 'Form Token Image Path',
-    hint: 'Set path to a folder to search for form token images to change to. Images must be an exact match to form name with only letters (no spaces or non-letter/number characters, case sensitive)',
+    name: 'MMMOD.Settings.Image.Name',
+    hint: 'MMMOD.Settings.Image.Hint',
     default: '[data]',
     scope: 'world',
     type: DirectoryPicker.Directory,

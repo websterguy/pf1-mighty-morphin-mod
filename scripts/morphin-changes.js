@@ -569,7 +569,7 @@ MorphinChanges.changes = {
     'Giant Porcupine': {
         size: 'med',
         attacks: [
-            { name: 'Tail Slap', diceCount: 2, diceSize: 6, count: 1 }
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
         ],
         speed: {
             land: 40
@@ -701,7 +701,7 @@ MorphinChanges.changes = {
             1, 11
         ],
         special: [
-            'Pounce', 'Rake (2 Claws)'
+            'Pounce', 'Rake2Claws'
         ]
     },
     'Mindspin Ram': {
@@ -826,7 +826,7 @@ MorphinChanges.changes = {
             1
         ],
         special: [
-            'Jet 240ft'
+            'Jet240'
         ]
     },
     'Stag': {
@@ -1118,7 +1118,7 @@ MorphinChanges.changes = {
             'Poison': { note: 'Poison (Ex) Bite—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
         },
         special: [
-            'Jet 200ft'
+            'Jet200'
         ]
     },
     'Penguin': {
@@ -1150,7 +1150,7 @@ MorphinChanges.changes = {
         size: 'sm',
         attacks: [
             { name: 'Gore', diceCount: 1, diceSize: 6, count: 1, special: 'Poison' },
-            { name: 'Tail Slap', diceCount: 1, diceSize: 4, count: 1 },
+            { name: 'TailSlap', diceCount: 1, diceSize: 4, count: 1 },
         ],
         speed: {
             land: 30
@@ -1163,7 +1163,7 @@ MorphinChanges.changes = {
         size: 'sm',
         attacks: [
             { name: 'Bite', diceCount: 1, diceSize: 4, count: 1 },
-            { name: 'Tail Slap', diceCount: 1, diceSize: 4, count: 1, type: ['piercing'], primaryAttack: true }
+            { name: 'TailSlap', diceCount: 1, diceSize: 4, count: 1, type: ['piercing'], primaryAttack: true }
         ],
         speed: {
             land: 40
@@ -1384,7 +1384,7 @@ MorphinChanges.changes = {
         size: 'lg',
         attacks: [
             { name: 'Bite', diceCount: 1, diceSize: 8, count: 1 },
-            { name: 'Tail Slap', diceCount: 1, diceSize: 12, count: 1 }
+            { name: 'TailSlap', diceCount: 1, diceSize: 12, count: 1 }
         ],
         speed: {
             land: 20,
@@ -1489,7 +1489,7 @@ MorphinChanges.changes = {
             1, 11
         ],
         special: [
-            'Pounce', 'Rake (2 Claws)'
+            'Pounce', 'Rake2Claws'
         ]
     },
     'Dire Polar Bear': {
@@ -1519,7 +1519,7 @@ MorphinChanges.changes = {
             1, 11
         ],
         special: [
-            'Pounce', 'Rake (2 Claws)'
+            'Pounce', 'Rake2Claws'
         ]
     },
     'Dire Weasel': {
@@ -1688,7 +1688,7 @@ MorphinChanges.changes = {
             1
         ],
         special: [
-            'Jet 200ft'
+            'Jet200'
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) Bite—injury; save Fort DC 19; frequency 1/round for 6 rounds; effect 1d3 Str; cure 2 saves.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -1902,13 +1902,13 @@ MorphinChanges.changes = {
             1, 11
         ],
         special: [
-            'Pounce', 'Rake (2 Claws)'
+            'Pounce', 'Rake2Claws'
         ]
     },
     'Manta Ray': {
         size: 'lg',
         attacks: [
-            { name: 'Tail Slap', diceCount: 1, diceSize: 6, count: 1 }
+            { name: 'TailSlap', diceCount: 1, diceSize: 6, count: 1 }
         ],
         speed: {
             swim: 60
@@ -1922,7 +1922,7 @@ MorphinChanges.changes = {
         attacks: [
             { name: 'Bite', diceCount: 2, diceSize: 6, count: 1 },
             { name: 'Talon', diceCount: 1, diceSize: 8, count: 2 },
-            { name: 'Tail Barbs', diceCount: 1, diceSize: 6, count: 1, special: ['Poison'] }
+            { name: 'TailBarbs', diceCount: 1, diceSize: 6, count: 1, special: ['Poison'] }
         ],
         speed: {
             land: 40
@@ -2141,7 +2141,7 @@ MorphinChanges.changes = {
             1, 11
         ],
         special: [
-            'Pounce', 'Rake (2 Claws)'
+            'Pounce', 'Rake2Claws'
         ]
     },
     'Uintatherium': {
@@ -2413,7 +2413,7 @@ MorphinChanges.changes = {
     'Porcupine': {
         size: 'tiny',
         attacks: [
-            { name: 'Tail Slap', diceCount: 1, diceSize: 3, count: 1 }
+            { name: 'TailSlap', diceCount: 1, diceSize: 3, count: 1 }
         ],
         speed: {
             land: 30
@@ -2492,7 +2492,7 @@ MorphinChanges.changes = {
         size: 'tiny',
         attacks: [
             { name: 'Bite', diceCount: 1, diceSize: 3, count: 1 },
-            { name: 'Tail Slap', diceCount: 1, diceSize: 3, count: 1 }
+            { name: 'TailSlap', diceCount: 1, diceSize: 3, count: 1 }
         ],
         speed: {
             land: 20,
@@ -2622,14 +2622,14 @@ MorphinChanges.changes = {
             1, 11
         ],
         special: [
-            'Pounce', 'Rake (2 Claws)'
+            'Pounce', 'Rake2Claws'
         ]
     },
     'Amargasaurus': {
         size: 'huge',
         attacks: [
             { name: 'Slam', diceCount: 2, diceSize: 6, count: 1 },
-            { name: 'Tail Slap', diceCount: 2, diceSize: 6, count: 1 }
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
         ],
         specialAttack: [
             { name: 'Trample', diceCount: 1, diceSize: 8, count: 1, special: ['Trample'], mult: 1.5, attackType: 'mcman' }
@@ -2740,7 +2740,7 @@ MorphinChanges.changes = {
             'Constrict': { note: 'Constrict: Same damage as Tentacle' }
         },
         special: [
-            'Jet 90ft'
+            'Jet90'
         ]
     },
     'Deinotherium': {
@@ -2878,7 +2878,7 @@ MorphinChanges.changes = {
             'Constrict': { note: 'Constrict: Same damage as Tentacles' }
         },
         special: [
-            'Jet 260ft'
+            'Jet260'
         ]
     },
     'Giraffe': {
@@ -2922,7 +2922,7 @@ MorphinChanges.changes = {
         size: 'huge',
         attacks: [
             { name: 'Bite', diceCount: 2, diceSize: 6, count: 1 },
-            { name: 'Tail Slap', diceCount: 2, diceSize: 6, count: 1 }
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
         ],
         speed: {
             land: 40
@@ -2935,7 +2935,7 @@ MorphinChanges.changes = {
         size: 'huge',
         attacks: [
             { name: 'Bite', diceCount: 2, diceSize: 6, count: 1 },
-            { name: 'Tail Slap', diceCount: 2, diceSize: 6, count: 1, special: ['Grab', 'Constrict'] }
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1, special: ['Grab', 'Constrict'] }
         ],
         speed: {
             swim: 40
@@ -3002,7 +3002,7 @@ MorphinChanges.changes = {
         size: 'huge',
         attacks: [
             { name: 'Bite', diceCount: 2, diceSize: 6, count: 1 },
-            { name: 'Tail Slap', diceCount: 2, diceSize: 6, count: 1 }
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
         ],
         specialAttack: [
             { name: 'Trample', diceCount: 1, diceSize: 8, count: 1, special: ['Trample'], mult: 1.5, attackType: 'mcman' }
@@ -3046,7 +3046,7 @@ MorphinChanges.changes = {
         size: 'huge',
         attacks: [
             { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
-            { name: 'Tail Slap', diceCount: 1, diceSize: 6, count: 1 }
+            { name: 'TailSlap', diceCount: 1, diceSize: 6, count: 1 }
         ],
         speed: {
             land: 30,
@@ -3060,7 +3060,7 @@ MorphinChanges.changes = {
         size: 'huge',
         attacks: [
             { name: 'Bite', diceCount: 2, diceSize: 6, count: 1 },
-            { name: 'Tail Slap', diceCount: 1, diceSize: 8, count: 1 }
+            { name: 'TailSlap', diceCount: 1, diceSize: 8, count: 1 }
         ],
         speed: {
             land: 20,
@@ -3226,8 +3226,8 @@ MorphinChanges.changes = {
     'Delgeth': {
         size: 'med',
         attacks: [
-            { name: 'Gore', diceCount: 1, diceSize: 8, count: 1, nonCrit: ['1d6', {values: ['fire'], custom: ''}] },
-            { name: 'Hoof', diceCount: 1, diceSize: 4, count: 2, nonCrit: ['1d6', {values: ['fire'], custom: ''}] }
+            { name: 'Gore', diceCount: 1, diceSize: 8, count: 1, nonCrit: { formula: '1d6', type: {values: ['fire'], custom: ''} } },
+            { name: 'Hoof', diceCount: 1, diceSize: 4, count: 2, nonCrit: { formula: '1d6', type: {values: ['fire'], custom: ''} } }
         ],
         speed: {
             land: 50,
@@ -3236,7 +3236,7 @@ MorphinChanges.changes = {
             1, 7, 11
         ],
         eres: [
-            'Fire 20'
+            { amount: 20, operator: true, types: ['fire', ''] }
         ]
     },
     'Dweomercat': {
@@ -3255,8 +3255,8 @@ MorphinChanges.changes = {
     'Galvo': {
         size: 'med',
         attacks: [
-            { name: 'Bite', diceCount: 1, diceSize: 6, count: 1, nonCrit: ['2d6', {values: ['electric'], custom: ''}] },
-            { name: 'Slam', diceCount: 1, diceSize: 4, count: 2, nonCrit: ['2d6', {values: ['electric'], custom: ''}] }
+            { name: 'Bite', diceCount: 1, diceSize: 6, count: 1, nonCrit: { formula: '2d6', type: {values: ['electric'], custom: ''} } },
+            { name: 'Slam', diceCount: 1, diceSize: 4, count: 2, nonCrit: { formula: '2d6', type: {values: ['electric'], custom: ''} } }
         ],
         speed: {
             land: 40
@@ -3421,7 +3421,7 @@ MorphinChanges.changes = {
             1, 7
         ],
         special: [
-            'Pounce', 'Rake (2 Claws)'
+            'Pounce', 'Rake2Claws'
         ]
     },
     'Sha': {
@@ -3488,7 +3488,7 @@ MorphinChanges.changes = {
             1, 7, 11
         ],
         special: [
-            'Pounce', 'Rake (2 Claws)'
+            'Pounce', 'Rake2Claws'
         ]
     },
     'Thrushmoor Angler': {
@@ -3505,7 +3505,8 @@ MorphinChanges.changes = {
             1, 7
         ],
         eres: [
-            'Acid 10', 'Cold 10'
+            { amount: 10, operator: true, types: ['acid', ''] },
+            { amount: 10, operator: true, types: ['cold', ''] }
         ]
     },
     'Trollhound': {
@@ -3526,7 +3527,7 @@ MorphinChanges.changes = {
             { name: 'Bite', diceCount: 1, diceSize: 8, count: 2, special: ['Poison'] }
         ],
         specialAttack: [
-            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], damageAbility: '', attackType: 'none', area: '30-ft line', templateShape: 'ray',  templateSize: '30' }
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], damageAbility: '', attackType: 'none', area: '30-ft line', templateShape: 'ray',  templateSize: '30' }
         ],
         speed: {
             land: 20,
@@ -3581,7 +3582,7 @@ MorphinChanges.changes = {
             1, 7, 11
         ],
         special: [
-            'Ferocity', 'Rake (4 Claws)'
+            'Ferocity', 'Rake4Claws'
         ]
     },
     'Blindheim': {
@@ -3661,7 +3662,7 @@ MorphinChanges.changes = {
         size: 'sm',
         attacks: [
             { name: 'Bite', diceCount: 1, diceSize: 4, count: 1 },
-            { name: 'Tail Slap', diceCount: 1, diceSize: 4, count: 1 }
+            { name: 'TailSlap', diceCount: 1, diceSize: 4, count: 1 }
         ],
         speed: {
             land: 5,
@@ -3742,7 +3743,7 @@ MorphinChanges.changes = {
     'Shasalqu': {
         size: 'sm',
         attacks: [
-            { name: 'Tail Slap', diceCount: 1, diceSize: 8, count: 1, nonCrit: ['1d6', {values: ['cold'], custom: ''}] }
+            { name: 'TailSlap', diceCount: 1, diceSize: 8, count: 1, nonCrit: { formula: '1d6', type: {values: ['cold'], custom: ''} } }
         ],
         speed: {
             land: 30
@@ -3810,7 +3811,7 @@ MorphinChanges.changes = {
             1, 7
         ],
         eres: [
-            'Cold 5'
+            { amount: 5, operator: true, types: ['cold', ''] }
         ]
     },
     'Ahool': {
@@ -3839,7 +3840,7 @@ MorphinChanges.changes = {
         attacks: [
             { name: 'Bite', diceCount: 2, diceSize: 6, count: 1 },
             { name: 'Claw', diceCount: 1, diceSize: 6, count: 2 },
-            { name: 'Tail Claw', diceCount: 1, diceSize: 8, count: 2, special: ['Grab'] }
+            { name: 'TailClaw', diceCount: 1, diceSize: 8, count: 2, special: ['Grab'] }
         ],
         speed: {
             land: 30,
@@ -3866,7 +3867,7 @@ MorphinChanges.changes = {
             'Poison': { note: 'Poison (Ex) Bite—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d3 Con; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
         },
         eres: [
-            'Cold 10'
+            { amount: 10, operator: true, types: ['cold', ''] }
         ]
     },
     'Androsphinx': {
@@ -3885,7 +3886,7 @@ MorphinChanges.changes = {
             1, 7
         ],
         special: [
-            'Pounce', 'Rake (2 Claws)'
+            'Pounce', 'Rake2Claws'
         ],
         effect: {
             'Roar': { note: 'Roar 1: Frightened 2d6 rounds. Will negates\nRoar 2: Paralyzed with fear, deafened 1d4 rounds. Will negates\nRoar 3: 2d4 Str penalty for 2d4 rounds, 2d8 damage [[/d 2d8 # Sonic damage]]{Roll}. Smaller creatures knocked prone. Fort negates penalty and prone.', description: '<p>An androsphinx can roar up to three times per day as a standard action. Each progressive roar has a different effect, depending upon whether it is the first, second, or third of the androsphinx’s roars for that day. All of these roars are sonic effects that fill a 60-foot-radius burst, centered on the androsphinx; the save DCs are 10 + spell level + caster stat mod. Sphinxes are immune to all of the effects of an androsphinx’s roars.</p><ul><li>First Roar: Affected creatures become frightened for 2d6 rounds (Will negates). This is a mind-affecting fear effect in addition to being a sonic effect.</li><li>Second Roar: Affected creatures are paralyzed with fear and deafened for 1d4 rounds (Will negates). This is a mind-affecting fear effect in addition to being a sonic effect.</li><li>Third Roar: Affected creatures take a 2d4 penalty to Strength for 2d4 rounds and take 2d8 points of sonic damage. Creatures smaller than the androsphinx are knocked prone. A DC 19 Fortitude save negates the Strength penalty and being knocked prone.</li></ul>' }
@@ -3894,7 +3895,7 @@ MorphinChanges.changes = {
     'Ankheg': {
         size: 'lg',
         attacks: [
-            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1, special: ['Grab'], nonCrit: ['1d4', {values: ['acid'], custom: ''}] }
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1, special: ['Grab'], nonCrit: { formula: '1d4', type: {values: ['acid'], custom: ''} } }
         ],
         speed: {
             land: 30,
@@ -3931,7 +3932,8 @@ MorphinChanges.changes = {
             1, 7, 11
         ],
         eres: [
-            'Cold 5', 'Fire 5'
+            { amount: 5, operator: true, types: ['cold', ''] },
+            { amount: 5, operator: true, types: ['fire', ''] }
         ],
         special: [
             'Ferocity'
@@ -3962,7 +3964,7 @@ MorphinChanges.changes = {
             { name: 'Hoof', diceCount: 1, diceSize: 8, count: 2 }
         ],
         specialAttack: [
-            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], damageAbility: '', attackType: 'none', area: '60-ft cone', templateShape: 'cone',  templateSize: '60' },
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], damageAbility: '', attackType: 'none', area: '60-ft cone', templateShape: 'cone',  templateSize: '60' },
             { name: 'Trample', diceCount: 4, diceSize: 6, count: 1, special: ['Trample'], mult: 1.5, attackType: 'mcman' }
         ],
         speed: {
@@ -4003,7 +4005,7 @@ MorphinChanges.changes = {
             1, 7, 11
         ],
         special: [
-            'Pounce', 'Rake (1 Claw)'
+            'Pounce', 'Rake1Claw'
         ]
     },
     'Chimera': {
@@ -4015,11 +4017,11 @@ MorphinChanges.changes = {
             { name: 'Claw', diceCount: 1, diceSize: 6, count: 2 }
         ],
         specialAttack: [
-            { name: 'Breath Weapon Black', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: ['6d8', {values: ['acid'], custom: ''}], damageAbility: '', attackType: 'none', area: '40-ft line', templateShape: 'ray',  templateSize: '40' },
-            { name: 'Breath Weapon Blue', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: ['6d8', {values: ['lightning'], custom: ''}], damageAbility: '', attackType: 'none', area: '40-ft line', templateShape: 'ray',  templateSize: '40' },
-            { name: 'Breath Weapon Green', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: ['6d8', {values: ['acid'], custom: ''}], damageAbility: '', attackType: 'none', area: '20-ft cone', templateShape: 'cone',  templateSize: '20' },
-            { name: 'Breath Weapon Red', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: ['6d8', {values: ['fire'], custom: ''}], damageAbility: '', attackType: 'none', area: '20-ft cone', templateShape: 'cone',  templateSize: '20' },
-            { name: 'Breath Weapon White', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: ['6d8', {values: ['cold'], custom: ''}], damageAbility: '', attackType: 'none', area: '20-ft cone', templateShape: 'cone',  templateSize: '20' }
+            { name: 'BreathWeaponBlack', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '6d8', type: {values: ['acid'], custom: ''} }, damageAbility: '', attackType: 'none', area: '40-ft line', templateShape: 'ray',  templateSize: '40' },
+            { name: 'BreathWeaponBlue', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '6d8', type: {values: ['lightning'], custom: ''} }, damageAbility: '', attackType: 'none', area: '40-ft line', templateShape: 'ray',  templateSize: '40' },
+            { name: 'BreathWeaponGreen', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '6d8', type: {values: ['acid'], custom: ''} }, damageAbility: '', attackType: 'none', area: '20-ft cone', templateShape: 'cone',  templateSize: '20' },
+            { name: 'BreathWeaponRed', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '6d8', type: {values: ['fire'], custom: ''} }, damageAbility: '', attackType: 'none', area: '20-ft cone', templateShape: 'cone',  templateSize: '20' },
+            { name: 'BreathWeaponWhite', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '6d8', type: {values: ['cold'], custom: ''} }, damageAbility: '', attackType: 'none', area: '20-ft cone', templateShape: 'cone',  templateSize: '20' }
 
         ],
         speed: {
@@ -4081,7 +4083,7 @@ MorphinChanges.changes = {
             { name: 'Bite', diceCount: 2, diceSize: 8, count: 1, special: ['Poison'] }
         ],
         specialAttack: [
-            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: ['8d6', {values: ['acid'], custom: ''}], damageAbility: '', attackType: 'none', area: '30-ft line', templateShape: 'ray',  templateSize: '30' }
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '8d6', type: {values: ['acid'], custom: ''} }, damageAbility: '', attackType: 'none', area: '30-ft line', templateShape: 'ray',  templateSize: '30' }
 
         ],
         speed: {
@@ -4096,7 +4098,8 @@ MorphinChanges.changes = {
             'Breath': { note: 'Breath area: 30ft line. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds</p>' }
         },
         eres: [
-            'Acid 20', 'Electricity 20'
+            { amount: 20, operator: true, types: ['acid', ''] },
+            { amount: 20, operator: true, types: ['electricity', ''] }
         ]
     },
     'Devilfish': {
@@ -4112,10 +4115,10 @@ MorphinChanges.changes = {
             1
         ],
         eres: [
-            'Cold 10'
+            { amount: 10, operator: true, types: ['cold', ''] }
         ],
         special: [
-            'Jet 240ft'
+            'Jet240'
         ]
     },
     'Disenchanter': {
@@ -4134,7 +4137,7 @@ MorphinChanges.changes = {
         size: 'lg',
         attacks: [
             { name: 'Bite', diceCount: 2, diceSize: 6, count: 1, special: ['Grab', 'Constrict'] },
-            { name: 'Tail Slap', diceCount: 2, diceSize: 6, count: 1 }
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
         ],
         speed: {
             land: 30,
@@ -4148,7 +4151,8 @@ MorphinChanges.changes = {
             'Constrict': { note: 'Constrict: Same damage as Bite' }
         },
         eres: [
-            'Acid 10', 'Fire 10'
+            { amount: 10, operator: true, types: ['acid', ''] },
+            { amount: 10, operator: true, types: ['fire', ''] }
         ]
     },
     'Flail Snail': {
@@ -4164,7 +4168,7 @@ MorphinChanges.changes = {
             11, 14, 24
         ],
         eres: [
-            'Fire 20'
+            { amount: 20, operator: true, types: ['fire', ''] }
         ]
     },
     'Gammenore': {
@@ -4181,7 +4185,7 @@ MorphinChanges.changes = {
             1, 7
         ],
         eres: [
-            'Cold 20'
+            { amount: 20, operator: true, types: ['cold', ''] }
         ],
         dv: [
             'fire'
@@ -4204,7 +4208,8 @@ MorphinChanges.changes = {
             1, 7, 24
         ],
         eres: [
-            'Acid 10', 'Cold 10'
+            { amount: 10, operator: true, types: ['acid', ''] },
+            { amount: 10, operator: true, types: ['cold', ''] }
         ],
         effect: {
             'Constrict': { note: 'Constrict: Same damage as Tentacle' }
@@ -4257,7 +4262,7 @@ MorphinChanges.changes = {
     'Glacier Toad': {
         size: 'lg',
         attacks: [
-            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1, special: ['Grab'], nonCrit: ['1d6', {values: ['cold'], custom: ''}] }
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1, special: ['Grab'], nonCrit: { formula: '1d6', type: {values: ['cold'], custom: ''} } }
         ],
         speed: {
             land: 30,
@@ -4267,7 +4272,7 @@ MorphinChanges.changes = {
             1, 11
         ],
         eres: [
-            'Cold 20'
+            { amount: 20, operator: true, types: ['cold', ''] }
         ],
         dv: [
             'fire'
@@ -4286,7 +4291,7 @@ MorphinChanges.changes = {
             1, 7
         ],
         eres: [
-            'Cold 20'
+            { amount: 20, operator: true, types: ['cold', ''] }
         ],
         dv: [
             'fire'
@@ -4309,7 +4314,11 @@ MorphinChanges.changes = {
             'Rend': { note: 'Rend if 2 claws hit, added to second claw damage. [[/d sizeRoll(1, 8, @size, 5) # Rend damage added to second claw]]{{Roll Rend Damage}}' }
         },
         eres: [
-            'Acid 15', 'Cold 20', 'Electricity 15', 'Fire 20', 'Sonic 15'
+            { amount: 15, operator: true, types: ['acid', ''] },
+            { amount: 20, operator: true, types: ['cold', ''] },
+            { amount: 15, operator: true, types: ['electricity', ''] },
+            { amount: 20, operator: true, types: ['fire', ''] },
+            { amount: 15, operator: true, types: ['sonic', ''] }
         ]
     },
     'Goldpebble': {
@@ -4325,7 +4334,7 @@ MorphinChanges.changes = {
             1, 7, 24
         ],
         eres: [
-            'Cold 10'
+            { amount: 10, operator: true, types: ['cold', ''] }
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) Pebblefang: Bite—injury; save Fort DC 10+SL+Mod; frequency 1/day for 8 days; effect 1d3 Con damage, and when the creature fails a save, all bleed damage it takes in the following 24 hours is doubled; cure 2 consecutive saves.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -4338,7 +4347,7 @@ MorphinChanges.changes = {
             { name: 'Hoof', diceCount: 1, diceSize: 6, count: 1 }
         ],
         specialAttack: [
-            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], damageAbility: '', attackType: 'none', area: '60-ft cone', templateShape: 'cone',  templateSize: '60' },
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], damageAbility: '', attackType: 'none', area: '60-ft cone', templateShape: 'cone',  templateSize: '60' },
             { name: 'Trample', diceCount: 2, diceSize: 8, count: 1, special: ['Trample'], mult: 1.5, attackType: 'mcman' }
 
         ],
@@ -4382,7 +4391,7 @@ MorphinChanges.changes = {
             1, 7, 11
         ],
         special: [
-            'Pounce', 'Rake (2 Talons)'
+            'Pounce', 'Rake2Talons'
         ]
     },
     'Gynosphinx': {
@@ -4398,7 +4407,7 @@ MorphinChanges.changes = {
             1, 7
         ],
         special: [
-            'Pounce', 'Rake (2 Claws)'
+            'Pounce', 'Rake2Claws'
         ]
     },
     'Hieracosphinx': {
@@ -4422,7 +4431,7 @@ MorphinChanges.changes = {
         size: 'lg',
         attacks: [
             { name: 'Bite', diceCount: 1, diceSize: 4, count: 1 },
-            { name: 'Tail Slap', diceCount: 1, diceSize: 4, count: 1 }
+            { name: 'TailSlap', diceCount: 1, diceSize: 4, count: 1 }
         ],
         speed: {
             land: 5,
@@ -4451,7 +4460,7 @@ MorphinChanges.changes = {
         attacks: [
             { name: 'Bite', diceCount: 1, diceSize: 8, count: 1 },
             { name: 'Claw', diceCount: 1, diceSize: 6, count: 2 },
-            { name: 'Tail Slap', diceCount: 1, diceSize: 6, count: 1 }
+            { name: 'TailSlap', diceCount: 1, diceSize: 6, count: 1 }
         ],
         speed: {
             land: 30,
@@ -4485,7 +4494,7 @@ MorphinChanges.changes = {
             { name: 'Claw', diceCount: 1, diceSize: 3, count: 2 }
         ],
         specialAttack: [
-            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], damageAbility: '', attackType: 'none', area: '30-ft cone', templateShape: 'cone',  templateSize: '30' }
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], damageAbility: '', attackType: 'none', area: '30-ft cone', templateShape: 'cone',  templateSize: '30' }
         ],
         speed: {
             land: 40
@@ -4513,7 +4522,7 @@ MorphinChanges.changes = {
             1, 7, 11
         ],
         eres: [
-            'Fire 5'
+            { amount: 5, operator: true, types: ['fire', ''] }
         ]
     },
     'Kirin': {
@@ -4523,7 +4532,7 @@ MorphinChanges.changes = {
             { name: 'Hoof', diceCount: 1, diceSize: 6, count: 2 }
         ],
         specialAttack: [
-            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], nonCrit: ['5d6', {values: ['fire'], custom: ''}], damageAbility: '', attackType: 'none', area: '15-ft cone', templateShape: 'cone',  templateSize: '15' }
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], nonCrit: { formula: '5d6', type: {values: ['fire'], custom: ''} }, damageAbility: '', attackType: 'none', area: '15-ft cone', templateShape: 'cone',  templateSize: '15' }
 
         ],
         speed: {
@@ -4534,7 +4543,9 @@ MorphinChanges.changes = {
             1, 7, 11
         ],
         eres: [
-            'Cold 10', 'Electricity 20', 'Fire 10'
+            { amount: 10, operator: true, types: ['cold', ''] },
+            { amount: 20, operator: true, types: ['electricity', ''] },
+            { amount: 10, operator: true, types: ['fire', ''] }
         ],
         effect: {
             'Breath': { note: 'Breath area: 15ft cone. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Once every 1d4 rounds. 5d6 fire damage to all creatures in 15-foot cone. Reflex save DC 10 + spell level + caster stat mod for half damage.</p>' }
@@ -4554,7 +4565,7 @@ MorphinChanges.changes = {
             1, 7
         ],
         special: [
-            'Pounce', 'Rake (2 Claws)'
+            'Pounce', 'Rake2Claws'
         ]
     },
     'Leucrotta': {
@@ -4585,10 +4596,11 @@ MorphinChanges.changes = {
             1, 7, 11
         ],
         eres: [
-            'Cold 5', 'Fire 5'
+            { amount: 5, operator: true, types: ['cold', ''] },
+            { amount: 5, operator: true, types: ['fire', ''] }
         ],
         special: [
-            'Pounce', 'Rake (2 Claws)'
+            'Pounce', 'Rake2Claws'
         ]
     },
     'Man-Eating Aurochs': {
@@ -4641,7 +4653,8 @@ MorphinChanges.changes = {
             1, 7
         ],
         eres: [
-            'Cold 5', 'Electricity 5'
+            { amount: 5, operator: true, types: ['cold', ''] },
+            { amount: 5, operator: true, types: ['electricity', ''] }
         ],
         dv: [
             'sonic'
@@ -4660,7 +4673,7 @@ MorphinChanges.changes = {
             1, 7, 11
         ],
         special: [
-            'Pounce', 'Rake (2 Claws)'
+            'Pounce', 'Rake2Claws'
         ]
     },
     'Mobat': {
@@ -4766,7 +4779,7 @@ MorphinChanges.changes = {
             1, 7, 24
         ],
         eres: [
-            'Fire 20'
+            { amount: 20, operator: true, types: ['fire', ''] }
         ],
         dv: [
             'cold'
@@ -4805,7 +4818,8 @@ MorphinChanges.changes = {
             1, 7
         ],
         eres: [
-            'Fire 10', 'Sonic 10'
+            { amount: 10, operator: true, types: ['fire', ''] },
+            { amount: 10, operator: true, types: ['sonic', ''] }
         ],
         effect: {
             'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature’s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a –4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature’s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' }
@@ -4825,7 +4839,7 @@ MorphinChanges.changes = {
             1, 7, 11, 24
         ],
         special: [
-            'Rake (2 Claws)'
+            'Rake2Claws'
         ]
     },
     'Shedu': {
@@ -4846,7 +4860,8 @@ MorphinChanges.changes = {
             1, 7
         ],
         eres: [
-            'Electricity 10', 'Fire 10'
+            { amount: 10, operator: true, types: ['electricity', ''] },
+            { amount: 10, operator: true, types: ['fire', ''] }
         ],
         effect: {
             'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature’s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a –4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature’s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' }
@@ -4874,7 +4889,7 @@ MorphinChanges.changes = {
         ],
         specialAttack: [
             { name: 'Trample', diceCount: 1, diceSize: 8, count: 1, special: ['Trample'], mult: 1.5, attackType: 'mcman' },
-            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], charges: 3, damageAbility: '', attackType: 'none', area: '30-ft cone', templateShape: 'cone',  templateSize: '30' }
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], charges: 3, damageAbility: '', attackType: 'none', area: '30-ft cone', templateShape: 'cone',  templateSize: '30' }
         ],
         speed: {
             land: 80
@@ -4883,7 +4898,8 @@ MorphinChanges.changes = {
             1, 7
         ],
         eres: [
-            'Cold 10', 'Electricity 20'
+            { amount: 10, operator: true, types: ['cold', ''] },
+            { amount: 20, operator: true, types: ['electricity', ''] }
         ],
         effect: {
             'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature’s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a –4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature’s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' },
@@ -4923,7 +4939,7 @@ MorphinChanges.changes = {
             1
         ],
         eres: [
-            'Fire 20'
+            { amount: 20, operator: true, types: ['fire', ''] }
         ],
         dv: [
             'sonic'
@@ -4956,7 +4972,7 @@ MorphinChanges.changes = {
             1, 7
         ],
         eres: [
-            'Cold 10'
+            { amount: 10, operator: true, types: ['cold', ''] }
         ],
         special: [
             'Pounce'
@@ -4994,10 +5010,10 @@ MorphinChanges.changes = {
     'Winter Wolf': {
         size: 'lg',
         attacks: [
-            { name: 'Bite', diceCount: 1, diceSize: 8, count: 1, nonCrit: ['1d6', {values: ['cold'], custom: ''}], special: ['Trip'] }
+            { name: 'Bite', diceCount: 1, diceSize: 8, count: 1, nonCrit: { formula: '1d6', type: {values: ['cold'], custom: ''} }, special: ['Trip'] }
         ],
         specialAttack: [
-            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], nonCrit: ['6d6', {values: ['cold'], custom: ''}], damageAbility: '', attackType: 'none', area: '15-ft cone', templateShape: 'cone',  templateSize: '15' }
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], nonCrit: { formula: '6d6', type: {values: ['cold'], custom: ''} }, damageAbility: '', attackType: 'none', area: '15-ft cone', templateShape: 'cone',  templateSize: '15' }
 
         ],
         speed: {
@@ -5010,7 +5026,7 @@ MorphinChanges.changes = {
             'Breath': { note: 'Breath area: 15ft cone. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Once every 1d4 rounds, 15-foot cone for 6d6 cold damage (Reflex DC 10 + spell level + caster stat mod for half damage).</p>' }
         },
         eres: [
-            'Cold 20'
+            { amount: 20, operator: true, types: ['cold', ''] }
         ],
         dv: [
             'fire'
@@ -5030,7 +5046,7 @@ MorphinChanges.changes = {
             1, 7, 11
         ],
         eres: [
-            'Cold 5'
+            { amount: 5, operator: true, types: ['cold', ''] }
         ]
     },
     'Brain Mole': {
@@ -5075,7 +5091,7 @@ MorphinChanges.changes = {
     'Chuspiki': {
         size: 'tiny',
         attacks: [
-            { name: 'Tail Fan', diceCount: 1, diceSize: 4, count: 1 }
+            { name: 'TailFan', diceCount: 1, diceSize: 4, count: 1 }
         ],
         speed: {
             land: 30,
@@ -5128,7 +5144,7 @@ MorphinChanges.changes = {
             1, 7
         ],
         special: [
-            'Pounce', 'Rake (2 Claws)'
+            'Pounce', 'Rake2Claws'
         ]
     },
     'Galluvix': {
@@ -5163,7 +5179,7 @@ MorphinChanges.changes = {
     'Ostovite': {
         size: 'tiny',
         attacks: [
-            { name: 'Bite', diceCount: 1, diceSize: 2, count: 1, nonCrit: ['1d6', {values: ['acid'], custom: ''}] }
+            { name: 'Bite', diceCount: 1, diceSize: 2, count: 1, nonCrit: { formula: '1d6', type: {values: ['acid'], custom: ''} } }
         ],
         speed: {
             land: 30
@@ -5172,7 +5188,7 @@ MorphinChanges.changes = {
             1, 7
         ],
         eres: [
-            'Cold 20'
+            { amount: 20, operator: true, types: ['cold', ''] }
         ]
     },
     'Sin Seeker': {
@@ -5215,10 +5231,10 @@ MorphinChanges.changes = {
     'Sun Falcon': {
         size: 'tiny',
         attacks: [
-            { name: 'Talon', diceCount: 1, diceSize: 3, count: 2, nonCrit: ['1d6', {values: ['fire'], custom: ''}] }
+            { name: 'Talon', diceCount: 1, diceSize: 3, count: 2, nonCrit: { formula: '1d6', type: {values: ['fire'], custom: ''} } }
         ],
         specialAttack: [
-            { name: 'Breath Weapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], nonCrit: ['3d6', {values: ['fire'], custom: ''}], damageAbility: '', attackType: 'none', area: '30-ft line', templateShape: 'ray',  templateSize: '30' }
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], nonCrit: { formula: '3d6', type: {values: ['fire'], custom: ''} }, damageAbility: '', attackType: 'none', area: '30-ft line', templateShape: 'ray',  templateSize: '30' }
 
         ],
         speed: {
@@ -5296,7 +5312,7 @@ MorphinChanges.changes = {
             'bleed', 'critical', 'sneak attack'
         ],
         dr: [
-            '5/-'
+            { amount: 5, operator: true, types: ['', ''] }
         ]
     },
     'Huge Earth Elemental': {
@@ -5312,13 +5328,13 @@ MorphinChanges.changes = {
             7
         ],
         special: [
-            'Earth Glide'
+            'EarthGlide'
         ],
         di: [
             'bleed', 'critical', 'sneak attack'
         ],
         dr: [
-            '5/-'
+            { amount: 5, operator: true, types: ['', ''] }
         ]
     },
     'Huge Fire Elemental': {
@@ -5345,10 +5361,10 @@ MorphinChanges.changes = {
             'bleed', 'critical', 'sneak attack'
         ],
         dr: [
-            '5/-'
+            { amount: 5, operator: true, types: ['', ''] }
         ],
         eres: [
-            'Fire 20'
+            { amount: 20, operator: true, types: ['fire', ''] }
         ],
         dv: [
             'cold'
@@ -5376,7 +5392,7 @@ MorphinChanges.changes = {
             'bleed', 'critical', 'sneak attack'
         ],
         dr: [
-            '5/-'
+            { amount: 5, operator: true, types: ['', ''] }
         ]
     },
     'Large Air Elemental': {
@@ -5413,13 +5429,13 @@ MorphinChanges.changes = {
             7
         ],
         special: [
-            'Earth Glide'
+            'EarthGlide'
         ],
         di: [
             'bleed', 'critical', 'sneak attack'
         ],
         dr: [
-            '5/-'
+            { amount: 5, operator: true, types: ['', ''] }
         ]
     },
     'Large Fire Elemental': {
@@ -5446,10 +5462,10 @@ MorphinChanges.changes = {
             'bleed', 'critical', 'sneak attack'
         ],
         dr: [
-            '5/-'
+            { amount: 5, operator: true, types: ['', ''] }
         ],
         eres: [
-            'Fire 20'
+            { amount: 20, operator: true, types: ['fire', ''] }
         ],
         dv: [
             'cold'
@@ -5477,7 +5493,7 @@ MorphinChanges.changes = {
             'bleed', 'critical', 'sneak attack'
         ],
         dr: [
-            '5/-'
+            { amount: 5, operator: true, types: ['', ''] }
         ]
     },
     'Medium Air Elemental': {
@@ -5514,7 +5530,7 @@ MorphinChanges.changes = {
             7
         ],
         special: [
-            'Earth Glide'
+            'EarthGlide'
         ],
         di: [
             'bleed', 'critical', 'sneak attack'
@@ -5544,7 +5560,7 @@ MorphinChanges.changes = {
             'bleed', 'critical', 'sneak attack'
         ],
         eres: [
-            'Fire 20'
+            { amount: 20, operator: true, types: ['fire', ''] }
         ],
         dv: [
             'cold'
@@ -5606,7 +5622,7 @@ MorphinChanges.changes = {
             7
         ],
         special: [
-            'Earth Glide'
+            'EarthGlide'
         ],
         di: [
             'bleed', 'critical', 'sneak attack'
@@ -5636,7 +5652,7 @@ MorphinChanges.changes = {
             'bleed', 'critical', 'sneak attack'
         ],
         eres: [
-            'Fire 20'
+            { amount: 20, operator: true, types: ['fire', ''] }
         ],
         dv: [
             'cold'
@@ -5675,7 +5691,7 @@ MorphinChanges.changes = {
         },
         senses: [],
         eres: [
-            'Acid 20'
+            { amount: 20, operator: true, types: ['acid', ''] }
         ]
     },
     'Bramble Throne': {
@@ -5704,7 +5720,8 @@ MorphinChanges.changes = {
             1
         ],
         eres: [
-            'Electricity 20', 'Fire 10'
+            { amount: 20, operator: true, types: ['electricity', ''] },
+            { amount: 10, operator: true, types: ['fire', ''] }
         ],
         dv: [
             'cold'
@@ -5722,10 +5739,11 @@ MorphinChanges.changes = {
             1, 7
         ],
         eres: [
-            'Acid 10', 'Electricity 10'
+            { amount: 10, operator: true, types: ['acid', ''] },
+            { amount: 10, operator: true, types: ['electricity', ''] }
         ],
         dr: [
-            '10/slashing'
+            { amount: 10, operator: true, types: ['slashing', ''] }
         ],
         effect: {
             'Constrict': { note: 'Constrict: Same damage as Vine' }
@@ -5755,13 +5773,13 @@ MorphinChanges.changes = {
             1
         ],
         eres: [
-            'Acid 20'
+            { amount: 20, operator: true, types: ['acid', ''] }
         ]
     },
     'Giant Sundew': {
         size: 'huge',
         attacks: [
-            { name: 'Slam', diceCount: 2, diceSize: 6, count: 2, nonCrit: ['1d6', {values: ['acid'], custom: ''}], special: ['Constrict'] }
+            { name: 'Slam', diceCount: 2, diceSize: 6, count: 2, nonCrit: { formula: '1d6', type: {values: ['acid'], custom: ''} }, special: ['Constrict'] }
         ],
         speed: {
             land: 20
@@ -5770,10 +5788,10 @@ MorphinChanges.changes = {
             1
         ],
         eres: [
-            'Acid 20'
+            { amount: 20, operator: true, types: ['acid', ''] }
         ],
         dr: [
-            '10/slashing'
+            { amount: 10, operator: true, types: ['slashing', ''] }
         ],
         effect: {
             'Constrict': { note: 'Constrict: Same damage as Vine' }
@@ -5808,7 +5826,7 @@ MorphinChanges.changes = {
             1
         ],
         dr: [
-            '10/slashing'
+            { amount: 10, operator: true, types: ['slashing', ''] }
         ]
     },
     'Jinmenju': {
@@ -5837,7 +5855,7 @@ MorphinChanges.changes = {
             1, 7
         ],
         dr: [
-            '10/slashing'
+            { amount: 10, operator: true, types: ['slashing', ''] }
         ]
     },
     'Moonflower': {
@@ -5853,13 +5871,14 @@ MorphinChanges.changes = {
             1, 7
         ],
         eres: [
-            'Cold 10', 'Electricity 20'
+            { amount: 10, operator: true, types: ['cold', ''] },
+            { amount: 20, operator: true, types: ['electricity', ''] }
         ],
         dv: [
             'fire'
         ],
         dr: [
-            '10/slashing'
+            { amount: 10, operator: true, types: ['slashing', ''] }
         ]
     },
     'Pixie Circle': {
@@ -5874,7 +5893,8 @@ MorphinChanges.changes = {
             1
         ],
         eres: [
-            'Cold 10', 'Fire 10'
+            { amount: 10, operator: true, types: ['cold', ''] },
+            { amount: 10, operator: true, types: ['fire', ''] }
         ]
     },
     'Quickwood': {
@@ -5890,7 +5910,8 @@ MorphinChanges.changes = {
             1, 7
         ],
         eres: [
-            'Electricity 20', 'Fire 20'
+            { amount: 20, operator: true, types: ['electricity', ''] },
+            { amount: 20, operator: true, types: ['fire', ''] }
         ]
     },
     'Tendriculos': {
@@ -5906,7 +5927,7 @@ MorphinChanges.changes = {
             1
         ],
         eres: [
-            'Acid 20'
+            { amount: 20, operator: true, types: ['acid', ''] }
         ],
         regen: [
             '5 (bludgeoning or fire)'
@@ -5930,7 +5951,7 @@ MorphinChanges.changes = {
             'fire'
         ],
         dr: [
-            '10/slashing'
+            { amount: 10, operator: true, types: ['slashing', ''] }
         ],
         effect: {
             'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature’s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a –4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature’s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' }
@@ -5952,7 +5973,7 @@ MorphinChanges.changes = {
             '10/magic, slashing, or bludgeoning'
         ],
         effect: {
-            'Constrict': { note: 'Constrict: Same damage as Bite' }
+            'Constrict': { note: 'Constrict: Same damage as Slam' }
         }
     },
     'Alraune': {
@@ -5983,10 +6004,11 @@ MorphinChanges.changes = {
         },
         senses: [],
         eres: [
-            'Electricity 10', 'Fire 10'
+            { amount: 10, operator: true, types: ['electricity', ''] },
+            { amount: 10, operator: true, types: ['fire', ''] }
         ],
         dr: [
-            '10/piercing'
+            { amount: 10, operator: true, types: ['piercing', ''] }
         ],
         effect: {
             'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature’s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a –4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature’s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' }
@@ -6004,7 +6026,9 @@ MorphinChanges.changes = {
             1
         ],
         eres: [
-            'Cold 10', 'Electricity 20', 'Fire 10'
+            { amount: 10, operator: true, types: ['cold', ''] },
+            { amount: 20, operator: true, types: ['electricity', ''] },
+            { amount: 10, operator: true, types: ['fire', ''] }
         ],
         effect: {
             'Constrict': { note: 'Constrict: Same damage as Slam' }
@@ -6023,7 +6047,7 @@ MorphinChanges.changes = {
             1
         ],
         dr: [
-            '10/slashing'
+            { amount: 10, operator: true, types: ['slashing', ''] }
         ],
         dv: [
             'fire'
@@ -6095,7 +6119,7 @@ MorphinChanges.changes = {
             1
         ],
         eres: [
-            'Acid 10'
+            { amount: 10, operator: true, types: ['acid', ''] }
         ]
     },
     'Kudimmu': {
@@ -6115,7 +6139,8 @@ MorphinChanges.changes = {
             '10/magic and slashing'
         ],
         eres: [
-            'Cold 10', 'Fire 10'
+            { amount: 10, operator: true, types: ['cold', ''] },
+            { amount: 10, operator: true, types: ['fire', ''] }
         ]
     },
     'Lythirium': {
@@ -6131,7 +6156,7 @@ MorphinChanges.changes = {
             1, 7
         ],
         eres: [
-            'Cold 10'
+            { amount: 10, operator: true, types: ['cold', ''] }
         ],
         dv: [
             'fire'
@@ -6155,7 +6180,8 @@ MorphinChanges.changes = {
             '15/magic and slashing'
         ],
         eres: [
-            'Electricity 20', 'Fire 20'
+            { amount: 20, operator: true, types: ['electricity', ''] },
+            { amount: 20, operator: true, types: ['fire', ''] }
         ]
     },
     'Sargassum Fiend': {
@@ -6173,10 +6199,10 @@ MorphinChanges.changes = {
             'Constrict': { note: 'Constrict: Same damage as Slam' }
         },
         dr: [
-            '5/slashing'
+            { amount: 5, operator: true, types: ['slashing', ''] }
         ],
         eres: [
-            'Cold 10'
+            { amount: 10, operator: true, types: ['cold', ''] }
         ]
     },
     'Shambling Mound': {
@@ -6195,7 +6221,8 @@ MorphinChanges.changes = {
             'Constrict': { note: 'Constrict: Same damage as Slam' }
         },
         eres: [
-            'Electricity 20', 'Fire 10'
+            { amount: 20, operator: true, types: ['electricity', ''] },
+            { amount: 10, operator: true, types: ['fire', ''] }
         ]
     },
     'Stranglereed': {
@@ -6216,7 +6243,7 @@ MorphinChanges.changes = {
             'Constrict': { note: 'Constrict: Same damage as Tendril' }
         },
         dr: [
-            '5/slashing'
+            { amount: 5, operator: true, types: ['slashing', ''] }
         ],
         dv: [
             'fire'
@@ -6240,7 +6267,7 @@ MorphinChanges.changes = {
     'Viper Vine': {
         size: 'lg',
         attacks: [
-            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1, nonCrit: ['3d6', {values: ['acid'], custom: ''}] },
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1, nonCrit: { formula: '3d6', type: {values: ['acid'], custom: ''} } },
             { name: 'Tentacle', diceCount: 1, diceSize: 6, count: 4, special: ['Grab', 'Constrict'] }
         ],
         speed: {
@@ -6253,7 +6280,7 @@ MorphinChanges.changes = {
             'Constrict': { note: 'Constrict: Same damage as Tentacle' }
         },
         eres: [
-            'Acid 20'
+            { amount: 20, operator: true, types: ['acid', ''] }
         ]
     },
     'Basidirond': {
@@ -6268,7 +6295,7 @@ MorphinChanges.changes = {
             1
         ],
         eres: [
-            'Cold 20'
+            { amount: 20, operator: true, types: ['cold', ''] }
         ]
     },
     'Blood Maize': {
@@ -6296,7 +6323,7 @@ MorphinChanges.changes = {
             1
         ],
         dr: [
-            '10/bludgeoning'
+            { amount: 10, operator: true, types: ['bludgeoning', ''] }
         ]
     },
     'Boruta': {
@@ -6311,7 +6338,7 @@ MorphinChanges.changes = {
             1
         ],
         eres: [
-            'Electricity 20'
+            { amount: 20, operator: true, types: ['electricity', ''] }
         ]
     },
     'Bramblelash': {
@@ -6324,7 +6351,8 @@ MorphinChanges.changes = {
         },
         senses: [],
         eres: [
-            'Electricity 5', 'Fire 5'
+            { amount: 5, operator: true, types: ['electricity', ''] },
+            { amount: 5, operator: true, types: ['fire', ''] }
         ],
         dv: [
             'acid'
@@ -6343,7 +6371,7 @@ MorphinChanges.changes = {
             1, 7
         ],
         eres: [
-            'Cold 5'
+            { amount: 5, operator: true, types: ['cold', ''] }
         ],
         dv: [
             'sonic'
@@ -6361,13 +6389,13 @@ MorphinChanges.changes = {
             1
         ],
         eres: [
-            'Cold 20'
+            { amount: 20, operator: true, types: ['cold', ''] }
         ],
         dv: [
             'fire'
         ],
         dr: [
-            '2/slashing'
+            { amount: 2, operator: true, types: ['slashing', ''] }
         ]
     },
     'Fungal Nymph': {
@@ -6402,7 +6430,9 @@ MorphinChanges.changes = {
             '10/cold iron or good'
         ],
         eres: [
-            'Acid 10', 'Cold 10', 'Electricity 10'
+            { amount: 10, operator: true, types: ['acid', ''] },
+            { amount: 10, operator: true, types: ['cold', ''] },
+            { amount: 10, operator: true, types: ['electricity', ''] }
         ],
         effect: {
             'Constrict': { note: 'Constrict: Same damage as Tentacle' }
@@ -6420,7 +6450,7 @@ MorphinChanges.changes = {
             1
         ],
         dr: [
-            '5/slashing'
+            { amount: 5, operator: true, types: ['slashing', ''] }
         ]
     },
     'Jack-O\'-Lantern': {
@@ -6436,7 +6466,7 @@ MorphinChanges.changes = {
             1
         ],
         eres: [
-            'Fire 15'
+            { amount: 15, operator: true, types: ['fire', ''] }
         ]
     },
     'Living Topiary': {
@@ -6454,7 +6484,7 @@ MorphinChanges.changes = {
             'fire'
         ],
         dr: [
-            '5/slashing'
+            { amount: 5, operator: true, types: ['slashing', ''] }
         ]
     },
     'Melfesh Monster': {
@@ -6473,7 +6503,8 @@ MorphinChanges.changes = {
             '5 (acid)'
         ],
         eres: [
-            'Electricity 10', 'Fire 10'
+            { amount: 10, operator: true, types: ['electricity', ''] },
+            { amount: 10, operator: true, types: ['fire', ''] }
         ]
     },
     'Mi-Go': {
@@ -6489,7 +6520,9 @@ MorphinChanges.changes = {
             1
         ],
         eres: [
-            'Cold 20', 'Electricity 10', 'Fire 10'
+            { amount: 20, operator: true, types: ['cold', ''] },
+            { amount: 10, operator: true, types: ['electricity', ''] },
+            { amount: 10, operator: true, types: ['fire', ''] }
         ]
     },
     'Myceloid': {
@@ -6504,10 +6537,12 @@ MorphinChanges.changes = {
             1, 7
         ],
         dr: [
-            '5/slashing'
+            { amount: 5, operator: true, types: ['slashing', ''] }
         ],
         eres: [
-            'Cold 10', 'Fire 10', 'Sonic 10'
+            { amount: 10, operator: true, types: ['cold', ''] },
+            { amount: 10, operator: true, types: ['fire', ''] },
+            { amount: 10, operator: true, types: ['sonic', ''] }
         ],
         dv: [
             'electric'
@@ -6538,10 +6573,10 @@ MorphinChanges.changes = {
             1, 7
         ],
         eres: [
-            'Fire 10'
+            { amount: 10, operator: true, types: ['fire', ''] }
         ],
         dr: [
-            '5/slashing'
+            { amount: 5, operator: true, types: ['slashing', ''] }
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) Slam—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d3 Wisdom plus visions; cure 2 consecutive saves.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -6611,13 +6646,14 @@ MorphinChanges.changes = {
             1, 7
         ],
         eres: [
-            'Electricity 20', 'Sonic 20'
+            { amount: 20, operator: true, types: ['electricity', ''] },
+            { amount: 20, operator: true, types: ['sonic', ''] }
         ]
     },
     'Calathgar': {
         size: 'sm',
         attacks: [
-            { name: 'Flower', diceCount: 1, diceSize: 6, count: 1, nonCrit: ['1d6', {values: ['cold'], custom: ''}] },
+            { name: 'Flower', diceCount: 1, diceSize: 6, count: 1, nonCrit: { formula: '1d6', type: {values: ['cold'], custom: ''} } },
             { name: 'Tendril', diceCount: 1, diceSize: 4, count: 1 }
         ],
         speed: {
@@ -6627,7 +6663,7 @@ MorphinChanges.changes = {
             1, 4
         ],
         eres: [
-            'Cold 20'
+            { amount: 20, operator: true, types: ['cold', ''] }
         ],
         dv: [
             'fire'
@@ -6646,7 +6682,8 @@ MorphinChanges.changes = {
             1, 7
         ],
         eres: [
-            'Electricity 20', 'Sonic 20'
+            { amount: 20, operator: true, types: ['electricity', ''] },
+            { amount: 20, operator: true, types: ['sonic', ''] }
         ]
     },
     'Fungus Leshy': {
@@ -6661,7 +6698,8 @@ MorphinChanges.changes = {
             1, 7
         ],
         eres: [
-            'Electricity 20', 'Sonic 20'
+            { amount: 20, operator: true, types: ['electricity', ''] },
+            { amount: 20, operator: true, types: ['sonic', ''] }
         ]
     },
     'Gourd Leshy': {
@@ -6676,7 +6714,8 @@ MorphinChanges.changes = {
             1, 7
         ],
         eres: [
-            'Electricity 20', 'Sonic 20'
+            { amount: 20, operator: true, types: ['electricity', ''] },
+            { amount: 20, operator: true, types: ['sonic', ''] }
         ]
     },
     'Kawa Akago': {
@@ -6692,7 +6731,7 @@ MorphinChanges.changes = {
             1
         ],
         eres: [
-            'Fire 10'
+            { amount: 10, operator: true, types: ['fire', ''] }
         ]
     },
     'Leaf Leshy': {
@@ -6707,7 +6746,8 @@ MorphinChanges.changes = {
             1, 7
         ],
         eres: [
-            'Electricity 20', 'Sonic 20'
+            { amount: 20, operator: true, types: ['electricity', ''] },
+            { amount: 20, operator: true, types: ['sonic', ''] }
         ]
     },
     'Leaf Ray': {
@@ -6732,7 +6772,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 1, diceSize: 4, count: 1 }
         ],
         specialAttack: [
-            { name: 'Constrict', diceCount: 0, diceSize: 0, count: 1, attackType: 'mcman', nonCrit: ['2d4', {values: ['acid'], custom: ''}] }
+            { name: 'Constrict', diceCount: 0, diceSize: 0, count: 1, attackType: 'mcman', nonCrit: { formula: '2d4', type: {values: ['acid'], custom: ''} } }
         ],
         speed: {
             land: 20,
@@ -6742,7 +6782,8 @@ MorphinChanges.changes = {
             1, 7
         ],
         eres: [
-            'Electricity 20', 'Sonic 20'
+            { amount: 20, operator: true, types: ['electricity', ''] },
+            { amount: 20, operator: true, types: ['sonic', ''] }
         ]
     },
     'Lotus Leshy': {
@@ -6757,7 +6798,8 @@ MorphinChanges.changes = {
             1, 7
         ],
         eres: [
-            'Electricity 20', 'Sonic 20'
+            { amount: 20, operator: true, types: ['electricity', ''] },
+            { amount: 20, operator: true, types: ['sonic', ''] }
         ]
     },
     'Mandragora': {
@@ -6789,7 +6831,8 @@ MorphinChanges.changes = {
             1
         ],
         eres: [
-            'Acid 10', 'Cold 20'
+            { amount: 10, operator: true, types: ['acid', ''] },
+            { amount: 20, operator: true, types: ['cold', ''] }
         ]
     },
     'Mire Nettle': {
@@ -6805,7 +6848,7 @@ MorphinChanges.changes = {
             1
         ],
         dr: [
-            '5/slashing or bludgeoning'
+            { amount: 5, operator: true, types: ['slashing', 'bludgeoning'] }
         ]
     },
     'Moldwretch': {
@@ -6842,7 +6885,7 @@ MorphinChanges.changes = {
         },
         senses: [],
         eres: [
-            'Acid 20'
+            { amount: 20, operator: true, types: ['acid', ''] }
         ]
     },
     'Seaweed Leshy': {
@@ -6858,13 +6901,14 @@ MorphinChanges.changes = {
             1, 7
         ],
         eres: [
-            'Electricity 20', 'Sonic 20'
+            { amount: 20, operator: true, types: ['electricity', ''] },
+            { amount: 20, operator: true, types: ['sonic', ''] }
         ]
     },
     'Sunflower Leshy': {
         size: 'sm',
         attacks: [
-            { name: 'Head Butt', diceCount: 1, diceSize: 4, count: 1 }
+            { name: 'HeadButt', diceCount: 1, diceSize: 4, count: 1 }
         ],
         speed: {
             land: 20
@@ -6873,7 +6917,8 @@ MorphinChanges.changes = {
             1, 7
         ],
         eres: [
-            'Electricity 20', 'Sonic 20'
+            { amount: 20, operator: true, types: ['electricity', ''] },
+            { amount: 20, operator: true, types: ['sonic', ''] }
         ]
     },
     'Tsaalgrend': {
@@ -6891,7 +6936,8 @@ MorphinChanges.changes = {
             1, 7
         ],
         eres: [
-            'Acid 5', 'Electricity 5'
+            { amount: 5, operator: true, types: ['acid', ''] },
+            { amount: 5, operator: true, types: ['electricity', ''] }
         ],
         dv: [
             'fire'
@@ -6909,16 +6955,16 @@ MorphinChanges.changes = {
             1, 7
         ],
         dr: [
-            '5/slashing or bludgeoning'
+            { amount: 5, operator: true, types: ['slashing', 'bludgeoning'] }
         ],
         eres: [
-            'Electricity 20'
+            { amount: 20, operator: true, types: ['electricity', ''] }
         ]
     },
     'Xtabay': {
         size: 'sm',
         attacks: [
-            { name: 'Sting', diceCount: 1, diceSize: 3, count: 2, nonCrit: ['1d2', {values: ['acid'], custom: ''}] }
+            { name: 'Sting', diceCount: 1, diceSize: 3, count: 2, nonCrit: { formula: '1d2', type: {values: ['acid'], custom: ''} } }
         ],
         speed: {
             land: 5
@@ -6927,7 +6973,7 @@ MorphinChanges.changes = {
             1
         ],
         eres: [
-            'Acid 20'
+            { amount: 20, operator: true, types: ['acid', ''] }
         ]
     },
 
@@ -6937,8 +6983,8 @@ MorphinChanges.allowedSpecials = {
     beastShape: {
         '1': ['Touch'],
         '2': ['Touch', 'Grab', 'Pounce', 'Trip'],
-        '3': ['Touch', 'Grab', 'Pounce', 'Trip', 'Constrict', 'Ferocity', 'Jet', 'Poison', 'Rake', 'Trample', 'Web'],
-        '4': ['Touch', 'Grab', 'Pounce', 'Trip', 'Constrict', 'Ferocity', 'Jet', 'Poison', 'Rake', 'Trample', 'Web', 'Breath', 'Rend', 'Roar', 'Spikes']
+        '3': ['Touch', 'Grab', 'Pounce', 'Trip', 'Constrict', 'Ferocity', 'Jet90', 'Jet200', 'Jet240', 'Jet260', 'Poison', 'Rake1Claw', 'Rake2Claws', 'Rake4Claws', 'Rake2Talons', 'Trample', 'Web'],
+        '4': ['Touch', 'Grab', 'Pounce', 'Trip', 'Constrict', 'Ferocity', 'Jet90', 'Jet200', 'Jet240', 'Jet260', 'Poison', 'Rake1Claw', 'Rake2Claws', 'Rake4Claws', 'Rake2Talons', 'Trample', 'Web', 'BreathWeapon','Breath', 'BreathWeaponBlack', 'BreathWeaponBlue', 'BreathWeaponGreen', 'BreathWeaponRed', 'BreathWeaponWhite', 'Rend', 'Roar', 'Spikes']
     },
     plantShape: {
         '1': ['Touch', 'Constrict', 'Grab', 'Poison'],
@@ -6963,28 +7009,28 @@ MorphinChanges.buffIcons = {
 };
 
 MorphinChanges.SENSES = Object.freeze({
-    LOWLIGHT: { value: 1, name: 'Low-Light Vision', setting: {ll: {enabled: true}} },
-    DARKVISION10: { value: 2, name: 'Darkvision 10ft', setting: {dv: 10} },
-    DARKVISION20: { value: 3, name: 'Darkvision 20ft', setting: {dv: 20} },
-    DARKVISION30: { value: 4, name: 'Darkvision 30ft', setting: {dv: 30} },
-    DARKVISION40: { value: 5, name: 'Darkvision 40ft', setting: {dv: 40} },
-    DARKVISION50: { value: 6, name: 'Darkvision 50ft', setting: {dv: 50} },
-    DARKVISION60: { value: 7, name: 'Darkvision 60ft', setting: {dv: 60} },
-    DARKVISION70: { value: 8, name: 'Darkvision 70ft', setting: {dv: 70} },
-    DARKVISION80: { value: 9, name: 'Darkvision 80ft', setting: {dv: 80} },
-    DARKVISION90: { value: 10, name: 'Darkvision 90ft', setting: {dv: 90} },
+    LOWLIGHT: { value: 1, name: 'LowLightVision', setting: {ll: {enabled: true}} },
+    DARKVISION10: { value: 2, name: 'Darkvision10', setting: {dv: 10} },
+    DARKVISION20: { value: 3, name: 'Darkvision20', setting: {dv: 20} },
+    DARKVISION30: { value: 4, name: 'Darkvision30', setting: {dv: 30} },
+    DARKVISION40: { value: 5, name: 'Darkvision40', setting: {dv: 40} },
+    DARKVISION50: { value: 6, name: 'Darkvision50', setting: {dv: 50} },
+    DARKVISION60: { value: 7, name: 'Darkvision60', setting: {dv: 60} },
+    DARKVISION70: { value: 8, name: 'Darkvision70', setting: {dv: 70} },
+    DARKVISION80: { value: 9, name: 'Darkvision80', setting: {dv: 80} },
+    DARKVISION90: { value: 10, name: 'Darkvision90', setting: {dv: 90} },
     SCENT: { value: 11, name: 'Scent', setting: {custom: 'Scent'} },
-    BLINDSENSE10: { value: 12, name: 'Blindsense 10ft', setting: {bs: 10} },
-    BLINDSENSE20: { value: 13, name: 'Blindsense 20ft', setting: {bs: 20} },
-    BLINDSENSE30: { value: 14, name: 'Blindsense 30ft', setting: {bs: 30} },
-    BLINDSENSE40: { value: 15, name: 'Blindsense 40ft', setting: {bs: 40} },
-    BLINDSENSE50: { value: 16, name: 'Blindsense 50ft', setting: {bs: 50} },
-    BLINDSENSE60: { value: 17, name: 'Blindsense 60ft', setting: {bs: 60} },
-    TREMORSENSE10: { value: 18, name: 'Tremorsense 10ft', setting: {ts: 10} },
-    TREMORSENSE15: { value: 19, name: 'Tremorsense 15ft', setting: {ts: 15} },
-    TREMORSENSE20: { value: 20, name: 'Tremorsense 20ft', setting: {ts: 20} },
-    TREMORSENSE30: { value: 21, name: 'Tremorsense 30ft', setting: {ts: 30} },
-    TREMORSENSE40: { value: 22, name: 'Tremorsense 40ft', setting: {ts: 40} },
-    TREMORSENSE50: { value: 24, name: 'Tremorsense 50ft', setting: {ts: 50} },
-    TREMORSENSE60: { value: 25, name: 'Tremorsense 60ft', setting: {ts: 60} }
+    BLINDSENSE10: { value: 12, name: 'Blindsense10', setting: {bs: 10} },
+    BLINDSENSE20: { value: 13, name: 'Blindsense20', setting: {bs: 20} },
+    BLINDSENSE30: { value: 14, name: 'Blindsense30', setting: {bs: 30} },
+    BLINDSENSE40: { value: 15, name: 'Blindsense40', setting: {bs: 40} },
+    BLINDSENSE50: { value: 16, name: 'Blindsense50', setting: {bs: 50} },
+    BLINDSENSE60: { value: 17, name: 'Blindsense60', setting: {bs: 60} },
+    TREMORSENSE10: { value: 18, name: 'Tremorsense10', setting: {ts: 10} },
+    TREMORSENSE15: { value: 19, name: 'Tremorsense15', setting: {ts: 15} },
+    TREMORSENSE20: { value: 20, name: 'Tremorsense20', setting: {ts: 20} },
+    TREMORSENSE30: { value: 21, name: 'Tremorsense30', setting: {ts: 30} },
+    TREMORSENSE40: { value: 22, name: 'Tremorsense40', setting: {ts: 40} },
+    TREMORSENSE50: { value: 24, name: 'Tremorsense50', setting: {ts: 50} },
+    TREMORSENSE60: { value: 25, name: 'Tremorsense60', setting: {ts: 60} }
 });

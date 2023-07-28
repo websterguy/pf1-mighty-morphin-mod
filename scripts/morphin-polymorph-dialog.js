@@ -192,7 +192,7 @@ export class MorphinPolymorphDialog extends FormApplication {
 
         // Process DR changes
         let originalDr = { 'system.traits.dr': shifter.system.traits.dr };
-        let drString = this.processDr(this.dr) || '';
+        let drObject = this.processDr(this.dr) || { value: [], custom: '' };
 
         // Process resistances changes
         let originalEres = { 'system.traits.eres': shifter.system.traits.eres };
@@ -234,7 +234,7 @@ export class MorphinPolymorphDialog extends FormApplication {
         let regenString = this.processRegen(this.regen) || '';
 
         originalSenses = mergeObject(originalSenses, mergeObject(originalDi, mergeObject(originalDr, mergeObject(originalRegen, mergeObject(originalEres, originalDv)))));
-        sensesChanges = mergeObject(sensesChanges, mergeObject({ 'system.traits.di': newDi }, mergeObject({ 'system.traits.dr': drString }, mergeObject({ 'system.traits.regen': regenString }, mergeObject({ 'system.traits.eres': eresString }, { 'system.traits.dv': newDv })))));
+        sensesChanges = mergeObject(sensesChanges, mergeObject({ 'system.traits.di': newDi }, mergeObject({ 'system.traits.dr': drObject }, mergeObject({ 'system.traits.regen': regenString }, mergeObject({ 'system.traits.eres': eresString }, { 'system.traits.dv': newDv })))));
 
         // Create special ability features
         if (!!this.special) {
@@ -307,18 +307,42 @@ export class MorphinPolymorphDialog extends FormApplication {
     /**
      * Validates that this specific spell gives the resistances passed
      * 
-     * @param {string} dr The damage resistance from the chosen form
+     * @param {object[]} dr The damage resistance from the chosen form
      * @returns The damage resistance applicable for this spell
      */
-    processDr(dr) { }
+    processDr(dr) {
+        let drObject = { value: [], custom: '' };
+        for (const entry of dr) {
+            if (typeof(entry) === 'string') {
+                if (drObject.custom.length > 0) drObject.custom += '; ';
+                drObject.custom += entry;
+            }
+            else {
+                drObject.value.push(entry);
+            }
+        }
+        return drObject;
+    }
 
     /**
      * Validates that this specific spell gives the resistances passed
      * 
-     * @param {string} eres The energy resistance from the chosen form
+     * @param {object[]} eres The energy resistance from the chosen form
      * @returns The energy resistance applicable for this spell
      */
-    processEres(eres) { }
+    processEres(eres) {        
+        let eresObject = { value: [], custom: '' };
+        for (const entry of eres) {
+            if (typeof(entry) === 'string') {
+                if (eresObject.custom.length > 0) eresObject.custom += '; ';
+                eresObject.custom += entry;
+            }
+            else {
+                eresObject.value.push(entry);
+            }
+        }
+        return eresObject;
+    }
 
     /**
      * Validates that this specific spell gives the vulnerabilities passed

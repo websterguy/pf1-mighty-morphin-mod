@@ -20,7 +20,7 @@ export class MightyMorphinApp {
 
         // Only continue if a single actor and it is not already under any effects provided by this module
         if (!!shifter && !shifter.flags['pf1-mighty-morphin']) {
-            let buff = shifter.items.find(o => o.type === 'buff' && o.name === 'Enlarge Person');
+            let buff = shifter.items.find(o => o.type === 'buff' && o.name === game.i18n.localize('MMMOD.Buffs.EnlargePerson.Name'));
             let shifterSize = shifter.system.traits.size;
 
             // Find the size the number of steps away from current, number of steps provided by changeData
@@ -40,7 +40,7 @@ export class MightyMorphinApp {
                     mergeObject(buffData, duplicate(game.system.template.Item.templates[t]));
                 }
                 delete buffData.templates;
-                buff = await Item.create({ name: 'Enlarge Person', type: 'buff', system: buffData }, { temporary: true });
+                buff = await Item.create({ name: game.i18n.localize('MMMOD.Buffs.EnlargePerson.Name'), type: 'buff', system: buffData }, { temporary: true });
 
                 let strChange = 0;
                 for (let i = 0; i < changeData.changes.length; i++) {
@@ -92,10 +92,10 @@ export class MightyMorphinApp {
             }
 
             // Update the actor size and store flags
-            await shifter.update({ 'system.traits.size': newSize, 'flags.pf1-mighty-morphin': { source: 'Enlarge Person', buffName: 'Enlarge Person', size: shifterSize, armor: armorChangeFlag } });
+            await shifter.update({ 'system.traits.size': newSize, 'flags.pf1-mighty-morphin': { source: game.i18n.localize('MMMOD.Buffs.EnlargePerson.Name'), buffName: game.i18n.localize('MMMOD.Buffs.EnlargePerson.Name'), size: shifterSize, armor: armorChangeFlag } });
         }
         else if (!!shifter?.flags['pf1-mighty-morphin']) {
-            ui.notifications.warn(shifter.name + ' is already under the effects of a change from ' + shifter.flags['pf1-mighty-morphin'].source);
+                ui.notifications.warn(`${shifter.name} ${game.i18n.localize('MMMOD.EffectWarning')} ${shifter.flags['pf1-mighty-morphin'].source}`);
         }
     }
 
@@ -110,7 +110,7 @@ export class MightyMorphinApp {
 
         // Only continue if a single actor and it is not already under any effects provided by this module
         if (!!shifter && !shifter.flags['pf1-mighty-morphin']) {
-            let buff = shifter.items.find(o => o.type === 'buff' && o.name === 'Animal Growth');
+            let buff = shifter.items.find(o => o.type === 'buff' && o.name === game.i18n.localize('MMMOD.Buffs.AnimalGrowth.Name'));
             let shifterSize = shifter.system.traits.size;
 
             // Find the size the number of steps away from current, number of steps provided by changeData
@@ -131,7 +131,7 @@ export class MightyMorphinApp {
                     mergeObject(buffData, duplicate(game.system.template.Item.templates[t]));
                 }
                 delete buffData.templates;
-                buff = await Item.create({ name: 'Animal Growth', type: 'buff', system: buffData }, { temporary: true });
+                buff = await Item.create({ name: game.i18n.localize('MMMOD.Buffs.AnimalGrowth.Name'), type: 'buff', system: buffData }, { temporary: true });
 
                 let strChange = 0;
                 for (let i = 0; i < changeData.changes.length; i++) {
@@ -183,10 +183,10 @@ export class MightyMorphinApp {
             }
 
             // Update the actor size and store flags
-            await shifter.update({ 'system.traits.size': newSize, 'flags.pf1-mighty-morphin': { source: 'Animal Growth', buffName: 'Animal Growth', size: shifterSize, armor: armorChangeFlag } });
+            await shifter.update({ 'system.traits.size': newSize, 'flags.pf1-mighty-morphin': { source: game.i18n.localize('MMMOD.Buffs.AnimalGrowth.Name'), buffName: game.i18n.localize('MMMOD.Buffs.AnimalGrowth.Name'), size: shifterSize, armor: armorChangeFlag } });
         }
         else if (!!shifter?.flags['pf1-mighty-morphin']) {
-            ui.notifications.warn(shifter.name + ' is already under the effects of a change from ' + shifter.flags['pf1-mighty-morphin'].source);
+                ui.notifications.warn(`${shifter.name} ${game.i18n.localize('MMMOD.EffectWarning')} ${shifter.flags['pf1-mighty-morphin'].source}`);
         }
     }
 
@@ -201,7 +201,7 @@ export class MightyMorphinApp {
 
         // Only continue if a single actor and it is not already under any effects provided by this module
         if (!!shifter && !shifter.flags['pf1-mighty-morphin']) {
-            let buff = shifter.items.find(o => o.type === 'buff' && o.name === 'Legendary Proportions');
+            let buff = shifter.items.find(o => o.type === 'buff' && o.name === game.i18n.localize('MMMOD.Buffs.LegendaryProportions.Name'));
             let shifterSize = shifter.system.traits.size;
             
             let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
@@ -220,7 +220,7 @@ export class MightyMorphinApp {
                     mergeObject(buffData, duplicate(game.system.template.Item.templates[t]));
                 }
                 delete buffData.templates;
-                buff = await Item.create({ name: 'Legendary Proportions', type: 'buff', system: buffData }, { temporary: true });
+                buff = await Item.create({ name: game.i18n.localize('MMMOD.Buffs.LegendaryProportions.Name'), type: 'buff', system: buffData }, { temporary: true });
                 
                 let strChange = 0;
                 for (let i = 0; i < changeData.changes.length; i++) {
@@ -275,10 +275,10 @@ export class MightyMorphinApp {
             let newDR = (!!oldDR ? oldDR + '; ' : '') + '10/adamantine';
 
             // Update the actor size and store flags
-            await shifter.update({ 'system.traits.size': newSize, 'system.traits.dr': newDR, 'flags.pf1-mighty-morphin': { source: 'Legendary Proportions', buffName: 'Legendary Proportions', size: shifterSize, armor: armorChangeFlag, data: { traits: { dr: oldDR } } } });
+            await shifter.update({ 'system.traits.size': newSize, 'system.traits.dr': newDR, 'flags.pf1-mighty-morphin': { source: game.i18n.localize('MMMOD.Buffs.LegendaryProportions.Name'), buffName: game.i18n.localize('MMMOD.Buffs.LegendaryProportions.Name'), size: shifterSize, armor: armorChangeFlag, data: { traits: { dr: oldDR } } } });
         }
         else if (!!shifter?.flags['pf1-mighty-morphin']) {
-            ui.notifications.warn(shifter.name + ' is already under the effects of a change from ' + shifter.flags['pf1-mighty-morphin'].source);
+                ui.notifications.warn(`${shifter.name} ${game.i18n.localize('MMMOD.EffectWarning')} ${shifter.flags['pf1-mighty-morphin'].source}`);
         }
     }
 
@@ -295,7 +295,7 @@ export class MightyMorphinApp {
 
         // Only continue if a single actor and it is not already under any effects provided by this module
         if (!!shifter && !shifter.flags['pf1-mighty-morphin']) {
-            let buff = shifter.items.find(o => o.type === 'buff' && o.name === 'Frightful Aspect');
+            let buff = shifter.items.find(o => o.type === 'buff' && o.name === game.i18n.localize('MMMOD.Buffs.FrightfulAspect.Name'));
             let shifterSize = shifter.system.traits.size;
 
             let newSize = changeData.size;
@@ -308,7 +308,7 @@ export class MightyMorphinApp {
 
             // Get caster level from user for effect scaling
             let casterLevel = cl === 0 ? await Dialog.prompt({
-                content: '<label>Input Caster Level</label><input type="number">',
+                content: `<label>${game.i18n.localize('MMMOD.InputCasterLevel')}</label><input type="number">`,
                 callback: (html) => html.find('input').val()
             }) : cl;
 
@@ -320,7 +320,7 @@ export class MightyMorphinApp {
                     mergeObject(buffData, duplicate(game.system.template.Item.templates[t]));
                 }
                 delete buffData.templates;
-                buff = await Item.create({ name: 'Frightful Aspect', type: 'buff', system: buffData }, { temporary: true });
+                buff = await Item.create({ name: game.i18n.localize('MMMOD.Buffs.FrightfulAspect.Name'), type: 'buff', system: buffData }, { temporary: true });
                 
                 let strChange = 0;
                 for (let i = 0; i < changeData.changes.length; i++) {
@@ -381,10 +381,10 @@ export class MightyMorphinApp {
             let newSR = shifter.system.attributes.sr.total > faSR ? oldSR : faSR;
 
             // Update the actor data and store flags
-            await shifter.update({ 'system.traits.size': newSize, 'system.traits.dr': newDR, 'system.attributes.sr.formula': `${newSR}`, 'flags.pf1-mighty-morphin': { source: 'Frightful Aspect', buffName: 'Frightful Aspect', size: shifterSize, armor: armorChangeFlag, data: { traits: { dr: oldDR }, attributes: { sr: { formula: oldSR } } } } });
+            await shifter.update({ 'system.traits.size': newSize, 'system.traits.dr': newDR, 'system.attributes.sr.formula': `${newSR}`, 'flags.pf1-mighty-morphin': { source: game.i18n.localize('MMMOD.Buffs.FrightfulAspect.Name'), buffName: game.i18n.localize('MMMOD.Buffs.FrightfulAspect.Name'), size: shifterSize, armor: armorChangeFlag, data: { traits: { dr: oldDR }, attributes: { sr: { formula: oldSR } } } } });
         }
         else if (!!shifter?.flags['pf1-mighty-morphin']) {
-            ui.notifications.warn(shifter.name + ' is already under the effects of a change from ' + shifter.flags['pf1-mighty-morphin'].source);
+                ui.notifications.warn(`${shifter.name} ${game.i18n.localize('MMMOD.EffectWarning')} ${shifter.flags['pf1-mighty-morphin'].source}`);
         }
     }
 
@@ -402,7 +402,7 @@ export class MightyMorphinApp {
     
             // Only continue if a single actor and it is not already under any effects provided by this module
             if (!!shifter && !shifter.flags['pf1-mighty-morphin']) {
-                let buff = shifter.items.find(o => o.type === 'buff' && o.name === 'Righteous Might');
+                let buff = shifter.items.find(o => o.type === 'buff' && o.name === game.i18n.localize('MMMOD.Buffs.RighteousMight.Name'));
                 let shifterSize = shifter.system.traits.size;
     
                 let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
@@ -415,7 +415,7 @@ export class MightyMorphinApp {
     
                 // Get caster level from user for effect scaling
                 let casterLevel = cl === 0 ? await Dialog.prompt({
-                    content: '<label>Input Caster Level</label><input type="number">',
+                    content: `<label>${game.i18n.localize('MMMOD.InputCasterLevel')}</label><input type="number">`,
                     callback: (html) => html.find('input').val()
                 }) : cl;
     
@@ -427,7 +427,7 @@ export class MightyMorphinApp {
                         mergeObject(buffData, duplicate(game.system.template.Item.templates[t]));
                     }
                     delete buffData.templates;
-                    buff = await Item.create({ name: 'Righteous Might', type: 'buff', system: buffData }, { temporary: true });
+                    buff = await Item.create({ name: game.i18n.localize('MMMOD.Buffs.RighteousMight.Name'), type: 'buff', system: buffData }, { temporary: true });
                     
                     let strChange = 0;
                     for (let i = 0; i < changeData.changes.length; i++) {
@@ -460,7 +460,6 @@ export class MightyMorphinApp {
                     buff.update({ 'system.duration': durationData, 'system.changes': newChanges, 'system.active': true });
                 }
     
-    
                 let armorChangeFlag = [];
                 let armorToChange = [];
                 // Double armor and shield AC when moving from tiny or smaller (tiny and below armor AC is half normal)
@@ -484,10 +483,10 @@ export class MightyMorphinApp {
 
     
                 // Update the actor data and store flags
-                await shifter.update({ 'system.traits.size': newSize, 'system.traits.dr': newDR, 'flags.pf1-mighty-morphin': { source: 'Righteous Might', buffName: 'Righteous Might', size: shifterSize, armor: armorChangeFlag, data: { traits: { dr: oldDR } } } });
+                await shifter.update({ 'system.traits.size': newSize, 'system.traits.dr': newDR, 'flags.pf1-mighty-morphin': { source: game.i18n.localize('MMMOD.Buffs.RighteousMight.Name'), buffName: game.i18n.localize('MMMOD.Buffs.RighteousMight.Name'), size: shifterSize, armor: armorChangeFlag, data: { traits: { dr: oldDR } } } });
             }
             else if (!!shifter?.flags['pf1-mighty-morphin']) {
-                ui.notifications.warn(shifter.name + ' is already under the effects of a change from ' + shifter.flags['pf1-mighty-morphin'].source);
+                ui.notifications.warn(`${shifter.name} ${game.i18n.localize('MMMOD.EffectWarning')} ${shifter.flags['pf1-mighty-morphin'].source}`);
             }
         }
 
@@ -502,7 +501,7 @@ export class MightyMorphinApp {
 
         // Only continue if a single actor and it is not already under any effects provided by this module
         if (!!shifter && !shifter.flags['pf1-mighty-morphin']) {
-            let buff = shifter.items.find(o => o.type === 'buff' && o.name === 'Reduce Person');
+            let buff = shifter.items.find(o => o.type === 'buff' && o.name === game.i18n.localize('MMMOD.Buffs.ReducePerson.Name'));
             let shifterSize = shifter.system.traits.size;
 
             // Find the size the number of steps away from current, number of steps provided by changeData
@@ -522,7 +521,7 @@ export class MightyMorphinApp {
                     mergeObject(buffData, duplicate(game.system.template.Item.templates[t]));
                 }
                 delete buffData.templates;
-                buff = await Item.create({ name: 'Reduce Person', type: 'buff', system: buffData }, { temporary: true });
+                buff = await Item.create({ name: game.i18n.localize('MMMOD.Buffs.ReducePerson.Name'), type: 'buff', system: buffData }, { temporary: true });
                 
                 let strChange = 0;
                 for (let i = 0; i < changeData.changes.length; i++) {
@@ -574,10 +573,10 @@ export class MightyMorphinApp {
             }
 
             // Update the actor size and store flags
-            await shifter.update({ 'system.traits.size': newSize, 'flags.pf1-mighty-morphin': { source: 'Reduce Person', buffName: 'Reduce Person', size: shifterSize, armor: armorChangeFlag } });
+            await shifter.update({ 'system.traits.size': newSize, 'flags.pf1-mighty-morphin': { source: game.i18n.localize('MMMOD.Buffs.ReducePerson.Name'), buffName: game.i18n.localize('MMMOD.Buffs.ReducePerson.Name'), size: shifterSize, armor: armorChangeFlag } });
         }
         else if (!!shifter?.flags['pf1-mighty-morphin']) {
-            ui.notifications.warn(shifter.name + ' is already under the effects of a change from ' + shifter.flags['pf1-mighty-morphin'].source);
+            ui.notifications.warn(`${shifter.name} ${game.i18n.localize('MMMOD.EffectWarning')} ${shifter.flags['pf1-mighty-morphin'].source}`);
         }
     }
 
@@ -593,7 +592,7 @@ export class MightyMorphinApp {
             let changes = duplicate(shifter.flags['pf1-mighty-morphin']);
 
             // Undo listed buffs
-            if (['Enlarge Person', 'Reduce Person', 'Legendary Proportions', 'Frightful Aspect', 'Animal Growth', 'Righteous Might'].includes(changes.source)) {
+            if ([game.i18n.localize('MMMOD.Buffs.EnlargePerson.Name'), game.i18n.localize('MMMOD.Buffs.ReducePerson.Name'), game.i18n.localize('MMMOD.Buffs.LegendaryProportions.Name'), game.i18n.localize('MMMOD.Buffs.FrightfulAspect.Name'), game.i18n.localize('MMMOD.Buffs.AnimalGrowth.Name'), game.i18n.localize('MMMOD.Buffs.RighteousMight.Name')].includes(changes.source)) {
                 // Revert all armor changes that exist
                  if (!!shifter.flags['pf1-mighty-morphin'].armor.length) {
                     let armorFlag = shifter.flags['pf1-mighty-morphin'].armor;
@@ -617,7 +616,7 @@ export class MightyMorphinApp {
                 await shifter.items.find(o => o.type === 'buff' && o.name === changes.buffName).update({ 'system.active': false });
             }
             // Undo listed buffs
-            else if (['Beast Shape', 'Elemental Body', 'Plant Shape', 'Wild Shape'].includes(changes.source)) {
+            else if ([game.i18n.localize('MMMOD.Buffs.BeastShape.Name'), game.i18n.localize('MMMOD.Buffs.PlantShape.Name'), game.i18n.localize('MMMOD.Buffs.ElementalBody.Name'), game.i18n.localize('MMMOD.Buffs.WildShape.Name')].includes(changes.source)) {
                 // Reverse any changes to armor
                 if (!!shifter.flags['pf1-mighty-morphin'].armor.length) {
                     let armorFlag = shifter.flags['pf1-mighty-morphin'].armor;
@@ -655,7 +654,7 @@ export class MightyMorphinApp {
             }
         }
         else if (!!shifter && !shifter.flags['pf1-mighty-morphin']) {
-            ui.notifications.warn(shifter.name + ' is not under any change effects');
+            ui.notifications.warn(`${shifter.name} ${game.i18n.localize('MMMOD.NoEffectWarning')}`);
         }
     }
 
@@ -695,11 +694,11 @@ export class MightyMorphinApp {
     static getSingleActor() {
         let actors = MightyMorphinApp.getActors();
         if (!actors.length) {
-            ui.notifications.warn('No token selected');
+            ui.notifications.warn(game.i18n.localize('MMMOD.NoTokenWarning'));
             return null;
         }
         else if (actors.length > 1) {
-            ui.notifications.warn('Too many actors selected. Choose one token.');
+            ui.notifications.warn(game.i18n.localize('MMMOD.ManyTokensWarning'));
             return null;
         }
         return actors[0];
@@ -772,13 +771,13 @@ export class MightyMorphinApp {
         delete attackData.system.templates;
 
         // Begin filling in data
-        attackData['name'] = attack.name + (!!source ? ` (${source})` : ''); // Add source to the attack name if there is a source
+        attackData['name'] = game.i18n.localize('MMMOD.Attacks.' + attack.name) + (!!source ? ` (${source})` : ''); // Add source to the attack name if there is a source
         attackData['type'] = 'attack';
 
         // If attack is labeled as a a primary attack or that attack type is usually primary, or it is the only attack, it is primary
         attackData['system']['enh'] = attack.enh || null;
         attackData['system']['primaryAttack'] = ((attack.primaryAttack || (!!MightyMorphinApp.naturalAttacks[attack.name] && MightyMorphinApp.naturalAttacks[attack.name].primaryAttack)) || onlyAttack);
-        attackData['system']['attackType'] = type; // weapon, natural, misc, class ability, etc
+        attackData['system']['subType'] = type; // weapon, natural, misc, class ability, etc
 
         let subAction = globalThis.pf1.components.ItemAction.defaultData;
 
@@ -795,7 +794,7 @@ export class MightyMorphinApp {
         subAction['uses']['per'] = attack.charges ? 'day' : '';
         subAction['uses']['maxFormula'] = '' + (attack.charges ?? '');
         subAction['uses']['value'] = attack.charges || 0;
-        subAction['name'] = attack.name;
+        subAction['name'] = game.i18n.localize('MMMOD.Attacks.' + attack.name);
         subAction['measureTemplate']['type'] = attack.templateShape || '';
         subAction['measureTemplate']['size'] = attack.templateSize || '';
         subAction['spellArea'] = attack.area || '';
@@ -840,7 +839,7 @@ export class MightyMorphinApp {
 
         // Set attack ability to dex if weapon finesse feat and dex >= str or it's a ranged attack. Otherwise it's the actor's normal melee stat or strength
         if (!!attack.attackAbility) subAction['ability']['attack'] = attack.attackAbility;
-        else if ((!!actorData.items.find(o => o.type === 'feat' && o.name === 'Weapon Finesse') && actorData.system.abilities.dex.total >= actorData.system.abilities.str.total) || attack.attackType === 'rwak') subAction['ability']['attack'] = 'dex';
+        else if ((!!actorData.items.find(o => o.type === 'feat' && o.name === game.i18n.localize('MMMOD.WeaponFinesse')) && actorData.system.abilities.dex.total >= actorData.system.abilities.str.total) || attack.attackType === 'rwak') subAction['ability']['attack'] = 'dex';
         else subAction['ability']['attack'] = getProperty(actorData, 'system.attributes.attack.meleeAbility') || 'str';
 
         // ability damage is strength unless it's a ranged attack
@@ -852,7 +851,7 @@ export class MightyMorphinApp {
 
         // Create attack sizeRoll with the passed dice stats, the actor's size, and the attack type's damage type (or '' if attack name not in naturalAttacks)
         if (attack.diceSize !== 0) {
-            subAction['damage']['parts'] = [[`sizeRoll(${attack.diceCount}, ${attack.diceSize}, @size, ${MightyMorphinApp.sizes.indexOf(formSize)})`, {values: ((attack.type || MightyMorphinApp.naturalAttacks[attack.name]?.type) || []), custom: ''}]];
+            subAction['damage']['parts'] = [{ formula: `sizeRoll(${attack.diceCount}, ${attack.diceSize}, @size, ${MightyMorphinApp.sizes.indexOf(formSize)})`, type: {values: ((attack.type || MightyMorphinApp.naturalAttacks[attack.name]?.type) || []), custom: ''} }];
 
             // Create non-crit bonus damage
             if (attack.nonCrit) subAction['damage']['nonCritParts'] = [attack.nonCrit];
@@ -880,7 +879,7 @@ export class MightyMorphinApp {
      * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
      * @param {string} [source='Beast Shape'] The source of the beast shape spell effect
      */
-    static async beastShape({level = 1, durationLevel = 0, source = 'Beast Shape'} = {}) {
+    static async beastShape({level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.BeastShape.Name')} = {}) {
         let shifter = MightyMorphinApp.getSingleActor();
 
         // Create beast shape form if a single actor chosen not already under effects from this mod
@@ -888,7 +887,7 @@ export class MightyMorphinApp {
             let dia = new MorphinBeastShape(level, durationLevel, shifter.id, source).render(true);
         }
         else if (!!shifter?.flags['pf1-mighty-morphin']) {
-            ui.notifications.warn(shifter.name + ' is already under the effects of a change from ' + shifter.flags['pf1-mighty-morphin'].source);
+            ui.notifications.warn(`${shifter.name} ${game.i18n.localize('MMMOD.EffectWarning')} ${shifter.flags['pf1-mighty-morphin'].source}`);
         }
 
     }
@@ -900,7 +899,7 @@ export class MightyMorphinApp {
      * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
      * @param {string} [source='Elemental Body'] The source of the elemental body spell effect
      */
-    static async elementalBody({level = 1, durationLevel = 0, source = 'Elemental Body'} = {}) {
+    static async elementalBody({level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.ElementalBody.Name')} = {}) {
         let shifter = MightyMorphinApp.getSingleActor();
 
         // Create elemental body form if a single actor chosen not already under effects from this mod
@@ -908,7 +907,7 @@ export class MightyMorphinApp {
             let dia = new MorphinElementalBody(level, durationLevel, shifter.id, source).render(true);
         }
         else if (!!shifter?.flags['pf1-mighty-morphin']) {
-            ui.notifications.warn(shifter.name + ' is already under the effects of a change from ' + shifter.flags['pf1-mighty-morphin'].source);
+                ui.notifications.warn(`${shifter.name} ${game.i18n.localize('MMMOD.EffectWarning')} ${shifter.flags['pf1-mighty-morphin'].source}`);
         }
     }
 
@@ -919,7 +918,7 @@ export class MightyMorphinApp {
      * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
      * @param {string} [source='Plant Shape'] The source of the splant shape spell effect
      */
-    static async plantShape({level = 1, durationLevel = 0, source = 'Plant Shape'} = {}) {
+    static async plantShape({level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.PlantShape.Name')} = {}) {
         let shifter = MightyMorphinApp.getSingleActor();
 
         // Create plant shape form if a single actor chosen not already under effects from this mod
@@ -927,7 +926,7 @@ export class MightyMorphinApp {
             let dia = new MorphinPlantShape(level, durationLevel, shifter.id, source).render(true);
         }
         else if (!!shifter?.flags['pf1-mighty-morphin']) {
-            ui.notifications.warn(shifter.name + ' is already under the effects of a change from ' + shifter.flags['pf1-mighty-morphin'].source);
+            ui.notifications.warn(`${shifter.name} ${game.i18n.localize('MMMOD.EffectWarning')} ${shifter.flags['pf1-mighty-morphin'].source}`);
         }
     }
 
@@ -968,8 +967,8 @@ export class MightyMorphinApp {
             }
         }
         catch (e) {
-            console.error('Mighty Morphin Mod: ', e);
-            console.warn('Mighty Morphin Mod: To enable token image switching, player must have Foundry permission to "Use File Browser"');
+            console.error(game.i18n.localize('MMMOD.Name') + ': ', e);
+            console.warn(game.i18n.localize('MMMOD.Name') + ': ' + game.i18n.localize('MMMOD.FilePermissionWarning'));
         }
         
         return foundImage;
@@ -988,7 +987,7 @@ MightyMorphinApp.naturalAttacks = {
     'Tentacle': { img: 'systems/pf1/icons/items/inventory/monster-octopus.jpg', type: ['bludgeoning'], primaryAttack: false },
     'Wing': { img: 'systems/pf1/icons/skills/blue_02.jpg', type: ['bludgeoning'], primaryAttack: false },
     'Pincers': { img: 'systems/pf1/icons/items/inventory/monster-claw.jpg', type: ['bludgeoning'], primaryAttack: false },
-    'Tail Slap': { img: 'systems/pf1/icons/items/inventory/monster-tail.jpg', type: ['bludgeoning'], primaryAttack: false },
+    'TailSlap': { img: 'systems/pf1/icons/items/inventory/monster-tail.jpg', type: ['bludgeoning'], primaryAttack: false },
     'Slam': { img: 'systems/pf1/icons/items/inventory/monster-forearm.jpg', type: ['bludgeoning'], primaryAttack: true },
     'Sting': { img: 'systems/pf1/icons/items/inventory/monster-scorpion.jpg', type: ['piercing'], primaryAttack: true },
     'Talons': { img: 'systems/pf1/icons/items/inventory/monster-talon-green.jpg', type: ['slashing'], primaryAttack: true }

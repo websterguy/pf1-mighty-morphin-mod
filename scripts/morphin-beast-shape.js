@@ -106,7 +106,7 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
         // create options for the selected type, set medium as the default size
         let newOptions = this.sizes[event.target.value].map(o => { return o === 'med' ? { label: o, size: CONFIG.PF1.actorSizes[o], default: true } : { label: o, size: CONFIG.PF1.actorSizes[o] }; });
 
-        let newOptionsHtml = `<legend>Select ${event.target.value === 'animal' ? 'Animal' : 'Magical Beast'} Size</legend>`;
+        let newOptionsHtml = `<legend>${game.i18n.localize('MMMOD.UI.Select' + (event.target.value === 'animal' ? 'Animal' : 'MagicalBeast') + 'Size')}</legend>`;
 
         // Create the radio buttons html
         for (let i = 0; i < newOptions.length; i++) {
@@ -151,11 +151,11 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
 
             if (!!change.target && change.target === 'ability') { // stat change
                 if (data.scoreChanges.length > 0) data.scoreChanges += ', ';
-                data.scoreChanges += `${change.subTarget.charAt(0).toUpperCase()}${change.subTarget.slice(1)} ${(change.value > 0 ? '+' : '')}${change.value}`;
+                data.scoreChanges += `${game.i18n.localize('MMMOD.UI.' + change.subTarget.charAt(0).toUpperCase() + change.subTarget.slice(1))} ${(change.value > 0 ? '+' : '')}${change.value}`;
             }
             else if (!change.target && change.subTarget == 'nac') { // natural AC change
                 if (data.scoreChanges.length > 0) data.scoreChanges += ', ';
-                data.scoreChanges += `Natural AC ${(change.value > 0 ? '+' : '')}${change.value}`;
+                data.scoreChanges += `${game.i18n.localize('MMMOD.UI.NaturalAC')} ${(change.value > 0 ? '+' : '')}${change.value}`;
             }
         }
 
@@ -231,7 +231,7 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
             }
 
             if (data.speedChanges.length > 1) data.speedChanges += ', ';
-            data.speedChanges += `${speedName} ${this.speeds[speedName]} ft`;
+            data.speedChanges += `${game.i18n.localize('MMMOD.UI.' + speedName)} ${this.speeds[speedName]} ft`;
         }
 
         // Process the natural attacks
@@ -246,14 +246,14 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
                     const specialName = attack.special[j];
                     if (MorphinChanges.allowedSpecials[this.spell][this.level].includes(specialName)) { // ignore specials the spell doesn't allow
                         if (attackSpecial.length > 0) attackSpecial += ', ';
-                        attackSpecial += specialName;
+                        attackSpecial += game.i18n.localize('MMMOD.Attacks.' + specialName);
                     }
                 }
             }
             let damageDice = attack.diceSize === 0 ? '' : `${attack.diceCount}d${attack.diceSize}`;
-            if (attack.nonCrit) damageDice += (!!damageDice.length ? ' plus ' : '') + `${attack.nonCrit[0]} ${!!attack.nonCrit[1].values.toString() ? attack.nonCrit[1].values.toString() : attack.nonCrit[1].custom}`;
+            if (attack.nonCrit) damageDice += (!!damageDice.length ? ` ${game.i18n.localize('MMMOD.UI.Plus')} ` : '') + `${attack.nonCrit.formula} ${!!attack.nonCrit.type.values.toString() ? attack.nonCrit.type.values.toString() : attack.nonCrit.type.custom}`;
             if (data.attacks.length > 0) data.attacks += ', ';
-            data.attacks += `${attack.count > 1 ? attack.count + ' ' : ''}${attack.name} (${!!damageDice ? damageDice : '0'}${!!attackSpecial ? ' plus ' + attackSpecial : ''})`;
+            data.attacks += `${attack.count > 1 ? attack.count + ' ' : ''}${game.i18n.localize('MMMOD.Attacks.' + attack.name)} (${!!damageDice ? damageDice : '0'}${!!attackSpecial ? ` ${game.i18n.localize('MMMOD.UI.Plus')} ` + attackSpecial : ''})`;
         }
 
         // Process special attacks
@@ -277,21 +277,21 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
                         const specialName = specialAttack.special[j];
                         if (MorphinChanges.allowedSpecials[this.spell][this.level].includes(specialName)) {
                             if (attackSpecial.length > 0) attackSpecial += ', ';
-                            attackSpecial += specialName;
+                            attackSpecial += game.i18n.localize('MMMOD.Attacks.' + specialName);
                         }
                     }
                 }
                 let damageDice = specialAttack.diceSize === 0 ? '' : `${specialAttack.diceCount}d${specialAttack.diceSize}`;
-                if (specialAttack.nonCrit) damageDice += (!!damageDice.length ? ' plus ' : '') + `${specialAttack.nonCrit[0]} ${!!specialAttack.nonCrit[1].values.toString() ? specialAttack.nonCrit[1].values.toString() : specialAttack.nonCrit[1].custom}`;
+                if (specialAttack.nonCrit) damageDice += (!!damageDice.length ? ` ${game.i18n.localize('MMMOD.UI.Plus')} ` : '') + `${specialAttack.nonCrit.formula} ${!!specialAttack.nonCrit.type.values.toString() ? specialAttack.nonCrit.type.values.toString() : specialAttack.nonCrit.type.custom}`;
                 if (data.specialAttacks.length > 0) data.specialAttacks += ', ';
-                data.specialAttacks += `${specialAttack.count > 1 ? specialAttack.count + ' ' : ''}${specialAttack.name} (${!!damageDice ? damageDice : '0'}${!!attackSpecial ? ' plus ' + attackSpecial : ''})`;
+                data.specialAttacks += `${specialAttack.count > 1 ? specialAttack.count + ' ' : ''}${game.i18n.localize('MMMOD.Attacks.' + specialAttack.name)} (${!!damageDice ? damageDice : '0'}${!!attackSpecial ? ` ${game.i18n.localize('MMMOD.UI.Plus')} ` + attackSpecial : ''})`;
             }
         }
-        if (!data.specialAttacks.length) data.specialAttacks = 'None';
+        if (!data.specialAttacks.length) data.specialAttacks = game.i18n.localize('MMMOD.UI.None');
 
         // Process changes in senses limited by the spell level
         this.senses = duplicate(MorphinChanges.changes[this.chosenForm.name].senses);
-        data.senses = !!this.senses.length ? '' : 'None';
+        data.senses = !!this.senses.length ? '' : game.i18n.localize('MMMOD.UI.None');
         for (let i = 0; i < this.senses.length; i++) {
             const senseEnumValue = this.senses[i];
             // limit darkvision above 60 when not beast shape iv
@@ -320,13 +320,13 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
 
             if (!!senseEnumValue) {
                 if (data.senses.length > 0) data.senses += ', ';
-                data.senses += `${MorphinChanges.SENSES[Object.keys(MorphinChanges.SENSES)[senseEnumValue - 1]].name}`; // enum value 1 = SENSES[0] = LOWLIGHT
+                data.senses += `${game.i18n.localize('MMMOD.Senses.' + MorphinChanges.SENSES[Object.keys(MorphinChanges.SENSES)[senseEnumValue - 1]].name)}`; // enum value 1 = SENSES[0] = LOWLIGHT
             }
         }
-        if (!data.senses.length) data.senses = 'None';
+        if (!data.senses.length) data.senses = game.i18n.localize('MMMOD.UI.None');
 
         // Process special qualities
-        data.special = 'None';
+        data.special = game.i18n.localize('MMMOD.UI.None');
         this.special = !!MorphinChanges.changes[this.chosenForm.name].special ? duplicate(MorphinChanges.changes[this.chosenForm.name].special) : [];
         for (let i = 0; i < this.special.length; i++) {
             const specialName = this.special[i];
@@ -337,44 +337,56 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
                 continue;
             }
             else {
-                if (data.special === 'None') data.special = '';
+                if (data.special === game.i18n.localize('MMMOD.UI.None')) data.special = '';
                 if (data.special.length > 0) data.special += ', ';
-                data.special += specialName;
+                data.special += game.i18n.localize('MMMOD.Attacks.' + specialName);
             }
         }
 
         // Process energy resistances and vulnerabilities if beast shape iv
         if (this.level === 4) {
-            data.eres = MorphinChanges.changes[this.chosenForm.name].eres?.join(', ') || 'None';
-            this.eres = MorphinChanges.changes[this.chosenForm.name].eres?.join('; ') || '';
-            data.dv = MorphinChanges.changes[this.chosenForm.name].dv?.join(', ') || 'None';
+            const eres = MorphinChanges.changes[this.chosenForm.name].eres || [];
+            data.eres = '';
+            for (const entry of eres) {
+                if (data.eres.length > 0) data.eres += ', ';
+                if (typeof(entry) === 'string') {
+                    data.eres += entry;
+                }
+                else {
+                    data.eres += entry.types[0].charAt(0).toUpperCase() + entry.types[0].slice(1) + ' ' + entry.amount;
+                }
+            }
+            if (data.eres.length === 0) data.eres = game.i18n.localize('MMMOD.UI.None');
+            this.eres = eres;
+
+            data.dv = MorphinChanges.changes[this.chosenForm.name].dv?.join(', ') || game.i18n.localize('MMMOD.UI.None');
             this.dv = MorphinChanges.changes[this.chosenForm.name].dv || [];
         }
 
         // Build the html preview
-        let newHtml = `${!!data.polymorphBase ? '<p><span class="previewLabel">Base Size Adjust: </span><span id="polymorphScores">' + data.polymorphBase + '</span></p>' : ''}
-            <p><span class="previewLabel">Ability Scores: </span><span id="abilityScores">${data.scoreChanges}</span></p>
-            <p><span class="previewLabel">Attacks: </span><span id="attacks">${data.attacks}</span></p>
-            <p><span class="previewLabel">Special Attacks: </span><span id="specialAttacks">${data.specialAttacks}</span></p>
-            <p><span class="previewLabel">Speeds: </span><span id="speeds">${data.speedChanges}</span></p>
-            <p><span class="previewLabel">Senses: </span><span id="senses">${data.senses}</span></p>
-            <p><span class="previewLabel">Special Abilities: </span><span id="specials">${data.special}</span></p>
-            ${this.level === 4 ? '<p><span class="previewLabel">Energy Resistances: </span><span id="eres">' + data.eres + '</span></p>' +
-                '<p><span class="previewLabel">Vulnerabilities: </span><span id="dv">' + data.dv + '</span></p>' : ''}`;
+        let newHtml = `${!!data.polymorphBase ? '<p><span class="previewLabel">' + game.i18n.localize('MMMOD.UI.BaseSizeAdjust') + ': </span><span id="polymorphScores">' + data.polymorphBase + '</span></p>' : ''}
+            <p><span class="previewLabel">${game.i18n.localize('MMMOD.UI.AbilityScores')}: </span><span id="abilityScores">${data.scoreChanges}</span></p>
+            <p><span class="previewLabel">${game.i18n.localize('MMMOD.UI.Attacks')}: </span><span id="attacks">${data.attacks}</span></p>
+            <p><span class="previewLabel">${game.i18n.localize('MMMOD.UI.SpecialAttacks')}: </span><span id="specialAttacks">${data.specialAttacks}</span></p>
+            <p><span class="previewLabel">${game.i18n.localize('MMMOD.UI.Speeds')}: </span><span id="speeds">${data.speedChanges}</span></p>
+            <p><span class="previewLabel">${game.i18n.localize('MMMOD.UI.Senses')}: </span><span id="senses">${data.senses}</span></p>
+            <p><span class="previewLabel">${game.i18n.localize('MMMOD.UI.SpecialAbilities')}: </span><span id="specials">${data.special}</span></p>
+            ${this.level === 4 ? '<p><span class="previewLabel">' + game.i18n.localize('MMMOD.UI.EnergyResistances') + ': </span><span id="eres">' + data.eres + '</span></p>' +
+                '<p><span class="previewLabel">' + game.i18n.localize('MMMOD.UI.Vulnerabiliites') + ': </span><span id="dv">' + data.dv + '</span></p>' : ''}`;
 
         return newHtml;
     }
 
     /** @inheritdoc */
-    processEres(dr) {
-        return '';
+    processDr(dr) {
+        return { value: [], custom: '' };
     }
 
     /** @inheritdoc */
     processEres(eres) {
         // Eres only on beast shape iv
-        if (this.level === 4) return eres;
-        return '';
+        if (this.level === 4) return super.processEres(eres);
+        return { value: [], custom: '' };
     }
 
     /** @inheritdoc */

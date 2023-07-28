@@ -158,7 +158,7 @@ export class MorphinPlantShape extends MorphinPolymorphDialog {
             }
 
             let damageDice = element.diceSize === 0 ? '' : `${element.diceCount}d${element.diceSize}`;
-            if (element.nonCrit) damageDice += (!!damageDice.length ? ' plus ' : '') + `${element.nonCrit[0]} ${!!element.nonCrit[1].values.toString() ? element.nonCrit[1].values.toString() : element.nonCrit[1].custom}`;
+            if (element.nonCrit) damageDice += (!!damageDice.length ? ' plus ' : '') + `${element.nonCrit.formula} ${!!element.nonCrit.type.values.toString() ? element.nonCrit.type.values.toString() : element.nonCrit.type.custom}`;
             if (data.attacks.length > 0) data.attacks += ', ';
             data.attacks += `${element.count > 1 ? element.count + ' ' : ''}${element.name} (${!!damageDice ? damageDice : '0'}${!!attackSpecial ? ' plus ' + attackSpecial : ''})`;
         }
@@ -190,7 +190,7 @@ export class MorphinPlantShape extends MorphinPolymorphDialog {
                 }
 
                 let damageDice = element.diceSize === 0 ? '' : `${element.diceCount}d${element.diceSize}`;
-                if (element.nonCrit) damageDice += (!!damageDice.length ? ' plus ' : '') + `${element.nonCrit[0]} ${!!specialAttack.nonCrit[1].values.toString() ? specialAttack.nonCrit[1].values.toString() : specialAttack.nonCrit[1].custom}`;
+                if (element.nonCrit) damageDice += (!!damageDice.length ? ' plus ' : '') + `${element.nonCrit.formula} ${!!specialAttack.nonCrit.type.values.toString() ? specialAttack.nonCrit.type.values.toString() : specialAttack.nonCrit.type.custom}`;
                 if (data.specialAttacks.length > 0) data.specialAttacks += ', ';
                 data.specialAttacks += `${element.count > 1 ? element.count + ' ' : ''}${element.name} (${!!damageDice ? damageDice : '0'}${!!attackSpecial ? ' plus ' + attackSpecial : ''})`;
             }
@@ -201,10 +201,10 @@ export class MorphinPlantShape extends MorphinPolymorphDialog {
         this.senses = duplicate(MorphinChanges.changes[this.chosenForm.name].senses);
         data.senses = !!this.senses.length ? '' : 'None';
         for (let i = 0; i < this.senses.length; i++) {
-            const element = this.senses[i];
+            const senseEnumValue = this.senses[i];
 
             if (data.senses.length > 0) data.senses += ', ';
-            data.senses += `${MorphinChanges.SENSES[Object.keys(MorphinChanges.SENSES)[element - 1]].name}`; // element 1 = SENSES[0] = LOWLIGHT
+            data.senses += `${game.i18n.localize('MMMOD.Senses.' + MorphinChanges.SENSES[Object.keys(MorphinChanges.SENSES)[senseEnumValue - 1]].name)}`; // element 1 = SENSES[0] = LOWLIGHT
         }
 
         // Process special qualities
@@ -229,13 +229,43 @@ export class MorphinPlantShape extends MorphinPolymorphDialog {
         this.dv = MorphinChanges.changes[this.chosenForm.name].dv || [];
 
         if (this.level >= 2) {
-            data.eres = MorphinChanges.changes[this.chosenForm.name].eres?.join(', ') || 'None';
-            this.eres = MorphinChanges.changes[this.chosenForm.name].eres?.join('; ') || '';
+            const eres = MorphinChanges.changes[this.chosenForm.name].eres || [];
+            data.eres = '';
+            for (const entry of eres) {
+                if (data.eres.length > 0) data.eres += ', ';
+                if (typeof(entry) === 'string') {
+                    data.eres += entry;
+                }
+                else {
+                    data.eres += entry.types[0].charAt(0).toUpperCase() + entry.types[0].slice(1) + ' ' + entry.amount;
+                }
+            }
+            if (data.eres.length === 0) data.eres = 'None';
+            this.eres = eres;
         }
 
         if (this.level === 3) {
-            data.dr = MorphinChanges.changes[this.chosenForm.name].dr?.join(', ') || 'None';
-            this.dr = MorphinChanges.changes[this.chosenForm.name].dr?.join('; ') || '';
+            const dr = MorphinChanges.changes[this.chosenForm.name].dr || [];
+            data.dr = '';
+            for (const entry of dr) {
+                if (data.dr.length > 0) data.dr += ', ';
+                if (typeof(entry) === 'string') {
+                    data.dr += entry;
+                }
+                else {
+                    data.dr += entry.amount + '/';
+                    if (entry.types[0].length === 0) {
+                        data.dr += '-';
+                    }
+                    else {
+                        data.dr += entry.types[0].charAt(0).toUpperCase() + entry.types[0].slice(1);
+                    }
+                    if (entry.types[1].length > 0) data.dr += (entry.operator ? ' or ' : ' and ') + entry.types[1].charAt(0).toUpperCase() + entry.types[1].slice(1);
+                }
+            }
+            if (data.dr.length === 0) data.dr = 'None';
+            this.dr = dr;
+
             data.regen = MorphinChanges.changes[this.chosenForm.name].regen?.join(', ') || 'None';
             this.regen = MorphinChanges.changes[this.chosenForm.name].regen?.join('; ') || '';
         }
@@ -258,14 +288,14 @@ export class MorphinPlantShape extends MorphinPolymorphDialog {
 
     /** @inheritdoc */
     processDr(dr) {
-        if (this.level === 3) return dr;
-        else return '';
+        if (this.level === 3) return super.processDr(dr);
+        else return { value: [], custom: '' };
     }
     
     /** @inheritdoc */
      processEres(eres) {
-        if (this.level >= 2) return eres;
-        else return '';
+        if (this.level >= 2) return super.processEres(eres);
+        else return { value: [], custom: '' };
     }
 
     /** @inheritdoc */

@@ -1,0 +1,178 @@
+{
+    "MMMOD": {
+        "Attacks": {
+            "Arm": "Arm",
+            "Bite": "Bite",
+            "Breath": "Breath",
+            "BreathWeapon": "Breath Weapon",
+            "BreathWeaponBlack": "Breath Weapon Black",
+            "BreathWeaponBlue": "Breath Weapon Blue",
+            "BreathWeaponGreen": "Breath Weapon Green",
+            "BreathWeaponRed": "Breath Weapon Red",
+            "BreathWeaponWhite": "Breath Weapon White",
+            "Burn": "Burn",
+            "Claw": "Claw",
+            "Constrict": "Constrict",
+            "EarthGlide": "Earth Glide",
+            "Ferocity": "Ferocity",
+            "Flower": "Flower",
+            "Foreclaws": "Foreclaws",
+            "Frond": "Frond",
+            "Gore": "Gore",
+            "Grab": "Grab",
+            "HeadButt": "Head Butt",
+            "Hoof": "Hoof",
+            "Jet200": "Jet 200ft",
+            "Jet240": "Jet 240ft",
+            "Jet260": "Jet 260ft",
+            "Jet90": "Jet 90ft",
+            "Kick": "Kick",
+            "Pincer": "Pincer",
+            "Pincers": "Pincers",
+            "Poison": "Poison",
+            "Pounce": "Pounce",
+            "Rake1Claw": "Rake (1 Claw)",
+            "Rake2Claws": "Rake (2 Claws)",
+            "Rake2Talons": "Rake (2 Talons)",
+            "Rake4Claws": "Rake (4 Claws)",
+            "Rend": "Rend",
+            "Roar": "Roar",
+            "Root": "Root",
+            "Slam": "Slam",
+            "Spikes": "Spikes",
+            "Spine": "Spine",
+            "Sting": "Sting",
+            "Stinger": "Stinger",
+            "Tail": "Tail",
+            "TailBarbs": "Tail Barbs",
+            "TailClaw": "Tail Claw",
+            "TailFan": "Tail Fan",
+            "TailSlap": "Tail Slap",
+            "Talon": "Talon",
+            "Talons": "Talons",
+            "Tendril": "Tendril",
+            "Tentacle": "Tentacle",
+            "Tentacles": "Tentacles",
+            "Tongue": "Tongue",
+            "Touch": "Touch",
+            "Trample": "Trample",
+            "Trip": "Trip",
+            "Vine": "Vine",
+            "Vortex": "Vortex",
+            "Web": "Web",
+            "Whirlwind": "Whirlwind",
+            "Wing": "Wing"
+        },
+        "Buffs": {
+            "AnimalGrowth": {
+                "Name": "Animal Growth"
+            },
+            "BeastShape": {
+                "Name": "Beast Shape"
+            },
+            "ElementalBody": {
+                "Name": "Elemental Body"
+            },
+            "EnlargePerson": {
+                "Name": "Enlarge Person"
+            },
+            "FrightfulAspect": {
+                "Name": "Frightful Aspect"
+            },
+            "LegendaryProportions": {
+                "Name": "Legendary Proportions"
+            },
+            "PlantShape": {
+                "Name": "Plant Shape"
+            },
+            "ReducePerson": {
+                "Name": "Reduce Person"
+            },
+            "RighteousMight": {
+                "Name": "Righteous Might"
+            },
+            "WildShape": {
+                "Name": "Wild Shape"
+            }
+        },
+        "EffectWarning": "is already under the effects of a change from",
+        "FilePermissionWarning": "To enable token image switching, player must have Foundry permission to \"Use File Browser\"",
+        "InputCasterLevel": "Input Caster Level",
+        "ManyTokensWarning": "Too many actors selected. Choose one token.",
+        "Name": "Mighty Morphin Mod",
+        "NoEffectWarning": "is not under any change effects",
+        "NoTokenWarning": "No token selected",
+        "Senses": {
+            "Blindsense10": "Blindsense 10ft",
+            "Blindsense20": "Blindsense 20ft",
+            "Blindsense30": "Blindsense 30ft",
+            "Blindsense40": "Blindsense 40ft",
+            "Blindsense50": "Blindsense 50ft",
+            "Blindsense60": "Blindsense 60ft",
+            "Darkvision10": "Darkvision 10ft",
+            "Darkvision20": "Darkvision 20ft",
+            "Darkvision30": "Darkvision 30ft",
+            "Darkvision40": "Darkvision 40ft",
+            "Darkvision50": "Darkvision 50ft",
+            "Darkvision60": "Darkvision 60ft",
+            "Darkvision70": "Darkvision 70ft",
+            "Darkvision80": "Darkvision 80ft",
+            "Darkvision90": "Darkvision 90ft",
+            "LowLightVision": "Low-Light Vision",
+            "Scent": "Scent",
+            "Tremorsense10": "Tremorsense 10ft",
+            "Tremorsense15": "Tremorsense 15ft",
+            "Tremorsense20": "Tremorsense 20ft",
+            "Tremorsense30": "Tremorsense 30ft",
+            "Tremorsense40": "Tremorsense 40ft",
+            "Tremorsense50": "Tremorsense 50ft",
+            "Tremorsense60": "Tremorsense 60ft"
+        },
+        "Settings": {
+            "Image": {
+                "Hint": "Set path to a folder to search for form token images to change to. Images must be an exact match to form name with only letters (no spaces or non-letter/number characters, case sensitive)",
+                "Name": "Form Token Image Path"
+            }
+        },
+        "Sizes": {
+            "Small": "Small",
+            "Tiny": "Tiny",
+            "Colossal": "Colossal",
+            "Diminutive": "Diminutive",
+            "Gargantuan": "Gargantuan",
+            "Huge": "Huge",
+            "Large": "Large",
+            "Medium": "Medium"
+        },
+        "UI": {
+            "AbilityScores": "Ability Scores",
+            "Animal": "Animal",
+            "Attacks": "Attacks",
+            "BaseSizeAdjust": "Base Size Adjust",
+            "burrow": "Burrow",
+            "climb": "Climb",
+            "Con": "Con",
+            "Dex": "Dex",
+            "EnergyResistances": "Energy Resistances",
+            "fly": "Fly",
+            "land": "Land",
+            "MagicalBeast": "Magical Beast",
+            "NaturalAC": "Natural AC",
+            "None": "None",
+            "OK": "OK",
+            "Plus": "plus",
+            "SelectAnimalSize": "Select Animal Size",
+            "SelectBeastType": "Select Beast Type",
+            "SelectForm": "Select Form",
+            "SelectMagicalBeastSize": "Select Magical Beast Size",
+            "Senses": "Senses",
+            "SpecialAbilities": "Special Abilities",
+            "SpecialAttacks": "Special Attacks",
+            "Speeds": "Speeds",
+            "Str": "Str",
+            "swim": "Swim",
+            "Vulnerabiliites": "Vulnerabiliites"
+        },
+        "WeaponFinesse": "Weapon Finesse"
+    }
+}

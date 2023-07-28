@@ -187,7 +187,7 @@ export class MorphinElementalBody extends MorphinPolymorphDialog {
             }
 
             let damageDice = attack.diceSize === 0 ? '' : `${attack.diceCount}d${attack.diceSize}`;
-            if (attack.nonCrit) damageDice += (!!damageDice.length ? ' plus ' : '') + `${attack.nonCrit[0]} ${!!attack.nonCrit[1].values.toString() ? attack.nonCrit[1].values.toString() : attack.nonCrit[1].custom}`;
+            if (attack.nonCrit) damageDice += (!!damageDice.length ? ' plus ' : '') + `${attack.nonCrit.formula} ${!!attack.nonCrit.type.values.toString() ? attack.nonCrit.type.values.toString() : attack.nonCrit.type.custom}`;
             if (data.attacks.length > 0) data.attacks += ', ';
             data.attacks += `${attack.count > 1 ? attack.count + ' ' : ''}${attack.name} (${!!damageDice ? damageDice : '0'}${!!attackSpecial ? ' plus ' + attackSpecial : ''})`;
         }
@@ -208,7 +208,7 @@ export class MorphinElementalBody extends MorphinPolymorphDialog {
             }
 
             let damageDice = specialAttack.diceSize === 0 ? '' : `${specialAttack.diceCount}d${specialAttack.diceSize}`;
-            if (specialAttack.nonCrit) damageDice += (!!damageDice.length ? ' plus ' : '') + `${specialAttack.nonCrit[0]} ${!!specialAttack.nonCrit[1].values.toString() ? specialAttack.nonCrit[1].values.toString() : specialAttack.nonCrit[1].custom}`;
+            if (specialAttack.nonCrit) damageDice += (!!damageDice.length ? ' plus ' : '') + `${specialAttack.nonCrit.formula} ${!!specialAttack.nonCrit.type.values.toString() ? specialAttack.nonCrit.type.values.toString() : specialAttack.nonCrit.type.custom}`;
             if (data.specialAttacks.length > 0) data.specialAttacks += ', ';
             data.specialAttacks += `${specialAttack.count > 1 ? specialAttack.count + ' ' : ''}${specialAttack.name} (${!!damageDice ? damageDice : '0'}${!!attackSpecial ? ' plus ' + attackSpecial : ''})`;
         }
@@ -245,7 +245,7 @@ export class MorphinElementalBody extends MorphinPolymorphDialog {
 
             if (!!senseEnumValue) {
                 if (data.senses.length > 0) data.senses += ', ';
-                data.senses += `${MorphinChanges.SENSES[Object.keys(MorphinChanges.SENSES)[senseEnumValue - 1]].name}`; // element 1 = SENSES[0] = LOWLIGHT
+                data.senses += `${game.i18n.localize('MMMOD.Senses.' + MorphinChanges.SENSES[Object.keys(MorphinChanges.SENSES)[senseEnumValue - 1]].name)}`; // element 1 = SENSES[0] = LOWLIGHT
             }
         }
 
@@ -260,9 +260,19 @@ export class MorphinElementalBody extends MorphinPolymorphDialog {
             data.special += element;
         }
 
-        data.eres = MorphinChanges.changes[this.chosenForm.name].eres?.join(', ') || 'None';
-        this.eres = MorphinChanges.changes[this.chosenForm.name].eres?.join('; ') || '';
-
+        const eres = MorphinChanges.changes[this.chosenForm.name].eres || [];
+        data.eres = '';
+        for (const entry of eres) {
+            if (data.eres.length > 0) data.eres += ', ';
+            if (typeof(entry) === 'string') {
+                data.eres += entry;
+            }
+            else {
+                data.eres += entry.types[0].charAt(0).toUpperCase() + entry.types[0].slice(1) + ' ' + entry.amount;
+            }
+        }
+        if (data.eres.length === 0) data.eres = 'None';
+        this.eres = eres;
 
         data.dv = MorphinChanges.changes[this.chosenForm.name].dv?.join(', ') || 'None';
         this.dv = MorphinChanges.changes[this.chosenForm.name].dv || [];
@@ -273,8 +283,26 @@ export class MorphinElementalBody extends MorphinPolymorphDialog {
         }
 
         if (this.level === 4) {
-            data.dr = MorphinChanges.changes[this.chosenForm.name].dr?.join(', ') || 'None';
-            this.dr = MorphinChanges.changes[this.chosenForm.name].dr?.join('; ') || '';
+            const dr = MorphinChanges.changes[this.chosenForm.name].dr || [];
+            data.dr = '';
+            for (const entry of dr) {
+                if (data.dr.length > 0) data.dr += ', ';
+                if (typeof(entry) === 'string') {
+                    data.dr += entry;
+                }
+                else {
+                    data.dr += entry.amount + '/';
+                    if (entry.types[0].length === 0) {
+                        data.dr += '-';
+                    }
+                    else {
+                        data.dr += entry.types[0].charAt(0).toUpperCase() + entry.types[0].slice(1);
+                    }
+                    if (entry.types[1].length > 0) data.dr += (entry.operator ? ' or ' : ' and ') + entry.types[1].charAt(0).toUpperCase() + entry.types[1].slice(1);
+                }
+            }
+            if (data.dr.length === 0) data.dr = 'None';
+            this.dr = dr;
         }
 
         let newHtml = `${!!data.polymorphBase ? '<p><span class="previewLabel">Base Size Adjust: </span><span id="polymorphScores">' + data.polymorphBase + '</span></p>' : ''}
@@ -294,13 +322,13 @@ export class MorphinElementalBody extends MorphinPolymorphDialog {
 
      /** @inheritdoc */
      processDr(dr) {
-        if (this.level === 4) return dr;
-        else return '';
+        if (this.level === 4) return super.processDr(dr);
+        else return { value: [], custom: '' };
     }
     
     /** @inheritdoc */
      processEres(eres) {
-        return eres;
+        return super.processEres(eres);
     }
 
     /** @inheritdoc */
