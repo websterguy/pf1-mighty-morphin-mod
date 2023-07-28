@@ -48,7 +48,7 @@
             "name": "macros",
             "label": "Morphin Sample Macros",
             "path": "packs/macros.db",
-            "entity": "Macro",
+            "type": "Macro",
             "package": "pf1-mighty-morphin"
         }
     ],
