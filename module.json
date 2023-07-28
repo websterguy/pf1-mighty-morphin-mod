@@ -20,8 +20,8 @@
               "id": "pf1",
               "type": "system",
               "compatibility": {
-                "minimum": "0.82.5",
-                "verified": "0.82.5"
+                "minimum": "9.0",
+                "verified": "9.0"
               }
             }
         ]
