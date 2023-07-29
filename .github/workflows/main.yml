@@ -23,7 +23,7 @@ jobs:
         download: https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/pf1-mighty-morphin.zip
 
     # Create a zip file with all files required by the module to add to the release
-    - run: zip -r ./pf1-mighty-morphin.zip morphin.js module.json styles/ scripts/ templates/ packs/
+    - run: zip -r ./pf1-mighty-morphin.zip morphin.js module.json styles/ scripts/ templates/ packs/ lang/
 
     # Create a release for this specific version
     - name: Update Release with Files
