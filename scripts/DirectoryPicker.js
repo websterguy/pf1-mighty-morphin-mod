@@ -24,7 +24,7 @@
  
    static async uploadToPath(path, file) {
      const options = DirectoryPicker.parse(path);
-     return FilePicker.upload(options.activeSource, options.current, file, { bucket: options.bucket });
+     return FilePicker.upload(options.activeSource, options.current, file, { bucket: options.bucket }, { notify: false });
    }
  
    // returns the type "Directory" for rendering the SettingsConfig
@@ -34,10 +34,10 @@
  
    // formats the data into a string for saving it as a GameSetting
    static format(value) {
-     return value.bucket !== null
-       ? `[${value.activeSource}:${value.bucket}] ${value.path}`
-       : `[${value.activeSource}] ${value.path}`;
-   }
+    return value.bucket !== null
+      ? `[${value.activeSource}:${value.bucket}] ${value.path ?? value.current ?? ''}`
+      : `[${value.activeSource}] ${value.path ?? value.current ?? ''}`;
+  }
  
    // parses the string back to something the FilePicker can understand as an option
    static parse(inStr) {
@@ -53,6 +53,7 @@
            activeSource: s3,
            bucket: bucket,
            current: current,
+           fullPath: inStr,
          };
        }
       else {
@@ -60,6 +61,7 @@
            activeSource: s3,
            bucket: null,
            current: current,
+           fullPath: inStr,
          };
        }
      }
@@ -86,7 +88,7 @@
      $(html)
        .find('input[data-dtype="Directory"]')
        .each((index, element) => {
-         $(element).prop('readonly', true);
+        // $(element).prop('readonly', true);
  
          if (!$(element).next().length) {
            console.log('Adding Picker Button');

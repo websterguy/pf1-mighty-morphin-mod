@@ -37,7 +37,10 @@ export const registerSettings = function () {
     default: '[data]',
     scope: 'world',
     type: DirectoryPicker.Directory,
-    config: true
+    config: true,
+    onChange: value => {
+      MightyMorphinApp.imageFolder = DirectoryPicker.parse(value);
+    }
   });
 };
 
