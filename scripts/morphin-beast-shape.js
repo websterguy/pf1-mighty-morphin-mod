@@ -145,7 +145,7 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
 
         // Process stat changes from the spell based on spell level
         data.scoreChanges = '';
-        this.changes = MorphinChanges.changes.beastShape[chosenType][this.chosenForm.size].changes;
+        this.changes = duplicate(MorphinChanges.changes.beastShape[chosenType][this.chosenForm.size].changes);
         for (let i = 0; i < this.changes.length; i++) {
             const change = this.changes[i];
 

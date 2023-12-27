@@ -40,6 +40,14 @@ export class MightyMorphinApp {
                     mergeObject(buffData, duplicate(game.system.template.Item.templates[t]));
                 }
                 delete buffData.templates;
+                if (game.settings.get('pf1-mighty-morphin', 'createScriptCall')) {
+                    let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
+                    scriptCall.category = 'toggle';
+                    scriptCall.name = 'Revert Mighty Morphin Changes on Deactivation';
+                    scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"]) game.mightyMorphin.revert({actor: actor});';
+                    buffData.scriptCalls.push(scriptCall);
+                }
+
                 buff = await Item.create({ name: game.i18n.localize('MMMOD.Buffs.EnlargePerson.Name'), type: 'buff', system: buffData }, { temporary: true });
 
                 let strChange = 0;
@@ -131,6 +139,14 @@ export class MightyMorphinApp {
                     mergeObject(buffData, duplicate(game.system.template.Item.templates[t]));
                 }
                 delete buffData.templates;
+                if (game.settings.get('pf1-mighty-morphin', 'createScriptCall')) {
+                    let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
+                    scriptCall.category = 'toggle';
+                    scriptCall.name = 'Revert Mighty Morphin Changes on Deactivation';
+                    scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"]) game.mightyMorphin.revert({actor: actor});';
+                    buffData.scriptCalls.push(scriptCall);
+                }
+
                 buff = await Item.create({ name: game.i18n.localize('MMMOD.Buffs.AnimalGrowth.Name'), type: 'buff', system: buffData }, { temporary: true });
 
                 let strChange = 0;
@@ -220,6 +236,14 @@ export class MightyMorphinApp {
                     mergeObject(buffData, duplicate(game.system.template.Item.templates[t]));
                 }
                 delete buffData.templates;
+                if (game.settings.get('pf1-mighty-morphin', 'createScriptCall')) {
+                    let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
+                    scriptCall.category = 'toggle';
+                    scriptCall.name = 'Revert Mighty Morphin Changes on Deactivation';
+                    scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"]) game.mightyMorphin.revert({actor: actor});';
+                    buffData.scriptCalls.push(scriptCall);
+                }
+
                 buff = await Item.create({ name: game.i18n.localize('MMMOD.Buffs.LegendaryProportions.Name'), type: 'buff', system: buffData }, { temporary: true });
                 
                 let strChange = 0;
@@ -320,6 +344,14 @@ export class MightyMorphinApp {
                     mergeObject(buffData, duplicate(game.system.template.Item.templates[t]));
                 }
                 delete buffData.templates;
+                if (game.settings.get('pf1-mighty-morphin', 'createScriptCall')) {
+                    let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
+                    scriptCall.category = 'toggle';
+                    scriptCall.name = 'Revert Mighty Morphin Changes on Deactivation';
+                    scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"]) game.mightyMorphin.revert({actor: actor});';
+                    buffData.scriptCalls.push(scriptCall);
+                }
+
                 buff = await Item.create({ name: game.i18n.localize('MMMOD.Buffs.FrightfulAspect.Name'), type: 'buff', system: buffData }, { temporary: true });
                 
                 let strChange = 0;
@@ -427,6 +459,14 @@ export class MightyMorphinApp {
                         mergeObject(buffData, duplicate(game.system.template.Item.templates[t]));
                     }
                     delete buffData.templates;
+                    if (game.settings.get('pf1-mighty-morphin', 'createScriptCall')) {
+                        let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
+                        scriptCall.category = 'toggle';
+                        scriptCall.name = 'Revert Mighty Morphin Changes on Deactivation';
+                        scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"]) game.mightyMorphin.revert({actor: actor});';
+                        buffData.scriptCalls.push(scriptCall);
+                    }
+
                     buff = await Item.create({ name: game.i18n.localize('MMMOD.Buffs.RighteousMight.Name'), type: 'buff', system: buffData }, { temporary: true });
                     
                     let strChange = 0;
@@ -521,6 +561,14 @@ export class MightyMorphinApp {
                     mergeObject(buffData, duplicate(game.system.template.Item.templates[t]));
                 }
                 delete buffData.templates;
+                if (game.settings.get('pf1-mighty-morphin', 'createScriptCall')) {
+                    let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
+                    scriptCall.category = 'toggle';
+                    scriptCall.name = 'Revert Mighty Morphin Changes on Deactivation';
+                    scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"]) game.mightyMorphin.revert({actor: actor});';
+                    buffData.scriptCalls.push(scriptCall);
+                }
+
                 buff = await Item.create({ name: game.i18n.localize('MMMOD.Buffs.ReducePerson.Name'), type: 'buff', system: buffData }, { temporary: true });
                 
                 let strChange = 0;
@@ -582,9 +630,11 @@ export class MightyMorphinApp {
 
     /**
      * Reverts changes applied by this module to the selected actor
+     * 
+     * @param {object} [actor=null] The specific actor to revert changes on
      */
-    static async revert() {
-        let shifter = MightyMorphinApp.getSingleActor(); // Ensure only a single actor is being processed
+    static async revert({ actor = null } = {}) {
+        let shifter = actor ?? MightyMorphinApp.getSingleActor(); // Use the provided actor or ensure only a single actor is being processed
 
         // Only continue if a single actor and it is already under any effects provided by this module
         if (!!shifter && !!shifter.flags['pf1-mighty-morphin']) {
@@ -779,12 +829,12 @@ export class MightyMorphinApp {
         attackData['system']['primaryAttack'] = ((attack.primaryAttack || (!!MightyMorphinApp.naturalAttacks[attack.name] && MightyMorphinApp.naturalAttacks[attack.name].primaryAttack)) || onlyAttack);
         attackData['system']['subType'] = type; // weapon, natural, misc, class ability, etc
 
-        let subAction = globalThis.pf1.components.ItemAction.defaultData;
+        let subAction = duplicate(globalThis.pf1.components.ItemAction.defaultData);
 
 
         subAction['actionType'] = attack.attackType || 'mwak'; // melee, ranged, save, combat man., etc
         subAction['activation']['type'] = 'attack';
-        subAction['unchainedAction'] = { 'activation': { 'cost': 1, 'type': 'action' } };
+        subAction['activation']['unchained'] = { 'cost': 1, 'type': 'action' };
         subAction['duration']['units'] = 'inst';
         subAction['range']['value'] = '' + (attack.range ?? '');
         subAction['range']['units'] = attack.attackType === 'none' ? 'none' : attack.attackType === 'rwak' ? 'ft' : 'melee'; // if ranged attack, range in feet. Else melee
@@ -847,7 +897,7 @@ export class MightyMorphinApp {
 
 
         // ability damage multiplier is the passed multiplier or 1.5 for an only attack, 1 for a primary attack, .5 secondary
-        subAction['ability']['damageMult'] = attack.mult || (onlyAttack ? 1.5 : (attackData.primaryAttack) ? 1 : 0.5);
+        subAction['ability']['damageMult'] = attack.mult || (onlyAttack ? 1.5 : (attackData.system.primaryAttack) ? 1 : 0.5);
 
         // Create attack sizeRoll with the passed dice stats, the actor's size, and the attack type's damage type (or '' if attack name not in naturalAttacks)
         if (attack.diceSize !== 0) {
@@ -866,7 +916,7 @@ export class MightyMorphinApp {
         subAction['img'] = MightyMorphinApp.naturalAttacks[attack.name]?.img || 'systems/pf1/icons/items/inventory/monster-paw-bear.jpg';
 
         attackData['system']['actions'] = [subAction];
-        attackData['system']['unchainedAction'] = { 'activation': { 'cost': 1, 'type': 'action' } };
+        //attackData['system']['unchainedAction'] = { 'activation': { 'cost': 1, 'type': 'action' } };
 
 
         return attackData;

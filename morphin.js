@@ -42,6 +42,14 @@ export const registerSettings = function () {
       MightyMorphinApp.imageFolder = DirectoryPicker.parse(value);
     }
   });
+  game.settings.register('pf1-mighty-morphin', 'createScriptCall', {
+    name: 'MMMOD.Settings.ScriptCall.Name',
+    hint: 'MMMOD.Settings.ScriptCall.Hint',
+    default: false,
+    scope: 'world',
+    type: Boolean,
+    config: true
+  });
 };
 
 /**

@@ -132,6 +132,10 @@
             "Image": {
                 "Hint": "Set path to a folder to search for form token images to change to. Images must be an exact match to form name with only letters (no spaces or non-letter/number characters, case sensitive)",
                 "Name": "Form Token Image Path"
+            },
+            "ScriptCall": {
+                "Hint": "Creates a toggle script call on newly created buffs that calls the Revert function when the buff is toggled off, undoing all Mighty Morphin changes to the actor",
+                "Name": "Create Revert Script Call on Buff"
             }
         },
         "Sizes": {
