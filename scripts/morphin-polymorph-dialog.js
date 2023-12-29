@@ -268,7 +268,7 @@ export class MorphinPolymorphDialog extends FormApplication {
         }
 
         // Find image to change token to if it exists
-        let newImage = await MightyMorphinApp.findImage(chosenForm);
+        let newImage = await MightyMorphinApp.findImage(this.customImage || chosenForm, !! this.customImage);
 
         // Prepare data for image change
         let oldImage = { img: '' };

@@ -3,6 +3,7 @@ import { MorphinBeastShape } from './morphin-beast-shape.js';
 import { MorphinElementalBody } from './morphin-elemental-body.js';
 import { MorphinPlantShape } from './morphin-plant-shape.js';
 import DirectoryPicker from './DirectoryPicker.js';
+import { MorphinOptions } from './morphin-options.js';
 
 /**
  * Class for functions exposed to users of pf1 system and helpers
@@ -13,8 +14,9 @@ export class MightyMorphinApp {
      * Applies Enlarge Person buff and effects to selected actor
      * 
      * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
+     * @param {string} [image = null] The file name for a custom image file without the file extension
      */
-    static async enlargePerson({ durationLevel = 0 } = {}) {
+    static async enlargePerson({ durationLevel = 0, image = null } = {}) {
         let shifter = MightyMorphinApp.getSingleActor(); // Ensure only a single actor is being processed
         let changeData = MorphinChanges.changes.enlargePerson; // get buff data
 
@@ -99,8 +101,30 @@ export class MightyMorphinApp {
                 await shifter.updateEmbeddedDocuments('Item', armorToChange);
             }
 
+            let oldImage, oldProtoImage, newImage, protoImageChange;
+
+            if (!!image) {
+                // Find image to change token to if it exists
+                newImage = await MightyMorphinApp.findImage(image, true);
+
+                // Prepare data for image change
+                oldImage = { img: '' };
+                oldProtoImage = { token: { img: '' } };
+                protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : {};
+                if (!!newImage) {
+                    let token = canvas.tokens.ownedTokens.find(o => o.actor.id === shifter.id);
+                    if (!!token) {
+                        oldImage.img = token.document.texture.src;
+                        await token.document.update({ 'texture.src': newImage });
+                    }
+                    oldProtoImage.token.img = shifter.prototypeToken.texture.src;
+                }
+            }
+
             // Update the actor size and store flags
-            await shifter.update({ 'system.traits.size': newSize, 'flags.pf1-mighty-morphin': { source: game.i18n.localize('MMMOD.Buffs.EnlargePerson.Name'), buffName: game.i18n.localize('MMMOD.Buffs.EnlargePerson.Name'), size: shifterSize, armor: armorChangeFlag } });
+            let updates = { 'system.traits.size': newSize, 'flags.pf1-mighty-morphin': { source: game.i18n.localize('MMMOD.Buffs.EnlargePerson.Name'), buffName: game.i18n.localize('MMMOD.Buffs.EnlargePerson.Name'), size: shifterSize, armor: armorChangeFlag } };
+            if (!!newImage) mergeObject(mergeObject(updates, protoImageChange), { 'flags.pf1-mighty-morphin': { tokenImg: oldImage, protoImg: oldProtoImage } });
+            await shifter.update(updates);
         }
         else if (!!shifter?.flags['pf1-mighty-morphin']) {
                 ui.notifications.warn(`${shifter.name} ${game.i18n.localize('MMMOD.EffectWarning')} ${shifter.flags['pf1-mighty-morphin'].source}`);
@@ -111,8 +135,9 @@ export class MightyMorphinApp {
      * Applies Animal Growth buff and effects to selected actor
      * 
      * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
+     * @param {string} [image = null] The file name for a custom image file without the file extension
      */
-    static async animalGrowth({ durationLevel = 0 } = {}) {
+    static async animalGrowth({ durationLevel = 0, image = null } = {}) {
         let shifter = MightyMorphinApp.getSingleActor(); // Ensure only a single actor is being processed
         let changeData = MorphinChanges.changes.animalGrowth; // get buff data
 
@@ -193,13 +218,35 @@ export class MightyMorphinApp {
                 }
             }
 
+            let oldImage, oldProtoImage, newImage, protoImageChange;
+
+            if (!!image) {
+                // Find image to change token to if it exists
+                newImage = await MightyMorphinApp.findImage(image, true);
+
+                // Prepare data for image change
+                oldImage = { img: '' };
+                oldProtoImage = { token: { img: '' } };
+                protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : {};
+                if (!!newImage) {
+                    let token = canvas.tokens.ownedTokens.find(o => o.actor.id === shifter.id);
+                    if (!!token) {
+                        oldImage.img = token.document.texture.src;
+                        await token.document.update({ 'texture.src': newImage });
+                    }
+                    oldProtoImage.token.img = shifter.prototypeToken.texture.src;
+                }
+            }
+
             // Update all items that were found to need updates
             if (!!armorToChange.length) {
                 await shifter.updateEmbeddedDocuments('Item', armorToChange);
             }
 
             // Update the actor size and store flags
-            await shifter.update({ 'system.traits.size': newSize, 'flags.pf1-mighty-morphin': { source: game.i18n.localize('MMMOD.Buffs.AnimalGrowth.Name'), buffName: game.i18n.localize('MMMOD.Buffs.AnimalGrowth.Name'), size: shifterSize, armor: armorChangeFlag } });
+            let updates = { 'system.traits.size': newSize, 'flags.pf1-mighty-morphin': { source: game.i18n.localize('MMMOD.Buffs.AnimalGrowth.Name'), buffName: game.i18n.localize('MMMOD.Buffs.AnimalGrowth.Name'), size: shifterSize, armor: armorChangeFlag } };
+            if (!!newImage) mergeObject(mergeObject(updates, protoImageChange), { 'flags.pf1-mighty-morphin': { tokenImg: oldImage, protoImg: oldProtoImage } });
+            await shifter.update(updates);
         }
         else if (!!shifter?.flags['pf1-mighty-morphin']) {
                 ui.notifications.warn(`${shifter.name} ${game.i18n.localize('MMMOD.EffectWarning')} ${shifter.flags['pf1-mighty-morphin'].source}`);
@@ -210,8 +257,9 @@ export class MightyMorphinApp {
      * Applies Legendary Proportions buff and effects to selected actor
      * 
      * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
+     * @param {string} [image = null] The file name for a custom image file without the file extension
      */
-    static async legendaryProportions({ durationLevel = 0 } = {}) {
+    static async legendaryProportions({ durationLevel = 0, image = null } = {}) {
         let shifter = MightyMorphinApp.getSingleActor(); // Ensure only a single actor is being processed
         let changeData = MorphinChanges.changes.legendaryProportions; // get buff data
 
@@ -295,11 +343,33 @@ export class MightyMorphinApp {
                 await shifter.updateEmbeddedDocuments('Item', armorToChange);
             }
 
-            let oldDR = shifter.system.traits.dr;
+            let oldDR = shifter.system.traits.dr.custom;
             let newDR = (!!oldDR ? oldDR + '; ' : '') + '10/adamantine';
 
+            let oldImage, oldProtoImage, newImage, protoImageChange;
+
+            if (!!image) {
+                // Find image to change token to if it exists
+                newImage = await MightyMorphinApp.findImage(image, true);
+
+                // Prepare data for image change
+                oldImage = { img: '' };
+                oldProtoImage = { token: { img: '' } };
+                protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : {};
+                if (!!newImage) {
+                    let token = canvas.tokens.ownedTokens.find(o => o.actor.id === shifter.id);
+                    if (!!token) {
+                        oldImage.img = token.document.texture.src;
+                        await token.document.update({ 'texture.src': newImage });
+                    }
+                    oldProtoImage.token.img = shifter.prototypeToken.texture.src;
+                }
+            }
+
             // Update the actor size and store flags
-            await shifter.update({ 'system.traits.size': newSize, 'system.traits.dr': newDR, 'flags.pf1-mighty-morphin': { source: game.i18n.localize('MMMOD.Buffs.LegendaryProportions.Name'), buffName: game.i18n.localize('MMMOD.Buffs.LegendaryProportions.Name'), size: shifterSize, armor: armorChangeFlag, data: { traits: { dr: oldDR } } } });
+            let updates = { 'system.traits.size': newSize, 'system.traits.dr.custom': newDR, 'flags.pf1-mighty-morphin': { source: game.i18n.localize('MMMOD.Buffs.LegendaryProportions.Name'), buffName: game.i18n.localize('MMMOD.Buffs.LegendaryProportions.Name'), size: shifterSize, armor: armorChangeFlag, data: { traits: { dr: { custom: oldDR } } } } };
+            if (!!newImage) mergeObject(mergeObject(updates, protoImageChange), { 'flags.pf1-mighty-morphin': { tokenImg: oldImage, protoImg: oldProtoImage } });
+            await shifter.update(updates);
         }
         else if (!!shifter?.flags['pf1-mighty-morphin']) {
                 ui.notifications.warn(`${shifter.name} ${game.i18n.localize('MMMOD.EffectWarning')} ${shifter.flags['pf1-mighty-morphin'].source}`);
@@ -311,8 +381,9 @@ export class MightyMorphinApp {
      * 
      * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
      * @param {number} [cl=0] The caster level of the spell effect used for scaling
+     * @param {string} [image = null] The file name for a custom image file without the file extension
      */
-    static async frightfulAspect({ cl = 0, durationLevel = 0 } = {}) {
+    static async frightfulAspect({ cl = 0, durationLevel = 0, image = null } = {}) {
 
         let shifter = MightyMorphinApp.getSingleActor(); // Ensure only a single actor is being processed
         let changeData = MorphinChanges.changes.frightfulAspect; // get buff data
@@ -404,7 +475,7 @@ export class MightyMorphinApp {
             }
 
             // Add effect DR to existing (if any), and store old DR
-            let oldDR = shifter.system.traits.dr;
+            let oldDR = shifter.system.traits.dr.custom;
             let newDR = (!!oldDR ? oldDR + '; ' : '') + '10/magic';
 
             // Replace old spell resistance if new is higher, store old
@@ -412,8 +483,31 @@ export class MightyMorphinApp {
             let faSR = 10 + Math.floor(parseInt(casterLevel) / 2);
             let newSR = shifter.system.attributes.sr.total > faSR ? oldSR : faSR;
 
+            let oldImage, oldProtoImage, newImage, protoImageChange;
+
+            if (!!image) {
+                // Find image to change token to if it exists
+                newImage = await MightyMorphinApp.findImage(image, true);
+
+                // Prepare data for image change
+                oldImage = { img: '' };
+                oldProtoImage = { token: { img: '' } };
+                protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : {};
+                if (!!newImage) {
+                    let token = canvas.tokens.ownedTokens.find(o => o.actor.id === shifter.id);
+                    if (!!token) {
+                        oldImage.img = token.document.texture.src;
+                        await token.document.update({ 'texture.src': newImage });
+                    }
+                    oldProtoImage.token.img = shifter.prototypeToken.texture.src;
+                }
+            }
+
+
             // Update the actor data and store flags
-            await shifter.update({ 'system.traits.size': newSize, 'system.traits.dr': newDR, 'system.attributes.sr.formula': `${newSR}`, 'flags.pf1-mighty-morphin': { source: game.i18n.localize('MMMOD.Buffs.FrightfulAspect.Name'), buffName: game.i18n.localize('MMMOD.Buffs.FrightfulAspect.Name'), size: shifterSize, armor: armorChangeFlag, data: { traits: { dr: oldDR }, attributes: { sr: { formula: oldSR } } } } });
+            let updates = { 'system.traits.size': newSize, 'system.traits.dr.custom': newDR, 'system.attributes.sr.formula': `${newSR}`, 'flags.pf1-mighty-morphin': { source: game.i18n.localize('MMMOD.Buffs.FrightfulAspect.Name'), buffName: game.i18n.localize('MMMOD.Buffs.FrightfulAspect.Name'), size: shifterSize, armor: armorChangeFlag, data: { traits: { dr: { custom: oldDR } }, attributes: { sr: { formula: oldSR } } } } };
+            if (!!newImage) mergeObject(mergeObject(updates, protoImageChange), { 'flags.pf1-mighty-morphin': { tokenImg: oldImage, protoImg: oldProtoImage } });
+            await shifter.update(updates);
         }
         else if (!!shifter?.flags['pf1-mighty-morphin']) {
                 ui.notifications.warn(`${shifter.name} ${game.i18n.localize('MMMOD.EffectWarning')} ${shifter.flags['pf1-mighty-morphin'].source}`);
@@ -426,8 +520,9 @@ export class MightyMorphinApp {
      * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
      * @param {number} [cl=0] The caster level of the spell effect used for scaling
      * @param {boolean} [drEvil=true] Setting for making the DR evil (true) or good (false)
+     * @param {string} [image = null] The file name for a custom image file without the file extension
      */
-        static async righteousMight({ cl = 0, durationLevel = 0, drEvil = true } = {}) {
+        static async righteousMight({ cl = 0, durationLevel = 0, drEvil = true, image = null } = {}) {
 
             let shifter = MightyMorphinApp.getSingleActor(); // Ensure only a single actor is being processed
             let changeData = MorphinChanges.changes.righteousMight; // get buff data
@@ -518,12 +613,33 @@ export class MightyMorphinApp {
                 }
     
                 // Add effect DR to existing (if any), and store old DR
-                let oldDR = shifter.system.traits.dr;
+                let oldDR = shifter.system.traits.dr.custom;
                 let newDR = `${(!!oldDR ? oldDR + '; ' : '') + (cl >= 15 ? 10 : 5)}/${drEvil ? 'evil' : 'good'}`;
 
+                let oldImage, oldProtoImage, newImage, protoImageChange;
+
+                if (!!image) {
+                    // Find image to change token to if it exists
+                    newImage = await MightyMorphinApp.findImage(image, true);
+    
+                    // Prepare data for image change
+                    oldImage = { img: '' };
+                    oldProtoImage = { token: { img: '' } };
+                    protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : {};
+                    if (!!newImage) {
+                        let token = canvas.tokens.ownedTokens.find(o => o.actor.id === shifter.id);
+                        if (!!token) {
+                            oldImage.img = token.document.texture.src;
+                            await token.document.update({ 'texture.src': newImage });
+                        }
+                        oldProtoImage.token.img = shifter.prototypeToken.texture.src;
+                    }
+                }   
     
                 // Update the actor data and store flags
-                await shifter.update({ 'system.traits.size': newSize, 'system.traits.dr': newDR, 'flags.pf1-mighty-morphin': { source: game.i18n.localize('MMMOD.Buffs.RighteousMight.Name'), buffName: game.i18n.localize('MMMOD.Buffs.RighteousMight.Name'), size: shifterSize, armor: armorChangeFlag, data: { traits: { dr: oldDR } } } });
+                let updates = { 'system.traits.size': newSize, 'system.traits.dr.custom': newDR, 'flags.pf1-mighty-morphin': { source: game.i18n.localize('MMMOD.Buffs.RighteousMight.Name'), buffName: game.i18n.localize('MMMOD.Buffs.RighteousMight.Name'), size: shifterSize, armor: armorChangeFlag, data: { traits: { dr: { custom: oldDR } } } } };
+                if (!!newImage) mergeObject(mergeObject(updates, protoImageChange), { 'flags.pf1-mighty-morphin': { tokenImg: oldImage, protoImg: oldProtoImage } });
+                await shifter.update(updates);
             }
             else if (!!shifter?.flags['pf1-mighty-morphin']) {
                 ui.notifications.warn(`${shifter.name} ${game.i18n.localize('MMMOD.EffectWarning')} ${shifter.flags['pf1-mighty-morphin'].source}`);
@@ -534,8 +650,9 @@ export class MightyMorphinApp {
      * Applies Reduce Person buff and effects to selected actor
      * 
      * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
+     * @param {string} [image = null] The file name for a custom image file without the file extension
      */
-    static async reducePerson({ durationLevel = 0 } = {}) {
+    static async reducePerson({ durationLevel = 0, image = null } = {}) {
         let shifter = MightyMorphinApp.getSingleActor(); // Ensure only a single actor is being processed
         let changeData = MorphinChanges.changes.reducePerson; // get buff data
 
@@ -620,8 +737,30 @@ export class MightyMorphinApp {
                 await shifter.updateEmbeddedDocuments('Item', armorToChange);
             }
 
+            let oldImage, oldProtoImage, newImage, protoImageChange;
+
+            if (!!image) {
+                // Find image to change token to if it exists
+                newImage = await MightyMorphinApp.findImage(image, true);
+
+                // Prepare data for image change
+                oldImage = { img: '' };
+                oldProtoImage = { token: { img: '' } };
+                protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : {};
+                if (!!newImage) {
+                    let token = canvas.tokens.ownedTokens.find(o => o.actor.id === shifter.id);
+                    if (!!token) {
+                        oldImage.img = token.document.texture.src;
+                        await token.document.update({ 'texture.src': newImage });
+                    }
+                    oldProtoImage.token.img = shifter.prototypeToken.texture.src;
+                }
+            }
+
             // Update the actor size and store flags
-            await shifter.update({ 'system.traits.size': newSize, 'flags.pf1-mighty-morphin': { source: game.i18n.localize('MMMOD.Buffs.ReducePerson.Name'), buffName: game.i18n.localize('MMMOD.Buffs.ReducePerson.Name'), size: shifterSize, armor: armorChangeFlag } });
+            let updates = { 'system.traits.size': newSize, 'flags.pf1-mighty-morphin': { source: game.i18n.localize('MMMOD.Buffs.ReducePerson.Name'), buffName: game.i18n.localize('MMMOD.Buffs.ReducePerson.Name'), size: shifterSize, armor: armorChangeFlag } };
+            if (!!newImage) mergeObject(mergeObject(updates, protoImageChange), { 'flags.pf1-mighty-morphin': { tokenImg: oldImage, protoImg: oldProtoImage } });
+            await shifter.update(updates);
         }
         else if (!!shifter?.flags['pf1-mighty-morphin']) {
             ui.notifications.warn(`${shifter.name} ${game.i18n.localize('MMMOD.EffectWarning')} ${shifter.flags['pf1-mighty-morphin'].source}`);
@@ -655,12 +794,17 @@ export class MightyMorphinApp {
                     await shifter.updateEmbeddedDocuments('Item', armorExisting);
                 }
 
+                if (changes.tokenImg) {
+                    let token = canvas.tokens.ownedTokens.find(o => o.actor.id === shifter.id);
+                    await token.document.update({ 'texture.src': changes.tokenImg.img });
+                }
+
                 // Revert all actor data to its original and remove the flags
                 if (!!changes.data) {
-                    await shifter.update({ 'system': changes.data, 'system.traits.size': changes.size, 'flags.-=pf1-mighty-morphin': null });
+                    await shifter.update({ 'system': changes.data, 'system.traits.size': changes.size, 'prototypeToken.texture.src': (!!changes.protoImg ? changes.protoImg.token.img : shifter.prototypeToken.texture.src),'flags.-=pf1-mighty-morphin': null });
                 }
                 else {
-                    await shifter.update({ 'system.traits.size': changes.size, 'flags.-=pf1-mighty-morphin': null });
+                    await shifter.update({ 'system.traits.size': changes.size, 'prototypeToken.texture.src': (!!changes.protoImg ? changes.protoImg.token.img : shifter.prototypeToken.texture.src), 'flags.-=pf1-mighty-morphin': null });
                 }
                 // Turn off the buff
                 await shifter.items.find(o => o.type === 'buff' && o.name === changes.buffName).update({ 'system.active': false });
@@ -928,13 +1072,43 @@ export class MightyMorphinApp {
      * @param {number} [level=1] The level of beast shape spell being cast (1-4)
      * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
      * @param {string} [source='Beast Shape'] The source of the beast shape spell effect
+     * @param {string} [form=null] The name of the form to change into. Must match option from morphin-options exactly.
+     * @param {string} [image = null] The file name for a custom image file without the file extension
      */
-    static async beastShape({level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.BeastShape.Name')} = {}) {
+    static async beastShape({level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.BeastShape.Name'), form = null, image = null} = {}) {
         let shifter = MightyMorphinApp.getSingleActor();
 
         // Create beast shape form if a single actor chosen not already under effects from this mod
         if (!!shifter && !shifter.flags['pf1-mighty-morphin']) {
-            let dia = new MorphinBeastShape(level, durationLevel, shifter.id, source).render(true);
+            let dia = new MorphinBeastShape(level, durationLevel, shifter.id, source);
+
+            if (!!image) {
+                dia.customImage = image;
+            }
+            
+            if (!!form) {
+                let type;
+                let foundForm = MorphinOptions.animal.find(o => o.name === form);
+                if (foundForm) type = 'animal';
+                else {
+                    foundForm = MorphinOptions.magicalBeast.find(o => o.name === form);
+                    if (foundForm) type = 'magicalBeast';
+                }
+                
+                if (!foundForm) {
+                    ui.notifications.error(form + ' is not a valid option for Beast Shape');
+                    return;
+                }
+                
+                if (!dia.shapeOptions[type].some(o => o.name === form)) {
+                    ui.notifications.error(form + ' is not a valid option for Beast Shape ' + level);
+                    return;
+                }
+
+                dia.buildPreviewTemplate(form, type);
+                dia.applyChanges(null, form);
+            }
+            else dia.render(true);
         }
         else if (!!shifter?.flags['pf1-mighty-morphin']) {
             ui.notifications.warn(`${shifter.name} ${game.i18n.localize('MMMOD.EffectWarning')} ${shifter.flags['pf1-mighty-morphin'].source}`);
@@ -948,13 +1122,39 @@ export class MightyMorphinApp {
      * @param {number} [level=1] The level of elemental body spell being cast (1-4)
      * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
      * @param {string} [source='Elemental Body'] The source of the elemental body spell effect
+     * @param {string} [form=null] The name of the form to change into. Must match option from morphin-options exactly.
+     * @param {string} [image = null] The file name for a custom image file without the file extension
      */
-    static async elementalBody({level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.ElementalBody.Name')} = {}) {
+    static async elementalBody({level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.ElementalBody.Name'), form = null, image = null} = {}) {
         let shifter = MightyMorphinApp.getSingleActor();
 
         // Create elemental body form if a single actor chosen not already under effects from this mod
         if (!!shifter && !shifter.flags['pf1-mighty-morphin']) {
-            let dia = new MorphinElementalBody(level, durationLevel, shifter.id, source).render(true);
+            let dia = new MorphinElementalBody(level, durationLevel, shifter.id, source);
+
+            if (!!image) {
+                dia.customImage = image;
+            }
+
+            if (!!form) {
+                let type;
+                let foundForm = MorphinOptions.elemental.find(o => o.name === form);
+                if (foundForm) type = 'elemental';
+                
+                if (!foundForm) {
+                    ui.notifications.error(form + ' is not a valid option for Elemental Body');
+                    return;
+                }
+                
+                if (!dia.shapeOptions[type].some(o => o.name === form)) {
+                    ui.notifications.error(form + ' is not a valid option for Elemental Body ' + level);
+                    return;
+                }
+
+                dia.buildPreviewTemplate(form, type);
+                dia.applyChanges(null, form);
+            }
+            else dia.render(true);
         }
         else if (!!shifter?.flags['pf1-mighty-morphin']) {
                 ui.notifications.warn(`${shifter.name} ${game.i18n.localize('MMMOD.EffectWarning')} ${shifter.flags['pf1-mighty-morphin'].source}`);
@@ -967,13 +1167,39 @@ export class MightyMorphinApp {
      * @param {number} [level=1] The level of plant shape spell being cast (1-3)
      * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
      * @param {string} [source='Plant Shape'] The source of the splant shape spell effect
+     * @param {string} [form=null] The name of the form to change into. Must match option from morphin-options exactly.
+     * @param {string} [image = null] The file name for a custom image file without the file extension
      */
-    static async plantShape({level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.PlantShape.Name')} = {}) {
+    static async plantShape({level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.PlantShape.Name'), form = null, image = null} = {}) {
         let shifter = MightyMorphinApp.getSingleActor();
 
         // Create plant shape form if a single actor chosen not already under effects from this mod
         if (!!shifter && !shifter.flags['pf1-mighty-morphin']) {
-            let dia = new MorphinPlantShape(level, durationLevel, shifter.id, source).render(true);
+            let dia = new MorphinPlantShape(level, durationLevel, shifter.id, source);
+
+            if (!!image) {
+                dia.customImage = image;
+            }
+
+            if (!!form) {
+                let type;
+                let foundForm = MorphinOptions.plant.find(o => o.name === form);
+                if (foundForm) type = 'plant';
+                
+                if (!foundForm) {
+                    ui.notifications.error(form + ' is not a valid option for Plant Shape');
+                    return;
+                }
+                
+                if (!dia.shapeOptions[type].some(o => o.name === form)) {
+                    ui.notifications.error(form + ' is not a valid option for Plant Shape ' + level);
+                    return;
+                }
+
+                dia.buildPreviewTemplate(form, type);
+                dia.applyChanges(null, form);
+            }
+            else dia.render(true);
         }
         else if (!!shifter?.flags['pf1-mighty-morphin']) {
             ui.notifications.warn(`${shifter.name} ${game.i18n.localize('MMMOD.EffectWarning')} ${shifter.flags['pf1-mighty-morphin'].source}`);
@@ -999,12 +1225,12 @@ export class MightyMorphinApp {
      * @param {string} formName The name of the form chosen to change into
      * @returns string containing the path to the image matching the form
      */
-    static async findImage(formName) {
+    static async findImage(formName, customImage) {
         let imageDir = MightyMorphinApp.imageFolder;
         let foundImage = '';
         try {
             let imageList = await FilePicker.browse(imageDir.activeSource, imageDir.current);
-            let sanitizedFormName = formName.replace(/[^a-zA-Z0-9]/gm, '');
+            let sanitizedFormName = customImage ? encodeURI(formName) : formName.replace(/[^a-zA-Z0-9]/gm, '');
             for (const image of imageList.files) {
                 let imageName = image.split('/').pop();
                 for (const ext of Object.keys(CONST.IMAGE_FILE_EXTENSIONS)) {
