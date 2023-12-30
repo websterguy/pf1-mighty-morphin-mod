@@ -17,7 +17,7 @@ export class MorphinPolymorphDialog extends FormApplication {
         this.level = level;
         this.durationLevel = durationLevel;
         this.actorId = actorId;
-        this.actorSize = game.actors.get(actorId).system.traits.size;
+        this.actorSize = fromUuidSync(actorId).system.traits.size;
         this.sizes = {};
         this.source = source;
         this.shapeOptions = {};
@@ -44,7 +44,7 @@ export class MorphinPolymorphDialog extends FormApplication {
      * @param {string} chosenForm The name of the form chosen
      */
     async applyChanges(event, chosenForm) {
-        let shifter = game.actors.get(this.actorId);
+        let shifter = fromUuidSync(this.actorId);
         let newSize = MorphinChanges.changes[chosenForm].size;
 
         let itemsToEmbed = [];
@@ -275,10 +275,18 @@ export class MorphinPolymorphDialog extends FormApplication {
         let oldProtoImage = { token: { img: '' } };
         let protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : {};
         if (!!newImage) {
-            let token = canvas.tokens.ownedTokens.find(o => o.actor.id === this.actorId);
+            let token = shifter.token || canvas.tokens.ownedTokens.filter(o => o.actor.id === fromUuidSync(this.actorId).id);
             if (!!token) {
-                oldImage.img = token.document.texture.src;
-                await token.document.update({ 'texture.src': newImage });
+                if (Array.isArray(token) && token.length > 1) {
+                    oldImage.img = token[0].document.texture.src;
+                    let tokenUpdates = token.map(o => ({_id: o.id, 'texture.src': newImage}));
+                    await canvas.scene.updateEmbeddedDocuments('Token', tokenUpdates);
+                }
+                else {
+                    if (Array.isArray(token)) token = token[0].document;
+                    oldImage.img = token.texture.src;
+                    await token.update({ 'texture.src': newImage });
+                }
             }
             oldProtoImage.token.img = shifter.prototypeToken.texture.src;
         }
@@ -308,7 +316,8 @@ export class MorphinPolymorphDialog extends FormApplication {
         if (!!armorToChange.length) await shifter.updateEmbeddedDocuments('Item', armorToChange.concat(buffUpdate));
         else await shifter.updateEmbeddedDocuments('Item', buffUpdate);
         canvas.tokens.releaseAll();
-        canvas.tokens.ownedTokens.find(o => o.actor.id === this.actorId).control();
+        if (!!shifter.token) shifter.token.object.control();
+        else canvas.tokens.ownedTokens.find(o => o.actor.id === fromUuidSync(this.actorId).id).control();
         await this.close();
     }
 

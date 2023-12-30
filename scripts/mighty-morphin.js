@@ -108,15 +108,11 @@ export class MightyMorphinApp {
                 newImage = await MightyMorphinApp.findImage(image, true);
 
                 // Prepare data for image change
-                oldImage = { img: '' };
-                oldProtoImage = { token: { img: '' } };
-                protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : {};
                 if (!!newImage) {
-                    let token = canvas.tokens.ownedTokens.find(o => o.actor.id === shifter.id);
-                    if (!!token) {
-                        oldImage.img = token.document.texture.src;
-                        await token.document.update({ 'texture.src': newImage });
-                    }
+                    protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : {};
+                    let oldData = await MightyMorphinApp.changeTokenImage(newImage, shifter);
+                    oldImage = oldData.oldImage;
+                    oldProtoImage = oldData.oldProtoImage;
                     oldProtoImage.token.img = shifter.prototypeToken.texture.src;
                 }
             }
@@ -225,15 +221,11 @@ export class MightyMorphinApp {
                 newImage = await MightyMorphinApp.findImage(image, true);
 
                 // Prepare data for image change
-                oldImage = { img: '' };
-                oldProtoImage = { token: { img: '' } };
-                protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : {};
                 if (!!newImage) {
-                    let token = canvas.tokens.ownedTokens.find(o => o.actor.id === shifter.id);
-                    if (!!token) {
-                        oldImage.img = token.document.texture.src;
-                        await token.document.update({ 'texture.src': newImage });
-                    }
+                    protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : {};
+                    let oldData = await MightyMorphinApp.changeTokenImage(newImage, shifter);
+                    oldImage = oldData.oldImage;
+                    oldProtoImage = oldData.oldProtoImage;
                     oldProtoImage.token.img = shifter.prototypeToken.texture.src;
                 }
             }
@@ -353,15 +345,11 @@ export class MightyMorphinApp {
                 newImage = await MightyMorphinApp.findImage(image, true);
 
                 // Prepare data for image change
-                oldImage = { img: '' };
-                oldProtoImage = { token: { img: '' } };
-                protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : {};
                 if (!!newImage) {
-                    let token = canvas.tokens.ownedTokens.find(o => o.actor.id === shifter.id);
-                    if (!!token) {
-                        oldImage.img = token.document.texture.src;
-                        await token.document.update({ 'texture.src': newImage });
-                    }
+                    protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : {};
+                    let oldData = await MightyMorphinApp.changeTokenImage(newImage, shifter);
+                    oldImage = oldData.oldImage;
+                    oldProtoImage = oldData.oldProtoImage;
                     oldProtoImage.token.img = shifter.prototypeToken.texture.src;
                 }
             }
@@ -490,15 +478,11 @@ export class MightyMorphinApp {
                 newImage = await MightyMorphinApp.findImage(image, true);
 
                 // Prepare data for image change
-                oldImage = { img: '' };
-                oldProtoImage = { token: { img: '' } };
-                protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : {};
                 if (!!newImage) {
-                    let token = canvas.tokens.ownedTokens.find(o => o.actor.id === shifter.id);
-                    if (!!token) {
-                        oldImage.img = token.document.texture.src;
-                        await token.document.update({ 'texture.src': newImage });
-                    }
+                    protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : {};
+                    let oldData = await MightyMorphinApp.changeTokenImage(newImage, shifter);
+                    oldImage = oldData.oldImage;
+                    oldProtoImage = oldData.oldProtoImage;
                     oldProtoImage.token.img = shifter.prototypeToken.texture.src;
                 }
             }
@@ -623,19 +607,15 @@ export class MightyMorphinApp {
                     newImage = await MightyMorphinApp.findImage(image, true);
     
                     // Prepare data for image change
-                    oldImage = { img: '' };
-                    oldProtoImage = { token: { img: '' } };
-                    protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : {};
                     if (!!newImage) {
-                        let token = canvas.tokens.ownedTokens.find(o => o.actor.id === shifter.id);
-                        if (!!token) {
-                            oldImage.img = token.document.texture.src;
-                            await token.document.update({ 'texture.src': newImage });
-                        }
+                        protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : {};
+                        let oldData = await MightyMorphinApp.changeTokenImage(newImage, shifter);
+                        oldImage = oldData.oldImage;
+                        oldProtoImage = oldData.oldProtoImage;
                         oldProtoImage.token.img = shifter.prototypeToken.texture.src;
                     }
-                }   
-    
+                }
+        
                 // Update the actor data and store flags
                 let updates = { 'system.traits.size': newSize, 'system.traits.dr.custom': newDR, 'flags.pf1-mighty-morphin': { source: game.i18n.localize('MMMOD.Buffs.RighteousMight.Name'), buffName: game.i18n.localize('MMMOD.Buffs.RighteousMight.Name'), size: shifterSize, armor: armorChangeFlag, data: { traits: { dr: { custom: oldDR } } } } };
                 if (!!newImage) mergeObject(mergeObject(updates, protoImageChange), { 'flags.pf1-mighty-morphin': { tokenImg: oldImage, protoImg: oldProtoImage } });
@@ -744,15 +724,11 @@ export class MightyMorphinApp {
                 newImage = await MightyMorphinApp.findImage(image, true);
 
                 // Prepare data for image change
-                oldImage = { img: '' };
-                oldProtoImage = { token: { img: '' } };
-                protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : {};
                 if (!!newImage) {
-                    let token = canvas.tokens.ownedTokens.find(o => o.actor.id === shifter.id);
-                    if (!!token) {
-                        oldImage.img = token.document.texture.src;
-                        await token.document.update({ 'texture.src': newImage });
-                    }
+                    protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : {};
+                    let oldData = await MightyMorphinApp.changeTokenImage(newImage, shifter);
+                    oldImage = oldData.oldImage;
+                    oldProtoImage = oldData.oldProtoImage;
                     oldProtoImage.token.img = shifter.prototypeToken.texture.src;
                 }
             }
@@ -795,8 +771,15 @@ export class MightyMorphinApp {
                 }
 
                 if (changes.tokenImg) {
-                    let token = canvas.tokens.ownedTokens.find(o => o.actor.id === shifter.id);
-                    await token.document.update({ 'texture.src': changes.tokenImg.img });
+                    let token = shifter.token || canvas.tokens.ownedTokens.filter(o => o.actor.id === shifter.id);
+                    if (Array.isArray(token) && token.length > 1) {
+                        let tokenUpdates = token.map(o => ({_id: o.id, 'texture.src': changes.tokenImg.img}));
+                        await canvas.scene.updateEmbeddedDocuments('Token', tokenUpdates);
+                    }
+                    else {
+                        if (Array.isArray(token)) token = token[0].document;
+                        await token.update({ 'texture.src': changes.tokenImg.img });
+                    }
                 }
 
                 // Revert all actor data to its original and remove the flags
@@ -824,8 +807,15 @@ export class MightyMorphinApp {
                 }
 
                 if (!!shifter.flags['pf1-mighty-morphin'].tokenImg) {
-                    let token = canvas.tokens.ownedTokens.find(o => o.actor.id === shifter.id);
-                    await token.document.update(shifter.flags['pf1-mighty-morphin'].tokenImg);
+                    let token = shifter.token || canvas.tokens.ownedTokens.filter(o => o.actor.id === shifter.id);
+                    if (Array.isArray(token) && token.length > 1) {
+                        let tokenUpdates = token.map(o => ({_id: o.id, 'texture.src': changes.tokenImg.img}));
+                        await canvas.scene.updateEmbeddedDocuments('Token', tokenUpdates);
+                    }
+                    else {
+                        if (Array.isArray(token)) token = token[0].document;
+                        await token.update({ 'texture.src': changes.tokenImg.img });
+                    }
                 }
 
                 // Revert all data that was replaced to its original and remove the flags
@@ -844,7 +834,8 @@ export class MightyMorphinApp {
                 await shifter.deleteEmbeddedDocuments('Item', itemsOnActor);
                 
                 canvas.tokens.releaseAll();
-                canvas.tokens.ownedTokens.find(o => o.actor.id === shifter.id).control();
+                if (!!shifter.token) shifter.token.object.control();
+                else canvas.tokens.ownedTokens.find(o => o.actor.id === fromUuidSync(shifter.uuid).id).control();
             }
         }
         else if (!!shifter && !shifter.flags['pf1-mighty-morphin']) {
@@ -955,7 +946,7 @@ export class MightyMorphinApp {
     static createAttack(actorId, formSize, attack, onlyAttack, effects = {}, source = '', type = 'natural') {
         let attackData = { system: {} };
         
-        const actorData = game.actors.get(actorId); // get actor's data for reference
+        const actorData = fromUuidSync(actorId); // get actor's data for reference
 
         // Create attack Item template
         for (const template of game.system.template.Item.attack.templates) {
@@ -1080,7 +1071,7 @@ export class MightyMorphinApp {
 
         // Create beast shape form if a single actor chosen not already under effects from this mod
         if (!!shifter && !shifter.flags['pf1-mighty-morphin']) {
-            let dia = new MorphinBeastShape(level, durationLevel, shifter.id, source);
+            let dia = new MorphinBeastShape(level, durationLevel, shifter.uuid, source);
 
             if (!!image) {
                 dia.customImage = image;
@@ -1130,7 +1121,7 @@ export class MightyMorphinApp {
 
         // Create elemental body form if a single actor chosen not already under effects from this mod
         if (!!shifter && !shifter.flags['pf1-mighty-morphin']) {
-            let dia = new MorphinElementalBody(level, durationLevel, shifter.id, source);
+            let dia = new MorphinElementalBody(level, durationLevel, shifter.uuid, source);
 
             if (!!image) {
                 dia.customImage = image;
@@ -1175,7 +1166,7 @@ export class MightyMorphinApp {
 
         // Create plant shape form if a single actor chosen not already under effects from this mod
         if (!!shifter && !shifter.flags['pf1-mighty-morphin']) {
-            let dia = new MorphinPlantShape(level, durationLevel, shifter.id, source);
+            let dia = new MorphinPlantShape(level, durationLevel, shifter.uuid, source);
 
             if (!!image) {
                 dia.customImage = image;
@@ -1248,6 +1239,35 @@ export class MightyMorphinApp {
         }
         
         return foundImage;
+    }
+
+    /**
+     * 
+     * @param {string} image The path and file name of the new image
+     * @param {object} shifter The actor that is changing
+     * @returns object containing the old image and old prototype image data
+     */
+    static async changeTokenImage(image, shifter) {
+        // Prepare data for image change
+        let oldImage = { img: '' };
+        let oldProtoImage = { token: { img: '' } };
+        
+        let token = shifter.token || canvas.tokens.ownedTokens.filter(o => o.actor.id === fromUuidSync(shifter.uuid).id);
+        if (!!token) {
+            if (Array.isArray(token) && token.length > 1) {
+                oldImage.img = token[0].document.texture.src;
+                let tokenUpdates = token.map(o => ({_id: o.id, 'texture.src': image}));
+                await canvas.scene.updateEmbeddedDocuments('Token', tokenUpdates);
+            }
+            else {
+                if (Array.isArray(token)) token = token[0].document;
+                oldImage.img = token.texture.src;
+                await token.update({ 'texture.src': image });
+            }
+        }
+        oldProtoImage.token.img = shifter.prototypeToken.texture.src;
+
+        return {oldImage: oldImage, oldProtoImage: oldProtoImage};
     }
 }
 
