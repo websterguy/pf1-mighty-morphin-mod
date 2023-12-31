@@ -1075,6 +1075,9 @@ MorphinChanges.changes = {
         },
         senses: [
             1
+        ],
+        di: [
+            'electricity'
         ]
     },
     'Goat': {
@@ -3210,6 +3213,24 @@ MorphinChanges.changes = {
             1, 7, 11
         ]
     },
+    'Boreal Wolf': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 6, count: 1, nonCrit: { formula: '1d6', type: {values: ['fire'], custom: ''} }, special: ['Trip'] }
+        ],
+        speed: {
+            land: 50,
+        },
+        senses: [
+            1, 11
+        ],
+        di: [
+            'cold'
+        ],
+        dv: [
+            'fire'
+        ]
+    },
     'Bunyip': {
         size: 'med',
         attacks: [
@@ -3235,8 +3256,8 @@ MorphinChanges.changes = {
         senses: [
             1, 7, 11
         ],
-        eres: [
-            { amount: 20, operator: true, types: ['fire', ''] }
+        di: [
+            'fire'
         ]
     },
     'Dweomercat': {
@@ -3263,6 +3284,9 @@ MorphinChanges.changes = {
         },
         senses: [
             1, 14, 7
+        ],
+        di: [
+            'electricity'
         ]
     },
     'Grodair': {
@@ -3309,7 +3333,7 @@ MorphinChanges.changes = {
     'Kaicharek': {
         size: 'med',
         attacks: [
-            { name: 'Bite', diceCount: 1, diceSize: 6, count: 1, specail: ['Grab'] },
+            { name: 'Bite', diceCount: 1, diceSize: 6, count: 1, special: ['Grab'] },
             { name: 'Tentacle', diceCount: 1, diceSize: 4, count: 2 }
         ],
         speed: {
@@ -3345,6 +3369,9 @@ MorphinChanges.changes = {
         },
         senses: [
             1, 7, 11
+        ],
+        di: [
+            'negative'
         ]
     },
     'Pard': {
@@ -3541,7 +3568,10 @@ MorphinChanges.changes = {
         effect: {
             'Poison': { note: 'Poison (Ex) Bite or breath weapon—contact or injury; save Fort DC 10+SL+Mod; frequency 1/round for 2 rounds; initial effect blinded and paralyzed for 1 round; secondary effect blinded for 2d4 rounds; cure 2 consecutive saves.', type: 'fort', saveDesc: 'Fort Cures' },
             'Breath': { note: 'Breath area: 30ft line. Creatures in area blinded and save vs poison', type: 'ref', saveDesc: 'Reflex avoids both', description: '<p>Once every 1d4 rounds, as a standard action, a uraeus’s head can expel a 30-foot line of poison. All creatures in the area are blinded for 1 round and must save against poison (Reflex DC 10 + spell level + caster stat mod negates both). As a full-round action, a uraeus can either expel two lines or bite with one head and breathe poison with the other. Each head tracks its breath weapon’s availability separately.</p><p>Bite or breath weapon—contact or injury; save Fort DC 10+SL+Mod; frequency 1/round for 2 rounds; initial effect blinded and paralyzed for 1 round; secondary effect blinded for 2d4 rounds; cure 2 consecutive saves.</p>' }
-        }
+        },
+        eres: [
+            { amount: 10, operator: true, types: ['fire', ''] }
+        ]
     },
     'Worg': {
         size: 'med',
@@ -3583,6 +3613,9 @@ MorphinChanges.changes = {
         ],
         special: [
             'Ferocity', 'Rake4Claws'
+        ],
+        eres: [
+            { amount: 10, operator: true, types: ['fire', ''] }
         ]
     },
     'Blindheim': {
@@ -3750,6 +3783,12 @@ MorphinChanges.changes = {
         },
         senses: [
             1, 7
+        ],
+        di: [
+            'fire'
+        ],
+        eres: [
+            { amount: 10, operator: true, types: ['cold', ''] }
         ]
     },
     'Shocker Lizard': {
@@ -3764,6 +3803,9 @@ MorphinChanges.changes = {
         },
         senses: [
             1, 7
+        ],
+        di: [
+            'electricity'
         ]
     },
     'Voonith': {
@@ -4097,9 +4139,8 @@ MorphinChanges.changes = {
             'Poison': { note: 'Poison (Ex) Bite-injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d2 Con damage; cure 2 saves.', type: 'fort', saveDesc: 'Fort Cures' },
             'Breath': { note: 'Breath area: 30ft line. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds</p>' }
         },
-        eres: [
-            { amount: 20, operator: true, types: ['acid', ''] },
-            { amount: 20, operator: true, types: ['electricity', ''] }
+        di: [
+            'acid', 'electricity'
         ]
     },
     'Devilfish': {
@@ -4168,7 +4209,7 @@ MorphinChanges.changes = {
             11, 14, 24
         ],
         eres: [
-            { amount: 20, operator: true, types: ['fire', ''] }
+            { amount: 10, operator: true, types: ['fire', ''] }
         ]
     },
     'Gammenore': {
@@ -4184,8 +4225,8 @@ MorphinChanges.changes = {
         senses: [
             1, 7
         ],
-        eres: [
-            { amount: 20, operator: true, types: ['cold', ''] }
+        di: [
+            'cold'
         ],
         dv: [
             'fire'
@@ -4271,8 +4312,8 @@ MorphinChanges.changes = {
         senses: [
             1, 11
         ],
-        eres: [
-            { amount: 20, operator: true, types: ['cold', ''] }
+        di: [
+            'cold'
         ],
         dv: [
             'fire'
@@ -4290,8 +4331,8 @@ MorphinChanges.changes = {
         senses: [
             1, 7
         ],
-        eres: [
-            { amount: 20, operator: true, types: ['cold', ''] }
+        di: [
+            'cold'
         ],
         dv: [
             'fire'
@@ -4315,10 +4356,11 @@ MorphinChanges.changes = {
         },
         eres: [
             { amount: 15, operator: true, types: ['acid', ''] },
-            { amount: 20, operator: true, types: ['cold', ''] },
             { amount: 15, operator: true, types: ['electricity', ''] },
-            { amount: 20, operator: true, types: ['fire', ''] },
             { amount: 15, operator: true, types: ['sonic', ''] }
+        ],
+        di: [
+            'cold', 'fire'
         ]
     },
     'Goldpebble': {
@@ -4544,7 +4586,7 @@ MorphinChanges.changes = {
         ],
         eres: [
             { amount: 10, operator: true, types: ['cold', ''] },
-            { amount: 20, operator: true, types: ['electricity', ''] },
+            { amount: 30, operator: true, types: ['electricity', ''] },
             { amount: 10, operator: true, types: ['fire', ''] }
         ],
         effect: {
@@ -4778,8 +4820,8 @@ MorphinChanges.changes = {
         senses: [
             1, 7, 24
         ],
-        eres: [
-            { amount: 20, operator: true, types: ['fire', ''] }
+        di: [
+            'fire'
         ],
         dv: [
             'cold'
@@ -4898,8 +4940,10 @@ MorphinChanges.changes = {
             1, 7
         ],
         eres: [
-            { amount: 10, operator: true, types: ['cold', ''] },
-            { amount: 20, operator: true, types: ['electricity', ''] }
+            { amount: 10, operator: true, types: ['cold', ''] }
+        ],
+        di: [
+            'electricity'
         ],
         effect: {
             'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature’s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a –4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature’s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' },
@@ -4938,8 +4982,8 @@ MorphinChanges.changes = {
         senses: [
             1
         ],
-        eres: [
-            { amount: 20, operator: true, types: ['fire', ''] }
+        di: [
+            'fire'
         ],
         dv: [
             'sonic'
@@ -5025,8 +5069,8 @@ MorphinChanges.changes = {
         effect: {
             'Breath': { note: 'Breath area: 15ft cone. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Once every 1d4 rounds, 15-foot cone for 6d6 cold damage (Reflex DC 10 + spell level + caster stat mod for half damage).</p>' }
         },
-        eres: [
-            { amount: 20, operator: true, types: ['cold', ''] }
+        di: [
+            'cold'
         ],
         dv: [
             'fire'
@@ -5087,6 +5131,25 @@ MorphinChanges.changes = {
         senses: [
             1
         ]
+    },
+    'Ceru': {
+        size: 'tiny',
+        attacks: [
+            { name: 'Gore', diceCount: 1, diceSize: 3, count: 1, special: ['Poison'] }
+        ],
+        speed: {
+            land: 20
+        },
+        senses: [
+            1, 7
+        ],
+        eres: [
+            { amount: 5, operator: true, types: ['acid', ''] },
+            { amount: 5, operator: true, types: ['electricity', ''] }
+        ],
+        effect: {
+            'Poison': { note: 'Poison (Ex) Injury—gore; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d2 con damage; cure 2 consecutive saves.', type: 'fort', saveDesc: 'Fort Cures' }
+        }
     },
     'Chuspiki': {
         size: 'tiny',
@@ -5187,8 +5250,8 @@ MorphinChanges.changes = {
         senses: [
             1, 7
         ],
-        eres: [
-            { amount: 20, operator: true, types: ['cold', ''] }
+        di: [
+            'cold'
         ]
     },
     'Sin Seeker': {
@@ -5690,8 +5753,8 @@ MorphinChanges.changes = {
             burrow: 30
         },
         senses: [],
-        eres: [
-            { amount: 20, operator: true, types: ['acid', ''] }
+        di: [
+            'acid'
         ]
     },
     'Bramble Throne': {
@@ -5720,8 +5783,10 @@ MorphinChanges.changes = {
             1
         ],
         eres: [
-            { amount: 20, operator: true, types: ['electricity', ''] },
             { amount: 10, operator: true, types: ['fire', ''] }
+        ],
+        di: [
+            'electricity'
         ],
         dv: [
             'cold'
@@ -5787,8 +5852,8 @@ MorphinChanges.changes = {
         senses: [
             1
         ],
-        eres: [
-            { amount: 20, operator: true, types: ['acid', ''] }
+        di: [
+            'acid'
         ],
         dr: [
             { amount: 10, operator: true, types: ['slashing', ''] }
@@ -5871,8 +5936,10 @@ MorphinChanges.changes = {
             1, 7
         ],
         eres: [
-            { amount: 10, operator: true, types: ['cold', ''] },
-            { amount: 20, operator: true, types: ['electricity', ''] }
+            { amount: 10, operator: true, types: ['cold', ''] }
+        ],
+        di: [
+            'electricity'
         ],
         dv: [
             'fire'
@@ -5909,9 +5976,8 @@ MorphinChanges.changes = {
         senses: [
             1, 7
         ],
-        eres: [
-            { amount: 20, operator: true, types: ['electricity', ''] },
-            { amount: 20, operator: true, types: ['fire', ''] }
+        di: [
+            'electricity', 'fire'
         ]
     },
     'Tendriculos': {
@@ -5926,8 +5992,8 @@ MorphinChanges.changes = {
         senses: [
             1
         ],
-        eres: [
-            { amount: 20, operator: true, types: ['acid', ''] }
+        di: [
+            'acid'
         ],
         regen: [
             '5 (bludgeoning or fire)'
@@ -6027,8 +6093,10 @@ MorphinChanges.changes = {
         ],
         eres: [
             { amount: 10, operator: true, types: ['cold', ''] },
-            { amount: 20, operator: true, types: ['electricity', ''] },
             { amount: 10, operator: true, types: ['fire', ''] }
+        ],
+        di: [
+            'electricity'
         ],
         effect: {
             'Constrict': { note: 'Constrict: Same damage as Slam' }
@@ -6180,8 +6248,10 @@ MorphinChanges.changes = {
             '15/magic and slashing'
         ],
         eres: [
-            { amount: 20, operator: true, types: ['electricity', ''] },
-            { amount: 20, operator: true, types: ['fire', ''] }
+            { amount: 30, operator: true, types: ['electricity', ''] }
+        ],
+        di: [
+            'fire'
         ]
     },
     'Sargassum Fiend': {
@@ -6221,8 +6291,10 @@ MorphinChanges.changes = {
             'Constrict': { note: 'Constrict: Same damage as Slam' }
         },
         eres: [
-            { amount: 20, operator: true, types: ['electricity', ''] },
             { amount: 10, operator: true, types: ['fire', ''] }
+        ],
+        di: [
+            'electricity'
         ]
     },
     'Stranglereed': {
@@ -6279,8 +6351,8 @@ MorphinChanges.changes = {
         effect: {
             'Constrict': { note: 'Constrict: Same damage as Tentacle' }
         },
-        eres: [
-            { amount: 20, operator: true, types: ['acid', ''] }
+        di: [
+            'cold'
         ]
     },
     'Basidirond': {
@@ -6294,8 +6366,8 @@ MorphinChanges.changes = {
         senses: [
             1
         ],
-        eres: [
-            { amount: 20, operator: true, types: ['cold', ''] }
+        di: [
+            'cold'
         ]
     },
     'Blood Maize': {
@@ -6337,8 +6409,8 @@ MorphinChanges.changes = {
         senses: [
             1
         ],
-        eres: [
-            { amount: 20, operator: true, types: ['electricity', ''] }
+        di: [
+            'electricity'
         ]
     },
     'Bramblelash': {
@@ -6388,8 +6460,8 @@ MorphinChanges.changes = {
         senses: [
             1
         ],
-        eres: [
-            { amount: 20, operator: true, types: ['cold', ''] }
+        di: [
+            'cold'
         ],
         dv: [
             'fire'
@@ -6520,9 +6592,11 @@ MorphinChanges.changes = {
             1
         ],
         eres: [
-            { amount: 20, operator: true, types: ['cold', ''] },
             { amount: 10, operator: true, types: ['electricity', ''] },
             { amount: 10, operator: true, types: ['fire', ''] }
+        ],
+        di: [
+            'cold'
         ]
     },
     'Myceloid': {
@@ -6645,9 +6719,8 @@ MorphinChanges.changes = {
         senses: [
             1, 7
         ],
-        eres: [
-            { amount: 20, operator: true, types: ['electricity', ''] },
-            { amount: 20, operator: true, types: ['sonic', ''] }
+        di: [
+            'electricity', 'sonic'
         ]
     },
     'Calathgar': {
@@ -6662,8 +6735,8 @@ MorphinChanges.changes = {
         senses: [
             1, 4
         ],
-        eres: [
-            { amount: 20, operator: true, types: ['cold', ''] }
+        di: [
+            'cold'
         ],
         dv: [
             'fire'
@@ -6681,9 +6754,8 @@ MorphinChanges.changes = {
         senses: [
             1, 7
         ],
-        eres: [
-            { amount: 20, operator: true, types: ['electricity', ''] },
-            { amount: 20, operator: true, types: ['sonic', ''] }
+        di: [
+            'eletricity', 'sonic'
         ]
     },
     'Fungus Leshy': {
@@ -6697,9 +6769,8 @@ MorphinChanges.changes = {
         senses: [
             1, 7
         ],
-        eres: [
-            { amount: 20, operator: true, types: ['electricity', ''] },
-            { amount: 20, operator: true, types: ['sonic', ''] }
+        di: [
+            'electricity', 'sonic'
         ]
     },
     'Gourd Leshy': {
@@ -6713,9 +6784,8 @@ MorphinChanges.changes = {
         senses: [
             1, 7
         ],
-        eres: [
-            { amount: 20, operator: true, types: ['electricity', ''] },
-            { amount: 20, operator: true, types: ['sonic', ''] }
+        di: [
+            'electricity', 'sonic'
         ]
     },
     'Kawa Akago': {
@@ -6745,9 +6815,8 @@ MorphinChanges.changes = {
         senses: [
             1, 7
         ],
-        eres: [
-            { amount: 20, operator: true, types: ['electricity', ''] },
-            { amount: 20, operator: true, types: ['sonic', ''] }
+        di: [
+            'electricity', 'sonic'
         ]
     },
     'Leaf Ray': {
@@ -6781,9 +6850,8 @@ MorphinChanges.changes = {
         senses: [
             1, 7
         ],
-        eres: [
-            { amount: 20, operator: true, types: ['electricity', ''] },
-            { amount: 20, operator: true, types: ['sonic', ''] }
+        di: [
+            'electricity', 'sonic'
         ]
     },
     'Lotus Leshy': {
@@ -6797,9 +6865,8 @@ MorphinChanges.changes = {
         senses: [
             1, 7
         ],
-        eres: [
-            { amount: 20, operator: true, types: ['electricity', ''] },
-            { amount: 20, operator: true, types: ['sonic', ''] }
+        di: [
+            'electricity', 'sonic'
         ]
     },
     'Mandragora': {
@@ -6831,8 +6898,10 @@ MorphinChanges.changes = {
             1
         ],
         eres: [
-            { amount: 10, operator: true, types: ['acid', ''] },
-            { amount: 20, operator: true, types: ['cold', ''] }
+            { amount: 10, operator: true, types: ['acid', ''] }
+        ],
+        di: [
+            'cold'
         ]
     },
     'Mire Nettle': {
@@ -6884,8 +6953,8 @@ MorphinChanges.changes = {
             land: 10
         },
         senses: [],
-        eres: [
-            { amount: 20, operator: true, types: ['acid', ''] }
+        di: [
+            'acid'
         ]
     },
     'Seaweed Leshy': {
@@ -6900,9 +6969,8 @@ MorphinChanges.changes = {
         senses: [
             1, 7
         ],
-        eres: [
-            { amount: 20, operator: true, types: ['electricity', ''] },
-            { amount: 20, operator: true, types: ['sonic', ''] }
+        di: [
+            'electricity', 'sonic'
         ]
     },
     'Sunflower Leshy': {
@@ -6916,9 +6984,8 @@ MorphinChanges.changes = {
         senses: [
             1, 7
         ],
-        eres: [
-            { amount: 20, operator: true, types: ['electricity', ''] },
-            { amount: 20, operator: true, types: ['sonic', ''] }
+        di: [
+            'electricity', 'sonic'
         ]
     },
     'Tsaalgrend': {
@@ -6957,8 +7024,8 @@ MorphinChanges.changes = {
         dr: [
             { amount: 5, operator: true, types: ['slashing', 'bludgeoning'] }
         ],
-        eres: [
-            { amount: 20, operator: true, types: ['electricity', ''] }
+        di: [
+            'electricity'
         ]
     },
     'Xtabay': {
@@ -6972,8 +7039,8 @@ MorphinChanges.changes = {
         senses: [
             1
         ],
-        eres: [
-            { amount: 20, operator: true, types: ['acid', ''] }
+        di: [
+            'acid'
         ]
     },
 

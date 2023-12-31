@@ -46,7 +46,7 @@ export class MorphinElementalBody extends MorphinPolymorphDialog {
             popOut: true,
             template: 'modules/pf1-mighty-morphin/templates/elementalBodyDialog.html',
             id: 'mighty-morphin-elementalBody',
-            title: 'Mighty Morphin Elemental Body',
+            title: game.i18n.localize('MMMOD.UI.ElementalDialogName'),
             resizable: false,
             width: 550
         });

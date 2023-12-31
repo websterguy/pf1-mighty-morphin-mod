@@ -45,7 +45,7 @@ export class MightyMorphinApp {
                 if (game.settings.get('pf1-mighty-morphin', 'createScriptCall')) {
                     let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
                     scriptCall.category = 'toggle';
-                    scriptCall.name = 'Revert Mighty Morphin Changes on Deactivation';
+                    scriptCall.name = game.i18n.localize('MMMODDeactivateScriptCallName');
                     scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"]) game.mightyMorphin.revert({actor: actor});';
                     buffData.scriptCalls.push(scriptCall);
                 }
@@ -163,7 +163,7 @@ export class MightyMorphinApp {
                 if (game.settings.get('pf1-mighty-morphin', 'createScriptCall')) {
                     let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
                     scriptCall.category = 'toggle';
-                    scriptCall.name = 'Revert Mighty Morphin Changes on Deactivation';
+                    scriptCall.name = game.i18n.localize('MMMOD.DeactivateScriptCallName');
                     scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"]) game.mightyMorphin.revert({actor: actor});';
                     buffData.scriptCalls.push(scriptCall);
                 }
@@ -279,7 +279,7 @@ export class MightyMorphinApp {
                 if (game.settings.get('pf1-mighty-morphin', 'createScriptCall')) {
                     let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
                     scriptCall.category = 'toggle';
-                    scriptCall.name = 'Revert Mighty Morphin Changes on Deactivation';
+                    scriptCall.name = game.i18n.localize('MMMOD.DeactivateScriptCallName');
                     scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"]) game.mightyMorphin.revert({actor: actor});';
                     buffData.scriptCalls.push(scriptCall);
                 }
@@ -406,7 +406,7 @@ export class MightyMorphinApp {
                 if (game.settings.get('pf1-mighty-morphin', 'createScriptCall')) {
                     let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
                     scriptCall.category = 'toggle';
-                    scriptCall.name = 'Revert Mighty Morphin Changes on Deactivation';
+                    scriptCall.name = game.i18n.localize('MMMOD.DeactivateScriptCallName');
                     scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"]) game.mightyMorphin.revert({actor: actor});';
                     buffData.scriptCalls.push(scriptCall);
                 }
@@ -541,7 +541,7 @@ export class MightyMorphinApp {
                     if (game.settings.get('pf1-mighty-morphin', 'createScriptCall')) {
                         let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
                         scriptCall.category = 'toggle';
-                        scriptCall.name = 'Revert Mighty Morphin Changes on Deactivation';
+                        scriptCall.name = game.i18n.localize('MMMOD.DeactivateScriptCallName');
                         scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"]) game.mightyMorphin.revert({actor: actor});';
                         buffData.scriptCalls.push(scriptCall);
                     }
@@ -661,7 +661,7 @@ export class MightyMorphinApp {
                 if (game.settings.get('pf1-mighty-morphin', 'createScriptCall')) {
                     let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
                     scriptCall.category = 'toggle';
-                    scriptCall.name = 'Revert Mighty Morphin Changes on Deactivation';
+                    scriptCall.name = game.i18n.localize('MMMOD.DeactivateScriptCallName');
                     scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"]) game.mightyMorphin.revert({actor: actor});';
                     buffData.scriptCalls.push(scriptCall);
                 }
@@ -1087,12 +1087,12 @@ export class MightyMorphinApp {
                 }
                 
                 if (!foundForm) {
-                    ui.notifications.error(form + ' is not a valid option for Beast Shape');
+                    ui.notifications.error(form + ' ' + game.i18n.localize('MMMOD.BeastInvalidWarning'));
                     return;
                 }
                 
                 if (!dia.shapeOptions[type].some(o => o.name === form)) {
-                    ui.notifications.error(form + ' is not a valid option for Beast Shape ' + level);
+                    ui.notifications.error(form + ' ' + game.i18n.localize('MMMOD.BeastInvalidWarning') + ' ' + level);
                     return;
                 }
 
@@ -1133,12 +1133,12 @@ export class MightyMorphinApp {
                 if (foundForm) type = 'elemental';
                 
                 if (!foundForm) {
-                    ui.notifications.error(form + ' is not a valid option for Elemental Body');
+                    ui.notifications.error(form + ' ' + game.i18n.localize('MMMOD.ElementalInvalidWarning'));
                     return;
                 }
                 
                 if (!dia.shapeOptions[type].some(o => o.name === form)) {
-                    ui.notifications.error(form + ' is not a valid option for Elemental Body ' + level);
+                    ui.notifications.error(form + ' ' + game.i18n.localize('MMMOD.ElementalInvalidWarning') + ' ' + level);
                     return;
                 }
 
@@ -1178,12 +1178,12 @@ export class MightyMorphinApp {
                 if (foundForm) type = 'plant';
                 
                 if (!foundForm) {
-                    ui.notifications.error(form + ' is not a valid option for Plant Shape');
+                    ui.notifications.error(form + ' ' + game.i18n.localize('MMMOD.PlantInvalidWarning'));
                     return;
                 }
                 
                 if (!dia.shapeOptions[type].some(o => o.name === form)) {
-                    ui.notifications.error(form + ' is not a valid option for Plant Shape ' + level);
+                    ui.notifications.error(form + ' ' + game.i18n.localize('MMMOD.PlantInvalidWarning') + ' ' + level);
                     return;
                 }
 

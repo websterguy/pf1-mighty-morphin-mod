@@ -52,7 +52,7 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
             popOut: true,
             template: 'modules/pf1-mighty-morphin/templates/beastShapeDialog.html',
             id: 'mighty-morphin-beastShape',
-            title: 'Mighty Morphin Beast Shape',
+            title: game.i18n.localize('MMMOD.UI.BeastDialogName'),
             resizable: false,
             width: 550
         });
@@ -111,7 +111,7 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
         // Create the radio buttons html
         for (let i = 0; i < newOptions.length; i++) {
             const element = newOptions[i];
-            newOptionsHtml += `<input type="radio" name="sizeSelect" id="${element.size}Select" value="${element.label}" ${element.default ? 'checked' : ''}><label for="${element.size}Select">${element.size}</label>`;
+            newOptionsHtml += `<input type="radio" name="sizeSelect" id="${element.size}Select" value="${element.label}" ${element.default ? 'checked' : ''}><label for="${element.size}Select">${game.i18n.localize('MMMOD.Sizes.' + element.size)}</label>`;
         }
 
         // Replace the html
@@ -345,22 +345,30 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
 
         // Process energy resistances and vulnerabilities if beast shape iv
         if (this.level === 4) {
-            const eres = MorphinChanges.changes[this.chosenForm.name].eres || [];
+            const elementTypes = ['acid', 'cold', 'electricity', 'fire', 'sonic'];
+            const eres = MorphinChanges.changes[this.chosenForm.name].eres?.filter(o => elementTypes.includes(o.types[0])) || [];
             data.eres = '';
+            
+            const di = MorphinChanges.changes[this.chosenForm.name].di?.filter(o => elementTypes.includes(o)) || [];
+            for (const entry of di) {
+                eres.push({ amount: 20, operator: true, types: [entry, ''] });
+            }
+
             for (const entry of eres) {
                 if (data.eres.length > 0) data.eres += ', ';
                 if (typeof(entry) === 'string') {
                     data.eres += entry;
                 }
                 else {
-                    data.eres += entry.types[0].charAt(0).toUpperCase() + entry.types[0].slice(1) + ' ' + entry.amount;
+                    data.eres += game.i18n.localize('MMMOD.DamageTypes.' + entry.types[0].charAt(0).toUpperCase() + entry.types[0].slice(1)) + ' ' + 20;
                 }
             }
             if (data.eres.length === 0) data.eres = game.i18n.localize('MMMOD.UI.None');
             this.eres = eres;
 
-            data.dv = MorphinChanges.changes[this.chosenForm.name].dv?.join(', ') || game.i18n.localize('MMMOD.UI.None');
-            this.dv = MorphinChanges.changes[this.chosenForm.name].dv || [];
+            const dv = MorphinChanges.changes[this.chosenForm.name].dv?.filter(o => elementTypes.includes(o)) || [];
+            data.dv = dv.map(o => game.i18n.localize('MMMOD.DamageTypes.' + o)).join(', ') || game.i18n.localize('MMMOD.UI.None');
+            this.dv = dv;
         }
 
         // Build the html preview

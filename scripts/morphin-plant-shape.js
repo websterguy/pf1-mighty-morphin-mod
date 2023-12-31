@@ -43,7 +43,7 @@ export class MorphinPlantShape extends MorphinPolymorphDialog {
             popOut: true,
             template: 'modules/pf1-mighty-morphin/templates/plantShapeDialog.html',
             id: 'mighty-morphin-plantShape',
-            title: 'Mighty Morphin Plant Shape',
+            title: game.i18n.localize('MMMOD.UI.PlantDialogName'),
             resizable: false,
             width: 550
         });
@@ -225,24 +225,33 @@ export class MorphinPlantShape extends MorphinPolymorphDialog {
             }
         }
 
-        data.dv = MorphinChanges.changes[this.chosenForm.name].dv?.join(', ') || 'None';
-        this.dv = MorphinChanges.changes[this.chosenForm.name].dv || [];
+        const elementTypes = ['acid', 'cold', 'electricity', 'fire', 'sonic'];
 
         if (this.level >= 2) {
-            const eres = MorphinChanges.changes[this.chosenForm.name].eres || [];
+            const eres = MorphinChanges.changes[this.chosenForm.name].eres?.filter(o => elementTypes.includes(o.types[0])) || [];
             data.eres = '';
+            
+            const di = MorphinChanges.changes[this.chosenForm.name].di?.filter(o => elementTypes.includes(o)) || [];
+            for (const entry of di) {
+                eres.push({ amount: 20, operator: true, types: [entry, ''] });
+            }
+    
             for (const entry of eres) {
                 if (data.eres.length > 0) data.eres += ', ';
                 if (typeof(entry) === 'string') {
                     data.eres += entry;
                 }
                 else {
-                    data.eres += entry.types[0].charAt(0).toUpperCase() + entry.types[0].slice(1) + ' ' + entry.amount;
+                    data.eres += game.i18n.localize('MMMOD.DamageTypes.' + entry.types[0].charAt(0).toUpperCase() + entry.types[0].slice(1)) + ' ' + 20;
                 }
             }
-            if (data.eres.length === 0) data.eres = 'None';
+            if (data.eres.length === 0) data.eres = game.i18n.localize('MMMOD.UI.None');
             this.eres = eres;
         }
+
+        const dv = MorphinChanges.changes[this.chosenForm.name].dv?.filter(o => elementTypes.includes(o)) || [];
+        data.dv = dv.map(o => game.i18n.localize('MMMOD.DamageTypes.' + o)).join(', ') || game.i18n.localize('MMMOD.UI.None');
+        this.dv = dv;
 
         if (this.level === 3) {
             const dr = MorphinChanges.changes[this.chosenForm.name].dr || [];

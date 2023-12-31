@@ -63,6 +63,7 @@
             "Whirlwind": "Whirlwind",
             "Wing": "Wing"
         },
+        "BeastInvalidWarning": "is not a valid option for Beast Shape",
         "Buffs": {
             "AnimalGrowth": {
                 "Name": "Animal Growth"
@@ -95,13 +96,46 @@
                 "Name": "Wild Shape"
             }
         },
+        "DamageTypes": {
+            "acid": "acid",
+            "Acid": "Acid",
+            "bludgeoning": "bludgeoning",
+            "Bludgeoning": "Bludgeoning",
+            "cold": "cold",
+            "Cold": "Cold",
+            "electric": "electric",
+            "Electric": "Electric",
+            "electricity": "electricity",
+            "Electricity": "Electricity",
+            "fire": "fire",
+            "Fire": "Fire",
+            "force": "force",
+            "Force": "Force",
+            "negative": "negative",
+            "Negative": "Negative",
+            "nonlethal": "nonlethal",
+            "Nonlethal": "Nonlethal",
+            "piercing": "piercing",
+            "Piercing": "Piercing",
+            "positive": "positive",
+            "Positive": "Positive",
+            "precision": "precision",
+            "Precision": "Precision",
+            "slashing": "slashing",
+            "Slashing": "Slashing",
+            "sonic": "sonic",
+            "Sonic": "Sonic"
+        },
+        "DeactivateScriptCallName": "Revert Mighty Morphin Changes on Deactivation",
         "EffectWarning": "is already under the effects of a change from",
+        "ElementalInvalidWarning": "is not a valid option for Elemental Body",
         "FilePermissionWarning": "To enable token image switching, player must have Foundry permission to \"Use File Browser\"",
         "InputCasterLevel": "Input Caster Level",
         "ManyTokensWarning": "Too many actors selected. Choose one token.",
         "Name": "Mighty Morphin Mod",
         "NoEffectWarning": "is not under any change effects",
         "NoTokenWarning": "No token selected",
+        "PlantInvalidWarning": "is not a valid option for Plant Shape",
         "Senses": {
             "Blindsense10": "Blindsense 10ft",
             "Blindsense20": "Blindsense 20ft",
@@ -175,7 +209,10 @@
             "Speeds": "Speeds",
             "Str": "Str",
             "swim": "Swim",
-            "Vulnerabiliites": "Vulnerabiliites"
+            "Vulnerabiliites": "Vulnerabiliites",
+            "BeastDialogName": "Mighty Morphin Beast Shape",
+            "PlantDialogName": "Mighty Morphin Plant Shape",
+            "ElementalDialogName": "Mighty Morphin Elemental Body"
         },
         "WeaponFinesse": "Weapon Finesse"
     }
