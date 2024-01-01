@@ -5996,7 +5996,7 @@ MorphinChanges.changes = {
             'acid'
         ],
         regen: [
-            '5 (bludgeoning or fire)'
+            {value: 5, counter: ['bludgeoning','fire']}
         ]
     },
     'Treant': {
@@ -6242,7 +6242,7 @@ MorphinChanges.changes = {
             1, 7
         ],
         regen: [
-            '5 (cold)'
+            {value: 5, counter: ['cold']}
         ],
         dr: [
             '15/magic and slashing'
@@ -6333,7 +6333,7 @@ MorphinChanges.changes = {
             1
         ],
         regen: [
-            '5 (acid or fire)'
+            {value: 5, counter: ['acid','fire']}
         ]
     },
     'Viper Vine': {
@@ -6572,7 +6572,7 @@ MorphinChanges.changes = {
             1
         ],
         regen: [
-            '5 (acid)'
+            {value: 5, counter: ['acid']}
         ],
         eres: [
             { amount: 10, operator: true, types: ['electricity', ''] },
@@ -6668,7 +6668,7 @@ MorphinChanges.changes = {
             1
         ],
         regen: [
-            '5 (fire)'
+            {value: 5, counter: ['fire']}
         ]
     },
     'Violet Fungus': {

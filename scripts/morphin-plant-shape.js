@@ -278,8 +278,9 @@ export class MorphinPlantShape extends MorphinPolymorphDialog {
             if (data.dr.length === 0) data.dr = game.i18n.localize('MMMOD.UI.None');
             this.dr = dr;
 
-            data.regen = MorphinChanges.changes[this.chosenForm.name].regen?.join(', ') || game.i18n.localize('MMMOD.UI.None');
-            this.regen = MorphinChanges.changes[this.chosenForm.name].regen?.join('; ') || '';
+            const regen = MorphinChanges.changes[this.chosenForm.name].regen || [];
+            data.regen = regen.map(o => '' + o.value + ' (' + o.counter.map(c => game.i18n.localize('MMMOD.DamageTypes.' + c)).join(' ' + game.i18n.localize('or') + ' ') + ')').join(', ') || game.i18n.localize('MMMOD.UI.None');
+            this.regen = regen.map(o => '' + o.value + ' (' + o.counter.map(c => game.i18n.localize('MMMOD.DamageTypes.' + c)).join(' ' + game.i18n.localize('or') + ' ') + ')').join('; ') || '';
         }
 
         // Build the html preview
