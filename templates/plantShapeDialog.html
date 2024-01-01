@@ -1,13 +1,13 @@
 <form class="flexcol">
   <div id="sizeSelect">
-    <legend>Select Plant Size:</legend>
+    <legend>{{localize "MMMOD.UI.SelectPlantSize"}}:</legend>
     {{#each plantSizes}}
     <input type="radio" name="sizeSelect" id="{{this.size}}Select" value="{{this.label}}" {{#if this.default}}checked{{/if}}>
-    <label for="{{this.size}}Select">{{this.size}}</label>
+    <label for="{{this.size}}Select">{{localize (lookup (concat "MMMOD.Sizes." this.size) 'string')}}</label>
     {{/each}}
   </div>
   <div id="creatureSelect">
-    <legend>Select Form:</legend>
+    <legend>{{localize "MMMOD.UI.SelectForm"}}:</legend>
     <select id="formSelect">
       {{#each plantOptions}}
         <option value="{{this.name}}">{{this.name}}</option>

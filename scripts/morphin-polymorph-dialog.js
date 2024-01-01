@@ -148,14 +148,14 @@ export class MorphinPolymorphDialog extends FormApplication {
         for (let item of armorAndShields) {
             let originalArmor = armorChangeNeeded ? { armor: { value: item.system.armor.value } } : {};
             // If this is not Wild Shape or it is Wild Shape but the armor isn't Wild enchanted, armor must be removed
-            let armorIsWild = item.name.includes('Wild');
-            let originalEquipped = (armorIsWild && this.source === 'Wild Shape') ? {} : { equipped: item.system.equipped };
+            let armorIsWild = item.name.includes(game.i18n.localize('Wild'));
+            let originalEquipped = (armorIsWild && this.source === game.i18n.localize('WildShape')) ? {} : { equipped: item.system.equipped };
             originalArmor = mergeObject(originalArmor, originalEquipped);
 
             if (!!originalArmor) {
                 armorChangeFlag.push({ _id: item.id, data: originalArmor });
                 // take off armor if it's not wild armor or this is not from wild shape
-                let equipChange = (armorIsWild && this.source === 'Wild Shape') ? {} : { equipped: false };
+                let equipChange = (armorIsWild && this.source === game.i18n.localize('WildShape')) ? {} : { equipped: false };
                 let armorChange = armorChangeNeeded ? (smallSizes.includes(this.actorSize) ? { armor: { value: item.system.armor.value * 2 } } : { armor: { value: Math.floor(item.system.armor.value / 2) } }) : {};
                 equipChange = mergeObject(equipChange, armorChange);
                 armorToChange.push({ _id: item.id, system: equipChange });
