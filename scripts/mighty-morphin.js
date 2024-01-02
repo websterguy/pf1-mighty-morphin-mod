@@ -374,7 +374,7 @@ export class MightyMorphinApp {
     static async frightfulAspect({ cl = 0, durationLevel = 0, image = null } = {}) {
 
         let shifter = MightyMorphinApp.getSingleActor(); // Ensure only a single actor is being processed
-        let changeData = MorphinChanges.changes.frightfulAspect; // get buff data
+        let changeData = duplicate(MorphinChanges.changes.frightfulAspect); // get buff data
 
         // Only continue if a single actor and it is not already under any effects provided by this module
         if (!!shifter && !shifter.flags['pf1-mighty-morphin']) {
@@ -382,6 +382,9 @@ export class MightyMorphinApp {
             let shifterSize = shifter.system.traits.size;
 
             let newSize = changeData.size;
+
+            const polymorphChanges = MorphinChanges.changes.polymorphSize[shifterSize] || null;
+            if (!!polymorphChanges) changeData.changes.push(...polymorphChanges);
 
             let durationData = {};
             if (!!durationLevel) {
@@ -428,20 +431,18 @@ export class MightyMorphinApp {
                 await buffAdded[0].update({ 'img': 'systems/pf1/icons/skills/affliction_08.jpg', 'system.duration': durationData, 'system.changes': changes, 'system.active': true });
 
             }
-            else {
-                let oldChanges = buff.system.changes;
-                let newChanges = [];
-                
+            else {                
                 let strChange = 0;
-                for (const change of oldChanges) {
+                for (let i = 0; i < changeData.changes.length; i++) {
+                    const change = changeData.changes[i];
+
                     if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
-                    if (!!change.subTarget && change.subTarget !== 'carryStr' && change.subTarget !== 'carryMult') newChanges.push(change);
                 }
 
                 let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
-                newChanges = newChanges.concat(carryBonusChanges);
+                let changes = changeData.changes.concat(carryBonusChanges);
 
-                buff.update({ 'system.duration': durationData, 'system.changes': newChanges, 'system.active': true });
+                buff.update({ 'system.duration': durationData, 'system.changes': changes, 'system.active': true });
             }
 
 
@@ -506,125 +507,125 @@ export class MightyMorphinApp {
      * @param {boolean} [drEvil=true] Setting for making the DR evil (true) or good (false)
      * @param {string} [image = null] The file name for a custom image file without the file extension
      */
-        static async righteousMight({ cl = 0, durationLevel = 0, drEvil = true, image = null } = {}) {
+    static async righteousMight({ cl = 0, durationLevel = 0, drEvil = true, image = null } = {}) {
 
-            let shifter = MightyMorphinApp.getSingleActor(); // Ensure only a single actor is being processed
-            let changeData = MorphinChanges.changes.righteousMight; // get buff data
-    
-            // Only continue if a single actor and it is not already under any effects provided by this module
-            if (!!shifter && !shifter.flags['pf1-mighty-morphin']) {
-                let buff = shifter.items.find(o => o.type === 'buff' && o.name === game.i18n.localize('MMMOD.Buffs.RighteousMight.Name'));
-                let shifterSize = shifter.system.traits.size;
-    
-                let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
-    
-                let durationData = {};
-                if (!!durationLevel) {
-                    let duration = durationLevel;
-                    durationData = {value: duration.toString(), units: 'round'};
-                }
-    
-                // Get caster level from user for effect scaling
-                let casterLevel = cl === 0 ? await Dialog.prompt({
-                    content: `<label>${game.i18n.localize('MMMOD.InputCasterLevel')}</label><input type="number">`,
-                    callback: (html) => html.find('input').val()
-                }) : cl;
-    
-                // Create the buff if it doesn't exist, otherwise toggle it on
-                if (!buff) {
-                    // Create template buff Item
-                    let buffData = duplicate(game.system.template.Item.buff);
-                    for (let t of buffData.templates) {
-                        mergeObject(buffData, duplicate(game.system.template.Item.templates[t]));
-                    }
-                    delete buffData.templates;
-                    if (game.settings.get('pf1-mighty-morphin', 'createScriptCall')) {
-                        let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
-                        scriptCall.category = 'toggle';
-                        scriptCall.name = game.i18n.localize('MMMOD.DeactivateScriptCallName');
-                        scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"]) game.mightyMorphin.revert({actor: actor});';
-                        buffData.scriptCalls.push(scriptCall);
-                    }
+        let shifter = MightyMorphinApp.getSingleActor(); // Ensure only a single actor is being processed
+        let changeData = MorphinChanges.changes.righteousMight; // get buff data
 
-                    buff = await Item.create({ name: game.i18n.localize('MMMOD.Buffs.RighteousMight.Name'), type: 'buff', system: buffData }, { temporary: true });
-                    
-                    let strChange = 0;
-                    for (let i = 0; i < changeData.changes.length; i++) {
-                        const change = changeData.changes[i];
-    
-                        if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
-                    }
-    
-                    let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
-                    let changes = changeData.changes.concat(carryBonusChanges);
-    
-                    // Create the buff on the actor, change the icon, populate the changes, turn it on
-                    let buffAdded = await shifter.createEmbeddedDocuments('Item', [buff]);
-                    await buffAdded[0].update({ 'img': 'systems/pf1/icons/skills/red_01.jpg', 'system.duration': durationData, 'system.changes': changes, 'system.active': true });
-    
-                }
-                else {
-                    let oldChanges = buff.system.changes;
-                    let newChanges = [];
-                    
-                    let strChange = 0;
-                    for (const change of oldChanges) {
-                        if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
-                        if (!!change.subTarget && change.subTarget !== 'carryStr' && change.subTarget !== 'carryMult') newChanges.push(change);
-                    }
-    
-                    let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
-                    newChanges = newChanges.concat(carryBonusChanges);
-    
-                    buff.update({ 'system.duration': durationData, 'system.changes': newChanges, 'system.active': true });
-                }
-    
-                let armorChangeFlag = [];
-                let armorToChange = [];
-                // Double armor and shield AC when moving from tiny or smaller (tiny and below armor AC is half normal)
-                if (MightyMorphinApp.sizes.indexOf(shifterSize) < 3) {
-                    let armorAndShields = shifter.items.filter(o => o.type === 'equipment' && (o.system.subType === 'armor' || o.system.subType === 'shield'));
-    
-                    for (let item of armorAndShields) {
-                        armorChangeFlag.push({ _id: item.id, system: { armor: { value: item.system.armor.value } } }); // store original armor data in flags
-                        armorToChange.push({ _id: item.id, system: { armor: { value: (item.system.armor.value * 2) } } }); // change to push to actor's item
-                    }
-                }
-    
-                // Update all items that were found to need updates
-                if (!!armorToChange.length) {
-                    await shifter.updateEmbeddedDocuments('Item', armorToChange);
-                }
-    
-                // Add effect DR to existing (if any), and store old DR
-                let oldDR = shifter.system.traits.dr.custom;
-                let newDR = `${(!!oldDR ? oldDR + '; ' : '') + (cl >= 15 ? 10 : 5)}/${drEvil ? 'evil' : 'good'}`;
+        // Only continue if a single actor and it is not already under any effects provided by this module
+        if (!!shifter && !shifter.flags['pf1-mighty-morphin']) {
+            let buff = shifter.items.find(o => o.type === 'buff' && o.name === game.i18n.localize('MMMOD.Buffs.RighteousMight.Name'));
+            let shifterSize = shifter.system.traits.size;
 
-                let oldImage, oldProtoImage, newImage, protoImageChange;
+            let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
 
-                if (!!image) {
-                    // Find image to change token to if it exists
-                    newImage = await MightyMorphinApp.findImage(image, true);
-    
-                    // Prepare data for image change
-                    if (!!newImage) {
-                        protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : {};
-                        let oldData = await MightyMorphinApp.changeTokenImage(newImage, shifter);
-                        oldImage = oldData.oldImage;
-                        oldProtoImage = oldData.oldProtoImage;
-                        oldProtoImage.token.img = shifter.prototypeToken.texture.src;
-                    }
-                }
-        
-                // Update the actor data and store flags
-                let updates = { 'system.traits.size': newSize, 'system.traits.dr.custom': newDR, 'flags.pf1-mighty-morphin': { source: game.i18n.localize('MMMOD.Buffs.RighteousMight.Name'), buffName: game.i18n.localize('MMMOD.Buffs.RighteousMight.Name'), size: shifterSize, armor: armorChangeFlag, data: { traits: { dr: { custom: oldDR } } } } };
-                if (!!newImage) mergeObject(mergeObject(updates, protoImageChange), { 'flags.pf1-mighty-morphin': { tokenImg: oldImage, protoImg: oldProtoImage } });
-                await shifter.update(updates);
+            let durationData = {};
+            if (!!durationLevel) {
+                let duration = durationLevel;
+                durationData = {value: duration.toString(), units: 'round'};
             }
-            else if (!!shifter?.flags['pf1-mighty-morphin']) {
-                ui.notifications.warn(`${shifter.name} ${game.i18n.localize('MMMOD.EffectWarning')} ${shifter.flags['pf1-mighty-morphin'].source}`);
+
+            // Get caster level from user for effect scaling
+            let casterLevel = cl === 0 ? await Dialog.prompt({
+                content: `<label>${game.i18n.localize('MMMOD.InputCasterLevel')}</label><input type="number">`,
+                callback: (html) => html.find('input').val()
+            }) : cl;
+
+            // Create the buff if it doesn't exist, otherwise toggle it on
+            if (!buff) {
+                // Create template buff Item
+                let buffData = duplicate(game.system.template.Item.buff);
+                for (let t of buffData.templates) {
+                    mergeObject(buffData, duplicate(game.system.template.Item.templates[t]));
+                }
+                delete buffData.templates;
+                if (game.settings.get('pf1-mighty-morphin', 'createScriptCall')) {
+                    let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
+                    scriptCall.category = 'toggle';
+                    scriptCall.name = game.i18n.localize('MMMOD.DeactivateScriptCallName');
+                    scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"]) game.mightyMorphin.revert({actor: actor});';
+                    buffData.scriptCalls.push(scriptCall);
+                }
+
+                buff = await Item.create({ name: game.i18n.localize('MMMOD.Buffs.RighteousMight.Name'), type: 'buff', system: buffData }, { temporary: true });
+                
+                let strChange = 0;
+                for (let i = 0; i < changeData.changes.length; i++) {
+                    const change = changeData.changes[i];
+
+                    if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
+                }
+
+                let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
+                let changes = changeData.changes.concat(carryBonusChanges);
+
+                // Create the buff on the actor, change the icon, populate the changes, turn it on
+                let buffAdded = await shifter.createEmbeddedDocuments('Item', [buff]);
+                await buffAdded[0].update({ 'img': 'systems/pf1/icons/skills/red_01.jpg', 'system.duration': durationData, 'system.changes': changes, 'system.active': true });
+
             }
+            else {
+                let oldChanges = buff.system.changes;
+                let newChanges = [];
+                
+                let strChange = 0;
+                for (const change of oldChanges) {
+                    if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
+                    if (!!change.subTarget && change.subTarget !== 'carryStr' && change.subTarget !== 'carryMult') newChanges.push(change);
+                }
+
+                let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
+                newChanges = newChanges.concat(carryBonusChanges);
+
+                buff.update({ 'system.duration': durationData, 'system.changes': newChanges, 'system.active': true });
+            }
+
+            let armorChangeFlag = [];
+            let armorToChange = [];
+            // Double armor and shield AC when moving from tiny or smaller (tiny and below armor AC is half normal)
+            if (MightyMorphinApp.sizes.indexOf(shifterSize) < 3) {
+                let armorAndShields = shifter.items.filter(o => o.type === 'equipment' && (o.system.subType === 'armor' || o.system.subType === 'shield'));
+
+                for (let item of armorAndShields) {
+                    armorChangeFlag.push({ _id: item.id, system: { armor: { value: item.system.armor.value } } }); // store original armor data in flags
+                    armorToChange.push({ _id: item.id, system: { armor: { value: (item.system.armor.value * 2) } } }); // change to push to actor's item
+                }
+            }
+
+            // Update all items that were found to need updates
+            if (!!armorToChange.length) {
+                await shifter.updateEmbeddedDocuments('Item', armorToChange);
+            }
+
+            // Add effect DR to existing (if any), and store old DR
+            let oldDR = shifter.system.traits.dr.custom;
+            let newDR = `${(!!oldDR ? oldDR + '; ' : '') + (cl >= 15 ? 10 : 5)}/${drEvil ? 'evil' : 'good'}`;
+
+            let oldImage, oldProtoImage, newImage, protoImageChange;
+
+            if (!!image) {
+                // Find image to change token to if it exists
+                newImage = await MightyMorphinApp.findImage(image, true);
+
+                // Prepare data for image change
+                if (!!newImage) {
+                    protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : {};
+                    let oldData = await MightyMorphinApp.changeTokenImage(newImage, shifter);
+                    oldImage = oldData.oldImage;
+                    oldProtoImage = oldData.oldProtoImage;
+                    oldProtoImage.token.img = shifter.prototypeToken.texture.src;
+                }
+            }
+    
+            // Update the actor data and store flags
+            let updates = { 'system.traits.size': newSize, 'system.traits.dr.custom': newDR, 'flags.pf1-mighty-morphin': { source: game.i18n.localize('MMMOD.Buffs.RighteousMight.Name'), buffName: game.i18n.localize('MMMOD.Buffs.RighteousMight.Name'), size: shifterSize, armor: armorChangeFlag, data: { traits: { dr: { custom: oldDR } } } } };
+            if (!!newImage) mergeObject(mergeObject(updates, protoImageChange), { 'flags.pf1-mighty-morphin': { tokenImg: oldImage, protoImg: oldProtoImage } });
+            await shifter.update(updates);
         }
+        else if (!!shifter?.flags['pf1-mighty-morphin']) {
+            ui.notifications.warn(`${shifter.name} ${game.i18n.localize('MMMOD.EffectWarning')} ${shifter.flags['pf1-mighty-morphin'].source}`);
+        }
+    }
 
     /**
      * Applies Reduce Person buff and effects to selected actor
@@ -744,6 +745,124 @@ export class MightyMorphinApp {
     }
 
     /**
+     * Applies Mauler Familiar archetype's Battle Form buff and effects to selected actor
+     * 
+     * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
+     * @param {string} [image = null] The file name for a custom image file without the file extension
+     */
+    static async maulerBattleForm({ durationLevel = 0, image = null } = {}) {
+        let shifter = MightyMorphinApp.getSingleActor(); // Ensure only a single actor is being processed
+        let changeData = duplicate(MorphinChanges.changes.maulerBattleForm); // get buff data
+
+        // Only continue if a single actor and it is not already under any effects provided by this module
+        if (!!shifter && !shifter.flags['pf1-mighty-morphin']) {
+            let buff = shifter.items.find(o => o.type === 'buff' && o.name === game.i18n.localize('MMMOD.Buffs.MaulerBattleForm.Name'));
+            let shifterSize = shifter.system.traits.size;
+
+            // Find the size the number of steps away from current, number of steps provided by changeData
+            let newSize = changeData.size;
+
+            const polymorphChanges = MorphinChanges.changes.polymorphSize[shifterSize] || null;
+            if (!!polymorphChanges) changeData.changes.push(...polymorphChanges);
+
+            let durationData = {};
+            if (!!durationLevel) {
+                let duration = durationLevel;
+                durationData = {value: duration.toString(), units: 'minute'};
+            }
+
+
+            // Create the buff if it doesn't exist, otherwise toggle it on
+            if (!buff) {
+                // Create template buff Item
+                let buffData = duplicate(game.system.template.Item.buff);
+                for (let t of buffData.templates) {
+                    mergeObject(buffData, duplicate(game.system.template.Item.templates[t]));
+                }
+                delete buffData.templates;
+                if (game.settings.get('pf1-mighty-morphin', 'createScriptCall')) {
+                    let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
+                    scriptCall.category = 'toggle';
+                    scriptCall.name = game.i18n.localize('MMMOD.DeactivateScriptCallName');
+                    scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"]) game.mightyMorphin.revert({actor: actor});';
+                    buffData.scriptCalls.push(scriptCall);
+                }
+
+                buff = await Item.create({ name: game.i18n.localize('MMMOD.Buffs.MaulerBattleForm.Name'), type: 'buff', system: buffData }, { temporary: true });
+
+                let strChange = 0;
+                for (let i = 0; i < changeData.changes.length; i++) {
+                    const change = changeData.changes[i];
+
+                    if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
+                }
+
+                let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
+                let changes = changeData.changes.concat(carryBonusChanges);
+
+                // Create the buff on the actor, change the icon, populate the changes, turn it on
+                let buffAdded = await shifter.createEmbeddedDocuments('Item', [buff]);
+                await buffAdded[0].update({ 'img': 'systems/pf1/icons/spells/wild-orange-3.jpg', 'system.duration': durationData, 'system.changes': changes, 'system.active': true });
+            }
+            else {
+                let strChange = 0;
+                for (let i = 0; i < changeData.changes.length; i++) {
+                    const change = changeData.changes[i];
+
+                    if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
+                }
+
+                let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
+                let changes = changeData.changes.concat(carryBonusChanges);
+
+                buff.update({ 'system.duration': durationData, 'system.changes': changes, 'system.active': true });
+            }
+
+            let armorChangeFlag = [];
+            let armorToChange = [];
+            // Double armor and shield AC when moving from tiny to small (tiny and below armor AC is half normal)
+            if (shifterSize === 'tiny') {
+                let armorAndShields = shifter.items.filter(o => o.type === 'equipment' && (o.system.subType === 'armor' || o.system.subType === 'shield'));
+
+                for (let item of armorAndShields) {
+                    armorChangeFlag.push({ _id: item.id, system: { armor: { value: item.system.armor.value } } }); // store original armor data in flags
+                    armorToChange.push({ _id: item.id, system: { armor: { value: (item.system.armor.value * 2) } } }); // change to push to actor's item
+                }
+            }
+
+            let oldImage, oldProtoImage, newImage, protoImageChange;
+
+            if (!!image) {
+                // Find image to change token to if it exists
+                newImage = await MightyMorphinApp.findImage(image, true);
+
+                // Prepare data for image change
+                if (!!newImage) {
+                    protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : {};
+                    let oldData = await MightyMorphinApp.changeTokenImage(newImage, shifter);
+                    oldImage = oldData.oldImage;
+                    oldProtoImage = oldData.oldProtoImage;
+                    oldProtoImage.token.img = shifter.prototypeToken.texture.src;
+                }
+            }
+
+            // Update all items that were found to need updates
+            if (!!armorToChange.length) {
+                await shifter.updateEmbeddedDocuments('Item', armorToChange);
+            }
+
+            // Update the actor size and store flags
+            let updates = { 'system.traits.size': newSize, 'flags.pf1-mighty-morphin': { source: game.i18n.localize('MMMOD.Buffs.MaulerBattleForm.Name'), buffName: game.i18n.localize('MMMOD.Buffs.MaulerBattleForm.Name'), size: shifterSize, armor: armorChangeFlag } };
+            if (!!newImage) mergeObject(mergeObject(updates, protoImageChange), { 'flags.pf1-mighty-morphin': { tokenImg: oldImage, protoImg: oldProtoImage } });
+            await shifter.update(updates);
+        }
+        else if (!!shifter?.flags['pf1-mighty-morphin']) {
+                ui.notifications.warn(`${shifter.name} ${game.i18n.localize('MMMOD.EffectWarning')} ${shifter.flags['pf1-mighty-morphin'].source}`);
+        }
+    }
+    
+
+    /**
      * Reverts changes applied by this module to the selected actor
      * 
      * @param {object} [actor=null] The specific actor to revert changes on
@@ -757,7 +876,7 @@ export class MightyMorphinApp {
             let changes = duplicate(shifter.flags['pf1-mighty-morphin']);
 
             // Undo listed buffs
-            if ([game.i18n.localize('MMMOD.Buffs.EnlargePerson.Name'), game.i18n.localize('MMMOD.Buffs.ReducePerson.Name'), game.i18n.localize('MMMOD.Buffs.LegendaryProportions.Name'), game.i18n.localize('MMMOD.Buffs.FrightfulAspect.Name'), game.i18n.localize('MMMOD.Buffs.AnimalGrowth.Name'), game.i18n.localize('MMMOD.Buffs.RighteousMight.Name')].includes(changes.source)) {
+            if ([game.i18n.localize('MMMOD.Buffs.EnlargePerson.Name'), game.i18n.localize('MMMOD.Buffs.ReducePerson.Name'), game.i18n.localize('MMMOD.Buffs.LegendaryProportions.Name'), game.i18n.localize('MMMOD.Buffs.FrightfulAspect.Name'), game.i18n.localize('MMMOD.Buffs.AnimalGrowth.Name'), game.i18n.localize('MMMOD.Buffs.RighteousMight.Name'), game.i18n.localize('MMMOD.Buffs.MaulerBattleForm.Name')].includes(changes.source)) {
                 // Revert all armor changes that exist
                  if (!!shifter.flags['pf1-mighty-morphin'].armor.length) {
                     let armorFlag = shifter.flags['pf1-mighty-morphin'].armor;
@@ -889,27 +1008,6 @@ export class MightyMorphinApp {
         return actors[0];
     }
     
-    /**
-     * Calculates encumbrance bonus/penalty needed to maintain current encumbrance when size changes
-     * 
-     * @param {Object} shifter The actor that is changing sizes
-     * @param {string} newSize The system-defined abbreviation of the size the actor is changing to
-     * @param {number} strChange The amount of strength the actor is gaining (negative number is strength loss)
-     * @returns {Array.Object} Array of Changes targeting carry strength bonus and carry multiplier
-     */
-    static generateCapacityChange(shifter, newSize, strChange) {
-        // Set up adjustments to strength carry bonus and carry multiplier so actor's encumbrance doesn't change
-        // Subtract the buff strength change from current carry bonus, decreasing carry strength if buff adds or increasing carry strength if buff subtracts
-        let carryBonusChange = (!!shifter.system.details.carryCapacity.bonus.user ? shifter.system.details.carryCapacity.bonus.user : 0) - strChange ;
-        // Counteract the size change's natural increase or decrease to carry multiplier
-        let carryMultChange = (shifter.system.details.carryCapacity.multiplier.total * CONFIG.PF1.encumbranceMultipliers.normal[shifter.system.traits.size] / CONFIG.PF1.encumbranceMultipliers.normal[newSize]) - shifter.system.details.carryCapacity.multiplier.total;
-        let changes = [
-            { formula: carryBonusChange.toString(), operator: 'add', subTarget: 'carryStr', modifier: 'untyped', priority: 0, value: carryBonusChange },
-            { formula: carryMultChange.toString(), operator: 'add', subTarget: 'carryMult', modifier: 'untyped', priority: 0, value: carryMultChange }
-        ];
-        return changes;
-    }
-
     /**
      * Calculates encumbrance bonus/penalty needed to maintain current encumbrance when size changes
      * 

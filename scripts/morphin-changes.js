@@ -61,6 +61,12 @@ MorphinChanges.changes = {
         ],
         size: -1
     },
+    maulerBattleForm: {
+        changes: [
+            { formula: '2', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'size', priority: 0, value: -2 }
+        ],
+        size: 'med'
+    },
     beastShape: {
         animal: {
             sm: {

@@ -83,6 +83,9 @@
             "LegendaryProportions": {
                 "Name": "Legendary Proportions"
             },
+            "MaulerBattleForm": {
+                "Name": "Battle Form"
+            },
             "PlantShape": {
                 "Name": "Plant Shape"
             },
