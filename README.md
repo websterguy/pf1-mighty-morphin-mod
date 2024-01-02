@@ -21,6 +21,7 @@ Currently supports buff generation and application of effects of the following s
 * Elemental Body I-IV
 * Plant Shape I-III
 * Druid Wild Shape (As Beast Shape, Elemental Body, and Plant Shape)
+* Mauler Familiar Battle Form
 
 Effects such as Beast Shape include creating attacks, replacing speeds, replacing senses, etc.
 
@@ -30,4 +31,4 @@ Effects such as Beast Shape include creating attacks, replacing speeds, replacin
 
 ## Known Issues
 
-* System sometimes throws errors when toggling buffs off (It's unclear if this is a PF1 system issue or a Foundry core issue, but it's not this mod). If it happens and the buff icon gets stuck, the only real solution is to refresh the program/browser window.
+* None
