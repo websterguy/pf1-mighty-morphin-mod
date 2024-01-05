@@ -34,7 +34,10 @@
         "styles/mightyMorphin.css"
     ],
     "templates": [
-        "templates/beastShapeDialog.html"
+        "templates/beastShapeDialog.html",
+        "templates/elementalBodyDialog.html",
+        "templates/plantShapeDialog.html",
+        "templates/verminShapeDialog.html"
     ],
     "languages": [
         {

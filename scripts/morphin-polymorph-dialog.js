@@ -303,7 +303,7 @@ export class MorphinPolymorphDialog extends FormApplication {
             durationData = {value: this.durationLevel.toString(), units: (this.source === 'Wild Shape' ? 'hour' : 'minute')};
         }
 
-        let buffUpdate = [{ _id: buff.id, 'system.duration': durationData, 'system.changes': this.changes, 'system.active': true }];
+        let buffUpdate = [{ _id: buff.id, 'system.duration': durationData, 'system.changes': this.changes, 'system.contextNotes': this.contextNotes,'system.active': true }];
 
         // Set the flags for all changes made
         let dataFlag = mergeObject({ 'system.traits.size': this.actorSize }, mergeObject(originalSkillMod, mergeObject(originalManeuverability, originalSenses)));

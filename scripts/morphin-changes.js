@@ -304,6 +304,40 @@ MorphinChanges.changes = {
             }
         }
     },
+    verminShape: {
+        vermin: {
+            sm: {
+                changes: [
+                    { formula: '2', operator: 'add', target: 'ability', subTarget: 'dex', modifier: 'size', priority: 0, value: 2 },
+                    { formula: '2', operator: 'add', subTarget: 'nac', modifier: 'untyped', priority: 0, value: 2 }
+                ],
+                size: 'sm'
+            },
+            med: {
+                changes: [
+                    { formula: '2', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'size', priority: 0, value: 2 },
+                    { formula: '3', operator: 'add', subTarget: 'nac', modifier: 'untyped', priority: 0, value: 3 }
+                ],
+                size: 'med'
+            },
+            lg: {
+                changes: [
+                    { formula: '4', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'size', priority: 0, value: 4 },
+                    { formula: '-2', operator: 'add', target: 'ability', subTarget: 'dex', modifier: 'untyped', priority: 0, value: -2 },
+                    { formula: '5', operator: 'add', subTarget: 'nac', modifier: 'untyped', priority: 0, value: 5 }
+                ],
+                size: 'lg'
+            },
+            tiny: {
+                changes: [
+                    { formula: '-2', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'untyped', priority: 0, value: -2 },
+                    { formula: '4', operator: 'add', target: 'ability', subTarget: 'dex', modifier: 'size', priority: 0, value: 4 },
+                    { formula: '1', operator: 'add', subTarget: 'nac', modifier: 'untyped', priority: 0, value: 1 }
+                ],
+                size: 'huge'
+            }
+        }
+    },
     polymorphSize: {
         fine: [
             { formula: '6', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'untyped', priority: 0, value: 6 },
@@ -1709,7 +1743,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 1, diceSize: 6, count: 1 }
         ],
         speed: {
-            swaim: 30
+            swim: 30
         },
         senses: [
             1
@@ -2452,7 +2486,7 @@ MorphinChanges.changes = {
         speed: {
             land: 15,
             climb: 15,
-            swin: 15
+            swim: 15
         },
         senses: [
             1, 11
@@ -6267,7 +6301,7 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 20,
-            climbs: 20,
+            climb: 20,
             swim: 40
         },
         senses: [],
@@ -6311,7 +6345,7 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 5,
-            climbs: 10,
+            climb: 10,
             swim: 20
         },
         senses: [
@@ -7049,7 +7083,1022 @@ MorphinChanges.changes = {
             'acid'
         ]
     },
-
+    'Belostomatid': {
+        size: 'lg',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 1, diceSize: 4, count: 2, special: ['Grab'] }
+        ],
+        speed: {
+            land: 20,
+            fly: 20,
+            swim: 40
+        },
+        senses: [
+            7, 21
+        ]
+    },
+    'Blood Caterpillar': {
+        size: 'lg',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1 },
+            { name: 'Bristles', diceCount: 1, diceSize: 8, count: 1, special: ['Poison'] }
+        ],
+        specialAttack: [
+            { name: 'Web', diceCount: 0, diceSize: 0, count: 1, special: ['Touch', 'Web'], attackType: 'rwak', range: 10, increment: 5, charges: 8 }
+        ],
+        speed: {
+            land: 30,
+            climb: 30
+        },
+        senses: [
+            7
+        ],
+        effect: {
+            'Web': { note: 'Web: Touch attack to entangle up to one size category higher, escaped with escape artist or burst with strength. DC 10+SL+Mod.', description: '<p>Creatures with the web ability can use webs to support themselves and up to one additional creature of the same size. In addition, such creatures can throw a web up to eight times per day. This is similar to an attack with a net but has a maximum range of 50 feet, with a range increment of 10 feet, and is effective against targets up to one size category larger than the web spinner. An entangled creature can escape with a successful Escape Artist check or burst the web with a Strength check. Both are standard actions with a DC equal to 10 + Spell Level + Caster Stat Mod. Attempts to burst a web by those caught in it take a –4 penalty.</p><p>Web spinners can create sheets of sticky webbing up to three times their size. They usually position these sheets to snare flying creatures but can also try to trap prey on the ground. Approaching creatures must succeed on a DC 20 Perception check to notice a web; otherwise they stumble into it and become trapped as though by a successful web attack. Attempts to escape or burst the webbing gain a +5 bonus if the trapped creature has something to walk on or grab while pulling free. Each 5-foot-square section of web has a number of hit points equal to the Hit Dice of the creature that created it ([[@attributes.hd.total]])and DR 5/—.</p><p>A creature can move across its own web at its climb speed and can pinpoint the location of any creature touching its web.</p>' },
+            'Poison': { note: 'Poison (Ex) Bristles-injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d4 Strength; cure 1 save.', type: 'fort', saveDesc: 'Fort cures' }
+        }
+    },
+    'Bluetip Eurypterid': {
+        size: 'lg',
+        attacks: [
+            { name: 'Claw', diceCount: 1, diceSize: 8, count: 1 },
+            { name: 'Stinger', diceCount: 1, diceSize: 4, count: 1, special: ['Poison'] }
+        ],
+        speed: {
+            land: 20,
+            swim: 60
+        },
+        senses: [
+            1, 21
+        ],
+        effect: {
+            'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d4 Con; cure 2 consecutive saves.', type: 'fort', saveDesc: 'Fort Cures' }
+        }
+    },
+    'Giant Ant Lion': {
+        size: 'lg',
+        attacks: [
+            { name: 'Tentacle', diceCount: 2, diceSize: 8, count: 1, special: ['Grab'] }
+        ],
+        speed: {
+            land: 30,
+            burrow: 10
+        },
+        senses: [
+            7,21
+        ]
+    },
+    'Giant Belostomatid': {
+        size: 'lg',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 6, count: 1 },
+            { name: 'Claw', diceCount: 1, diceSize: 4, count: 2, special: ['Grab'] }
+        ],
+        speed: {
+            land: 20,
+            fly: 20,
+            swim: 40
+        },
+        senses: [
+            7, 21
+        ]
+    },
+    'Giant Black Widow': {
+        size: 'lg',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 8, count: 1, special: ['Poison'] }
+        ],
+        specialAttack: [
+            { name: 'Web', diceCount: 0, diceSize: 0, count: 1, special: ['Touch', 'Web'], attackType: 'rwak', range: 10, increment: 5, charges: 8 }
+        ],
+        speed: {
+            land: 30,
+            climb: 30
+        },
+        senses: [
+            7, 21
+        ],
+        effect: {
+            'Web': { note: 'Web: Touch attack to entangle up to one size category higher, escaped with escape artist or burst with strength. DC 10+SL+Mod.', description: '<p>Creatures with the web ability can use webs to support themselves and up to one additional creature of the same size. In addition, such creatures can throw a web up to eight times per day. This is similar to an attack with a net but has a maximum range of 50 feet, with a range increment of 10 feet, and is effective against targets up to one size category larger than the web spinner. An entangled creature can escape with a successful Escape Artist check or burst the web with a Strength check. Both are standard actions with a DC equal to 10 + Spell Level + Caster Stat Mod. Attempts to burst a web by those caught in it take a –4 penalty.</p><p>Web spinners can create sheets of sticky webbing up to three times their size. They usually position these sheets to snare flying creatures but can also try to trap prey on the ground. Approaching creatures must succeed on a DC 20 Perception check to notice a web; otherwise they stumble into it and become trapped as though by a successful web attack. Attempts to escape or burst the webbing gain a +5 bonus if the trapped creature has something to walk on or grab while pulling free. Each 5-foot-square section of web has a number of hit points equal to the Hit Dice of the creature that created it ([[@attributes.hd.total]])and DR 5/—.</p><p>A creature can move across its own web at its climb speed and can pinpoint the location of any creature touching its web.</p>' },
+            'Poison': { note: 'Poison (Ex) - Bite—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d3 Con and staggered; cure 2 saves.', type: 'fort', saveDesc: 'Fort Cures' }
+        }
+    },
+    'Giant Hellgrammite': {
+        size: 'lg',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1, special: ['Grab', 'Constrict'] },
+            { name: 'TailSlap', diceCount: 1, diceSize: 8, count: 1 }
+        ],
+        speed: {
+            land: 30,
+            swim: 20
+        },
+        senses: [
+            7
+        ],
+        effect: {
+            'Constrict': { note: 'Constrict: Same damage as bite' }
+        }
+    },
+    'Giant Jellyfish': {
+        size: 'lg',
+        attacks: [
+            { name: 'Tentacle', diceCount: 1, diceSize: 6, count: 4, special: ['Poison'] }
+        ],
+        speed: {
+            swim: 20
+        },
+        senses: [
+            7
+        ],
+        effect: {
+            'Poison': { note: 'Poison (Ex) - Tentacle—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d4 Con; cure 2 consecutive saves.', type: 'fort', saveDesc: 'Fort Cures' }
+        }
+    },
+    'Giant Mantis': {
+        size: 'lg',
+        attacks: [
+            { name: 'Claw', diceCount: 1, diceSize: 6, count: 2, special: ['Grab'] }
+        ],
+        specialAttack: [
+            { name: 'Lunge', diceCount: 0, diceSize: 0, count: 1 }
+        ],
+        speed: {
+            land: 30,
+            fly: 40,
+            climb: 30
+        },
+        senses: [
+            7
+        ],
+        effect: {
+            'Lunge': { description: '<p>A giant mantis\'s limbs are capable of reaching much farther than normal for a creature of its size. As a full-attack action, it can make a single attack with its claws at double its normal reach. When a giant mantis attacks with a claw in this manner, it gains a +4 bonus on its attack roll. A giant mantis cannot make attacks of opportunity with its lunge.</p>' }
+        }
+    },
+    'Giant Queen Bee': {
+        size: 'lg',
+        attacks: [
+            { name: 'Sting', diceCount: 1, diceSize: 8, count: 1, special: ['Poison'] }
+        ],
+        speed: {
+            land: 20,
+            fly: 60
+        },
+        senses: [
+            7
+        ],
+        effect: {
+            'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1d2 Con; cure 2 consecutive saves.', type: 'fort', saveDesc: 'Fort Cures' }
+        }
+    },
+    'Giant Scorpion': {
+        size: 'lg',
+        attacks: [
+            { name: 'Claw', diceCount: 1, diceSize: 6, count: 2, special: ['Grab', 'Constrict'] },
+            { name: 'Sting', diceCount: 1, diceSize: 6, count: 1, special: ['Poison'] }
+        ],
+        speed: {
+            land: 50
+        },
+        senses: [
+            7, 21
+        ],
+        effect: {
+            'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d2 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' },
+            'Constrict': { note: 'Constrict: Same damage as claw' }
+        }
+    },
+    'Giant Sea Anemone': {
+        size: 'lg',
+        attacks: [
+            { name: 'Tentacle', diceCount: 2, diceSize: 6, count: 1, special: ['Grab', 'Poison'] }
+        ],
+        speed: {
+            land: 5
+        },
+        senses: [ ],
+        effect: {
+            'Poison': { note: 'Poison (Ex) - Tentacle—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d2 Dex; cure 2 consecutive saves.', type: 'fort', saveDesc: 'Fort Cures' }
+        }
+    },
+    'Giant Spear Urchin': {
+        size: 'lg',
+        attacks: [
+            { name: 'Spine', diceCount: 1, diceSize: 6, count: 2, special: ['Poison'] },
+            { name: 'Spine', diceCount: 1, diceSize: 6, count: 2, special: ['Poison'], attackType: 'rwak', range: 30, increment: 1 }
+        ],
+        speed: {
+            land: 5
+        },
+        senses: [
+            1, 11, 21
+        ],
+        effect: {
+            'Poison': { note: 'Poison (Ex) - Spines—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d2 Str and nauseated for 1 round; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
+        }
+    },
+    'Giant Stag Beetle': {
+        size: 'lg',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'Trample', diceCount: 1, diceSize: 6, count: 1, special: ['Trample'], mult: 1.5, attackType: 'mcman' }
+        ],
+        speed: {
+            land: 20,
+            fly: 20
+        },
+        senses: [
+            7
+        ],
+        effect: {
+            'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: '<p>As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature’s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a –4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature’s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.</p>' }
+        }
+    },
+    'Giant Starfish': {
+        size: 'lg',
+        attacks: [
+            { name: 'Slam', diceCount: 1, diceSize: 8, count: 3, special: ['Grab'] },
+            { name: 'Stomach', diceCount: 1, diceSize: 6, count: 1, special: ['Grab'] }
+        ],
+        speed: {
+            land: 10,
+            climb: 10
+        },
+        senses: [
+            7, 21        ]
+    },
+    'Giant Wasp': {
+        size: 'lg',
+        attacks: [
+            { name: 'Sting', diceCount: 1, diceSize: 8, count: 1, special: ['Poison'] }
+        ],
+        speed: {
+            land: 20,
+            fly: 60
+        },
+        senses: [
+            7
+        ],
+        effect: {
+            'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d2 Dex; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
+        }
+    },
+    'Giant Water Strider': {
+        size: 'lg',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 2, count: 1 },
+            { name: 'Claw', diceCount: 1, diceSize: 4, count: 2 }
+        ],
+        speed: {
+            land: 30,
+            fly: 20
+        },
+        senses: [
+            7, 21
+        ]
+    },
+    'Knight Ant': {
+        size: 'lg',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 8, count: 1, special: ['Grab'] },
+            { name: 'Sting', diceCount: 1, diceSize: 6, count: 1, special: ['Poison'] }
+        ],
+        speed: {
+            land: 50,
+            burrow: 20,
+            climb: 20
+        },
+        senses: [
+            7, 11, 21
+        ],
+        effect: {
+            'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d4 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
+        }
+    },
+    'Mammoth Flea': {
+        size: 'lg',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 8, count: 1, special: ['BloodDrain'] }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            7
+        ],
+        effect: {
+            'BloodDrain': { note: 'Blood Drain 1d2 Con', description: '<p>The creature drains blood at the end of its turn if it grapples a foe, inflicting Constitution damage.</p>' }
+        }
+    },
+    'Scarab Beetle': {
+        size: 'lg',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 8, count: 1 }
+        ],
+        speed: {
+            land: 40,
+            fly: 20,
+            climb: 20
+        },
+        senses: [
+            7
+        ]
+    },
+    'Slicer Beetle': {
+        size: 'lg',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        speed: {
+            land: 40,
+            fly: 20
+        },
+        senses: [
+            7
+        ]
+    },
+    'Albino Cave Solifugid': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 1, diceSize: 4, count: 2 }
+        ],
+        speed: {
+            land: 50,
+            climb: 30
+        },
+        senses: [
+            7
+        ]
+    },
+    'Cave Fisher': {
+        size: 'med',
+        attacks: [
+            { name: 'Claw', diceCount: 1, diceSize: 4, count: 2, special: ['Grab'] },
+            { name: 'Filament', diceCount: 0, diceSize: 0, count: 1, special: ['Pull'], attackType: 'rwak', range: 60, increment: 1 }
+        ],
+        speed: {
+            land: 20,
+            climb: 20
+        },
+        senses: [
+            7
+        ],
+        effect: {
+            'Pull': { note: 'Filament - Combat Maneuver pull 10 ft', description: '<p>A cave fisher can fire a thin filament of sticky silk as a standard action. This touch attack has a range of 60 feet and no range increment. A creature struck by a cave fisher\'s filament becomes attached to the sticky thread. As a standard action, a creature can rip the filament free with a DC 20 Strength check. A caught creature can also attempt to escape a filament by making a DC 25 Escape Artist check. A filament is AC 14 (touch 12), has 5 hit points, and has DR 15/slashing. An application of liquid with high alcohol content (or a dose of universal solvent) dissolves the adhesive and releases the creature caught by the filament. A cave fisher can have only one filament active at a time.</p><p><strong>Pull (Ex)</strong> A creature with this ability can choose to make a free combat maneuver check with a successful attack. If successful, this check pulls a creature closer. The distance pulled is set by this ability. The type of attack that causes the pull and the distance pulled are included in the creature\'s description. This ability only works on creatures of a size equal to or smaller than the pulling creature. Creatures pulled in this way do not provoke attacks of opportunity and stop if the pull would move them into a solid object or creature.</p>' }
+        }
+    },
+    'Cave Scorpion': {
+        size: 'med',
+        attacks: [
+            { name: 'Claw', diceCount: 1, diceSize: 4, count: 2 },
+            { name: 'Sting', diceCount: 1, diceSize: 4, count: 1, special: ['Poison'] }
+        ],
+        speed: {
+            land: 60,
+            climb: 40
+        },
+        senses: [
+            7, 21
+        ],
+        effect: {
+            'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1d2 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
+        }
+    },
+    'Coffin Anemone': {
+        size: 'med',
+        attacks: [
+            { name: 'Tentacle', diceCount: 2, diceSize: 4, count: 1, special: ['Poison'] }
+        ],
+        speed: {
+            land: 5
+        },
+        senses: [ ],
+        effect: {
+            'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1d2 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
+        }
+    },
+    'Common Eurypterid': {
+        size: 'med',
+        attacks: [
+            { name: 'Claw', diceCount: 1, diceSize: 3, count: 2 },
+            { name: 'Sting', diceCount: 1, diceSize: 3, count: 1, special: ['Poison'] }
+        ],
+        speed: {
+            land: 20,
+            swim: 40
+        },
+        senses: [
+            1, 21
+        ],
+        effect: {
+            'Poison': { note: 'Poison (Ex) - Sting-injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1d2 Con; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
+        }
+    },
+    'Crimson Jellyfish': {
+        size: 'med',
+        attacks: [
+            { name: 'Tentacle', diceCount: 2, diceSize: 8, count: 1, special: ['Grab', 'BloodDrain'] },
+            { name: 'Tendril', diceCount: 0, diceSize: 0, count: 1, special: ['Poison'] }
+        ],
+        speed: {
+            swim: 10
+        },
+        senses: [
+            7
+        ],            
+        effect: {
+            'Poison': { note: 'Poison (Ex) - Bite—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d4 Str; cure 2 consecutive save.', type: 'fort', saveDesc: 'Fort Cures' },
+            'BloodDrain': { note: 'Blood Drain 1d2 Con', description: '<p>The creature drains blood at the end of its turn if it grapples a foe, inflicting Constitution damage.</p>' }
+        }
+    },
+    'Giant Ant': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 6, count: 1, special: ['Grab'] },
+            { name: 'Sting', diceCount: 1, diceSize: 4, count: 1, special: ['Poison'] }
+        ],
+        speed: {
+            land: 50,
+            climb: 20
+        },
+        senses: [
+            7, 11
+        ]
+    },
+    'Giant Bee': {
+        size: 'med',
+        attacks: [
+            { name: 'Sting', diceCount: 1, diceSize: 4, count: 1, special: ['Poison'] }
+        ],
+        speed: {
+            land: 20,
+            fly: 60
+        },
+        senses: [
+            7
+        ]
+    },
+    'Giant Centipede': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 6, count: 1, special: ['Poison'] }
+        ],
+        speed: {
+            land: 40,
+            climb: 40
+        },
+        senses: [
+            7
+        ]
+    },
+    'Giant Crab': {
+        size: 'med',
+        attacks: [
+            { name: 'Claw', diceCount: 1, diceSize: 4, count: 2, special: ['Grab', 'Constrict'] }
+        ],
+        speed: {
+            land: 20,
+            swim: 30
+        },
+        senses: [
+            7
+        ],
+        effect: {
+            'Constrict': { note: 'Constrict: Same damage as claw' }
+        }
+    },
+    'Giant Dragonfly': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1, special: ['Grab'] }
+        ],
+        speed: {
+            land: 20,
+            fly: 60
+        },
+        senses: [
+            7
+        ]
+    },
+    'Giant Fly': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 6, count: 1 }
+        ],
+        speed: {
+            land: 20,
+            fly: 60,
+            climb: 20
+        },
+        senses: [
+            7
+        ]
+    },
+    'Giant Hunter Urchin': {
+        size: 'med',
+        attacks: [
+            { name: 'Tongue', diceCount: 1, diceSize: 3, count: 1, special: ['Pull'] }
+        ],
+        speed: {
+            land: 15
+        },
+        senses: [
+            1, 11, 21
+        ],
+        effect: {
+            'Pull': { note: 'Tongue - Combat Maneuver pull 5 ft', description: '<p><strong>Pull (Ex)</strong> A creature with this ability can choose to make a free combat maneuver check with a successful attack. If successful, this check pulls a creature closer. The distance pulled is set by this ability. The type of attack that causes the pull and the distance pulled are included in the creature\'s description. This ability only works on creatures of a size equal to or smaller than the pulling creature. Creatures pulled in this way do not provoke attacks of opportunity and stop if the pull would move them into a solid object or creature.</p>' }
+        }
+    },
+    'Giant Leech': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 6, count: 1, special: ['BloodDrain'] }
+        ],
+        speed: {
+            land: 5,
+            swim: 20
+        },
+        senses: [
+            11
+        ],
+        effect: {
+            'BloodDrain': { note: 'Blood Drain 1 Str, 1 Con', description: '<p>The creature drains blood at the end of its turn if it grapples a foe, inflicting Constitution damage.</p>' }
+        }
+    },
+    'Giant Locust': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 8, count: 1 },
+            { name: 'Spit', diceCount: 0, diceSize: 0, count: 1, nonCrit: { formula: '1d3', type: {values: ['acid'], custom: ''} }, attackType: 'rwak', range: 30, increment: 1 }
+        ],
+        speed: {
+            land: 20,
+            fly: 60,
+            climb: 20
+        },
+        senses: [
+            7
+        ]
+    },
+    'Giant Maggot': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 6, count: 1 }
+        ],
+        speed: {
+            land: 10,
+            burrow: 5
+        },
+        senses: [
+            7
+        ]
+    },
+    'Giant Mantis Shrimp': {
+        size: 'med',
+        attacks: [
+            { name: 'Pincer', diceCount: 2, diceSize: 6, count: 2, special: ['Grab'] }
+        ],
+        speed: {
+            land: 40,
+            swim: 30
+        },
+        senses: [
+            7
+        ]
+    },
+    'Giant Mosquito': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 8, count: 1, special: ['Grab', 'BloodDrain'] }
+        ],
+        speed: {
+            land: 20,
+            fly: 60
+        },
+        senses: [
+            7, 11
+        ],
+        effect: {
+            'BloodDrain': { note: 'Blood Drain 1d2 Con', description: '<p>The creature drains blood at the end of its turn if it grapples a foe, inflicting Constitution damage.</p>' }
+        }
+    },
+    'Giant Spider': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 6, count: 1, special: ['Poison'] }
+        ],        specialAttack: [
+            { name: 'Web', diceCount: 0, diceSize: 0, count: 1, special: ['Touch', 'Web'], attackType: 'rwak', range: 10, increment: 5, charges: 8 }
+        ],
+        speed: {
+            land: 30,
+            climb: 30
+        },
+        senses: [
+            7, 21
+        ],
+        effect: {
+            'Poison': { note: 'Poison (Ex) - Bite—injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1d2 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' },
+            'Web': { note: 'Web: Touch attack to entangle up to one size category higher, escaped with escape artist or burst with strength. DC 10+SL+Mod.', description: '<p>Creatures with the web ability can use webs to support themselves and up to one additional creature of the same size. In addition, such creatures can throw a web up to eight times per day. This is similar to an attack with a net but has a maximum range of 50 feet, with a range increment of 10 feet, and is effective against targets up to one size category larger than the web spinner. An entangled creature can escape with a successful Escape Artist check or burst the web with a Strength check. Both are standard actions with a DC equal to 10 + Spell Level + Caster Stat Mod. Attempts to burst a web by those caught in it take a –4 penalty.</p><p>Web spinners can create sheets of sticky webbing up to three times their size. They usually position these sheets to snare flying creatures but can also try to trap prey on the ground. Approaching creatures must succeed on a DC 20 Perception check to notice a web; otherwise they stumble into it and become trapped as though by a successful web attack. Attempts to escape or burst the webbing gain a +5 bonus if the trapped creature has something to walk on or grab while pulling free. Each 5-foot-square section of web has a number of hit points equal to the Hit Dice of the creature that created it ([[@attributes.hd.total]])and DR 5/—.</p><p>A creature can move across its own web at its climb speed and can pinpoint the location of any creature touching its web.</p>' },
+        }
+    },
+    'Giant Termite': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 8, count: 1, nonCrit: { formula: '1d6', type: {values: ['acid'], custom: ''} } }
+        ],
+        speed: {
+            land: 30,
+            burrow: 20
+        },
+        senses: [
+            7, 11, 21
+        ]
+    },
+    'Giant Tube Worm': {
+        size: 'med',
+        attacks: [
+            { name: 'Sting', diceCount: 1, diceSize: 4, count: 2, special: ['Poison'] }
+        ],
+        speed: {
+            land: 10,
+            swim: 20
+        },
+        senses: [
+            7, 21
+        ],
+        effect: {
+            'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1 Dex and staggered 1 round; cure 2 consecutive saves.', type: 'fort', saveDesc: 'Fort Cures' }
+        }
+    },
+    'Great Assassin Bug': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 6, count: 1, special: ['Poison'] },
+            { name: 'Claw', diceCount: 1, diceSize: 4, count: 2 }
+        ],
+        speed: {
+            land: 40,
+            fly: 40
+        },
+        senses: [
+            7
+        ],
+        effect: {
+            'Poison': { note: 'Poison (Ex) - Bite—injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1d4 Dex; cure 2 consecutive save.', type: 'fort', saveDesc: 'Fort Cures' }
+        }
+    },
+    'Great Diadem Urchin': {
+        size: 'med',
+        attacks: [
+            { name: 'Spine', diceCount: 1, diceSize: 8, count: 1, special: ['Poison'] }
+        ],
+        speed: {
+            land: 10
+        },
+        senses: [
+            1, 11, 21
+        ],
+        effect: {
+            'Poison': { note: 'Poison (Ex) - Spine—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d2 Con and stunned 1 round; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
+        }
+    },
+    'Horn Caterpillar': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 6, count: 1 },
+            { name: 'Bristles', diceCount: 1, diceSize: 4, count: 1, special: ['Poison'] }
+        ],
+        specialAttack: [
+            { name: 'Web', diceCount: 0, diceSize: 0, count: 1, special: ['Touch', 'Web'], attackType: 'rwak', range: 10, increment: 5, charges: 8 }
+        ],
+        speed: {
+            land: 30,
+            climb: 30
+        },
+        senses: [
+            7
+        ],
+        effect: {
+            'Poison': { note: 'Poison (Ex) - Bristles—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d4 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' },
+            'Web': { note: 'Web: Touch attack to entangle up to one size category higher, escaped with escape artist or burst with strength. DC 10+SL+Mod.', description: '<p>Creatures with the web ability can use webs to support themselves and up to one additional creature of the same size. In addition, such creatures can throw a web up to eight times per day. This is similar to an attack with a net but has a maximum range of 50 feet, with a range increment of 10 feet, and is effective against targets up to one size category larger than the web spinner. An entangled creature can escape with a successful Escape Artist check or burst the web with a Strength check. Both are standard actions with a DC equal to 10 + Spell Level + Caster Stat Mod. Attempts to burst a web by those caught in it take a –4 penalty.</p><p>Web spinners can create sheets of sticky webbing up to three times their size. They usually position these sheets to snare flying creatures but can also try to trap prey on the ground. Approaching creatures must succeed on a DC 20 Perception check to notice a web; otherwise they stumble into it and become trapped as though by a successful web attack. Attempts to escape or burst the webbing gain a +5 bonus if the trapped creature has something to walk on or grab while pulling free. Each 5-foot-square section of web has a number of hit points equal to the Hit Dice of the creature that created it ([[@attributes.hd.total]])and DR 5/—.</p><p>A creature can move across its own web at its climb speed and can pinpoint the location of any creature touching its web.</p>' },
+        }
+    },
+    'Stalk Beetle': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 6, count: 1 }
+        ],
+        speed: {
+            land: 30,
+            burrow: 10,
+            climb: 20
+        },
+        senses: [
+            7
+        ]
+    },
+    'Xenopterid': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 6, count: 1, special: ['Poison'] },
+            { name: 'Claw', diceCount: 1, diceSize: 6, count: 2, special: ['Grab', 'BloodDrain'] }
+        ],
+        speed: {
+            land: 40,
+            fly: 20,
+            climb: 20
+        },
+        senses: [
+            7
+        ],
+        effect: {
+            'Poison': { note: 'Poison (Ex) - Bite—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d4 Dex; cure 2 consecutive save.', type: 'fort', saveDesc: 'Fort Cures' },
+            'BloodDrain': { note: 'Blood Drain 1d2 Con', description: '<p>The creature drains blood at the end of its turn if it grapples a foe, inflicting Constitution damage.</p>' }
+        }
+    },
+    'Death\'s Head Jellyfish': {
+        size: 'sm',
+        attacks: [
+            { name: 'Tentacle', diceCount: 1, diceSize: 3, count: 2, special: ['Poison'] }
+        ],
+        speed: {
+            swim: 20
+        },
+        senses: [
+            7
+        ],
+        effect: {
+            'Poison': { note: 'Poison (Ex) - Tentacle—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1 Con and 1 Cha; cure 2 consecutive saves. If a creature fails two consecutive saving throws, its jaw locks, its tongue swells, and its lips pull back, making speech impossible. This condition ends when the Charisma damage is healed.', type: 'fort', saveDesc: 'Fort Cures' }
+        }
+    },
+    'Fire Beetle': {
+        size: 'sm',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 4, count: 1 },
+        ],
+        speed: {
+            land: 30,
+            fly: 30
+        },
+        senses: [
+            1
+        ]
+    },
+    'Ghost Scorpion': {
+        size: 'sm',
+        attacks: [
+            { name: 'Claw', diceCount: 1, diceSize: 3, count: 2 },
+            { name: 'Sting', diceCount: 1, diceSize: 3, count: 1, special: ['Poison'] }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            7, 21
+        ],
+        effect: {
+            'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
+        }
+    },
+    'Giant Assassin Bug': {
+        size: 'sm',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 4, count: 1, special: ['Poison'] },
+            { name: 'Claw', diceCount: 1, diceSize: 3, count: 2 }
+        ],
+        speed: {
+            land: 30,
+            fly: 30
+        },
+        senses: [
+            7
+        ],
+        effect: {
+            'Poison': { note: 'Poison (Ex) - Bite—injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1d4 Dex; cure 2 consecutive saves.', type: 'fort', saveDesc: 'Fort Cures' }
+        }
+    },
+    'Giant Cockroach': {
+        size: 'sm',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 4, count: 1 }
+        ],
+        speed: {
+            land: 30,
+            fly: 40,
+            climb: 30
+        },
+        senses: [
+            7, 21
+        ]
+    },
+    'Giant Crab Spider': {
+        size: 'sm',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 4, count: 1, special: ['Poison'] }
+        ],
+        speed: {
+            land: 30,
+            climb: 20
+        },
+        senses: [
+            7, 21
+        ],
+        effect: {
+            'Poison': { note: 'Poison (Ex) - Bite—injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1d2 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
+        }
+    },
+    'Giant Flea': {
+        size: 'sm',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 4, count: 1 }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            7
+        ]
+    },
+    'Giant Dragonfly Nymph': {
+        size: 'sm',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        speed: {
+            land: 10,
+            swim: 30
+        },
+        senses: [
+            7
+        ]
+    },
+    'Giant Rot Grub': {
+        size: 'sm',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 6, count: 1, special: ['Grab', 'Poison'] }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [ ],
+        effect: {
+            'Poison': { note: 'Poison (Ex) - Bite—injury; save Fort DC 10+SL+Mod; frequency 1/round for 5 rounds; effect 1d3 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
+        }
+    },
+    'Giant Solifugid': {
+        size: 'sm',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 6, count: 1 },
+            { name: 'Claw', diceCount: 1, diceSize: 3, count: 2 }
+        ],
+        speed: {
+            land: 50,
+            climb: 30
+        },
+        senses: [
+            7
+        ]
+    },
+    'Giant Tick': {
+        size: 'sm',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 4, count: 1, special: ['Grab', 'BloodDrain'] }
+        ],
+        speed: {
+            land: 20,
+            climb: 20
+        },
+        senses: [
+            7, 11
+        ],
+        effect: {
+            'BloodDrain': { note: 'Blood Drain 1 Con', description: '<p>The creature drains blood at the end of its turn if it grapples a foe, inflicting Constitution damage.</p>' }
+        }
+    },
+    'Nymph Water Strider': {
+        size: 'sm',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 2, count: 1 },
+            { name: 'Claw', diceCount: 1, diceSize: 3, count: 2 }
+        ],
+        speed: {
+            land: 30,
+            fly: 20
+        },
+        senses: [
+            7, 21
+        ]
+    },
+    'Ochre Eurypterid': {
+        size: 'sm',
+        attacks: [
+            { name: 'Claw', diceCount: 1, diceSize: 2, count: 2 },
+            { name: 'Sting', diceCount: 1, diceSize: 2, count: 1, special: ['Poison'] }
+        ],
+        speed: {
+            land: 20,
+            swim: 40
+        },
+        senses: [
+            1, 21
+        ],
+        effect: {
+            'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1 Dex; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
+        }
+    },
+    'Giant Botfly': {
+        size: 'tiny',
+        attacks: [
+            { name: 'Sting', diceCount: 1, diceSize: 6, count: 1 }
+        ],
+        speed: {
+            land: 10,
+            fly: 60
+        },
+        senses: [
+            7
+        ]
+    },
+    'Giant Isopod': {
+        size: 'tiny',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 3, count: 1 }
+        ],
+        speed: {
+            land: 20,
+            swim: 10
+        },
+        senses: [
+            1, 7
+        ]
+    },
+    'Greensting Scorpion': {
+        size: 'tiny',
+        attacks: [
+            { name: 'Sting', diceCount: 1, diceSize: 2, count: 1, special: ['Poison'] }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            7
+        ],
+        effect: {
+            'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect sickened 1 round; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
+        }
+    },
+    'House Centipede': {
+        size: 'tiny',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 3, count: 1, special: ['Poison'] }
+        ],
+        speed: {
+            land: 40,
+            climb: 40
+        },
+        senses: [
+            7
+        ],
+        effect: {
+            'Poison': { note: 'Poison (Ex) - Bite—injury; save Fort DC 10+SL+Mod; frequency 1/round for 2 rounds; effect daze 1 round; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
+        }
+    },
+    'King Crab': {
+        size: 'tiny',
+        attacks: [
+            { name: 'Claw', diceCount: 1, diceSize: 2, count: 2, special: ['Grab', 'Constrict'] }
+        ],
+        speed: {
+            land: 30,
+            swim: 20
+        },
+        senses: [
+            7
+        ],
+        effect: {
+            'Constrict': { note: 'Constrict: Same damage as claw' }
+        }
+    },
+    'Scarlet Spider': {
+        size: 'tiny',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 3, count: 1, special: ['Poison'] }
+        ],
+        speed: {
+            land: 30,
+            climb: 30
+        },
+        senses: [
+            7
+        ],
+        effect: {
+            'Poison': { note: 'Poison (Ex) - Bite—injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
+        }
+    }
 };
 
 MorphinChanges.allowedSpecials = {
@@ -7069,7 +8118,10 @@ MorphinChanges.allowedSpecials = {
         '2': ['Whirlwind', 'Burn', 'Vortex'],
         '3': ['Whirlwind', 'Burn', 'Vortex'],
         '4': ['Whirlwind', 'Burn', 'Vortex']
-
+    },
+    verminShape: {
+        '1': ['Touch', 'Lunge'],
+        '2': ['Touch', 'BloodDrain', 'Constrict', 'Grab', 'Lunge', 'Poison', 'Pull', 'Trample', 'Web']
     }
 };
 
@@ -7077,7 +8129,8 @@ MorphinChanges.buffIcons = {
     beastShape: 'systems/pf1/icons/spells/wild-jade-3.jpg',
     wildShape: 'systems/pf1/icons/skills/green_21.jpg',
     plantShape: 'systems/pf1/icons/spells/vines-plain-2.jpg',
-    elementalBody: 'systems/pf1/icons/spells/wind-grasp-magenta-2.jpg'
+    elementalBody: 'systems/pf1/icons/spells/wind-grasp-magenta-2.jpg',
+    verminShape: 'systems/pf1/icons/races/creature-types/vermin.png'
 
 };
 
@@ -7105,5 +8158,5 @@ MorphinChanges.SENSES = Object.freeze({
     TREMORSENSE30: { value: 21, name: 'Tremorsense30', setting: {ts: 30} },
     TREMORSENSE40: { value: 22, name: 'Tremorsense40', setting: {ts: 40} },
     TREMORSENSE50: { value: 24, name: 'Tremorsense50', setting: {ts: 50} },
-    TREMORSENSE60: { value: 25, name: 'Tremorsense60', setting: {ts: 60} }
+    TREMORSENSE60: { value: 25, name: 'Tremorsense60', setting: {ts: 60} },
 });

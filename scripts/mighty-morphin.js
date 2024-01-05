@@ -2,6 +2,7 @@ import { MorphinChanges } from './morphin-changes.js';
 import { MorphinBeastShape } from './morphin-beast-shape.js';
 import { MorphinElementalBody } from './morphin-elemental-body.js';
 import { MorphinPlantShape } from './morphin-plant-shape.js';
+import { MorphinVerminShape } from './morphin-vermin-shape.js';
 import DirectoryPicker from './DirectoryPicker.js';
 import { MorphinOptions } from './morphin-options.js';
 
@@ -912,7 +913,7 @@ export class MightyMorphinApp {
                 await shifter.items.find(o => o.type === 'buff' && o.name === changes.buffName).update({ 'system.active': false });
             }
             // Undo listed buffs
-            else if ([game.i18n.localize('MMMOD.Buffs.BeastShape.Name'), game.i18n.localize('MMMOD.Buffs.PlantShape.Name'), game.i18n.localize('MMMOD.Buffs.ElementalBody.Name'), game.i18n.localize('MMMOD.Buffs.WildShape.Name')].includes(changes.source)) {
+            else if ([game.i18n.localize('MMMOD.Buffs.BeastShape.Name'), game.i18n.localize('MMMOD.Buffs.PlantShape.Name'), game.i18n.localize('MMMOD.Buffs.ElementalBody.Name'), game.i18n.localize('MMMOD.Buffs.WildShape.Name'), game.i18n.localize('MMMOD.Buffs.VerminShape.Name')].includes(changes.source)) {
                 // Reverse any changes to armor
                 if (!!shifter.flags['pf1-mighty-morphin'].armor.length) {
                     let armorFlag = shifter.flags['pf1-mighty-morphin'].armor;
@@ -1282,6 +1283,51 @@ export class MightyMorphinApp {
                 
                 if (!dia.shapeOptions[type].some(o => o.name === form)) {
                     ui.notifications.error(form + ' ' + game.i18n.localize('MMMOD.PlantInvalidWarning') + ' ' + level);
+                    return;
+                }
+
+                dia.buildPreviewTemplate(form, type);
+                dia.applyChanges(null, form);
+            }
+            else dia.render(true);
+        }
+        else if (!!shifter?.flags['pf1-mighty-morphin']) {
+            ui.notifications.warn(`${shifter.name} ${game.i18n.localize('MMMOD.EffectWarning')} ${shifter.flags['pf1-mighty-morphin'].source}`);
+        }
+    }
+    
+    /**
+     * Creates the Vermin Shape buff and effects on the actor using the MorphinElementalBody class
+     * 
+     * @param {number} [level=1] The level of plant shape spell being cast (1-3)
+     * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
+     * @param {string} [source='Vermin Shape'] The source of the splant shape spell effect
+     * @param {string} [form=null] The name of the form to change into. Must match option from morphin-options exactly.
+     * @param {string} [image = null] The file name for a custom image file without the file extension
+     */
+    static async verminShape({level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.VerminShape.Name'), form = null, image = null} = {}) {
+        let shifter = MightyMorphinApp.getSingleActor();
+
+        // Create plant shape form if a single actor chosen not already under effects from this mod
+        if (!!shifter && !shifter.flags['pf1-mighty-morphin']) {
+            let dia = new MorphinVerminShape(level, durationLevel, shifter.uuid, source);
+
+            if (!!image) {
+                dia.customImage = image;
+            }
+
+            if (!!form) {
+                let type;
+                let foundForm = MorphinOptions.vermin.find(o => o.name === form);
+                if (foundForm) type = 'vermin';
+                
+                if (!foundForm) {
+                    ui.notifications.error(form + ' ' + game.i18n.localize('MMMOD.VerminInvalidWarning'));
+                    return;
+                }
+                
+                if (!dia.shapeOptions[type].some(o => o.name === form)) {
+                    ui.notifications.error(form + ' ' + game.i18n.localize('MMMOD.VerminInvalidWarning') + ' ' + level);
                     return;
                 }
 

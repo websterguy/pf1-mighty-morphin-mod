@@ -1,0 +1,25 @@
+<form class="flexcol">
+  <div id="sizeSelect">
+    <legend>{{localize "MMMOD.UI.SelectVerminSize"}}:</legend>
+    {{#each verminSizes}}
+    <input type="radio" name="sizeSelect" id="{{this.size}}Select" value="{{this.label}}" {{#if this.default}}checked{{/if}}>
+    <label for="{{this.size}}Select">{{localize (lookup (concat "MMMOD.Sizes." this.size) 'string')}}</label>
+    {{/each}}
+  </div>
+  <div id="creatureSelect">
+    <legend>{{localize "MMMOD.UI.SelectForm"}}:</legend>
+    <select id="formSelect">
+      {{#each verminOptions}}
+        <option value="{{this.name}}">{{this.name}}</option>
+      {{/each}}
+    </select>
+  </div>
+  <div id="changePreview">
+    {{{previewHtml}}}
+  </div>
+  <footer class="sheet-footer flexrow">
+    <button type="button" name="submit" id="submitButton">
+        <i class="fa fa-check"></i> {{localize "MMMOD.UI.OK"}}
+    </button>
+  </footer>
+</form>
