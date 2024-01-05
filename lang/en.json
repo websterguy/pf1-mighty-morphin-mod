@@ -3,6 +3,7 @@
         "Attacks": {
             "Arm": "Arm",
             "Bite": "Bite",
+            "BloodDrain": "Blood Drain",
             "Breath": "Breath",
             "BreathWeapon": "Breath Weapon",
             "BreathWeaponBlack": "Breath Weapon Black",
@@ -10,11 +11,13 @@
             "BreathWeaponGreen": "Breath Weapon Green",
             "BreathWeaponRed": "Breath Weapon Red",
             "BreathWeaponWhite": "Breath Weapon White",
+            "Bristles": "Bristles",
             "Burn": "Burn",
             "Claw": "Claw",
             "Constrict": "Constrict",
             "EarthGlide": "Earth Glide",
             "Ferocity": "Ferocity",
+            "Filament": "Filament",
             "Flower": "Flower",
             "Foreclaws": "Foreclaws",
             "Frond": "Frond",
@@ -27,10 +30,12 @@
             "Jet260": "Jet 260ft",
             "Jet90": "Jet 90ft",
             "Kick": "Kick",
+            "Lunge": "Lunge",
             "Pincer": "Pincer",
             "Pincers": "Pincers",
             "Poison": "Poison",
             "Pounce": "Pounce",
+            "Pull": "Pull",
             "Rake1Claw": "Rake (1 Claw)",
             "Rake2Claws": "Rake (2 Claws)",
             "Rake2Talons": "Rake (2 Talons)",
@@ -41,8 +46,10 @@
             "Slam": "Slam",
             "Spikes": "Spikes",
             "Spine": "Spine",
+            "Spit": "Spit",
             "Sting": "Sting",
             "Stinger": "Stinger",
+            "Stomach": "Stomach",
             "Tail": "Tail",
             "TailBarbs": "Tail Barbs",
             "TailClaw": "Tail Claw",
@@ -64,6 +71,10 @@
             "Wing": "Wing"
         },
         "BeastInvalidWarning": "is not a valid option for Beast Shape",
+        "Bonuses": {
+            "Resistance": "Resistance",
+            "SavesVsMind": "to Saves vs Mind-Affecting"
+        },
         "Buffs": {
             "AnimalGrowth": {
                 "Name": "Animal Growth"
@@ -94,6 +105,9 @@
             },
             "RighteousMight": {
                 "Name": "Righteous Might"
+            },
+            "VerminShape": {
+                "Name": "Vermin Shape"
             },
             "WildShape": {
                 "Name": "Wild Shape"
@@ -215,6 +229,7 @@
             "None": "None",
             "OK": "OK",
             "or": "or",
+            "OtherBonuses": "Other Bonuses",
             "PlantDialogName": "Mighty Morphin Plant Shape",
             "Plus": "plus",
             "Regeneration": "Regeneration",
@@ -224,14 +239,17 @@
             "SelectForm": "Select Form",
             "SelectMagicalBeastSize": "Select Magical Beast Size",
             "SelectPlantSize": "Select Plant Size",
+            "SelectVerminSize": "Select Vermin Size",
             "Senses": "Senses",
             "SpecialAbilities": "Special Abilities",
             "SpecialAttacks": "Special Attacks",
             "Speeds": "Speeds",
             "Str": "Str",
             "swim": "Swim",
+            "VerminDialogName": "Mighty Morphin Vermin Shape",
             "Vulnerabilities": "Vulnerabilities"
         },
+        "VerminInvalidWarning": "is not a valid option for Vermin Shape",
         "WeaponFinesse": "Weapon Finesse",
         "Wild": "Wild",
         "WildShape": "Wild Shape"
