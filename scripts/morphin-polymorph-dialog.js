@@ -180,9 +180,15 @@ export class MorphinPolymorphDialog extends FormApplication {
             let speed = this.speeds[speedTypes[i]];
             let speedChange = {formula: '0', operator: 'set', subTarget: speedTypes[i] + 'Speed', modifier: 'base', priority: 100, value: 0};
             if (!!speed) { // if the form has this speed add it
-                speedChange.formula = speed.toString();
-                speedChange.value = speed;
-                if (speedTypes[i] === 'fly') maneuverabilityChange = {'system.attributes.speed.fly.maneuverability': (this.level === 1 ? 'average' : 'good')};
+                if (speedTypes[i] === 'fly') {
+                    maneuverabilityChange = {'system.attributes.speed.fly.maneuverability': speed.maneuverability};
+                    speedChange.formula = speed.base.toString();
+                    speedChange.value = speed.base;
+                }
+                else {
+                    speedChange.formula = speed.toString();
+                    speedChange.value = speed;
+                }
             }
             this.changes.push(speedChange);
         }

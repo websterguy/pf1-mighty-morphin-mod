@@ -158,17 +158,17 @@ export class MorphinElementalBody extends MorphinPolymorphDialog {
                     case 1:
                     case 2:
                     case 3:
-                        this.speeds[element] = Math.min(60, this.speeds[element]);
+                        this.speeds[element].base = Math.min(60, this.speeds[element].base);
                         break;
                     case 4:
-                        this.speeds[element] = Math.min(120, this.speeds[element]);
+                        this.speeds[element].base = Math.min(120, this.speeds[element].base);
                         break;
 
                 }
             }
 
             if (data.speedChanges.length > 1) data.speedChanges += ', ';
-            data.speedChanges += `${game.i18n.localize('MMMOD.UI.' + element)} ${this.speeds[element]} ${game.i18n.localize('MMMOD.UI.ft')}`;
+            data.speedChanges += `${game.i18n.localize('MMMOD.UI.' + element)} ${element === 'fly' ? this.speeds[element].base : this.speeds[element]} ${game.i18n.localize('MMMOD.UI.ft')}${element === 'fly' ? ' (' + game.i18n.localize('MMMOD.UI.' + this.speeds[element].maneuverability) + ')' : ''}`;
         }
 
         // Process the natural attacks

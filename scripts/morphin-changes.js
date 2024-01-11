@@ -522,7 +522,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 10,
-            fly: 30
+            fly: {
+                base: 30,
+                maneuverability: 'average'
+            }
         },
         senses: [
             1, 11
@@ -625,7 +628,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 20,
-            fly: 50
+            fly: {
+                base: 50,
+                maneuverability: 'average'
+            }
         },
         senses: [
             1
@@ -1018,7 +1024,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 10,
-            fly: 40
+            fly: {
+                base: 40,
+                maneuverability: 'average'
+            }
         },
         senses: [
             1
@@ -1097,7 +1106,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 10,
-            fly: 80
+            fly: {
+                base: 80,
+                maneuverability: 'average'
+            }
         },
         senses: [
             1
@@ -1139,7 +1151,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 10,
-            fly: 60
+            fly: {
+                base: 60,
+                maneuverability: 'average'
+            }
         },
         senses: [
             1
@@ -1286,7 +1301,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 10,
-            fly: 100
+            fly: {
+                base: 100,
+                maneuverability: 'average'
+            }
         },
         senses: [
             1
@@ -1312,7 +1330,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 10,
-            fly: 50
+            fly: {
+                base: 50,
+                maneuverability: 'average'
+            }
         },
         senses: [
             1, 11
@@ -1473,7 +1494,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 20,
-            fly: 40
+            fly: {
+                base: 40,
+                maneuverability: 'good'
+            }
         },
         senses: [
             14
@@ -1639,7 +1663,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 30,
-            fly: 20
+            fly: {
+                base: 20,
+                maneuverability: 'average'
+            }
         },
         senses: [
             1, 11
@@ -1782,7 +1809,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 10,
-            fly: 50
+            fly: {
+                base: 50,
+                maneuverability: 'average'
+            }
         },
         senses: [
             1, 11
@@ -1914,7 +1944,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 10,
-            fly: 60
+            fly: {
+                base: 60,
+                maneuverability: 'average'
+            }
         },
         senses: [
             1
@@ -2090,7 +2123,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 10,
-            fly: 50
+            fly: {
+                base: 50,
+                maneuverability: 'clumsy'
+            }
         },
         senses: [
             1, 11
@@ -2255,7 +2291,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 40,
-            fly: 40,
+            fly: {
+                base: 40,
+                maneuverability: 'poor'
+            },
             climb: 10
         },
         senses: [
@@ -2282,7 +2321,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 30,
-            fly: 20
+            fly: {
+                base: 20,
+                maneuverability: 'clumsy'
+            }
         },
         senses: [
             1
@@ -2311,7 +2353,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 10,
-            fly: 60
+            fly: {
+                base: 60,
+                maneuverability: 'average'
+            }
         },
         senses: [
             1, 11
@@ -2324,7 +2369,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 20,
-            fly: 40
+            fly: {
+                base: 40,
+                maneuverability: 'clumsy'
+            }
         },
         senses: [
             1
@@ -2349,7 +2397,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 10,
-            fly: 60
+            fly: {
+                base: 60,
+                maneuverability: 'average'
+            }
         },
         senses: [
             1, 11
@@ -2417,7 +2468,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 10,
-            fly: 60
+            fly: {
+                base: 60,
+                maneuverability: 'average'
+            }
         },
         senses: [
             1
@@ -2431,7 +2485,10 @@ MorphinChanges.changes = {
         speed: {
             land: 10,
             climb: 20,
-            fly: 40
+            fly: {
+                base: 40,
+                maneuverability: 'poor'
+            }
         },
         senses: [
             1
@@ -2499,7 +2556,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 10,
-            fly: 40
+            fly: {
+                base: 40,
+                maneuverability: 'average'
+            }
         },
         senses: [
             1
@@ -2525,7 +2585,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 10,
-            fly: 40
+            fly: {
+                base: 40,
+                maneuverability: 'good'
+            }
         },
         senses: [
             1
@@ -3093,7 +3156,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 30,
-            fly: 50
+            fly: {
+                base: 50,
+                maneuverability: 'clumsy'
+            }
         },
         senses: [
             1, 11
@@ -3150,7 +3216,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 30,
-            fly: 60
+            fly: {
+                base: 60,
+                maneuverability: 'average'
+            }
         },
         senses: [
             1
@@ -3163,7 +3232,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 5,
-            fly: 40
+            fly: {
+                base: 40,
+                maneuverability: 'good'
+            }
         },
         senses: [
             1, 13
@@ -3177,7 +3249,10 @@ MorphinChanges.changes = {
         speed: {
             land: 20,
             climb: 15,
-            fly: 30
+            fly: {
+                base: 30,
+                maneuverability: 'poor'
+            }
         },
         senses: [
             1, 11
@@ -3223,7 +3298,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 30,
-            fly: 60
+            fly: {
+                base: 60,
+                maneuverability: 'perfect'
+            }
         },
         senses: [
             1, 7
@@ -3435,7 +3513,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 30,
-            fly: 60
+            fly: {
+                base: 60,
+                maneuverability: 'good'
+            }
         },
         senses: [
             1, 7
@@ -3448,7 +3529,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 30,
-            fly: 50
+            fly: {
+                base: 50,
+                maneuverability: 'good'
+            }
         },
         senses: [
             1, 7, 11
@@ -3510,7 +3594,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 30,
-            fly: 60
+            fly: {
+                base: 60,
+                maneuverability: 'good'
+            }
         },
         senses: [
             1, 7
@@ -3599,7 +3686,10 @@ MorphinChanges.changes = {
         speed: {
             land: 20,
             climb: 20,
-            fly: 50,
+            fly: {
+                base: 50,
+                maneuverability: 'average'
+            },
             swim: 20
         },
         senses: [
@@ -3696,7 +3786,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 10,
-            fly: 50
+            fly: {
+                base: 50,
+                maneuverability: 'average'
+            }
         },
         senses: [
             1, 7
@@ -3709,7 +3802,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 20,
-            fly: 60
+            fly: {
+                base: 60,
+                maneuverability: 'poor'
+            }
         },
         senses: [
             1, 7
@@ -3722,7 +3818,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 20,
-            fly: 30
+            fly: {
+                base: 30,
+                maneuverability: 'poor'
+            }
         },
         senses: [
             1, 7
@@ -3752,7 +3851,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 20,
-            fly: 60
+            fly: {
+                base: 60,
+                maneuverability: 'good'
+            }
         },
         senses: [
             1, 7
@@ -3766,7 +3868,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 30,
-            fly: 50
+            fly: {
+                base: 50,
+                maneuverability: 'good'
+            }
         },
         senses: [
             1, 7
@@ -3873,7 +3978,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 20,
-            fly: 20,
+            fly: {
+                base: 20,
+                maneuverability: 'clumsy'
+            },
             swim: 30
         },
         senses: [
@@ -3887,7 +3995,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 20,
-            fly: 60
+            fly: {
+                base: 60,
+                maneuverability: 'good'
+            }
         },
         senses: [
             1, 7
@@ -3905,7 +4016,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 20,
-            fly: 60
+            fly: {
+                base: 60,
+                maneuverability: 'average'
+            }
         },
         senses: [
             1, 7, 11
@@ -3962,7 +4076,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 40,
-            fly: 60
+            fly: {
+                base: 60,
+                maneuverability: 'poor'
+            }
         },
         senses: [
             1, 7
@@ -4029,7 +4146,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 10,
-            fly: 80
+            fly: {
+                base: 80,
+                maneuverability: 'average'
+            }
         },
         senses: [
             1, 7, 11
@@ -4108,7 +4228,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 30,
-            fly: 50
+            fly: {
+                base: 50,
+                maneuverability: 'poor'
+            }
         },
         senses: [
             1, 7, 11
@@ -4125,7 +4248,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 30,
-            fly: 60
+            fly: {
+                base: 60,
+                maneuverability: 'poor'
+            }
         },
         senses: [
             1, 7
@@ -4304,7 +4430,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 10,
-            fly: 80
+            fly: {
+                base: 80,
+                maneuverability: 'average'
+            }
         },
         senses: [
             1
@@ -4483,7 +4612,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 40,
-            fly: 60
+            fly: {
+                base: 60,
+                maneuverability: 'poor'
+            }
         },
         senses: [
             1, 7
@@ -4500,7 +4632,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 30,
-            fly: 60
+            fly: {
+                base: 60,
+                maneuverability: 'poor'
+            }
         },
         senses: [
             1, 7, 11
@@ -4531,7 +4666,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 40,
-            fly: 100
+            fly: {
+                base: 100,
+                maneuverability: 'average'
+            }
         },
         senses: [
             1, 7, 11
@@ -4563,7 +4701,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 20,
-            fly: 40
+            fly: {
+                base: 40,
+                maneuverability: 'poor'
+            }
         },
         senses: [
             1
@@ -4619,7 +4760,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 60,
-            fly: 120
+            fly: {
+                base: 120,
+                maneuverability: 'good'
+            }
         },
         senses: [
             1, 7, 11
@@ -4641,7 +4785,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 30,
-            fly: 60
+            fly: {
+                base: 60,
+                maneuverability: 'average'
+            }
         },
         senses: [
             1, 7
@@ -4672,7 +4819,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 40,
-            fly: 20
+            fly: {
+                base: 20,
+                maneuverability: 'average'
+            }
         },
         senses: [
             1, 7, 11
@@ -4715,7 +4865,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 30,
-            fly: 50
+            fly: {
+                base: 50,
+                maneuverability: 'clumsy'
+            }
         },
         senses: [
             1, 7, 11
@@ -4728,7 +4881,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 40,
-            fly: 60,
+            fly: {
+                base: 60,
+                maneuverability: 'good'
+            },
             swim: 40
         },
         senses: [
@@ -4765,7 +4921,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 20,
-            fly: 40
+            fly: {
+                base: 40,
+                maneuverability: 'good'
+            }
         },
         senses: [
             1, 17
@@ -4779,7 +4938,7 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 40,
-            fly: 20
+            swim: 20
         },
         senses: [
             1, 7
@@ -4826,7 +4985,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 60,
-            fly: 120
+            fly: {
+                base: 120,
+                maneuverability: 'average'
+            }
         },
         senses: [
             1, 7, 11
@@ -4936,7 +5098,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 30,
-            fly: 60
+            fly: {
+                base: 60,
+                maneuverability: 'good'
+            }
         },
         senses: [
             1, 7
@@ -4956,7 +5121,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 10,
-            fly: 30
+            fly: {
+                base: 30,
+                maneuverability: 'perfect'
+            }
         },
         senses: [],
         effect: {
@@ -4999,7 +5167,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 30,
-            fly: 60
+            fly: {
+                base: 60,
+                maneuverability: 'good'
+            }
         },
         senses: [
             1, 7, 11
@@ -5016,8 +5187,11 @@ MorphinChanges.changes = {
             { name: 'Wing', diceCount: 1, diceSize: 6, count: 2 }
         ],
         speed: {
-            land: 30,
-            fly: 60
+            land: 0,
+            fly: {
+                base: 120,
+                maneuverability: 'poor'
+            }
         },
         senses: [
             1
@@ -5154,7 +5328,10 @@ MorphinChanges.changes = {
         speed: {
             land: 10,
             burrow: 20,
-            fly: 20
+            fly: {
+                base: 20,
+                maneuverability: 'perfect'
+            }
         },
         senses: [
             1, 7, 11, 21
@@ -5198,7 +5375,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 30,
-            fly: 60
+            fly: {
+                base: 60,
+                maneuverability: 'perfect'
+            }
         },
         senses: [
             1, 7, 11
@@ -5211,9 +5391,12 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 30,
-            burrow: 30,
             climb: 30,
-            fly: 40
+            fly: {
+                base: 40,
+                maneuverability: 'good'
+            },
+            swim: 30
         },
         senses: [
             1, 7
@@ -5227,7 +5410,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 10,
-            fly: 50,
+            fly: {
+                base: 50,
+                maneuverability: 'good'
+            },
             swim: 10
         },
         senses: [
@@ -5257,7 +5443,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 30,
-            fly: 20
+            fly: {
+                base: 20,
+                maneuverability: 'clumsy'
+            }
         },
         senses: [
             1, 7
@@ -5301,7 +5490,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 20,
-            fly: 50
+            fly: {
+                base: 50,
+                maneuverability: 'average'
+            }
         },
         senses: [
             1
@@ -5314,7 +5506,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 40,
-            fly: 40
+            fly: {
+                base: 40,
+                maneuverability: 'poor'
+            }
         },
         senses: [
             1, 7
@@ -5325,7 +5520,10 @@ MorphinChanges.changes = {
         attacks: [],
         speed: {
             land: 10,
-            fly: 40
+            fly: {
+                base: 40,
+                maneuverability: 'average'
+            }
         },
         senses: [
             1, 7, 11
@@ -5342,7 +5540,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 10,
-            fly: 60
+            fly: {
+                base: 60,
+                maneuverability: 'good'
+            }
         },
         senses: [
             1, 7
@@ -5360,7 +5561,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 40,
-            fly: 40
+            fly: {
+                base: 40,
+                maneuverability: 'average'
+            }
         },
         senses: [
             1, 7
@@ -5374,7 +5578,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 30,
-            fly: 30
+            fly: {
+                base: 30,
+                maneuverability: 'good'
+            }
         },
         senses: [
             1, 7, 11
@@ -5403,7 +5610,10 @@ MorphinChanges.changes = {
             { name: 'Whirlwind', diceCount: 2, diceSize: 6, special: ['Whirlwind'], type: ['bludgeoning'], attackType: 'save' }
         ],
         speed: {
-            fly: 100
+            fly: {
+                base: 100,
+                maneuverability: 'perfect'
+            }
         },
         senses: [
             7
@@ -5507,7 +5717,10 @@ MorphinChanges.changes = {
             { name: 'Whirlwind', diceCount: 1, diceSize: 8, special: ['Whirlwind'], type: ['bludgeoning'], attackType: 'save' }
         ],
         speed: {
-            fly: 100
+            fly: {
+                base: 100,
+                maneuverability: 'perfect'
+            }
         },
         senses: [
             7
@@ -5608,7 +5821,10 @@ MorphinChanges.changes = {
             { name: 'Whirlwind', diceCount: 1, diceSize: 6, special: ['Whirlwind'], type: ['bludgeoning'], attackType: 'save' }
         ],
         speed: {
-            fly: 100
+            fly: {
+                base: 100,
+                maneuverability: 'perfect'
+            }
         },
         senses: [
             7
@@ -5700,7 +5916,10 @@ MorphinChanges.changes = {
             { name: 'Whirlwind', diceCount: 1, diceSize: 4, special: ['Whirlwind'], type: ['bludgeoning'], attackType: 'save' }
         ],
         speed: {
-            fly: 100
+            fly: {
+                base: 100,
+                maneuverability: 'perfect'
+            }
         },
         senses: [
             7
@@ -6606,7 +6825,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 30,
-            fly: 60
+            fly: {
+                base: 60,
+                maneuverability: 'perfect'
+            }
         },
         senses: [
             1
@@ -6626,7 +6848,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 30,
-            fly: 50
+            fly: {
+                base: 50,
+                maneuverability: 'good'
+            }
         },
         senses: [
             1
@@ -6850,7 +7075,10 @@ MorphinChanges.changes = {
         speed: {
             land: 20,
             climb: 10,
-            fly: 10
+            fly: {
+                base: 10,
+                maneuverability: 'clumsy'
+            }
         },
         senses: [
             1, 7
@@ -6866,7 +7094,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 5,
-            fly: 40
+            fly: {
+                base: 40,
+                maneuverability: 'average'
+            }
         },
         senses: [
             1
@@ -7036,7 +7267,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 10,
-            fly: 40,
+            fly: {
+                base: 40,
+                maneuverability: 'poor'
+            },
             climb: 10
         },
         senses: [
@@ -7091,7 +7325,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 20,
-            fly: 20,
+            fly: {
+                base: 20,
+                maneuverability: 'poor'
+            },
             swim: 40
         },
         senses: [
@@ -7157,7 +7394,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 20,
-            fly: 20,
+            fly: {
+                base: 20,
+                maneuverability: 'poor'
+            },
             swim: 40
         },
         senses: [
@@ -7226,7 +7466,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 30,
-            fly: 40,
+            fly: {
+                base: 40,
+                maneuverability: 'poor'
+            },
             climb: 30
         },
         senses: [
@@ -7243,7 +7486,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 20,
-            fly: 60
+            fly: {
+                base: 60,
+                maneuverability: 'good'
+            }
         },
         senses: [
             7
@@ -7308,7 +7554,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 20,
-            fly: 20
+            fly: {
+                base: 20,
+                maneuverability: 'poor'
+            }
         },
         senses: [
             7
@@ -7337,7 +7586,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 20,
-            fly: 60
+            fly: {
+                base: 60,
+                maneuverability: 'good'
+            }
         },
         senses: [
             7
@@ -7354,7 +7606,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 30,
-            fly: 20
+            fly: {
+                base: 20,
+                maneuverability: 'poor'
+            }
         },
         senses: [
             7, 21
@@ -7400,7 +7655,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 40,
-            fly: 20,
+            fly: {
+                base: 20,
+                maneuverability: 'average'
+            },
             climb: 20
         },
         senses: [
@@ -7414,7 +7672,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 40,
-            fly: 20
+            fly: {
+                base: 20,
+                maneuverability: 'poor'
+            }
         },
         senses: [
             7
@@ -7536,7 +7797,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 20,
-            fly: 60
+            fly: {
+                base: 60,
+                maneuverability: 'good'
+            }
         },
         senses: [
             7
@@ -7578,7 +7842,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 20,
-            fly: 60
+            fly: {
+                base: 60,
+                maneuverability: 'perfect'
+            }
         },
         senses: [
             7
@@ -7591,7 +7858,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 20,
-            fly: 60,
+            fly: {
+                base: 60,
+                maneuverability: 'good'
+            },
             climb: 20
         },
         senses: [
@@ -7637,7 +7907,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 20,
-            fly: 60,
+            fly: {
+                base: 60,
+                maneuverability: 'average'
+            },
             climb: 20
         },
         senses: [
@@ -7677,7 +7950,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 20,
-            fly: 60
+            fly: {
+                base: 60,
+                maneuverability: 'good'
+            }
         },
         senses: [
             7, 11
@@ -7742,7 +8018,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 40,
-            fly: 40
+            fly: {
+                base: 40,
+                maneuverability: 'clumsy'
+            }
         },
         senses: [
             7
@@ -7809,7 +8088,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 40,
-            fly: 20,
+            fly: {
+                base: 20,
+                maneuverability: 'clumsy'
+            },
             climb: 20
         },
         senses: [
@@ -7842,7 +8124,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 30,
-            fly: 30
+            fly: {
+                base: 30,
+                maneuverability: 'poor'
+            }
         },
         senses: [
             1
@@ -7872,7 +8157,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 30,
-            fly: 30
+            fly: {
+                base: 30,
+                maneuverability: 'clumsy'
+            }
         },
         senses: [
             7
@@ -7888,7 +8176,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 30,
-            fly: 40,
+            fly: {
+                base: 40,
+                maneuverability: 'poor'
+            },
             climb: 30
         },
         senses: [
@@ -7987,7 +8278,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 30,
-            fly: 20
+            fly: {
+                base: 20,
+                maneuverability: 'poor'
+            }
         },
         senses: [
             7, 21
@@ -8017,7 +8311,10 @@ MorphinChanges.changes = {
         ],
         speed: {
             land: 10,
-            fly: 60
+            fly: {
+                base: 60,
+                maneuverability: 'good'
+            }
         },
         senses: [
             7
@@ -8160,3 +8457,5 @@ MorphinChanges.SENSES = Object.freeze({
     TREMORSENSE50: { value: 24, name: 'Tremorsense50', setting: {ts: 50} },
     TREMORSENSE60: { value: 25, name: 'Tremorsense60', setting: {ts: 60} },
 });
+
+MorphinChanges.flightManeuverability = ['clumsy', 'poor', 'average', 'good', 'perfect'];
