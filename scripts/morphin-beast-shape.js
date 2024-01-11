@@ -185,16 +185,20 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
             if (speedName === 'fly') {
                 switch (this.level) {
                     case 1:
-                        this.speeds[speedName] = Math.min(30, this.speeds[speedName]);
+                        this.speeds[speedName].base = Math.min(30, this.speeds[speedName].base);
+                        if (MorphinChanges.flightManeuverability.indexOf('average') < MorphinChanges.flightManeuverability.indexOf(this.speeds[speedName].maneuverability)) this.speeds[speedName].maneuverability = 'average';
                         break;
                     case 2:
-                        this.speeds[speedName] = Math.min(60, this.speeds[speedName]);
+                        this.speeds[speedName].base = Math.min(60, this.speeds[speedName].base);
+                        if (MorphinChanges.flightManeuverability.indexOf('good') < MorphinChanges.flightManeuverability.indexOf(this.speeds[speedName].maneuverability)) this.speeds[speedName].maneuverability = 'average';
                         break;
                     case 3:
-                        this.speeds[speedName] = Math.min(90, this.speeds[speedName]);
+                        this.speeds[speedName].base = Math.min(90, this.speeds[speedName].base);
+                        if (MorphinChanges.flightManeuverability.indexOf('good') < MorphinChanges.flightManeuverability.indexOf(this.speeds[speedName].maneuverability)) this.speeds[speedName].maneuverability = 'average';
                         break;
                     case 4:
-                        this.speeds[speedName] = Math.min(120, this.speeds[speedName]);
+                        this.speeds[speedName].base = Math.min(120, this.speeds[speedName].base);
+                        if (MorphinChanges.flightManeuverability.indexOf('good') < MorphinChanges.flightManeuverability.indexOf(this.speeds[speedName].maneuverability)) this.speeds[speedName].maneuverability = 'average';
                         break;
                 }
             }
@@ -231,7 +235,7 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
             }
 
             if (data.speedChanges.length > 1) data.speedChanges += ', ';
-            data.speedChanges += `${game.i18n.localize('MMMOD.UI.' + speedName)} ${this.speeds[speedName]} ${game.i18n.localize('MMMOD.UI.ft')}`;
+            data.speedChanges += `${game.i18n.localize('MMMOD.UI.' + speedName)} ${speedName === 'fly' ? this.speeds[speedName].base : this.speeds[speedName]} ${game.i18n.localize('MMMOD.UI.ft')}${speedName === 'fly' ? ' (' + game.i18n.localize('MMMOD.UI.' + this.speeds[speedName].maneuverability) + ')' : ''}`;
         }
 
         // Process the natural attacks
