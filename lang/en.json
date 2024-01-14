@@ -1,5 +1,6 @@
 {
     "MMMOD": {
+        "AmuletOfMightyFists": "Amulet of Mighty Fists",
         "Attacks": {
             "Arm": "Arm",
             "Bite": "Bite",
@@ -113,6 +114,7 @@
                 "Name": "Wild Shape"
             }
         },
+        "celestial": "Celestial",
         "DamageTypes": {
             "acid": "acid",
             "Acid": "Acid",
@@ -132,6 +134,8 @@
             "Fire": "Fire",
             "force": "force",
             "Force": "Force",
+            "lightning": "lightning",
+            "Lightning": "Lightning",
             "magicandslashing": "magic and slashing",
             "magicslashingorbludgeoning": "magic, slashing, or bludgeoning",
             "negative": "negative",
@@ -153,12 +157,14 @@
         "DeactivateScriptCallName": "Revert Mighty Morphin Changes on Deactivation",
         "EffectWarning": "is already under the effects of a change from",
         "ElementalInvalidWarning": "is not a valid option for Elemental Body",
+        "fiendish": "Fiendish",
         "FilePermissionWarning": "To enable token image switching, player must have Foundry permission to \"Use File Browser\"",
         "InputCasterLevel": "Input Caster Level",
         "ManyTokensWarning": "Too many actors selected. Choose one token.",
         "Name": "Mighty Morphin Mod",
         "NoEffectWarning": "is not under any change effects",
         "NoTokenWarning": "No token selected",
+        "PlanarWildShape": "Planar Wild Shape",
         "PlantInvalidWarning": "is not a valid option for Plant Shape",
         "Senses": {
             "Blindsense10": "Blindsense 10ft",
@@ -243,6 +249,7 @@
             "SelectElementalSize": "Select Elemental Size",
             "SelectForm": "Select Form",
             "SelectMagicalBeastSize": "Select Magical Beast Size",
+            "SelectPlanarType": "Select Planar Wild Shape Template",
             "SelectPlantSize": "Select Plant Size",
             "SelectVerminSize": "Select Vermin Size",
             "Senses": "Senses",

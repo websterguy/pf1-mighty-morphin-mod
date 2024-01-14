@@ -13,8 +13,8 @@ export class MorphinPlantShape extends MorphinPolymorphDialog {
      * @param {string} actorId The id of the actor that will change shape
      * @param {string} source The source of the beast shape effect
      */
-    constructor(level, durationLevel, actorId, source) {
-        super(level, durationLevel, actorId, source);
+    constructor(level, durationLevel, actorId, source, {planarType = null} = {}) {
+        super(level, durationLevel, actorId, source, {planarType: planarType});
         this.spell = 'plantShape';
 
         // Add all possible sizes for the given spell level
@@ -51,7 +51,7 @@ export class MorphinPlantShape extends MorphinPolymorphDialog {
 
     /** @inheritdoc */
     async getData() {
-        const data = {};
+        const data = await super.getData();
 
         // Set the default size to the largest available plant
         let defaultSize = this.sizes.plant[this.sizes.plant.length - 1];
@@ -137,7 +137,7 @@ export class MorphinPlantShape extends MorphinPolymorphDialog {
             const element = Object.keys(this.speeds)[i];
 
             if (data.speedChanges.length > 1) data.speedChanges += ', ';
-            data.speedChanges += `${game.i18n.localize('MMMOD.UI.' + element)} ${this.speeds[element]} ${game.i18n.localize('MMMOD.UI.ft')}`;
+            data.speedChanges += `${game.i18n.localize('MMMOD.UI.' + element)} ${element === 'fly' ? this.speeds[element].base : this.speeds[element]} ${game.i18n.localize('MMMOD.UI.ft')}${element === 'fly' ? ' (' + game.i18n.localize('MMMOD.UI.' + this.speeds[element].maneuverability) + ')' : ''}`;
         }
 
         // Process the natural attacks
@@ -163,6 +163,7 @@ export class MorphinPlantShape extends MorphinPolymorphDialog {
             if (data.attacks.length > 0) data.attacks += ', ';
             data.attacks += `${element.count > 1 ? element.count + ' ' : ''}${game.i18n.localize('MMMOD.Attacks.' + element.name)} (${!!damageDice ? damageDice : '0'}${!!attackSpecial ? ` ${game.i18n.localize('MMMOD.UI.Plus')} ` + attackSpecial : ''})`;
         }
+        if (!data.attacks.length) data.attacks = game.i18n.localize('MMMOD.UI.None');
 
         // Process special attacks
         data.specialAttacks = '';

@@ -1,4 +1,4 @@
-#mighty-morphin-beastShape form, #mighty-morphin-elementalBody form, #mighty-morphin-plantShape, #mighty-morphin-verminShape form {
+#mighty-morphin-beastShape form, #mighty-morphin-elementalBody form, #mighty-morphin-plantShape form, #mighty-morphin-verminShape form {
     min-height: 100%;
     display: flex;
     flex-direction: column;

@@ -12,7 +12,7 @@ export class MorphinPolymorphDialog extends FormApplication {
      * @param {string} actorId The id of the actor that will change shape
      * @param {string} source The source of the polymorph effect
      */
-    constructor(level, durationLevel, actorId, source) {
+    constructor(level, durationLevel, actorId, source, {planarType = null}) {
         super();
         this.level = level;
         this.durationLevel = durationLevel;
@@ -21,6 +21,9 @@ export class MorphinPolymorphDialog extends FormApplication {
         this.sizes = {};
         this.source = source;
         this.shapeOptions = {};
+        this.contextNotes = [];
+        this.planar = (source === game.i18n.localize('MMMOD.WildShape') && !!fromUuidSync(actorId).items.getName(game.i18n.localize('MMMOD.PlanarWildShape')));
+        this.planarType = planarType;
     }
 
     /** @inheritdoc */
@@ -35,6 +38,14 @@ export class MorphinPolymorphDialog extends FormApplication {
 
     /** @inheritdoc */
     async getData() {
+        const data = {};
+        
+        data.planar = this.planar;
+        data.planarType = this.planarType;
+        data.defaultCelestial = !fromUuidSync(this.actorId).system.details.alignment.includes('e');
+        data.defaultFiendish = !data.defaultCelestial;
+
+        return data;
     }
 
     /**
@@ -52,7 +63,7 @@ export class MorphinPolymorphDialog extends FormApplication {
         let oneAttack = MorphinChanges.changes[chosenForm].attacks.length === 1;
 
         // Loop over the attacks and create the items
-        const amuletItem = shifter.items.find(o => o.name.toLowerCase().includes('amulet of mighty fists') && o.system.equipped);
+        const amuletItem = shifter.items.find(o => o.name.toLowerCase().includes(game.i18n.localize('MMMOD.AmuletOfMightyFists').toLowerCase()) && o.system.equipped);
         let bonusSearch = /\+(\d+)/.exec(amuletItem?.name);
         let amuletBonus = !!bonusSearch ? bonusSearch[1] : null;
         for (let i = 0; i < MorphinChanges.changes[chosenForm].attacks.length; i++) {
@@ -210,7 +221,7 @@ export class MorphinPolymorphDialog extends FormApplication {
 
         // Process resistances changes
         let originalEres = { 'system.traits.eres': shifter.system.traits.eres };
-        let eresString = this.processEres(this.eres) || '';
+        let eresString = this.processEres(this.eres) || { value: [], custom: '' };
 
         // Process vulnerabilities changes
         let originalDv = { 'system.traits.dv': shifter.system.traits.dv };
@@ -297,6 +308,64 @@ export class MorphinPolymorphDialog extends FormApplication {
             oldProtoImage.token.img = shifter.prototypeToken.texture.src;
         }
 
+        if (!!this.planar && !!this.planarType) {
+            const planarObject = duplicate(MorphinChanges.changes.wildShape.planar[this.planarType]);
+            if (!!planarObject) {
+                this.changes.push(...planarObject.changes);
+
+                for (const sense of planarObject.senses) {
+                    if (sense !== 1 && sense !== 11) {
+                        const senseData = MorphinChanges.SENSES[Object.keys(MorphinChanges.SENSES)[sense - 1]];
+                        const senseKey = Object.keys(senseData.setting)[0];
+                        if (sensesChanges.system.traits.senses[senseKey] < senseData.setting[senseKey]) sensesChanges.system.traits.senses[senseKey] = senseData.setting[senseKey];
+                    }
+                }
+
+                const resLevel = shifter.system.attributes.hd.total >= 11 ? '11' : '5';
+                for (const resData of planarObject.dr[resLevel]) {
+                    if (sensesChanges.system.traits.dr.custom.length > 0) sensesChanges.system.traits.dr.custom += '; ';
+                    sensesChanges.system.traits.dr.custom += `${resData.amount}/${!!resData.types[0] ? resData.types[0] : '-'}${!!resData.types[1] ? (resData.operator ? ' or ' : ' and ') : resData.types[1]}`;
+                    /* to avoid duplicates
+                    for (const resType of resData.types) {
+                        for (const existingResData of sensesChanges.system.traits.dr) {
+                            if (existingResData.types.includes(resType) {
+                                
+                            }
+                        }
+                    } */
+                }
+
+                const implementedEnergies = ['acid', 'cold', 'electric', 'fire', 'force', 'negative', 'positive', 'sonic'];
+
+                for (const resData of planarObject.eres[resLevel]) {
+                    for (const resType of resData.types) {
+                        if (!!resType && !implementedEnergies.includes(resType)) {
+                            if (sensesChanges.system.traits.eres.custom.length > 0) sensesChanges.system.traits.eres.custom += '; ';
+                            sensesChanges.system.traits.eres.custom += `${game.i18n.localize('MMMOD.DamageTypes.' + resType)} ${resData.amount}`;
+                        }
+                        else if (!!resType) {
+                            let exists = false;
+                            for (const existingResData of sensesChanges.system.traits.eres.value) {
+                                if (existingResData.types.includes(resType)) {
+                                    if (existingResData.value < resData.value) {
+                                        existingResData.value = resData.value;
+                                    }
+                                    exists = true;
+                                }
+                            }
+                            if (!exists) sensesChanges.system.traits.eres.value.push(resData);
+                        }
+                    }
+                }
+
+                for (const attack of itemsToEmbed.filter(o => o.type === 'attack')) {
+                    attack.system.actions[0].conditionals.push(...planarObject.conditionals);
+                }
+
+                this.contextNotes.push(...planarObject.contextNotes);
+            }
+        }
+
         // Create the items on the actor, then create an array of their ids to delete them later
         let itemsCreated = await shifter.createEmbeddedDocuments('Item', itemsToEmbed);
         itemsCreated = itemsCreated.map(o => o.id);
@@ -309,6 +378,7 @@ export class MorphinPolymorphDialog extends FormApplication {
             durationData = {value: this.durationLevel.toString(), units: (this.source === 'Wild Shape' ? 'hour' : 'minute')};
         }
 
+        
         let buffUpdate = [{ _id: buff.id, 'system.duration': durationData, 'system.changes': this.changes, 'system.contextNotes': this.contextNotes,'system.active': true }];
 
         // Set the flags for all changes made
@@ -433,6 +503,9 @@ export class MorphinPolymorphDialog extends FormApplication {
         });
 
         // Submit clicked, apply to the actor
-        $('#submitButton').on('click', async (event) => await this.applyChanges(event, $('#formSelect')[0].value, $('input[name="typeSelect"]:checked')[0]?.value));
+        $('#submitButton').on('click', async (event) => {
+            this.planarType = this.planarType || $('input[name="planarSelect"]:checked')[0]?.value;
+            await this.applyChanges(event, $('#formSelect')[0].value, $('input[name="typeSelect"]:checked')[0]?.value);
+        });
     }
 }
