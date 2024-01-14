@@ -13,8 +13,8 @@ export class MorphinElementalBody extends MorphinPolymorphDialog {
      * @param {string} actorId The id of the actor that will change shape
      * @param {string} source The source of the elemental body effect
      */
-    constructor(level, durationLevel, actorId, source) {
-        super(level, durationLevel, actorId, source);
+    constructor(level, durationLevel, actorId, source, {planarType = null} = {}) {
+        super(level, durationLevel, actorId, source, {planarType: planarType});
         this.spell = 'elementalBody';
 
         // Add all possible sizes for the given spell level
@@ -54,7 +54,7 @@ export class MorphinElementalBody extends MorphinPolymorphDialog {
 
     /** @inheritdoc */
     async getData() {
-        const data = {};
+        const data = await super.getData();
 
         // Set the default size to the largest available animal (default type)
         let defaultSize = this.sizes.elemental[this.sizes.elemental.length - 1];
@@ -192,6 +192,7 @@ export class MorphinElementalBody extends MorphinPolymorphDialog {
             if (data.attacks.length > 0) data.attacks += ', ';
             data.attacks += `${attack.count > 1 ? attack.count + ' ' : ''}${game.i18n.localize('MMMOD.Attacks.' + attack.name)} (${!!damageDice ? damageDice : '0'}${!!attackSpecial ? ` ${game.i18n.localize('MMMOD.UI.Plus')} ` + attackSpecial : ''})`;
         }
+        if (!data.attacks.length) data.attacks = game.i18n.localize('MMMOD.UI.None');
 
         // Process special attacks
         data.specialAttacks = '';

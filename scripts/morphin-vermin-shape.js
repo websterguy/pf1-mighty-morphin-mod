@@ -13,8 +13,8 @@ export class MorphinVerminShape extends MorphinPolymorphDialog {
      * @param {string} actorId The id of the actor that will change shape
      * @param {string} source The source of the vermin shape effect
      */
-    constructor(level, durationLevel, actorId, source) {
-        super(level, durationLevel, actorId, source);
+    constructor(level, durationLevel, actorId, source, {planarType = null} = {}) {
+        super(level, durationLevel, actorId, source, {planarType: planarType});
 
         this.spell = 'verminShape';
 
@@ -48,7 +48,7 @@ export class MorphinVerminShape extends MorphinPolymorphDialog {
 
     /** @inheritdoc */
     async getData() {
-        const data = {};
+        const data = await super.getData();
 
         // Set the default size to the largest available vermin (default type)
         let defaultSize = this.sizes.vermin[this.sizes.vermin.length - 1];
@@ -176,7 +176,8 @@ export class MorphinVerminShape extends MorphinPolymorphDialog {
             }
 
             if (data.speedChanges.length > 1) data.speedChanges += ', ';
-            data.speedChanges += `${game.i18n.localize('MMMOD.UI.' + speedName)} ${speedName === 'fly' ? this.speeds[speedName].base : this.speeds[speedName]} ${game.i18n.localize('MMMOD.UI.ft')}${speedName === 'fly' ? ' (' + game.i18n.localize('MMMOD.UI.' + this.speeds[speedName].maneuverability) + ')' : ''}`;
+            data.speedChanges += `${game.i18n.localize('MMMOD.UI.' + speedName)} ${speedName === 'fly' ? this.speeds[speedName].base : this.speeds[speedName]}
+                ${game.i18n.localize('MMMOD.UI.ft')}${speedName === 'fly' ? ' (' + game.i18n.localize('MMMOD.UI.' + this.speeds[speedName].maneuverability) + ')' : ''}`;
         }
 
         // Process the natural attacks
@@ -201,6 +202,7 @@ export class MorphinVerminShape extends MorphinPolymorphDialog {
             if (data.attacks.length > 0) data.attacks += ', ';
             data.attacks += `${attack.count > 1 ? attack.count + ' ' : ''}${game.i18n.localize('MMMOD.Attacks.' + attack.name)} (${!!damageDice ? damageDice : '0'}${!!attackSpecial ? ` ${game.i18n.localize('MMMOD.UI.Plus')} ` + attackSpecial : ''})`;
         }
+        if (!data.attacks.length) data.attacks = game.i18n.localize('MMMOD.UI.None');
 
         // Process special attacks
         data.specialAttacks = '';
@@ -281,9 +283,7 @@ export class MorphinVerminShape extends MorphinPolymorphDialog {
         
         // Extra bonuses
         data.bonuses = `+${this.level === 1 ? '2' : '4'} ${game.i18n.localize('MMMOD.Bonuses.Resistance')} ${game.i18n.localize('MMMOD.Bonuses.SavesVsMind')}`;
-        this.contextNotes = [
-            {text: `+[[${this.level === 1 ? '2' : '4'}]] ${game.i18n.localize('MMMOD.Bonuses.Resistance')} ${game.i18n.localize('MMMOD.Bonuses.SavesVsMind')}`, subTarget: 'allSavingThrows'}
-        ];
+        this.contextNotes.push({text: `+[[${this.level === 1 ? '2' : '4'}]] ${game.i18n.localize('MMMOD.Bonuses.Resistance')} ${game.i18n.localize('MMMOD.Bonuses.SavesVsMind')}`, subTarget: 'allSavingThrows'});
 
         // Build the html preview
         let newHtml = `${!!data.polymorphBase ? '<p><span class="previewLabel">' + game.i18n.localize('MMMOD.UI.BaseSizeAdjust') + ': </span><span id="polymorphScores">' + data.polymorphBase + '</span></p>' : ''}

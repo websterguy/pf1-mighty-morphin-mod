@@ -14,6 +14,17 @@
       {{/each}}
     </select>
   </div>
+  <div id="wildShapeOptions">
+    {{#if planar}}
+      {{#unless planarType}}
+        <legend>{{localize "MMMOD.UI.SelectPlanarType"}}:</legend>
+        <input type="radio" name="planarSelect" id="celestialSelect" value="celestial" {{checked defaultCelestial}}>
+        <label for="celestialSelect">{{localize "MMMOD.celestial"}}</label>
+        <input type="radio" name="planarSelect" id="fiendishSelect" value="fiendish" {{checked defaultFiendish}}>
+        <label for="fiendishSelect">{{localize "MMMOD.fiendish"}}</label>
+      {{/unless}}
+    {{/if}}
+  </div>
   <div id="changePreview">
     {{{previewHtml}}}
   </div>
