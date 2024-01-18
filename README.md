@@ -20,7 +20,7 @@ Currently supports buff generation and application of effects of the following s
 * Beast Shape I-IV
 * Elemental Body I-IV
 * Plant Shape I-III
-* Vermin Shape
+* Vermin Shape I-II
 * Druid Wild Shape (As Beast Shape, Elemental Body, and Plant Shape)
   * Planar Shape, Energized Wild Shape, Elemental Claws, Frightful Shape, Mutated Shape
 * Mauler Familiar Battle Form
