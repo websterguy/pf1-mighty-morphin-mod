@@ -13,8 +13,8 @@ export class MorphinPlantShape extends MorphinPolymorphDialog {
      * @param {string} actorId The id of the actor that will change shape
      * @param {string} source The source of the beast shape effect
      */
-    constructor(level, durationLevel, actorId, source, {planarType = null} = {}) {
-        super(level, durationLevel, actorId, source, {planarType: planarType});
+    constructor(level, durationLevel, actorId, source, {planarType = null, energizedTypes = null, mutatedType = null} = {}) {
+        super(level, durationLevel, actorId, source, {planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType});
         this.spell = 'plantShape';
 
         // Add all possible sizes for the given spell level
@@ -280,8 +280,8 @@ export class MorphinPlantShape extends MorphinPolymorphDialog {
             this.dr = dr;
 
             const regen = MorphinChanges.changes[this.chosenForm.name].regen || [];
-            data.regen = regen.map(o => '' + o.value + ' (' + o.counter.map(c => game.i18n.localize('MMMOD.DamageTypes.' + c)).join(' ' + game.i18n.localize('or') + ' ') + ')').join(', ') || game.i18n.localize('MMMOD.UI.None');
-            this.regen = regen.map(o => '' + o.value + ' (' + o.counter.map(c => game.i18n.localize('MMMOD.DamageTypes.' + c)).join(' ' + game.i18n.localize('or') + ' ') + ')').join('; ') || '';
+            data.regen = regen.map(o => '' + o.value + ' (' + o.counter.map(c => game.i18n.localize('MMMOD.DamageTypes.' + c)).join(' ' + game.i18n.localize('MMMOD.UI.or') + ' ') + ')').join(', ') || game.i18n.localize('MMMOD.UI.None');
+            this.regen = regen.map(o => '' + o.value + ' (' + o.counter.map(c => game.i18n.localize('MMMOD.DamageTypes.' + c)).join(' ' + game.i18n.localize('MMMOD.UI.or') + ' ') + ')').join('; ') || '';
         }
 
         // Build the html preview

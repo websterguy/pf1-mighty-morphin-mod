@@ -14,17 +14,41 @@
       {{/each}}
     </select>
   </div>
-  <div id="wildShapeOptions">
-    {{#if planar}}
-      {{#unless planarType}}
-        <legend>{{localize "MMMOD.UI.SelectPlanarType"}}:</legend>
-        <input type="radio" name="planarSelect" id="celestialSelect" value="celestial" {{checked defaultCelestial}}>
-        <label for="celestialSelect">{{localize "MMMOD.celestial"}}</label>
-        <input type="radio" name="planarSelect" id="fiendishSelect" value="fiendish" {{checked defaultFiendish}}>
-        <label for="fiendishSelect">{{localize "MMMOD.fiendish"}}</label>
-      {{/unless}}
-    {{/if}}
-  </div>
+  {{#if wildShape}}
+    <div id="wildShapeOptions">
+      {{#if planar}}
+        {{#unless planarType}}
+          <legend>{{localize "MMMOD.UI.SelectPlanarType"}}:</legend>
+          <input type="radio" name="planarSelect" id="celestialSelect" value="celestial" {{checked defaultCelestial}}>
+          <label for="celestialSelect">{{localize "MMMOD.celestial"}}</label>
+          <input type="radio" name="planarSelect" id="fiendishSelect" value="fiendish" {{checked defaultFiendish}}>
+          <label for="fiendishSelect">{{localize "MMMOD.fiendish"}}</label>
+        {{/unless}}
+      {{/if}}
+      {{#if energized}}
+        {{#unless energizedTypes}}
+          <legend>{{localize "MMMOD.UI.SelectEnergizedTypes"}}:</legend>
+          <input type="checkbox" name="acidEnergized" id="acidEnergized" value="acid">
+          <label for="acidEnergized">{{localize "MMMOD.DamageTypes.Acid"}}</label>
+          <input type="checkbox" name="coldEnergized" id="coldEnergized" value="cold">
+          <label for="coldEnergized">{{localize "MMMOD.DamageTypes.Cold"}}</label>
+          <input type="checkbox" name="electricEnergized" id="electricEnergized" value="electric">
+          <label for="electricEnergized">{{localize "MMMOD.DamageTypes.Electricity"}}</label>
+          <input type="checkbox" name="fireEnergized" id="fireEnergized" value="fire">
+          <label for="fireEnergized">{{localize "MMMOD.DamageTypes.Fire"}}</label>
+        {{/unless}}
+      {{/if}}
+      {{#if mutated}}
+        {{#unless mutatedType}}
+          <legend>{{localize "MMMOD.UI.SelectMutatedLimb"}}:</legend>
+          <select id="mutatedSelect">
+          {{#each mutatedTypes}}
+            <option value="{{this}}">{{localize (lookup (concat "MMMOD.Attacks." this) 'string')}}</option>
+          {{/each}}
+        </select>
+        {{/unless}}
+      {{/if}}
+  {{/if}}
   <div id="changePreview">
     {{{previewHtml}}}
   </div>

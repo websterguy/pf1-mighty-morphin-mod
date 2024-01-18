@@ -12,7 +12,7 @@ export class MorphinPolymorphDialog extends FormApplication {
      * @param {string} actorId The id of the actor that will change shape
      * @param {string} source The source of the polymorph effect
      */
-    constructor(level, durationLevel, actorId, source, {planarType = null}) {
+    constructor(level, durationLevel, actorId, source, {planarType = null, energizedTypes = null, mutatedType = null}) {
         super();
         this.level = level;
         this.durationLevel = durationLevel;
@@ -22,8 +22,16 @@ export class MorphinPolymorphDialog extends FormApplication {
         this.source = source;
         this.shapeOptions = {};
         this.contextNotes = [];
-        this.planar = (source === game.i18n.localize('MMMOD.WildShape') && !!fromUuidSync(actorId).items.getName(game.i18n.localize('MMMOD.PlanarWildShape')));
+        this.wildShape = (this.source === game.i18n.localize('MMMOD.WildShape'));
+        this.planar = (!!fromUuidSync(actorId).items.getName(game.i18n.localize('MMMOD.PlanarWildShape')));
         this.planarType = planarType;
+        this.energized = (!!fromUuidSync(actorId).items.getName(game.i18n.localize('MMMOD.EnergizedWildShape')));
+        if (!!energizedTypes && !(energizedTypes instanceof Array)) {
+            throw new Error('Energized Types property must be an array');
+        }
+        this.energizedTypes = energizedTypes;
+        this.mutated = (!!fromUuidSync(actorId).items.getName(game.i18n.localize('MMMOD.MutatedShape')));
+        this.mutatedType = mutatedType;
     }
 
     /** @inheritdoc */
@@ -40,10 +48,16 @@ export class MorphinPolymorphDialog extends FormApplication {
     async getData() {
         const data = {};
         
+        data.wildShape = this.wildShape;
         data.planar = this.planar;
         data.planarType = this.planarType;
         data.defaultCelestial = !fromUuidSync(this.actorId).system.details.alignment.includes('e');
         data.defaultFiendish = !data.defaultCelestial;
+        data.energized = this.energized;
+        data.energizedTypes = this.energizedTypes;
+        data.mutated = this.mutated;
+        data.mutatedType = this.mutatedType;
+        data.mutatedTypes = MorphinChanges.changes.wildShape.mutated.types;
 
         return data;
     }
@@ -159,14 +173,14 @@ export class MorphinPolymorphDialog extends FormApplication {
         for (let item of armorAndShields) {
             let originalArmor = armorChangeNeeded ? { armor: { value: item.system.armor.value } } : {};
             // If this is not Wild Shape or it is Wild Shape but the armor isn't Wild enchanted, armor must be removed
-            let armorIsWild = item.name.includes(game.i18n.localize('Wild'));
-            let originalEquipped = (armorIsWild && this.source === game.i18n.localize('WildShape')) ? {} : { equipped: item.system.equipped };
+            let armorIsWild = item.name.includes(game.i18n.localize('MMMOD.Wild'));
+            let originalEquipped = (armorIsWild && this.wildShape) ? {} : { equipped: item.system.equipped };
             originalArmor = mergeObject(originalArmor, originalEquipped);
 
             if (!!originalArmor) {
                 armorChangeFlag.push({ _id: item.id, data: originalArmor });
                 // take off armor if it's not wild armor or this is not from wild shape
-                let equipChange = (armorIsWild && this.source === game.i18n.localize('WildShape')) ? {} : { equipped: false };
+                let equipChange = (armorIsWild && this.wildShape) ? {} : { equipped: false };
                 let armorChange = armorChangeNeeded ? (smallSizes.includes(this.actorSize) ? { armor: { value: item.system.armor.value * 2 } } : { armor: { value: Math.floor(item.system.armor.value / 2) } }) : {};
                 equipChange = mergeObject(equipChange, armorChange);
                 armorToChange.push({ _id: item.id, system: equipChange });
@@ -308,61 +322,194 @@ export class MorphinPolymorphDialog extends FormApplication {
             oldProtoImage.token.img = shifter.prototypeToken.texture.src;
         }
 
-        if (!!this.planar && !!this.planarType) {
-            const planarObject = duplicate(MorphinChanges.changes.wildShape.planar[this.planarType]);
-            if (!!planarObject) {
-                this.changes.push(...planarObject.changes);
-
-                for (const sense of planarObject.senses) {
-                    if (sense !== 1 && sense !== 11) {
-                        const senseData = MorphinChanges.SENSES[Object.keys(MorphinChanges.SENSES)[sense - 1]];
-                        const senseKey = Object.keys(senseData.setting)[0];
-                        if (sensesChanges.system.traits.senses[senseKey] < senseData.setting[senseKey]) sensesChanges.system.traits.senses[senseKey] = senseData.setting[senseKey];
+        if (this.wildShape) {
+            // Energized Wild Shape eres
+            if (!!this.energized && !!this.energizedTypes) {
+                for (const energy of this.energizedTypes) {
+                    let exists = false;
+                    for (const existingResData of sensesChanges.system.traits.eres.value) {
+                        if (existingResData.types.includes(energy)) {
+                            existingResData.amount += 5;
+                            exists = true;
+                        }
+                    }
+                    if (!exists) {
+                        const resData = duplicate(MorphinChanges.changes.wildShape.energized.eres[0]);
+                        resData.types[0] = energy;
+                        sensesChanges.system.traits.eres.value.push(resData);
                     }
                 }
+            }
 
-                const resLevel = shifter.system.attributes.hd.total >= 11 ? '11' : '5';
-                for (const resData of planarObject.dr[resLevel]) {
-                    if (sensesChanges.system.traits.dr.custom.length > 0) sensesChanges.system.traits.dr.custom += '; ';
-                    sensesChanges.system.traits.dr.custom += `${resData.amount}/${!!resData.types[0] ? resData.types[0] : '-'}${!!resData.types[1] ? (resData.operator ? ' or ' : ' and ') : resData.types[1]}`;
-                    /* to avoid duplicates
-                    for (const resType of resData.types) {
-                        for (const existingResData of sensesChanges.system.traits.dr) {
-                            if (existingResData.types.includes(resType) {
-                                
-                            }
+            // Planar Wild Shape
+            let planarObject;
+            if (!!this.planar && !!this.planarType) {
+                planarObject = duplicate(MorphinChanges.changes.wildShape.planar[this.planarType] || null);
+                if (!!planarObject) {
+                    this.changes.push(...planarObject.changes);
+
+                    for (const sense of planarObject.senses) {
+                        if (sense !== 1 && sense !== 11) {
+                            const senseData = MorphinChanges.SENSES[Object.keys(MorphinChanges.SENSES)[sense - 1]];
+                            const senseKey = Object.keys(senseData.setting)[0];
+                            if (sensesChanges.system.traits.senses[senseKey] < senseData.setting[senseKey]) sensesChanges.system.traits.senses[senseKey] = senseData.setting[senseKey];
                         }
-                    } */
-                }
+                    }
 
-                const implementedEnergies = ['acid', 'cold', 'electric', 'fire', 'force', 'negative', 'positive', 'sonic'];
-
-                for (const resData of planarObject.eres[resLevel]) {
-                    for (const resType of resData.types) {
-                        if (!!resType && !implementedEnergies.includes(resType)) {
-                            if (sensesChanges.system.traits.eres.custom.length > 0) sensesChanges.system.traits.eres.custom += '; ';
-                            sensesChanges.system.traits.eres.custom += `${game.i18n.localize('MMMOD.DamageTypes.' + resType)} ${resData.amount}`;
-                        }
-                        else if (!!resType) {
-                            let exists = false;
-                            for (const existingResData of sensesChanges.system.traits.eres.value) {
-                                if (existingResData.types.includes(resType)) {
-                                    if (existingResData.value < resData.value) {
-                                        existingResData.value = resData.value;
-                                    }
-                                    exists = true;
+                    const resLevel = shifter.system.attributes.hd.total >= 11 ? '11' : '5';
+                    for (const resData of planarObject.dr[resLevel]) {
+                        if (sensesChanges.system.traits.dr.custom.length > 0) sensesChanges.system.traits.dr.custom += '; ';
+                        sensesChanges.system.traits.dr.custom += `${resData.amount}/${!!resData.types[0] ? resData.types[0] : '-'}${!!resData.types[1] ? (resData.operator ? ' or ' : ' and ') : resData.types[1]}`;
+                        /* to avoid duplicates
+                        for (const resType of resData.types) {
+                            for (const existingResData of sensesChanges.system.traits.dr) {
+                                if (existingResData.types.includes(resType) {
+                                    
                                 }
                             }
-                            if (!exists) sensesChanges.system.traits.eres.value.push(resData);
+                        } */
+                    }
+
+                    const implementedEnergies = ['acid', 'cold', 'electric', 'fire', 'force', 'negative', 'positive', 'sonic'];
+
+                    for (const resData of planarObject.eres[resLevel]) {
+                        for (const resType of resData.types) {
+                            if (!!resType && !implementedEnergies.includes(resType)) {
+                                if (sensesChanges.system.traits.eres.custom.length > 0) sensesChanges.system.traits.eres.custom += '; ';
+                                sensesChanges.system.traits.eres.custom += `${game.i18n.localize('MMMOD.DamageTypes.' + resType)} ${resData.amount}`;
+                            }
+                            else if (!!resType) {
+                                let exists = false;
+                                for (const existingResData of sensesChanges.system.traits.eres.value) {
+                                    if (existingResData.types.includes(resType)) {
+                                        if (existingResData.amount < resData.amount) {
+                                            existingResData.amount = resData.amount;
+                                        }
+                                        exists = true;
+                                    }
+                                }
+                                if (!exists) sensesChanges.system.traits.eres.value.push(resData);
+                            }
+                        }
+                    }
+
+                    this.contextNotes.push(...planarObject.contextNotes);
+                }
+            }
+
+            const energizedConditionals = [];
+
+            if (!!this.energized && !!this.energizedTypes) {
+                for (const energy of this.energizedTypes) {
+                    let conditional = duplicate(MorphinChanges.changes.wildShape.energized.conditionals)[0];
+                    conditional.name += ` (${game.i18n.localize('MMMOD.DamageTypes.' + energy)})`;
+                    conditional.modifiers[0].damageType.values = [energy];
+                    conditional.modifiers[0]._id = randomID();
+                    conditional._id = randomID();
+                    energizedConditionals.push(conditional);
+                }
+            }
+
+            // Mutated shape
+            if (!!this.mutated && !!this.mutatedType) {
+                itemsToEmbed.push(MightyMorphinApp.createAttack(this.actorId, newSize, MorphinChanges.changes.wildShape.mutated[newSize].find(o => o.name === this.mutatedType), false, {}, this.source, 'natural'));
+            }
+
+            // Process changes to attacks
+            for (const attack of itemsToEmbed.filter(o => o.type === 'attack')) {
+                for (const action of attack.system.actions) {
+                    if (!!this.planar && !!this.planarType && !!planarObject) {
+                        action.conditionals.push(...planarObject.conditionals.map(o => {
+                            o._id = randomID();
+                            o.modifiers.forEach(m => {
+                                if (m.target === 'damage') m._id = randomID();
+                            });
+                            return o;
+                        }));
+                    }
+
+                    if (shifter.items.getName(game.i18n.localize('MMMOD.ElementalClaws'))) {
+                        action.conditionals.push(...MorphinChanges.changes.wildShape.elementalClaws.conditionals.map(o => {
+                            o._id = randomID();
+                            o.modifiers.forEach(m => {
+                                if (m.target === 'damage') m._id = randomID();
+                            });
+                            return o;
+                        }));
+                    }
+
+                    if (!!this.energized && !!this.energizedTypes) {
+                        action.conditionals.push(...energizedConditionals);
+                        const allDamage = [];
+                        allDamage.push(...action.damage.parts, ...action.damage.critParts, ...action.damage.nonCritParts);
+                        for (const damagePart of allDamage) {
+                            if (damagePart.type.values.some(o => this.energizedTypes.includes(o))) {
+                                if (damagePart.formula.includes('sizeRoll')) {
+                                    let sizeFormulas = damagePart.formula.match(/sizeRoll\(.*?\)/g);
+                                    let sizeFormulaSet = new Set;
+                                    sizeFormulas.forEach(o => sizeFormulaSet.add(o));
+                                    for (const sizeFormula of sizeFormulaSet) {
+                                        let parameters = sizeFormula.match(/[0-9]+/g);
+                                        const sizeDie = globalThis.pf1.config.sizeDie;
+                                        let formulaIndex = sizeDie.indexOf(parameters[0].toString() + 'd' + parameters[1].toString());
+                                        if (formulaIndex < 0 || formulaIndex === (sizeDie.length - 1)) {
+                                            let sizeRollUpgrade = Roll.fromTerms(pf1.utils.rollPreProcess.sizeRoll(parameters[0], parameters[1], 5, 4)).formula;
+                                            formulaIndex = sizeDie.indexOf(sizeRollUpgrade);
+                                            if (formulaIndex < 0 || sizeRollUpgrade === (parameters[0].toString() + 'd' + parameters[1].toString())) {
+                                                ui.notifications.warn('Mighty Morphin Mod: ' + game.i18n.localize('MMMOD.UI.EnergizedUpgradeError') + attack.name + ', ' + formula);
+                                                continue;
+                                            }
+                                            let newFormula = sizeDie[formulaIndex - 1];
+                                            let diceTerms = newFormula.split('d');
+                                            damagePart.formula = damagePart.formula.replace(new RegExp(`sizeRoll\\(${parameters[0]}, ${parameters[1]}`), `sizeRoll(${diceTerms[0]}, ${diceTerms[1]}`);
+                                        }
+                                        else {
+                                            let newFormula = sizeDie[formulaIndex + 1];
+                                            let diceTerms = newFormula.split('d');
+                                            damagePart.formula = damagePart.formula.replace(new RegExp(`sizeRoll\\(${parameters[0]}, ${parameters[1]}`), `sizeRoll(${diceTerms[0]}, ${diceTerms[1]}`);
+                                        }
+                                    }
+                                }
+                                else {
+                                    let formulas = damagePart.formula.match(/[0-9]+d[0-9]+/g);
+                                    let formulaSet = new Set;
+                                    formulas.forEach(o => formulaSet.add(o));
+                                    for (const formula of formulaSet) {
+                                        const sizeDie = globalThis.pf1.config.sizeDie;
+                                        let formulaIndex = sizeDie.indexOf(formula);
+                                        if (formulaIndex < 0 || formulaIndex === (sizeDie.length - 1)) {
+                                            ui.notifications.warn('Mighty Morphin Mod: ' + game.i18n.localize('MMMOD.UI.EnergizedUpgradeError') + attack.name + ', ' + formula);
+                                            continue;
+                                        }
+                                        else {
+                                            let newFormula = sizeDie[formulaIndex + 1];
+                                            damagePart.formula = damagePart.formula.replace(formula, newFormula);
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
+            }
 
-                for (const attack of itemsToEmbed.filter(o => o.type === 'attack')) {
-                    attack.system.actions[0].conditionals.push(...planarObject.conditionals);
+            // frightful
+            if (shifter.items.getName(game.i18n.localize('MMMOD.FrightfulShape'))) {
+                for (let i = 0; i < MorphinChanges.changes.wildShape.frightful.specialAttack.length; i++) {
+                    let attack = duplicate(MorphinChanges.changes.wildShape.frightful.specialAttack[i]);
+
+                    itemsToEmbed.push(MightyMorphinApp.createAttack(this.actorId, newSize, attack, false, MorphinChanges.changes.wildShape.frightful.effect, this.source, 'misc'));
                 }
 
-                this.contextNotes.push(...planarObject.contextNotes);
+                const macroToCreate = duplicate(MorphinChanges.changes.wildShape.frightful.macro);
+                macroToCreate.name = game.i18n.localize('MMMOD.FrightfulShape');
+                macroToCreate.command = macroToCreate.command.replace(/ACTORUUIDHERE/g, this.actorId).replace(/FRIGHTFULSHAPE/g, game.i18n.localize('MMMOD.FrightfulShapeAttackSuccess') + (!!this.source ? ` (${this.source})` : ''));
+                macroToCreate.ownership = shifter.ownership;
+                const createdMacro = await Macro.createDocuments([macroToCreate]);
+                const contextNote = duplicate(MorphinChanges.changes.wildShape.frightful.contextNotes[0]);
+                contextNote.text = contextNote.text.replace(/MACROIDHERE/g, createdMacro[0].id);
+                this.contextNotes.push(contextNote);
+                this.macroCreatedId = createdMacro[0].id;
             }
         }
 
@@ -385,6 +532,7 @@ export class MorphinPolymorphDialog extends FormApplication {
         let dataFlag = mergeObject({ 'system.traits.size': this.actorSize }, mergeObject(originalSkillMod, mergeObject(originalManeuverability, originalSenses)));
         if (!!newImage) { dataFlag = mergeObject(dataFlag, oldProtoImage); };
         let flags = { source: this.source, buffName: this.source, data: dataFlag, armor: armorChangeFlag, itemsCreated: itemsCreated };
+        if (!!this.macroCreatedId) flags.macroCreatedId = this.macroCreatedId;
         if (!!newImage) { flags = mergeObject(flags, { tokenImg: oldImage }); };
         await shifter.update(mergeObject({ 'system.traits.size': newSize, 'flags.pf1-mighty-morphin': flags }, mergeObject(skillModChange, mergeObject(maneuverabilityChange, mergeObject(sensesChanges, protoImageChange)))));
 
@@ -504,7 +652,17 @@ export class MorphinPolymorphDialog extends FormApplication {
 
         // Submit clicked, apply to the actor
         $('#submitButton').on('click', async (event) => {
-            this.planarType = this.planarType || $('input[name="planarSelect"]:checked')[0]?.value;
+            if (this.planar && !this.planarType) this.planarType = $('input[name="planarSelect"]:checked')[0]?.value;
+            if (this.energized && !this.energizedTypes) {
+                const energies = ['acid', 'cold', 'electric', 'fire'];
+                this.energizedTypes = [];
+                for (const energy of energies) {
+                    if ($(`input[name=${energy + 'Energized'}]`).prop('checked')) this.energizedTypes.push(energy);
+                }
+            }
+            if (this.mutated && !this.mutatedType) {
+                this.mutatedType = $('#mutatedSelect').val();
+            }
             await this.applyChanges(event, $('#formSelect')[0].value, $('input[name="typeSelect"]:checked')[0]?.value);
         });
     }

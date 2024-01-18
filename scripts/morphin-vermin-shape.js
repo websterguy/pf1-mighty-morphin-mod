@@ -13,8 +13,8 @@ export class MorphinVerminShape extends MorphinPolymorphDialog {
      * @param {string} actorId The id of the actor that will change shape
      * @param {string} source The source of the vermin shape effect
      */
-    constructor(level, durationLevel, actorId, source, {planarType = null} = {}) {
-        super(level, durationLevel, actorId, source, {planarType: planarType});
+    constructor(level, durationLevel, actorId, source, {planarType = null, energizedTypes = null, mutatedType = null} = {}) {
+        super(level, durationLevel, actorId, source, {planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType});
 
         this.spell = 'verminShape';
 

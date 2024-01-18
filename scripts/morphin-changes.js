@@ -304,76 +304,6 @@ MorphinChanges.changes = {
             }
         }
     },
-    wildShape: {
-        planar: {
-            celestial: {
-                changes: [
-                    { formula: '@attributes.sr.total < (@attributes.hd.total + 5) ? (@attributes.hd.total + 5) : @attributes.sr.total', subTarget: 'spellResist', operator: 'set' }
-                ],
-                senses: [
-                    7
-                ],
-                dr: {
-                    5: [
-                        { amount: 5, operator: true, types: ['evil', ''] }
-                    ],
-                    11: [
-                        { amount: 10, operator: true, types: ['evil', ''] }
-                    ]
-                },
-                eres: {
-                    5: [
-                        { amount: 10, operator: true, types: ['cold', ''] },
-                        { amount: 10, operator: true, types: ['acid', ''] },
-                        { amount: 10, operator: true, types: ['electric', ''] }
-                    ],
-                    11: [
-                        { amount: 15, operator: true, types: ['cold', ''] },
-                        { amount: 15, operator: true, types: ['acid', ''] },
-                        { amount: 15, operator: true, types: ['electric', ''] }
-                    ]
-                },
-                conditionals: [
-                    { default: false, name: 'Smite Evil (1/day)', modifiers: [{ formula: 'max(0, @abilities.cha.mod)', target: 'attack', subTarget: 'allAttack', type: 'untyped', critical: 'normal' }, { formula: '@attributes.hd.total', target: 'damage', subTarget: '', type: '', damageType: { values: ['untyped'] }, critical: '' }] }
-                ],
-                contextNotes: [
-                    { text: '+[[2]] to critical confirmation vs evil', subTarget: 'attack' }
-                ]
-            },
-            fiendish: {
-                changes: [
-                    { formula: '@attributes.sr.total < (@attributes.hd.total + 5) ? (@attributes.hd.total + 5) : @attributes.sr.total', subTarget: 'spellResist', operator: 'set' }
-                ],
-                senses: [
-                    7
-                ],
-                dr: {
-                    5: [
-                        { amount: 5, operator: true, types: ['good', ''] }
-                    ],
-                    11: [
-                        { amount: 10, operator: true, types: ['good', ''] }
-                    ]
-                },
-                eres: {
-                    5: [
-                        { amount: 10, operator: true, types: ['cold', ''] },
-                        { amount: 10, operator: true, types: ['fire', ''] },
-                    ],
-                    11: [
-                        { amount: 15, operator: true, types: ['cold', ''] },
-                        { amount: 15, operator: true, types: ['fire', ''] },
-                    ]
-                },
-                conditionals: [
-                    { default: false, name: 'Smite Good (1/day)', modifiers: [{ formula: 'max(0, @abilities.cha.mod)', target: 'attack', subTarget: 'allAttack', type: 'untyped', critical: 'normal' }, { formula: '@attributes.hd.total', target: 'damage', subTarget: '', type: '', damageType: { values: ['untyped'] }, critical: 'normal' }] }
-                ],
-                contextNotes: [
-                    { text: '+[[2]] to critical confirmation vs good', subTarget: 'attack' }
-                ]
-            }
-        }
-    },
     verminShape: {
         vermin: {
             sm: {
@@ -441,6 +371,175 @@ MorphinChanges.changes = {
             { formula: '4', operator: 'add', target: 'ability', subTarget: 'dex', modifier: 'untyped', priority: 0, value: 4 },
             { formula: '-6', operator: 'add', target: 'ability', subTarget: 'con', modifier: 'untyped', priority: 0, value: -6 }
         ]
+    },
+    wildShape: {
+        planar: {
+            celestial: {
+                changes: [
+                    { formula: '@attributes.sr.total < (@attributes.hd.total + 5) ? (@attributes.hd.total + 5) : @attributes.sr.total', subTarget: 'spellResist', operator: 'set' }
+                ],
+                senses: [
+                    7
+                ],
+                dr: {
+                    5: [
+                        { amount: 5, operator: true, types: ['evil', ''] }
+                    ],
+                    11: [
+                        { amount: 10, operator: true, types: ['evil', ''] }
+                    ]
+                },
+                eres: {
+                    5: [
+                        { amount: 10, operator: true, types: ['cold', ''] },
+                        { amount: 10, operator: true, types: ['acid', ''] },
+                        { amount: 10, operator: true, types: ['electric', ''] }
+                    ],
+                    11: [
+                        { amount: 15, operator: true, types: ['cold', ''] },
+                        { amount: 15, operator: true, types: ['acid', ''] },
+                        { amount: 15, operator: true, types: ['electric', ''] }
+                    ]
+                },
+                conditionals: [
+                    { default: false, name: 'Smite Evil (1/day)', modifiers: [{ formula: 'max(0, @abilities.cha.mod)', target: 'attack', subTarget: 'allAttack', type: 'untyped', critical: 'normal' }, { formula: '@attributes.hd.total', target: 'damage', subTarget: 'allDamage', type: '', damageType: { values: ['untyped'], custom: '' }, critical: 'normal' }] }
+                ],
+                contextNotes: [
+                    { text: '+[[2]] to critical confirmation vs evil', subTarget: 'attack' }
+                ]
+            },
+            fiendish: {
+                changes: [
+                    { formula: '@attributes.sr.total < (@attributes.hd.total + 5) ? (@attributes.hd.total + 5) : @attributes.sr.total', subTarget: 'spellResist', operator: 'set' }
+                ],
+                senses: [
+                    7
+                ],
+                dr: {
+                    5: [
+                        { amount: 5, operator: true, types: ['good', ''] }
+                    ],
+                    11: [
+                        { amount: 10, operator: true, types: ['good', ''] }
+                    ]
+                },
+                eres: {
+                    5: [
+                        { amount: 10, operator: true, types: ['cold', ''] },
+                        { amount: 10, operator: true, types: ['fire', ''] }
+                    ],
+                    11: [
+                        { amount: 15, operator: true, types: ['cold', ''] },
+                        { amount: 15, operator: true, types: ['fire', ''] }
+                    ]
+                },
+                conditionals: [
+                    { default: false, name: 'Smite Good (1/day)', modifiers: [{ formula: 'max(0, @abilities.cha.mod)', target: 'attack', subTarget: 'allAttack', type: 'untyped', critical: 'normal' }, { formula: '@attributes.hd.total', target: 'damage', subTarget: 'allDamage', type: '', damageType: { values: ['untyped'], custom: '' }, critical: 'normal' }] }
+                ],
+                contextNotes: [
+                    { text: '+[[2]] to critical confirmation vs good', subTarget: 'attack' }
+                ]
+            }
+        },
+        elementalClaws: {
+            conditionals: [
+                { default: false, name: 'Elemental Claws (Acid)', modifiers: [{ formula: '1d6', target: 'damage', subTarget: 'attack_0', type: '', critical: 'nonCrit', damageType: { values: ['acid'], custom: '' } }] },
+                { default: false, name: 'Elemental Claws (Cold)', modifiers: [{ formula: '1d6', target: 'damage', subTarget: 'attack_0', type: '', critical: 'nonCrit', damageType: { values: ['cold'], custom: '' } }] },
+                { default: false, name: 'Elemental Claws (Electricity)', modifiers: [{ formula: '1d6', target: 'damage', subTarget: 'attack_0', type: '', critical: 'nonCrit', damageType: { values: ['electric'], custom: '' } }] },
+                { default: false, name: 'Elemental Claws (Fire)', modifiers: [{ formula: '1d6', target: 'damage', subTarget: 'attack_0', type: '', critical: 'nonCrit', damageType: { values: ['fire'], custom: '' } }] }
+            ]
+        },
+        energized: {
+            conditionals: [
+                { default: false, name: 'Energized', modifiers: [{ formula: '1d6', target: 'damage', subTarget: 'allDamage', type: '', critical: 'nonCrit', damageType: { values: [], custom: '' } }] }
+            ],
+            eres: [
+                { amount: 10, operator: true, types: ['', ''] }
+            ]
+        },
+        frightful: {
+            specialAttack: [
+                { name: 'FrightfulShapeAttackSuccess', diceCount: 0, diceSize: 0, count: 1, special: ['Frightful'], attackType: 'save' }
+            ],
+            effect: {
+                'Frightful': { note: 'Failure effect based on HD. Mind-affecting.', type: 'will', saveDesc: 'Success immune 24 hours', description: 'When you use wild shape, it is supernaturally ferocious and disquieting in appearance, such that when you attack a creature, you can use this ferocity to frighten observers. Opponents within 30 feet of you when you attack must succeed at a Will save (DC = 10 + half your character level + your Charisma modifier ([[@abilities.cha.mod]])) to resist being affected by your frightful shape. On a failed save, creatures with fewer Hit Dice than you ([[@attributes.hd.total]]) become @UUID[Compendium.pf1.pf1e-rules.NSqfXaj4MevUR2uJ.JournalEntryPage.XxLUswkCuXnXmA5T]{shaken}, or @UUID[Compendium.pf1.pf1e-rules.NSqfXaj4MevUR2uJ.JournalEntryPage.nGTsTfpWcJTTU3rk]{panicked} if they have 4 Hit Dice or fewer; in either case, the effect lasts for a number of rounds equal to your character level. An opponent that succeeds at its saving throw is immune to your frightful shape for 24 hours. This is a mind-affecting fear effect.' }
+            },
+            macro: { 
+                name: '', command: 'fromUuidSync("ACTORUUIDHERE").items.getName("FRIGHTFULSHAPE").use({skipDialog: true})', type: 'script', ownership: {default: 0}
+            },
+            contextNotes: [
+                { text: 'On attack success: @Macro[MACROIDHERE]', subTarget: 'attack' }
+            ]
+        },
+        mutated: {
+            types: [
+                'Bite', 'Claw', 'Gore', 'Slam', 'Sting', 'Talons'
+            ],
+            fine: [
+                { name: 'Bite', diceCount: 1, diceSize: 1, count: 1 },
+                { name: 'Claw', diceCount: 0, diceSize: 1, count: 1 },
+                { name: 'Gore', diceCount: 1, diceSize: 1, count: 1 },
+                { name: 'Slam', diceCount: 0, diceSize: 1, count: 1 },
+                { name: 'Sting', diceCount: 0, diceSize: 1, count: 1 },
+                { name: 'Talons', diceCount: 0, diceSize: 1, count: 1 }
+            ],
+            dim: [
+                { name: 'Bite', diceCount: 1, diceSize: 2, count: 1 },
+                { name: 'Claw', diceCount: 1, diceSize: 1, count: 1 },
+                { name: 'Gore', diceCount: 1, diceSize: 2, count: 1 },
+                { name: 'Slam', diceCount: 1, diceSize: 1, count: 1 },
+                { name: 'Sting', diceCount: 1, diceSize: 1, count: 1 },
+                { name: 'Talons', diceCount: 1, diceSize: 1, count: 1 }
+            ],
+            sm: [
+                { name: 'Bite', diceCount: 1, diceSize: 4, count: 1 },
+                { name: 'Claw', diceCount: 1, diceSize: 3, count: 1 },
+                { name: 'Gore', diceCount: 1, diceSize: 4, count: 1 },
+                { name: 'Slam', diceCount: 1, diceSize: 3, count: 1 },
+                { name: 'Sting', diceCount: 1, diceSize: 3, count: 1 },
+                { name: 'Talons', diceCount: 1, diceSize: 3, count: 1 }
+            ],
+            med: [
+                { name: 'Bite', diceCount: 1, diceSize: 6, count: 1 },
+                { name: 'Claw', diceCount: 1, diceSize: 4, count: 1 },
+                { name: 'Gore', diceCount: 1, diceSize: 6, count: 1 },
+                { name: 'Slam', diceCount: 1, diceSize: 4, count: 1 },
+                { name: 'Sting', diceCount: 1, diceSize: 4, count: 1 },
+                { name: 'Talons', diceCount: 1, diceSize: 4, count: 1 }
+            ],
+            lg: [
+                { name: 'Bite', diceCount: 1, diceSize: 8, count: 1 },
+                { name: 'Claw', diceCount: 1, diceSize: 6, count: 1 },
+                { name: 'Gore', diceCount: 1, diceSize: 8, count: 1 },
+                { name: 'Slam', diceCount: 1, diceSize: 6, count: 1 },
+                { name: 'Sting', diceCount: 1, diceSize: 6, count: 1 },
+                { name: 'Talons', diceCount: 1, diceSize: 6, count: 1 }
+            ],
+            huge: [
+                { name: 'Bite', diceCount: 2, diceSize: 6, count: 1 },
+                { name: 'Claw', diceCount: 1, diceSize: 8, count: 1 },
+                { name: 'Gore', diceCount: 2, diceSize: 6, count: 1 },
+                { name: 'Slam', diceCount: 1, diceSize: 8, count: 1 },
+                { name: 'Sting', diceCount: 1, diceSize: 8, count: 1 },
+                { name: 'Talons', diceCount: 1, diceSize: 8, count: 1 }
+            ],
+            grg: [
+                { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+                { name: 'Claw', diceCount: 2, diceSize: 6, count: 1 },
+                { name: 'Gore', diceCount: 2, diceSize: 8, count: 1 },
+                { name: 'Slam', diceCount: 2, diceSize: 6, count: 1 },
+                { name: 'Sting', diceCount: 2, diceSize: 6, count: 1 },
+                { name: 'Talons', diceCount: 2, diceSize: 6, count: 1 }
+            ],
+            col: [
+                { name: 'Bite', diceCount: 4, diceSize: 6, count: 1 },
+                { name: 'Claw', diceCount: 2, diceSize: 8, count: 1 },
+                { name: 'Gore', diceCount: 4, diceSize: 6, count: 1 },
+                { name: 'Slam', diceCount: 2, diceSize: 8, count: 1 },
+                { name: 'Sting', diceCount: 2, diceSize: 8, count: 1 },
+                { name: 'Talons', diceCount: 2, diceSize: 8, count: 1 }
+            ]
+        }
     },
     'Badger, Dire': {
         size: 'med',
@@ -5726,7 +5825,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 2, diceSize: 6, count: 2, special: ['Burn'] }
         ],
         specialAttack: [
-            { name: 'Burn', diceCount: 2, diceSize: 6, count: 1, type: ['fire'], attackType: 'save' }
+            { name: 'Burn', diceCount: 0, diceSize: 0, count: 1, type: ['fire'], attackType: 'save', special: ['Burn'], damageAbility: '', nonCrit: { formula: '2d6', type: {values: ['fire'], custom: ''} } }
         ],
         speed: {
             land: 60
@@ -5759,7 +5858,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 2, diceSize: 6, count: 2 }
         ],
         specialAttack: [
-            { name: 'Vortex', diceCount: 2, diceSize: 6, special: ['Vortex'], type: ['bludgeoning'], attackType: 'save' }
+            { name: 'Vortex', diceCount: 0, diceSize: 0, special: ['Vortex'], type: ['bludgeoning'], attackType: 'save', damageAbility: '', nonCrit: { formula: '2d6', type: {values: ['bludgeoning'], custom: ''} } }
         ],
         speed: {
             land: 20,
@@ -5784,7 +5883,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 1, diceSize: 8, count: 2 }
         ],
         specialAttack: [
-            { name: 'Whirlwind', diceCount: 1, diceSize: 8, special: ['Whirlwind'], type: ['bludgeoning'], attackType: 'save' }
+            { name: 'Whirlwind', diceCount: 0, diceSize: 0, special: ['Whirlwind'], type: ['bludgeoning'], attackType: 'save', damageAbility: '', nonCrit: { formula: '1d8', type: {values: ['bludgeoning'], custom: ''} } }
         ],
         speed: {
             fly: {
@@ -5830,7 +5929,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 1, diceSize: 8, count: 2, special: ['Burn'] }
         ],
         specialAttack: [
-            { name: 'Burn', diceCount: 1, diceSize: 8, count: 1, type: ['fire'], attackType: 'save' }
+            { name: 'Burn', diceCount: 0, diceSize: 0, count: 1, type: ['fire'], attackType: 'save', special: ['Burn'], damageAbility: '', nonCrit: { formula: '1d8', type: {values: ['fire'], custom: ''} } }
         ],
         speed: {
             land: 50
@@ -5863,7 +5962,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 1, diceSize: 8, count: 2 }
         ],
         specialAttack: [
-            { name: 'Vortex', diceCount: 1, diceSize: 8, special: ['Vortex'], type: ['bludgeoning'], attackType: 'save' }
+            { name: 'Vortex', diceCount: 0, diceSize: 0, special: ['Vortex'], type: ['bludgeoning'], attackType: 'save', damageAbility: '', nonCrit: { formula: '1d8', type: {values: ['bludgeoning'], custom: ''} } }
         ],
         speed: {
             land: 20,
@@ -5888,7 +5987,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 1, diceSize: 6, count: 1 }
         ],
         specialAttack: [
-            { name: 'Whirlwind', diceCount: 1, diceSize: 6, special: ['Whirlwind'], type: ['bludgeoning'], attackType: 'save' }
+            { name: 'Whirlwind', diceCount: 0, diceSize: 0, special: ['Whirlwind'], type: ['bludgeoning'], attackType: 'save', damageAbility: '', nonCrit: { formula: '1d6', type: {values: ['bludgeoning'], custom: ''} } }
         ],
         speed: {
             fly: {
@@ -5931,7 +6030,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 1, diceSize: 6, count: 1, special: ['Burn'] }
         ],
         specialAttack: [
-            { name: 'Burn', diceCount: 1, diceSize: 6, count: 1, type: ['fire'], attackType: 'save' }
+            { name: 'Burn', diceCount: 0, diceSize: 0, count: 1, type: ['fire'], attackType: 'save', special: ['Burn'], damageAbility: '', nonCrit: { formula: '1d6', type: {values: ['fire'], custom: ''} } }
         ],
         speed: {
             land: 50
@@ -5961,7 +6060,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 1, diceSize: 8, count: 1 }
         ],
         specialAttack: [
-            { name: 'Vortex', diceCount: 1, diceSize: 8, special: ['Vortex'], type: ['bludgeoning'], attackType: 'save' }
+            { name: 'Vortex', diceCount: 0, diceSize: 0, special: ['Vortex'], type: ['bludgeoning'], attackType: 'save', damageAbility: '', nonCrit: { formula: '1d8', type: {values: ['bludgeoning'], custom: ''} } }
         ],
         speed: {
             land: 20,
@@ -5983,7 +6082,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 1, diceSize: 4, count: 1 }
         ],
         specialAttack: [
-            { name: 'Whirlwind', diceCount: 1, diceSize: 4, special: ['Whirlwind'], type: ['bludgeoning'], attackType: 'save' }
+            { name: 'Whirlwind', diceCount: 0, diceSize: 0, special: ['Whirlwind'], type: ['bludgeoning'], attackType: 'save', damageAbility: '', nonCrit: { formula: '1d4', type: {values: ['bludgeoning'], custom: ''} } }
         ],
         speed: {
             fly: {
@@ -6026,7 +6125,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 1, diceSize: 4, count: 1, special: ['Burn'] }
         ],
         specialAttack: [
-            { name: 'Burn', diceCount: 1, diceSize: 4, count: 1, type: ['fire'], attackType: 'save' }
+            { name: 'Burn', diceCount: 0, diceSize: 0, count: 1, type: ['fire'], attackType: 'save', special: ['Burn'], damageAbility: '', nonCrit: { formula: '1d4', type: {values: ['fire'], custom: ''} } }
         ],
         speed: {
             land: 50
@@ -6056,7 +6155,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 1, diceSize: 6, count: 1 }
         ],
         specialAttack: [
-            { name: 'Vortex', diceCount: 1, diceSize: 6, special: ['Vortex'], type: ['bludgeoning'], attackType: 'save' }
+            { name: 'Vortex', diceCount: 0, diceSize: 0, special: ['Vortex'], type: ['bludgeoning'], attackType: 'save', damageAbility: '', nonCrit: { formula: '1d6', type: {values: ['bludgeoning'], custom: ''} } }
         ],
         speed: {
             land: 20,

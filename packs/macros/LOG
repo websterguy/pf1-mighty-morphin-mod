@@ -1,15 +1,15 @@
-2024/01/04-18:20:20.232 bf60 Recovering log #378
-2024/01/04-18:20:20.242 bf60 Delete type=0 #378
-2024/01/04-18:20:20.242 bf60 Delete type=3 #376
-2024/01/13-18:54:54.511 ada0 Level-0 table #383: started
-2024/01/13-18:54:54.514 ada0 Level-0 table #383: 5481 bytes OK
-2024/01/13-18:54:54.522 ada0 Delete type=0 #381
-2024/01/13-18:54:54.539 ada0 Manual compaction at level-0 from '!macros!DYCrMAwEKzOOAFkd' @ 72057594037927935 : 1 .. '!macros!GZbb0MWUetaqM6Vc' @ 0 : 0; will stop at (end)
-2024/01/13-18:54:54.539 ada0 Manual compaction at level-1 from '!macros!DYCrMAwEKzOOAFkd' @ 72057594037927935 : 1 .. '!macros!GZbb0MWUetaqM6Vc' @ 0 : 0; will stop at '!macros!GZbb0MWUetaqM6Vc' @ 7 : 1
-2024/01/13-18:54:54.539 ada0 Compacting 1@1 + 1@2 files
-2024/01/13-18:54:54.549 ada0 Generated table #384@1: 2 keys, 3558 bytes
-2024/01/13-18:54:54.549 ada0 Compacted 1@1 + 1@2 files => 3558 bytes
-2024/01/13-18:54:54.554 ada0 compacted to: files[ 0 0 1 0 0 0 0 ]
-2024/01/13-18:54:54.554 ada0 Delete type=2 #375
-2024/01/13-18:54:54.555 ada0 Delete type=2 #383
-2024/01/13-18:54:54.568 ada0 Manual compaction at level-1 from '!macros!GZbb0MWUetaqM6Vc' @ 7 : 1 .. '!macros!GZbb0MWUetaqM6Vc' @ 0 : 0; will stop at (end)
+2024/01/17-21:22:40.974 bf60 Recovering log #387
+2024/01/17-21:22:40.984 bf60 Delete type=0 #387
+2024/01/17-21:22:40.984 bf60 Delete type=3 #385
+2024/01/17-21:25:28.561 ada0 Level-0 table #393: started
+2024/01/17-21:25:28.572 ada0 Level-0 table #393: 2179 bytes OK
+2024/01/17-21:25:28.576 ada0 Delete type=0 #391
+2024/01/17-21:25:28.576 ada0 Manual compaction at level-0 from '!macros!DYCrMAwEKzOOAFkd' @ 72057594037927935 : 1 .. '!macros!GZbb0MWUetaqM6Vc' @ 0 : 0; will stop at (end)
+2024/01/17-21:25:28.576 ada0 Manual compaction at level-1 from '!macros!DYCrMAwEKzOOAFkd' @ 72057594037927935 : 1 .. '!macros!GZbb0MWUetaqM6Vc' @ 0 : 0; will stop at '!macros!DYCrMAwEKzOOAFkd' @ 11 : 1
+2024/01/17-21:25:28.576 ada0 Compacting 1@1 + 1@2 files
+2024/01/17-21:25:28.585 ada0 Generated table #394@1: 2 keys, 4813 bytes
+2024/01/17-21:25:28.585 ada0 Compacted 1@1 + 1@2 files => 4813 bytes
+2024/01/17-21:25:28.591 ada0 compacted to: files[ 0 0 1 0 0 0 0 ]
+2024/01/17-21:25:28.591 ada0 Delete type=2 #389
+2024/01/17-21:25:28.591 ada0 Delete type=2 #393
+2024/01/17-21:25:28.598 ada0 Manual compaction at level-1 from '!macros!DYCrMAwEKzOOAFkd' @ 11 : 1 .. '!macros!GZbb0MWUetaqM6Vc' @ 0 : 0; will stop at (end)
