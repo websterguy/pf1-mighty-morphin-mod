@@ -3,6 +3,7 @@ import { MorphinBeastShape } from './morphin-beast-shape.js';
 import { MorphinElementalBody } from './morphin-elemental-body.js';
 import { MorphinPlantShape } from './morphin-plant-shape.js';
 import { MorphinVerminShape } from './morphin-vermin-shape.js';
+import { MorphinShifterShape } from './morphin-shifter-shape.js';
 import DirectoryPicker from './DirectoryPicker.js';
 import { MorphinOptions } from './morphin-options.js';
 
@@ -17,7 +18,7 @@ export class MightyMorphinApp {
      * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
      * @param {string} [image = null] The file name for a custom image file without the file extension
      */
-    static async enlargePerson({ durationLevel = 0, image = null } = {}) {
+    static async enlargePerson({ durationLevel = 0, image = null } = { }) {
         let shifter = MightyMorphinApp.getSingleActor(); // Ensure only a single actor is being processed
         let changeData = MorphinChanges.changes.enlargePerson; // get buff data
 
@@ -29,10 +30,10 @@ export class MightyMorphinApp {
             // Find the size the number of steps away from current, number of steps provided by changeData
             let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
 
-            let durationData = {};
+            let durationData = { };
             if (!!durationLevel) {
                 let duration = durationLevel;
-                durationData = {value: duration.toString(), units: 'minute'};
+                durationData = { value: duration.toString(), units: 'minute' };
             }
 
             // Create the buff if it doesn't exist, otherwise toggle it on
@@ -110,7 +111,7 @@ export class MightyMorphinApp {
 
                 // Prepare data for image change
                 if (!!newImage) {
-                    protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : {};
+                    protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : { };
                     let oldData = await MightyMorphinApp.changeTokenImage(newImage, shifter);
                     oldImage = oldData.oldImage;
                     oldProtoImage = oldData.oldProtoImage;
@@ -134,7 +135,7 @@ export class MightyMorphinApp {
      * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
      * @param {string} [image = null] The file name for a custom image file without the file extension
      */
-    static async animalGrowth({ durationLevel = 0, image = null } = {}) {
+    static async animalGrowth({ durationLevel = 0, image = null } = { }) {
         let shifter = MightyMorphinApp.getSingleActor(); // Ensure only a single actor is being processed
         let changeData = MorphinChanges.changes.animalGrowth; // get buff data
 
@@ -146,10 +147,10 @@ export class MightyMorphinApp {
             // Find the size the number of steps away from current, number of steps provided by changeData
             let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
 
-            let durationData = {};
+            let durationData = { };
             if (!!durationLevel) {
                 let duration = durationLevel;
-                durationData = {value: duration.toString(), units: 'minute'};
+                durationData = { value: duration.toString(), units: 'minute' };
             }
 
 
@@ -223,7 +224,7 @@ export class MightyMorphinApp {
 
                 // Prepare data for image change
                 if (!!newImage) {
-                    protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : {};
+                    protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : { };
                     let oldData = await MightyMorphinApp.changeTokenImage(newImage, shifter);
                     oldImage = oldData.oldImage;
                     oldProtoImage = oldData.oldProtoImage;
@@ -252,7 +253,7 @@ export class MightyMorphinApp {
      * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
      * @param {string} [image = null] The file name for a custom image file without the file extension
      */
-    static async legendaryProportions({ durationLevel = 0, image = null } = {}) {
+    static async legendaryProportions({ durationLevel = 0, image = null } = { }) {
         let shifter = MightyMorphinApp.getSingleActor(); // Ensure only a single actor is being processed
         let changeData = MorphinChanges.changes.legendaryProportions; // get buff data
 
@@ -263,10 +264,10 @@ export class MightyMorphinApp {
             
             let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
 
-            let durationData = {};
+            let durationData = { };
             if (!!durationLevel) {
                 let duration = durationLevel;
-                durationData = {value: duration.toString(), units: 'minute'};
+                durationData = { value: duration.toString(), units: 'minute' };
             }
 
             // Create the buff if it doesn't exist, otherwise toggle it on
@@ -347,7 +348,7 @@ export class MightyMorphinApp {
 
                 // Prepare data for image change
                 if (!!newImage) {
-                    protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : {};
+                    protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : { };
                     let oldData = await MightyMorphinApp.changeTokenImage(newImage, shifter);
                     oldImage = oldData.oldImage;
                     oldProtoImage = oldData.oldProtoImage;
@@ -372,7 +373,7 @@ export class MightyMorphinApp {
      * @param {number} [cl=0] The caster level of the spell effect used for scaling
      * @param {string} [image = null] The file name for a custom image file without the file extension
      */
-    static async frightfulAspect({ cl = 0, durationLevel = 0, image = null } = {}) {
+    static async frightfulAspect({ cl = 0, durationLevel = 0, image = null } = { }) {
 
         let shifter = MightyMorphinApp.getSingleActor(); // Ensure only a single actor is being processed
         let changeData = duplicate(MorphinChanges.changes.frightfulAspect); // get buff data
@@ -387,10 +388,10 @@ export class MightyMorphinApp {
             const polymorphChanges = MorphinChanges.changes.polymorphSize[shifterSize] || null;
             if (!!polymorphChanges) changeData.changes.push(...polymorphChanges);
 
-            let durationData = {};
+            let durationData = { };
             if (!!durationLevel) {
                 let duration = durationLevel;
-                durationData = {value: duration.toString(), units: 'minute'};
+                durationData = { value: duration.toString(), units: 'minute' };
             }
 
             // Get caster level from user for effect scaling
@@ -481,7 +482,7 @@ export class MightyMorphinApp {
 
                 // Prepare data for image change
                 if (!!newImage) {
-                    protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : {};
+                    protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : { };
                     let oldData = await MightyMorphinApp.changeTokenImage(newImage, shifter);
                     oldImage = oldData.oldImage;
                     oldProtoImage = oldData.oldProtoImage;
@@ -508,7 +509,7 @@ export class MightyMorphinApp {
      * @param {boolean} [drEvil=true] Setting for making the DR evil (true) or good (false)
      * @param {string} [image = null] The file name for a custom image file without the file extension
      */
-    static async righteousMight({ cl = 0, durationLevel = 0, drEvil = true, image = null } = {}) {
+    static async righteousMight({ cl = 0, durationLevel = 0, drEvil = true, image = null } = { }) {
 
         let shifter = MightyMorphinApp.getSingleActor(); // Ensure only a single actor is being processed
         let changeData = MorphinChanges.changes.righteousMight; // get buff data
@@ -520,10 +521,10 @@ export class MightyMorphinApp {
 
             let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
 
-            let durationData = {};
+            let durationData = { };
             if (!!durationLevel) {
                 let duration = durationLevel;
-                durationData = {value: duration.toString(), units: 'round'};
+                durationData = { value: duration.toString(), units: 'round' };
             }
 
             // Get caster level from user for effect scaling
@@ -610,7 +611,7 @@ export class MightyMorphinApp {
 
                 // Prepare data for image change
                 if (!!newImage) {
-                    protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : {};
+                    protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : { };
                     let oldData = await MightyMorphinApp.changeTokenImage(newImage, shifter);
                     oldImage = oldData.oldImage;
                     oldProtoImage = oldData.oldProtoImage;
@@ -634,7 +635,7 @@ export class MightyMorphinApp {
      * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
      * @param {string} [image = null] The file name for a custom image file without the file extension
      */
-    static async reducePerson({ durationLevel = 0, image = null } = {}) {
+    static async reducePerson({ durationLevel = 0, image = null } = { }) {
         let shifter = MightyMorphinApp.getSingleActor(); // Ensure only a single actor is being processed
         let changeData = MorphinChanges.changes.reducePerson; // get buff data
 
@@ -646,10 +647,10 @@ export class MightyMorphinApp {
             // Find the size the number of steps away from current, number of steps provided by changeData
             let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
 
-            let durationData = {};
+            let durationData = { };
             if (!!durationLevel) {
                 let duration = durationLevel;
-                durationData = {value: duration.toString(), units: 'minute'};
+                durationData = { value: duration.toString(), units: 'minute' };
             }
 
             // Create the buff if it doesn't exist, otherwise toggle it on
@@ -727,7 +728,7 @@ export class MightyMorphinApp {
 
                 // Prepare data for image change
                 if (!!newImage) {
-                    protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : {};
+                    protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : { };
                     let oldData = await MightyMorphinApp.changeTokenImage(newImage, shifter);
                     oldImage = oldData.oldImage;
                     oldProtoImage = oldData.oldProtoImage;
@@ -751,7 +752,7 @@ export class MightyMorphinApp {
      * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
      * @param {string} [image = null] The file name for a custom image file without the file extension
      */
-    static async maulerBattleForm({ durationLevel = 0, image = null } = {}) {
+    static async maulerBattleForm({ durationLevel = 0, image = null } = { }) {
         let shifter = MightyMorphinApp.getSingleActor(); // Ensure only a single actor is being processed
         let changeData = duplicate(MorphinChanges.changes.maulerBattleForm); // get buff data
 
@@ -766,10 +767,10 @@ export class MightyMorphinApp {
             const polymorphChanges = MorphinChanges.changes.polymorphSize[shifterSize] || null;
             if (!!polymorphChanges) changeData.changes.push(...polymorphChanges);
 
-            let durationData = {};
+            let durationData = { };
             if (!!durationLevel) {
                 let duration = durationLevel;
-                durationData = {value: duration.toString(), units: 'minute'};
+                durationData = { value: duration.toString(), units: 'minute' };
             }
 
 
@@ -839,7 +840,7 @@ export class MightyMorphinApp {
 
                 // Prepare data for image change
                 if (!!newImage) {
-                    protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : {};
+                    protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : { };
                     let oldData = await MightyMorphinApp.changeTokenImage(newImage, shifter);
                     oldImage = oldData.oldImage;
                     oldProtoImage = oldData.oldProtoImage;
@@ -868,7 +869,7 @@ export class MightyMorphinApp {
      * 
      * @param {object} [actor=null] The specific actor to revert changes on
      */
-    static async revert({ actor = null } = {}) {
+    static async revert({ actor = null } = { }) {
         let shifter = actor ?? MightyMorphinApp.getSingleActor(); // Use the provided actor or ensure only a single actor is being processed
 
         // Only continue if a single actor and it is already under any effects provided by this module
@@ -893,7 +894,7 @@ export class MightyMorphinApp {
                 if (changes.tokenImg) {
                     let token = shifter.token || canvas.tokens.ownedTokens.filter(o => o.actor.id === shifter.id);
                     if (Array.isArray(token) && token.length > 1) {
-                        let tokenUpdates = token.map(o => ({_id: o.id, 'texture.src': changes.tokenImg.img}));
+                        let tokenUpdates = token.map(o => ({ _id: o.id, 'texture.src': changes.tokenImg.img }));
                         await canvas.scene.updateEmbeddedDocuments('Token', tokenUpdates);
                     }
                     else {
@@ -913,7 +914,7 @@ export class MightyMorphinApp {
                 await shifter.items.find(o => o.type === 'buff' && o.name === changes.buffName).update({ 'system.active': false });
             }
             // Undo listed buffs
-            else if ([game.i18n.localize('MMMOD.Buffs.BeastShape.Name'), game.i18n.localize('MMMOD.Buffs.PlantShape.Name'), game.i18n.localize('MMMOD.Buffs.ElementalBody.Name'), game.i18n.localize('MMMOD.Buffs.WildShape.Name'), game.i18n.localize('MMMOD.Buffs.VerminShape.Name')].includes(changes.source)) {
+            else if ([game.i18n.localize('MMMOD.Buffs.BeastShape.Name'), game.i18n.localize('MMMOD.Buffs.PlantShape.Name'), game.i18n.localize('MMMOD.Buffs.ElementalBody.Name'), game.i18n.localize('MMMOD.Buffs.WildShape.Name'), game.i18n.localize('MMMOD.Buffs.VerminShape.Name'), game.i18n.localize('MMMOD.Buffs.ShifterWildShape.Name')].includes(changes.source)) {
                 // Reverse any changes to armor
                 if (!!shifter.flags['pf1-mighty-morphin'].armor.length) {
                     let armorFlag = shifter.flags['pf1-mighty-morphin'].armor;
@@ -929,7 +930,7 @@ export class MightyMorphinApp {
                 if (!!shifter.flags['pf1-mighty-morphin'].tokenImg) {
                     let token = shifter.token || canvas.tokens.ownedTokens.filter(o => o.actor.id === shifter.id);
                     if (Array.isArray(token) && token.length > 1) {
-                        let tokenUpdates = token.map(o => ({_id: o.id, 'texture.src': changes.tokenImg.img}));
+                        let tokenUpdates = token.map(o => ({ _id: o.id, 'texture.src': changes.tokenImg.img }));
                         await canvas.scene.updateEmbeddedDocuments('Token', tokenUpdates);
                     }
                     else {
@@ -941,7 +942,7 @@ export class MightyMorphinApp {
                 if (!!shifter.flags['pf1-mighty-morphin'].macroCreatedId) game.macros.get(shifter.flags['pf1-mighty-morphin'].macroCreatedId).delete();
 
                 // Revert all data that was replaced to its original and remove the flags
-                let updates = {};
+                let updates = { };
                 if (!!changes.data.token) {
                     updates = { system: changes.data.system, prototypeToken: changes.data.token, 'flags.-=pf1-mighty-morphin': null };
                 }
@@ -1044,8 +1045,8 @@ export class MightyMorphinApp {
      * @param {string} [type='natural'] The type of attack for categorization on the sheet
      * @returns {Item} natural attack item
      */
-    static createAttack(actorId, formSize, attack, onlyAttack, effects = {}, source = '', type = 'natural') {
-        let attackData = { system: {} };
+    static createAttack(actorId, formSize, attack, onlyAttack, effects = { }, source = '', type = 'natural') {
+        let attackData = { system: { } };
         
         const actorData = fromUuidSync(actorId); // get actor's data for reference
 
@@ -1064,6 +1065,7 @@ export class MightyMorphinApp {
         attackData['system']['enh'] = attack.enh || null;
         attackData['system']['primaryAttack'] = ((attack.primaryAttack || (!!MightyMorphinApp.naturalAttacks[attack.name] && MightyMorphinApp.naturalAttacks[attack.name].primaryAttack)) || onlyAttack);
         attackData['system']['subType'] = type; // weapon, natural, misc, class ability, etc
+        if (!!attack.notes) attackData['system']['attackNotes'].push(attack.notes);
 
         let subAction = duplicate(globalThis.pf1.components.ItemAction.defaultData);
 
@@ -1077,9 +1079,9 @@ export class MightyMorphinApp {
         subAction['ability']['critRange'] = attack.crit || 20;
         subAction['ability']['critMult'] = attack.critMult || 2;
         subAction['range']['maxIncrements'] = attack.increment || '';
-        subAction['uses']['per'] = attack.charges ? 'day' : '';
-        subAction['uses']['maxFormula'] = '' + (attack.charges ?? '');
-        subAction['uses']['value'] = attack.charges || 0;
+        attackData['system']['uses']['per'] = attack.charges ? 'day' : '';
+        attackData['system']['uses']['maxFormula'] = '' + (attack.charges ?? '');
+        attackData['system']['uses']['value'] = ((!!attack.charges && typeof(attack.charges) === 'string') ? RollPF.safeRoll(attack.charges, actorData.getRollData()).total : attack.charges) || 0;
         subAction['name'] = game.i18n.localize('MMMOD.Attacks.' + attack.name);
         subAction['measureTemplate']['type'] = attack.templateShape || '';
         subAction['measureTemplate']['size'] = attack.templateSize || '';
@@ -1109,7 +1111,7 @@ export class MightyMorphinApp {
                         // Set the save if it exists
                         if (effects[specialName].saveDesc) {
                             subAction.save.type = effects[specialName].type;
-                            subAction.save.dc = '10';
+                            subAction.save.dc = effects[specialName].dc || '10';
                             subAction.save.description = effects[specialName].saveDesc;
                         }
                     }
@@ -1167,12 +1169,12 @@ export class MightyMorphinApp {
      * @param {string} [form=null] The name of the form to change into. Must match option from morphin-options exactly.
      * @param {string} [image = null] The file name for a custom image file without the file extension
      */
-    static async beastShape({level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.BeastShape.Name'), form = null, image = null, planarType = null, energizedTypes = null, mutatedType = null} = {}) {
+    static async beastShape({ level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.BeastShape.Name'), form = null, image = null, planarType = null, energizedTypes = null, mutatedType = null } = { }) {
         let shifter = MightyMorphinApp.getSingleActor();
 
         // Create beast shape form if a single actor chosen not already under effects from this mod
         if (!!shifter && !shifter.flags['pf1-mighty-morphin']) {
-            let dia = new MorphinBeastShape(level, durationLevel, shifter.uuid, source, {planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType});
+            let dia = new MorphinBeastShape(level, durationLevel, shifter.uuid, source, { planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType });
 
             if (!!image) {
                 dia.customImage = image;
@@ -1217,12 +1219,12 @@ export class MightyMorphinApp {
      * @param {string} [form=null] The name of the form to change into. Must match option from morphin-options exactly.
      * @param {string} [image = null] The file name for a custom image file without the file extension
      */
-    static async elementalBody({level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.ElementalBody.Name'), form = null, image = null, planarType = null, energizedTypes = null, mutatedType = null} = {}) {
+    static async elementalBody({ level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.ElementalBody.Name'), form = null, image = null, planarType = null, energizedTypes = null, mutatedType = null } = { }) {
         let shifter = MightyMorphinApp.getSingleActor();
 
         // Create elemental body form if a single actor chosen not already under effects from this mod
         if (!!shifter && !shifter.flags['pf1-mighty-morphin']) {
-            let dia = new MorphinElementalBody(level, durationLevel, shifter.uuid, source, {planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType});
+            let dia = new MorphinElementalBody(level, durationLevel, shifter.uuid, source, { planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType });
 
             if (!!image) {
                 dia.customImage = image;
@@ -1262,12 +1264,12 @@ export class MightyMorphinApp {
      * @param {string} [form=null] The name of the form to change into. Must match option from morphin-options exactly.
      * @param {string} [image = null] The file name for a custom image file without the file extension
      */
-    static async plantShape({level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.PlantShape.Name'), form = null, image = null, planarType = null, energizedTypes = null, mutatedType = null} = {}) {
+    static async plantShape({ level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.PlantShape.Name'), form = null, image = null, planarType = null, energizedTypes = null, mutatedType = null } = { }) {
         let shifter = MightyMorphinApp.getSingleActor();
 
         // Create plant shape form if a single actor chosen not already under effects from this mod
         if (!!shifter && !shifter.flags['pf1-mighty-morphin']) {
-            let dia = new MorphinPlantShape(level, durationLevel, shifter.uuid, source, {planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType});
+            let dia = new MorphinPlantShape(level, durationLevel, shifter.uuid, source, { planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType });
 
             if (!!image) {
                 dia.customImage = image;
@@ -1307,12 +1309,12 @@ export class MightyMorphinApp {
      * @param {string} [form=null] The name of the form to change into. Must match option from morphin-options exactly.
      * @param {string} [image = null] The file name for a custom image file without the file extension
      */
-    static async verminShape({level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.VerminShape.Name'), form = null, image = null, planarType = null, energizedTypes = null, mutatedType = null} = {}) {
+    static async verminShape({ level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.VerminShape.Name'), form = null, image = null, planarType = null, energizedTypes = null, mutatedType = null } = { }) {
         let shifter = MightyMorphinApp.getSingleActor();
 
         // Create plant shape form if a single actor chosen not already under effects from this mod
         if (!!shifter && !shifter.flags['pf1-mighty-morphin']) {
-            let dia = new MorphinVerminShape(level, durationLevel, shifter.uuid, source, {planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType});
+            let dia = new MorphinVerminShape(level, durationLevel, shifter.uuid, source, { planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType });
 
             if (!!image) {
                 dia.customImage = image;
@@ -1341,6 +1343,55 @@ export class MightyMorphinApp {
         else if (!!shifter?.flags['pf1-mighty-morphin']) {
             ui.notifications.warn(`${shifter.name} ${game.i18n.localize('MMMOD.EffectWarning')} ${shifter.flags['pf1-mighty-morphin'].source}`);
         }
+    }
+
+    /**
+     * Creates the Beast Shape buff and effects on the actor using the MorphinBeastShape class
+     * 
+     * @param {number} [level=1] The level of beast shape spell being cast (1-4)
+     * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
+     * @param {string} [source='Beast Shape'] The source of the beast shape spell effect
+     * @param {string} [form=null] The name of the form to change into. Must match option from morphin-options exactly.
+     * @param {string} [image = null] The file name for a custom image file without the file extension
+     */
+    static async shifterWildShape({ durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.ShifterWildShape.Name'), aspect = null, form = null, image = null, planarType = null, energizedTypes = null, mutatedType = null } = { }) {
+        let shifter = MightyMorphinApp.getSingleActor();
+
+        // Create beast shape form if a single actor chosen not already under effects from this mod
+        if (!!shifter && !shifter.flags['pf1-mighty-morphin']) {
+            let dia = new MorphinShifterShape( durationLevel, shifter.uuid, source, { planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType });
+
+            if (!!image) {
+                dia.customImage = image;
+            }
+            
+            if (!!aspect) {
+                if (!form || !['major','minor'].includes(form)) {
+                    ui.notifications.error(game.i18n.localize('MMMOD.MustSpecifyForm'));
+                    return;
+                }
+
+                let type;
+                let foundForm = MorphinOptions.shifterWildShape.find(o => o.name === aspect);
+                if (foundForm) type = 'shifterWildShape';
+                
+                if (!foundForm) {
+                    ui.notifications.error(form + ' ' + game.i18n.localize('MMMOD.ShifterInvalidWarning'));
+                    return;
+                }
+
+                dia.buildPreviewTemplate(aspect, form, type);
+                dia.applyChanges(null, aspect);
+            }
+            else {
+                ui.notifications.error(game.i18n.localize('MMMOD.MustSpecifyAspect'));
+                return;
+            }
+        }
+        else if (!!shifter?.flags['pf1-mighty-morphin']) {
+            ui.notifications.warn(`${shifter.name} ${game.i18n.localize('MMMOD.EffectWarning')} ${shifter.flags['pf1-mighty-morphin'].source}`);
+        }
+
     }
 
     /**
@@ -1402,7 +1453,7 @@ export class MightyMorphinApp {
         if (!!token) {
             if (Array.isArray(token) && token.length > 1) {
                 oldImage.img = token[0].document.texture.src;
-                let tokenUpdates = token.map(o => ({_id: o.id, 'texture.src': image}));
+                let tokenUpdates = token.map(o => ({ _id: o.id, 'texture.src': image }));
                 await canvas.scene.updateEmbeddedDocuments('Token', tokenUpdates);
             }
             else {
@@ -1413,7 +1464,7 @@ export class MightyMorphinApp {
         }
         oldProtoImage.token.img = shifter.prototypeToken.texture.src;
 
-        return {oldImage: oldImage, oldProtoImage: oldProtoImage};
+        return { oldImage: oldImage, oldProtoImage: oldProtoImage };
     }
 }
 
