@@ -465,7 +465,7 @@ MorphinChanges.changes = {
                 'Frightful': { note: 'Failure effect based on HD. Mind-affecting.', type: 'will', saveDesc: 'Success immune 24 hours', description: 'When you use wild shape, it is supernaturally ferocious and disquieting in appearance, such that when you attack a creature, you can use this ferocity to frighten observers. Opponents within 30 feet of you when you attack must succeed at a Will save (DC = 10 + half your character level + your Charisma modifier ([[@abilities.cha.mod]])) to resist being affected by your frightful shape. On a failed save, creatures with fewer Hit Dice than you ([[@attributes.hd.total]]) become @UUID[Compendium.pf1.pf1e-rules.NSqfXaj4MevUR2uJ.JournalEntryPage.XxLUswkCuXnXmA5T]{shaken}, or @UUID[Compendium.pf1.pf1e-rules.NSqfXaj4MevUR2uJ.JournalEntryPage.nGTsTfpWcJTTU3rk]{panicked} if they have 4 Hit Dice or fewer; in either case, the effect lasts for a number of rounds equal to your character level. An opponent that succeeds at its saving throw is immune to your frightful shape for 24 hours. This is a mind-affecting fear effect.' }
             },
             macro: { 
-                name: '', command: 'fromUuidSync("ACTORUUIDHERE").items.getName("FRIGHTFULSHAPE").use({skipDialog: true})', type: 'script', ownership: {default: 0}
+                name: '', command: 'fromUuidSync("ACTORUUIDHERE").items.getName("FRIGHTFULSHAPE").use({skipDialog: true})', type: 'script', ownership: { default: 0 }
             },
             contextNotes: [
                 { text: 'On attack success: @Macro[MACROIDHERE]', subTarget: 'attack' }
@@ -541,7 +541,1729 @@ MorphinChanges.changes = {
             ]
         }
     },
-    'Badger, Dire': {
+    shifterWildShape: {
+        'Bat': {
+            source: 'beastShape',
+            minor: {
+                1: {
+                    senses: [
+                        7
+                    ]
+                },
+                8: {
+                    senses: [
+                        10
+                    ]
+                },
+                15: {
+                    senses: [
+                        10, 13
+                    ]
+                }
+            },
+            major: {
+                1: {
+                    size: 'lg',
+                    attacks: [
+                        { name: 'Bite', diceCount: 1, diceSize: 8, count: 1 }
+                    ],
+                    speed: {
+                        land: 30,
+                        fly: {
+                            base: 40,
+                            maneuverability: 'clumsy'
+                        },
+                        senses: [
+                            12
+                        ]
+                    }
+                },
+                8: {
+                    senses: [
+                        14
+                    ],
+                    feats: [
+                        { name: 'Flyby Attack', uuid: 'Compendium.pf-content.pf-feats.Item.zVUcdFSgoVENjmUa' }
+                    ]
+                },
+                15: {
+                    speed: {
+                        fly: {
+                            base: 80,
+                            maneuverability: 'good'
+                        }
+                    },
+                    feats: [
+                        { name: 'Flyby Attack', uuid: 'Compendium.pf-content.pf-feats.Item.zVUcdFSgoVENjmUa' },
+                        { name: 'Hover', uuid: 'Compendium.pf-content.pf-feats.Item.6lqGh0NvprZpUUwV' }
+                    ]
+                }
+            },
+            alternates: [
+                'Bite', 'Wing'
+            ]
+        },
+        'Bear': {
+            source: 'beastShape',
+            minor: {
+                1: {
+                    changes: [
+                        { formula: '2', operator: 'add', target: 'ability', subTarget: 'con', modifier: 'enh', priority: 0, value: 2 }
+                    ]
+                },
+                8: {
+                    changes: [
+                        { formula: '4', operator: 'add', target: 'ability', subTarget: 'con', modifier: 'enh', priority: 0, value: 4 }
+                    ]
+                },
+                15: {
+                    changes: [
+                        { formula: '6', operator: 'add', target: 'ability', subTarget: 'con', modifier: 'enh', priority: 0, value: 6 }
+                    ]
+                }
+            },
+            major: {
+                1: {
+                    size: 'lg',
+                    attacks: [
+                        { name: 'Bite', diceCount: 1, diceSize: 8, count: 1, claw: false },
+                        { name: 'Claw', diceCount: 1, diceSize: 6, count: 2, special: ['Grab'] }
+                    ],
+                    speed: {
+                        land: 40
+                    },
+                    senses: [
+                        1, 11
+                    ]
+                },
+                8: {
+                    feats: [
+                        { name: 'Improved Natural Attack', uuid: 'Compendium.pf-content.pf-feats.Item.xz6IYXK8qfnNhior' }
+                    ],
+                    attacks: [
+                        { name: 'Bite', diceCount: 1, diceSize: 8, count: 1, claw: false },
+                        { name: 'Claw', diceCount: 1, diceSize: 6, count: 2, special: ['Grab'], improved: true }
+                    ]
+                },
+                15: {
+                    attacks: [
+                        { name: 'Bite', diceCount: 1, diceSize: 8, count: 1, claw: false },
+                        { name: 'Claw', diceCount: 1, diceSize: 6, count: 2, special: ['Grab'], critMult: 3, improved: true }
+                    ],
+                    feats: [
+                        { name: 'Improved Natural Attack', uuid: 'Compendium.pf-content.pf-feats.Item.xz6IYXK8qfnNhior' },
+                        { name: 'Awesome Blow', uuid: 'Compendium.pf-content.pf-feats.Item.KPaC3H6EQGG4sXLT' }
+                    ]
+                }
+            },
+            alternates: [
+                'Bite'
+            ]
+        },
+        'Boar': {
+            source: 'beastShape',
+            minor: {
+                1: {
+                    feats: [
+                        { name: 'Diehard', uuid: 'Compendium.pf1.feats.Item.O0e0UCim27GPKFuW' }
+                    ]
+                },
+                8: {
+
+                },
+                15: {
+
+                }
+            },
+            major: {
+                1: {
+                    size: 'lg',
+                    attacks: [
+                        { name: 'Gore', diceCount: 1, diceSize: 8, count: 1 }
+                    ],
+                    speed: {
+                        land: 40
+                    },
+                    senses: [
+                        1, 11
+                    ]
+                },
+                8: {
+                    feats: [
+                        { name: 'Improved Natural Attack', uuid: 'Compendium.pf-content.pf-feats.Item.xz6IYXK8qfnNhior' }
+                    ],
+                    attacks: [
+                        { name: 'Gore', diceCount: 1, diceSize: 8, count: 1, improved: true }
+                    ],
+                    conditionals: [
+                        { default: false, name: 'Powerful Charge', modifiers: [{ formula: '1d8', target: 'damage', subTarget: 'attack_0', type: '', critical: 'nonCrit', damageType: { values: ['piercing'], custom: '' } }] }
+                    ]
+                },
+                15: {
+                    changes: [
+                        { formula: '@attributes.hd.total', operator: 'add', subTarget: 'mhp', modifier: 'untyped', priority: 0 }
+                    ],
+                    feats: [
+                        { name: 'Improved Natural Attack', uuid: 'Compendium.pf-content.pf-feats.Item.xz6IYXK8qfnNhior' },
+                        { name: 'Awesome Blow', uuid: 'Compendium.pf-content.pf-feats.Item.KPaC3H6EQGG4sXLT' }
+                    ]
+                }
+            },
+            alternates: [
+                'Gore', 'Hoof'
+            ]
+        },
+        'Bull': {
+            source: 'beastShape',
+            minor: {
+                1: {
+                    changes: [
+                        { formula: '2', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'enh', priority: 0, value: 2 }
+                    ]
+                },
+                8: {
+                    changes: [
+                        { formula: '4', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'enh', priority: 0, value: 4 }
+                    ]
+                },
+                15: {
+                    changes: [
+                        { formula: '6', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'enh', priority: 0, value: 6 }
+                    ]
+                }
+            },
+            major: {
+                1: {
+                    size: 'lg',
+                    attacks: [
+                        { name: 'Gore', diceCount: 1, diceSize: 8, count: 1 }
+                    ],
+                    speed: {
+                        land: 40
+                    },
+                    senses: [
+                        1, 11
+                    ],
+                    conditionals: [
+                        { default: false, name: 'Powerful Charge', modifiers: [{ formula: '1d8', target: 'damage', subTarget: 'attack_0', type: '', critical: 'nonCrit', damageType: { values: ['piercing'], custom: '' } }] }
+                    ]
+                },
+                8: {
+                    specialAttack: [
+                        { name: 'Trample', diceCount: 1, diceSize: 8, count: 1, special: ['Trample'], mult: 1.5, attackType: 'mcman' }
+                    ],
+                    effect: {
+                        'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature\'s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a -4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature\'s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' }
+                    }
+                },
+                15: {
+                    attacks: [
+                        { name: 'Gore', diceCount: 2, diceSize: 8, count: 1 }
+                    ],
+                    specialAttack: [
+                        { name: 'Trample', diceCount: 2, diceSize: 8, count: 1, special: ['Trample'], mult: 1.5, attackType: 'mcman' }
+                    ],
+                    effect: {
+                        'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature\'s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a -4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature\'s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' }
+                    },
+                    feats: [
+                        { name: 'Awesome Blow', uuid: 'Compendium.pf-content.pf-feats.Item.KPaC3H6EQGG4sXLT' }
+                    ]
+                }
+            },
+            alternates: [
+                'Gore', 'Hoof', 'Slam'
+            ]
+        },
+        'Crocodile': {
+            source: 'beastShape',
+            minor: {
+                1: {
+                    changes: [
+                        { formula: '2', operator: 'add', subTarget: 'skill.swm', modifier: 'competence', priority: 0, value: 2 }
+                    ],
+                    contextNotes: [
+                        { text: '+[[2]] to grapple', subTarget: 'cmb' }
+                    ]
+                },
+                8: {
+                    changes: [
+                        { formula: '4', operator: 'add', subTarget: 'skill.swm', modifier: 'competence', priority: 0, value: 4 }
+                    ],
+                    contextNotes: [
+                        { text: '+[[4]] to grapple', subTarget: 'cmb' }
+                    ]
+                },
+                15: {
+                    changes: [
+                        { formula: '6', operator: 'add', subTarget: 'skill.swm', modifier: 'competence', priority: 0, value: 6 }
+                    ],
+                    contextNotes: [
+                        { text: '+[[6]] to grapple', subTarget: 'cmb' }
+                    ]
+                }
+            },
+            major: {
+                1: {
+                    size: 'lg',
+                    attacks: [
+                        { name: 'Bite', diceCount: 1, diceSize: 8, count: 1, special: ['Grab'] },
+                        { name: 'TailSlap', diceCount: 1, diceSize: 12, count: 1 }
+                    ],
+                    speed: {
+                        land: 30
+                    },
+                    senses: [
+                        1
+                    ]
+                },
+                8: {
+                    specialAttack: [
+                        { name: 'Sprint', diceCount: 0, diceSize: 0, count: 1, special: ['Sprint'], attackType: 'other', claw: false }
+                    ],
+                    effect: {
+                        'Sprint': { note: '+20ft 1 round', description: 'Once per minute as a free action, you can increase your land speed by 20 feet for 1 round.' }
+                    }
+                },
+                15: {
+                    attacks: [
+                        { name: 'Bite', diceCount: 1, diceSize: 8, count: 1, special: ['Grab'], improved: true },
+                        { name: 'TailSlap', diceCount: 1, diceSize: 12, count: 1 }
+                    ],
+                    feats: [
+                        { name: 'Improved Natural Attack', uuid: 'Compendium.pf-content.pf-feats.Item.xz6IYXK8qfnNhior' }
+                    ],
+                    contextNotes: [
+                        { text: 'On successful grapple, can knock prone', subTarget: 'cmb' }
+                    ]
+                }
+            },
+            alternates: [
+                'Bite', 'TailSlap'
+            ]
+        },
+        'Deinonychus': {
+            source: 'beastShape',
+            minor: {
+                1: {
+                    changes: [
+                        { formula: '2', operator: 'add', subTarget: 'init', modifier: 'untyped', priority: 0, value: 2 }
+                    ]
+                },
+                8: {
+                    changes: [
+                        { formula: '4', operator: 'add', subTarget: 'init', modifier: 'untyped', priority: 0, value: 4 }
+                    ]
+                },
+                15: {
+                    changes: [
+                        { formula: '6', operator: 'add', subTarget: 'init', modifier: 'untyped', priority: 0, value: 6 }
+                    ]
+                }
+            },
+            major: {
+                1: {
+                    size: 'med',
+                    attacks: [
+                        { name: 'Bite', diceCount: 1, diceSize: 8, count: 1 },
+                        { name: 'Talons', diceCount: 1, diceSize: 8, count: 2 }
+                    ],
+                    speed: {
+                        land: 60
+                    },
+                    senses: [
+                        1, 11
+                    ],
+                    special: [
+                        'Pounce'
+                    ]
+                },
+                8: {
+                    attacks: [
+                        { name: 'Bite', diceCount: 1, diceSize: 8, count: 1 },
+                        { name: 'Talons', diceCount: 1, diceSize: 8, count: 2 },
+                        { name: 'Foreclaws', diceCount: 1, diceSize: 4, count: 1, claw: false }
+                    ],
+                    changes: [
+                        { formula: '4', operator: 'add', subTarget: 'skill.acr', modifier: 'racial', priority: 0, value: 4 }
+                    ]
+                },
+                15: {
+                    feats: [
+                        { name: 'Spring Attack', uuid: 'Compendium.pf1.feats.Item.ugQyUpqPBDsqLyra' }
+                    ],
+                    changes: [
+                        { formula: '1', operator: 'add', subTarget: 'ac', modifier: 'dodge', priority: 0, value: 1 }
+                    ]
+                }
+            },
+            alternates: [
+                'Bite', 'Talon'
+            ]
+        },
+        'Dolphin': {
+            source: 'beastShape',
+            minor: {
+                1: {
+                    contextNotes: [
+                        { text: '+[[4]] competence on knowledge to identify creature abilities/weaknesses' , subTarget: 'skills' }
+                    ]
+                },
+                8: {
+                    contextNotes: [
+                        { text: '+[[6]] competence on knowledge to identify creature abilities/weaknesses' , subTarget: 'skills' }
+                    ]
+                },
+                15: {
+                    contextNotes: [
+                        { text: '+[[8]] competence on knowledge to identify creature abilities/weaknesses' , subTarget: 'skills' }
+                    ]
+                }
+            },
+            major: {
+                1: {
+                    size: 'lg',
+                    attacks: [
+                        { name: 'Bite', diceCount: 1, diceSize: 8, count: 1 },
+                        { name: 'Slam', diceCount: 1, diceSize: 4, count: 1 }
+                    ],
+                    speed: {
+                        land: 0,
+                        swim: 60
+                    },
+                    senses: [
+                        1, 12
+                    ]
+                },
+                8: {
+                    senses: [
+                        1, 14
+                    ]
+                },
+                15: {
+                    speed: {
+                        land: 0,
+                        swim: 80
+                    },
+                    senses: [
+                        1, 18
+                    ]
+                }
+            },
+            alternates: [
+                'Bite', 'Slam'
+            ]
+        },
+        'Dragonfly': {
+            source: 'verminShape',
+            minor: {
+                1: {
+
+                },
+                8: {
+
+                },
+                15: {
+
+                }
+            },
+            major: {
+                1: {
+                    size: 'med',
+                    attacks: [
+                        { name: 'Bite', diceCount: 2, diceSize: 6, count: 1, special: ['Grab'] }
+                    ],
+                    speed: {
+                        land: 0,
+                        fly: {
+                            base: 60,
+                            maneuverability: 'average'
+                        }
+                    },
+                    senses: [
+                        7
+                    ]
+                },
+                8: {
+                    feats: [
+                        { name: 'Flyby Attack', uuid: 'Compendium.pf-content.pf-feats.Item.zVUcdFSgoVENjmUa' }
+                    ],
+                    speed: {
+                        land: 0,
+                        fly: {
+                            base: 60,
+                            maneuverability: 'good'
+                        }
+                    }
+                },
+                15: {
+                    speed: {
+                        land: 0,
+                        fly: {
+                            base: 80,
+                            maneuverability: 'perfect'
+                        }
+                    },
+                    contextNotes: [
+                        { text: 'If charge while flying, +[[4]] to grapple for 1 round', subTarget: 'cmb' }
+                    ]
+                }
+            },
+            alternates: [
+                'Bite', 'Wing'
+            ]
+        },
+        'Electric Eel': {
+            source: 'beastShape',
+            minor: {
+                1: {
+                    contextNotes: [
+                        { text: '[[/d 1[electric]]]{1 electric} damage on all attacks', subTarget: 'attack' }
+                    ]
+                },
+                8: {
+                    contextNotes: [
+                        { text: '[[/d 1d3[electric]]]{1d3 electric} damage on all attacks', subTarget: 'attack' }
+                    ]
+                },
+                15: {
+                    contextNotes: [
+                        { text: '[[/d 1d6[electric]]]{1d6 electric} damage on all attacks', subTarget: 'attack' }
+                    ]
+                }
+            },
+            major: {
+                1: {
+                    size: 'sm',
+                    attacks: [
+                        { name: 'Bite', diceCount: 1, diceSize: 6, count: 1 },
+                        { name: 'Tail', diceCount: 1, diceSize: 6, count: 1, type: ['electric'], special: ['Touch'] }
+                    ],
+                    speed: {
+                        land: 0,
+                        swim: 30
+                    },
+                    senses: [
+                        1
+                    ],
+                    eres: [
+                        { amount: 5, operator: true, types: ['electric', ''] }
+                    ]
+                },
+                8: {
+                    eres: [
+                        { amount: 10, operator: true, types: ['electric', ''] }
+                    ],
+                    changes: [
+                        { formula: '4', operator: 'add', subTarget: 'skill.esc', modifier: 'racial', priority: 0, value: 1 }
+                    ]
+                },
+                15: {
+                    attacks: [
+                        { name: 'Bite', diceCount: 1, diceSize: 6, count: 1 },
+                        { name: 'Tail', diceCount: 1, diceSize: 6, count: 1, type: ['electric'], special: ['Touch', 'Stun'] }
+                    ],
+                    effect: {
+                        'Stun': { note: 'On crit, fort save or stunned [[/r 1d4]] rounds', type: 'fort', saveDesc: 'Fort resists', dc: '10 + floor(@classes.shifter.level / 2) + @abilities.con.mod', description: 'on a critical hit with your tail attack, the creature struck must succeed at a Fortitude save (DC = 10 + half your shifter level + your Constitution modifier) or be stunned for [[/r 1d4]] rounds.' }
+                    }
+                }
+            },
+            alternates: [
+                'Bite', 'TailSlap'
+            ]
+        },
+        'Elephant': {
+            source: 'beastShape',
+            minor: {
+                1: {
+                    contextNotes: [
+                        { text: '+[[4]] enhancement to bull rush and overrun', subTarget: 'cmb' }
+                    ]
+                },
+                8: {
+                    contextNotes: [
+                        { text: '+[[6]] enhancement to bull rush and overrun', subTarget: 'cmb' }
+                    ]
+                },
+                15: {
+                    contextNotes: [
+                        { text: '+[[8]] enhancement to bull rush and overrun', subTarget: 'cmb' }
+                    ]
+                }
+            },
+            major: {
+                1: {
+                    size: 'lg',
+                    attacks: [
+                        { name: 'Gore', diceCount: 1, diceSize: 6, count: 1 },
+                        { name: 'Slam', diceCount: 1, diceSize: 8, count: 1 }
+                    ],
+                    speed: {
+                        land: 40
+                    },
+                    senses: [
+                        1, 11
+                    ],
+                    changes: [
+                        { formula: '2', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'racial', priority: 0, value: 2 },
+                        { formula: '2', operator: 'add', subTarget: 'nac', modifier: 'racial', priority: 0, value: 2 }
+                    ]
+                },
+                8: {
+                    specialAttack: [
+                        { name: 'Trample', diceCount: 2, diceSize: 8, count: 1, special: ['Trample'], mult: 1.5, attackType: 'mcman', claw: true }
+                    ],
+                    effect: {
+                        'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature\'s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a -4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature\'s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' }
+                    }
+                },
+                15: {
+                    feats: [
+                        { name: 'Improved Bull Rush', uuid: 'Compendium.pf1.feats.Item.dn2KgHFQRbuoNRx0' }
+                    ],
+                    changes: [
+                        { formula: '4', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'racial', priority: 0, value: 4 },
+                        { formula: '4', operator: 'add', subTarget: 'nac', modifier: 'racial', priority: 0, value: 4 }
+                    ]
+                }
+            },
+            alternates: [
+                'Gore', 'Slam'
+            ]
+        },
+        'Falcon': {
+            source: 'beastShape',
+            minor: {
+                1: {
+                    changes: [
+                        { formula: '4', operator: 'add', subTarget: 'skill.per', modifier: 'competence', priority: 0, value: 4 }
+                    ]
+                },
+                8: {
+                    changes: [
+                        { formula: '6', operator: 'add', subTarget: 'skill.per', modifier: 'competence', priority: 0, value: 6 }
+                    ]
+                },
+                15: {
+                    changes: [
+                        { formula: '8', operator: 'add', subTarget: 'skill.per', modifier: 'competence', priority: 0, value: 8 }
+                    ]
+                }
+            },
+            major: {
+                1: {
+                    size: 'sm',
+                    attacks: [
+                        { name: 'Bite', diceCount: 1, diceSize: 4, count: 1, claw: false },
+                        { name: 'Claw', diceCount: 1, diceSize: 3, count: 2 }
+                    ],
+                    speed: {
+                        land: 30,
+                        fly: {
+                            base: 60,
+                            maneuverability: 'good'
+                        }
+                    },
+                    senses: [
+                        1
+                    ],
+                    contextNotes: [
+                        { text: '+[[4]] racial to vision-based perception', subTarget: 'skill.per' }
+                    ]
+                },
+                8: {
+                    senses: [
+                        1, 26
+                    ],
+                    contextNotes: [
+                        { text: '+[[6]] racial to vision-based perception', subTarget: 'skill.per' }
+                    ]
+                },
+                15: {
+                    senses: [
+                        1, 18, 26
+                    ],
+                    speed: {
+                        land: 30,
+                        fly: {
+                            base: 90,
+                            maneuverability: 'perfect'
+                        }
+                    }
+                }
+            },
+            alternates: [
+                'Gore', 'Talon'
+            ]
+        },
+        'Frog': {
+            source: 'beastShape',
+            minor: {
+                1: {
+                    changes: [
+                        { formula: '4', operator: 'add', subTarget: 'skill.swm', modifier: 'competence', priority: 0, value: 4 }
+                    ],
+                    contextNotes: [
+                        { text: '+[[4]] competence to jump', subTarget: 'skill.acr' }
+                    ]
+                },
+                8: {
+                    changes: [
+                        { formula: '6', operator: 'add', subTarget: 'skill.swm', modifier: 'competence', priority: 0, value: 6 }
+                    ],
+                    contextNotes: [
+                        { text: '+[[6]] competence to jump', subTarget: 'skill.acr' }
+                    ]
+                },
+                15: {
+                    changes: [
+                        { formula: '8', operator: 'add', subTarget: 'skill.swm', modifier: 'competence', priority: 0, value: 8 }
+                    ],
+                    contextNotes: [
+                        { text: '+[[8]] competence to jump', subTarget: 'skill.acr' }
+                    ]
+                }
+            },
+            major: {
+                1: {
+                    size: 'lg',
+                    attacks: [
+                        { name: 'Bite', diceCount: 1, diceSize: 6, count: 1, special: ['Grab'] }
+                    ],
+                    speed: {
+                        land: 30,
+                        swim: 30
+                    },
+                    senses: [
+                        1, 11
+                    ],
+                    contextNotes: [
+                        { text: 'Treat jumps as running start', subTarget: 'skill.acr' }
+                    ]
+                },
+                8: {
+                    attacks: [
+                        { name: 'Bite', diceCount: 1, diceSize: 6, count: 1, special: ['Grab'] },
+                        { name: 'Tongue', diceCount: 0, diceSize: 0, count: 1, special: ['Grab'], range: 15, attackType: 'rwak', claw: false }
+                    ]
+                },
+                15: {
+                    attacks: [
+                        { name: 'Bite', diceCount: 1, diceSize: 6, count: 1, special: ['Grab'] },
+                        { name: 'Tongue', diceCount: 0, diceSize: 0, count: 1, special: ['Grab'], range: 30, attackType: 'rwak', claw: true }
+                    ]
+                }
+            },
+            alternates: [
+                'Bite'
+            ]
+        },
+        'Giant Wasp': {
+            source: 'verminShape',
+            minor: {
+                1: {
+                    contextNotes: [
+                        { text: '+[[4]] to will v mind-affecting', subTarget: 'will' }
+                    ]
+                },
+                8: {
+                    contextNotes: [
+                        { text: '+[[6]] to will v mind-affecting', subTarget: 'will' }
+                    ]
+                },
+                15: {
+                    contextNotes: [
+                        { text: '+[[8]] to will v mind-affecting', subTarget: 'will' }
+                    ]
+                }
+            },
+            major: {
+                1: {
+                    size: 'lg',
+                    speed: {
+                        fly: {
+                            base: 40,
+                            maneuverability: 'clumsy'
+                        }
+                    }
+                },
+                8: {
+                    attacks: [
+                        { name: 'Sting', diceCount: 0, diceSize: 0, count: 1, special: ['Poison'], charges: '3 + @abilities.wis.mod' }
+                    ],
+                    speed: {
+                        fly: {
+                            base: 60,
+                            maneuverability: 'average'
+                        }
+                    },
+                    effect: {
+                        'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC [[10 + floor(@classes.shifter.level / 2) + @abilities.con.mod]]; frequency 1/round for 4 rounds; effect [[/r 1d3]] Dex; cure 2 consecutive saves.', type: 'fort', saveDesc: 'Fort Cures', dc: '10 + floor(@classes.shifter.level / 2) + @abilities.con.mod' }
+                    }
+                },
+                15: {
+                    speed: {
+                        fly: {
+                            base: 80,
+                            maneuverability: 'good'
+                        }
+                    },
+                    specialAttack: [
+                        { name: 'ControlSwarm', diceCount: 0, diceSize: 0, count: 1, special: ['Control'], attackType: 'none', claw: false }
+                    ],
+                    effect: {
+                        'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC [[10 + floor(@classes.shifter.level / 2) + @abilities.con.mod]]; frequency 1/round for 4 rounds; effect [[/r 1d3]] Dex; cure 2 consecutive saves.', type: 'fort', saveDesc: 'Fort Cures', dc: '10 + floor(@classes.shifter.level / 2) + @abilities.con.mod' },
+                        'Control': { note: 'Charisma check vs 10 + swarm CR', description: 'You can attempt to gain control of a mindless swarm as a full-round action. To gain control of the swarm, you must succeed at a Charisma check against a DC of 10 + the swarm’s CR. You can direct the swarm to disperse, remain in a designated location, or attack an opponent. This control lasts for a number of rounds equal to half your shifter level ([[floor(@classes.shifter.level / 2)]]).' }
+                    }
+                }
+            },
+            alternates: [
+                'Sting'
+            ]
+        },
+        'Horse': {
+            source: 'beastShape',
+            minor: {
+                1: {
+                    feats: [
+                        { name: 'Endurance', uuid: 'Compendium.pf1.feats.Item.ehqx8txNRGMaNOPt' }
+                    ],
+                    changes: [
+                        { formula: '5', operator: 'add', subTarget: 'landspeed', modifier: 'enh', priority: 0, value: 5 },
+                    ]
+                },
+                8: {
+                    feats: [
+                        { name: 'Endurance', uuid: 'Compendium.pf1.feats.Item.ehqx8txNRGMaNOPt' },
+                        { name: 'Run', uuid: 'Compendium.pf1.feats.Item.bXeW4kLCErPBFpNB' }
+                    ]
+                },
+                15: {
+                    changes: [
+                        { formula: '15', operator: 'add', subTarget: 'landspeed', modifier: 'enh', priority: 0, value: 15 },
+                    ]
+                }
+            },
+            major: {
+                1: {
+                    size: 'lg',
+                    attacks: [
+                        { name: 'Hoof', diceCount: 1, diceSize: 4, count: 2 }
+                    ],
+                    speed: {
+                        land: 50
+                    },
+                    senses: [
+                        1, 11
+                    ],
+                    feats: [
+                        { name: 'Ride-By Attack', uuid: 'Compendium.pf1.feats.Item.liPAO5urMI9chctT' }
+                    ]
+                },
+                8: {
+                    specialAttack: [
+                        { name: 'Trample', diceCount: 1, diceSize: 4, count: 1, special: ['Trample'], mult: 1.5, attackType: 'mcman', claw: true }
+                    ],
+                    effect: {
+                        'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature\'s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a -4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature\'s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' }
+                    }
+                },
+                15: {
+                    feats: [
+                        { name: 'Improved Overrun', uuid: 'Compendium.pf1.feats.Item.go4xOiSUP8R1QJ5N' }
+                    ]
+                }
+            },
+            alternates: [
+                'Hoof'
+            ]
+        },
+        'Lion': {
+            source: 'beastShape',
+            minor: {
+                1: {
+                    changes: [
+                        { formula: '4', operator: 'add', subTarget: 'skill.int', modifier: 'competence', priority: 0, value: 4 }
+                    ]
+                },
+                8: {
+                    changes: [
+                        { formula: '6', operator: 'add', subTarget: 'skill.int', modifier: 'competence', priority: 0, value: 4 }
+                    ]
+                },
+                15: {
+                    changes: [
+                        { formula: '8', operator: 'add', subTarget: 'skill.int', modifier: 'competence', priority: 0, value: 4 }
+                    ]
+                }
+            },
+            major: {
+                1: {
+                    size: 'lg',
+                    attacks: [
+                        { name: 'Bite', diceCount: 1, diceSize: 8, count: 1, special: ['Grab'], claw: false },
+                        { name: 'Claw', diceCount: 1, diceSize: 6, count: 2 }
+                    ],
+                    speed: {
+                        land: 40
+                    },
+                    senses: [
+                        1, 11
+                    ],
+                    specialAttack: [
+                        { name: 'MightyRoar', diceCount: 0, diceSize: 0, count: 1, special: ['Mighty Roar'], attackType: 'none', claw: false }
+                    ],
+                    effect: {
+                        'Mighty Roar': { note: 'Demoralize - Intimidate with +[[5]] circumstance', description: 'You can utter a mighty roar, allowing you to attempt an Intimidate check with a +5 circumstance bonus to demoralize enemies within 30 feet. Allies gain a +[[1]] morale bonus on attack and damage rolls against creatures affected by this ability.' }
+                    }
+                },
+                8: {
+                    feats: [
+                        { name: 'Outflank', uuid: 'Compendium.pf1.feats.Item.ln2Dhw97Fol1BCxU' },
+                        { name: 'Pack Attack', uuid: 'Compendium.pf-content.pf-feats.Item.BVsLYVsIUSpl6Y0c' },
+                        { name: 'Paired Opportunists', uuid: 'Compendium.pf-content.pf-feats.Item.wmuQjv1Jt9VennFK' },
+                        { name: 'Shake It Off', uuid: 'Compendium.pf-content.pf-feats.Item.bkaK2LbauklqB8B1' }
+                    ]
+                },
+                15: {
+                    specialAttack: [
+                        { name: 'MightyRoar', diceCount: 0, diceSize: 0, count: 1, special: ['Mighty Roar'], attackType: 'none', claw: false },
+                        { name: 'SwapPlaces', diceCount: 0, diceSize: 0, count: 1, special: ['Mighty Roar'], attackType: 'none', claw: false }
+                    ],
+                    effect: {
+                        'Mighty Roar': { note: 'Demoralize - Intimidate with +[[5]] circumstance', description: 'You can utter a mighty roar, allowing you to attempt an Intimidate check with a +5 circumstance bonus to demoralize enemies within 30 feet. Allies gain a +[[1]] morale bonus on attack and damage rolls against creatures affected by this ability.' },
+                        'Swap Places': { note: 'Swap places with adjacent ally', description: ' Whenever you are adjacent to an ally who also has this feat, you can move into your ally’s square as part of normal movement. At the same time, your ally moves into your previous space as an immediate action. Both you and your ally must be willing and able to move to take advantage of this feat. Your ally must be the same size as you to utilize this feat. Your ally does not provoke an attack of opportunity from this movement, but you provoke as normal. This movement does not count against your ally\'s movement on his next turn.' }
+                    }
+                }
+            },
+            alternates: [
+                'Bite'
+            ]
+        },
+        'Lizard': {
+            source: 'beastShape',
+            minor: {
+                1: {
+                    changes: [
+                        { formula: '4', operator: 'add', subTarget: 'skill.acr', modifier: 'competence', priority: 0, value: 4 }
+                    ]
+                },
+                8: {
+                    changes: [
+                        { formula: '6', operator: 'add', subTarget: 'skill.acr', modifier: 'competence', priority: 0, value: 4 }
+                    ]
+                },
+                15: {
+                    changes: [
+                        { formula: '8', operator: 'add', subTarget: 'skill.acr', modifier: 'competence', priority: 0, value: 4 }
+                    ]
+                }
+            },
+            major: {
+                1: {
+                    size: 'lg',
+                    attacks: [
+                        { name: 'Bite', diceCount: 1, diceSize: 8, count: 1, special: ['Grab'] },
+                        { name: 'Tail', diceCount: 1, diceSize: 6, count: 1, special: ['Trip'] }
+                    ],
+                    speed: {
+                        land: 40
+                    },
+                    senses: [
+                        1, 11
+                    ]
+                },
+                8: {
+                    speed: {
+                        land: 60,
+                        climb: 30
+                    }
+                },
+                15: {
+                    attacks: [
+                        { name: 'Bite', diceCount: 1, diceSize: 8, count: 1, special: ['Grab'], improved: true },
+                        { name: 'Tail', diceCount: 1, diceSize: 6, count: 1, special: ['Trip'], improved: true }
+                    ],
+                    feats: [
+                        { name: 'Improved Natural Attack', uuid: 'Compendium.pf-content.pf-feats.Item.xz6IYXK8qfnNhior' }
+                    ]
+                }
+            },
+            alternates: [
+                'Gore', 'Hoof'
+            ]
+        },
+        'Mantis': {
+            source: 'beastShape',
+            minor: {
+                1: {
+                    feats: [
+                        { name: 'Lunge', uuid: 'Compendium.pf1.feats.Item.xq2TFr7bsYBBHOi5' }
+                    ]
+                },
+                8: {
+
+                },
+                15: {
+
+                }
+            },
+            major: {
+                1: {
+                    size: 'lg',
+                    attacks: [
+                        { name: 'Claw', diceCount: 1, diceSize: 6, count: 2, special: ['Grab'], claw: true }
+                    ],
+                    senses: [
+                        7
+                    ],
+                    changes: [
+                        { formula: '2', operator: 'add', subTarget: 'init', modifier: 'racial', priority: 0, value: 2 }
+                    ]
+                },
+                8: {
+
+                },
+                15: {
+                    
+                }
+            },
+            alternates: [
+                'Bite'
+            ]
+        },
+        'Monkey': {
+            source: 'beastShape',
+            minor: {
+                1: {
+                    changes: [
+                        { formula: '4', operator: 'add', subTarget: 'skill.clm', modifier: 'competence', priority: 0, value: 4 }
+                    ]
+                },
+                8: {
+                    changes: [
+                        { formula: '6', operator: 'add', subTarget: 'skill.clm', modifier: 'competence', priority: 0, value: 6 }
+                    ]
+                },
+                15: {
+                    changes: [
+                        { formula: '8', operator: 'add', subTarget: 'skill.clm', modifier: 'competence', priority: 0, value: 8 }
+                    ]
+                }
+            },
+            major: {
+                1: {
+                    size: 'lg',
+                    attacks: [
+                        { name: 'Bite', diceCount: 1, diceSize: 6, count: 1, claw: false },
+                        { name: 'Claw', diceCount: 1, diceSize: 6, count: 2 }
+                    ],
+                    speed: {
+                        land: 30,
+                        climb: 30
+                    },
+                    senses: [
+                        1, 11
+                    ]
+                },
+                8: {
+                    speed: {
+                        land: 30,
+                        climb: 50
+                    }
+                },
+                15: {
+                    attacks: [
+                        { name: 'Bite', diceCount: 1, diceSize: 6, count: 1, claw: false },
+                        { name: 'Claw', diceCount: 1, diceSize: 6, count: 2, special: ['Rend'] }
+                    ],
+                    effect: {
+                        'Rend': { note: 'Rend if both claws hit, added to second claw damage. [[/d sizeRoll(1, 6, @size, 5) # Rend damage added to second claw]]{{Roll Rend Damage}}' }
+                    }
+                }
+            },
+            alternates: [
+                'Bite'
+            ]
+        },
+        'Mouse': {
+            source: 'beastShape',
+            minor: {
+                1: {
+                    feats: [
+                        { name: 'Evasion', uuid: 'Compendium.pf1.class-abilities.Item.KQYCRLEdD4bGA5ak' }
+                    ]
+                },
+                12: {
+                    feats: [
+                        { name: 'Improved Evasion', uuid: 'Compendium.pf1.class-abilities.Item.0Qmt3BZBOsyCtrr9' }
+                    ]
+                }
+            },
+            major: {
+                1: {
+                    size: 'tiny',
+                    attacks: [
+                        { name: 'Bite', diceCount: 1, diceSize: 4, count: 1 }
+                    ],
+                    speed: {
+                        land: 40,
+                        climb: 20,
+                        swim: 20
+                    },
+                    senses: [
+                        1, 11
+                    ]
+                },
+                8: {
+                    speed: {
+                        land: 40,
+                        climb: 40,
+                        swim: 40
+                    }
+                },
+                15: {
+                    
+                }
+            },
+            alternates: [
+                'Bite'
+            ]
+        },
+        'Octopus': {
+            source: 'beastShape',
+            minor: {
+                1: {
+                    changes: [
+                        { formula: '4', operator: 'add', subTarget: 'skill.esc', modifier: 'competence', priority: 0, value: 4 }
+                    ]
+                },
+                8: {
+                    changes: [
+                        { formula: '6', operator: 'add', subTarget: 'skill.esc', modifier: 'competence', priority: 0, value: 6 }
+                    ]
+                },
+                15: {
+                    changes: [
+                        { formula: '8', operator: 'add', subTarget: 'skill.esc', modifier: 'competence', priority: 0, value: 8 }
+                    ]
+                }
+            },
+            major: {
+                1: {
+                    size: 'sm',
+                    attacks: [
+                        { name: 'Bite', diceCount: 1, diceSize: 3, count: 1 },
+                        { name: 'Tentacles', diceCount: 0, diceSize: 0, count: 1, special: ['Grab'], claw: false }
+                    ],
+                    speed: {
+                        swim: 30
+                    },
+                    senses: [
+                        1
+                    ],
+                    feats: [
+                        { name: 'Multiattack', uuid: 'Compendium.pf-content.pf-feats.Item.RmhtvELGu73iR8yh' }
+                    ]
+                },
+                8: {
+                    special: [
+                        'Jet200'
+                    ]
+                },
+                15: {
+                    attacks: [
+                        { name: 'Bite', diceCount: 1, diceSize: 3, count: 1 },
+                        { name: 'Tentacles', diceCount: 0, diceSize: 0, count: 1, special: ['Grab'], claw: true }
+                    ],
+                    specialAttack: [
+                        { name: 'InkCloud', diceCount: 0, diceSize: 0, count: 1, special: ['Ink'], attackType: 'none', claw: false }
+                    ],
+                    effect: {
+                        'Ink': { note: '10-ft cloud of ink', description: 'While within water, you can emit a 10-foot-radius sphere of ink once per minute as a swift action. This ink provides total concealment and persists for 1 minute.' }
+                    }
+                }
+            },
+            alternates: [
+                'Bite', 'Tentacle'
+            ]
+        },
+        'Owl': {
+            source: 'beastShape',
+            minor: {
+                1: {
+                    changes: [
+                        { formula: '4', operator: 'add', subTarget: 'skill.ste', modifier: 'competence', priority: 0, value: 4 }
+                    ]
+                },
+                8: {
+                    changes: [
+                        { formula: '6', operator: 'add', subTarget: 'skill.ste', modifier: 'competence', priority: 0, value: 6 }
+                    ]
+                },
+                15: {
+                    changes: [
+                        { formula: '8', operator: 'add', subTarget: 'skill.ste', modifier: 'competence', priority: 0, value: 8 }
+                    ]
+                }
+            },
+            major: {
+                1: {
+                    size: 'med',
+                    attacks: [
+                        { name: 'Talon', diceCount: 1, diceSize: 6, count: 2 }
+                    ],
+                    speed: {
+                        land: 30,
+                        fly: {
+                            base: 60,
+                            maneuverability: 'average'
+                        }
+                    },
+                    senses: [
+                        7
+                    ],
+                    changes: [
+                        { formula: '2', operator: 'add', subTarget: 'skill.ste', modifier: 'racial', priority: 0, value: 2 }
+                    ]
+                },
+                8: {
+                    feats: [
+                        { name: 'Flyby Attack', uuid: 'Compendium.pf-content.pf-feats.Item.zVUcdFSgoVENjmUa' }
+                    ],
+                    senses: [
+                        26
+                    ]
+                },
+                15: {
+                    size: 'lg',
+                    feats: [
+                        { name: 'Snatch', uuid: 'Compendium.pf-content.pf-feats.Item.PBqk2ZYEdehWcprC' }
+                    ],
+                    specialAttack: [
+                        { name: 'Snatch', diceCount: 0, diceSize: 0, count: 1, special: ['Snatch'], attackType: 'none', claw: false }
+                    ],
+                    effect: {
+                        'Snatch': { note: 'Grab on talons at least one size smaller', description: 'Gain the benefits of the Snatch feat (Bestiary 316), but you can use it only to grab a creature at least one size category smaller than yourself, and you can squeeze a creature grappled with this ability no matter what size it is.' }
+                    }
+                }
+            },
+            alternates: [
+                'Bite', 'Talons'
+            ]
+        },
+        'Peafowl': {
+            source: 'beastShape',
+            minor: {
+                1: {
+                    changes: [
+                        { formula: '2', operator: 'add', target: 'ability', subTarget: 'cha', modifier: 'enh', priority: 0, value: 2 },
+                    ]
+                },
+                8: {
+                    changes: [
+                        { formula: '4', operator: 'add', target: 'ability', subTarget: 'cha', modifier: 'enh', priority: 0, value: 4 },
+                    ]
+                },
+                15: {
+                    changes: [
+                        { formula: '6', operator: 'add', target: 'ability', subTarget: 'cha', modifier: 'enh', priority: 0, value: 6 },
+                    ]
+                }
+            },
+            major: {
+                1: {
+                    size: 'sm',
+                    attacks: [
+                        { name: 'Talons', diceCount: 1, diceSize: 3, count: 2 }
+                    ],
+                    specialAttack: [
+                        { name: 'CaptivatingDance', diceCount: 0, diceSize: 0, count: 1, special: ['Captivating'], attackType: 'save', claw: false }
+                    ],
+                    effect: {
+                        'Captivating': { note: 'Will save or stunned 1 round', dc: '10 + floor(@classes.shifter.level / 2) + @abilities.cha.mod', saveDesc: 'Will resists', type: 'will', description: 'A peafowl can perform a captivating dance targeting all creatures within a 15-foot cone. Each creature in the cone that can see your dance must succeed at a Will save (DC [[10 + floor(@classes.shifter.level / 2) + @abilities.cha.mod]]) or be stunned for 1 round. Whether or not it succeeds at the initial save, a creature cannot be affected by this ability again for 24 hours.', templateShape: 'cone', templateSize: '15' }
+                    },
+                    speed: {
+                        land: 20,
+                        fly: {
+                            base: 40,
+                            maneuverability: 'clumsy'
+                        }
+                    },
+                    changes: [
+                        { formula: '4', operator: 'add', subTarget: 'skill.ste', modifier: 'racial', priority: 0, value: 4 }
+                    ]
+                },
+                8: {
+                    effect: {
+                        'Captivating': { note: 'Will save or stunned 2 rounds', dc: '10 + floor(@classes.shifter.level / 2) + @abilities.cha.mod', saveDesc: 'Will resists', type: 'will', description: 'A peafowl can perform a captivating dance targeting all creatures within a 15-foot cone. Each creature in the cone that can see your dance must succeed at a Will save (DC [[10 + floor(@classes.shifter.level / 2) + @abilities.cha.mod]]) or be stunned for 2 rounds. Whether or not it succeeds at the initial save, a creature cannot be affected by this ability again for 24 hours.', templateShape: 'cone', templateSize: '15' }
+                    }
+                },
+                15: {
+                    effect: {
+                        'Captivating': { note: 'Will save or stunned 4 rounds', dc: '10 + floor(@classes.shifter.level / 2) + @abilities.cha.mod', saveDesc: 'Will resists', type: 'will', description: 'A peafowl can perform a captivating dance targeting all creatures within a 15-foot cone. Each creature in the cone that can see your dance must succeed at a Will save (DC [[10 + floor(@classes.shifter.level / 2) + @abilities.cha.mod]]) or be stunned for 4 rounds. Whether or not it succeeds at the initial save, a creature cannot be affected by this ability again for 24 hours.', templateShape: 'cone', templateSize: '15' }
+                    }
+                }
+            },
+            alternates: [
+                'Bite', 'TailSlap'
+            ]
+        },
+        'Scorpion': {
+            source: 'verminShape',
+            minor: {
+                1: {
+                    changes: [
+                        { formula: '2', operator: 'add', subTarget: 'skill.ste', modifier: 'competence', priority: 0, value: 2 }
+                    ],
+                    contextNotes: [
+                        { text: '+[[2]] to grapple', subTarget: 'cmb' }
+                    ]
+                },
+                8: {
+                    changes: [
+                        { formula: '4', operator: 'add', subTarget: 'skill.ste', modifier: 'competence', priority: 0, value: 4 }
+                    ],
+                    contextNotes: [
+                        { text: '+[[4]] to grapple', subTarget: 'cmb' }
+                    ]
+                },
+                15: {
+                    changes: [
+                        { formula: '6', operator: 'add', subTarget: 'skill.ste', modifier: 'competence', priority: 0, value: 6 }
+                    ],
+                    contextNotes: [
+                        { text: '+[[6]] to grapple', subTarget: 'cmb' }
+                    ]
+                }
+            },
+            major: {
+                1: {
+                    size: 'lg',
+                    attacks: [
+                        { name: 'Claw', diceCount: 1, diceSize: 6, count: 2, special: ['Grab'] },
+                        { name: 'Sting', diceCount: 1, diceSize: 6, count: 1 }
+                    ],
+                    speed: {
+                        land: 50
+                    },
+                    senses: [
+                        7, 19
+                    ]
+                },
+                8: {
+                    senses: [
+                        7, 21
+                    ],
+                    changes: [
+                        { formula: '4', operator: 'add', subTarget: 'skill.clm', modifier: 'racial', priority: 0, value: 4 },
+                        { formula: '4', operator: 'add', subTarget: 'skill.per', modifier: 'racial', priority: 0, value: 4 }
+                    ]
+                },
+                15: {
+                    attacks: [
+                        { name: 'Claw', diceCount: 1, diceSize: 6, count: 2, special: ['Grab'] },
+                        { name: 'Sting', diceCount: 1, diceSize: 6, count: 1, special: ['Poison'] }
+                    ],
+                    effect: {
+                        'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC [[10 + floor(@classes.shifter.level / 2) + @abilities.con.mod]]; frequency 1/round for 6 rounds; effect [[/r 1d3]] Str; cure 2 consecutive saves.', type: 'fort', saveDesc: 'Fort Cures', dc: '10 + floor(@classes.shifter.level / 2) + @abilities.con.mod', description: 'When you make an attack of opportunity with your sting attack or maintain a grapple and deal damage with your sting attack, that attack also applies the following poison.' }
+                    }
+                }
+            },
+            alternates: [
+                'Pincers', 'Sting'
+            ]
+        },
+        'Snake': {
+            source: 'beastShape',
+            minor: {
+                1: {
+                    contextNotes: [
+                        { text: '+[[2]] to attacks of opportunity', subTarget: 'attack' },
+                        { text: '+[[2]] vs attacks of opportunity', subTarget: 'ac' }
+                    ]
+                },
+                8: {
+                    contextNotes: [
+                        { text: '+[[4]] to attacks of opportunity', subTarget: 'attack' },
+                        { text: '+[[4]] vs attacks of opportunity', subTarget: 'ac' }
+                    ]
+                },
+                15: {
+                    contextNotes: [
+                        { text: '+[[6]] to attacks of opportunity', subTarget: 'attack' },
+                        { text: '+[[6]] vs attacks of opportunity', subTarget: 'ac' }
+                    ]
+                }
+            },
+            major: {
+                1: {
+                    size: 'lg',
+                    attacks: [
+                        { name: 'Bite', diceCount: 2, diceSize: 6, count: 1 }
+                    ],
+                    speed: {
+                        land: 30,
+                        climb: 30,
+                        swim: 30
+                    },
+                    senses: [
+                        1, 11
+                    ],
+                    feats: [
+                        { name: 'Combat Reflexes', uuid: 'Compendium.pf1.feats.Item.h9nHYLxXvIXBTmup' }
+                    ]
+                },
+                8: {
+                    changes: [
+                        { formula: '4', operator: 'add', subTarget: 'skill.acr', modifier: 'racial', priority: 0, value: 4 },
+                        { formula: '4', operator: 'add', subTarget: 'skill.ste', modifier: 'racial', priority: 0, value: 4 }
+                    ]
+                },
+                15: {
+                    attacks: [
+                        { name: 'Bite', diceCount: 2, diceSize: 6, count: 1, special: ['Poison'] }
+                    ],
+                    effect: {
+                        'Poison': { note: 'Poison (Ex) Bite—injury; save Fort DC [[10 + floor(@classes.shifter.level / 2) + @abilities.con.mod]]; frequency 1/round for 6 rounds; effect [[/r 1d3]] Con; cure 2 consecutive saves.', type: 'fort', saveDesc: 'Fort Cures', dc: '10 + floor(@classes.shifter.level / 2) + @abilities.con.mod', description: 'When you make an attack of opportunity with your bite attack, that attack also applies the following poison.' }
+                    }
+                }
+            },
+            alternates: [
+                'Bite', 'TailSlap'
+            ]
+        },
+        'Snapping Turtle': {
+            source: 'beastShape',
+            minor: {
+                1: {
+                    changes: [
+                        { formula: '2', operator: 'add', target: 'ability', subTarget: 'wis', modifier: 'enh', priority: 0, value: 2 },
+                    ]
+                },
+                8: {
+                    changes: [
+                        { formula: '4', operator: 'add', target: 'ability', subTarget: 'wis', modifier: 'enh', priority: 0, value: 4 },
+                    ]
+                },
+                15: {
+                    changes: [
+                        { formula: '6', operator: 'add', target: 'ability', subTarget: 'wis', modifier: 'enh', priority: 0, value: 6 },
+                    ]
+                }
+            },
+            major: {
+                1: {
+                    size: 'large',
+                    attacks: [
+                        { name: 'Bite', diceCount: 1, diceSize: 8, count: 1, mult: 1.5 }
+                    ],
+                    speed: {
+                        land: 10,
+                        swim: 20
+                    },
+                    senses: [
+                        1, 11
+                    ]
+                },
+                8: {
+                    contextNotes: [
+                        { text: '+[[@abilities.wis.mod]] vs bull rush, drag, overrun, reposition, and trip', subTarget: 'cmd' }
+                    ]
+                },
+                15: {
+                    dr: [
+                        '5/silver'
+                    ]
+                }
+            },
+            alternates: [
+                'Bite'
+            ]
+        },
+        'Spider': {
+            source: 'verminShape',
+            minor: {
+                1: {
+                    changes: [
+                        { formula: '2', operator: 'add', subTarget: 'skill.clm', modifier: 'competence', priority: 0, value: 2 },
+                        { formula: '2', operator: 'add', subTarget: 'skill.ste', modifier: 'competence', priority: 0, value: 2 }
+                    ],
+                    contextNotes: [
+                        { text: '+[[2]] competence to saves v webs', subTarget: 'allSavingThrows' },
+                        { text: '+[[2]] competence to break free from webs', subTarget: 'cmb' }
+                    ]
+                },
+                8: {
+                    changes: [
+                        { formula: '4', operator: 'add', subTarget: 'skill.clm', modifier: 'competence', priority: 0, value: 4 },
+                        { formula: '4', operator: 'add', subTarget: 'skill.ste', modifier: 'competence', priority: 0, value: 4 }
+                    ],
+                    contextNotes: [
+                        { text: '+[[4]] competence to saves v webs', subTarget: 'allSavingThrows' },
+                        { text: '+[[4]] competence to break free from webs', subTarget: 'cmb' }
+                    ]
+                },
+                15: {
+                    changes: [
+                        { formula: '6', operator: 'add', subTarget: 'skill.clm', modifier: 'competence', priority: 0, value: 6 },
+                        { formula: '6', operator: 'add', subTarget: 'skill.ste', modifier: 'competence', priority: 0, value: 6 }
+                    ],
+                    contextNotes: [
+                        { text: '+[[6]] competence to saves v webs', subTarget: 'allSavingThrows' },
+                        { text: '+[[6]] competence to break free from webs', subTarget: 'cmb' }
+                    ]
+                },
+                alternates: [
+                    'Bite'
+                ]
+            },
+            major: {
+                1: {
+                    size: 'med',
+                    attacks: [
+                        { name: 'Bite', diceCount: 1, diceSize: 6, count: 1, special: ['Poison'] }
+                    ],
+                    specialAttack: [
+                        { name: 'Web', diceCount: 0, diceSize: 0, count: 1, special: ['Touch', 'Web'], attackType: 'rwak', range: 10, increment: 5, charges: 8, claw: false }
+                    ],
+                    speed: {
+                        land: 30,
+                        climb: 30
+                    },
+                    senses: [
+                        7, 22
+                    ],
+                    effect: {
+                        'Poison': { note: 'Poison (Ex) - Bite—injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1d2 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' },
+                        'Web': { note: 'Web: Touch attack to entangle up to one size category higher, escaped with escape artist or burst with strength. DC 10+SL+Mod.', description: '<p>Creatures with the web ability can use webs to support themselves and up to one additional creature of the same size. In addition, such creatures can throw a web up to eight times per day. This is similar to an attack with a net but has a maximum range of 50 feet, with a range increment of 10 feet, and is effective against targets up to one size category larger than the web spinner. An entangled creature can escape with a successful Escape Artist check or burst the web with a Strength check. Both are standard actions with a DC equal to 10 + Spell Level + Caster Stat Mod. Attempts to burst a web by those caught in it take a -4 penalty.</p><p>Web spinners can create sheets of sticky webbing up to three times their size. They usually position these sheets to snare flying creatures but can also try to trap prey on the ground. Approaching creatures must succeed on a DC 20 Perception check to notice a web; otherwise they stumble into it and become trapped as though by a successful web attack. Attempts to escape or burst the webbing gain a +5 bonus if the trapped creature has something to walk on or grab while pulling free. Each 5-foot-square section of web has a number of hit points equal to the Hit Dice of the creature that created it ([[@attributes.hd.total]])and DR 5/—.</p><p>A creature can move across its own web at its climb speed and can pinpoint the location of any creature touching its web.</p>' }
+                    }
+                },
+                8: {
+
+                },
+                15: {
+                    
+                },
+                alternates: [
+                    'Bite'
+                ]
+            }
+        },
+        'Stag': {
+            source: 'beastShape',
+            minor: {
+                1: {
+                    changes: [
+                        { formula: '5', operator: 'add', subTarget: 'landSpeed', modifier: 'enh', priority: 0, value: 5 }
+                    ]
+                },
+                8: {
+                    changes: [
+                        { formula: '10', operator: 'add', subTarget: 'landSpeed', modifier: 'enh', priority: 0, value: 10 }
+                    ]
+                },
+                15: {
+                    changes: [
+                        { formula: '15', operator: 'add', subTarget: 'landSpeed', modifier: 'enh', priority: 0, value: 15 }
+                    ]
+                }
+            },
+            major: {
+                1: {
+                    size: 'lg',
+                    attacks: [
+                        { name: 'Gore', diceCount: 1, diceSize: 6, count: 1 },
+                        { name: 'Hoof', diceCount: 1, diceSize: 4, count: 2 }
+                    ],
+                    speed: {
+                        land: 50
+                    },
+                    senses: [
+                        1, 11
+                    ]
+                },
+                8: {
+                    contextNotes: [
+                        { text: '+[[4]] racial to jump', subTarget: 'skill.acr' }
+                    ]
+                },
+                15: {
+                    attacks: [
+                        { name: 'Gore', diceCount: 1, diceSize: 6, count: 1, improved: true },
+                        { name: 'Hoof', diceCount: 1, diceSize: 4, count: 2 }
+                    ],
+                    feats: [
+                        { name: 'Improved Natural Attack', uuid: 'Compendium.pf-content.pf-feats.Item.xz6IYXK8qfnNhior' },
+                        { name: 'Awesome Blow', uuid: 'Compendium.pf-content.pf-feats.Item.KPaC3H6EQGG4sXLT' }
+                    ]
+                }
+            },
+            alternates: [
+                'Gore', 'Hoof'
+            ]
+        },
+        'Tiger': {
+            source: 'beastShape',
+            minor: {
+                1: {
+                    changes: [
+                        { formula: '2', operator: 'add', target: 'ability', subTarget: 'dex', modifier: 'size', priority: 0, value: 2 }
+                    ]
+                },
+                8: {
+                    changes: [
+                        { formula: '4', operator: 'add', target: 'ability', subTarget: 'dex', modifier: 'size', priority: 0, value: 4 }
+                    ]
+                },
+                15: {
+                    changes: [
+                        { formula: '6', operator: 'add', target: 'ability', subTarget: 'dex', modifier: 'size', priority: 0, value: 6 }
+                    ]
+                }
+            },
+            major: {
+                1: {
+                    size: 'lg',
+                    attacks: [
+                        { name: 'Bite', diceCount: 2, diceSize: 6, count: 1, special: ['Grab'], claw: false },
+                        { name: 'Claw', diceCount: 2, diceSize: 4, count: 2, special: ['Grab'] }
+                    ],
+                    speed: {
+                        land: 40
+                    },
+                    senses: [
+                        1, 11
+                    ],
+                    special: [
+                        'Pounce'
+                    ]
+                },
+                8: {
+                    changes: [
+                        { formula: '4', operator: 'add', subTarget: 'skill.ste', modifier: 'racial', priority: 0, value: 4 }
+                    ]
+                },
+                15: {
+                    special: [
+                        'Pounce', 'Rake2Claws'
+                    ]
+                }
+            },
+            alternates: [
+                'Bite'
+            ]
+        },
+        'Wolf': {
+            source: 'beastShape',
+            minor: {
+                1: {
+                    senses: [
+                        11
+                    ]
+                },
+                8: {
+
+                },
+                15: {
+
+                }
+            },
+            major: {
+                1: {
+                    size: 'lg',
+                    attacks: [
+                        { name: 'Bite', diceCount: 1, diceSize: 8, count: 1, special: ['Trip'] }
+                    ],
+                    speed: {
+                        land: 50
+                    },
+                    senses: [
+                        1, 11
+                    ]
+                },
+                8: {
+                    contextNotes: [
+                        { text: '+[[4]] racial to track with scent', subTarget: 'skill.sur' }
+                    ]
+                },
+                15: {
+                    attacks: [
+                        { name: 'Bite', diceCount: 1, diceSize: 8, count: 1, special: ['Trip'], improved: true }
+                    ],
+                    feats: [
+                        { name: 'Improved Natural Attack', uuid: 'Compendium.pf-content.pf-feats.Item.xz6IYXK8qfnNhior' }
+                    ]
+                }
+            },
+            alternates: [
+                'Bite'
+            ]
+        },
+        'Wolverine': {
+            source: 'beastShape',
+            minor: {
+                1: {
+                    changes: [
+                        { formula: '@attributes.hd.total', operator: 'add', subTarget: 'mhp', modifier: 'untyped', priority: 0 }
+                    ]
+                },
+                8: {
+                    feats: [
+                        { name: 'Diehard', uuid: 'Compendium.pf1.feats.Item.O0e0UCim27GPKFuW' }
+                    ]
+                },
+                15: {
+
+                }
+            },
+            major: {
+                1: {
+                    size: 'lg',
+                    attacks: [
+                        { name: 'Bite', diceCount: 1, diceSize: 6, count: 1, claw: false },
+                        { name: 'Claw', diceCount: 1, diceSize: 8, count: 2 }
+                    ],
+                    speed: {
+                        land: 30,
+                        climb: 10
+                    },
+                    senses: [
+                        1, 11
+                    ],
+                    specialAttack: [
+                        { name: 'Rage', diceCount: 0, diceSize: 0, count: 1, special: ['Rage'], attackType: 'none', charges: '@classes.shifter.level', claw: false }
+                    ],
+                    effect: {
+                        'Rage': { note: '+4 str, +4 con, -2 AC.', description: 'This ability functions as the Barbarian Rage ability. A wolverine that takes damage in combat flies into a rage on its next turn, madly clawing and biting until either it or its opponent is dead. It gains +4 to Strength, +4 to Constitution, and -2 to AC.' }
+                    }
+                },
+                8: {
+                    effect: {
+                        'Rage': { note: '+4 str, +4 con, -2 AC.', description: 'This ability functions as the Barbarian Rage ability. You also gain 2 rage powers, treating shifter level as barbarian level for prerequisites. A wolverine that takes damage in combat flies into a rage on its next turn, madly clawing and biting until either it or its opponent is dead. It gains +4 to Strength, +4 to Constitution, and -2 to AC.' }
+                    }
+                },
+                15: {
+                    effect: {
+                        'Rage': { note: '+4 str, +4 con, -2 AC.', description: 'This ability functions as the Barbarian Rage ability. You also gain 2 rage powers, treating shifter level as barbarian level for prerequisites. You are no longer fatigued at the end of rage. A wolverine that takes damage in combat flies into a rage on its next turn, madly clawing and biting until either it or its opponent is dead. It gains +4 to Strength, +4 to Constitution, and -2 to AC.' }
+                    }
+                }
+            },
+            alternates: [
+                'Bite'
+            ]
+        },
+        claws: {
+            1: { name: 'Shifter Claws', diceCount: 1, diceSize: 4, count: 2, type: ['piercing', 'slashing'] },
+            3: { notes: 'Claws ignore DR/cold iton, DR/magic, DR/silver' },
+            7: { diceCount: 1, diceSize: 6 },
+            11: { diceCount: 1, diceSize: 8 },
+            13: { diceCount: 1, diceSize: 10 },
+            17: { critMult: 3 },
+            19: { notes: 'Claws ignore DR/cold iton, DR/magic, DR/silver, DR/adamantine, DR/-' }
+        }
+    },
+    'Dire Badger': {
         size: 'med',
         attacks: [
             { name: 'Bite', diceCount: 1, diceSize: 4, count: 1 },
@@ -607,7 +2329,7 @@ MorphinChanges.changes = {
             swim: 30
         },
         senses: [
-            1, 11, 14
+            1, 11, 15
         ]
     },
     'Cheetah': {
@@ -713,7 +2435,7 @@ MorphinChanges.changes = {
             swim: 80
         },
         senses: [
-            1, 17
+            1, 18
         ]
     },
     'Elk': {
@@ -773,6 +2495,22 @@ MorphinChanges.changes = {
         speed: {
             land: 40,
             climb: 40
+        },
+        senses: [
+            1
+        ]
+    },
+    'Giant Owl': {
+        size: 'med',
+        attacks: [
+            { name: 'Talons', diceCount: 1, diceSize: 4, count: 1 }
+        ],
+        speed: {
+            land: 10,
+            fly: {
+                base: 60,
+                maneuverability: 'average'
+            }
         },
         senses: [
             1
@@ -887,7 +2625,7 @@ MorphinChanges.changes = {
             swim: 30
         },
         senses: [
-            11, 14
+            11, 15
         ]
     },
     'Kangaroo': {
@@ -1047,7 +2785,8 @@ MorphinChanges.changes = {
     'Stag': {
         size: 'med',
         attacks: [
-            { name: 'Gore', diceCount: 1, diceSize: 6, count: 1 }
+            { name: 'Gore', diceCount: 1, diceSize: 6, count: 1 },
+            { name: 'Hoof', diceCount: 1, diceSize: 4, count: 2 }
         ],
         speed: {
             land: 50
@@ -1065,7 +2804,7 @@ MorphinChanges.changes = {
             swim: 30
         },
         senses: [
-            1, 14
+            1, 15
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1d2 Dex and 1 Con; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -1301,6 +3040,23 @@ MorphinChanges.changes = {
             'electric'
         ]
     },
+    'Falcon': {
+        size: 'sm',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 4, count: 1 },
+            { name: 'Talons', diceCount: 1, diceSize: 3, count: 2 }
+        ],
+        speed: {
+            land: 10,
+            fly: {
+                base: 90,
+                maneuverability: 'good'
+            }
+        },
+        senses: [
+            1
+        ]
+    },
     'Goat': {
         size: 'sm',
         attacks: [
@@ -1332,7 +3088,8 @@ MorphinChanges.changes = {
     'Octopus': {
         size: 'sm',
         attacks: [
-            { name: 'Bite', diceCount: 1, diceSize: 3, count: 1, special: ['Grab', 'Poison'] }
+            { name: 'Bite', diceCount: 1, diceSize: 3, count: 1, special: ['Poison'] },
+            { name: 'Tentacles', diceCount: 0, diceSize: 0, count: 1, special: ['Grab'] }
         ],
         speed: {
             land: 20,
@@ -1346,6 +3103,22 @@ MorphinChanges.changes = {
         },
         special: [
             'Jet200'
+        ]
+    },
+    'Peafowl': {
+        size: 'sm',
+        attacks: [
+            { name: 'Talons', diceCount: 1, diceSize: 3, count: 2 }
+        ],
+        speed: {
+            land: 20,
+            fly: {
+                base: 40,
+                maneuverability: 'clumsy'
+            }
+        },
+        senses: [
+            1
         ]
     },
     'Penguin': {
@@ -1616,7 +3389,7 @@ MorphinChanges.changes = {
     'Crocodile': {
         size: 'lg',
         attacks: [
-            { name: 'Bite', diceCount: 1, diceSize: 8, count: 1 },
+            { name: 'Bite', diceCount: 1, diceSize: 8, count: 1, special: ['Grab'] },
             { name: 'TailSlap', diceCount: 1, diceSize: 12, count: 1 }
         ],
         speed: {
@@ -1669,7 +3442,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            14
+            15
         ]
     },
     'Dire Bear': {
@@ -2061,7 +3834,7 @@ MorphinChanges.changes = {
             swim: 60
         },
         senses: [
-            14, 11
+            15, 11
         ]
     },
     'Helicoprion': {
@@ -2073,7 +3846,7 @@ MorphinChanges.changes = {
             swim: 60
         },
         senses: [
-            14, 11
+            15, 11
         ]
     },
     'Hippopotamus': {
@@ -2159,7 +3932,7 @@ MorphinChanges.changes = {
             swim: 60
         },
         senses: [
-            1, 14
+            1, 15
         ]
     },
     'Marax': {
@@ -2229,7 +4002,7 @@ MorphinChanges.changes = {
             swim: 80
         },
         senses: [
-            1, 17
+            1, 18
         ]
     },
     'Nothosaur': {
@@ -2336,7 +4109,7 @@ MorphinChanges.changes = {
             swim: 60
         },
         senses: [
-            14, 11
+            15, 11
         ]
     },
     'Stygian Hot-Blooded Horse': {
@@ -3178,7 +4951,7 @@ MorphinChanges.changes = {
             swim: 60
         },
         senses: [
-            1, 11, 14
+            1, 11, 15
         ]
     },
     'Iguanodon': {
@@ -3407,7 +5180,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            1, 13
+            1, 14
         ]
     },
     'Snark': {
@@ -3503,7 +5276,7 @@ MorphinChanges.changes = {
     'Boreal Wolf': {
         size: 'med',
         attacks: [
-            { name: 'Bite', diceCount: 1, diceSize: 6, count: 1, nonCrit: { formula: '1d6', type: {values: ['fire'], custom: ''} }, special: ['Trip'] }
+            { name: 'Bite', diceCount: 1, diceSize: 6, count: 1, nonCrit: { formula: '1d6', type: { values: ['fire'], custom: '' } }, special: ['Trip'] }
         ],
         speed: {
             land: 50,
@@ -3534,8 +5307,8 @@ MorphinChanges.changes = {
     'Delgeth': {
         size: 'med',
         attacks: [
-            { name: 'Gore', diceCount: 1, diceSize: 8, count: 1, nonCrit: { formula: '1d6', type: {values: ['fire'], custom: ''} } },
-            { name: 'Hoof', diceCount: 1, diceSize: 4, count: 2, nonCrit: { formula: '1d6', type: {values: ['fire'], custom: ''} } }
+            { name: 'Gore', diceCount: 1, diceSize: 8, count: 1, nonCrit: { formula: '1d6', type: { values: ['fire'], custom: '' } } },
+            { name: 'Hoof', diceCount: 1, diceSize: 4, count: 2, nonCrit: { formula: '1d6', type: { values: ['fire'], custom: '' } } }
         ],
         speed: {
             land: 50,
@@ -3563,14 +5336,14 @@ MorphinChanges.changes = {
     'Galvo': {
         size: 'med',
         attacks: [
-            { name: 'Bite', diceCount: 1, diceSize: 6, count: 1, nonCrit: { formula: '2d6', type: {values: ['electric'], custom: ''} } },
-            { name: 'Slam', diceCount: 1, diceSize: 4, count: 2, nonCrit: { formula: '2d6', type: {values: ['electric'], custom: ''} } }
+            { name: 'Bite', diceCount: 1, diceSize: 6, count: 1, nonCrit: { formula: '2d6', type: { values: ['electric'], custom: '' } } },
+            { name: 'Slam', diceCount: 1, diceSize: 4, count: 2, nonCrit: { formula: '2d6', type: { values: ['electric'], custom: '' } } }
         ],
         speed: {
             land: 40
         },
         senses: [
-            1, 14, 7
+            1, 15, 7
         ],
         di: [
             'electric'
@@ -4090,7 +5863,7 @@ MorphinChanges.changes = {
     'Shasalqu': {
         size: 'sm',
         attacks: [
-            { name: 'TailSlap', diceCount: 1, diceSize: 8, count: 1, nonCrit: { formula: '1d6', type: {values: ['cold'], custom: ''} } }
+            { name: 'TailSlap', diceCount: 1, diceSize: 8, count: 1, nonCrit: { formula: '1d6', type: { values: ['cold'], custom: '' } } }
         ],
         speed: {
             land: 30
@@ -4263,7 +6036,7 @@ MorphinChanges.changes = {
     'Ankheg': {
         size: 'lg',
         attacks: [
-            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1, special: ['Grab'], nonCrit: { formula: '1d4', type: {values: ['acid'], custom: ''} } }
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1, special: ['Grab'], nonCrit: { formula: '1d4', type: { values: ['acid'], custom: '' } } }
         ],
         speed: {
             land: 30,
@@ -4388,11 +6161,11 @@ MorphinChanges.changes = {
             { name: 'Claw', diceCount: 1, diceSize: 6, count: 2 }
         ],
         specialAttack: [
-            { name: 'BreathWeaponBlack', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '6d8', type: {values: ['acid'], custom: ''} }, damageAbility: '', attackType: 'none', area: '40-ft line', templateShape: 'ray',  templateSize: '40' },
-            { name: 'BreathWeaponBlue', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '6d8', type: {values: ['electric'], custom: ''} }, damageAbility: '', attackType: 'none', area: '40-ft line', templateShape: 'ray',  templateSize: '40' },
-            { name: 'BreathWeaponGreen', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '6d8', type: {values: ['acid'], custom: ''} }, damageAbility: '', attackType: 'none', area: '20-ft cone', templateShape: 'cone',  templateSize: '20' },
-            { name: 'BreathWeaponRed', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '6d8', type: {values: ['fire'], custom: ''} }, damageAbility: '', attackType: 'none', area: '20-ft cone', templateShape: 'cone',  templateSize: '20' },
-            { name: 'BreathWeaponWhite', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '6d8', type: {values: ['cold'], custom: ''} }, damageAbility: '', attackType: 'none', area: '20-ft cone', templateShape: 'cone',  templateSize: '20' }
+            { name: 'BreathWeaponBlack', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '6d8', type: { values: ['acid'], custom: '' } }, damageAbility: '', attackType: 'none', area: '40-ft line', templateShape: 'ray',  templateSize: '40' },
+            { name: 'BreathWeaponBlue', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '6d8', type: { values: ['electric'], custom: '' } }, damageAbility: '', attackType: 'none', area: '40-ft line', templateShape: 'ray',  templateSize: '40' },
+            { name: 'BreathWeaponGreen', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '6d8', type: { values: ['acid'], custom: '' } }, damageAbility: '', attackType: 'none', area: '20-ft cone', templateShape: 'cone',  templateSize: '20' },
+            { name: 'BreathWeaponRed', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '6d8', type: { values: ['fire'], custom: '' } }, damageAbility: '', attackType: 'none', area: '20-ft cone', templateShape: 'cone',  templateSize: '20' },
+            { name: 'BreathWeaponWhite', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '6d8', type: { values: ['cold'], custom: '' } }, damageAbility: '', attackType: 'none', area: '20-ft cone', templateShape: 'cone',  templateSize: '20' }
 
         ],
         speed: {
@@ -4460,7 +6233,7 @@ MorphinChanges.changes = {
             { name: 'Bite', diceCount: 2, diceSize: 8, count: 1, special: ['Poison'] }
         ],
         specialAttack: [
-            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '8d6', type: {values: ['acid'], custom: ''} }, damageAbility: '', attackType: 'none', area: '30-ft line', templateShape: 'ray',  templateSize: '30' }
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '8d6', type: { values: ['acid'], custom: '' } }, damageAbility: '', attackType: 'none', area: '30-ft line', templateShape: 'ray',  templateSize: '30' }
 
         ],
         speed: {
@@ -4521,7 +6294,7 @@ MorphinChanges.changes = {
             swim: 10
         },
         senses: [
-            1, 7, 21
+            1, 7, 22
         ],
         effect: {
             'Constrict': { note: 'Constrict: Same damage as Bite' }
@@ -4541,7 +6314,7 @@ MorphinChanges.changes = {
             climb: 10
         },
         senses: [
-            11, 14, 24
+            11, 15, 24
         ],
         eres: [
             { amount: 10, operator: true, types: ['fire', ''] }
@@ -4641,7 +6414,7 @@ MorphinChanges.changes = {
     'Glacier Toad': {
         size: 'lg',
         attacks: [
-            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1, special: ['Grab'], nonCrit: { formula: '1d6', type: {values: ['cold'], custom: ''} } }
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1, special: ['Grab'], nonCrit: { formula: '1d6', type: { values: ['cold'], custom: '' } } }
         ],
         speed: {
             land: 30,
@@ -4924,7 +6697,7 @@ MorphinChanges.changes = {
             { name: 'Hoof', diceCount: 1, diceSize: 6, count: 2 }
         ],
         specialAttack: [
-            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], nonCrit: { formula: '5d6', type: {values: ['fire'], custom: ''} }, damageAbility: '', attackType: 'none', area: '15-ft cone', templateShape: 'cone',  templateSize: '15' }
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], nonCrit: { formula: '5d6', type: { values: ['fire'], custom: '' } }, damageAbility: '', attackType: 'none', area: '15-ft cone', templateShape: 'cone',  templateSize: '15' }
 
         ],
         speed: {
@@ -5096,7 +6869,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            1, 17
+            1, 18
         ]
     },
     'Muhuru': {
@@ -5437,10 +7210,10 @@ MorphinChanges.changes = {
     'Winter Wolf': {
         size: 'lg',
         attacks: [
-            { name: 'Bite', diceCount: 1, diceSize: 8, count: 1, nonCrit: { formula: '1d6', type: {values: ['cold'], custom: ''} }, special: ['Trip'] }
+            { name: 'Bite', diceCount: 1, diceSize: 8, count: 1, nonCrit: { formula: '1d6', type: { values: ['cold'], custom: '' } }, special: ['Trip'] }
         ],
         specialAttack: [
-            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], nonCrit: { formula: '6d6', type: {values: ['cold'], custom: ''} }, damageAbility: '', attackType: 'none', area: '15-ft cone', templateShape: 'cone',  templateSize: '15' }
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], nonCrit: { formula: '6d6', type: { values: ['cold'], custom: '' } }, damageAbility: '', attackType: 'none', area: '15-ft cone', templateShape: 'cone',  templateSize: '15' }
 
         ],
         speed: {
@@ -5486,7 +7259,7 @@ MorphinChanges.changes = {
             burrow: 20
         },
         senses: [
-            1, 7, 11, 19
+            1, 7, 11, 20
         ]
     },
     'Brain Mole Monarch': {
@@ -5503,7 +7276,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            1, 7, 11, 21
+            1, 7, 11, 22
         ]
     },
     'Carbuncle': {
@@ -5640,7 +7413,7 @@ MorphinChanges.changes = {
     'Ostovite': {
         size: 'tiny',
         attacks: [
-            { name: 'Bite', diceCount: 1, diceSize: 2, count: 1, nonCrit: { formula: '1d6', type: {values: ['acid'], custom: ''} } }
+            { name: 'Bite', diceCount: 1, diceSize: 2, count: 1, nonCrit: { formula: '1d6', type: { values: ['acid'], custom: '' } } }
         ],
         speed: {
             land: 30
@@ -5701,10 +7474,10 @@ MorphinChanges.changes = {
     'Sun Falcon': {
         size: 'tiny',
         attacks: [
-            { name: 'Talon', diceCount: 1, diceSize: 3, count: 2, nonCrit: { formula: '1d6', type: {values: ['fire'], custom: ''} } }
+            { name: 'Talon', diceCount: 1, diceSize: 3, count: 2, nonCrit: { formula: '1d6', type: { values: ['fire'], custom: '' } } }
         ],
         specialAttack: [
-            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], nonCrit: { formula: '3d6', type: {values: ['fire'], custom: ''} }, damageAbility: '', attackType: 'none', area: '30-ft line', templateShape: 'ray',  templateSize: '30' }
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], nonCrit: { formula: '3d6', type: { values: ['fire'], custom: '' } }, damageAbility: '', attackType: 'none', area: '30-ft line', templateShape: 'ray',  templateSize: '30' }
 
         ],
         speed: {
@@ -5825,7 +7598,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 2, diceSize: 6, count: 2, special: ['Burn'] }
         ],
         specialAttack: [
-            { name: 'Burn', diceCount: 0, diceSize: 0, count: 1, type: ['fire'], attackType: 'save', special: ['Burn'], damageAbility: '', nonCrit: { formula: '2d6', type: {values: ['fire'], custom: ''} } }
+            { name: 'Burn', diceCount: 0, diceSize: 0, count: 1, type: ['fire'], attackType: 'save', special: ['Burn'], damageAbility: '', nonCrit: { formula: '2d6', type: { values: ['fire'], custom: '' } } }
         ],
         speed: {
             land: 60
@@ -5858,7 +7631,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 2, diceSize: 6, count: 2 }
         ],
         specialAttack: [
-            { name: 'Vortex', diceCount: 0, diceSize: 0, special: ['Vortex'], type: ['bludgeoning'], attackType: 'save', damageAbility: '', nonCrit: { formula: '2d6', type: {values: ['bludgeoning'], custom: ''} } }
+            { name: 'Vortex', diceCount: 0, diceSize: 0, special: ['Vortex'], type: ['bludgeoning'], attackType: 'save', damageAbility: '', nonCrit: { formula: '2d6', type: { values: ['bludgeoning'], custom: '' } } }
         ],
         speed: {
             land: 20,
@@ -5883,7 +7656,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 1, diceSize: 8, count: 2 }
         ],
         specialAttack: [
-            { name: 'Whirlwind', diceCount: 0, diceSize: 0, special: ['Whirlwind'], type: ['bludgeoning'], attackType: 'save', damageAbility: '', nonCrit: { formula: '1d8', type: {values: ['bludgeoning'], custom: ''} } }
+            { name: 'Whirlwind', diceCount: 0, diceSize: 0, special: ['Whirlwind'], type: ['bludgeoning'], attackType: 'save', damageAbility: '', nonCrit: { formula: '1d8', type: { values: ['bludgeoning'], custom: '' } } }
         ],
         speed: {
             fly: {
@@ -5929,7 +7702,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 1, diceSize: 8, count: 2, special: ['Burn'] }
         ],
         specialAttack: [
-            { name: 'Burn', diceCount: 0, diceSize: 0, count: 1, type: ['fire'], attackType: 'save', special: ['Burn'], damageAbility: '', nonCrit: { formula: '1d8', type: {values: ['fire'], custom: ''} } }
+            { name: 'Burn', diceCount: 0, diceSize: 0, count: 1, type: ['fire'], attackType: 'save', special: ['Burn'], damageAbility: '', nonCrit: { formula: '1d8', type: { values: ['fire'], custom: '' } } }
         ],
         speed: {
             land: 50
@@ -5962,7 +7735,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 1, diceSize: 8, count: 2 }
         ],
         specialAttack: [
-            { name: 'Vortex', diceCount: 0, diceSize: 0, special: ['Vortex'], type: ['bludgeoning'], attackType: 'save', damageAbility: '', nonCrit: { formula: '1d8', type: {values: ['bludgeoning'], custom: ''} } }
+            { name: 'Vortex', diceCount: 0, diceSize: 0, special: ['Vortex'], type: ['bludgeoning'], attackType: 'save', damageAbility: '', nonCrit: { formula: '1d8', type: { values: ['bludgeoning'], custom: '' } } }
         ],
         speed: {
             land: 20,
@@ -5987,7 +7760,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 1, diceSize: 6, count: 1 }
         ],
         specialAttack: [
-            { name: 'Whirlwind', diceCount: 0, diceSize: 0, special: ['Whirlwind'], type: ['bludgeoning'], attackType: 'save', damageAbility: '', nonCrit: { formula: '1d6', type: {values: ['bludgeoning'], custom: ''} } }
+            { name: 'Whirlwind', diceCount: 0, diceSize: 0, special: ['Whirlwind'], type: ['bludgeoning'], attackType: 'save', damageAbility: '', nonCrit: { formula: '1d6', type: { values: ['bludgeoning'], custom: '' } } }
         ],
         speed: {
             fly: {
@@ -6030,7 +7803,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 1, diceSize: 6, count: 1, special: ['Burn'] }
         ],
         specialAttack: [
-            { name: 'Burn', diceCount: 0, diceSize: 0, count: 1, type: ['fire'], attackType: 'save', special: ['Burn'], damageAbility: '', nonCrit: { formula: '1d6', type: {values: ['fire'], custom: ''} } }
+            { name: 'Burn', diceCount: 0, diceSize: 0, count: 1, type: ['fire'], attackType: 'save', special: ['Burn'], damageAbility: '', nonCrit: { formula: '1d6', type: { values: ['fire'], custom: '' } } }
         ],
         speed: {
             land: 50
@@ -6060,7 +7833,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 1, diceSize: 8, count: 1 }
         ],
         specialAttack: [
-            { name: 'Vortex', diceCount: 0, diceSize: 0, special: ['Vortex'], type: ['bludgeoning'], attackType: 'save', damageAbility: '', nonCrit: { formula: '1d8', type: {values: ['bludgeoning'], custom: ''} } }
+            { name: 'Vortex', diceCount: 0, diceSize: 0, special: ['Vortex'], type: ['bludgeoning'], attackType: 'save', damageAbility: '', nonCrit: { formula: '1d8', type: { values: ['bludgeoning'], custom: '' } } }
         ],
         speed: {
             land: 20,
@@ -6082,7 +7855,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 1, diceSize: 4, count: 1 }
         ],
         specialAttack: [
-            { name: 'Whirlwind', diceCount: 0, diceSize: 0, special: ['Whirlwind'], type: ['bludgeoning'], attackType: 'save', damageAbility: '', nonCrit: { formula: '1d4', type: {values: ['bludgeoning'], custom: ''} } }
+            { name: 'Whirlwind', diceCount: 0, diceSize: 0, special: ['Whirlwind'], type: ['bludgeoning'], attackType: 'save', damageAbility: '', nonCrit: { formula: '1d4', type: { values: ['bludgeoning'], custom: '' } } }
         ],
         speed: {
             fly: {
@@ -6125,7 +7898,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 1, diceSize: 4, count: 1, special: ['Burn'] }
         ],
         specialAttack: [
-            { name: 'Burn', diceCount: 0, diceSize: 0, count: 1, type: ['fire'], attackType: 'save', special: ['Burn'], damageAbility: '', nonCrit: { formula: '1d4', type: {values: ['fire'], custom: ''} } }
+            { name: 'Burn', diceCount: 0, diceSize: 0, count: 1, type: ['fire'], attackType: 'save', special: ['Burn'], damageAbility: '', nonCrit: { formula: '1d4', type: { values: ['fire'], custom: '' } } }
         ],
         speed: {
             land: 50
@@ -6155,7 +7928,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 1, diceSize: 6, count: 1 }
         ],
         specialAttack: [
-            { name: 'Vortex', diceCount: 0, diceSize: 0, special: ['Vortex'], type: ['bludgeoning'], attackType: 'save', damageAbility: '', nonCrit: { formula: '1d6', type: {values: ['bludgeoning'], custom: ''} } }
+            { name: 'Vortex', diceCount: 0, diceSize: 0, special: ['Vortex'], type: ['bludgeoning'], attackType: 'save', damageAbility: '', nonCrit: { formula: '1d6', type: { values: ['bludgeoning'], custom: '' } } }
         ],
         speed: {
             land: 20,
@@ -6272,7 +8045,7 @@ MorphinChanges.changes = {
     'Giant Sundew': {
         size: 'huge',
         attacks: [
-            { name: 'Slam', diceCount: 2, diceSize: 6, count: 2, nonCrit: { formula: '1d6', type: {values: ['acid'], custom: ''} }, special: ['Constrict'] }
+            { name: 'Slam', diceCount: 2, diceSize: 6, count: 2, nonCrit: { formula: '1d6', type: { values: ['acid'], custom: '' } }, special: ['Constrict'] }
         ],
         speed: {
             land: 20
@@ -6424,7 +8197,7 @@ MorphinChanges.changes = {
             'acid'
         ],
         regen: [
-            {value: 5, counter: ['bludgeoning','fire']}
+            { value: 5, counter: ['bludgeoning','fire'] }
         ]
     },
     'Treant': {
@@ -6670,7 +8443,7 @@ MorphinChanges.changes = {
             1, 7
         ],
         regen: [
-            {value: 5, counter: ['cold']}
+            { value: 5, counter: ['cold'] }
         ],
         dr: [
             '15/magic and slashing'
@@ -6761,13 +8534,13 @@ MorphinChanges.changes = {
             1
         ],
         regen: [
-            {value: 5, counter: ['acid','fire']}
+            { value: 5, counter: ['acid','fire'] }
         ]
     },
     'Viper Vine': {
         size: 'lg',
         attacks: [
-            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1, nonCrit: { formula: '3d6', type: {values: ['acid'], custom: ''} } },
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1, nonCrit: { formula: '3d6', type: { values: ['acid'], custom: '' } } },
             { name: 'Tentacle', diceCount: 1, diceSize: 6, count: 4, special: ['Grab', 'Constrict'] }
         ],
         speed: {
@@ -7003,7 +8776,7 @@ MorphinChanges.changes = {
             1
         ],
         regen: [
-            {value: 5, counter: ['acid']}
+            { value: 5, counter: ['acid'] }
         ],
         eres: [
             { amount: 10, operator: true, types: ['electric', ''] },
@@ -7102,7 +8875,7 @@ MorphinChanges.changes = {
             1
         ],
         regen: [
-            {value: 5, counter: ['fire']}
+            { value: 5, counter: ['fire'] }
         ]
     },
     'Violet Fungus': {
@@ -7160,7 +8933,7 @@ MorphinChanges.changes = {
     'Calathgar': {
         size: 'sm',
         attacks: [
-            { name: 'Flower', diceCount: 1, diceSize: 6, count: 1, nonCrit: { formula: '1d6', type: {values: ['cold'], custom: ''} } },
+            { name: 'Flower', diceCount: 1, diceSize: 6, count: 1, nonCrit: { formula: '1d6', type: { values: ['cold'], custom: '' } } },
             { name: 'Tendril', diceCount: 1, diceSize: 4, count: 1 }
         ],
         speed: {
@@ -7281,7 +9054,7 @@ MorphinChanges.changes = {
             { name: 'Slam', diceCount: 1, diceSize: 4, count: 1 }
         ],
         specialAttack: [
-            { name: 'Constrict', diceCount: 0, diceSize: 0, count: 1, attackType: 'mcman', nonCrit: { formula: '2d4', type: {values: ['acid'], custom: ''} } }
+            { name: 'Constrict', diceCount: 0, diceSize: 0, count: 1, attackType: 'mcman', nonCrit: { formula: '2d4', type: { values: ['acid'], custom: '' } } }
         ],
         speed: {
             land: 20,
@@ -7474,7 +9247,7 @@ MorphinChanges.changes = {
     'Xtabay': {
         size: 'sm',
         attacks: [
-            { name: 'Sting', diceCount: 1, diceSize: 3, count: 2, nonCrit: { formula: '1d2', type: {values: ['acid'], custom: ''} } }
+            { name: 'Sting', diceCount: 1, diceSize: 3, count: 2, nonCrit: { formula: '1d2', type: { values: ['acid'], custom: '' } } }
         ],
         speed: {
             land: 5
@@ -7501,7 +9274,7 @@ MorphinChanges.changes = {
             swim: 40
         },
         senses: [
-            7, 21
+            7, 22
         ]
     },
     'Blood Caterpillar': {
@@ -7536,7 +9309,7 @@ MorphinChanges.changes = {
             swim: 60
         },
         senses: [
-            1, 21
+            1, 22
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d4 Con; cure 2 consecutive saves.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -7552,7 +9325,7 @@ MorphinChanges.changes = {
             burrow: 10
         },
         senses: [
-            7,21
+            7,22
         ]
     },
     'Giant Belostomatid': {
@@ -7570,7 +9343,7 @@ MorphinChanges.changes = {
             swim: 40
         },
         senses: [
-            7, 21
+            7, 22
         ]
     },
     'Giant Black Widow': {
@@ -7586,7 +9359,7 @@ MorphinChanges.changes = {
             climb: 30
         },
         senses: [
-            7, 21
+            7, 22
         ],
         effect: {
             'Web': { note: 'Web: Touch attack to entangle up to one size category higher, escaped with escape artist or burst with strength. DC 10+SL+Mod.', description: '<p>Creatures with the web ability can use webs to support themselves and up to one additional creature of the same size. In addition, such creatures can throw a web up to eight times per day. This is similar to an attack with a net but has a maximum range of 50 feet, with a range increment of 10 feet, and is effective against targets up to one size category larger than the web spinner. An entangled creature can escape with a successful Escape Artist check or burst the web with a Strength check. Both are standard actions with a DC equal to 10 + Spell Level + Caster Stat Mod. Attempts to burst a web by those caught in it take a -4 penalty.</p><p>Web spinners can create sheets of sticky webbing up to three times their size. They usually position these sheets to snare flying creatures but can also try to trap prey on the ground. Approaching creatures must succeed on a DC 20 Perception check to notice a web; otherwise they stumble into it and become trapped as though by a successful web attack. Attempts to escape or burst the webbing gain a +5 bonus if the trapped creature has something to walk on or grab while pulling free. Each 5-foot-square section of web has a number of hit points equal to the Hit Dice of the creature that created it ([[@attributes.hd.total]])and DR 5/—.</p><p>A creature can move across its own web at its climb speed and can pinpoint the location of any creature touching its web.</p>' },
@@ -7677,7 +9450,7 @@ MorphinChanges.changes = {
             land: 50
         },
         senses: [
-            7, 21
+            7, 22
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d2 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' },
@@ -7707,7 +9480,7 @@ MorphinChanges.changes = {
             land: 5
         },
         senses: [
-            1, 11, 21
+            1, 11, 22
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Spines—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d2 Str and nauseated for 1 round; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -7781,7 +9554,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            7, 21
+            7, 22
         ]
     },
     'Knight Ant': {
@@ -7796,7 +9569,7 @@ MorphinChanges.changes = {
             climb: 20
         },
         senses: [
-            7, 11, 21
+            7, 11, 22
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d4 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -7892,7 +9665,7 @@ MorphinChanges.changes = {
             climb: 40
         },
         senses: [
-            7, 21
+            7, 22
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1d2 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -7922,7 +9695,7 @@ MorphinChanges.changes = {
             swim: 40
         },
         senses: [
-            1, 21
+            1, 22
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Sting-injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1d2 Con; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -8046,7 +9819,7 @@ MorphinChanges.changes = {
             land: 15
         },
         senses: [
-            1, 11, 21
+            1, 11, 22
         ],
         effect: {
             'Pull': { note: 'Tongue - Combat Maneuver pull 5 ft', description: '<p><strong>Pull (Ex)</strong> A creature with this ability can choose to make a free combat maneuver check with a successful attack. If successful, this check pulls a creature closer. The distance pulled is set by this ability. The type of attack that causes the pull and the distance pulled are included in the creature\'s description. This ability only works on creatures of a size equal to or smaller than the pulling creature. Creatures pulled in this way do not provoke attacks of opportunity and stop if the pull would move them into a solid object or creature.</p>' }
@@ -8072,7 +9845,7 @@ MorphinChanges.changes = {
         size: 'med',
         attacks: [
             { name: 'Bite', diceCount: 1, diceSize: 8, count: 1 },
-            { name: 'Spit', diceCount: 0, diceSize: 0, count: 1, nonCrit: { formula: '1d3', type: {values: ['acid'], custom: ''} }, attackType: 'rwak', range: 30, increment: 1 }
+            { name: 'Spit', diceCount: 0, diceSize: 0, count: 1, nonCrit: { formula: '1d3', type: { values: ['acid'], custom: '' } }, attackType: 'rwak', range: 30, increment: 1 }
         ],
         speed: {
             land: 20,
@@ -8135,7 +9908,8 @@ MorphinChanges.changes = {
         size: 'med',
         attacks: [
             { name: 'Bite', diceCount: 1, diceSize: 6, count: 1, special: ['Poison'] }
-        ],        specialAttack: [
+        ],
+        specialAttack: [
             { name: 'Web', diceCount: 0, diceSize: 0, count: 1, special: ['Touch', 'Web'], attackType: 'rwak', range: 10, increment: 5, charges: 8 }
         ],
         speed: {
@@ -8143,7 +9917,7 @@ MorphinChanges.changes = {
             climb: 30
         },
         senses: [
-            7, 21
+            7, 22
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Bite—injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1d2 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' },
@@ -8153,14 +9927,14 @@ MorphinChanges.changes = {
     'Giant Termite': {
         size: 'med',
         attacks: [
-            { name: 'Bite', diceCount: 1, diceSize: 8, count: 1, nonCrit: { formula: '1d6', type: {values: ['acid'], custom: ''} } }
+            { name: 'Bite', diceCount: 1, diceSize: 8, count: 1, nonCrit: { formula: '1d6', type: { values: ['acid'], custom: '' } } }
         ],
         speed: {
             land: 30,
             burrow: 20
         },
         senses: [
-            7, 11, 21
+            7, 11, 22
         ]
     },
     'Giant Tube Worm': {
@@ -8173,7 +9947,7 @@ MorphinChanges.changes = {
             swim: 20
         },
         senses: [
-            7, 21
+            7, 22
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1 Dex and staggered 1 round; cure 2 consecutive saves.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -8208,7 +9982,7 @@ MorphinChanges.changes = {
             land: 10
         },
         senses: [
-            1, 11, 21
+            1, 11, 22
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Spine—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d2 Con and stunned 1 round; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -8312,7 +10086,7 @@ MorphinChanges.changes = {
             land: 30
         },
         senses: [
-            7, 21
+            7, 22
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -8352,7 +10126,7 @@ MorphinChanges.changes = {
             climb: 30
         },
         senses: [
-            7, 21
+            7, 22
         ]
     },
     'Giant Crab Spider': {
@@ -8365,7 +10139,7 @@ MorphinChanges.changes = {
             climb: 20
         },
         senses: [
-            7, 21
+            7, 22
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Bite—injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1d2 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -8453,7 +10227,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            7, 21
+            7, 22
         ]
     },
     'Ochre Eurypterid': {
@@ -8467,7 +10241,7 @@ MorphinChanges.changes = {
             swim: 40
         },
         senses: [
-            1, 21
+            1, 22
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1 Dex; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -8564,7 +10338,8 @@ MorphinChanges.changes = {
         effect: {
             'Poison': { note: 'Poison (Ex) - Bite—injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
         }
-    }
+    },
+
 };
 
 MorphinChanges.allowedSpecials = {
@@ -8596,35 +10371,38 @@ MorphinChanges.buffIcons = {
     wildShape: 'systems/pf1/icons/skills/green_21.jpg',
     plantShape: 'systems/pf1/icons/spells/vines-plain-2.jpg',
     elementalBody: 'systems/pf1/icons/spells/wind-grasp-magenta-2.jpg',
-    verminShape: 'systems/pf1/icons/races/creature-types/vermin.png'
+    verminShape: 'systems/pf1/icons/races/creature-types/vermin.png',
+    shifterWildShape: 'icons/magic/nature/wolf-paw-glow-green.webp'
 
 };
 
 MorphinChanges.SENSES = Object.freeze({
-    LOWLIGHT: { value: 1, name: 'LowLightVision', setting: {ll: {enabled: true}} },
-    DARKVISION10: { value: 2, name: 'Darkvision10', setting: {dv: 10} },
-    DARKVISION20: { value: 3, name: 'Darkvision20', setting: {dv: 20} },
-    DARKVISION30: { value: 4, name: 'Darkvision30', setting: {dv: 30} },
-    DARKVISION40: { value: 5, name: 'Darkvision40', setting: {dv: 40} },
-    DARKVISION50: { value: 6, name: 'Darkvision50', setting: {dv: 50} },
-    DARKVISION60: { value: 7, name: 'Darkvision60', setting: {dv: 60} },
-    DARKVISION70: { value: 8, name: 'Darkvision70', setting: {dv: 70} },
-    DARKVISION80: { value: 9, name: 'Darkvision80', setting: {dv: 80} },
-    DARKVISION90: { value: 10, name: 'Darkvision90', setting: {dv: 90} },
-    SCENT: { value: 11, name: 'Scent', setting: {custom: 'Scent'} },
-    BLINDSENSE10: { value: 12, name: 'Blindsense10', setting: {bs: 10} },
-    BLINDSENSE20: { value: 13, name: 'Blindsense20', setting: {bs: 20} },
-    BLINDSENSE30: { value: 14, name: 'Blindsense30', setting: {bs: 30} },
-    BLINDSENSE40: { value: 15, name: 'Blindsense40', setting: {bs: 40} },
-    BLINDSENSE50: { value: 16, name: 'Blindsense50', setting: {bs: 50} },
-    BLINDSENSE60: { value: 17, name: 'Blindsense60', setting: {bs: 60} },
-    TREMORSENSE10: { value: 18, name: 'Tremorsense10', setting: {ts: 10} },
-    TREMORSENSE15: { value: 19, name: 'Tremorsense15', setting: {ts: 15} },
-    TREMORSENSE20: { value: 20, name: 'Tremorsense20', setting: {ts: 20} },
-    TREMORSENSE30: { value: 21, name: 'Tremorsense30', setting: {ts: 30} },
-    TREMORSENSE40: { value: 22, name: 'Tremorsense40', setting: {ts: 40} },
-    TREMORSENSE50: { value: 24, name: 'Tremorsense50', setting: {ts: 50} },
-    TREMORSENSE60: { value: 25, name: 'Tremorsense60', setting: {ts: 60} },
+    LOWLIGHT: { value: 1, name: 'LowLightVision', setting: { ll: {enabled: true }} },
+    DARKVISION10: { value: 2, name: 'Darkvision10', setting: { dv: 10 } },
+    DARKVISION20: { value: 3, name: 'Darkvision20', setting: { dv: 20 } },
+    DARKVISION30: { value: 4, name: 'Darkvision30', setting: { dv: 30 } },
+    DARKVISION40: { value: 5, name: 'Darkvision40', setting: { dv: 40 } },
+    DARKVISION50: { value: 6, name: 'Darkvision50', setting: { dv: 50 } },
+    DARKVISION60: { value: 7, name: 'Darkvision60', setting: { dv: 60 } },
+    DARKVISION70: { value: 8, name: 'Darkvision70', setting: { dv: 70 } },
+    DARKVISION80: { value: 9, name: 'Darkvision80', setting: { dv: 80 } },
+    DARKVISION90: { value: 10, name: 'Darkvision90', setting: { dv: 90 } },
+    SCENT: { value: 11, name: 'Scent', setting: { custom: 'Scent' } },
+    BLINDSENSE10: { value: 12, name: 'Blindsense10', setting: { bs: 10 } },
+    BLINDSENSE15: { value: 13, name: 'Blindsense15', setting: { bs: 15 } },
+    BLINDSENSE20: { value: 14, name: 'Blindsense20', setting: { bs: 20 } },
+    BLINDSENSE30: { value: 15, name: 'Blindsense30', setting: { bs: 30 } },
+    BLINDSENSE40: { value: 16, name: 'Blindsense40', setting: { bs: 40 } },
+    BLINDSENSE50: { value: 17, name: 'Blindsense50', setting: { bs: 50 } },
+    BLINDSENSE60: { value: 18, name: 'Blindsense60', setting: { bs: 60 } },
+    TREMORSENSE10: { value: 19, name: 'Tremorsense10', setting: { ts: 10 } },
+    TREMORSENSE15: { value: 20, name: 'Tremorsense15', setting: { ts: 15 } },
+    TREMORSENSE20: { value: 21, name: 'Tremorsense20', setting: { ts: 20 } },
+    TREMORSENSE30: { value: 22, name: 'Tremorsense30', setting: { ts: 30 } },
+    TREMORSENSE40: { value: 23, name: 'Tremorsense40', setting: { ts: 40 } },
+    TREMORSENSE50: { value: 24, name: 'Tremorsense50', setting: { ts: 50 } },
+    TREMORSENSE60: { value: 25, name: 'Tremorsense60', setting: { ts: 60 } },
+    DARKVISION120: { value: 26, name: 'Darkvision120', setting: { dv: 120 } }
 });
 
 MorphinChanges.flightManeuverability = ['clumsy', 'poor', 'average', 'good', 'perfect'];

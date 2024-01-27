@@ -14,8 +14,10 @@
             "BreathWeaponWhite": "Breath Weapon White",
             "Bristles": "Bristles",
             "Burn": "Burn",
+            "CaptivatingDance": "Captivating Dance",
             "Claw": "Claw",
             "Constrict": "Constrict",
+            "ControlSwarm": "Control Swarm",
             "EarthGlide": "Earth Glide",
             "Ferocity": "Ferocity",
             "Filament": "Filament",
@@ -27,17 +29,20 @@
             "Grab": "Grab",
             "HeadButt": "Head Butt",
             "Hoof": "Hoof",
+            "InkCloud": "Ink Cloud",
             "Jet200": "Jet 200ft",
             "Jet240": "Jet 240ft",
             "Jet260": "Jet 260ft",
             "Jet90": "Jet 90ft",
             "Kick": "Kick",
             "Lunge": "Lunge",
+            "MightyRoar": "Mighty Roar",
             "Pincer": "Pincer",
             "Pincers": "Pincers",
             "Poison": "Poison",
             "Pounce": "Pounce",
             "Pull": "Pull",
+            "Rage": "Rage",
             "Rake1Claw": "Rake (1 Claw)",
             "Rake2Claws": "Rake (2 Claws)",
             "Rake2Talons": "Rake (2 Talons)",
@@ -46,12 +51,15 @@
             "Roar": "Roar",
             "Root": "Root",
             "Slam": "Slam",
+            "Snatch": "Snatch",
             "Spikes": "Spikes",
             "Spine": "Spine",
             "Spit": "Spit",
+            "Sprint": "Sprint",
             "Sting": "Sting",
             "Stinger": "Stinger",
             "Stomach": "Stomach",
+            "SwapPlaces": "Swap Places",
             "Tail": "Tail",
             "TailBarbs": "Tail Barbs",
             "TailClaw": "Tail Claw",
@@ -107,6 +115,9 @@
             },
             "RighteousMight": {
                 "Name": "Righteous Might"
+            },
+            "ShifterWildShape": {
+                "Name": "Shifter Wild Shape"
             },
             "VerminShape": {
                 "Name": "Vermin Shape"
@@ -165,7 +176,9 @@
         "FrightfulShape": "Frightful Shape",
         "FrightfulShapeAttackSuccess": "Frightful Shape Attack Success",
         "InputCasterLevel": "Input Caster Level",
-        "ManyTokensWarning": "Too many actors selected. Choose one token.",
+        "ManyTokensWarning": "Too many actors selected. Choose one token",
+        "MustSpecifyAspect": "You must specify the Aspect choice",
+        "MustSpecifyForm": "You must specify major or minor form for the Aspect",
         "MutatedShape": "Mutated Shape",
         "Name": "Mighty Morphin Mod",
         "NoEffectWarning": "is not under any change effects",
@@ -208,6 +221,7 @@
                 "Name": "Create Revert Script Call on Buff"
             }
         },
+        "ShifterInvalidWarning": " is not a valid aspect for Shifter Wild Shape",
         "Sizes": {
             "Small": "Small",
             "Tiny": "Tiny",

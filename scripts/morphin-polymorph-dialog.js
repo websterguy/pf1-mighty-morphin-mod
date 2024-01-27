@@ -23,6 +23,7 @@ export class MorphinPolymorphDialog extends FormApplication {
         this.shapeOptions = {};
         this.contextNotes = [];
         this.wildShape = (this.source === game.i18n.localize('MMMOD.WildShape'));
+        this.shifterWildShape = (this.source === game.i18n.localize('MMMOD.Buffs.ShifterWildShape.Name'));
         this.planar = (!!fromUuidSync(actorId).items.getName(game.i18n.localize('MMMOD.PlanarWildShape')));
         this.planarType = planarType;
         this.energized = (!!fromUuidSync(actorId).items.getName(game.i18n.localize('MMMOD.EnergizedWildShape')));
@@ -70,57 +71,95 @@ export class MorphinPolymorphDialog extends FormApplication {
      */
     async applyChanges(event, chosenForm) {
         let shifter = fromUuidSync(this.actorId);
-        let newSize = MorphinChanges.changes[chosenForm].size;
+        let newSize = this.shifterWildShape ? this.totalChanges.size || shifter.system.traits.size : MorphinChanges.changes[chosenForm].size;
 
         let itemsToEmbed = [];
         // Find out if this is the only natural attack the form has
-        let oneAttack = MorphinChanges.changes[chosenForm].attacks.length === 1;
+        let oneAttack = this.shifterWildShape ? this.totalChanges.attacks?.length === 1 :MorphinChanges.changes[chosenForm].attacks.length === 1;
 
         // Loop over the attacks and create the items
         const amuletItem = shifter.items.find(o => o.name.toLowerCase().includes(game.i18n.localize('MMMOD.AmuletOfMightyFists').toLowerCase()) && o.system.equipped);
         let bonusSearch = /\+(\d+)/.exec(amuletItem?.name);
         let amuletBonus = !!bonusSearch ? bonusSearch[1] : null;
-        for (let i = 0; i < MorphinChanges.changes[chosenForm].attacks.length; i++) {
-            let attack = duplicate(MorphinChanges.changes[chosenForm].attacks[i]); // get the attack data
+        this.attacks = this.shifterWildShape ? this.totalChanges.attacks || [] : duplicate(MorphinChanges.changes[chosenForm].attacks);
+        for (let i = 0; i < this.attacks.length; i++) {
+            let attack = this.attacks[i]; // get the attack data
             attack.enh = parseInt(amuletBonus);
             // Remove any special property if it's no allowed at this level
             if (!!attack.special) {
                 for (let j = 0; j < attack.special.length; j++) {
                     const specialElement = attack.special[j];
 
-                    if (!MorphinChanges.allowedSpecials[this.spell][this.level].includes(specialElement)) {
+                    if (!this.shifterWildShape && !MorphinChanges.allowedSpecials[this.spell][this.level].includes(specialElement)) {
                         delete (attack.special[i]);
                     }
                 }
             }
+            
+            let usedClaws = false;
+            if (this.shifterWildShape) {
+                // if (attack.claw || (attack.claw === undefined && globalThis.pf1.config.sizeDie.indexOf(`${attack.diceCount}d${attack.diceSize}`) < globalThis.pf1.config.sizeDie.indexOf(`${this.clawsData.diceCount}d${this.clawsData.diceSize}`))) {
+                //     attack.diceCount = this.clawsData.diceCount;
+                //     attack.diceSize = this.clawsData.diceSize;
+                //     usedClaws = true;
+                // }
+                // if (!!attack.improved) {
+                //     const newDamage = Roll.fromTerms(pf1.utils.rollPreProcess.sizeRoll(attack.diceCount, attack.diceSize, 5, 4)).formula.split('d');
+                //     attack.diceCount = newDamage[0];
+                //     attack.diceSize = newDamage[1];
+                // }
+                if (!!this.clawsData.notes) attack.notes = this.clawsData.notes;
+                if (!!this.clawsData.critMult) attack.critMult = Math.min(4, attack.critMult + this.clawsData.critMult - 2);
+                if (usedClaws && attack.special?.includes('Rend')) this.totalChanges.effect['Rend'].note = this.totalChanges.effect['Rend'].note.replace(/sizeRoll\([0-9]+, [0-9]+/g, `sizeRoll(${attack.diceCount}, ${attack.diceSize}`);
+            }
 
-            // console.log(MightyMorphinApp.createAttack(this.actorId, newSize, attack, oneAttack, MorphinChanges.changes[chosenForm].effect, this.source, 'natural'));
-            itemsToEmbed.push(MightyMorphinApp.createAttack(this.actorId, newSize, attack, oneAttack, MorphinChanges.changes[chosenForm].effect, this.source, 'natural'));
+            const createdAttack = MightyMorphinApp.createAttack(this.actorId, newSize, attack, oneAttack, this.shifterWildShape ? this.totalChanges.effect : MorphinChanges.changes[chosenForm].effect, this.source, 'natural');
+            if (!!attack.usedClaws) createdAttack.name += ` (${game.i18n.localize('Shifter Claws')})`;
+            if (!!this.shifterWildShape && !!this.totalChanges.conditionals) createdAttack.system.actions[0]?.conditionals.push(...this.totalChanges.conditionals);
+            itemsToEmbed.push(createdAttack);
+
         }
 
         // Loop over special attacks and create the items
-        if (!!MorphinChanges.changes[chosenForm].specialAttack) {
-            for (let i = 0; i < MorphinChanges.changes[chosenForm].specialAttack.length; i++) {
-                let attack = duplicate(MorphinChanges.changes[chosenForm].specialAttack[i]);
+        if ((this.shifterWildShape && this.totalChanges.specialAttack) || !!MorphinChanges.changes[chosenForm]?.specialAttack) {
+            this.specialAttack = this.shifterWildShape ? this.totalChanges.specialAttack || [] : duplicate(MorphinChanges.changes[chosenForm].specialAttack);
+            for (let i = 0; i < this.specialAttack.length; i++) {
+                let attack = this.specialAttack[i];
 
                 // Remove any special property if it's no allowed at this level
                 if (!!attack.special) {
                     for (let j = 0; j < attack.special.length; j++) {
                         const specialElement = attack.special[j];
-                        // console.log(this.source, this.level, MorphinChanges.allowedSpecials[this.source]);
-                        if (!MorphinChanges.allowedSpecials[this.spell][this.level].includes(specialElement)) {
+                        if (!this.shifterWildShape && !MorphinChanges.allowedSpecials[this.spell][this.level].includes(specialElement)) {
                             delete (attack.special[i]);
                         }
                     }
                 }
+                
+                let usedClaws = false;
+                if (this.shifterWildShape) {
+                    // if (attack.claw || (attack.claw === undefined && globalThis.pf1.config.sizeDie.indexOf(`${attack.diceCount}d${attack.diceSize}`) < globalThis.pf1.config.sizeDie.indexOf(`${this.clawsData.diceCount}d${this.clawsData.diceSize}`))) {
+                    //     attack.diceCount = this.clawsData.diceCount;
+                    //     attack.diceSize = this.clawsData.diceSize;
+                    //     usedClaws = true;
+                    // }
+                    // if (!!attack.improved) {
+                    //     const newDamage = Roll.fromTerms(pf1.utils.rollPreProcess.sizeRoll(attack.diceCount, attack.diceSize, 5, 4)).formula.split('d');
+                    //     attack.diceCount = newDamage[0];
+                    //     attack.diceSize = newDamage[1];
+                    // }
+                    if (!!this.clawsData.notes) attack.notes = this.clawsData.notes;
+                    if (!!this.clawsData.critMult) attack.critMult = Math.min(4, attack.critMult + this.clawsData.critMult - 2);
+                }
 
-                // console.log(MightyMorphinApp.createAttack(this.actorId, newSize, attack, false, MorphinChanges.changes[chosenForm].effect, this.source, 'misc'));
-                itemsToEmbed.push(MightyMorphinApp.createAttack(this.actorId, newSize, attack, false, MorphinChanges.changes[chosenForm].effect, this.source, 'misc'));
+                const createdAttack = MightyMorphinApp.createAttack(this.actorId, newSize, attack, false, this.shifterWildShape ? this.totalChanges.effect : MorphinChanges.changes[chosenForm].effect, this.source, 'misc');
+                if (!!attack.usedClaws) createdAttack.name += ` (${game.i18n.localize('Shifter Claws')})`;
+                itemsToEmbed.push(createdAttack);
             }
         }
 
         // Add base polymorph size stat changes to the spell's normal changes if necessary
-        if (!!this.polymorphChanges.length) this.changes = this.changes.concat(this.polymorphChanges);
+        if (!!this.polymorphChanges?.length) this.changes = this.changes.push(...this.polymorphChanges);
 
         let buff = shifter.items.find(o => o.type === 'buff' && o.name === this.source);
         // If the buff doesn't already exist on the actor, create it
@@ -159,7 +198,25 @@ export class MorphinPolymorphDialog extends FormApplication {
 
         // Set up adjustments to strength carry bonus and carry multiplier so actor's encumbrance doesn't change
         let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
-        this.changes.concat(carryBonusChanges);
+        this.changes.push(...carryBonusChanges);
+
+        if (!!this.shifterWildShape && !!this.totalChanges.changes) this.changes.push(...this.totalChanges.changes);
+
+        if (!!this.shifterWildShape && !!this.totalChanges.feats) {
+            for (const feat of this.totalChanges.feats) {
+                let featData = await fromUuid(feat.uuid);
+                if (!featData) {
+                    featData = await Item.create({ name: feat.name, type: 'feat' }, { temporary: true });
+                }
+                featData = featData.toObject();
+                featData.name += ` (${game.i18n.localize('MMMOD.Buffs.ShifterWildShape.Name')})`;
+                itemsToEmbed.push(featData);
+            }
+        }
+
+        if (!!this.shifterWildShape && !!this.totalChanges.contextNotes) this.contextNotes.push(...this.totalChanges.contextNotes);
+
+        
 
         let armorChangeFlag = [];
         let armorToChange = [];
@@ -292,7 +349,7 @@ export class MorphinPolymorphDialog extends FormApplication {
 
                 if (!!specialName) { // make sure it wasn't deleted for being invalid at this spell level
                     let specialToCreate = duplicate(specialData);
-                    specialToCreate.name = `${specialName} (${this.source})`;
+                    specialToCreate.name = `${game.i18n.localize('MMMOD.Attacks.' + specialName)} (${this.source})`;
                     itemsToEmbed.push(specialToCreate);
                 }
             }
@@ -524,7 +581,6 @@ export class MorphinPolymorphDialog extends FormApplication {
         if (!!this.durationLevel) {
             durationData = {value: this.durationLevel.toString(), units: (this.source === 'Wild Shape' ? 'hour' : 'minute')};
         }
-
         
         let buffUpdate = [{ _id: buff.id, 'system.duration': durationData, 'system.changes': this.changes, 'system.contextNotes': this.contextNotes,'system.active': true }];
 
@@ -537,7 +593,10 @@ export class MorphinPolymorphDialog extends FormApplication {
         await shifter.update(mergeObject({ 'system.traits.size': newSize, 'flags.pf1-mighty-morphin': flags }, mergeObject(skillModChange, mergeObject(maneuverabilityChange, mergeObject(sensesChanges, protoImageChange)))));
 
         // update items on the actor
-        if (!!armorToChange.length) await shifter.updateEmbeddedDocuments('Item', armorToChange.concat(buffUpdate));
+        if (!!armorToChange.length) {
+            armorToChange.push(...buffUpdate);
+            await shifter.updateEmbeddedDocuments('Item', armorToChange);
+        }
         else await shifter.updateEmbeddedDocuments('Item', buffUpdate);
         canvas.tokens.releaseAll();
         if (!!shifter.token) shifter.token.object.control();
@@ -571,7 +630,7 @@ export class MorphinPolymorphDialog extends FormApplication {
      * @param {object[]} eres The energy resistance from the chosen form
      * @returns The energy resistance applicable for this spell
      */
-    processEres(eres) {        
+    processEres(eres) {
         let eresObject = { value: [], custom: '' };
         for (const entry of eres) {
             if (typeof(entry) === 'string') {

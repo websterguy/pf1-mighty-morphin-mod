@@ -16,6 +16,7 @@ Hooks.once('init', () => {
   game.mightyMorphin.elementalBody = MightyMorphinApp.elementalBody;
   game.mightyMorphin.plantShape = MightyMorphinApp.plantShape;
   game.mightyMorphin.verminShape = MightyMorphinApp.verminShape;
+  game.mightyMorphin.shifterWildShape = MightyMorphinApp.shifterWildShape;
   game.mightyMorphin.maulerBattleForm = MightyMorphinApp.maulerBattleForm;
 });
 

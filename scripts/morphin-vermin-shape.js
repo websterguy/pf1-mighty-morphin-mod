@@ -305,6 +305,7 @@ export class MorphinVerminShape extends MorphinPolymorphDialog {
 
     /** @inheritdoc */
     processEres(eres) {
+        
         return { value: [], custom: '' };
     }
 
