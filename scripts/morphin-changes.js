@@ -1329,7 +1329,7 @@ MorphinChanges.changes = {
                         { name: 'Endurance', uuid: 'Compendium.pf1.feats.Item.ehqx8txNRGMaNOPt' }
                     ],
                     changes: [
-                        { formula: '5', operator: 'add', subTarget: 'landspeed', modifier: 'enh', priority: 0, value: 5 },
+                        { formula: '5', operator: 'add', subTarget: 'landSpeed', modifier: 'enh', priority: 0, value: 5 },
                     ]
                 },
                 8: {
@@ -1340,7 +1340,7 @@ MorphinChanges.changes = {
                 },
                 15: {
                     changes: [
-                        { formula: '15', operator: 'add', subTarget: 'landspeed', modifier: 'enh', priority: 0, value: 15 },
+                        { formula: '15', operator: 'add', subTarget: 'landSpeed', modifier: 'enh', priority: 0, value: 15 },
                     ]
                 }
             },
@@ -2013,10 +2013,7 @@ MorphinChanges.changes = {
                         { text: '+[[6]] competence to saves v webs', subTarget: 'allSavingThrows' },
                         { text: '+[[6]] competence to break free from webs', subTarget: 'cmb' }
                     ]
-                },
-                alternates: [
-                    'Bite'
-                ]
+                }
             },
             major: {
                 1: {
@@ -2048,7 +2045,10 @@ MorphinChanges.changes = {
                 alternates: [
                     'Bite'
                 ]
-            }
+            },
+            alternates: [
+                'Bite'
+            ]
         },
         'Stag': {
             source: 'beastShape',
@@ -10373,7 +10373,6 @@ MorphinChanges.buffIcons = {
     elementalBody: 'systems/pf1/icons/spells/wind-grasp-magenta-2.jpg',
     verminShape: 'systems/pf1/icons/races/creature-types/vermin.png',
     shifterWildShape: 'icons/magic/nature/wolf-paw-glow-green.webp'
-
 };
 
 MorphinChanges.SENSES = Object.freeze({

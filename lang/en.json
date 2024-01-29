@@ -116,6 +116,9 @@
             "RighteousMight": {
                 "Name": "Righteous Might"
             },
+            "ShifterAspect": {
+                "Name": "Shifter Aspect"
+            },
             "ShifterWildShape": {
                 "Name": "Shifter Wild Shape"
             },
@@ -175,6 +178,7 @@
         "FilePermissionWarning": "To enable token image switching, player must have Foundry permission to \"Use File Browser\"",
         "FrightfulShape": "Frightful Shape",
         "FrightfulShapeAttackSuccess": "Frightful Shape Attack Success",
+        "From": "from",
         "InputCasterLevel": "Input Caster Level",
         "ManyTokensWarning": "Too many actors selected. Choose one token",
         "MustSpecifyAspect": "You must specify the Aspect choice",
@@ -187,6 +191,7 @@
         "PlantInvalidWarning": "is not a valid option for Plant Shape",
         "Senses": {
             "Blindsense10": "Blindsense 10ft",
+            "Blindsense15": "Blindsense 15ft",
             "Blindsense20": "Blindsense 20ft",
             "Blindsense30": "Blindsense 30ft",
             "Blindsense40": "Blindsense 40ft",
@@ -201,6 +206,7 @@
             "Darkvision70": "Darkvision 70ft",
             "Darkvision80": "Darkvision 80ft",
             "Darkvision90": "Darkvision 90ft",
+            "Darkvision120": "Darkvision 120ft",
             "LowLightVision": "Low-Light Vision",
             "Scent": "Scent",
             "Tremorsense10": "Tremorsense 10ft",
@@ -221,7 +227,7 @@
                 "Name": "Create Revert Script Call on Buff"
             }
         },
-        "ShifterInvalidWarning": " is not a valid aspect for Shifter Wild Shape",
+        "ShifterInvalidWarning": "is not a valid aspect for Shifter Wild Shape",
         "Sizes": {
             "Small": "Small",
             "Tiny": "Tiny",
