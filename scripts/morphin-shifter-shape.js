@@ -69,7 +69,7 @@ export class MorphinShifterShape extends MorphinPolymorphDialog {
     async updateFormChoices(event, formSelect, typeSelect) {
         let newOptions = this.shapeOptions[typeSelect].filter(o => o.size === event.target.value);
 
-        let newHtml = newOptions.map(o => `<option value="${o.name}">${o.name}</option>`);
+        let newHtml = newOptions.map(o => `<option value="${ o.name }">${ o.name }</option>`);
         formSelect.innerHTML = newHtml;
     }
 
@@ -83,12 +83,12 @@ export class MorphinShifterShape extends MorphinPolymorphDialog {
         // create options for the selected type, set medium as the default size
         let newOptions = this.sizes[event.target.value].map(o => { return o === 'med' ? { label: o, size: CONFIG.PF1.actorSizes[o], default: true } : { label: o, size: CONFIG.PF1.actorSizes[o] }; });
 
-        let newOptionsHtml = `<legend>${game.i18n.localize('MMMOD.UI.Select' + (event.target.value === 'animal' ? 'Animal' : 'MagicalBeast') + 'Size')}</legend>`;
+        let newOptionsHtml = `<legend>${ game.i18n.localize('MMMOD.UI.Select' + (event.target.value === 'animal' ? 'Animal' : 'MagicalBeast') + 'Size') }</legend>`;
 
         // Create the radio buttons html
         for (let i = 0; i < newOptions.length; i++) {
             const element = newOptions[i];
-            newOptionsHtml += `<input type="radio" name="sizeSelect" id="${element.size}Select" value="${element.label}" ${element.default ? 'checked' : ''}><label for="${element.size}Select">${game.i18n.localize('MMMOD.Sizes.' + element.size)}</label>`;
+            newOptionsHtml += `<input type="radio" name="sizeSelect" id="${ element.size }Select" value="${ element.label }" ${ element.default ? 'checked' : '' }><label for="${ element.size }Select">${ game.i18n.localize('MMMOD.Sizes.' + element.size) }</label>`;
         }
 
         // Replace the html
@@ -105,7 +105,7 @@ export class MorphinShifterShape extends MorphinPolymorphDialog {
      */
     async buildPreviewTemplate(chosenAspect, chosenForm, chosenType) {
         let data = {};
-        this.chosenForm = this.shapeOptions[chosenType].find(o => o.name === chosenAspect);
+        this.chosenAspect = this.shapeOptions[chosenType].find(o => o.name === chosenAspect);
 
         if (chosenForm === 'major') {
             // Process stat changes for polymorphing smaller than small or larger than medium
@@ -117,7 +117,7 @@ export class MorphinShifterShape extends MorphinPolymorphDialog {
                     if (!!change.target && change.target === 'ability') {
                         if (data.polymorphBase.length > 0) data.polymorphBase += ', '; // comma between entries
                         // text output of the stat (capitalized), and a + in front of positive numbers
-                        data.polymorphBase += `${game.i18n.localize('MMMOD.UI.' + change.subTarget.charAt(0).toUpperCase() + change.subTarget.slice(1))} ${(change.value > 0 ? '+' : '')}${change.value}`;
+                        data.polymorphBase += `${ game.i18n.localize('MMMOD.UI.' + change.subTarget.charAt(0).toUpperCase() + change.subTarget.slice(1)) } ${ (change.value > 0 ? '+' : '') }${ change.value }`;
                     }
                 }
             }
@@ -125,18 +125,18 @@ export class MorphinShifterShape extends MorphinPolymorphDialog {
 
             // Process stat changes from the spell based on spell level
             data.scoreChanges = '';
-            if (this.chosenForm.source === 'beastShape') this.changes = duplicate(MorphinChanges.changes[this.chosenForm.source].animal[this.chosenForm.size].changes);
-            else if (this.chosenForm.source === 'verminShape') this.changes = duplicate(MorphinChanges.changes[this.chosenForm.source].vermin[this.chosenForm.size].changes);
+            if (this.chosenAspect.source === 'beastShape') this.changes = duplicate(MorphinChanges.changes[this.chosenAspect.source].animal[this.chosenAspect.size].changes);
+            else if (this.chosenAspect.source === 'verminShape') this.changes = duplicate(MorphinChanges.changes[this.chosenAspect.source].vermin[this.chosenAspect.size].changes);
             for (let i = 0; i < this.changes.length; i++) {
                 const change = this.changes[i];
 
                 if (!!change.target && change.target === 'ability') { // stat change
                     if (data.scoreChanges.length > 0) data.scoreChanges += ', ';
-                    data.scoreChanges += `${game.i18n.localize('MMMOD.UI.' + change.subTarget.charAt(0).toUpperCase() + change.subTarget.slice(1))} ${(change.value > 0 ? '+' : '')}${change.value}`;
+                    data.scoreChanges += `${ game.i18n.localize('MMMOD.UI.' + change.subTarget.charAt(0).toUpperCase() + change.subTarget.slice(1)) } ${ (change.value > 0 ? '+' : '') }${ change.value }`;
                 }
                 else if (!change.target && change.subTarget == 'nac') { // natural AC change
                     if (data.scoreChanges.length > 0) data.scoreChanges += ', ';
-                    data.scoreChanges += `${game.i18n.localize('MMMOD.UI.NaturalAC')} ${(change.value > 0 ? '+' : '')}${change.value}`;
+                    data.scoreChanges += `${ game.i18n.localize('MMMOD.UI.NaturalAC') } ${ (change.value > 0 ? '+' : '') }${ change.value }`;
                 }
             }
         }
@@ -145,7 +145,7 @@ export class MorphinShifterShape extends MorphinPolymorphDialog {
         }
 
         this.totalChanges = {};
-        const formData = duplicate(MorphinChanges.changes.shifterWildShape[this.chosenForm.name][chosenForm]);
+        const formData = duplicate(MorphinChanges.changes.shifterWildShape[this.chosenAspect.name][chosenForm]);
         const shifter = fromUuidSync(this.actorId);
 
         for (const level of Object.keys(formData)) {
@@ -176,8 +176,8 @@ export class MorphinShifterShape extends MorphinPolymorphDialog {
             const speedName = Object.keys(this.speeds)[i];
 
             if (data.speedChanges.length > 1) data.speedChanges += ', ';
-            data.speedChanges += `${game.i18n.localize('MMMOD.UI.' + speedName)} ${speedName === 'fly' ? this.speeds[speedName].base : this.speeds[speedName]}
-                ${game.i18n.localize('MMMOD.UI.ft')}${speedName === 'fly' ? ' (' + game.i18n.localize('MMMOD.UI.' + this.speeds[speedName].maneuverability) + ')' : ''}`;
+            data.speedChanges += `${ game.i18n.localize('MMMOD.UI.' + speedName) } ${ speedName === 'fly' ? this.speeds[speedName].base : this.speeds[speedName] }
+                ${ game.i18n.localize('MMMOD.UI.ft') }${ speedName === 'fly' ? ' (' + game.i18n.localize('MMMOD.UI.' + this.speeds[speedName].maneuverability) + ')' : '' }`;
         }
 
         // Process the natural attacks
@@ -195,7 +195,7 @@ export class MorphinShifterShape extends MorphinPolymorphDialog {
                 }
             }
 
-            if (attack.claw || (attack.claw === undefined && globalThis.pf1.config.sizeDie.indexOf(`${attack.diceCount}d${attack.diceSize}`) < globalThis.pf1.config.sizeDie.indexOf(`${this.clawsData.diceCount}d${this.clawsData.diceSize}`))) {
+            if (attack.claw || (attack.claw === undefined && globalThis.pf1.config.sizeDie.indexOf(`${ attack.diceCount }d${ attack.diceSize }`) < globalThis.pf1.config.sizeDie.indexOf(`${ this.clawsData.diceCount }d${ this.clawsData.diceSize }`))) {
                 attack.diceCount = this.clawsData.diceCount;
                 attack.diceSize = this.clawsData.diceSize;
                 attack.usedClaws = true;
@@ -207,11 +207,11 @@ export class MorphinShifterShape extends MorphinPolymorphDialog {
                 attack.diceSize = newDamage[1];
             }
 
-            let damageDice = attack.diceSize === 0 ? '' : `${attack.diceCount}d${attack.diceSize}`;
-            if (attack.nonCrit) damageDice += (!!damageDice.length ? ` ${game.i18n.localize('MMMOD.UI.Plus')} ` : '') + `${attack.nonCrit.formula} ${!!attack.nonCrit.type.values.toString() ?
+            let damageDice = attack.diceSize === 0 ? '' : `${ attack.diceCount }d${ attack.diceSize }`;
+            if (attack.nonCrit) damageDice += (!!damageDice.length ? ` ${ game.i18n.localize('MMMOD.UI.Plus') } ` : '') + `${ attack.nonCrit.formula } ${!!attack.nonCrit.type.values.toString() ?
                 game.i18n.localize('MMMOD.DamageTypes.' + attack.nonCrit.type.values.toString()) : game.i18n.localize('MMMOD.DamageTypes.' + attack.nonCrit.type.custom)}`;
             if (data.attacks.length > 0) data.attacks += ', ';
-            data.attacks += `${attack.count > 1 ? attack.count + ' ' : ''}${game.i18n.localize('MMMOD.Attacks.' + attack.name)} (${!!damageDice ? damageDice : '0'}${!!attackSpecial ? ` ${game.i18n.localize('MMMOD.UI.Plus')} ` + attackSpecial : ''})`;
+            data.attacks += `${ attack.count > 1 ? attack.count + ' ' : '' }${ game.i18n.localize('MMMOD.Attacks.' + attack.name) } (${ !!damageDice ? damageDice : '0' }${ !!attackSpecial ? ` ${ game.i18n.localize('MMMOD.UI.Plus') } ` + attackSpecial : '' })`;
         }
         if (!data.attacks.length) data.attacks = game.i18n.localize('MMMOD.UI.None');
 
@@ -229,16 +229,16 @@ export class MorphinShifterShape extends MorphinPolymorphDialog {
                     attackSpecial += game.i18n.localize('MMMOD.Attacks.' + specialName);
                 }
             }
-            if (specialAttack.claw || (specialAttack.claw === undefined && globalThis.pf1.config.sizeDie.indexOf(`${specialAttack.diceCount}d${specialAttack.diceSize}`) < globalThis.pf1.config.sizeDie.indexOf(`${this.clawsData.diceCount}d${this.clawsData.diceSize}`))) {
+            if (specialAttack.claw || (specialAttack.claw === undefined && globalThis.pf1.config.sizeDie.indexOf(`${ specialAttack.diceCount }d${ specialAttack.diceSize }`) < globalThis.pf1.config.sizeDie.indexOf(`${ this.clawsData.diceCount }d${ this.clawsData.diceSize }`))) {
                 specialAttack.diceCount = this.clawsData.diceCount;
                 specialAttack.diceSize = this.clawsData.diceSize;
                 specialAttack.usedClaws = true;
             }
-            let damageDice = specialAttack.diceSize === 0 ? '' : `${specialAttack.diceCount}d${specialAttack.diceSize}`;
-            if (specialAttack.nonCrit) damageDice += (!!damageDice.length ? ` ${game.i18n.localize('MMMOD.UI.Plus')} ` : '') + `${specialAttack.nonCrit.formula} ${!!specialAttack.nonCrit.type.values.toString() ? 
+            let damageDice = specialAttack.diceSize === 0 ? '' : `${ specialAttack.diceCount }d${ specialAttack.diceSize }`;
+            if (specialAttack.nonCrit) damageDice += (!!damageDice.length ? ` ${ game.i18n.localize('MMMOD.UI.Plus') } ` : '') + `${ specialAttack.nonCrit.formula } ${!!specialAttack.nonCrit.type.values.toString() ? 
                 game.i18n.localize('MMMOD.DamageTypes.' + specialAttack.nonCrit.type.values.toString()) : game.i18n.localize('MMMOD.DamageTypes.' + specialAttack.nonCrit.type.custom)}`;
             if (data.specialAttacks.length > 0) data.attacks += ', ';
-            data.specialAttacks += `${specialAttack.count > 1 ? specialAttack.count + ' ' : ''}${game.i18n.localize('MMMOD.Attacks.' + specialAttack.name)} (${!!damageDice ? damageDice : '0'}${!!attackSpecial ? ` ${game.i18n.localize('MMMOD.UI.Plus')} ` + attackSpecial : ''})`;
+            data.specialAttacks += `${ specialAttack.count > 1 ? specialAttack.count + ' ' : '' }${ game.i18n.localize('MMMOD.Attacks.' + specialAttack.name) } (${ !!damageDice ? damageDice : '0' }${ !!attackSpecial ? ` ${ game.i18n.localize('MMMOD.UI.Plus') } ` + attackSpecial : '' })`;
         }
         if (!data.specialAttacks.length) data.specialAttacks = game.i18n.localize('MMMOD.UI.None');
 
@@ -250,7 +250,7 @@ export class MorphinShifterShape extends MorphinPolymorphDialog {
             
             if (!!senseEnumValue) {
                 if (data.senses.length > 0) data.senses += ', ';
-                data.senses += `${game.i18n.localize('MMMOD.Senses.' + MorphinChanges.SENSES[Object.keys(MorphinChanges.SENSES)[senseEnumValue - 1]].name)}`; // enum value 1 = SENSES[0] = LOWLIGHT
+                data.senses += `${ game.i18n.localize('MMMOD.Senses.' + MorphinChanges.SENSES[Object.keys(MorphinChanges.SENSES)[senseEnumValue - 1]].name) }`; // enum value 1 = SENSES[0] = LOWLIGHT
             }
         }
         if (!data.senses.length) data.senses = game.i18n.localize('MMMOD.UI.None');
@@ -267,13 +267,13 @@ export class MorphinShifterShape extends MorphinPolymorphDialog {
         }
 
         // Build the html preview
-        let newHtml = `${!!data.polymorphBase ? '<p><span class="previewLabel">' + game.i18n.localize('MMMOD.UI.BaseSizeAdjust') + ': </span><span id="polymorphScores">' + data.polymorphBase + '</span></p>' : ''}
-            <p><span class="previewLabel">${game.i18n.localize('MMMOD.UI.AbilityScores')}: </span><span id="abilityScores">${data.scoreChanges}</span></p>
-            <p><span class="previewLabel">${game.i18n.localize('MMMOD.UI.Attacks')}: </span><span id="attacks">${data.attacks}</span></p>
-            <p><span class="previewLabel">${game.i18n.localize('MMMOD.UI.SpecialAttacks')}: </span><span id="specialAttacks">${data.specialAttacks}</span></p>
-            <p><span class="previewLabel">${game.i18n.localize('MMMOD.UI.Speeds')}: </span><span id="speeds">${data.speedChanges}</span></p>
-            <p><span class="previewLabel">${game.i18n.localize('MMMOD.UI.Senses')}: </span><span id="senses">${data.senses}</span></p>
-            <p><span class="previewLabel">${game.i18n.localize('MMMOD.UI.SpecialAbilities')}: </span><span id="specials">${data.special}</span></p>
+        let newHtml = `${ !!data.polymorphBase ? '<p><span class="previewLabel">' + game.i18n.localize('MMMOD.UI.BaseSizeAdjust') + ': </span><span id="polymorphScores">' + data.polymorphBase + '</span></p>' : '' }
+            <p><span class="previewLabel">${ game.i18n.localize('MMMOD.UI.AbilityScores') }: </span><span id="abilityScores">${ data.scoreChanges }</span></p>
+            <p><span class="previewLabel">${ game.i18n.localize('MMMOD.UI.Attacks') }: </span><span id="attacks">${ data.attacks }</span></p>
+            <p><span class="previewLabel">${ game.i18n.localize('MMMOD.UI.SpecialAttacks') }: </span><span id="specialAttacks">${ data.specialAttacks }</span></p>
+            <p><span class="previewLabel">${ game.i18n.localize('MMMOD.UI.Speeds') }: </span><span id="speeds">${ data.speedChanges }</span></p>
+            <p><span class="previewLabel">${ game.i18n.localize('MMMOD.UI.Senses') }: </span><span id="senses">${ data.senses }</span></p>
+            <p><span class="previewLabel">${ game.i18n.localize('MMMOD.UI.SpecialAbilities') }: </span><span id="specials">${ data.special }</span></p>
             ${this.level === 4 ? '<p><span class="previewLabel">' + game.i18n.localize('MMMOD.UI.EnergyResistances') + ': </span><span id="eres">' + data.eres + '</span></p>' +
                 '<p><span class="previewLabel">' + game.i18n.localize('MMMOD.UI.Vulnerabilities') + ': </span><span id="dv">' + data.dv + '</span></p>' : ''}`;
 

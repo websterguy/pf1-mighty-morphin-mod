@@ -72,6 +72,7 @@ export class MorphinPolymorphDialog extends FormApplication {
     async applyChanges(event, chosenForm) {
         let shifter = fromUuidSync(this.actorId);
         let newSize = this.shifterWildShape ? this.totalChanges.size || shifter.system.traits.size : MorphinChanges.changes[chosenForm].size;
+        let flagSlug = this.source.slugify();
 
         let itemsToEmbed = [];
         // Find out if this is the only natural attack the form has
@@ -181,7 +182,7 @@ export class MorphinPolymorphDialog extends FormApplication {
                 let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
                 scriptCall.category = 'toggle';
                 scriptCall.name = 'Revert Mighty Morphin Changes on Deactivation';
-                scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"]) game.mightyMorphin.revert({actor: actor});';
+                scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"]) game.mightyMorphin.revert({actor: actor, buff: item.name});';
                 buffData.system.scriptCalls.push(scriptCall);
             }
 
@@ -277,14 +278,31 @@ export class MorphinPolymorphDialog extends FormApplication {
 
         // Process senses changes
         let originalSenses = { 'system.traits.senses': shifter.system.traits.senses };
-        let senseObject = { 'dv': 0, 'ts': 0, 'bs': 0, 'bse': 0, 'll': { 'enabled': false, 'multiplier': { 'dim': 2, 'bright': 2 } }, 'sid': false, 'tr': false, 'si': false, 'sc': false, 'custom': '' };
+        let senseObject = { 'dv': 0, 'ts': 0, 'bs': 0, 'bse': 0, 'll': { 'enabled': false, 'multiplier': { 'dim': 2, 'bright': 2 } }, 'sid': false, 'tr': false, 'si': false, 'sc': 0, 'custom': '' };
         for (let i = 0; i < this.senses.length; i++) {
             const sensesEnumValue = this.senses[i];
             if (!!sensesEnumValue) {
                 senseObject = mergeObject(senseObject, MorphinChanges.SENSES[Object.keys(MorphinChanges.SENSES)[sensesEnumValue - 1]].setting); // element 1 = SENSES[0] = LOWLIGHT
             }
         }
-        let sensesChanges = { 'system.traits.senses': senseObject };
+        let sensesChanges = { 'system.traits.senses': duplicate(senseObject) };
+
+        let sensesChangedAlready = (!!shifter.flags['pf1-mighty-morphin'] && MightyMorphinApp.nonPolymorphs.includes(Object.keys(shifter.flags['pf1-mighty-morphin'])[0]) && !!Object.values(shifter.flags['pf1-mighty-morphin'])[0].data?.system?.traits?.senses);
+
+        let otherSource, actualOriginalSenses;
+
+        if (sensesChangedAlready) {
+            otherSource = Object.keys(shifter.flags['pf1-mighty-morphin'])[0];
+            const senseData = Object.values(shifter.flags['pf1-mighty-morphin'])[0].data.system.traits.senses;
+            actualOriginalSenses = duplicate(senseData); // store original actor sense
+            // process what combined senses should be
+            for (const senseKey of Object.keys(sensesChanges['system.traits.senses'])) {
+                if (typeof(sensesChanges['system.traits.senses'][senseKey]) === 'number' && sensesChanges['system.traits.senses'][senseKey] < originalSenses['system.traits.senses'][senseKey]) sensesChanges['system.traits.senses'][senseKey] = originalSenses['system.traits.senses'][senseKey];
+                else if (typeof(sensesChanges['system.traits.senses'][senseKey]) === 'boolean') sensesChanges['system.traits.senses'][senseKey] = sensesChanges['system.traits.senses'][senseKey] || originalSenses['system.traits.senses'][senseKey];
+                else if (senseKey === 'll') sensesChanges['system.traits.senses'][senseKey].enabled = sensesChanges['system.traits.senses'][senseKey].enabled || originalSenses['system.traits.senses'][senseKey].enabled;
+                else if (senseKey === 'custom') sensesChanges['system.traits.senses'][senseKey] = sensesChanges['system.traits.senses'][senseKey] === originalSenses['system.traits.senses'][senseKey] ? sensesChanges['system.traits.senses'][senseKey] : sensesChanges[senseKey] + (sensesChanges['system.traits.senses'][senseKey].length > 0 ? ', ' : '' ) + originalSenses['system.traits.senses'][senseKey];
+            }
+        }
 
         // Process DR changes
         let originalDr = { 'system.traits.dr': shifter.system.traits.dr };
@@ -579,7 +597,7 @@ export class MorphinPolymorphDialog extends FormApplication {
         
         let durationData = {};
         if (!!this.durationLevel) {
-            durationData = {value: this.durationLevel.toString(), units: (this.source === 'Wild Shape' ? 'hour' : 'minute')};
+            durationData = {value: this.durationLevel.toString(), units: (this.source === game.i18n.localize('MMMOD.Buffs.WildShape.Name') || this.source === game.i18n.localize('MMMOD.Buffs.ShifterWildShape.Name') ? 'hour' : 'minute')};
         }
         
         let buffUpdate = [{ _id: buff.id, 'system.duration': durationData, 'system.changes': this.changes, 'system.contextNotes': this.contextNotes,'system.active': true }];
@@ -590,7 +608,9 @@ export class MorphinPolymorphDialog extends FormApplication {
         let flags = { source: this.source, buffName: this.source, data: dataFlag, armor: armorChangeFlag, itemsCreated: itemsCreated };
         if (!!this.macroCreatedId) flags.macroCreatedId = this.macroCreatedId;
         if (!!newImage) { flags = mergeObject(flags, { tokenImg: oldImage }); };
-        await shifter.update(mergeObject({ 'system.traits.size': newSize, 'flags.pf1-mighty-morphin': flags }, mergeObject(skillModChange, mergeObject(maneuverabilityChange, mergeObject(sensesChanges, protoImageChange)))));
+        const updates = mergeObject({ 'system.traits.size': newSize, 'flags.pf1-mighty-morphin': { [flagSlug]: flags } }, mergeObject(skillModChange, mergeObject(maneuverabilityChange, mergeObject(sensesChanges, protoImageChange))));
+        if (sensesChangedAlready) mergeObject(updates, { ['flags.pf1-mighty-morphin']: { originalSenses: actualOriginalSenses, [otherSource]: { data: { system: { traits: { senses: mergeObject(shifter.flags['pf1-mighty-morphin'][otherSource].data.system.traits.senses, senseObject) } } } } } });
+        await shifter.update(updates);
 
         // update items on the actor
         if (!!armorToChange.length) {

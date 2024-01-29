@@ -23,6 +23,30 @@ Hooks.once('init', () => {
 // Set up static sizes from the system's info
 Hooks.once('ready', async () => {
   MightyMorphinApp.sizes = Object.keys(CONFIG.PF1.actorSizes);
+  
+  MightyMorphinApp.shapeSpells = [
+    game.i18n.localize('MMMOD.Buffs.BeastShape.Name').slugify(),
+    game.i18n.localize('MMMOD.Buffs.PlantShape.Name').slugify(),
+    game.i18n.localize('MMMOD.Buffs.ElementalBody.Name').slugify(),
+    game.i18n.localize('MMMOD.Buffs.WildShape.Name').slugify(),
+    game.i18n.localize('MMMOD.Buffs.VerminShape.Name').slugify(),
+    game.i18n.localize('MMMOD.Buffs.ShifterWildShape.Name').slugify()
+  ];
+
+  MightyMorphinApp.otherTransmutations = [
+    game.i18n.localize('MMMOD.Buffs.EnlargePerson.Name').slugify(),
+    game.i18n.localize('MMMOD.Buffs.ReducePerson.Name').slugify(),
+    game.i18n.localize('MMMOD.Buffs.LegendaryProportions.Name').slugify(),
+    game.i18n.localize('MMMOD.Buffs.FrightfulAspect.Name').slugify(),
+    game.i18n.localize('MMMOD.Buffs.AnimalGrowth.Name').slugify(),
+    game.i18n.localize('MMMOD.Buffs.RighteousMight.Name').slugify(),
+    game.i18n.localize('MMMOD.Buffs.MaulerBattleForm.Name').slugify()
+  ];
+
+  MightyMorphinApp.nonPolymorphs = [
+    game.i18n.localize('MMMOD.Buffs.ShifterAspect.Name').slugify()
+  ];
+
   initializeSettings();
 });
 
