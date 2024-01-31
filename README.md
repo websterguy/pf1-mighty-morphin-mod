@@ -23,6 +23,7 @@ Currently supports buff generation and application of effects of the following s
 * Vermin Shape I-II
 * Druid Wild Shape (As Beast Shape, Elemental Body, and Plant Shape)
   * Planar Shape, Energized Wild Shape, Elemental Claws, Frightful Shape, Mutated Shape
+* Shifter class Wild Shape major forms and Shifter Aspect minor forms
 * Mauler Familiar Battle Form
 
 Effects such as Beast Shape include creating attacks, replacing speeds, replacing senses, etc.
