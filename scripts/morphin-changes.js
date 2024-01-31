@@ -557,7 +557,7 @@ MorphinChanges.changes = {
                 },
                 15: {
                     senses: [
-                        10, 13
+                        10, 19
                     ]
                 }
             },
@@ -574,13 +574,13 @@ MorphinChanges.changes = {
                             maneuverability: 'clumsy'
                         },
                         senses: [
-                            12
+                            18
                         ]
                     }
                 },
                 8: {
                     senses: [
-                        14
+                        20
                     ],
                     feats: [
                         { name: 'Flyby Attack', uuid: 'Compendium.pf-content.pf-feats.Item.zVUcdFSgoVENjmUa' }
@@ -633,7 +633,7 @@ MorphinChanges.changes = {
                         land: 40
                     },
                     senses: [
-                        1, 11
+                        1, 14
                     ]
                 },
                 8: {
@@ -685,7 +685,7 @@ MorphinChanges.changes = {
                         land: 40
                     },
                     senses: [
-                        1, 11
+                        1, 14
                     ]
                 },
                 8: {
@@ -742,7 +742,7 @@ MorphinChanges.changes = {
                         land: 40
                     },
                     senses: [
-                        1, 11
+                        1, 14
                     ],
                     conditionals: [
                         { default: false, name: 'Powerful Charge', modifiers: [{ formula: '1d8', target: 'damage', subTarget: 'attack_0', type: '', critical: 'nonCrit', damageType: { values: ['piercing'], custom: '' } }] }
@@ -872,7 +872,7 @@ MorphinChanges.changes = {
                         land: 60
                     },
                     senses: [
-                        1, 11
+                        1, 14
                     ],
                     special: [
                         'Pounce'
@@ -932,12 +932,12 @@ MorphinChanges.changes = {
                         swim: 60
                     },
                     senses: [
-                        1, 12
+                        1, 18
                     ]
                 },
                 8: {
                     senses: [
-                        1, 14
+                        1, 20
                     ]
                 },
                 15: {
@@ -946,7 +946,7 @@ MorphinChanges.changes = {
                         swim: 80
                     },
                     senses: [
-                        1, 18
+                        1, 24
                     ]
                 }
             },
@@ -1102,7 +1102,7 @@ MorphinChanges.changes = {
                         land: 40
                     },
                     senses: [
-                        1, 11
+                        1, 14
                     ],
                     changes: [
                         { formula: '2', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'racial', priority: 0, value: 2 },
@@ -1173,7 +1173,7 @@ MorphinChanges.changes = {
                 },
                 8: {
                     senses: [
-                        1, 26
+                        1, 11
                     ],
                     contextNotes: [
                         { text: '+[[6]] racial to vision-based perception', subTarget: 'skill.per' }
@@ -1181,7 +1181,7 @@ MorphinChanges.changes = {
                 },
                 15: {
                     senses: [
-                        1, 18, 26
+                        1, 18, 11
                     ],
                     speed: {
                         land: 30,
@@ -1235,7 +1235,7 @@ MorphinChanges.changes = {
                         swim: 30
                     },
                     senses: [
-                        1, 11
+                        1, 14
                     ],
                     contextNotes: [
                         { text: 'Treat jumps as running start', subTarget: 'skill.acr' }
@@ -1354,7 +1354,7 @@ MorphinChanges.changes = {
                         land: 50
                     },
                     senses: [
-                        1, 11
+                        1, 14
                     ],
                     feats: [
                         { name: 'Ride-By Attack', uuid: 'Compendium.pf1.feats.Item.liPAO5urMI9chctT' }
@@ -1408,7 +1408,7 @@ MorphinChanges.changes = {
                         land: 40
                     },
                     senses: [
-                        1, 11
+                        1, 14
                     ],
                     specialAttack: [
                         { name: 'MightyRoar', diceCount: 0, diceSize: 0, count: 1, special: ['Mighty Roar'], attackType: 'none', claw: false }
@@ -1470,7 +1470,7 @@ MorphinChanges.changes = {
                         land: 40
                     },
                     senses: [
-                        1, 11
+                        1, 14
                     ]
                 },
                 8: {
@@ -1563,7 +1563,7 @@ MorphinChanges.changes = {
                         climb: 30
                     },
                     senses: [
-                        1, 11
+                        1, 14
                     ]
                 },
                 8: {
@@ -1612,7 +1612,7 @@ MorphinChanges.changes = {
                         swim: 20
                     },
                     senses: [
-                        1, 11
+                        1, 14
                     ]
                 },
                 8: {
@@ -1732,7 +1732,7 @@ MorphinChanges.changes = {
                         { name: 'Flyby Attack', uuid: 'Compendium.pf-content.pf-feats.Item.zVUcdFSgoVENjmUa' }
                     ],
                     senses: [
-                        26
+                        11
                     ]
                 },
                 15: {
@@ -1848,12 +1848,12 @@ MorphinChanges.changes = {
                         land: 50
                     },
                     senses: [
-                        7, 19
+                        7, 25
                     ]
                 },
                 8: {
                     senses: [
-                        7, 21
+                        7, 27
                     ],
                     changes: [
                         { formula: '4', operator: 'add', subTarget: 'skill.clm', modifier: 'racial', priority: 0, value: 4 },
@@ -1908,7 +1908,7 @@ MorphinChanges.changes = {
                         swim: 30
                     },
                     senses: [
-                        1, 11
+                        1, 14
                     ],
                     feats: [
                         { name: 'Combat Reflexes', uuid: 'Compendium.pf1.feats.Item.h9nHYLxXvIXBTmup' }
@@ -1963,7 +1963,7 @@ MorphinChanges.changes = {
                         swim: 20
                     },
                     senses: [
-                        1, 11
+                        1, 14
                     ]
                 },
                 8: {
@@ -2029,7 +2029,7 @@ MorphinChanges.changes = {
                         climb: 30
                     },
                     senses: [
-                        7, 22
+                        7, 28
                     ],
                     effect: {
                         'Poison': { note: 'Poison (Ex) - Bite—injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1d2 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' },
@@ -2080,7 +2080,7 @@ MorphinChanges.changes = {
                         land: 50
                     },
                     senses: [
-                        1, 11
+                        1, 14
                     ]
                 },
                 8: {
@@ -2133,7 +2133,7 @@ MorphinChanges.changes = {
                         land: 40
                     },
                     senses: [
-                        1, 11
+                        1, 14
                     ],
                     special: [
                         'Pounce'
@@ -2159,14 +2159,27 @@ MorphinChanges.changes = {
             minor: {
                 1: {
                     senses: [
-                        11
-                    ]
+                        12
+                    ],
+                    senseUpgrade: {
+                        'sc': 10
+                    }
                 },
                 8: {
-
+                    senses: [
+                        13
+                    ],
+                    senseUpgrade: {
+                        'sc': 20
+                    }
                 },
                 15: {
-
+                    senses: [
+                        14
+                    ],
+                    senseUpgrade: {
+                        'sc': 30
+                    }
                 }
             },
             major: {
@@ -2179,7 +2192,7 @@ MorphinChanges.changes = {
                         land: 50
                     },
                     senses: [
-                        1, 11
+                        1, 14
                     ]
                 },
                 8: {
@@ -2229,7 +2242,7 @@ MorphinChanges.changes = {
                         climb: 10
                     },
                     senses: [
-                        1, 11
+                        1, 14
                     ],
                     specialAttack: [
                         { name: 'Rage', diceCount: 0, diceSize: 0, count: 1, special: ['Rage'], attackType: 'none', charges: '@classes.shifter.level', claw: false }
@@ -2274,7 +2287,7 @@ MorphinChanges.changes = {
             burrow: 10
         },
         senses: [
-            1, 11
+            1, 14
         ],
         special: [
             'Ferocity'
@@ -2290,7 +2303,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Boar': {
@@ -2302,7 +2315,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ],
         special: [
             'Ferocity'
@@ -2329,7 +2342,7 @@ MorphinChanges.changes = {
             swim: 30
         },
         senses: [
-            1, 11, 15
+            1, 11, 21
         ]
     },
     'Cheetah': {
@@ -2342,7 +2355,7 @@ MorphinChanges.changes = {
             land: 50
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Chelish Hell-Bred Dog': {
@@ -2354,7 +2367,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Constrictor Snake': {
@@ -2368,7 +2381,7 @@ MorphinChanges.changes = {
             swim: 20
         },
         senses: [
-            11
+            14
         ],
         effect: {
             'Constrict': { note: 'Constrict: Same damage as Bite' }
@@ -2385,7 +2398,7 @@ MorphinChanges.changes = {
             land: 60
         },
         senses: [
-            1, 11
+            1, 14
         ],
         special: [
             'Pounce'
@@ -2403,7 +2416,7 @@ MorphinChanges.changes = {
             climb: 20
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Dimorphodon': {
@@ -2419,7 +2432,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            1, 11
+            1, 14
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Bite—injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1d2 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -2435,7 +2448,7 @@ MorphinChanges.changes = {
             swim: 80
         },
         senses: [
-            1, 18
+            1, 24
         ]
     },
     'Elk': {
@@ -2459,7 +2472,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Gar': {
@@ -2484,7 +2497,7 @@ MorphinChanges.changes = {
             swim: 30
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Giant Gecko': {
@@ -2577,7 +2590,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Goblin Dog': {
@@ -2589,7 +2602,7 @@ MorphinChanges.changes = {
             land: 50
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Hobbe Hound': {
@@ -2601,7 +2614,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Hyena': {
@@ -2613,7 +2626,7 @@ MorphinChanges.changes = {
             land: 50
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Jigsaw Shark': {
@@ -2625,7 +2638,7 @@ MorphinChanges.changes = {
             swim: 30
         },
         senses: [
-            11, 15
+            11, 21
         ]
     },
     'Kangaroo': {
@@ -2637,7 +2650,7 @@ MorphinChanges.changes = {
             land: 50
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Leopard': {
@@ -2651,7 +2664,7 @@ MorphinChanges.changes = {
             climb: 20
         },
         senses: [
-            1, 11
+            1, 14
         ],
         special: [
             'Pounce', 'Rake2Claws'
@@ -2680,7 +2693,7 @@ MorphinChanges.changes = {
             climb: 10
         },
         senses: [
-            1, 11
+            1, 14
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Claws—injury; save Fort DC 10+SL+Mod; frequency 1/round for 3 rounds; effect sickened for 1d4 rounds; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -2696,7 +2709,7 @@ MorphinChanges.changes = {
             swim: 30
         },
         senses: [
-            1, 11
+            1, 14
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Bite—injury; save Fort DC 10+SL+Mod; onset 1 minute; frequency 1/hour for 6 hours; effect 1d2 Dexterity damage; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -2711,7 +2724,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Ram': {
@@ -2723,7 +2736,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Riding Dog': {
@@ -2735,7 +2748,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Ringhorn': {
@@ -2747,7 +2760,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Sea Crawler': {
@@ -2792,7 +2805,7 @@ MorphinChanges.changes = {
             land: 50
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Stingray': {
@@ -2804,7 +2817,7 @@ MorphinChanges.changes = {
             swim: 30
         },
         senses: [
-            1, 15
+            1, 21
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1d2 Dex and 1 Con; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -2831,7 +2844,7 @@ MorphinChanges.changes = {
             land: 30
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Troodon': {
@@ -2844,7 +2857,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Venomous Snake': {
@@ -2856,7 +2869,7 @@ MorphinChanges.changes = {
             land: 20
         },
         senses: [
-            1, 11
+            1, 14
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Bite—injury; save Fort DC 13; frequency 1/round for 6 rounds; effect 1d2 Con; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -2871,7 +2884,7 @@ MorphinChanges.changes = {
             land: 50
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Wolverine': {
@@ -2884,7 +2897,7 @@ MorphinChanges.changes = {
             land: 30
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Antelope': {
@@ -2922,7 +2935,7 @@ MorphinChanges.changes = {
             burrow: 10
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Blackwisp Egret': {
@@ -2952,7 +2965,7 @@ MorphinChanges.changes = {
             burrow: 10
         },
         senses: [
-            1, 4, 11
+            1, 4, 14
         ]
     },
     'Dire Rat': {
@@ -2966,7 +2979,7 @@ MorphinChanges.changes = {
             swim: 20
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Dodo': {
@@ -2990,7 +3003,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Dwarf Caiman': {
@@ -3143,7 +3156,7 @@ MorphinChanges.changes = {
             land: 30
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Pilo': {
@@ -3156,7 +3169,7 @@ MorphinChanges.changes = {
             land: 30
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Quillcat': {
@@ -3169,7 +3182,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Seal': {
@@ -3208,7 +3221,7 @@ MorphinChanges.changes = {
             burrow: 10
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Switchback Jackal': {
@@ -3221,7 +3234,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Thylacine': {
@@ -3262,7 +3275,7 @@ MorphinChanges.changes = {
             land: 60
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Vulture': {
@@ -3278,7 +3291,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Arsinoitherium': {
@@ -3293,7 +3306,7 @@ MorphinChanges.changes = {
             land: 30
         },
         senses: [
-            1, 11
+            1, 14
         ],
         effect: {
             'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature\'s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a -4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature\'s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' }
@@ -3311,7 +3324,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ],
         effect: {
             'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature\'s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a -4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature\'s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' }
@@ -3341,7 +3354,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ],
         effect: {
             'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature\'s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a -4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature\'s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' }
@@ -3356,7 +3369,7 @@ MorphinChanges.changes = {
             land: 50
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Ceratosaurus': {
@@ -3368,7 +3381,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ],
         special: [
             'Ferocity'
@@ -3383,7 +3396,7 @@ MorphinChanges.changes = {
             land: 30
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Crocodile': {
@@ -3409,7 +3422,7 @@ MorphinChanges.changes = {
             land: 30
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Dire Ape': {
@@ -3423,7 +3436,7 @@ MorphinChanges.changes = {
             climb: 30
         },
         senses: [
-            1, 11
+            1, 14
         ],
         effect: {
             'Rend': { note: 'Rend if both claws hit, added to second claw damage. [[/d sizeRoll(1, 6, @size, 5) # Rend damage added to second claw]]{{Roll Rend Damage}}' }
@@ -3442,7 +3455,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            15
+            21
         ]
     },
     'Dire Bear': {
@@ -3455,7 +3468,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Dire Boar': {
@@ -3467,7 +3480,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ],
         special: [
             'Ferocity'
@@ -3482,7 +3495,7 @@ MorphinChanges.changes = {
             land: 50
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Dire Lion': {
@@ -3495,7 +3508,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ],
         special: [
             'Pounce', 'Rake2Claws'
@@ -3512,7 +3525,7 @@ MorphinChanges.changes = {
             swim: 20
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Dire Tiger': {
@@ -3525,7 +3538,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ],
         special: [
             'Pounce', 'Rake2Claws'
@@ -3540,7 +3553,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Dire Wolf': {
@@ -3552,7 +3565,7 @@ MorphinChanges.changes = {
             land: 50
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Dire Wolverine': {
@@ -3566,7 +3579,7 @@ MorphinChanges.changes = {
             climb: 10
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Embolotherium': {
@@ -3592,7 +3605,7 @@ MorphinChanges.changes = {
             swim: 30
         },
         senses: [
-            1, 11
+            1, 14
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) Bite—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d3 Con; cure 2 consecutive saves.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -3611,7 +3624,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Gallerok': {
@@ -3624,7 +3637,7 @@ MorphinChanges.changes = {
             climb: 20
         },
         senses: [
-            1, 11
+            1, 14
         ],
         effect: {
             'Constrict': { note: 'Constrict: Same damage as Bite' }
@@ -3683,7 +3696,7 @@ MorphinChanges.changes = {
             swim: 30
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Giant Octopus': {
@@ -3728,7 +3741,7 @@ MorphinChanges.changes = {
             land: 30
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Giant Toad': {
@@ -3741,7 +3754,7 @@ MorphinChanges.changes = {
             swim: 15
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Giant Vulture': {
@@ -3757,7 +3770,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Gliding Turtle': {
@@ -3784,7 +3797,7 @@ MorphinChanges.changes = {
             climb: 20
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Gorilla': {
@@ -3797,7 +3810,7 @@ MorphinChanges.changes = {
             climb: 30
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Grizzly Bear': {
@@ -3810,7 +3823,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Gylptodon': {
@@ -3822,7 +3835,7 @@ MorphinChanges.changes = {
             land: 20
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Hammerhead Shark': {
@@ -3834,7 +3847,7 @@ MorphinChanges.changes = {
             swim: 60
         },
         senses: [
-            15, 11
+            15, 14
         ]
     },
     'Helicoprion': {
@@ -3846,7 +3859,7 @@ MorphinChanges.changes = {
             swim: 60
         },
         senses: [
-            15, 11
+            15, 14
         ]
     },
     'Hippopotamus': {
@@ -3861,7 +3874,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ],
         effect: {
             'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature\'s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a -4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature\'s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' }
@@ -3876,7 +3889,7 @@ MorphinChanges.changes = {
             land: 50
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Impaler Shrike': {
@@ -3904,7 +3917,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Lion': {
@@ -3917,7 +3930,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ],
         special: [
             'Pounce', 'Rake2Claws'
@@ -3932,7 +3945,7 @@ MorphinChanges.changes = {
             swim: 60
         },
         senses: [
-            1, 15
+            1, 21
         ]
     },
     'Marax': {
@@ -3946,7 +3959,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ],
         special: [
             'Pounce'
@@ -3978,7 +3991,7 @@ MorphinChanges.changes = {
             land: 50
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Moa': {
@@ -4002,7 +4015,7 @@ MorphinChanges.changes = {
             swim: 80
         },
         senses: [
-            1, 18
+            1, 24
         ]
     },
     'Nothosaur': {
@@ -4028,7 +4041,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Plesiosaurus': {
@@ -4041,7 +4054,7 @@ MorphinChanges.changes = {
             swim: 60
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Polar Bear': {
@@ -4055,7 +4068,7 @@ MorphinChanges.changes = {
             swim: 20
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Pteranodon': {
@@ -4071,7 +4084,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Rhinoceros': {
@@ -4083,7 +4096,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            11
+            14
         ]
     },
     'River Elk': {
@@ -4109,7 +4122,7 @@ MorphinChanges.changes = {
             swim: 60
         },
         senses: [
-            15, 11
+            15, 14
         ]
     },
     'Stygian Hot-Blooded Horse': {
@@ -4134,7 +4147,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Swordfish': {
@@ -4159,7 +4172,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ],
         special: [
             'Pounce', 'Rake2Claws'
@@ -4202,7 +4215,7 @@ MorphinChanges.changes = {
             land: 50
         },
         senses: [
-            1, 11
+            1, 14
         ],
         effect: {
             'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature\'s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a -4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature\'s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' }
@@ -4220,7 +4233,7 @@ MorphinChanges.changes = {
             land: 30
         },
         senses: [
-            11
+            14
         ],
         effect: {
             'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature\'s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a -4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature\'s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' }
@@ -4253,7 +4266,7 @@ MorphinChanges.changes = {
             land: 30
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Chicken': {
@@ -4282,7 +4295,7 @@ MorphinChanges.changes = {
             swim: 20
         },
         senses: [
-            1, 11
+            1, 14
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) Bite—injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1d2 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -4301,7 +4314,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Flying Squirrel': {
@@ -4329,7 +4342,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Hawk': {
@@ -4345,7 +4358,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Lich Newt': {
@@ -4474,7 +4487,7 @@ MorphinChanges.changes = {
             climb: 20
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Rat': {
@@ -4488,7 +4501,7 @@ MorphinChanges.changes = {
             swim: 15
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Raven': {
@@ -4517,7 +4530,7 @@ MorphinChanges.changes = {
             climb: 20
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Rhamphorhynchus': {
@@ -4560,7 +4573,7 @@ MorphinChanges.changes = {
             land: 30
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Sloth': {
@@ -4573,7 +4586,7 @@ MorphinChanges.changes = {
             climb: 5
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Snapping Turtle': {
@@ -4586,7 +4599,7 @@ MorphinChanges.changes = {
             swim: 20
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Tuatara': {
@@ -4611,7 +4624,7 @@ MorphinChanges.changes = {
             swim: 30
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Varisian Hagfish': {
@@ -4638,7 +4651,7 @@ MorphinChanges.changes = {
             swim: 20
         },
         senses: [
-            1, 11
+            1, 14
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) Bite—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d2 Con damage; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -4654,7 +4667,7 @@ MorphinChanges.changes = {
             climb: 20
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Allosaurus': {
@@ -4667,7 +4680,7 @@ MorphinChanges.changes = {
             land: 50
         },
         senses: [
-            1, 11
+            1, 14
         ],
         special: [
             'Pounce', 'Rake2Claws'
@@ -4686,7 +4699,7 @@ MorphinChanges.changes = {
             land: 30
         },
         senses: [
-            1, 11
+            1, 14
         ],
         effect: {
             'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature\'s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a -4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature\'s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' }
@@ -4701,7 +4714,7 @@ MorphinChanges.changes = {
             land: 30
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Archelon': {
@@ -4714,7 +4727,7 @@ MorphinChanges.changes = {
             swim: 50
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Baluchitherium': {
@@ -4729,7 +4742,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ],
         effect: {
             'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature\'s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a -4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature\'s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' }
@@ -4765,7 +4778,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ],
         effect: {
             'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature\'s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a -4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature\'s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' }
@@ -4782,7 +4795,7 @@ MorphinChanges.changes = {
             swim: 20
         },
         senses: [
-            1, 11
+            1, 14
         ],
         effect: {
             'Constrict': { note: 'Constrict: Same damage as Tentacle' }
@@ -4804,7 +4817,7 @@ MorphinChanges.changes = {
             land: 30
         },
         senses: [
-            1, 11
+            1, 14
         ],
         effect: {
             'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature\'s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a -4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature\'s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' }
@@ -4844,7 +4857,7 @@ MorphinChanges.changes = {
             swim: 50
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Elasmotherium': {
@@ -4859,7 +4872,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ],
         effect: {
             'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature\'s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a -4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature\'s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' }
@@ -4878,7 +4891,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ],
         effect: {
             'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature\'s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a -4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature\'s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' }
@@ -4894,7 +4907,7 @@ MorphinChanges.changes = {
             swim: 30
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Giant Gar': {
@@ -4951,7 +4964,7 @@ MorphinChanges.changes = {
             swim: 60
         },
         senses: [
-            1, 11, 15
+            1, 11, 21
         ]
     },
     'Iguanodon': {
@@ -4963,7 +4976,7 @@ MorphinChanges.changes = {
             land: 30
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Kaprosuchus': {
@@ -5008,7 +5021,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ],
         effect: {
             'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature\'s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a -4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature\'s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' }
@@ -5024,7 +5037,7 @@ MorphinChanges.changes = {
             swim: 30
         },
         senses: [
-            1, 11
+            1, 14
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) Bite; save Fort DC 10+DL+Mod; frequency 1/round for 6 rounds; effect 1d4 Dex damage; cure 2 consecutive saves.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -5040,7 +5053,7 @@ MorphinChanges.changes = {
             climb: 10
         },
         senses: [
-            1, 11
+            1, 14
         ],
         effect: {
             'Rend': { note: 'Rend if both claws hit, added to second claw damage. [[/d sizeRoll(1, 6, @size, 5) # Rend damage added to second claw]]{{Roll Rend Damage}}' }
@@ -5060,7 +5073,7 @@ MorphinChanges.changes = {
             swim: 30
         },
         senses: [
-            1, 11
+            1, 14
         ],
         effect: {
             'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature\'s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a -4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature\'s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' }
@@ -5087,7 +5100,7 @@ MorphinChanges.changes = {
             land: 30
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Quetzalcoatlus': {
@@ -5104,7 +5117,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Saltwater Crocodile': {
@@ -5130,7 +5143,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Triceratops': {
@@ -5145,7 +5158,7 @@ MorphinChanges.changes = {
             land: 30
         },
         senses: [
-            1, 11
+            1, 14
         ],
         effect: {
             'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature\'s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a -4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature\'s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' }
@@ -5180,7 +5193,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            1, 14
+            1, 20
         ]
     },
     'Snark': {
@@ -5197,7 +5210,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Toad': {
@@ -5209,7 +5222,7 @@ MorphinChanges.changes = {
             land: 5
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Aranea': {
@@ -5270,7 +5283,7 @@ MorphinChanges.changes = {
             land: 40,
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ]
     },
     'Boreal Wolf': {
@@ -5282,7 +5295,7 @@ MorphinChanges.changes = {
             land: 50,
         },
         senses: [
-            1, 11
+            1, 14
         ],
         di: [
             'cold'
@@ -5301,7 +5314,7 @@ MorphinChanges.changes = {
             swim: 50
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ]
     },
     'Delgeth': {
@@ -5314,7 +5327,7 @@ MorphinChanges.changes = {
             land: 50,
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ],
         di: [
             'fire'
@@ -5330,7 +5343,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            7, 11
+            7, 14
         ]
     },
     'Galvo': {
@@ -5372,7 +5385,7 @@ MorphinChanges.changes = {
             land: 30
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ]
     },
     'Juvenile Seps': {
@@ -5384,7 +5397,7 @@ MorphinChanges.changes = {
             land: 20
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) Bite—injury; save Fort DC 10+SL+Mod; frequency 1/round for 10 rounds; effect 1d4 acid and 1d2 Con damage; cure 2 consecutive saves.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -5415,7 +5428,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ]
     },
     'Nekomata': {
@@ -5428,7 +5441,7 @@ MorphinChanges.changes = {
             land: 50
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ],
         di: [
             'negative'
@@ -5444,7 +5457,7 @@ MorphinChanges.changes = {
             land: 120
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ]
     },
     'Peryton': {
@@ -5477,7 +5490,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ],
         effect: {
             'Constrict': { note: 'Constrict: Same damage as Bite' },
@@ -5495,7 +5508,7 @@ MorphinChanges.changes = {
             climb: 20
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ],
         effect: {
             'Constrict': { note: 'Constrict: Same damage as Bite' }
@@ -5555,7 +5568,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ]
     },
     'Slurk': {
@@ -5581,7 +5594,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ],
         special: [
             'Pounce', 'Rake2Claws'
@@ -5614,7 +5627,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ]
     },
     'Uraeus': {
@@ -5635,7 +5648,7 @@ MorphinChanges.changes = {
             swim: 20
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) Bite or breath weapon—contact or injury; save Fort DC 10+SL+Mod; frequency 1/round for 2 rounds; initial effect blinded and paralyzed for 1 round; secondary effect blinded for 2d4 rounds; cure 2 consecutive saves.', type: 'fort', saveDesc: 'Fort Cures' },
@@ -5654,7 +5667,7 @@ MorphinChanges.changes = {
             land: 50
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ]
     },
     'Almiraj': {
@@ -5667,7 +5680,7 @@ MorphinChanges.changes = {
             burrow: 10
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ]
     },
     'Aurumvorax': {
@@ -5681,7 +5694,7 @@ MorphinChanges.changes = {
             burrow: 10
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ],
         special: [
             'Ferocity', 'Rake4Claws'
@@ -5830,7 +5843,7 @@ MorphinChanges.changes = {
             climb: 20
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ]
     },
     'Muckdweller': {
@@ -5964,7 +5977,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ],
         special: [
             'Ferocity'
@@ -5999,7 +6012,7 @@ MorphinChanges.changes = {
             swim: 20
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) Bite—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d3 Con; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -6043,7 +6056,7 @@ MorphinChanges.changes = {
             burrow: 20
         },
         senses: [
-            1, 7, 24
+            1, 7, 30
         ]
     },
     'Black Shuck': {
@@ -6057,7 +6070,7 @@ MorphinChanges.changes = {
             swim: 15
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ]
     },
     'Burstigeit': {
@@ -6070,7 +6083,7 @@ MorphinChanges.changes = {
             climb: 20
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ],
         eres: [
             { amount: 5, operator: true, types: ['cold', ''] },
@@ -6094,7 +6107,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ],
         effect: {
             'Rend': { note: 'Rend if both talons hit, added to second claw damage. [[/d sizeRoll(1, 6, @size, 5) # Rend damage added to second talon]]{{Roll Rend Damage}}' }
@@ -6116,7 +6129,7 @@ MorphinChanges.changes = {
             swim: 20
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ],
         effect: {
             'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature\'s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a -4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature\'s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' },
@@ -6132,7 +6145,7 @@ MorphinChanges.changes = {
             land: 180
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ]
     },
     'Chemosit': {
@@ -6146,7 +6159,7 @@ MorphinChanges.changes = {
             climb: 40
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ],
         special: [
             'Pounce', 'Rake1Claw'
@@ -6176,7 +6189,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ],
         effect: {
             'Breath': { note: 'Breath area: see description.', type: 'ref', saveDesc: 'Reflex for half', description: '<p>A chimera\'s breath weapon depends on the color of its dragon head, as summarized on the table below. Regardless of its type, a chimera\'s breath weapon is usable once every 1d4 rounds, deals 6d8 points of damage, and allows a Reflex save for half damage, DC 10 + spell level + caster stat mod.</p><p>To determine a chimera\'s head color and breath weapon randomly, roll 1d10 and consult the table below:</p><table><thead><tr><th class="number">d10</th><th>Head Color</th><th>Breath Weapon</th></tr></thead><tbody><tr><td>1-2</td><td>Black</td><td>40-foot line of acid</td></tr><tr><td>3-4</td><td>Blue</td><td>40-foot line of lightning</td></tr><tr><td>5-6</td><td>Green</td><td>20-foot cone of acid</td></tr><tr><td>7-8</td><td>Red</td><td>20-foot cone of fire</td></tr><tr><td>9-10</td><td>White</td><td>20-foot cone of cold</td></tr></tbody></table>' }
@@ -6224,7 +6237,7 @@ MorphinChanges.changes = {
             land: 30
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ]
     },
     'Death Worm': {
@@ -6241,7 +6254,7 @@ MorphinChanges.changes = {
             burrow: 20
         },
         senses: [
-            1, 7, 24
+            1, 7, 30
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) Bite-injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d2 Con damage; cure 2 saves.', type: 'fort', saveDesc: 'Fort Cures' },
@@ -6294,7 +6307,7 @@ MorphinChanges.changes = {
             swim: 10
         },
         senses: [
-            1, 7, 22
+            1, 7, 28
         ],
         effect: {
             'Constrict': { note: 'Constrict: Same damage as Bite' }
@@ -6314,7 +6327,7 @@ MorphinChanges.changes = {
             climb: 10
         },
         senses: [
-            11, 15, 24
+            11, 15, 30
         ],
         eres: [
             { amount: 10, operator: true, types: ['fire', ''] }
@@ -6354,7 +6367,7 @@ MorphinChanges.changes = {
             burrow: 20
         },
         senses: [
-            1, 7, 24
+            1, 7, 30
         ],
         eres: [
             { amount: 10, operator: true, types: ['acid', ''] },
@@ -6405,7 +6418,7 @@ MorphinChanges.changes = {
             climb: 40
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ],
         effect: {
             'Rend': { note: 'Rend if all claws hit, added to last claw damage. [[/d sizeRoll(1, 4, @size, 5) # Rend damage added to second claw]]{{Roll Rend Damage}}' }
@@ -6421,7 +6434,7 @@ MorphinChanges.changes = {
             swim: 15
         },
         senses: [
-            1, 11
+            1, 14
         ],
         di: [
             'cold'
@@ -6484,7 +6497,7 @@ MorphinChanges.changes = {
             swim: 30
         },
         senses: [
-            1, 7, 24
+            1, 7, 30
         ],
         eres: [
             { amount: 10, operator: true, types: ['cold', ''] }
@@ -6508,7 +6521,7 @@ MorphinChanges.changes = {
             land: 30
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ],
         effect: {
             'Breath': { note: 'Breath area: 60ft cone. Creatures in area petrified. Save each round. Second breath effect while petrified makes permanent', type: 'ref', saveDesc: 'Reflex avoids both', description: '<p>A gorgon can use its breath weapon once every 1d4+1 rounds to create a 60-foot cone of green gas. Those caught in the area of the gas can attempt a DC 10 + spell level + caster stat mod Fortitude save to resist the effects, but those who fail the save are immediately petrified. This petrification is temporary—each round, a petrified creature can attempt a new Fortitude save to recover from the petrification as long as it is not caught within the area of effect of the gorgon\'s breath weapon a second time while petrified. A creature exposed to the gorgon\'s breath a second time while already petrified becomes permanently petrified, and can no longer attempt to make additional Fortitude saves to recover naturally.</p>' },
@@ -6525,7 +6538,7 @@ MorphinChanges.changes = {
             land: 30
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ],
         effect: {
             'Rend': { note: 'Rend if 2 claws hit, added to second claw damage. [[/d sizeRoll(1, 8, @size, 5) # Rend damage added to second claw]]{{Roll Rend Damage}}' }
@@ -6541,7 +6554,7 @@ MorphinChanges.changes = {
             land: 30
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ],
         special: [
             'Pounce', 'Rake2Talons'
@@ -6580,7 +6593,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ],
         special: [
             'Pounce'
@@ -6597,7 +6610,7 @@ MorphinChanges.changes = {
             swim: 60
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ]
     },
     'Hippogriff': {
@@ -6614,7 +6627,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ]
     },
     'Hodag': {
@@ -6629,7 +6642,7 @@ MorphinChanges.changes = {
             burrow: 15
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ],
         special: [
             'Ferocity'
@@ -6665,7 +6678,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ],
         special: [
             'Pounce'
@@ -6684,7 +6697,7 @@ MorphinChanges.changes = {
             land: 50
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ],
         eres: [
             { amount: 5, operator: true, types: ['fire', ''] }
@@ -6708,7 +6721,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ],
         eres: [
             { amount: 10, operator: true, types: ['cold', ''] },
@@ -6750,7 +6763,7 @@ MorphinChanges.changes = {
             climb: 30
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ]
     },
     'Lion Alebrije': {
@@ -6767,7 +6780,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ],
         eres: [
             { amount: 5, operator: true, types: ['cold', ''] },
@@ -6790,7 +6803,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ],
         effect: {
             'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature\'s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a -4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature\'s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' }
@@ -6813,7 +6826,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ]
     },
     'Mirror Serpent': {
@@ -6850,7 +6863,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ],
         special: [
             'Pounce', 'Rake2Claws'
@@ -6869,7 +6882,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            1, 18
+            1, 24
         ]
     },
     'Muhuru': {
@@ -6916,7 +6929,7 @@ MorphinChanges.changes = {
             land: 30
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ]
     },
     'Pegasus': {
@@ -6933,7 +6946,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ]
     },
     'Phase Spider': {
@@ -6962,7 +6975,7 @@ MorphinChanges.changes = {
             burrow: 60
         },
         senses: [
-            1, 7, 24
+            1, 7, 30
         ],
         di: [
             'fire'
@@ -6982,7 +6995,7 @@ MorphinChanges.changes = {
             swim: 40
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ],
         effect: {
             'Rend': { note: 'Rend if both claws hit, added to second claw damage. [[/d sizeRoll(1, 6, @size, 5) # Rend damage added to second claw]]{{Roll Rend Damage}}' }
@@ -7022,7 +7035,7 @@ MorphinChanges.changes = {
             burrow: 30
         },
         senses: [
-            1, 7, 11, 24
+            1, 7, 11, 30
         ],
         special: [
             'Rake2Claws'
@@ -7115,7 +7128,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) Sting—injury; save Fort DC 10+SL+Mod; frequency 1/minute for 6 minutes; effect paralysis for 1 minute; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -7204,7 +7217,7 @@ MorphinChanges.changes = {
             land: 60
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ]
     },
     'Winter Wolf': {
@@ -7220,7 +7233,7 @@ MorphinChanges.changes = {
             land: 50
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ],
         effect: {
             'Breath': { note: 'Breath area: 15ft cone. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Once every 1d4 rounds, 15-foot cone for 6d6 cold damage (Reflex DC 10 + spell level + caster stat mod for half damage).</p>' }
@@ -7243,7 +7256,7 @@ MorphinChanges.changes = {
             swim: 20
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ],
         eres: [
             { amount: 5, operator: true, types: ['cold', ''] }
@@ -7259,7 +7272,7 @@ MorphinChanges.changes = {
             burrow: 20
         },
         senses: [
-            1, 7, 11, 20
+            1, 7, 11, 26
         ]
     },
     'Brain Mole Monarch': {
@@ -7276,7 +7289,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            1, 7, 11, 22
+            1, 7, 11, 28
         ]
     },
     'Carbuncle': {
@@ -7323,7 +7336,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ]
     },
     'Coral Capuchin': {
@@ -7468,7 +7481,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ]
     },
     'Sun Falcon': {
@@ -7526,7 +7539,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            1, 7, 11
+            1, 7, 14
         ]
     },
     'Zoog': {
@@ -7540,7 +7553,7 @@ MorphinChanges.changes = {
             climb: 30
         },
         senses: [
-            1, 11
+            1, 14
         ]
     },
     'Huge Air Elemental': {
@@ -9274,7 +9287,7 @@ MorphinChanges.changes = {
             swim: 40
         },
         senses: [
-            7, 22
+            7, 28
         ]
     },
     'Blood Caterpillar': {
@@ -9309,7 +9322,7 @@ MorphinChanges.changes = {
             swim: 60
         },
         senses: [
-            1, 22
+            1, 28
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d4 Con; cure 2 consecutive saves.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -9325,7 +9338,7 @@ MorphinChanges.changes = {
             burrow: 10
         },
         senses: [
-            7,22
+            7,28
         ]
     },
     'Giant Belostomatid': {
@@ -9343,7 +9356,7 @@ MorphinChanges.changes = {
             swim: 40
         },
         senses: [
-            7, 22
+            7, 28
         ]
     },
     'Giant Black Widow': {
@@ -9359,7 +9372,7 @@ MorphinChanges.changes = {
             climb: 30
         },
         senses: [
-            7, 22
+            7, 28
         ],
         effect: {
             'Web': { note: 'Web: Touch attack to entangle up to one size category higher, escaped with escape artist or burst with strength. DC 10+SL+Mod.', description: '<p>Creatures with the web ability can use webs to support themselves and up to one additional creature of the same size. In addition, such creatures can throw a web up to eight times per day. This is similar to an attack with a net but has a maximum range of 50 feet, with a range increment of 10 feet, and is effective against targets up to one size category larger than the web spinner. An entangled creature can escape with a successful Escape Artist check or burst the web with a Strength check. Both are standard actions with a DC equal to 10 + Spell Level + Caster Stat Mod. Attempts to burst a web by those caught in it take a -4 penalty.</p><p>Web spinners can create sheets of sticky webbing up to three times their size. They usually position these sheets to snare flying creatures but can also try to trap prey on the ground. Approaching creatures must succeed on a DC 20 Perception check to notice a web; otherwise they stumble into it and become trapped as though by a successful web attack. Attempts to escape or burst the webbing gain a +5 bonus if the trapped creature has something to walk on or grab while pulling free. Each 5-foot-square section of web has a number of hit points equal to the Hit Dice of the creature that created it ([[@attributes.hd.total]])and DR 5/—.</p><p>A creature can move across its own web at its climb speed and can pinpoint the location of any creature touching its web.</p>' },
@@ -9450,7 +9463,7 @@ MorphinChanges.changes = {
             land: 50
         },
         senses: [
-            7, 22
+            7, 28
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d2 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' },
@@ -9480,7 +9493,7 @@ MorphinChanges.changes = {
             land: 5
         },
         senses: [
-            1, 11, 22
+            1, 11, 28
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Spines—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d2 Str and nauseated for 1 round; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -9554,7 +9567,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            7, 22
+            7, 28
         ]
     },
     'Knight Ant': {
@@ -9569,7 +9582,7 @@ MorphinChanges.changes = {
             climb: 20
         },
         senses: [
-            7, 11, 22
+            7, 11, 28
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d4 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -9665,7 +9678,7 @@ MorphinChanges.changes = {
             climb: 40
         },
         senses: [
-            7, 22
+            7, 28
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1d2 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -9695,7 +9708,7 @@ MorphinChanges.changes = {
             swim: 40
         },
         senses: [
-            1, 22
+            1, 28
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Sting-injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1d2 Con; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -9729,7 +9742,7 @@ MorphinChanges.changes = {
             climb: 20
         },
         senses: [
-            7, 11
+            7, 14
         ]
     },
     'Giant Bee': {
@@ -9819,7 +9832,7 @@ MorphinChanges.changes = {
             land: 15
         },
         senses: [
-            1, 11, 22
+            1, 11, 28
         ],
         effect: {
             'Pull': { note: 'Tongue - Combat Maneuver pull 5 ft', description: '<p><strong>Pull (Ex)</strong> A creature with this ability can choose to make a free combat maneuver check with a successful attack. If successful, this check pulls a creature closer. The distance pulled is set by this ability. The type of attack that causes the pull and the distance pulled are included in the creature\'s description. This ability only works on creatures of a size equal to or smaller than the pulling creature. Creatures pulled in this way do not provoke attacks of opportunity and stop if the pull would move them into a solid object or creature.</p>' }
@@ -9835,7 +9848,7 @@ MorphinChanges.changes = {
             swim: 20
         },
         senses: [
-            11
+            14
         ],
         effect: {
             'BloodDrain': { note: 'Blood Drain 1 Str, 1 Con', description: '<p>The creature drains blood at the end of its turn if it grapples a foe, inflicting Constitution damage.</p>' }
@@ -9898,7 +9911,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            7, 11
+            7, 14
         ],
         effect: {
             'BloodDrain': { note: 'Blood Drain 1d2 Con', description: '<p>The creature drains blood at the end of its turn if it grapples a foe, inflicting Constitution damage.</p>' }
@@ -9917,7 +9930,7 @@ MorphinChanges.changes = {
             climb: 30
         },
         senses: [
-            7, 22
+            7, 28
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Bite—injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1d2 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' },
@@ -9934,7 +9947,7 @@ MorphinChanges.changes = {
             burrow: 20
         },
         senses: [
-            7, 11, 22
+            7, 11, 28
         ]
     },
     'Giant Tube Worm': {
@@ -9947,7 +9960,7 @@ MorphinChanges.changes = {
             swim: 20
         },
         senses: [
-            7, 22
+            7, 28
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1 Dex and staggered 1 round; cure 2 consecutive saves.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -9982,7 +9995,7 @@ MorphinChanges.changes = {
             land: 10
         },
         senses: [
-            1, 11, 22
+            1, 11, 28
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Spine—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d2 Con and stunned 1 round; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -10086,7 +10099,7 @@ MorphinChanges.changes = {
             land: 30
         },
         senses: [
-            7, 22
+            7, 28
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -10126,7 +10139,7 @@ MorphinChanges.changes = {
             climb: 30
         },
         senses: [
-            7, 22
+            7, 28
         ]
     },
     'Giant Crab Spider': {
@@ -10139,7 +10152,7 @@ MorphinChanges.changes = {
             climb: 20
         },
         senses: [
-            7, 22
+            7, 28
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Bite—injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1d2 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -10207,7 +10220,7 @@ MorphinChanges.changes = {
             climb: 20
         },
         senses: [
-            7, 11
+            7, 14
         ],
         effect: {
             'BloodDrain': { note: 'Blood Drain 1 Con', description: '<p>The creature drains blood at the end of its turn if it grapples a foe, inflicting Constitution damage.</p>' }
@@ -10227,7 +10240,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            7, 22
+            7, 28
         ]
     },
     'Ochre Eurypterid': {
@@ -10241,7 +10254,7 @@ MorphinChanges.changes = {
             swim: 40
         },
         senses: [
-            1, 22
+            1, 28
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1 Dex; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -10386,22 +10399,27 @@ MorphinChanges.SENSES = Object.freeze({
     DARKVISION70: { value: 8, name: 'Darkvision70', setting: { dv: 70 } },
     DARKVISION80: { value: 9, name: 'Darkvision80', setting: { dv: 80 } },
     DARKVISION90: { value: 10, name: 'Darkvision90', setting: { dv: 90 } },
-    SCENT: { value: 11, name: 'Scent', setting: { custom: 'Scent' } },
-    BLINDSENSE10: { value: 12, name: 'Blindsense10', setting: { bs: 10 } },
-    BLINDSENSE15: { value: 13, name: 'Blindsense15', setting: { bs: 15 } },
-    BLINDSENSE20: { value: 14, name: 'Blindsense20', setting: { bs: 20 } },
-    BLINDSENSE30: { value: 15, name: 'Blindsense30', setting: { bs: 30 } },
-    BLINDSENSE40: { value: 16, name: 'Blindsense40', setting: { bs: 40 } },
-    BLINDSENSE50: { value: 17, name: 'Blindsense50', setting: { bs: 50 } },
-    BLINDSENSE60: { value: 18, name: 'Blindsense60', setting: { bs: 60 } },
-    TREMORSENSE10: { value: 19, name: 'Tremorsense10', setting: { ts: 10 } },
-    TREMORSENSE15: { value: 20, name: 'Tremorsense15', setting: { ts: 15 } },
-    TREMORSENSE20: { value: 21, name: 'Tremorsense20', setting: { ts: 20 } },
-    TREMORSENSE30: { value: 22, name: 'Tremorsense30', setting: { ts: 30 } },
-    TREMORSENSE40: { value: 23, name: 'Tremorsense40', setting: { ts: 40 } },
-    TREMORSENSE50: { value: 24, name: 'Tremorsense50', setting: { ts: 50 } },
-    TREMORSENSE60: { value: 25, name: 'Tremorsense60', setting: { ts: 60 } },
-    DARKVISION120: { value: 26, name: 'Darkvision120', setting: { dv: 120 } }
+    DARKVISION120: { value: 11, name: 'Darkvision120', setting: { dv: 120 } },
+    SCENT10: { value: 12, name: 'Scent10', setting: { sc: 10 } },
+    SCENT20: { value: 13, name: 'Scent20', setting: { sc: 20 } },
+    SCENT: { value: 14, name: 'Scent30', setting: { sc: 30 } },
+    SCENT40: { value: 15, name: 'Scent40', setting: { sc: 40 } },
+    SCENT50: { value: 16, name: 'Scent40', setting: { sc: 50 } },
+    SCENT60: { value: 17, name: 'Scent40', setting: { sc: 60 } },
+    BLINDSENSE10: { value: 18, name: 'Blindsense10', setting: { bs: 10 } },
+    BLINDSENSE15: { value: 19, name: 'Blindsense15', setting: { bs: 15 } },
+    BLINDSENSE20: { value: 20, name: 'Blindsense20', setting: { bs: 20 } },
+    BLINDSENSE30: { value: 21, name: 'Blindsense30', setting: { bs: 30 } },
+    BLINDSENSE40: { value: 22, name: 'Blindsense40', setting: { bs: 40 } },
+    BLINDSENSE50: { value: 23, name: 'Blindsense50', setting: { bs: 50 } },
+    BLINDSENSE60: { value: 24, name: 'Blindsense60', setting: { bs: 60 } },
+    TREMORSENSE10: { value: 25, name: 'Tremorsense10', setting: { ts: 10 } },
+    TREMORSENSE15: { value: 26, name: 'Tremorsense15', setting: { ts: 15 } },
+    TREMORSENSE20: { value: 27, name: 'Tremorsense20', setting: { ts: 20 } },
+    TREMORSENSE30: { value: 28, name: 'Tremorsense30', setting: { ts: 30 } },
+    TREMORSENSE40: { value: 29, name: 'Tremorsense40', setting: { ts: 40 } },
+    TREMORSENSE50: { value: 30, name: 'Tremorsense50', setting: { ts: 50 } },
+    TREMORSENSE60: { value: 31, name: 'Tremorsense60', setting: { ts: 60 } }
 });
 
 MorphinChanges.flightManeuverability = ['clumsy', 'poor', 'average', 'good', 'perfect'];
