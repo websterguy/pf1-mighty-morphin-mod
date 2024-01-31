@@ -61,7 +61,7 @@ export class MightyMorphinApp {
                 let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
                 scriptCall.category = 'toggle';
                 scriptCall.name = game.i18n.localize('MMMODDeactivateScriptCallName');
-                scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"]) game.mightyMorphin.revert({actor: actor, buff: item.name});';
+                scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"][item.name.slugify()]) game.mightyMorphin.revert({actor: actor, buff: item.name});';
                 buffData.scriptCalls.push(scriptCall);
             }
 
@@ -116,6 +116,10 @@ export class MightyMorphinApp {
             await shifter.updateEmbeddedDocuments('Item', armorToChange);
         }
 
+        let imageChangedAlready = (!!shifter.flags['pf1-mighty-morphin'] && MightyMorphinApp.nonPolymorphs.includes(Object.keys(shifter.flags['pf1-mighty-morphin'])[0]) && !!Object.values(shifter.flags['pf1-mighty-morphin'])[0].tokenImg);
+        let otherSource;
+        if (imageChangedAlready) otherSource = Object.keys(shifter.flags['pf1-mighty-morphin'])[0];
+
         let oldImage, oldProtoImage, newImage, protoImageChange;
 
         if (!!image) {
@@ -134,7 +138,10 @@ export class MightyMorphinApp {
 
         // Update the actor size and store flags
         let updates = { 'system.traits.size': newSize, 'flags.pf1-mighty-morphin': { [flagSlug]: { source: game.i18n.localize('MMMOD.Buffs.EnlargePerson.Name'), buffName: game.i18n.localize('MMMOD.Buffs.EnlargePerson.Name'), size: shifterSize, armor: armorChangeFlag } } };
-        if (!!newImage) mergeObject(mergeObject(updates, protoImageChange), { 'flags.pf1-mighty-morphin': { [flagSlug]: { tokenImg: oldImage, protoImg: oldProtoImage } } });
+        if (!!newImage) {
+            if (imageChangedAlready) mergeObject(mergeObject(updates, protoImageChange), { ['flags.pf1-mighty-morphin']: { [flagSlug]: { tokenImg: oldImage, protoImg: oldProtoImage }, [otherSource]: { ['tokenImg.img']: newImage, ['protoImg.token.img']: newImage }, originalImage: { tokenImg: shifter.flags['pf1-mighty-morphin'][otherSource].tokenImg, protoImg: shifter.flags['pf1-mighty-morphin'][otherSource].protoImg } } });
+            else mergeObject(mergeObject(updates, protoImageChange), { 'flags.pf1-mighty-morphin': { [flagSlug]: { tokenImg: oldImage, protoImg: oldProtoImage } } });
+        }
         await shifter.update(updates);
     }
 
@@ -188,7 +195,7 @@ export class MightyMorphinApp {
                 let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
                 scriptCall.category = 'toggle';
                 scriptCall.name = game.i18n.localize('MMMOD.DeactivateScriptCallName');
-                scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"]) game.mightyMorphin.revert({actor: actor, buff: item.name});';
+                scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"][item.name.slugify()]) game.mightyMorphin.revert({actor: actor, buff: item.name});';
                 buffData.scriptCalls.push(scriptCall);
             }
 
@@ -238,6 +245,10 @@ export class MightyMorphinApp {
             }
         }
 
+        let imageChangedAlready = (!!shifter.flags['pf1-mighty-morphin'] && MightyMorphinApp.nonPolymorphs.includes(Object.keys(shifter.flags['pf1-mighty-morphin'])[0]) && !!Object.values(shifter.flags['pf1-mighty-morphin'])[0].tokenImg);
+        let otherSource;
+        if (imageChangedAlready) otherSource = Object.keys(shifter.flags['pf1-mighty-morphin'])[0];
+
         let oldImage, oldProtoImage, newImage, protoImageChange;
 
         if (!!image) {
@@ -261,7 +272,10 @@ export class MightyMorphinApp {
 
         // Update the actor size and store flags
         let updates = { 'system.traits.size': newSize, 'flags.pf1-mighty-morphin': { [flagSlug]: { source: game.i18n.localize('MMMOD.Buffs.AnimalGrowth.Name'), buffName: game.i18n.localize('MMMOD.Buffs.AnimalGrowth.Name'), size: shifterSize, armor: armorChangeFlag } } };
-        if (!!newImage) mergeObject(mergeObject(updates, protoImageChange), { 'flags.pf1-mighty-morphin': { [flagSlug]: { tokenImg: oldImage, protoImg: oldProtoImage } } });
+        if (!!newImage) {
+            if (imageChangedAlready) mergeObject(mergeObject(updates, protoImageChange), { ['flags.pf1-mighty-morphin']: { [flagSlug]: { tokenImg: oldImage, protoImg: oldProtoImage }, [otherSource]: { ['tokenImg.img']: newImage, ['protoImg.token.img']: newImage }, originalImage: { tokenImg: shifter.flags['pf1-mighty-morphin'][otherSource].tokenImg, protoImg: shifter.flags['pf1-mighty-morphin'][otherSource].protoImg } } });
+            else mergeObject(mergeObject(updates, protoImageChange), { 'flags.pf1-mighty-morphin': { [flagSlug]: { tokenImg: oldImage, protoImg: oldProtoImage } } });
+        }
         await shifter.update(updates);
     }
 
@@ -313,7 +327,7 @@ export class MightyMorphinApp {
                 let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
                 scriptCall.category = 'toggle';
                 scriptCall.name = game.i18n.localize('MMMOD.DeactivateScriptCallName');
-                scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"]) game.mightyMorphin.revert({actor: actor, buff: item.name});';
+                scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"][item.name.slugify()]) game.mightyMorphin.revert({actor: actor, buff: item.name});';
                 buffData.scriptCalls.push(scriptCall);
             }
 
@@ -371,6 +385,10 @@ export class MightyMorphinApp {
         let oldDR = shifter.system.traits.dr.custom;
         let newDR = (!!oldDR ? oldDR + '; ' : '') + '10/adamantine';
 
+        let imageChangedAlready = (!!shifter.flags['pf1-mighty-morphin'] && MightyMorphinApp.nonPolymorphs.includes(Object.keys(shifter.flags['pf1-mighty-morphin'])[0]) && !!Object.values(shifter.flags['pf1-mighty-morphin'])[0].tokenImg);
+        let otherSource;
+        if (imageChangedAlready) otherSource = Object.keys(shifter.flags['pf1-mighty-morphin'])[0];
+
         let oldImage, oldProtoImage, newImage, protoImageChange;
 
         if (!!image) {
@@ -389,7 +407,10 @@ export class MightyMorphinApp {
 
         // Update the actor size and store flags
         let updates = { 'system.traits.size': newSize, 'system.traits.dr.custom': newDR, 'flags.pf1-mighty-morphin': { [flagSlug]: { source: game.i18n.localize('MMMOD.Buffs.LegendaryProportions.Name'), buffName: game.i18n.localize('MMMOD.Buffs.LegendaryProportions.Name'), size: shifterSize, armor: armorChangeFlag, data: { traits: { dr: { custom: oldDR } } } } } };
-        if (!!newImage) mergeObject(mergeObject(updates, protoImageChange), { 'flags.pf1-mighty-morphin': { [flagSlug]: { tokenImg: oldImage, protoImg: oldProtoImage } } });
+        if (!!newImage) {
+            if (imageChangedAlready) mergeObject(mergeObject(updates, protoImageChange), { ['flags.pf1-mighty-morphin']: { [flagSlug]: { tokenImg: oldImage, protoImg: oldProtoImage }, [otherSource]: { ['tokenImg.img']: newImage, ['protoImg.token.img']: newImage }, originalImage: { tokenImg: shifter.flags['pf1-mighty-morphin'][otherSource].tokenImg, protoImg: shifter.flags['pf1-mighty-morphin'][otherSource].protoImg } } });
+            else mergeObject(mergeObject(updates, protoImageChange), { 'flags.pf1-mighty-morphin': { [flagSlug]: { tokenImg: oldImage, protoImg: oldProtoImage } } });
+        }
         await shifter.update(updates);
     }
 
@@ -451,7 +472,7 @@ export class MightyMorphinApp {
                 let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
                 scriptCall.category = 'toggle';
                 scriptCall.name = game.i18n.localize('MMMOD.DeactivateScriptCallName');
-                scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"]) game.mightyMorphin.revert({actor: actor, buff: item.name});';
+                scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"][item.name.slugify()]) game.mightyMorphin.revert({actor: actor, buff: item.name});';
                 buffData.scriptCalls.push(scriptCall);
             }
 
@@ -513,6 +534,10 @@ export class MightyMorphinApp {
         let faSR = 10 + Math.floor(parseInt(casterLevel) / 2);
         let newSR = shifter.system.attributes.sr.total > faSR ? oldSR : faSR;
 
+        let imageChangedAlready = (!!shifter.flags['pf1-mighty-morphin'] && MightyMorphinApp.nonPolymorphs.includes(Object.keys(shifter.flags['pf1-mighty-morphin'])[0]) && !!Object.values(shifter.flags['pf1-mighty-morphin'])[0].tokenImg);
+        let otherSource;
+        if (imageChangedAlready) otherSource = Object.keys(shifter.flags['pf1-mighty-morphin'])[0];
+
         let oldImage, oldProtoImage, newImage, protoImageChange;
 
         if (!!image) {
@@ -532,7 +557,10 @@ export class MightyMorphinApp {
 
         // Update the actor data and store flags
         let updates = { 'system.traits.size': newSize, 'system.traits.dr.custom': newDR, 'system.attributes.sr.formula': `${ newSR }`, 'flags.pf1-mighty-morphin': { [flagSlug]: { source: game.i18n.localize('MMMOD.Buffs.FrightfulAspect.Name'), buffName: game.i18n.localize('MMMOD.Buffs.FrightfulAspect.Name'), size: shifterSize, armor: armorChangeFlag, data: { traits: { dr: { custom: oldDR } }, attributes: { sr: { formula: oldSR } } } } } };
-        if (!!newImage) mergeObject(mergeObject(updates, protoImageChange), { 'flags.pf1-mighty-morphin': { [flagSlug]: { tokenImg: oldImage, protoImg: oldProtoImage } } });
+        if (!!newImage) {
+            if (imageChangedAlready) mergeObject(mergeObject(updates, protoImageChange), { ['flags.pf1-mighty-morphin']: { [flagSlug]: { tokenImg: oldImage, protoImg: oldProtoImage }, [otherSource]: { ['tokenImg.img']: newImage, ['protoImg.token.img']: newImage }, originalImage: { tokenImg: shifter.flags['pf1-mighty-morphin'][otherSource].tokenImg, protoImg: shifter.flags['pf1-mighty-morphin'][otherSource].protoImg } } });
+            else mergeObject(mergeObject(updates, protoImageChange), { 'flags.pf1-mighty-morphin': { [flagSlug]: { tokenImg: oldImage, protoImg: oldProtoImage } } });
+        }
         await shifter.update(updates);
     }
 
@@ -592,7 +620,7 @@ export class MightyMorphinApp {
                 let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
                 scriptCall.category = 'toggle';
                 scriptCall.name = game.i18n.localize('MMMOD.DeactivateScriptCallName');
-                scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"]) game.mightyMorphin.revert({actor: actor, buff: item.name});';
+                scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"][item.name.slugify()]) game.mightyMorphin.revert({actor: actor, buff: item.name});';
                 buffData.scriptCalls.push(scriptCall);
             }
 
@@ -650,6 +678,10 @@ export class MightyMorphinApp {
         let oldDR = shifter.system.traits.dr.custom;
         let newDR = `${ (!!oldDR ? oldDR + '; ' : '') + (cl >= 15 ? 10 : 5) }/${ drEvil ? 'evil' : 'good' }`;
 
+        let imageChangedAlready = (!!shifter.flags['pf1-mighty-morphin'] && MightyMorphinApp.nonPolymorphs.includes(Object.keys(shifter.flags['pf1-mighty-morphin'])[0]) && !!Object.values(shifter.flags['pf1-mighty-morphin'])[0].tokenImg);
+        let otherSource;
+        if (imageChangedAlready) otherSource = Object.keys(shifter.flags['pf1-mighty-morphin'])[0];
+
         let oldImage, oldProtoImage, newImage, protoImageChange;
 
         if (!!image) {
@@ -668,7 +700,10 @@ export class MightyMorphinApp {
 
         // Update the actor data and store flags
         let updates = { 'system.traits.size': newSize, 'system.traits.dr.custom': newDR, 'flags.pf1-mighty-morphin': { [flagSlug]: { source: game.i18n.localize('MMMOD.Buffs.RighteousMight.Name'), buffName: game.i18n.localize('MMMOD.Buffs.RighteousMight.Name'), size: shifterSize, armor: armorChangeFlag, data: { traits: { dr: { custom: oldDR } } } } } };
-        if (!!newImage) mergeObject(mergeObject(updates, protoImageChange), { 'flags.pf1-mighty-morphin': { [flagSlug]: { tokenImg: oldImage, protoImg: oldProtoImage } } });
+        if (!!newImage) {
+            if (imageChangedAlready) mergeObject(mergeObject(updates, protoImageChange), { ['flags.pf1-mighty-morphin']: { [flagSlug]: { tokenImg: oldImage, protoImg: oldProtoImage }, [otherSource]: { ['tokenImg.img']: newImage, ['protoImg.token.img']: newImage }, originalImage: { tokenImg: shifter.flags['pf1-mighty-morphin'][otherSource].tokenImg, protoImg: shifter.flags['pf1-mighty-morphin'][otherSource].protoImg } } });
+            else mergeObject(mergeObject(updates, protoImageChange), { 'flags.pf1-mighty-morphin': { [flagSlug]: { tokenImg: oldImage, protoImg: oldProtoImage } } });
+        }
         await shifter.update(updates);
     }
 
@@ -721,7 +756,7 @@ export class MightyMorphinApp {
                 let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
                 scriptCall.category = 'toggle';
                 scriptCall.name = game.i18n.localize('MMMOD.DeactivateScriptCallName');
-                scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"]) game.mightyMorphin.revert({actor: actor, buff: item.name});';
+                scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"][item.name.slugify()]) game.mightyMorphin.revert({actor: actor, buff: item.name});';
                 buffData.scriptCalls.push(scriptCall);
             }
 
@@ -776,6 +811,10 @@ export class MightyMorphinApp {
             await shifter.updateEmbeddedDocuments('Item', armorToChange);
         }
 
+        let imageChangedAlready = (!!shifter.flags['pf1-mighty-morphin'] && MightyMorphinApp.nonPolymorphs.includes(Object.keys(shifter.flags['pf1-mighty-morphin'])[0]) && !!Object.values(shifter.flags['pf1-mighty-morphin'])[0].tokenImg);
+        let otherSource;
+        if (imageChangedAlready) otherSource = Object.keys(shifter.flags['pf1-mighty-morphin'])[0];
+
         let oldImage, oldProtoImage, newImage, protoImageChange;
 
         if (!!image) {
@@ -794,7 +833,10 @@ export class MightyMorphinApp {
 
         // Update the actor size and store flags
         let updates = { 'system.traits.size': newSize, 'flags.pf1-mighty-morphin': { [flagSlug]: { source: game.i18n.localize('MMMOD.Buffs.ReducePerson.Name'), buffName: game.i18n.localize('MMMOD.Buffs.ReducePerson.Name'), size: shifterSize, armor: armorChangeFlag } } };
-        if (!!newImage) mergeObject(mergeObject(updates, protoImageChange), { 'flags.pf1-mighty-morphin': { [flagSlug]: { tokenImg: oldImage, protoImg: oldProtoImage } } });
+        if (!!newImage) {
+            if (imageChangedAlready) mergeObject(mergeObject(updates, protoImageChange), { ['flags.pf1-mighty-morphin']: { [flagSlug]: { tokenImg: oldImage, protoImg: oldProtoImage }, [otherSource]: { ['tokenImg.img']: newImage, ['protoImg.token.img']: newImage }, originalImage: { tokenImg: shifter.flags['pf1-mighty-morphin'][otherSource].tokenImg, protoImg: shifter.flags['pf1-mighty-morphin'][otherSource].protoImg } } });
+            else mergeObject(mergeObject(updates, protoImageChange), { 'flags.pf1-mighty-morphin': { [flagSlug]: { tokenImg: oldImage, protoImg: oldProtoImage } } });
+        }
         await shifter.update(updates);
     }
 
@@ -851,7 +893,7 @@ export class MightyMorphinApp {
                 let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
                 scriptCall.category = 'toggle';
                 scriptCall.name = game.i18n.localize('MMMOD.DeactivateScriptCallName');
-                scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"]) game.mightyMorphin.revert({actor: actor, buff: item.name});';
+                scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"][item.name.slugify()]) game.mightyMorphin.revert({actor: actor, buff: item.name});';
                 buffData.scriptCalls.push(scriptCall);
             }
 
@@ -897,6 +939,10 @@ export class MightyMorphinApp {
             }
         }
 
+        let imageChangedAlready = (!!shifter.flags['pf1-mighty-morphin'] && MightyMorphinApp.nonPolymorphs.includes(Object.keys(shifter.flags['pf1-mighty-morphin'])[0]) && !!Object.values(shifter.flags['pf1-mighty-morphin'])[0].tokenImg);
+        let otherSource;
+        if (imageChangedAlready) otherSource = Object.keys(shifter.flags['pf1-mighty-morphin'])[0];
+
         let oldImage, oldProtoImage, newImage, protoImageChange;
 
         if (!!image) {
@@ -920,12 +966,15 @@ export class MightyMorphinApp {
 
         // Update the actor size and store flags
         let updates = { 'system.traits.size': newSize, 'flags.pf1-mighty-morphin': { [flagSlug]: { source: game.i18n.localize('MMMOD.Buffs.MaulerBattleForm.Name'), buffName: game.i18n.localize('MMMOD.Buffs.MaulerBattleForm.Name'), size: shifterSize, armor: armorChangeFlag } } };
-        if (!!newImage) mergeObject(mergeObject(updates, protoImageChange), { 'flags.pf1-mighty-morphin': { [flagSlug]: { tokenImg: oldImage, protoImg: oldProtoImage } } });
+        if (!!newImage) {
+            if (imageChangedAlready) mergeObject(mergeObject(updates, protoImageChange), { ['flags.pf1-mighty-morphin']: { [flagSlug]: { tokenImg: oldImage, protoImg: oldProtoImage }, [otherSource]: { ['tokenImg.img']: newImage, ['protoImg.token.img']: newImage }, originalImage: { tokenImg: shifter.flags['pf1-mighty-morphin'][otherSource].tokenImg, protoImg: shifter.flags['pf1-mighty-morphin'][otherSource].protoImg } } });
+            else mergeObject(mergeObject(updates, protoImageChange), { 'flags.pf1-mighty-morphin': { [flagSlug]: { tokenImg: oldImage, protoImg: oldProtoImage } } });
+        }
         await shifter.update(updates);
     }
     
     /**
-     * Applies Mauler Familiar archetype's Battle Form buff and effects to selected actor
+     * Applies Shifter Aspect minor form buff and effects to selected actor
      * 
      * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
      * @param {string} [image = null] The file name for a custom image file without the file extension
@@ -942,6 +991,7 @@ export class MightyMorphinApp {
             return;
         }
         
+        let senseUpgradeUsed = [];
         // get buff data
         if (aspect instanceof Array) {
             for (const singleAspect of aspect) {
@@ -969,6 +1019,7 @@ export class MightyMorphinApp {
         }
 
         let polymorphedWithSenses = (!!shifter.flags['pf1-mighty-morphin'] && (MightyMorphinApp.shapeSpells.includes(Object.keys(shifter.flags['pf1-mighty-morphin'])[0]) || MightyMorphinApp.otherTransmutations.includes(Object.keys(shifter.flags['pf1-mighty-morphin'])[0])) && !!Object.values(shifter.flags['pf1-mighty-morphin'])[0].data?.system?.traits?.senses);
+        let imageChangedAlready = (!!shifter.flags['pf1-mighty-morphin'] && (MightyMorphinApp.shapeSpells.includes(Object.keys(shifter.flags['pf1-mighty-morphin'])[0]) || MightyMorphinApp.otherTransmutations.includes(Object.keys(shifter.flags['pf1-mighty-morphin'])[0])) && !!Object.values(shifter.flags['pf1-mighty-morphin'])[0].tokenImg);
 
         const changes = [], contextNotes = [], itemsToEmbed = [], durationData = {};
         
@@ -1006,8 +1057,9 @@ export class MightyMorphinApp {
 
         let otherSource;
 
+        if (polymorphedWithSenses || imageChangedAlready) otherSource = Object.keys(shifter.flags['pf1-mighty-morphin'])[0];
+
         if (polymorphedWithSenses && !!totalChanges.senses) {
-            otherSource = Object.keys(shifter.flags['pf1-mighty-morphin'])[0];
             const senseData = Object.values(shifter.flags['pf1-mighty-morphin'])[0].data.system.traits.senses;
             actualOriginalSenses = duplicate(senseData); // store original actor sense
             // process what combined senses should be
@@ -1037,7 +1089,7 @@ export class MightyMorphinApp {
                 let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
                 scriptCall.category = 'toggle';
                 scriptCall.name = game.i18n.localize('MMMOD.DeactivateScriptCallName');
-                scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"]) game.mightyMorphin.revert({actor: actor, buff: item.name});';
+                scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"][item.name.slugify()]) game.mightyMorphin.revert({actor: actor, buff: item.name});';
                 buffData.scriptCalls.push(scriptCall);
             }
 
@@ -1057,7 +1109,7 @@ export class MightyMorphinApp {
             // Prepare data for image change
             if (!!newImage) {
                 protoImageChange = !!newImage ? { 'prototypeToken.texture.src': newImage } : { };
-                let oldData = await MightyMorphinApp.changeTokenImage(newImage, shifter);
+                let oldData = await MightyMorphinApp.changeTokenImage((!imageChangedAlready ? newImage : null), shifter); // only change image if not already transmuted with an image. Other spell images take priority
                 oldImage = oldData.oldImage;
                 oldProtoImage = oldData.oldProtoImage;
                 oldProtoImage.token.img = shifter.prototypeToken.texture.src;
@@ -1074,7 +1126,10 @@ export class MightyMorphinApp {
         updates['flags.pf1-mighty-morphin'][game.i18n.localize('MMMOD.Buffs.ShifterAspect.Name').slugify()] = { source: game.i18n.localize('MMMOD.Buffs.ShifterAspect.Name'), buffName: game.i18n.localize('MMMOD.Buffs.ShifterAspect.Name'), itemsCreated: itemsAdded.map(p => p.id) };
         if (!!senseObject) mergeObject(updates, mergeObject(sensesChanges, { ['flags.pf1-mighty-morphin']: { [game.i18n.localize('MMMOD.Buffs.ShifterAspect.Name').slugify()]: { ['data']: originalSenses } } }));
         if (polymorphedWithSenses && !!totalChanges.senses) mergeObject(updates, { ['flags.pf1-mighty-morphin']: { originalSenses: actualOriginalSenses, [otherSource]: { data: { system: { traits: { senses: mergeObject(shifter.flags['pf1-mighty-morphin'][otherSource].data.system.traits.senses, senseObject) } } } } } });
-        if (!!newImage) mergeObject(mergeObject(updates, protoImageChange), { 'flags.pf1-mighty-morphin': { tokenImg: oldImage, protoImg: oldProtoImage } });
+        if (!!newImage) {
+            if (imageChangedAlready) mergeObject(updates, { ['flags.pf1-mighty-morphin']: { [otherSource]: { ['tokenImg.img']: newImage, ['protoImg.token.img']: newImage }, originalImage: { tokenImg: shifter.flags['pf1-mighty-morphin'][otherSource].tokenImg, protoImg: shifter.flags['pf1-mighty-morphin'][otherSource].protoImg } } });
+            else mergeObject(mergeObject(updates, protoImageChange), { 'flags.pf1-mighty-morphin': { [game.i18n.localize('MMMOD.Buffs.ShifterAspect.Name').slugify()]: { tokenImg: oldImage, protoImg: oldProtoImage } } });
+        }
         await shifter.update(updates);
     }
     
@@ -1085,8 +1140,6 @@ export class MightyMorphinApp {
      * @param {object} [actor=null] The specific actor to revert changes on
      */
     static async revert({ actor = null, buff = null } = { }) {
-        if (!!this.currentlyReverting) return;
-        else this.currentlyReverting = true;
         let shifter = actor ?? MightyMorphinApp.getSingleActor(); // Use the provided actor or ensure only a single actor is being processed
 
         if (Object.keys(shifter.flags['pf1-mighty-morphin']).length === 0) {
@@ -1104,7 +1157,7 @@ export class MightyMorphinApp {
         
         if (!!buff) changes = { [buff.slugify()]: changes[buff.slugify()] };
 
-        const sources = Object.keys(changes);
+        const sources = Object.keys(changes).filter(o => o !== 'originalSenses' && o !== 'originalImage');
         let source, nonPolymorphSource, shape = false;
         
         if (sources.length > 1) {
@@ -1153,16 +1206,25 @@ export class MightyMorphinApp {
             let updates;
             // Revert all actor data to its original and remove the flags
             if (!!changes[source].data) {
-                updates = { 'system': changes[source].data, 'system.traits.size': changes[source].size, 'prototypeToken.texture.src': (!!changes[source].protoImg ? changes[source].protoImg.token.img : shifter.prototypeToken.texture.src), 'flags.pf1-mighty-morphin': { ['-=' + source]: null } };
+                updates = { 'system': changes[source].data, 'system.traits.size': changes[source].size, 'flags.pf1-mighty-morphin': { ['-=' + source]: null } };
             }
             else {
-                updates = { 'system.traits.size': changes[source].size, 'prototypeToken.texture.src': (!!changes[source].protoImg ? changes[source].protoImg.token.img : shifter.prototypeToken.texture.src), 'flags.pf1-mighty-morphin': { ['-=' + source]: null }};
+                updates = { 'system.traits.size': changes[source].size, 'flags.pf1-mighty-morphin': { ['-=' + source]: null }};
             }
 
             if (!!shifter.flags['pf1-mighty-morphin'].originalSenses) {
                 const otherEffect = Object.keys(shifter.flags['pf1-mighty-morphin']).find(o => o !== source && o !== 'originalSenses');
                 updates['flags.pf1-mighty-morphin'][otherEffect] = { ['data.system.traits.senses']: shifter.flags['pf1-mighty-morphin'].originalSenses };
                 mergeObject(updates, { ['flags.pf1-mighty-morphin']: { ['-=originalSenses']: null } });
+            }
+
+            
+            if (!shifter.flags['pf1-mighty-morphin'].originalImage) {
+                updates['prototypeToken.texture.src'] = (!!changes[source].protoImg ? changes[source].protoImg.token.img : shifter.prototypeToken.texture.src);
+            }
+            else {
+                const otherEffect = Object.keys(shifter.flags['pf1-mighty-morphin']).find(o => o !== source && o !== 'originalSenses' && o !== 'originalImage');
+                mergeObject(updates, { ['flags.pf1-mighty-morphin.' + otherEffect]: shifter.flags['pf1-mighty-morphin'].originalImage, ['flags.pf1-mighty-morphin.-=originalImage']: null });
             }
 
             await shifter.update(updates);
@@ -1212,6 +1274,14 @@ export class MightyMorphinApp {
                 mergeObject(updates, { ['flags.pf1-mighty-morphin']: { ['-=originalSenses']: null } });
             }
 
+            if (!shifter.flags['pf1-mighty-morphin'].originalImage) {
+                updates['prototypeToken.texture.src'] = (!!changes[source].protoImg ? changes[source].protoImg.token.img : shifter.prototypeToken.texture.src);
+            }
+            else {
+                const otherEffect = Object.keys(shifter.flags['pf1-mighty-morphin']).find(o => o !== source && o !== 'originalSenses' && o !== 'originalImage');
+                mergeObject(updates, { ['flags.pf1-mighty-morphin.' + otherEffect]: shifter.flags['pf1-mighty-morphin'].originalImage, ['flags.pf1-mighty-morphin.-=originalImage']: null });
+            }
+
             await shifter.update(updates);
 
             // Remove any attacks or other features created by the effect
@@ -1228,8 +1298,28 @@ export class MightyMorphinApp {
             if (!!changes[nonPolymorphSource].data) mergeObject(updates, changes[nonPolymorphSource].data);
 
             if (!!shifter.flags['pf1-mighty-morphin'].originalSenses) {
-                const otherEffect = Object.keys(shifter.flags['pf1-mighty-morphin']).find(o => o !== nonPolymorphSource && o !== 'originalSenses');
+                const otherEffect = Object.keys(shifter.flags['pf1-mighty-morphin']).find(o => o !== nonPolymorphSource && o !== 'originalSenses' && o !== 'originalImage');
                 mergeObject(updates, { ['flags.pf1-mighty-morphin']: { ['-=originalSenses']: null, [otherEffect]: { ['data.system.traits.senses']: shifter.flags['pf1-mighty-morphin'].originalSenses } } });
+            }
+
+            if (!!changes[nonPolymorphSource].tokenImg && !shifter.flags['pf1-mighty-morphin'].originalImage) {
+                let token = shifter.token || canvas.tokens.ownedTokens.filter(o => o.actor.id === shifter.id);
+                if (Array.isArray(token) && token.length > 1) {
+                    let tokenUpdates = token.map(o => ({ _id: o.id, 'texture.src': changes[nonPolymorphSource].tokenImg.img }));
+                    await canvas.scene.updateEmbeddedDocuments('Token', tokenUpdates);
+                }
+                else {
+                    if (Array.isArray(token)) token = token[0].document;
+                    await token.update({ 'texture.src': changes[nonPolymorphSource].tokenImg.img });
+                }
+            }
+
+            if (!shifter.flags['pf1-mighty-morphin'].originalImage) {
+                updates['prototypeToken.texture.src'] = (!!changes[nonPolymorphSource].protoImg ? changes[nonPolymorphSource].protoImg.token.img : shifter.prototypeToken.texture.src);
+            }
+            else {
+                const otherEffect = Object.keys(shifter.flags['pf1-mighty-morphin']).find(o => o !== nonPolymorphSource && o !== 'originalSenses' && o !== 'originalImage');
+                mergeObject(updates, { ['flags.pf1-mighty-morphin.' + otherEffect]: shifter.flags['pf1-mighty-morphin'].originalImage, ['flags.pf1-mighty-morphin.-=originalImage']: null });
             }
 
             await shifter.update(updates);
@@ -1241,7 +1331,6 @@ export class MightyMorphinApp {
             if (!!shifter.token) shifter.token.object.control();
             else canvas.tokens.ownedTokens.find(o => o.actor.id === fromUuidSync(shifter.uuid).id).control();
         }
-        this.currentlyReverting = false;
     }
 
     /**
@@ -1792,13 +1881,17 @@ export class MightyMorphinApp {
         if (!!token) {
             if (Array.isArray(token) && token.length > 1) {
                 oldImage.img = token[0].document.texture.src;
-                let tokenUpdates = token.map(o => ({ _id: o.id, 'texture.src': image }));
-                await canvas.scene.updateEmbeddedDocuments('Token', tokenUpdates);
+                if (!!image) {
+                    let tokenUpdates = token.map(o => ({ _id: o.id, 'texture.src': image }));
+                    await canvas.scene.updateEmbeddedDocuments('Token', tokenUpdates);
+                }
             }
             else {
                 if (Array.isArray(token)) token = token[0].document;
-                oldImage.img = token.texture.src;
-                await token.update({ 'texture.src': image });
+                if (!!image) {
+                    oldImage.img = token.texture.src;
+                    await token.update({ 'texture.src': image });
+                }
             }
         }
         oldProtoImage.token.img = shifter.prototypeToken.texture.src;

@@ -182,7 +182,7 @@ export class MorphinPolymorphDialog extends FormApplication {
                 let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
                 scriptCall.category = 'toggle';
                 scriptCall.name = 'Revert Mighty Morphin Changes on Deactivation';
-                scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"]) game.mightyMorphin.revert({actor: actor, buff: item.name});';
+                scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"][item.name.slugify()]) game.mightyMorphin.revert({actor: actor, buff: item.name});';
                 buffData.system.scriptCalls.push(scriptCall);
             }
 
@@ -288,11 +288,13 @@ export class MorphinPolymorphDialog extends FormApplication {
         let sensesChanges = { 'system.traits.senses': duplicate(senseObject) };
 
         let sensesChangedAlready = (!!shifter.flags['pf1-mighty-morphin'] && MightyMorphinApp.nonPolymorphs.includes(Object.keys(shifter.flags['pf1-mighty-morphin'])[0]) && !!Object.values(shifter.flags['pf1-mighty-morphin'])[0].data?.system?.traits?.senses);
+        let imageChangedAlready = (!!shifter.flags['pf1-mighty-morphin'] && MightyMorphinApp.nonPolymorphs.includes(Object.keys(shifter.flags['pf1-mighty-morphin'])[0]) && !!Object.values(shifter.flags['pf1-mighty-morphin'])[0].tokenImg);
 
         let otherSource, actualOriginalSenses;
 
+        if (sensesChangedAlready || imageChangedAlready) otherSource = Object.keys(shifter.flags['pf1-mighty-morphin'])[0];
+
         if (sensesChangedAlready) {
-            otherSource = Object.keys(shifter.flags['pf1-mighty-morphin'])[0];
             const senseData = Object.values(shifter.flags['pf1-mighty-morphin'])[0].data.system.traits.senses;
             actualOriginalSenses = duplicate(senseData); // store original actor sense
             // process what combined senses should be
@@ -604,11 +606,15 @@ export class MorphinPolymorphDialog extends FormApplication {
 
         // Set the flags for all changes made
         let dataFlag = mergeObject({ 'system.traits.size': this.actorSize }, mergeObject(originalSkillMod, mergeObject(originalManeuverability, originalSenses)));
-        if (!!newImage) { dataFlag = mergeObject(dataFlag, oldProtoImage); };
         let flags = { source: this.source, buffName: this.source, data: dataFlag, armor: armorChangeFlag, itemsCreated: itemsCreated };
         if (!!this.macroCreatedId) flags.macroCreatedId = this.macroCreatedId;
+        if (!!newImage) { dataFlag = mergeObject(dataFlag, oldProtoImage); };
         if (!!newImage) { flags = mergeObject(flags, { tokenImg: oldImage }); };
-        const updates = mergeObject({ 'system.traits.size': newSize, 'flags.pf1-mighty-morphin': { [flagSlug]: flags } }, mergeObject(skillModChange, mergeObject(maneuverabilityChange, mergeObject(sensesChanges, protoImageChange))));
+        const updates = mergeObject({ 'system.traits.size': newSize, 'flags.pf1-mighty-morphin': { [flagSlug]: flags } }, mergeObject(skillModChange, mergeObject(maneuverabilityChange, sensesChanges)));     
+        if (!!newImage) {
+            if (imageChangedAlready) mergeObject(mergeObject(updates, protoImageChange), { ['flags.pf1-mighty-morphin']: { [flagSlug]: { tokenImg: oldImage, protoImg: oldProtoImage }, [otherSource]: { ['tokenImg.img']: newImage, ['protoImg.token.img']: newImage }, originalImage: { tokenImg: shifter.flags['pf1-mighty-morphin'][otherSource].tokenImg, protoImg: shifter.flags['pf1-mighty-morphin'][otherSource].protoImg } } });
+            else mergeObject(mergeObject(updates, protoImageChange), { 'flags.pf1-mighty-morphin': { [flagSlug]: { tokenImg: oldImage, protoImg: oldProtoImage } } });
+        }
         if (sensesChangedAlready) mergeObject(updates, { ['flags.pf1-mighty-morphin']: { originalSenses: actualOriginalSenses, [otherSource]: { data: { system: { traits: { senses: mergeObject(shifter.flags['pf1-mighty-morphin'][otherSource].data.system.traits.senses, senseObject) } } } } } });
         await shifter.update(updates);
 
