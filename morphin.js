@@ -13,6 +13,7 @@ Hooks.once('init', () => {
   game.mightyMorphin.reducePerson = MightyMorphinApp.reducePerson;
   game.mightyMorphin.revert = MightyMorphinApp.revert;
   game.mightyMorphin.beastShape = MightyMorphinApp.beastShape;
+  game.mightyMorphin.magicalBeastShape = MightyMorphinApp.magicalBeastShape;
   game.mightyMorphin.elementalBody = MightyMorphinApp.elementalBody;
   game.mightyMorphin.plantShape = MightyMorphinApp.plantShape;
   game.mightyMorphin.verminShape = MightyMorphinApp.verminShape;
@@ -26,6 +27,7 @@ Hooks.once('ready', async () => {
   
   MightyMorphinApp.shapeSpells = [
     game.i18n.localize('MMMOD.Buffs.BeastShape.Name').slugify(),
+    game.i18n.localize('MMMOD.Buffs.MagicalBeastShape.Name').slugify(),
     game.i18n.localize('MMMOD.Buffs.PlantShape.Name').slugify(),
     game.i18n.localize('MMMOD.Buffs.ElementalBody.Name').slugify(),
     game.i18n.localize('MMMOD.Buffs.WildShape.Name').slugify(),

@@ -111,7 +111,7 @@ export class MorphinPolymorphDialog extends FormApplication {
                 // }
                 if (!!this.clawsData.notes) attack.notes = this.clawsData.notes;
                 if (!!this.clawsData.critMult) attack.critMult = Math.min(4, attack.critMult + this.clawsData.critMult - 2);
-                if (usedClaws && attack.special?.includes('Rend')) this.totalChanges.effect['Rend'].note = this.totalChanges.effect['Rend'].note.replace(/sizeRoll\([0-9]+, [0-9]+/g, `sizeRoll(${attack.diceCount}, ${attack.diceSize}`);
+                if (attack.usedClaws && attack.special?.includes('Rend')) this.totalChanges.effect['Rend'].note = this.totalChanges.effect['Rend'].note.replace(/sizeRoll\([0-9]+, [0-9]+/g, `sizeRoll(${attack.diceCount}, ${attack.diceSize}`);
             }
 
             const createdAttack = MightyMorphinApp.createAttack(this.actorId, newSize, attack, oneAttack, this.shifterWildShape ? this.totalChanges.effect : MorphinChanges.changes[chosenForm].effect, this.source, 'natural');
@@ -151,6 +151,19 @@ export class MorphinPolymorphDialog extends FormApplication {
                     // }
                     if (!!this.clawsData.notes) attack.notes = this.clawsData.notes;
                     if (!!this.clawsData.critMult) attack.critMult = Math.min(4, attack.critMult + this.clawsData.critMult - 2);
+                }
+
+                if (this.spell === 'magicalBeastShape' && attack.name.includes('BreathWeapon') && !!attack.nonCrit) {
+                    const breathDamage = attack.nonCrit.formula.split('d');
+                    let limited = false;
+                    if (parseInt(breathDamage[0]) >= 12) {
+                        breathDamage[0] = '12';
+                        limited = true;
+                    }
+                    if (limited && parseInt(breathDamage[1]) > 6) {
+                        breathDamage[1] = '6';
+                    }
+                    if (limited) attack.nonCrit.formula = breathDamage.join('d');
                 }
 
                 const createdAttack = MightyMorphinApp.createAttack(this.actorId, newSize, attack, false, this.shifterWildShape ? this.totalChanges.effect : MorphinChanges.changes[chosenForm].effect, this.source, 'misc');
@@ -349,8 +362,12 @@ export class MorphinPolymorphDialog extends FormApplication {
         let originalRegen = { 'system.traits.regen': shifter.system.traits.regen };
         let regenString = this.processRegen(this.regen) || '';
 
-        originalSenses = mergeObject(originalSenses, mergeObject(originalDi, mergeObject(originalDr, mergeObject(originalRegen, mergeObject(originalEres, originalDv)))));
-        sensesChanges = mergeObject(sensesChanges, mergeObject({ 'system.traits.di': newDi }, mergeObject({ 'system.traits.dr': drObject }, mergeObject({ 'system.traits.regen': regenString }, mergeObject({ 'system.traits.eres': eresString }, { 'system.traits.dv': newDv })))));
+        let originalFastHealing = { 'system.traits.fastHealing': shifter.system.traits.fastHealing };
+        let fastHealingString = this.processFastHealing(this.fastHealing) || '';
+
+
+        originalSenses = mergeObject(originalSenses, mergeObject(originalDi, mergeObject(originalDr, mergeObject(originalRegen, mergeObject(originalFastHealing, mergeObject(originalEres, originalDv))))));
+        sensesChanges = mergeObject(sensesChanges, mergeObject({ 'system.traits.di': newDi }, mergeObject({ 'system.traits.dr': drObject }, mergeObject({ 'system.traits.regen': regenString }, mergeObject({ 'system.traits.fastHealing': fastHealingString }, mergeObject({ 'system.traits.eres': eresString }, { 'system.traits.dv': newDv }))))));
 
         // Create special ability features
         if (!!this.special) {
@@ -489,7 +506,9 @@ export class MorphinPolymorphDialog extends FormApplication {
 
             // Mutated shape
             if (!!this.mutated && !!this.mutatedType) {
-                itemsToEmbed.push(MightyMorphinApp.createAttack(this.actorId, newSize, MorphinChanges.changes.wildShape.mutated[newSize].find(o => o.name === this.mutatedType), false, {}, this.source, 'natural'));
+                let attack = MorphinChanges.changes.wildShape.mutated[newSize].find(o => o.name === this.mutatedType);
+                attack.enh = parseInt(amuletBonus);
+                itemsToEmbed.push(MightyMorphinApp.createAttack(this.actorId, newSize, attack, false, {}, this.source, 'natural'));
             }
 
             // Process changes to attacks
@@ -695,6 +714,14 @@ export class MorphinPolymorphDialog extends FormApplication {
     processRegen(regen) { }
 
     /**
+     * Validates that this specific spell gives the fast healing passed
+     * 
+     * @param {string} fastHealing The fast healing from the chosen form
+     * @returns The fast healing applicable for this spell
+     */
+    processFastHealing(fastHealing) { }
+
+    /**
      * Updates the options in the formSelect select input based on the type radio and the size clicked by the user in the event
      */
     async updateFormChoices() { }
@@ -737,7 +764,10 @@ export class MorphinPolymorphDialog extends FormApplication {
 
         // Submit clicked, apply to the actor
         $('#submitButton').on('click', async (event) => {
-            if (this.planar && !this.planarType) this.planarType = $('input[name="planarSelect"]:checked')[0]?.value;
+            if (this.planar && !this.planarType) {
+                const planarValue = $('input[name="planarSelect"]:checked')[0]?.value;
+                this.planarType = (planarValue === 'none' ? null : planarValue);
+            }
             if (this.energized && !this.energizedTypes) {
                 const energies = ['acid', 'cold', 'electric', 'fire'];
                 this.energizedTypes = [];
