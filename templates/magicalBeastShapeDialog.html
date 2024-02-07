@@ -1,7 +1,7 @@
 <form class="flexcol">
   <div id="sizeSelect">
-    <legend>{{localize "MMMOD.UI.SelectPlantSize"}}:</legend>
-    {{#each plantSizes}}
+    <legend>{{localize "MMMOD.UI.SelectMagicalBeastSize"}}:</legend>
+    {{#each mBeastSizes}}
     <input type="radio" name="sizeSelect" id="{{this.size}}Select" value="{{this.label}}" {{#if this.default}}checked{{/if}}>
     <label for="{{this.size}}Select">{{localize (lookup (concat "MMMOD.Sizes." this.size) 'string')}}</label>
     {{/each}}
@@ -9,7 +9,7 @@
   <div id="creatureSelect">
     <legend>{{localize "MMMOD.UI.SelectForm"}}:</legend>
     <select id="formSelect">
-      {{#each plantOptions}}
+      {{#each mBeastOptions}}
         <option value="{{this.name}}">{{this.name}}</option>
       {{/each}}
     </select>
@@ -50,13 +50,14 @@
         </select>
         {{/unless}}
       {{/if}}
+    </div>
   {{/if}}
   <div id="changePreview">
     {{{previewHtml}}}
   </div>
   <footer class="sheet-footer flexrow">
     <button type="button" name="submit" id="submitButton">
-        <i class="fa fa-check"></i> OK
+        <i class="fa fa-check"></i> {{localize "MMMOD.UI.OK"}}
     </button>
   </footer>
 </form>

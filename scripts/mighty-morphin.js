@@ -1,5 +1,6 @@
 import { MorphinChanges } from './morphin-changes.js';
 import { MorphinBeastShape } from './morphin-beast-shape.js';
+import { MorphinMagicalBeastShape } from './morphin-magical-beast-shape.js';
 import { MorphinElementalBody } from './morphin-elemental-body.js';
 import { MorphinPlantShape } from './morphin-plant-shape.js';
 import { MorphinVerminShape } from './morphin-vermin-shape.js';
@@ -1506,7 +1507,7 @@ export class MightyMorphinApp {
 
         // Create attack sizeRoll with the passed dice stats, the actor's size, and the attack type's damage type (or '' if attack name not in naturalAttacks)
         if (attack.diceSize !== 0) {
-            subAction['damage']['parts'] = [{ formula: `sizeRoll(${ attack.diceCount }, ${ attack.diceSize }, @size, ${ MightyMorphinApp.sizes.indexOf(formSize) })`, type: {values: ((attack.type || MightyMorphinApp.naturalAttacks[attack.name]?.type) || []), custom: ''} }];
+            subAction['damage']['parts'] = [{ formula: `sizeRoll(${ attack.diceCount }, ${ attack.diceSize }, @size, ${ attack.usedClaws ? MightyMorphinApp.sizes.indexOf(actorData.system.traits.size) : MightyMorphinApp.sizes.indexOf(formSize) })`, type: {values: ((attack.type || MightyMorphinApp.naturalAttacks[attack.name]?.type) || []), custom: ''} }];
 
             // Create non-crit bonus damage
             if (attack.nonCrit) subAction['damage']['nonCritParts'] = [attack.nonCrit];
@@ -1576,6 +1577,60 @@ export class MightyMorphinApp {
             
             if (!dia.shapeOptions[type].some(o => o.name === form)) {
                 ui.notifications.error(form + ' ' + game.i18n.localize('MMMOD.BeastInvalidWarning') + ' ' + level);
+                return;
+            }
+
+            dia.buildPreviewTemplate(form, type);
+            dia.applyChanges(null, form);
+        }
+        else dia.render(true);
+    }
+
+    /**
+     * Creates the Beast Shape buff and effects on the actor using the MorphinBeastShape class
+     * 
+     * @param {number} [level=1] The level of beast shape spell being cast (1-4)
+     * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
+     * @param {string} [source='Magical Beast Shape'] The source of the beast shape spell effect
+     * @param {string} [form=null] The name of the form to change into. Must match option from morphin-options exactly.
+     * @param {string} [image = null] The file name for a custom image file without the file extension
+     */
+    static async magicalBeastShape({ level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.MagicalBeastShape.Name'), form = null, image = null, planarType = null, energizedTypes = null, mutatedType = null } = { }) {
+        let shifter = MightyMorphinApp.getSingleActor();
+
+        // Create beast shape form if a single actor chosen not already under effects from this mod
+        let existing;
+        if (!!shifter.flags['pf1-mighty-morphin']) {
+            for (const change of Object.keys(shifter.flags['pf1-mighty-morphin'])) {
+                if (MightyMorphinApp.shapeSpells.includes(change) || MightyMorphinApp.otherTransmutations.includes(change)) {
+                    existing = change;
+                    break;
+                }
+            }
+        }
+
+        if (!!existing) {
+            return ui.notifications.warn(`${ shifter.name } ${ game.i18n.localize('MMMOD.EffectWarning') } ${ shifter.flags['pf1-mighty-morphin'][existing].source }`);
+        }
+
+        let dia = new MorphinMagicalBeastShape(level, durationLevel, shifter.uuid, source, { planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType });
+
+        if (!!image) {
+            dia.customImage = image;
+        }
+        
+        if (!!form) {
+            let type;
+            let foundForm = MorphinOptions.magicalBeast.find(o => o.name === form);
+            if (foundForm) type = 'magicalBeast';
+            
+            if (!foundForm) {
+                ui.notifications.error(form + ' ' + game.i18n.localize('MMMOD.MagicalBeastInvalidWarning'));
+                return;
+            }
+            
+            if (!dia.shapeOptions[type].some(o => o.name === form)) {
+                ui.notifications.error(form + ' ' + game.i18n.localize('MMMOD.MagicalBeastInvalidWarning') + ' ' + level);
                 return;
             }
 

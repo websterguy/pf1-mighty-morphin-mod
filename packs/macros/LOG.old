@@ -1,5 +1,7 @@
-2024/01/29-00:12:35.852 ba18 Log #406: 0 ops saved to Table #409 OK
-2024/01/29-00:12:35.852 ba18 Archiving C:\Users\Kevin\AppData\Local\FoundryVTT\Data\modules\pf1-mighty-morphin\packs\macros/000406.log: OK
-2024/01/29-00:12:35.852 ba18 Table #408: 3 entries OK
-2024/01/29-00:12:35.857 ba18 Archiving C:\Users\Kevin\AppData\Local\FoundryVTT\Data\modules\pf1-mighty-morphin\packs\macros/MANIFEST-000404: OK
-2024/01/29-00:12:35.862 ba18 **** Repaired leveldb C:\Users\Kevin\AppData\Local\FoundryVTT\Data\modules\pf1-mighty-morphin\packs\macros; recovered 1 files; 7316 bytes. Some data may have been lost. ****
+2024/02/05-19:24:07.732 11788 Recovering log #439
+2024/02/05-19:24:07.746 11788 Delete type=0 #439
+2024/02/05-19:24:07.746 11788 Delete type=3 #437
+2024/02/06-20:34:35.279 12c7c Level-0 table #444: started
+2024/02/06-20:34:35.279 12c7c Level-0 table #444: 0 bytes OK
+2024/02/06-20:34:35.283 12c7c Delete type=0 #442
+2024/02/06-20:34:35.289 12c7c Manual compaction at level-0 from '!macros!DYCrMAwEKzOOAFkd' @ 72057594037927935 : 1 .. '!macros!VSFHBQmAalk2Avoa' @ 0 : 0; will stop at (end)

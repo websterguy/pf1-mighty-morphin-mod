@@ -19,9 +19,11 @@
       {{#if planar}}
         {{#unless planarType}}
           <legend>{{localize "MMMOD.UI.SelectPlanarType"}}:</legend>
-          <input type="radio" name="planarSelect" id="celestialSelect" value="celestial" {{checked defaultCelestial}}>
+          <input type="radio" name="planarSelect" id="noPlanarSelect" value="none" checked>
+          <label for="noPlanarSelect">{{localize "MMMOD.UI.None"}}</label>
+          <input type="radio" name="planarSelect" id="celestialSelect" value="celestial">
           <label for="celestialSelect">{{localize "MMMOD.celestial"}}</label>
-          <input type="radio" name="planarSelect" id="fiendishSelect" value="fiendish" {{checked defaultFiendish}}>
+          <input type="radio" name="planarSelect" id="fiendishSelect" value="fiendish">
           <label for="fiendishSelect">{{localize "MMMOD.fiendish"}}</label>
         {{/unless}}
       {{/if}}

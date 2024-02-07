@@ -150,6 +150,57 @@ MorphinChanges.changes = {
             }
         }
     },
+    magicalBeastShape: {
+        magicalBeast: {
+            sm: {
+                changes: [
+                    { formula: '4', operator: 'add', target: 'ability', subTarget: 'dex', modifier: 'size', priority: 0, value: 4 },
+                    { formula: '2', operator: 'add', subTarget: 'nac', modifier: 'untyped', priority: 0, value: 2 }
+                ],
+                size: 'sm'
+            },
+            med: {
+                changes: [
+                    { formula: '4', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'size', priority: 0, value: 4 },
+                    { formula: '4', operator: 'add', subTarget: 'nac', modifier: 'untyped', priority: 0, value: 4 }
+                ],
+                size: 'med'
+            },
+            tiny: {
+                changes: [
+                    { formula: '8', operator: 'add', target: 'ability', subTarget: 'dex', modifier: 'size', priority: 0, value: 8 },
+                    { formula: '-2', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'untyped', priority: 0, value: -2 },
+                    { formula: '3', operator: 'add', subTarget: 'nac', modifier: 'untyped', priority: 0, value: 3 }
+                ],
+                size: 'tiny'
+            },
+            lg: {
+                changes: [
+                    { formula: '6', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'size', priority: 0, value: 6 },
+                    { formula: '2', operator: 'add', target: 'ability', subTarget: 'con', modifier: 'size', priority: 0, value: 2 },
+                    { formula: '-2', operator: 'add', target: 'ability', subTarget: 'dex', modifier: 'untyped', priority: 0, value: -2 },
+                    { formula: '6', operator: 'add', subTarget: 'nac', modifier: 'untyped', priority: 0, value: 6 }
+                ],
+                size: 'lg'
+            },
+            dim: {
+                changes: [
+                    { formula: '10', operator: 'add', target: 'ability', subTarget: 'dex', modifier: 'size', priority: 0, value: 10 },
+                    { formula: '-4', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'untyped', priority: 0, value: -4 }
+                ],
+                size: 'dim'
+            },
+            huge: {
+                changes: [
+                    { formula: '8', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'size', priority: 0, value: 8 },
+                    { formula: '2', operator: 'add', target: 'ability', subTarget: 'con', modifier: 'size', priority: 0, value: 2 },
+                    { formula: '-4', operator: 'add', target: 'ability', subTarget: 'dex', modifier: 'untyped', priority: 0, value: -4 },
+                    { formula: '7', operator: 'add', subTarget: 'nac', modifier: 'untyped', priority: 0, value: 7 }
+                ],
+                size: 'huge'
+            }
+        }
+    },
     elementalBody: {
         air: {
             sm: {
@@ -1181,7 +1232,7 @@ MorphinChanges.changes = {
                 },
                 15: {
                     senses: [
-                        1, 18, 11
+                        1, 11, 24
                     ],
                     speed: {
                         land: 30,
@@ -1848,13 +1899,13 @@ MorphinChanges.changes = {
                         land: 50
                     },
                     senses: [
-                        7, 25
-                    ]
+            7, 26
+        ]
                 },
                 8: {
                     senses: [
-                        7, 27
-                    ],
+            7, 28
+        ],
                     changes: [
                         { formula: '4', operator: 'add', subTarget: 'skill.clm', modifier: 'racial', priority: 0, value: 4 },
                         { formula: '4', operator: 'add', subTarget: 'skill.per', modifier: 'racial', priority: 0, value: 4 }
@@ -2029,7 +2080,7 @@ MorphinChanges.changes = {
                         climb: 30
                     },
                     senses: [
-                        7, 28
+                        7, 26
                     ],
                     effect: {
                         'Poison': { note: 'Poison (Ex) - Bite—injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1d2 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' },
@@ -2037,10 +2088,20 @@ MorphinChanges.changes = {
                     }
                 },
                 8: {
-
+                    changes: [
+                        { formula: '4', operator: 'add', subTarget: 'skill.per', modifier: 'racial', priority: 0, value: 4 }
+                    ],
+                    senses: [
+                        7, 28
+                    ]
                 },
                 15: {
-                    
+                    attacks: [
+                        { name: 'Bite', diceCount: 1, diceSize: 6, count: 1, special: ['Poison'], improved: true }
+                    ],
+                    senses: [
+                        7, 29
+                    ]
                 },
                 alternates: [
                     'Bite'
@@ -2342,7 +2403,7 @@ MorphinChanges.changes = {
             swim: 30
         },
         senses: [
-            1, 11, 21
+            1, 14, 21
         ]
     },
     'Cheetah': {
@@ -2638,7 +2699,7 @@ MorphinChanges.changes = {
             swim: 30
         },
         senses: [
-            11, 21
+            14, 21
         ]
     },
     'Kangaroo': {
@@ -3163,7 +3224,7 @@ MorphinChanges.changes = {
         size: 'sm',
         attacks: [
             { name: 'Gore', diceCount: 1, diceSize: 6, count: 1, special: 'Poison' },
-            { name: 'TailSlap', diceCount: 1, diceSize: 4, count: 1 },
+            { name: 'TailSlap', diceCount: 1, diceSize: 4, count: 1 }
         ],
         speed: {
             land: 30
@@ -3455,7 +3516,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            21
+            22
         ]
     },
     'Dire Bear': {
@@ -4560,7 +4621,7 @@ MorphinChanges.changes = {
             climb: 20
         },
         senses: [
-            1, 10
+            1, 11
         ]
     },
     'Skunk': {
@@ -4964,7 +5025,7 @@ MorphinChanges.changes = {
             swim: 60
         },
         senses: [
-            1, 11, 21
+            1, 14, 21
         ]
     },
     'Iguanodon': {
@@ -5309,13 +5370,22 @@ MorphinChanges.changes = {
         attacks: [
             { name: 'Bite', diceCount: 1, diceSize: 8, count: 1 }
         ],
+        specialAttack: [
+            { name: 'Roar', diceCount: 0, diceSize: 0, count: 1, special: ['Roar'], attackType: 'save', area: '100-ft circle', templateShape: 'circle',  templateSize: '100' }
+        ],
         speed: {
             land: 10,
             swim: 50
         },
         senses: [
-            1, 7, 14
-        ]
+            1, 7, 17
+        ],
+        special: [
+            'BloodFrenzy'
+        ],
+        effect: {
+            'Roar': { note: '100-foot radius. 4HD or fewer Will or panicked 2d4 rounds', type: 'will', saveDesc: 'Will negates', description: '<p>When a bunyip roars (a standard action the creature can perform at will), all hearing creatures with 4 or fewer HD within a 100-foot spread must succeed on a Will save or become panicked for 2d4 rounds. Whether or not the save is successful, creatures in the area are immune to the roar of that bunyip for 24 hours. This is a sonic, mind-affecting fear effect.</p>' }
+        }
     },
     'Delgeth': {
         size: 'med',
@@ -5356,7 +5426,7 @@ MorphinChanges.changes = {
             land: 40
         },
         senses: [
-            1, 15, 7
+            1, 7, 24
         ],
         di: [
             'electric'
@@ -5445,7 +5515,8 @@ MorphinChanges.changes = {
         ],
         di: [
             'negative'
-        ]
+        ],
+        fastHealing: 5
     },
     'Pard': {
         size: 'med',
@@ -5500,7 +5571,7 @@ MorphinChanges.changes = {
     'Ramidreju': {
         size: 'med',
         attacks: [
-            { name: 'Bite', diceCount: 1, diceSize: 6, count: 1, special: ['Grab', 'Constrict'] }
+            { name: 'Bite', diceCount: 1, diceSize: 6, count: 1, special: ['Grab', 'Constrict', 'BloodDrain'] }
         ],
         speed: {
             land: 40,
@@ -5511,6 +5582,7 @@ MorphinChanges.changes = {
             1, 7, 14
         ],
         effect: {
+            'BloodDrain': { note: 'Blood Drain 1 Con', description: '<p>The creature drains blood at the end of its turn if it grapples a foe, inflicting Constitution damage.</p>' },
             'Constrict': { note: 'Constrict: Same damage as Bite' }
         },
     },
@@ -5613,6 +5685,7 @@ MorphinChanges.changes = {
         senses: [
             1, 7
         ],
+        fastHealing: 5,
         eres: [
             { amount: 10, operator: true, types: ['acid', ''] },
             { amount: 10, operator: true, types: ['cold', ''] }
@@ -5699,6 +5772,9 @@ MorphinChanges.changes = {
         special: [
             'Ferocity', 'Rake4Claws'
         ],
+        di: [
+            'poison'
+        ],
         eres: [
             { amount: 10, operator: true, types: ['fire', ''] }
         ]
@@ -5779,7 +5855,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            1, 7
+            1, 7, 38
         ],
         effect: {
             'Constrict': { note: 'Constrict: Same damage as Bite' }
@@ -6056,7 +6132,7 @@ MorphinChanges.changes = {
             burrow: 20
         },
         senses: [
-            1, 7, 30
+            1, 7, 31
         ]
     },
     'Black Shuck': {
@@ -6076,7 +6152,7 @@ MorphinChanges.changes = {
     'Burstigeit': {
         size: 'lg',
         attacks: [
-            { name: 'Gore', diceCount: 1, diceSize: 8, count: 1 }
+            { name: 'Gore', diceCount: 1, diceSize: 8, count: 1, conditionals: ['PowerfulCharge'] }
         ],
         speed: {
             land: 30,
@@ -6091,7 +6167,10 @@ MorphinChanges.changes = {
         ],
         special: [
             'Ferocity'
-        ]
+        ],
+        effect: {
+            'PowerfulCharge': { default: false, name: 'PowerfulCharge', modifiers: [{ formula: '2d8', target: 'damage', subTarget: 'attack_0', type: '', critical: 'nonCrit', damageType: { values: ['piercing'], custom: '' } }] },
+        }
     },
     'Camulatz': {
         size: 'lg',
@@ -6146,7 +6225,8 @@ MorphinChanges.changes = {
         },
         senses: [
             1, 7, 14
-        ]
+        ],
+        fastHealing: 5
     },
     'Chemosit': {
         size: 'lg',
@@ -6174,11 +6254,11 @@ MorphinChanges.changes = {
             { name: 'Claw', diceCount: 1, diceSize: 6, count: 2 }
         ],
         specialAttack: [
-            { name: 'BreathWeaponBlack', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '6d8', type: { values: ['acid'], custom: '' } }, damageAbility: '', attackType: 'none', area: '40-ft line', templateShape: 'ray',  templateSize: '40' },
-            { name: 'BreathWeaponBlue', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '6d8', type: { values: ['electric'], custom: '' } }, damageAbility: '', attackType: 'none', area: '40-ft line', templateShape: 'ray',  templateSize: '40' },
-            { name: 'BreathWeaponGreen', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '6d8', type: { values: ['acid'], custom: '' } }, damageAbility: '', attackType: 'none', area: '20-ft cone', templateShape: 'cone',  templateSize: '20' },
-            { name: 'BreathWeaponRed', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '6d8', type: { values: ['fire'], custom: '' } }, damageAbility: '', attackType: 'none', area: '20-ft cone', templateShape: 'cone',  templateSize: '20' },
-            { name: 'BreathWeaponWhite', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '6d8', type: { values: ['cold'], custom: '' } }, damageAbility: '', attackType: 'none', area: '20-ft cone', templateShape: 'cone',  templateSize: '20' }
+            { name: 'BreathWeaponBlack', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '6d8', type: { values: ['acid'], custom: '' } }, damageAbility: '', area: '40-ft line', templateShape: 'ray',  templateSize: '40' },
+            { name: 'BreathWeaponBlue', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '6d8', type: { values: ['electric'], custom: '' } }, damageAbility: '', area: '40-ft line', templateShape: 'ray',  templateSize: '40' },
+            { name: 'BreathWeaponGreen', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '6d8', type: { values: ['acid'], custom: '' } }, damageAbility: '', area: '20-ft cone', templateShape: 'cone',  templateSize: '20' },
+            { name: 'BreathWeaponRed', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '6d8', type: { values: ['fire'], custom: '' } }, damageAbility: '', area: '20-ft cone', templateShape: 'cone',  templateSize: '20' },
+            { name: 'BreathWeaponWhite', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '6d8', type: { values: ['cold'], custom: '' } }, damageAbility: '', area: '20-ft cone', templateShape: 'cone',  templateSize: '20' }
 
         ],
         speed: {
@@ -6247,14 +6327,13 @@ MorphinChanges.changes = {
         ],
         specialAttack: [
             { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '8d6', type: { values: ['acid'], custom: '' } }, damageAbility: '', attackType: 'none', area: '30-ft line', templateShape: 'ray',  templateSize: '30' }
-
         ],
         speed: {
             land: 20,
             burrow: 20
         },
         senses: [
-            1, 7, 30
+            1, 7, 31
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) Bite-injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d2 Con damage; cure 2 saves.', type: 'fort', saveDesc: 'Fort Cures' },
@@ -6295,7 +6374,55 @@ MorphinChanges.changes = {
             1, 7
         ]
     },
-    'Estuarine Worm': {
+    'Dragon Horse': {
+        size: 'lg',
+        attacks: [
+            { name: 'Hoof', diceCount: 2, diceSize: 6, count: 2, nonCrit: { formula: '1d6', type: { values: ['electric'], custom: '' } } }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], damageAbility: '', attackType: 'none', area: '30-ft cone', templateShape: 'cone',  templateSize: '30' }
+        ],
+        speed: {
+            land: 60,
+            fly: {
+                base: 120,
+                maneuverability: 'good'
+            }
+        },
+        senses: [
+            1, 11
+        ],
+        effect: {
+            'Breath': { note: 'Breath area: 30ft cone. Choice of: [[/d 10d6[cold]]]{10d6 cold damage}, reflex half; 1 min fog cloud in area; severe wind in area', type: 'ref', saveDesc: 'Reflex half', description: '<p>As a standard action, a dragon horse can breathe out a 30-foot cone of mist. This mist either deals 10d6 points of cold damage (DC 20 Reflex half), creates a region of fog in the area that lasts for 1 minute (similar to that created by a fog cloud spell), or creates a blast of severe wind (see the wind effects table) in the area.</p>' }
+        }
+    },
+    'Dragonne': {
+        size: 'lg',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 1, diceSize: 6, count: 2 }
+        ],
+        specialAttack: [
+            { name: 'Roar', diceCount: 0, diceSize: 0, count: 1, special: ['Roar'], attackType: 'save', area: '120-ft circle', templateShape: 'circle',  templateSize: '120' }
+        ],
+        speed: {
+            land: 40,
+            fly: {
+                base: 30,
+                maneuverability: 'poor'
+            }
+        },
+        senses: [
+            1, 7, 14
+        ],
+        special: [
+            'Pounce'
+        ],
+        effect: {
+            'Roar': { note: '120-ft radius. Fort DC 10+SL+Mod save or fatigued. 30-ft radius also deafened 2d4 rounds', type: 'fort', saveDesc: 'Fort negates', description: '<p>A dragonne can unleash a devastating roar every 1d4 rounds as a standard action. All creatures except dragonnes within 120 feet must succeed at a DC 17 Fortitude save or become fatigued. Those within 30 feet who fail their saves are also deafened for 2d4 rounds. This is a sonic effect.</p>' }
+        }
+    },
+    'Estuarine Worm (Shemu)': {
         size: 'lg',
         attacks: [
             { name: 'Bite', diceCount: 2, diceSize: 6, count: 1, special: ['Grab', 'Constrict'] },
@@ -6307,7 +6434,7 @@ MorphinChanges.changes = {
             swim: 10
         },
         senses: [
-            1, 7, 28
+            1, 7, 29
         ],
         effect: {
             'Constrict': { note: 'Constrict: Same damage as Bite' }
@@ -6327,7 +6454,10 @@ MorphinChanges.changes = {
             climb: 10
         },
         senses: [
-            11, 15, 30
+            1, 7, 14, 21, 32
+        ],
+        di: [
+            'poison'
         ],
         eres: [
             { amount: 10, operator: true, types: ['fire', ''] }
@@ -6367,7 +6497,7 @@ MorphinChanges.changes = {
             burrow: 20
         },
         senses: [
-            1, 7, 30
+            1, 7, 31
         ],
         eres: [
             { amount: 10, operator: true, types: ['acid', ''] },
@@ -6446,7 +6576,7 @@ MorphinChanges.changes = {
     'Gnoph-Keh': {
         size: 'lg',
         attacks: [
-            { name: 'Gore', diceCount: 1, diceSize: 8, count: 1 },
+            { name: 'Gore', diceCount: 1, diceSize: 8, count: 1, conditionals: ['PowerfulCharge'] },
             { name: 'Claw', diceCount: 1, diceSize: 6, count: 4 }
         ],
         speed: {
@@ -6460,7 +6590,10 @@ MorphinChanges.changes = {
         ],
         dv: [
             'fire'
-        ]
+        ],
+        effect: {
+            'PowerfulCharge': { default: false, name: 'PowerfulCharge', modifiers: [{ formula: '2d8', target: 'damage', subTarget: 'attack_0', type: '', critical: 'nonCrit', damageType: { values: ['piercing'], custom: '' } }] },
+        }
     },
     'Goezspall': {
         size: 'lg',
@@ -6484,7 +6617,10 @@ MorphinChanges.changes = {
             { amount: 15, operator: true, types: ['sonic', ''] }
         ],
         di: [
-            'cold', 'fire'
+            'cold', 'fire', 'poison'
+        ],
+        special: [
+            'NoBreath'
         ]
     },
     'Goldpebble': {
@@ -6497,7 +6633,7 @@ MorphinChanges.changes = {
             swim: 30
         },
         senses: [
-            1, 7, 30
+            1, 7, 31
         ],
         eres: [
             { amount: 10, operator: true, types: ['cold', ''] }
@@ -6690,7 +6826,7 @@ MorphinChanges.changes = {
     'Karkadann': {
         size: 'lg',
         attacks: [
-            { name: 'Gore', diceCount: 1, diceSize: 8, count: 1 },
+            { name: 'Gore', diceCount: 1, diceSize: 8, count: 1, conditionals: ['PowerfulCharge'] },
             { name: 'Hoof', diceCount: 1, diceSize: 6, count: 2 }
         ],
         speed: {
@@ -6699,19 +6835,24 @@ MorphinChanges.changes = {
         senses: [
             1, 7, 14
         ],
+        di: [
+            'poison'
+        ],
         eres: [
             { amount: 5, operator: true, types: ['fire', ''] }
-        ]
+        ],
+        effect: {
+            'PowerfulCharge': { default: false, name: 'PowerfulCharge', modifiers: [{ formula: '2d8', target: 'damage', subTarget: 'attack_0', type: '', critical: 'nonCrit', damageType: { values: ['piercing'], custom: '' } }] },
+        }
     },
     'Kirin': {
         size: 'lg',
         attacks: [
-            { name: 'Gore', diceCount: 1, diceSize: 8, count: 1 },
+            { name: 'Gore', diceCount: 1, diceSize: 8, count: 1, conditionals: ['PowerfulCharge'] },
             { name: 'Hoof', diceCount: 1, diceSize: 6, count: 2 }
         ],
         specialAttack: [
-            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], nonCrit: { formula: '5d6', type: { values: ['fire'], custom: '' } }, damageAbility: '', attackType: 'none', area: '15-ft cone', templateShape: 'cone',  templateSize: '15' }
-
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], nonCrit: { formula: '5d6', type: { values: ['fire'], custom: '' } }, damageAbility: '', attackType: 'save', area: '15-ft cone', templateShape: 'cone',  templateSize: '15' }
         ],
         speed: {
             land: 60,
@@ -6729,8 +6870,29 @@ MorphinChanges.changes = {
             { amount: 10, operator: true, types: ['fire', ''] }
         ],
         effect: {
-            'Breath': { note: 'Breath area: 15ft cone. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Once every 1d4 rounds. 5d6 fire damage to all creatures in 15-foot cone. Reflex save DC 10 + spell level + caster stat mod for half damage.</p>' }
+            'Breath': { note: 'Breath area: 15ft cone. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Once every 1d4 rounds. 5d6 fire damage to all creatures in 15-foot cone. Reflex save DC 10 + spell level + caster stat mod for half damage.</p>' },
+            'PowerfulCharge': { default: false, name: 'PowerfulCharge', modifiers: [{ formula: '2d8', target: 'damage', subTarget: 'attack_0', type: '', critical: 'nonCrit', damageType: { values: ['piercing'], custom: '' } }] },
         }
+    },
+    'Kravyad': {
+        size: 'lg',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1, nonCrit: { formula: '1d6', type: { values: ['electric'], custom: '' } } },
+            { name: 'Claw', diceCount: 1, diceSize: 6, count: 2, nonCrit: { formula: '1d6', type: { values: ['electric'], custom: '' } } }
+        ],
+        speed: {
+            land: 40,
+            swim: 20
+        },
+        senses: [
+            1, 7, 14
+        ],
+        di: [
+            'electric'
+        ],
+        special: [
+            'Ferocity'
+        ]
     },
     'Lammasu': {
         size: 'lg',
@@ -6764,6 +6926,9 @@ MorphinChanges.changes = {
         },
         senses: [
             1, 7, 14
+        ],
+        di: [
+            'poison'
         ]
     },
     'Lion Alebrije': {
@@ -6882,7 +7047,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            1, 24
+            1, 25
         ]
     },
     'Muhuru': {
@@ -6975,7 +7140,7 @@ MorphinChanges.changes = {
             burrow: 60
         },
         senses: [
-            1, 7, 30
+            1, 7, 31
         ],
         di: [
             'fire'
@@ -6999,7 +7164,10 @@ MorphinChanges.changes = {
         ],
         effect: {
             'Rend': { note: 'Rend if both claws hit, added to second claw damage. [[/d sizeRoll(1, 6, @size, 5) # Rend damage added to second claw]]{{Roll Rend Damage}}' }
-        }
+        },
+        special: [
+            'HoldBreath'
+        ]
     },
     'Seaweed Siren': {
         size: 'lg',
@@ -7035,10 +7203,10 @@ MorphinChanges.changes = {
             burrow: 30
         },
         senses: [
-            1, 7, 11, 30
+            1, 7, 14, 41
         ],
         special: [
-            'Rake2Claws'
+            'Rake2Claws', 'NoBreath'
         ]
     },
     'Shedu': {
@@ -7061,6 +7229,7 @@ MorphinChanges.changes = {
         senses: [
             1, 7
         ],
+        fastHealing: 5,
         eres: [
             { amount: 10, operator: true, types: ['electric', ''] },
             { amount: 10, operator: true, types: ['fire', ''] }
@@ -7090,7 +7259,7 @@ MorphinChanges.changes = {
         size: 'lg',
         attacks: [
             { name: 'Bite', diceCount: 1, diceSize: 8, count: 1 },
-            { name: 'Hoof', diceCount: 1, diceSize: 8, count: 4 }
+            { name: 'Hoof', diceCount: 1, diceSize: 8, count: 4, conditionals: ['PowerfulCharge'] }
         ],
         specialAttack: [
             { name: 'Trample', diceCount: 1, diceSize: 8, count: 1, special: ['Trample'], mult: 1.5, attackType: 'mcman' },
@@ -7110,7 +7279,8 @@ MorphinChanges.changes = {
         ],
         effect: {
             'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature\'s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a -4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature\'s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' },
-            'Breath': { note: 'Breath area: 30ft cone. Creatures in area hit by prismatic spray spell (see spell for effect and save type)', description: '<p>As a standard action, a sleipnir can exhale a 30-foot cone of shimmering, rainbow-colored light. Every creature in the area is randomly struck by one or more beams, as a prismatic spray spell (DC 10 + spell level + caster stat mod  half or negates). The sleipnir may use this ability once every 1d6 rounds, up to 3 times per day.</p>' }
+            'Breath': { note: 'Breath area: 30ft cone. Creatures in area hit by prismatic spray spell (see spell for effect and save type)', description: '<p>As a standard action, a sleipnir can exhale a 30-foot cone of shimmering, rainbow-colored light. Every creature in the area is randomly struck by one or more beams, as a prismatic spray spell (DC 10 + spell level + caster stat mod  half or negates). The sleipnir may use this ability once every 1d6 rounds, up to 3 times per day.</p>' },
+            'PowerfulCharge': { default: false, name: 'PowerfulCharge', modifiers: [{ formula: '2d8', target: 'damage', subTarget: 'attack_0', type: '', critical: 'nonCrit', damageType: { values: ['bludgeoning'], custom: '' } }] },
         }
     },
     'Spider Eater': {
@@ -7169,7 +7339,8 @@ MorphinChanges.changes = {
         },
         senses: [
             1, 7
-        ]
+        ],
+        fastHealing: 5
     },
     'Tetrolimulus': {
         size: 'lg',
@@ -7210,7 +7381,7 @@ MorphinChanges.changes = {
     'Unicorn': {
         size: 'lg',
         attacks: [
-            { name: 'Gore', diceCount: 1, diceSize: 8, count: 1 },
+            { name: 'Gore', diceCount: 1, diceSize: 8, count: 1, conditionals: ['PowerfulCharge'] },
             { name: 'Hoof', diceCount: 1, diceSize: 3, count: 2 }
         ],
         speed: {
@@ -7218,7 +7389,31 @@ MorphinChanges.changes = {
         },
         senses: [
             1, 7, 14
-        ]
+        ],
+        di: [
+            'poison'
+        ],
+        effect: {
+            'PowerfulCharge': { default: false, name: 'PowerfulCharge', modifiers: [{ formula: '2d8', target: 'damage', subTarget: 'attack_0', type: '', critical: 'nonCrit', damageType: { values: ['piercing'], custom: '' } }] },
+        }
+    },
+    'Water Wraith': {
+        size: 'lg',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 8, count: 1, special: ['BloodDrain'] },
+            { name: 'Claw', diceCount: 1, diceSize: 6, count: 4, special: ['Rend'] }
+        ],
+        speed: {
+            land: 30,
+            swim: 40
+        },
+        senses: [
+            1, 7
+        ],
+        effect: {
+            'BloodDrain': { note: 'Blood Drain 1d2 Con', description: '<p>The creature drains blood at the end of its turn if it grapples a foe, inflicting Constitution damage.</p>' },
+            'Rend': { note: 'Rend if 2 claws hit, added to second claw damage. [[/d sizeRoll(1, 3, @size, 5) # Rend damage added to second claw]]{{Roll Rend Damage}}' }
+        }
     },
     'Winter Wolf': {
         size: 'lg',
@@ -7272,7 +7467,7 @@ MorphinChanges.changes = {
             burrow: 20
         },
         senses: [
-            1, 7, 11, 26
+            1, 7, 14, 27
         ]
     },
     'Brain Mole Monarch': {
@@ -7289,7 +7484,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            1, 7, 11, 28
+            1, 7, 14, 29
         ]
     },
     'Carbuncle': {
@@ -7314,6 +7509,10 @@ MorphinChanges.changes = {
         },
         senses: [
             1, 7
+        ],
+        fastHealing: 2,
+        di: [
+            'poison'
         ],
         eres: [
             { amount: 5, operator: true, types: ['acid', ''] },
@@ -7419,6 +7618,9 @@ MorphinChanges.changes = {
         senses: [
             1, 7
         ],
+        di: [
+            'poison'
+        ],
         effect: {
             'Poison': { note: 'Poison (Ex) Injury—bite; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d4 fire damage; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
         }
@@ -7436,6 +7638,24 @@ MorphinChanges.changes = {
         ],
         di: [
             'cold'
+        ]
+    },
+    'Ratling': {
+        size: 'tiny',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 3, count: 1 }
+        ],
+        speed: {
+            land: 30,
+            burrow: 10,
+            climb: 20,
+            swim: 30
+        },
+        senses: [
+            1, 7
+        ],
+        di: [
+            'poison'
         ]
     },
     'Sin Seeker': {
@@ -7472,7 +7692,9 @@ MorphinChanges.changes = {
     },
     'Stirge': {
         size: 'tiny',
-        attacks: [],
+        attacks: [
+            { name: 'Touch', diceCount: 0, diceSize: 0, count: 1, special: ['BloodDrain'] }
+        ],
         speed: {
             land: 10,
             fly: {
@@ -7482,7 +7704,10 @@ MorphinChanges.changes = {
         },
         senses: [
             1, 7, 14
-        ]
+        ],
+        effect: {
+            'BloodDrain': { note: 'Blood Drain 1 Con', description: '<p>The creature drains blood at the end of its turn if it grapples a foe, inflicting Constitution damage.</p>' }
+        }
     },
     'Sun Falcon': {
         size: 'tiny',
@@ -7503,8 +7728,14 @@ MorphinChanges.changes = {
         senses: [
             1, 7
         ],
+        di: [
+            'fire'
+        ],
+        dv: [
+            'cold'
+        ],
         effect: {
-            'Breath': { note: 'Breath area: 30ft line. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Once every 1d4 rounds, 30-foot cone for 3d6 fire damage (Reflex DC 10 + spell level + caster stat mod for half damage).</p>' }
+            'Breath': { note: 'Breath area: 30ft line. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Once every 1d4 rounds, 30-foot line for 3d6 fire damage (Reflex DC 10 + spell level + caster stat mod for half damage).</p>' }
         }
 
     },
@@ -7554,6 +7785,991 @@ MorphinChanges.changes = {
         },
         senses: [
             1, 14
+        ]
+    },
+    'Abaia': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 3, diceSize: 6, count: 1, special: ['Constrict', 'Grab'] },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        speed: {
+            land: 20,
+            swim: 80
+        },
+        senses: [
+            1, 7
+        ],
+        effect: {
+            'Constrict': { note: 'Constrict: Same damage as Bite' }
+        }
+    },
+    'Akhlut': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 4, diceSize: 8, count: 1, special: ['Grab'], nonCrit: { formula: '4d6', type: { values: ['cold'], custom: '' } } }
+        ],
+        speed: {
+            land: 20,
+            swim: 80
+        },
+        senses: [
+            1, 7, 14
+        ],
+        di: [
+            'cold'
+        ],
+        dv: [
+            'fire'
+        ],
+        special: [
+            'HoldBreath'
+        ]
+    },
+    'Amarok': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 3, diceSize: 6, count: 1, special: ['Grab', 'Trip'] }
+        ],
+        speed: {
+            land: 50
+        },
+        senses: [
+            1, 7, 14, 40
+        ]
+    },
+    'Ankhrav': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1, special: ['Grab'], nonCrit: { formula: '2d6', type: { values: ['acid'], custom: '' } } },
+            { name: 'Claw', diceCount: 1, diceSize: 8, count: 2 }
+        ],
+        speed: {
+            land: 40,
+            burrow: 30
+        },
+        senses: [
+            1, 7
+        ]
+    },
+    'Behir': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1, special: ['Constrict', 'Grab'] },
+            { name: 'Rake6Claws', diceCount: 1, diceSize: 4, count: 6, img: 'systems/pf1/icons/skills/blood_06.jpg', type: ['bludgeoning', 'slashing'],  primaryAttack: true }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], nonCrit: { formula: '7d6', type: { values: ['electric'], custom: '' } }, damageAbility: '', attackType: 'none', area: '20-ft line', templateShape: 'ray',  templateSize: '20' }
+        ],
+        speed: {
+            land: 40,
+            climb: 20
+        },
+        senses: [
+            1, 7
+        ],
+        di: [
+            'electric'
+        ],
+        effect: {
+            'Breath': { note: 'Breath area: 20ft line. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Once every 1d4 rounds, 20-foot line for 3d6 fire damage (Reflex DC 10 + spell level + caster stat mod for half damage).</p>' },
+            'Constrict': { note: 'Constrict: Same damage as Bite' }
+        },
+        special: [
+            'Rake6Claws'
+        ]
+    },
+    'Bolla': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 4, diceSize: 8, count: 1, special: ['Grab'] },
+            { name: 'TailSlap', diceCount: 1, diceSize: 4, count: 1 }
+        ],
+        speed: {
+            land: 40,
+            burrow: 30
+        },
+        senses: [
+            1, 7
+        ],
+        eres: [
+            { amount: 20, operator: true, types: ['acid', ''] },
+            { amount: 20, operator: true, types: ['electric', ''] }
+        ]
+    },
+    'Bulette': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2 }
+        ],
+        speed: {
+            land: 40,
+            burrow: 20
+        },
+        senses: [
+            1, 7, 14, 32
+        ]
+    },
+    'Cherufe': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2 }
+        ],
+        speed: {
+            land: 50,
+            swim: 30
+        },
+        senses: [
+            1, 7
+        ],
+        di: [
+            'fire'
+        ],
+        dv: [
+            'cold'
+        ]
+    },
+    'Corbayrant': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1, special: ['Grab'] },
+            { name: 'Sting', diceCount: 2, diceSize: 8, count: 1, special: ['Poison'] },
+            { name: 'Spine', diceCount: 2, diceSize: 6, count: 2, },
+            { name: 'Spine', diceCount: 2, diceSize: 6, count: 4, attackType: 'rwak', range: 90, increment: 1 }
+        ],
+        speed: {
+            land: 40,
+            climb: 30
+        },
+        senses: [
+            25
+        ],
+        effect: {
+            'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect [[/r 1d4]] Con and nauseated for 1 round; cure 2 consecutive saves.', type: 'fort', saveDesc: 'Fort Cures' }
+        },
+        di: [
+            'poison'
+        ],
+        eres: [
+            { amount: 10, operator: true, types: ['fire', ''] }
+        ],
+        dv: [
+            'cold'
+        ]
+    },
+    'Estuarine Worm (Ahket)': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1, special: ['Grab', 'Constrict'] },
+            { name: 'TailSlap', diceCount: 2, diceSize: 8, count: 1 }
+        ],
+        speed: {
+            land: 30,
+            burrow: 20,
+            swim: 20
+        },
+        senses: [
+            1, 7, 29
+        ],
+        effect: {
+            'Constrict': { note: 'Constrict: Same damage as Bite' }
+        },
+        eres: [
+            { amount: 10, operator: true, types: ['acid', ''] },
+            { amount: 10, operator: true, types: ['fire', ''] }
+        ]
+    },
+    'Feeder in the Depths': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        speed: {
+            land: 0,
+            swim: 80
+        },
+        senses: [
+            1, 7, 14, 21
+        ],
+        effect: {
+            'Constrict': { note: 'Constrict: Same damage as Bite' }
+        },
+        eres: [
+            { amount: 20, operator: true, types: ['cold', ''] }
+        ]
+    },
+    'Feranth': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1 },
+            { name: 'Claw', diceCount: 1, diceSize: 8, count: 1 },
+            { name: 'Gore', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        speed: {
+            land: 50,
+            burrow: 30
+        },
+        senses: [
+            1, 7, 33
+        ],
+        special: [
+            'Ferocity'
+        ]
+    },
+    'Frost Worm': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 4, diceSize: 10, count: 1, nonCrit: { formula: '4d6', type: { values: ['cold'], custom: '' } } }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '15d6', type: { values: ['cold'], custom: '' } }, damageAbility: '', area: '60-ft cone', templateShape: 'cone',  templateSize: '60' },
+        ],
+        speed: {
+            land: 30,
+            burrow: 10
+        },
+        senses: [
+            1, 7
+        ],
+        di: [
+            'cold'
+        ],
+        dv: [
+            'fire'
+        ],
+        effect: {
+            'Breath': { note: 'Breath area: 60ft cone. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once per hour.</p>' }
+        }
+    },
+    'Furcifer': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1 },
+            { name: 'Claw', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 },
+            { name: 'Tongue', diceCount: 0, diceSize: 0, count: 1, special: ['Grab'], attackType: 'rwak', range: 25 }
+        ],
+        speed: {
+            land: 40,
+            climb: 40
+        },
+        senses: [
+            1, 7, 21
+        ],
+        dv: [
+            'cold'
+        ],
+        effect: {
+            'Pull': { note: 'Tongue - Combat Maneuver pull 10 ft', description: '<p><strong>Pull (Ex)</strong> A creature with this ability can choose to make a free combat maneuver check with a successful attack. If successful, this check pulls a creature closer. The distance pulled is set by this ability. The type of attack that causes the pull and the distance pulled are included in the creature\'s description. This ability only works on creatures of a size equal to or smaller than the pulling creature. Creatures pulled in this way do not provoke attacks of opportunity and stop if the pull would move them into a solid object or creature.</p>' }
+        }
+    },
+    'Gargiya': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 3, diceSize: 6, count: 1, special: ['Constrict', 'Grab'] },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '15d6', type: { values: ['cold'], custom: '' } }, damageAbility: '', area: '60-ft cone', templateShape: 'cone',  templateSize: '60' },
+        ],
+        speed: {
+            land: 20,
+            swim: 50
+        },
+        senses: [
+            1, 7
+        ],
+        di: [
+            'fire'
+        ],
+        effect: {
+            'Constrict': { note: 'Constrict: Same damage as Bite' }
+        },
+    },
+    'Giant Owl': {
+        size: 'huge',
+        attacks: [
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2 }
+        ],
+        speed: {
+            land: 10,
+            fly: {
+                base: 60,
+                maneuverability: 'average'
+            }
+        },
+        senses: [
+            1
+        ]
+    },
+    'Gigas Clam': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1 },
+            { name: 'Slam', diceCount: 1, diceSize: 8, count: 2 }
+        ],
+        specialAttack: [
+            { name: 'Trample', diceCount: 1, diceSize: 8, count: 1, special: ['Trample'], mult: 1.5, attackType: 'mcman' }
+        ],
+        speed: {
+            land: 20,
+            swim: 60
+        },
+        senses: [
+            1, 7
+        ],
+        di: [
+            'poison'
+        ],
+        special: [
+            'Jet300'
+        ],
+        effect: {
+            'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature\'s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a -4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature\'s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' }
+        }
+    },
+    'Grisantian Lion': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 3, diceSize: 6, count: 1, special: ['Grab'] },
+            { name: 'Claw', diceCount: 1, diceSize: 8, count: 2 }
+        ],
+        speed: {
+            land: 40
+        },
+        senses: [
+            1, 7, 14
+        ],
+        di: [
+            'poison'
+        ],
+        eres: [
+            { amount: 10, operator: true, types: ['fire', ''] }
+        ],
+        special: [
+            'Pounce', 'Rake2Claws'
+        ]
+    },
+    'Hungerer': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 1, diceSize: 8, count: 2 }
+        ],
+        speed: {
+            land: 10,
+            fly: {
+                base: 60,
+                maneuverability: 'good'
+            }
+        },
+        senses: [
+            1, 10
+        ],
+        di: [
+            'poison'
+        ],
+        eres: [
+            { amount: 10, operator: true, types: ['electric', ''] },
+            { amount: 10, operator: true, types: ['fire', ''] }
+        ]
+    },
+    'Hydra': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 8, count: 1 }
+        ],
+        speed: {
+            land: 20,
+            swim: 20
+        },
+        senses: [
+            1, 7, 14
+        ],
+        fastHealing: 5,
+        special: [
+            'Pounce'
+        ]
+    },
+    'Jubjub Bird': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 3, diceSize: 6, count: 1, special: ['Grab'] },
+            { name: 'Talons', diceCount: 1, diceSize: 8, count: 2 }
+        ],
+        speed: {
+            land: 50,
+            fly: {
+                base: 20,
+                maneuverability: 'poor'
+            }
+        },
+        senses: [
+            1, 7, 14
+        ],
+        fastHealing: 10,
+        di: [
+            'acid'
+        ]
+    },
+    'Juggernaut Beetle': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 4, diceSize: 10, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'Trample', diceCount: 2, diceSize: 8, count: 1, special: ['Trample'], mult: 1.5, attackType: 'mcman' },
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '8d6', type: { values: ['acid'], custom: '' } }, damageAbility: '', area: '60-ft cone', templateShape: 'cone',  templateSize: '60' }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            1, 11
+        ],
+        di: [
+            'acid'
+        ],
+        effect: {
+            'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature\'s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a -4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature\'s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' },
+            'Breath': { note: 'Breath area: 60ft cone. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds</p>' }
+        }
+    },
+    'Kokogiak': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1, special: ['Pull'] },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 6 }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '8d6', type: { values: ['cold'], custom: '' } }, damageAbility: '', area: '60-ft cone', templateShape: 'cone',  templateSize: '60' }
+        ],
+        speed: {
+            land: 40,
+            burrow: 20,
+            climb: 20,
+            swim: 20
+        },
+        senses: [
+            1, 7
+        ],
+        di: [
+            'cold'
+        ],
+        effect: {
+            'Pull': { note: 'Bite - Combat Maneuver pull 10 ft', description: '<p><strong>Pull (Ex)</strong> A creature with this ability can choose to make a free combat maneuver check with a successful attack. If successful, this check pulls a creature closer. The distance pulled is set by this ability. The type of attack that causes the pull and the distance pulled are included in the creature\'s description. This ability only works on creatures of a size equal to or smaller than the pulling creature. Creatures pulled in this way do not provoke attacks of opportunity and stop if the pull would move them into a solid object or creature.</p>' },
+            'Breath': { note: 'Breath area: 60ft cone. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds.  Any creature damaged by this attack must then succeed at a Fortitude save or become fatigued (or exhausted if it was already fatigued).</p>' }
+        }
+    },
+    'Legendary Chimera': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1, special: ['Grab'] },
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1 },
+            { name: 'Claw', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'Gore', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '13d8', type: { values: ['fire'], custom: '' } }, damageAbility: '', area: '60-ft cone', templateShape: 'cone',  templateSize: '60' }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            1, 7, 14
+        ],
+        di: [
+            'fire', 'poison'
+        ],
+        effect: {
+            'Breath': { note: 'Breath area: 60ft cone. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds.</p>' }
+        }
+    },
+    'Leng Spider': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1, special: ['Poison'] },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 6 }
+        ],
+        specialAttack: [
+            { name: 'Web', diceCount: 0, diceSize: 0, count: 1, special: ['Touch', 'Web'], attackType: 'rwak', range: 10, increment: 5, charges: 8, claw: false }
+        ],
+        speed: {
+            land: 40,
+            climb: 40
+        },
+        senses: [
+            1, 7, 32
+        ],
+        di: [
+            'cold', 'poison'
+        ],
+        fastHealing: 10,
+        effect: {
+            'Poison': { note: 'Poison (Ex) - Bite—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d4 Con plus confusion 1 round; cure 2 consecutive saves.', type: 'fort', saveDesc: 'Fort Cures' },
+            'Web': { note: 'Web: Touch attack to entangle up to one size category higher, escaped with escape artist or burst with strength. DC 10+SL+Mod.', description: '<p>Creatures with the web ability can use webs to support themselves and up to one additional creature of the same size. In addition, such creatures can throw a web up to eight times per day. This is similar to an attack with a net but has a maximum range of 50 feet, with a range increment of 10 feet, and is effective against targets up to one size category larger than the web spinner. An entangled creature can escape with a successful Escape Artist check or burst the web with a Strength check. Both are standard actions with a DC equal to 10 + Spell Level + Caster Stat Mod. Attempts to burst a web by those caught in it take a -4 penalty.</p><p>Web spinners can create sheets of sticky webbing up to three times their size. They usually position these sheets to snare flying creatures but can also try to trap prey on the ground. Approaching creatures must succeed on a DC 20 Perception check to notice a web; otherwise they stumble into it and become trapped as though by a successful web attack. Attempts to escape or burst the webbing gain a +5 bonus if the trapped creature has something to walk on or grab while pulling free. Each 5-foot-square section of web has a number of hit points equal to the Hit Dice of the creature that created it ([[@attributes.hd.total]])and DR 5/—.</p><p>A creature can move across its own web at its climb speed and can pinpoint the location of any creature touching its web.</p>' }
+        }
+    },
+    'Lukwata': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 4, diceSize: 10, count: 1, special: ['Grab'] }
+        ],
+        speed: {
+            swim: 40
+        },
+        senses: [
+            1, 7, 14
+        ]
+    },
+    'Makara Vahana': {
+        size: 'huge',
+        attacks: [
+            { name: 'Gore', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Slam', diceCount: 2, diceSize: 6, count: 1 },
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        speed: {
+            land: 70,
+            swim: 70
+        },
+        senses: [
+            1, 7, 14
+        ],
+        eres: [
+            { amount: 10, operator: true, types: ['acid', ''] },
+            { amount: 10, operator: true, types: ['cold', ''] },
+            { amount: 10, operator: true, types: ['electric', ''] },
+            { amount: 10, operator: true, types: ['fire', ''] }
+        ]
+    },
+    'Mapinguari': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 10, count: 1 },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2, special: ['Rend'] }
+        ],
+        speed: {
+            land: 40
+        },
+        senses: [
+            1, 7
+        ],
+        effect: {
+            'Rend': { note: 'Rend if both claws hit, added to second claw damage. [[/d sizeRoll(1, 6, @size, 6) # Rend damage added to second claw]]{{Roll Rend Damage}}' }
+        }
+    },
+    'Mobogo': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1 },
+            { name: 'Slam', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'Tongue', diceCount: 1, diceSize: 6, count: 1, special: ['Grab', 'Pull'] }
+        ],
+        speed: {
+            land: 30,
+            fly: {
+                base: 30,
+                maneuverability: 'poor'
+            },
+            swim: 40
+        },
+        senses: [
+            1, 7
+        ],
+        effect: {
+            'Pull': { note: 'Bite - Combat Maneuver pull 10 ft', description: '<p><strong>Pull (Ex)</strong> A creature with this ability can choose to make a free combat maneuver check with a successful attack. If successful, this check pulls a creature closer. The distance pulled is set by this ability. The type of attack that causes the pull and the distance pulled are included in the creature\'s description. This ability only works on creatures of a size equal to or smaller than the pulling creature. Creatures pulled in this way do not provoke attacks of opportunity and stop if the pull would move them into a solid object or creature.</p>' }
+        }
+    },
+    'Myrmecoleon': {
+        size: 'huge',
+        attacks: [
+            { name: 'Mandibles', diceCount: 4, diceSize: 8, count: 1, special: ['Grab', 'BloodDrain', 'Constrict'] }
+        ],
+        specialAttack: [
+            { name: 'Trample', diceCount: 2, diceSize: 8, count: 1, special: ['Trample'], mult: 1.5, attackType: 'mcman' }
+        ],
+        speed: {
+            land: 30,
+            burrow: 20,
+            climb: 20
+        },
+        senses: [
+            1, 7
+        ],
+        di: [
+            'acid'
+        ],
+        effect: {
+            'BloodDrain': { note: 'Blood Drain 1d2 Con', description: '<p>The creature drains blood at the end of its turn if it grapples a foe, inflicting Constitution damage.</p>' },
+            'Constrict': { note: 'Constrict: Same damage as mandibles' },
+            'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature\'s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a -4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature\'s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' }
+        }
+    },
+    'Remorhaz': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 3, diceSize: 6, count: 1, special: ['Grab'] }
+        ],
+        speed: {
+            land: 30,
+            burrow: 20
+        },
+        senses: [
+            1, 7, 32
+        ],
+        di: [
+            'cold', 'fire'
+        ]
+    },
+    'Seps': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 3, diceSize: 8, count: 1, special: ['Poison'] }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            1, 7, 14
+        ],
+        di: [
+            'acid', 'poison'
+        ],
+        effect: {
+            'Poison': { note: 'Poison (Ex) - Bite—injury; save Fort DC 10+SL+Mod; frequency 1/round for 10 rounds; effect [[/d 1d8]] acid and [[/r 1d4]] Con drain; cure 2 consecutive saves.', type: 'fort', saveDesc: 'Fort Cures' }
+        }
+    },
+    'Shantak': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1 },
+            { name: 'Talons', diceCount: 1, diceSize: 8, count: 2, special: ['Grab'] }
+        ],
+        speed: {
+            land: 20,
+            fly: {
+                base: 80,
+                maneuverability: 'average'
+            }
+        },
+        senses: [
+            1, 7
+        ],
+        di: [
+            'cold'
+        ],
+        special: [
+            'NoBreath'
+        ]
+    },
+    'Skrimsl': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 4, diceSize: 6, count: 1, nonCrit: { formula: '2d6', type: { values: ['electric'], custom: '' } }, special: ['Grab'] },
+            { name: 'TailSlap', diceCount: 2, diceSize: 10, count: 1, nonCrit: { formula: '2d6', type: { values: ['electric'], custom: '' } } }
+        ],
+        speed: {
+            land: 20,
+            swim: 50
+        },
+        senses: [
+            1, 7
+        ],
+        di: [
+            'cold', 'electric'
+        ],
+        eres: [
+            { amount: 20, operator: true, types: ['fire', ''] }
+        ]
+    },
+    'Star Monarch': {
+        size: 'huge',
+        attacks: [
+            { name: 'Claw', diceCount: 1, diceSize: 8, count: 2, special: ['Grab'] },
+            { name: 'Tail', diceCount: 2, diceSize: 6, count: 1, special: ['Nonlethal'] },
+            { name: 'Rake4Claws', diceCount: 1, diceSize: 6, count: 4, img: 'systems/pf1/icons/skills/blood_06.jpg', type: ['bludgeoning', 'slashing'],  primaryAttack: true }
+        ],
+        speed: {
+            land: 30,
+            fly: {
+                base: 80,
+                maneuverability: 'average'
+            }
+        },
+        senses: [
+            1, 7
+        ],
+        di: [
+            'cold'
+        ],
+        special: [
+            'Rake4Claws', 'NoBrea'
+        ]
+    },
+    'Steam Hog': {
+        size: 'huge',
+        attacks: [
+            { name: 'Gore', diceCount: 2, diceSize: 6, count: 1, nonCrit: { formula: '1d6', type: { values: ['fire'], custom: '' } } },
+            { name: 'Hoof', diceCount: 1, diceSize: 8, count: 2 }
+        ],
+        specialAttack: [
+            { name: 'Trample', diceCount: 1, diceSize: 8, count: 1, special: ['Trample'], mult: 1.5, attackType: 'mcman' }
+        ],
+        speed: {
+            land: 30,
+            burrow: 10
+        },
+        senses: [
+            1, 7, 14
+        ],
+        eres: [
+            { amount: 15, operator: true, types: ['fire', ''] }
+        ],
+        special: [
+            'Ferocity'
+        ],
+        effect: {
+            'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature\'s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a -4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature\'s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' }
+        }
+    },
+    'Storm Aurochs': {
+        size: 'huge',
+        attacks: [
+            { name: 'Gore', diceCount: 2, diceSize: 8, count: 1, conditionals: ['PowerfulCharge'] }
+        ],
+        specialAttack: [
+            { name: 'Trample', diceCount: 3, diceSize: 8, count: 1, special: ['Trample'], mult: 1.5, attackType: 'mcman', nonCrit: { formula: '3d6', type: { values: ['sonic'], custom: '' } } }
+        ],
+        speed: {
+            land: 50
+        },
+        senses: [
+            1, 7, 14
+        ],
+        di: [
+            'electric', 'sonic'
+        ],
+        effect: {
+            'PowerfulCharge': { default: false, name: 'PowerfulCharge', modifiers: [{ formula: '4d8', target: 'damage', subTarget: 'attack_0', type: '', critical: 'nonCrit', damageType: { values: ['piercing'], custom: '' } }, { formula: '3d6', target: 'damage', subTarget: 'attack_0', type: '', critical: 'nonCrit', damageType: { values: ['electric'], custom: '' } }] },
+            'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature\'s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a -4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature\'s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' }
+        }
+    },
+    'Thrasfyr': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 2 },
+            { name: 'Claw', diceCount: 1, diceSize: 8, count: 4 },
+            { name: 'Gore', diceCount: 2, diceSize: 6, count: 1, conditionals: ['PowerfulCharge'] }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], nonCrit: { formula: '20d8', type: { values: ['fire'], custom: '' } }, damageAbility: '', attackType: 'save', area: '80-ft cone', templateShape: 'cone',  templateSize: '80' }
+        ],
+        speed: {
+            land: 50,
+            climb: 50
+        },
+        senses: [
+            1, 11
+        ],
+        di: [
+            'fire', 'sonic'
+        ],
+        dv: [
+            'cold'
+        ],
+        eres: [
+            { amount: 30, operator: true, types: ['electric', ''] }
+        ],
+        effect: {
+            'PowerfulCharge': { default: false, name: 'PowerfulCharge', modifiers: [{ formula: '4d8', target: 'damage', subTarget: 'attack_0', type: '', critical: 'nonCrit', damageType: { values: ['piercing'], custom: '' } }] },
+            'Breath': { note: 'Breath area: 80ft cone. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Once every 1d4 rounds. Fire damage to all creatures in 80-foot cone. Reflex save DC 10 + spell level + caster stat mod for half damage.</p>' }
+        }
+    },
+    'Ursikka': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1 },
+            { name: 'Claw', diceCount: 1, diceSize: 8, count: 2 }
+        ],
+        speed: {
+            land: 40,
+            burrow: 20
+        },
+        senses: [
+            1, 7, 14, 29
+        ],
+        eres: [
+            { amount: 20, operator: true, types: ['cold', ''] }
+        ],
+        special: [
+            'Ferocity'
+        ]
+    },
+    'Veldenar': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1, special: ['Grab'] },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        speed: {
+            land: 20,
+            fly: {
+                base: 30,
+                maneuverability: 'perfect'
+            }
+        },
+        senses: [
+            1, 7
+        ],
+        di: [
+            'cold'
+        ],
+        eres: [
+            { amount: 10, operator: true, types: ['electric', ''] }
+        ]
+    },
+    'Vorvorak': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1 },
+            { name: 'Claw', diceCount: 1, diceSize: 8, count: 1 },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        speed: {
+            land: 40,
+            climb: 20,
+            swim: 40
+        },
+        senses: [
+            1, 7
+        ],
+        di: [
+            'poison'
+        ],
+        eres: [
+            { amount: 10, operator: true, types: ['electric', ''] }
+        ],
+        special: [
+            'HoldBreath'
+        ]
+    },
+    'Water Orm': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 4, diceSize: 6, count: 1, special: ['Grab'] },
+            { name: 'TailSlap', diceCount: 2, diceSize: 8, count: 1 }
+        ],
+        speed: {
+            land: 20,
+            swim: 50
+        },
+        senses: [
+            1, 11
+        ],
+        di: [
+            'cold'
+        ],
+        eres: [
+            { amount: 20, operator: true, types: ['fire', ''] }
+        ]
+    },
+    'Xanthos': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1 },
+            { name: 'Hoof', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        speed: {
+            land: 60
+        },
+        senses: [
+            1, 11
+        ],
+        di: [
+            'cold'
+        ],
+        eres: [
+            { amount: 30, operator: true, types: ['electric', ''] },
+            { amount: 30, operator: true, types: ['fire', ''] }
+        ],
+        special: [
+            'HoldBreath'
+        ]
+    },
+    'Yaoguai': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1 },
+            { name: 'Claw', diceCount: 1, diceSize: 8, count: 1 },
+            { name: 'Tentacle', diceCount: 1, diceSize: 8, count: 1, special: ['Constrict', 'Grab'] }
+        ],
+        speed: {
+            land: 50,
+            climb: 50
+        },
+        senses: [
+            1, 7
+        ],
+        fastHealing: 5,
+        effect: {
+            'Constrict': { note: 'Constrict: [[/d 1d6]]' }
+        }
+    },
+    'Ypotryll': {
+        size: 'huge',
+        attacks: [
+            { name: 'Gore', diceCount: 4, diceSize: 8, count: 1 },
+            { name: 'Hoof', diceCount: 2, diceSize: 8, count: 2 },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'Trample', diceCount: 2, diceSize: 8, count: 1, special: ['Trample'], mult: 1.5, attackType: 'mcman' }
+        ],
+        speed: {
+            land: 60
+        },
+        senses: [
+            1, 7, 14
+        ],
+        effect: {
+            'Trample': { note: 'Trample as part of overrun, AoOs against at -4. Forgo AoO to attempt avoiding, DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex Avoids', description: 'As a full-round action, a creature with the trample ability can attempt to overrun any creature that is at least one size category Smaller than itself. This works just like the overrun combat maneuver, but the trampling creature does not need to make a check, it merely has to move over opponents in its path. Targets of a trample take an amount of damage equal to the trampling creature\'s slam damage + 1-1/2 times its Str modifier. Targets of a trample can make an attack of opportunity, but at a -4 penalty. If targets forgo an attack of opportunity, they can attempt to avoid the trampling creature and receive a Reflex save to take half damage. The save DC against a creature\'s trample attack is 10 + Spell Level + Caster Stat Mod. A trampling creature can only deal trampling damage to each target once per round, no matter how many times its movement takes it over a target creature.' }
+        }
+    },
+    'Yrthak': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1 },
+            { name: 'Claw', diceCount: 1, diceSize: 8, count: 2 }
+        ],
+        speed: {
+            land: 20,
+            fly: {
+                base: 60,
+                maneuverability: 'average'
+            }
+        },
+        senses: [
+            39
+        ],
+        di: [
+            'sonic'
+        ]
+    },
+    'Pipefox': {
+        size: 'dim',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 2, count: 2 }
+        ],
+        speed: {
+            land: 30,
+            climb: 20
+        },
+        senses: [
+            1, 7
         ]
     },
     'Huge Air Elemental': {
@@ -8715,10 +9931,12 @@ MorphinChanges.changes = {
         dr: [
             '10/cold iron or good'
         ],
+        di: [
+            'electric'
+        ],
         eres: [
             { amount: 10, operator: true, types: ['acid', ''] },
-            { amount: 10, operator: true, types: ['cold', ''] },
-            { amount: 10, operator: true, types: ['electric', ''] }
+            { amount: 10, operator: true, types: ['cold', ''] }
         ],
         effect: {
             'Constrict': { note: 'Constrict: Same damage as Tentacle' }
@@ -9287,7 +10505,7 @@ MorphinChanges.changes = {
             swim: 40
         },
         senses: [
-            7, 28
+            7, 32
         ]
     },
     'Blood Caterpillar': {
@@ -9322,7 +10540,7 @@ MorphinChanges.changes = {
             swim: 60
         },
         senses: [
-            1, 28
+            1, 29
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d4 Con; cure 2 consecutive saves.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -9338,7 +10556,7 @@ MorphinChanges.changes = {
             burrow: 10
         },
         senses: [
-            7,28
+            7,29
         ]
     },
     'Giant Belostomatid': {
@@ -9356,7 +10574,7 @@ MorphinChanges.changes = {
             swim: 40
         },
         senses: [
-            7, 28
+            7, 32
         ]
     },
     'Giant Black Widow': {
@@ -9372,7 +10590,7 @@ MorphinChanges.changes = {
             climb: 30
         },
         senses: [
-            7, 28
+            7, 32
         ],
         effect: {
             'Web': { note: 'Web: Touch attack to entangle up to one size category higher, escaped with escape artist or burst with strength. DC 10+SL+Mod.', description: '<p>Creatures with the web ability can use webs to support themselves and up to one additional creature of the same size. In addition, such creatures can throw a web up to eight times per day. This is similar to an attack with a net but has a maximum range of 50 feet, with a range increment of 10 feet, and is effective against targets up to one size category larger than the web spinner. An entangled creature can escape with a successful Escape Artist check or burst the web with a Strength check. Both are standard actions with a DC equal to 10 + Spell Level + Caster Stat Mod. Attempts to burst a web by those caught in it take a -4 penalty.</p><p>Web spinners can create sheets of sticky webbing up to three times their size. They usually position these sheets to snare flying creatures but can also try to trap prey on the ground. Approaching creatures must succeed on a DC 20 Perception check to notice a web; otherwise they stumble into it and become trapped as though by a successful web attack. Attempts to escape or burst the webbing gain a +5 bonus if the trapped creature has something to walk on or grab while pulling free. Each 5-foot-square section of web has a number of hit points equal to the Hit Dice of the creature that created it ([[@attributes.hd.total]])and DR 5/—.</p><p>A creature can move across its own web at its climb speed and can pinpoint the location of any creature touching its web.</p>' },
@@ -9463,7 +10681,7 @@ MorphinChanges.changes = {
             land: 50
         },
         senses: [
-            7, 28
+            7, 32
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d2 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' },
@@ -9493,7 +10711,7 @@ MorphinChanges.changes = {
             land: 5
         },
         senses: [
-            1, 11, 28
+            1, 14, 29
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Spines—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d2 Str and nauseated for 1 round; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -9532,7 +10750,8 @@ MorphinChanges.changes = {
             climb: 10
         },
         senses: [
-            7, 21        ]
+            7, 29
+        ]
     },
     'Giant Wasp': {
         size: 'lg',
@@ -9567,7 +10786,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            7, 28
+            7, 32
         ]
     },
     'Knight Ant': {
@@ -9582,7 +10801,7 @@ MorphinChanges.changes = {
             climb: 20
         },
         senses: [
-            7, 11, 28
+            7, 14, 29
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d4 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -9678,7 +10897,7 @@ MorphinChanges.changes = {
             climb: 40
         },
         senses: [
-            7, 28
+            7, 32
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1d2 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -9708,7 +10927,7 @@ MorphinChanges.changes = {
             swim: 40
         },
         senses: [
-            1, 28
+            1, 29
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Sting-injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1d2 Con; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -9832,7 +11051,7 @@ MorphinChanges.changes = {
             land: 15
         },
         senses: [
-            1, 11, 28
+            1, 14, 29
         ],
         effect: {
             'Pull': { note: 'Tongue - Combat Maneuver pull 5 ft', description: '<p><strong>Pull (Ex)</strong> A creature with this ability can choose to make a free combat maneuver check with a successful attack. If successful, this check pulls a creature closer. The distance pulled is set by this ability. The type of attack that causes the pull and the distance pulled are included in the creature\'s description. This ability only works on creatures of a size equal to or smaller than the pulling creature. Creatures pulled in this way do not provoke attacks of opportunity and stop if the pull would move them into a solid object or creature.</p>' }
@@ -9930,7 +11149,7 @@ MorphinChanges.changes = {
             climb: 30
         },
         senses: [
-            7, 28
+            7, 32
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Bite—injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1d2 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' },
@@ -9947,7 +11166,7 @@ MorphinChanges.changes = {
             burrow: 20
         },
         senses: [
-            7, 11, 28
+            7, 14, 29
         ]
     },
     'Giant Tube Worm': {
@@ -9960,7 +11179,7 @@ MorphinChanges.changes = {
             swim: 20
         },
         senses: [
-            7, 28
+            7, 29
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1 Dex and staggered 1 round; cure 2 consecutive saves.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -9995,7 +11214,7 @@ MorphinChanges.changes = {
             land: 10
         },
         senses: [
-            1, 11, 28
+            1, 14, 29
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Spine—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect 1d2 Con and stunned 1 round; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -10099,7 +11318,7 @@ MorphinChanges.changes = {
             land: 30
         },
         senses: [
-            7, 28
+            7, 32
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -10139,7 +11358,7 @@ MorphinChanges.changes = {
             climb: 30
         },
         senses: [
-            7, 28
+            7, 32
         ]
     },
     'Giant Crab Spider': {
@@ -10152,7 +11371,7 @@ MorphinChanges.changes = {
             climb: 20
         },
         senses: [
-            7, 28
+            7, 32
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Bite—injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1d2 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -10240,7 +11459,7 @@ MorphinChanges.changes = {
             }
         },
         senses: [
-            7, 28
+            7, 32
         ]
     },
     'Ochre Eurypterid': {
@@ -10254,7 +11473,7 @@ MorphinChanges.changes = {
             swim: 40
         },
         senses: [
-            1, 28
+            1, 29
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1 Dex; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -10359,8 +11578,13 @@ MorphinChanges.allowedSpecials = {
     beastShape: {
         '1': ['Touch'],
         '2': ['Touch', 'Grab', 'Pounce', 'Trip'],
-        '3': ['Touch', 'Grab', 'Pounce', 'Trip', 'Constrict', 'Ferocity', 'Jet90', 'Jet200', 'Jet240', 'Jet260', 'Poison', 'Rake1Claw', 'Rake2Claws', 'Rake4Claws', 'Rake2Talons', 'Trample', 'Web'],
-        '4': ['Touch', 'Grab', 'Pounce', 'Trip', 'Constrict', 'Ferocity', 'Jet90', 'Jet200', 'Jet240', 'Jet260', 'Poison', 'Rake1Claw', 'Rake2Claws', 'Rake4Claws', 'Rake2Talons', 'Trample', 'Web', 'BreathWeapon','Breath', 'BreathWeaponBlack', 'BreathWeaponBlue', 'BreathWeaponGreen', 'BreathWeaponRed', 'BreathWeaponWhite', 'Rend', 'Roar', 'Spikes']
+        '3': ['Touch', 'Grab', 'Pounce', 'Trip', 'Constrict', 'Ferocity', 'Jet90', 'Jet200', 'Jet240', 'Jet260', 'Poison', 'Rake1Claw', 'Rake2Claws', 'Rake4Claws', 'Rake6Claws', 'Rake2Talons', 'Trample', 'Web'],
+        '4': ['Touch', 'Grab', 'Pounce', 'Trip', 'Constrict', 'Ferocity', 'Jet90', 'Jet200', 'Jet240', 'Jet260', 'Poison', 'Rake1Claw', 'Rake2Claws', 'Rake4Claws', 'Rake6Claws', 'Rake2Talons', 'Trample', 'Web', 'BreathWeapon','Breath', 'BreathWeaponBlack', 'BreathWeaponBlue', 'BreathWeaponGreen', 'BreathWeaponRed', 'BreathWeaponWhite', 'Rend', 'Roar', 'Spikes']
+    },
+    magicalBeastShape: {
+        '1': ['Touch', 'Grab', 'Pounce', 'Trip', 'Constrict', 'Ferocity', 'Jet90', 'Jet200', 'Jet240', 'Jet260', 'Jet300', 'Poison', 'Rake1Claw', 'Rake2Claws', 'Rake4Claws','Rake6Claws', 
+            'Rake2Talons', 'Trample', 'Web', 'BreathWeapon','Breath', 'BreathWeaponBlack', 'BreathWeaponBlue', 'BreathWeaponGreen', 'BreathWeaponRed', 'BreathWeaponWhite', 'Rend', 'Roar', 'Spikes', 'BloodDrain', 'BloodFrenzy', 'HoldBreath', 'NoBreath',
+            'PowefulCharge', 'Pull']
     },
     plantShape: {
         '1': ['Touch', 'Constrict', 'Grab', 'Poison'],
@@ -10379,8 +11603,37 @@ MorphinChanges.allowedSpecials = {
     }
 };
 
+MorphinChanges.allowedSenses = {
+    beastShape: {
+        '1': { 'dv': { static: 'DARKVISION', value: 60 }, 'll': { static:'LOWLIGHT', value: true }, 'sc': { static: 'SCENT', value: 30 } },
+        '2': { 'dv': { static: 'DARKVISION', value: 60 }, 'll': { static:'LOWLIGHT', value: true }, 'sc': { static: 'SCENT', value: 30 } },
+        '3': { 'bse': { static: 'BLINDSENSE', value: 30 }, 'dv': { static: 'DARKVISION', value: 60 }, 'll': { static:'LOWLIGHT', value: true }, 'sc': { static: 'SCENT', value: 30 } },
+        '4': { 'bse': { static: 'BLINDSENSE', value: 60 }, 'dv': { static: 'DARKVISION', value: 90 }, 'll': { static:'LOWLIGHT', value: true }, 'sc': { static: 'SCENT', value: 30 }, 'ts': { static: 'TREMORSENSE', value: 60 } }
+    },
+    magicalBeastShape: {
+        '1': { 'bse': { static: 'BLINDSENSE', value: 60 }, 'bs': { static: 'BLINDSIGHT', value: 30 }, 'dv': { static: 'DARKVISION', value: 90 }, 'll': { static:'LOWLIGHT', value: true },
+            'sc': { static: 'SCENT', value: 30 }, 'sid': { static: 'SEEINDARKNESS', value: true }, 'ts': { static: 'TREMORSENSE', value: 60 } }
+    },
+    plantShape: {
+        '1': { 'dv': { static: 'DARKVISION', value: 60 }, 'll': { static:'LOWLIGHT', value: true } },
+        '2': { 'dv': { static: 'DARKVISION', value: 60 }, 'll': { static:'LOWLIGHT', value: true } },
+        '3': { 'dv': { static: 'DARKVISION', value: 60 }, 'll': { static:'LOWLIGHT', value: true } }
+    },
+    elementalBody: {
+        '1': { 'dv': { static: 'DARKVISION', value: 60 } },
+        '2': { 'dv': { static: 'DARKVISION', value: 60 } },
+        '3': { 'dv': { static: 'DARKVISION', value: 60 } },
+        '4': { 'dv': { static: 'DARKVISION', value: 60 } }
+    },
+    verminShape: {
+        '1': { 'dv': { static: 'DARKVISION', value: 60 }, 'll': { static:'LOWLIGHT', value: true }, 'sc': { static: 'SCENT', value: 30 } },
+        '2': { 'dv': { static: 'DARKVISION', value: 60 }, 'll': { static:'LOWLIGHT', value: true }, 'sc': { static: 'SCENT', value: 30 }, 'ts': { static: 'TREMORSENSE', value: 30 } }
+    }
+};
+
 MorphinChanges.buffIcons = {
     beastShape: 'systems/pf1/icons/spells/wild-jade-3.jpg',
+    magicalBeastShape: 'systems/pf1/icons/spells/wild-eerie-3.jpg',
     wildShape: 'systems/pf1/icons/skills/green_21.jpg',
     plantShape: 'systems/pf1/icons/spells/vines-plain-2.jpg',
     elementalBody: 'systems/pf1/icons/spells/wind-grasp-magenta-2.jpg',
@@ -10406,20 +11659,30 @@ MorphinChanges.SENSES = Object.freeze({
     SCENT40: { value: 15, name: 'Scent40', setting: { sc: 40 } },
     SCENT50: { value: 16, name: 'Scent40', setting: { sc: 50 } },
     SCENT60: { value: 17, name: 'Scent40', setting: { sc: 60 } },
-    BLINDSENSE10: { value: 18, name: 'Blindsense10', setting: { bs: 10 } },
-    BLINDSENSE15: { value: 19, name: 'Blindsense15', setting: { bs: 15 } },
-    BLINDSENSE20: { value: 20, name: 'Blindsense20', setting: { bs: 20 } },
-    BLINDSENSE30: { value: 21, name: 'Blindsense30', setting: { bs: 30 } },
-    BLINDSENSE40: { value: 22, name: 'Blindsense40', setting: { bs: 40 } },
-    BLINDSENSE50: { value: 23, name: 'Blindsense50', setting: { bs: 50 } },
-    BLINDSENSE60: { value: 24, name: 'Blindsense60', setting: { bs: 60 } },
-    TREMORSENSE10: { value: 25, name: 'Tremorsense10', setting: { ts: 10 } },
-    TREMORSENSE15: { value: 26, name: 'Tremorsense15', setting: { ts: 15 } },
-    TREMORSENSE20: { value: 27, name: 'Tremorsense20', setting: { ts: 20 } },
-    TREMORSENSE30: { value: 28, name: 'Tremorsense30', setting: { ts: 30 } },
-    TREMORSENSE40: { value: 29, name: 'Tremorsense40', setting: { ts: 40 } },
-    TREMORSENSE50: { value: 30, name: 'Tremorsense50', setting: { ts: 50 } },
-    TREMORSENSE60: { value: 31, name: 'Tremorsense60', setting: { ts: 60 } }
+    BLINDSENSE10: { value: 18, name: 'Blindsense10', setting: { bse: 10 } },
+    BLINDSENSE15: { value: 19, name: 'Blindsense15', setting: { bse: 15 } },
+    BLINDSENSE20: { value: 20, name: 'Blindsense20', setting: { bse: 20 } },
+    BLINDSENSE30: { value: 21, name: 'Blindsense30', setting: { bse: 30 } },
+    BLINDSENSE40: { value: 22, name: 'Blindsense40', setting: { bse: 40 } },
+    BLINDSENSE50: { value: 23, name: 'Blindsense50', setting: { bse: 50 } },
+    BLINDSENSE60: { value: 24, name: 'Blindsense60', setting: { bse: 60 } },
+    BLINDSENSE120: { value: 25, name: 'Blindsense120', setting: { bse: 120 } },
+    TREMORSENSE10: { value: 26, name: 'Tremorsense10', setting: { ts: 10 } },
+    TREMORSENSE15: { value: 27, name: 'Tremorsense15', setting: { ts: 15 } },
+    TREMORSENSE20: { value: 28, name: 'Tremorsense20', setting: { ts: 20 } },
+    TREMORSENSE30: { value: 29, name: 'Tremorsense30', setting: { ts: 30 } },
+    TREMORSENSE40: { value: 30, name: 'Tremorsense40', setting: { ts: 40 } },
+    TREMORSENSE50: { value: 31, name: 'Tremorsense50', setting: { ts: 50 } },
+    TREMORSENSE60: { value: 32, name: 'Tremorsense60', setting: { ts: 60 } },
+    TREMORSENSE120: { value: 33, name: 'Tremorsense120', setting: { ts: 120 } },
+    BLINDSIGHT10: { value: 34, name: 'Blindsight10', setting: { bs: 10 } },
+    BLINDSIGHT15: { value: 35, name: 'Blindsight15', setting: { bs: 15 } },
+    BLINDSIGHT20: { value: 36, name: 'Blindsight20', setting: { bs: 20 } },
+    BLINDSIGHT30: { value: 37, name: 'Blindsight30', setting: { bs: 30 } },
+    BLINDSIGHT90: { value: 38, name: 'Blindsight90', setting: { bs: 90 } },
+    BLINDSIGHT120: { value: 39, name: 'Blindsight120', setting: { bs: 120 } },
+    SEEINDARKNESS: { value: 40, name: 'SeeInDarkness', setting: { sid: true } },
+    TREMORSENSE90: { value: 41, name: 'Tremorsense90', setting: { ts: 90 } }
 });
 
 MorphinChanges.flightManeuverability = ['clumsy', 'poor', 'average', 'good', 'perfect'];

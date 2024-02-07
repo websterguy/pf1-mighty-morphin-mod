@@ -201,14 +201,28 @@ export class MorphinPlantShape extends MorphinPolymorphDialog {
         if (!data.specialAttacks.length) data.specialAttacks = game.i18n.localize('MMMOD.UI.None');
 
         // Process changes in senses limited by the spell level
-        this.senses = duplicate(MorphinChanges.changes[this.chosenForm.name].senses);
-        data.senses = !!this.senses.length ? '' : game.i18n.localize('MMMOD.UI.None');
-        for (let i = 0; i < this.senses.length; i++) {
-            const senseEnumValue = this.senses[i];
+        const formSenses = duplicate(MorphinChanges.changes[this.chosenForm.name].senses);
+        this.senses = [];
+        data.senses = !!formSenses.length ? '' : game.i18n.localize('MMMOD.UI.None');
+        for (let i = 0; i < formSenses.length; i++) {
+            let senseEnumValue = formSenses[i];
+            const senseKey = Object.keys(MorphinChanges.SENSES[Object.keys(MorphinChanges.SENSES)[senseEnumValue - 1]].setting)[0];
+            const senseValue = MorphinChanges.SENSES[Object.keys(MorphinChanges.SENSES)[senseEnumValue - 1]].setting[senseKey];
+            
+            const allowedSenses = MorphinChanges.allowedSenses[this.spell][this.level];
+            if (!allowedSenses[senseKey]) continue;
 
-            if (data.senses.length > 0) data.senses += ', ';
-            data.senses += `${ game.i18n.localize('MMMOD.Senses.' + MorphinChanges.SENSES[Object.keys(MorphinChanges.SENSES)[senseEnumValue - 1]].name) }`; // element 1 = SENSES[0] = LOWLIGHT
+            if (senseValue > allowedSenses[senseKey].value) {
+                senseEnumValue = MorphinChanges.SENSES[allowedSenses[senseKey].static + allowedSenses[senseKey].value].value;
+            }
+            this.senses.push(senseEnumValue);
+            
+            if (!!senseEnumValue && !!MorphinChanges.allowedSenses[this.spell][this.level][senseKey]) {
+                if (data.senses.length > 0) data.senses += ', ';
+                data.senses += `${ game.i18n.localize('MMMOD.Senses.' + MorphinChanges.SENSES[Object.keys(MorphinChanges.SENSES)[senseEnumValue - 1]].name) }`; // enum value 1 = SENSES[0] = LOWLIGHT
+            }
         }
+        if (!data.senses.length) data.senses = game.i18n.localize('MMMOD.UI.None');
 
         // Process special qualities
         data.special = game.i18n.localize('MMMOD.UI.None');
@@ -228,7 +242,7 @@ export class MorphinPlantShape extends MorphinPolymorphDialog {
             }
         }
 
-        const elementTypes = ['acid', 'cold', 'electricity', 'fire', 'sonic'];
+        const elementTypes = ['acid', 'cold', 'electric', 'fire', 'sonic'];
 
         if (this.level >= 2) {
             const eres = MorphinChanges.changes[this.chosenForm.name].eres?.filter(o => elementTypes.includes(o.types[0])) || [];
@@ -245,7 +259,7 @@ export class MorphinPlantShape extends MorphinPolymorphDialog {
                     data.eres += entry;
                 }
                 else {
-                    data.eres += game.i18n.localize('MMMOD.DamageTypes.' + entry.types[0].charAt(0).toUpperCase() + entry.types[0].slice(1)) + ' ' + 20;
+                    data.eres += game.i18n.localize('MMMOD.DamageTypes.' + entry.types[0].charAt(0).toUpperCase() + entry.types[0].slice(1)) + ' ' + Math.min(entry.amount, 20);
                 }
             }
             if (data.eres.length === 0) data.eres = game.i18n.localize('MMMOD.UI.None');

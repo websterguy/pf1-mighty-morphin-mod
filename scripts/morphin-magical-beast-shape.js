@@ -6,7 +6,7 @@ import { MorphinPolymorphDialog } from './morphin-polymorph-dialog.js';
 /**
  * Application for selecting a shape from the Beast Shape spell to change into and then applying that shape to an actor
  */
-export class MorphinBeastShape extends MorphinPolymorphDialog {
+export class MorphinMagicalBeastShape extends MorphinPolymorphDialog {
     /**
      * @inheritdoc
      * @param {number} level The level of beast shape to use 1 - 4
@@ -16,31 +16,16 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
     constructor(level, durationLevel, actorId, source, {planarType = null, energizedTypes = null, mutatedType = null} = {}) {
         super(level, durationLevel, actorId, source, {planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType});
 
-        this.spell = 'beastShape';
+        this.spell = 'magicalBeastShape';
 
         // Add all possible sizes for the given spell level
         switch (level) {
-            case 4:
-                this.sizes.magicalBeast = ['tiny', 'sm', 'med', 'lg'];
-                this.sizes.animal = ['dim', 'tiny', 'sm', 'med', 'lg', 'huge'];
-                break;
-            case 3:
-                this.sizes.magicalBeast = ['sm', 'med'];
-                this.sizes.animal = ['dim', 'tiny', 'sm', 'med', 'lg', 'huge'];
-                break;
-            case 2:
-                this.sizes.magicalBeast = [];
-                this.sizes.animal = ['tiny', 'sm', 'med', 'lg'];
-                break;
             case 1:
-                this.sizes.magicalBeast = [];
-                this.sizes.animal = ['sm', 'med'];
+                this.sizes.magicalBeast = ['dim','tiny', 'sm', 'med', 'lg','huge'];
                 break;
         }
 
         // Find options to shapeshift into based on the valid size choices above and sort them alphabetically
-        this.shapeOptions.animal = MorphinOptions.animal.filter(o => this.sizes.animal.includes(o.size));
-        this.shapeOptions.animal.sort((a, b) => { return a.name > b.name ? 1 : -1; });
         this.shapeOptions.magicalBeast = MorphinOptions.magicalBeast.filter(o => this.sizes.magicalBeast.includes(o.size));
         this.shapeOptions.magicalBeast.sort((a, b) => { return a.name > b.name ? 1 : -1; });
     }
@@ -50,11 +35,11 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
         return mergeObject(super.defaultOptions, {
             classes: ['mightyMorphinDialog'],
             popOut: true,
-            template: 'modules/pf1-mighty-morphin/templates/beastShapeDialog.html',
-            id: 'mighty-morphin-beastShape',
-            title: game.i18n.localize('MMMOD.UI.BeastDialogName'),
+            template: 'modules/pf1-mighty-morphin/templates/magicalBeastShapeDialog.html',
+            id: 'mighty-morphin-magicalBeastShape',
+            title: game.i18n.localize('MMMOD.UI.MagicalBeastDialogName'),
             resizable: false,
-            width: 550
+            width: 575
         });
     }
 
@@ -63,16 +48,15 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
         const data = await super.getData();
 
         // Set the default size to the largest available animal (default type)
-        let defaultSize = this.sizes.animal[this.sizes.animal.length - 1];
-        data.animalOptions = this.shapeOptions.animal.filter(o => o.size === defaultSize);
+        let defaultSize = this.sizes.magicalBeast[this.sizes.magicalBeast.length - 1];
+        data.mBeastOptions = this.shapeOptions.magicalBeast.filter(o => o.size === defaultSize);
 
         // Create radio button data for animal sizes, set the one for the default size as the default checked button
-        data.animalSizes = this.sizes.animal.map(o => { return o === defaultSize ? { label: o, size: CONFIG.PF1.actorSizes[o], default: true } : { label: o, size: CONFIG.PF1.actorSizes[o] }; });
-        data.mBeastSizes = this.sizes.magicalBeast;
+        data.mBeastSizes = this.sizes.magicalBeast.map(o => { return o === defaultSize ? { label: o, size: CONFIG.PF1.actorSizes[o], default: true } : { label: o, size: CONFIG.PF1.actorSizes[o] }; });
 
         // Get the animal that will be the first shown in the form dropdown and build the preview of the changes the form will provide
-        data.defaultChoice = data.animalOptions[0];
-        data.previewHtml = await this.buildPreviewTemplate(data.defaultChoice.name, 'animal');
+        data.defaultChoice = data.mBeastOptions[0];
+        data.previewHtml = await this.buildPreviewTemplate(data.defaultChoice.name, 'magicalBeast');
 
         return data;
     }
@@ -90,7 +74,7 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
      * @param {string} typeSelect Selected form type (animal or magical beast)
      */
     async updateFormChoices(event, formSelect, typeSelect) {
-        let newOptions = this.shapeOptions[typeSelect].filter(o => o.size === event.target.value);
+        let newOptions = this.shapeOptions.magicalBeast.filter(o => o.size === event.target.value);
 
         let newHtml = newOptions.map(o => `<option value="${ o.name }">${ o.name }</option>`);
         formSelect.innerHTML = newHtml;
@@ -122,12 +106,11 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
      * Processes the changes from the selected beast form into a readable preview display html. In the process it validates the changes based on the level of the spell
      * 
      * @param {string} chosenForm The name of the form chosen in the dropdown
-     * @param {string} chosenType The type of creature (animal or magical beast)
      * @returns {string} HTML containing preview of all the changes to be made to the actor
      */
-    async buildPreviewTemplate(chosenForm, chosenType) {
+    async buildPreviewTemplate(chosenForm) {
         let data = {};
-        this.chosenForm = this.shapeOptions[chosenType].find(o => o.name === chosenForm);
+        this.chosenForm = this.shapeOptions.magicalBeast.find(o => o.name === chosenForm);
 
         // Process stat changes for polymorphing smaller than small or larger than medium
         data.polymorphBase = '';
@@ -145,7 +128,7 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
 
         // Process stat changes from the spell based on spell level
         data.scoreChanges = '';
-        this.changes = duplicate(MorphinChanges.changes.beastShape[chosenType][this.chosenForm.size].changes);
+        this.changes = duplicate(MorphinChanges.changes.magicalBeastShape.magicalBeast[this.chosenForm.size].changes);
         for (let i = 0; i < this.changes.length; i++) {
             const change = this.changes[i];
 
@@ -166,72 +149,20 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
             const speedName = Object.keys(this.speeds)[i];
 
             if (speedName === 'swim') {
-                switch (this.level) {
-                    case 1:
-                        this.speeds[speedName] = Math.min(30, this.speeds[speedName]);
-                        break;
-                    case 2:
-                        this.speeds[speedName] = Math.min(60, this.speeds[speedName]);
-                        break;
-                    case 3:
-                        this.speeds[speedName] = Math.min(90, this.speeds[speedName]);
-                        break;
-                    case 4:
-                        this.speeds[speedName] = Math.min(120, this.speeds[speedName]);
-                        break;
-                }
+                this.speeds[speedName] = Math.min(120, this.speeds[speedName]);
             }
 
             if (speedName === 'fly') {
-                switch (this.level) {
-                    case 1:
-                        this.speeds[speedName].base = Math.min(30, this.speeds[speedName].base);
-                        if (MorphinChanges.flightManeuverability.indexOf('average') < MorphinChanges.flightManeuverability.indexOf(this.speeds[speedName].maneuverability)) this.speeds[speedName].maneuverability = 'average';
-                        break;
-                    case 2:
-                        this.speeds[speedName].base = Math.min(60, this.speeds[speedName].base);
-                        if (MorphinChanges.flightManeuverability.indexOf('good') < MorphinChanges.flightManeuverability.indexOf(this.speeds[speedName].maneuverability)) this.speeds[speedName].maneuverability = 'average';
-                        break;
-                    case 3:
-                        this.speeds[speedName].base = Math.min(90, this.speeds[speedName].base);
-                        if (MorphinChanges.flightManeuverability.indexOf('good') < MorphinChanges.flightManeuverability.indexOf(this.speeds[speedName].maneuverability)) this.speeds[speedName].maneuverability = 'average';
-                        break;
-                    case 4:
-                        this.speeds[speedName].base = Math.min(120, this.speeds[speedName].base);
-                        if (MorphinChanges.flightManeuverability.indexOf('good') < MorphinChanges.flightManeuverability.indexOf(this.speeds[speedName].maneuverability)) this.speeds[speedName].maneuverability = 'average';
-                        break;
-                }
+                    this.speeds[speedName].base = Math.min(120, this.speeds[speedName].base);
+                    if (MorphinChanges.flightManeuverability.indexOf('good') < MorphinChanges.flightManeuverability.indexOf(this.speeds[speedName].maneuverability)) this.speeds[speedName].maneuverability = 'good';
             }
 
             if (speedName === 'climb') {
-                switch (this.level) {
-                    case 1:
-                        this.speeds[speedName] = Math.min(30, this.speeds[speedName]);
-                        break;
-                    case 2:
-                        this.speeds[speedName] = Math.min(60, this.speeds[speedName]);
-                        break;
-                    case 3:
-                    case 4:
-                        this.speeds[speedName] = Math.min(90, this.speeds[speedName]);
-                        break;
-                }
+                    this.speeds[speedName] = Math.min(90, this.speeds[speedName]);
             }
 
             if (speedName === 'burrow') {
-                switch (this.level) {
-                    case 1:
-                    case 2:
-                        delete (this.speeds[speedName]);
-                        i--;
-                        continue; // skip this speed
-                    case 3:
-                        this.speeds[speedName] = Math.min(30, this.speeds[speedName]);
-                        break;
-                    case 4:
-                        this.speeds[speedName] = Math.min(60, this.speeds[speedName]);
-                        break;
-                }
+                    this.speeds[speedName] = Math.min(60, this.speeds[speedName]);
             }
 
             if (data.speedChanges.length > 1) data.speedChanges += ', ';
@@ -267,7 +198,7 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
         data.specialAttacks = '';
         let specialAttackList = MorphinChanges.changes[this.chosenForm.name].specialAttack || [];
         for (let i = 0; i < specialAttackList.length; i++) {
-            const specialAttack = specialAttackList[i];
+            const specialAttack = duplicate(specialAttackList[i]);
 
             // Make sure the special attack is allowed at this level of spell before processing it
             let valid = true;
@@ -288,6 +219,20 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
                         }
                     }
                 }
+                
+                if (specialAttack.name.includes('BreathWeapon') && !!specialAttack.nonCrit) {
+                    const breathDamage = specialAttack.nonCrit.formula.split('d');
+                    let limited = false;
+                    if (parseInt(breathDamage[0]) >= 12) {
+                        breathDamage[0] = '12';
+                        limited = true;
+                    }
+                    if (limited && parseInt(breathDamage[1]) > 6) {
+                        breathDamage[1] = '6';
+                    }
+                    if (limited) specialAttack.nonCrit.formula = breathDamage.join('d');
+                }
+
                 let damageDice = specialAttack.diceSize === 0 ? '' : `${ specialAttack.diceCount }d${ specialAttack.diceSize }`;
                 if (specialAttack.nonCrit) damageDice += (!!damageDice.length ? ` ${ game.i18n.localize('MMMOD.UI.Plus') } ` : '') + `${ specialAttack.nonCrit.formula } ${!!specialAttack.nonCrit.type.values.toString() ? 
                     game.i18n.localize('MMMOD.DamageTypes.' + specialAttack.nonCrit.type.values.toString()) : game.i18n.localize('MMMOD.DamageTypes.' + specialAttack.nonCrit.type.custom)}`;
@@ -339,32 +284,46 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
             }
         }
 
-        // Process energy resistances and vulnerabilities if beast shape iv
-        if (this.level === 4) {
-            const elementTypes = ['acid', 'cold', 'electric', 'fire', 'sonic'];
-            const eres = MorphinChanges.changes[this.chosenForm.name].eres?.filter(o => elementTypes.includes(o.types[0])) || [];
-            data.eres = '';
-            
-            const di = MorphinChanges.changes[this.chosenForm.name].di?.filter(o => elementTypes.includes(o)) || [];
-            for (const entry of di) {
-                eres.push({ amount: 20, operator: true, types: [entry, ''] });
-            }
+        // Process energy resistances and vulnerabilities
+        const elementTypes = ['acid', 'cold', 'electricity', 'fire', 'sonic', 'positive', 'negative'];
+        const eres = MorphinChanges.changes[this.chosenForm.name].eres?.filter(o => elementTypes.includes(o.types[0])) || [];
+        data.eres = '';
+        
+        const di = MorphinChanges.changes[this.chosenForm.name].di?.filter(o => elementTypes.includes(o)) || [];
+        for (const entry of di) {
+            eres.push({ amount: 20, operator: true, types: [entry, ''] });
+        }
 
-            for (const entry of eres) {
-                if (data.eres.length > 0) data.eres += ', ';
-                if (typeof(entry) === 'string') {
-                    data.eres += entry;
-                }
-                else {
-                    data.eres += game.i18n.localize('MMMOD.DamageTypes.' + entry.types[0].charAt(0).toUpperCase() + entry.types[0].slice(1)) + ' ' + 20;
-                }
+        for (const entry of eres) {
+            if (data.eres.length > 0) data.eres += ', ';
+            if (typeof(entry) === 'string') {
+                data.eres += entry;
             }
-            if (data.eres.length === 0) data.eres = game.i18n.localize('MMMOD.UI.None');
-            this.eres = eres;
+            else {
+                data.eres += game.i18n.localize('MMMOD.DamageTypes.' + entry.types[0].charAt(0).toUpperCase() + entry.types[0].slice(1)) + ' ' + 20;
+            }
+        }
+        if (data.eres.length === 0) data.eres = game.i18n.localize('MMMOD.UI.None');
+        this.eres = eres;
 
-            const dv = MorphinChanges.changes[this.chosenForm.name].dv?.filter(o => elementTypes.includes(o)) || [];
-            data.dv = dv.map(o => game.i18n.localize('MMMOD.DamageTypes.' + o)).join(', ') || game.i18n.localize('MMMOD.UI.None');
-            this.dv = dv;
+        const dv = MorphinChanges.changes[this.chosenForm.name].dv?.filter(o => elementTypes.includes(o)) || [];
+        data.dv = dv.map(o => game.i18n.localize('MMMOD.DamageTypes.' + o)).join(', ') || game.i18n.localize('MMMOD.UI.None');
+        this.dv = dv;
+
+        if (MorphinChanges.changes[this.chosenForm.name].di?.includes('poison')) {
+            data.saves = '+[[8]] ' + game.i18n.localize('MMMOD.UI.ResistanceVPoison');
+            this.contextNotes = [{ text: '+[[8]] ' + game.i18n.localize('MMMOD.UI.ResistanceVPoison'), subTarget: 'allSavingThrows' }];
+        }
+        else {
+            data.saves = game.i18n.localize('MMMOD.UI.None');
+        }
+
+        if (!!MorphinChanges.changes[this.chosenForm.name].fastHealing) {
+            data.fastHealing = Math.min(5, MorphinChanges.changes[this.chosenForm.name].fastHealing);
+            this.fastHealing = data.fastHealing;
+        }
+        else {
+            data.fastHealing = game.i18n.localize('MMMOD.UI.None');
         }
 
         // Build the html preview
@@ -375,8 +334,10 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
             <p><span class="previewLabel">${ game.i18n.localize('MMMOD.UI.Speeds') }: </span><span id="speeds">${ data.speedChanges }</span></p>
             <p><span class="previewLabel">${ game.i18n.localize('MMMOD.UI.Senses') }: </span><span id="senses">${ data.senses }</span></p>
             <p><span class="previewLabel">${ game.i18n.localize('MMMOD.UI.SpecialAbilities') }: </span><span id="specials">${ data.special }</span></p>
-            ${this.level === 4 ? '<p><span class="previewLabel">' + game.i18n.localize('MMMOD.UI.EnergyResistances') + ': </span><span id="eres">' + data.eres + '</span></p>' +
-                '<p><span class="previewLabel">' + game.i18n.localize('MMMOD.UI.Vulnerabilities') + ': </span><span id="dv">' + data.dv + '</span></p>' : ''}`;
+            <p><span class="previewLabel">${ game.i18n.localize('MMMOD.UI.EnergyResistances') }: </span><span id="eres">${ data.eres }</span></p>
+            <p><span class="previewLabel">${ game.i18n.localize('MMMOD.UI.Vulnerabilities') }: </span><span id="dv">${ data.dv }</span></p>
+            <p><span class="previewLabel">${ game.i18n.localize('MMMOD.UI.FastHealing') }: </span><span id="dv">${ data.fastHealing }</span></p>
+            <p><span class="previewLabel">${ game.i18n.localize('MMMOD.UI.SaveBonuses') }: </span><span id="dv">${ data.saves }</span></p>`;
 
         return newHtml;
     }
@@ -388,16 +349,12 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
 
     /** @inheritdoc */
     processEres(eres) {
-        // Eres only on beast shape iv
-        if (this.level === 4) return super.processEres(eres);
-        return { value: [], custom: '' };
+        return super.processEres(eres);
     }
 
     /** @inheritdoc */
     processDv(dv) {
-        // Dv only on beast shape iv
-        if (this.level === 4) return dv;
-        else return { value: [], custom: '' };
+        return dv;
     }
     
     /** @inheritdoc */
@@ -408,6 +365,11 @@ export class MorphinBeastShape extends MorphinPolymorphDialog {
     /** @inheritdoc */
     processRegen(regen) {
         return '';
+    }
+
+    /** @inheritdoc */
+    processFastHealing(fastHealing) {
+        return fastHealing;
     }
 
     /** @inheritdoc */
