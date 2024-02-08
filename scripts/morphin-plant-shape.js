@@ -102,7 +102,7 @@ export class MorphinPlantShape extends MorphinPolymorphDialog {
 
         // Process stat changes for polymorphing smaller than small or larger than medium
         data.polymorphBase = '';
-        this.polymorphChanges = MorphinChanges.changes.polymorphSize[this.actorSize] || {};
+        this.polymorphChanges = duplicate(MorphinChanges.changes.polymorphSize[this.actorSize] || {});
         if (!!this.polymorphChanges) {
             for (let i = 0; i < this.polymorphChanges.length; i++) {
                 const change = this.polymorphChanges[i];
@@ -116,7 +116,7 @@ export class MorphinPlantShape extends MorphinPolymorphDialog {
 
         // Process stat changes from the spell based on spell level
         data.scoreChanges = '';
-        this.changes = MorphinChanges.changes.plantShape.plant[this.chosenForm.size].changes;
+        this.changes = duplicate(MorphinChanges.changes.plantShape.plant[this.chosenForm.size].changes);
         for (let i = 0; i < this.changes.length; i++) {
             const change = this.changes[i];
 
@@ -142,7 +142,7 @@ export class MorphinPlantShape extends MorphinPolymorphDialog {
 
         // Process the natural attacks
         data.attacks = '';
-        let attackList = MorphinChanges.changes[this.chosenForm.name].attacks;
+        let attackList = duplicate(MorphinChanges.changes[this.chosenForm.name].attacks);
         for (let i = 0; i < attackList.length; i++) {
             const element = attackList[i];
 
@@ -167,7 +167,7 @@ export class MorphinPlantShape extends MorphinPolymorphDialog {
 
         // Process special attacks
         data.specialAttacks = '';
-        let specialAttackList = MorphinChanges.changes[this.chosenForm.name].specialAttack || [];
+        let specialAttackList = duplicate(MorphinChanges.changes[this.chosenForm.name].specialAttack || []);
         for (let i = 0; i < specialAttackList.length; i++) {
             const element = specialAttackList[i];
 
@@ -245,10 +245,10 @@ export class MorphinPlantShape extends MorphinPolymorphDialog {
         const elementTypes = ['acid', 'cold', 'electric', 'fire', 'sonic'];
 
         if (this.level >= 2) {
-            const eres = MorphinChanges.changes[this.chosenForm.name].eres?.filter(o => elementTypes.includes(o.types[0])) || [];
+            const eres = duplicate(MorphinChanges.changes[this.chosenForm.name].eres?.filter(o => elementTypes.includes(o.types[0])) || []);
             data.eres = '';
             
-            const di = MorphinChanges.changes[this.chosenForm.name].di?.filter(o => elementTypes.includes(o)) || [];
+            const di = duplicate(MorphinChanges.changes[this.chosenForm.name].di?.filter(o => elementTypes.includes(o)) || []);
             for (const entry of di) {
                 eres.push({ amount: 20, operator: true, types: [entry, ''] });
             }
@@ -266,12 +266,12 @@ export class MorphinPlantShape extends MorphinPolymorphDialog {
             this.eres = eres;
         }
 
-        const dv = MorphinChanges.changes[this.chosenForm.name].dv?.filter(o => elementTypes.includes(o)) || [];
+        const dv = duplicate(MorphinChanges.changes[this.chosenForm.name].dv?.filter(o => elementTypes.includes(o)) || []);
         data.dv = dv.map(o => game.i18n.localize('MMMOD.DamageTypes.' + o.replace(/[^A-Za-z0-9]+/g, ''))).join(', ') || game.i18n.localize('MMMOD.UI.None');
         this.dv = dv;
 
         if (this.level === 3) {
-            const dr = MorphinChanges.changes[this.chosenForm.name].dr || [];
+            const dr = duplicate(MorphinChanges.changes[this.chosenForm.name].dr || []);
             data.dr = '';
             for (const entry of dr) {
                 if (data.dr.length > 0) data.dr += ', ';
@@ -293,7 +293,7 @@ export class MorphinPlantShape extends MorphinPolymorphDialog {
             if (data.dr.length === 0) data.dr = game.i18n.localize('MMMOD.UI.None');
             this.dr = dr;
 
-            const regen = MorphinChanges.changes[this.chosenForm.name].regen || [];
+            const regen = duplicate(MorphinChanges.changes[this.chosenForm.name].regen || []);
             data.regen = regen.map(o => '' + o.value + ' (' + o.counter.map(c => game.i18n.localize('MMMOD.DamageTypes.' + c)).join(' ' + game.i18n.localize('MMMOD.UI.or') + ' ') + ')').join(', ') || game.i18n.localize('MMMOD.UI.None');
             this.regen = regen.map(o => '' + o.value + ' (' + o.counter.map(c => game.i18n.localize('MMMOD.DamageTypes.' + c)).join(' ' + game.i18n.localize('MMMOD.UI.or') + ' ') + ')').join('; ') || '';
         }

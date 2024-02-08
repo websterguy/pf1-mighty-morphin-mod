@@ -104,7 +104,7 @@ export class MorphinElementalBody extends MorphinPolymorphDialog {
 
         // Process stat changes for polymorphing smaller than small or larger than medium
         data.polymorphBase = '';
-        this.polymorphChanges = MorphinChanges.changes.polymorphSize[this.actorSize] || {};
+        this.polymorphChanges = duplicate(MorphinChanges.changes.polymorphSize[this.actorSize] || {});
         if (!!this.polymorphChanges) {
             for (let i = 0; i < this.polymorphChanges.length; i++) {
                 const change = this.polymorphChanges[i];
@@ -119,7 +119,7 @@ export class MorphinElementalBody extends MorphinPolymorphDialog {
         // Process stat changes from the spell based on spell level
         let chosenElement = chosenForm.split(' ')[1].toLowerCase();
         data.scoreChanges = '';
-        this.changes = MorphinChanges.changes.elementalBody[chosenElement][this.chosenForm.size].changes;
+        this.changes = duplicate(MorphinChanges.changes.elementalBody[chosenElement][this.chosenForm.size].changes);
         for (let i = 0; i < this.changes.length; i++) {
             const change = this.changes[i];
 
@@ -173,7 +173,7 @@ export class MorphinElementalBody extends MorphinPolymorphDialog {
 
         // Process the natural attacks
         data.attacks = '';
-        let attackList = MorphinChanges.changes[this.chosenForm.name].attacks;
+        let attackList = duplicate(MorphinChanges.changes[this.chosenForm.name].attacks);
         for (let i = 0; i < attackList.length; i++) {
             const attack = attackList[i];
 
@@ -196,7 +196,7 @@ export class MorphinElementalBody extends MorphinPolymorphDialog {
 
         // Process special attacks
         data.specialAttacks = '';
-        let specialAttackList = MorphinChanges.changes[this.chosenForm.name].specialAttack || [];
+        let specialAttackList = duplicate(MorphinChanges.changes[this.chosenForm.name].specialAttack || []);
         for (let i = 0; i < specialAttackList.length; i++) {
             const specialAttack = specialAttackList[i];
 
@@ -252,7 +252,7 @@ export class MorphinElementalBody extends MorphinPolymorphDialog {
             data.special += game.i18n.localize('MMMOD.Attacks.' + element);
         }
 
-        const eres = MorphinChanges.changes[this.chosenForm.name].eres || [];
+        const eres = duplicate(MorphinChanges.changes[this.chosenForm.name].eres || []);
         data.eres = '';
         for (const entry of eres) {
             if (data.eres.length > 0) data.eres += ', ';
@@ -266,18 +266,18 @@ export class MorphinElementalBody extends MorphinPolymorphDialog {
         if (data.eres.length === 0) data.eres = game.i18n.localize('MMMOD.UI.None');
         this.eres = eres;
 
-        const dv = MorphinChanges.changes[this.chosenForm.name].dv || [];
+        const dv = duplicate(MorphinChanges.changes[this.chosenForm.name].dv || []);
         data.dv = dv.map(o => game.i18n.localize('MMMOD.DamageTypes.' + o.replace(/[^A-Za-z0-9]+/g, ''))).join(', ') || game.i18n.localize('MMMOD.UI.None');
         this.dv = dv;
 
         if (this.level >= 3) {
-            const di = MorphinChanges.changes[this.chosenForm.name].di || [];
+            const di = duplicate(MorphinChanges.changes[this.chosenForm.name].di || []);
             data.di = di.map(o => game.i18n.localize('MMMOD.DamageTypes.' + o.replace(/[^A-Za-z0-9]+/g, ''))).join(', ') || game.i18n.localize('MMMOD.UI.None');
             this.di = di;
         }
 
         if (this.level === 4) {
-            const dr = MorphinChanges.changes[this.chosenForm.name].dr || [];
+            const dr = duplicate(MorphinChanges.changes[this.chosenForm.name].dr || []);
             data.dr = '';
             for (const entry of dr) {
                 if (data.dr.length > 0) data.dr += ', ';

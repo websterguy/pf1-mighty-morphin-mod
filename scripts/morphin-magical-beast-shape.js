@@ -114,7 +114,7 @@ export class MorphinMagicalBeastShape extends MorphinPolymorphDialog {
 
         // Process stat changes for polymorphing smaller than small or larger than medium
         data.polymorphBase = '';
-        this.polymorphChanges = MorphinChanges.changes.polymorphSize[this.actorSize] || {};
+        this.polymorphChanges = duplicate(MorphinChanges.changes.polymorphSize[this.actorSize] || {});
         if (!!this.polymorphChanges) {
             for (let i = 0; i < this.polymorphChanges.length; i++) {
                 const change = this.polymorphChanges[i];
@@ -172,7 +172,7 @@ export class MorphinMagicalBeastShape extends MorphinPolymorphDialog {
 
         // Process the natural attacks
         data.attacks = '';
-        let attackList = MorphinChanges.changes[this.chosenForm.name].attacks;
+        let attackList = duplicate(MorphinChanges.changes[this.chosenForm.name].attacks);
         for (let i = 0; i < attackList.length; i++) {
             const attack = attackList[i];
 
@@ -196,7 +196,7 @@ export class MorphinMagicalBeastShape extends MorphinPolymorphDialog {
 
         // Process special attacks
         data.specialAttacks = '';
-        let specialAttackList = MorphinChanges.changes[this.chosenForm.name].specialAttack || [];
+        let specialAttackList = duplicate(MorphinChanges.changes[this.chosenForm.name].specialAttack || []);
         for (let i = 0; i < specialAttackList.length; i++) {
             const specialAttack = duplicate(specialAttackList[i]);
 
@@ -258,7 +258,7 @@ export class MorphinMagicalBeastShape extends MorphinPolymorphDialog {
                 senseEnumValue = MorphinChanges.SENSES[allowedSenses[senseKey].static + allowedSenses[senseKey].value].value;
             }
             this.senses.push(senseEnumValue);
-            
+
             if (!!senseEnumValue && !!MorphinChanges.allowedSenses[this.spell][this.level][senseKey]) {
                 if (data.senses.length > 0) data.senses += ', ';
                 data.senses += `${ game.i18n.localize('MMMOD.Senses.' + MorphinChanges.SENSES[Object.keys(MorphinChanges.SENSES)[senseEnumValue - 1]].name) }`; // enum value 1 = SENSES[0] = LOWLIGHT
@@ -286,10 +286,10 @@ export class MorphinMagicalBeastShape extends MorphinPolymorphDialog {
 
         // Process energy resistances and vulnerabilities
         const elementTypes = ['acid', 'cold', 'electricity', 'fire', 'sonic', 'positive', 'negative'];
-        const eres = MorphinChanges.changes[this.chosenForm.name].eres?.filter(o => elementTypes.includes(o.types[0])) || [];
+        const eres = duplicate(MorphinChanges.changes[this.chosenForm.name].eres?.filter(o => elementTypes.includes(o.types[0])) || []);
         data.eres = '';
         
-        const di = MorphinChanges.changes[this.chosenForm.name].di?.filter(o => elementTypes.includes(o)) || [];
+        const di = duplicate(MorphinChanges.changes[this.chosenForm.name].di?.filter(o => elementTypes.includes(o)) || []);
         for (const entry of di) {
             eres.push({ amount: 20, operator: true, types: [entry, ''] });
         }
@@ -306,7 +306,7 @@ export class MorphinMagicalBeastShape extends MorphinPolymorphDialog {
         if (data.eres.length === 0) data.eres = game.i18n.localize('MMMOD.UI.None');
         this.eres = eres;
 
-        const dv = MorphinChanges.changes[this.chosenForm.name].dv?.filter(o => elementTypes.includes(o)) || [];
+        const dv = duplicate(MorphinChanges.changes[this.chosenForm.name].dv?.filter(o => elementTypes.includes(o)) || []);
         data.dv = dv.map(o => game.i18n.localize('MMMOD.DamageTypes.' + o)).join(', ') || game.i18n.localize('MMMOD.UI.None');
         this.dv = dv;
 

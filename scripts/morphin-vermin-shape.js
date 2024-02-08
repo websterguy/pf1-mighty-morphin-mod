@@ -94,7 +94,7 @@ export class MorphinVerminShape extends MorphinPolymorphDialog {
 
         // Process stat changes for polymorphing smaller than small or larger than medium
         data.polymorphBase = '';
-        this.polymorphChanges = MorphinChanges.changes.polymorphSize[this.actorSize] || {};
+        this.polymorphChanges = duplicate(MorphinChanges.changes.polymorphSize[this.actorSize] || {});
         if (!!this.polymorphChanges) {
             for (let i = 0; i < this.polymorphChanges.length; i++) {
                 const change = this.polymorphChanges[i];
@@ -182,7 +182,7 @@ export class MorphinVerminShape extends MorphinPolymorphDialog {
 
         // Process the natural attacks
         data.attacks = '';
-        let attackList = MorphinChanges.changes[this.chosenForm.name].attacks;
+        let attackList = duplicate(MorphinChanges.changes[this.chosenForm.name].attacks);
         for (let i = 0; i < attackList.length; i++) {
             const attack = attackList[i];
 
@@ -206,7 +206,7 @@ export class MorphinVerminShape extends MorphinPolymorphDialog {
 
         // Process special attacks
         data.specialAttacks = '';
-        let specialAttackList = MorphinChanges.changes[this.chosenForm.name].specialAttack || [];
+        let specialAttackList = duplicate(MorphinChanges.changes[this.chosenForm.name].specialAttack || []);
         for (let i = 0; i < specialAttackList.length; i++) {
             const specialAttack = specialAttackList[i];
 
@@ -283,7 +283,7 @@ export class MorphinVerminShape extends MorphinPolymorphDialog {
         
         // Extra bonuses
         data.bonuses = `+${ this.level === 1 ? '2' : '4' } ${ game.i18n.localize('MMMOD.Bonuses.Resistance') } ${ game.i18n.localize('MMMOD.Bonuses.SavesVsMind') }`;
-        this.contextNotes.push({text: `+[[${ this.level === 1 ? '2' : '4' }]] ${ game.i18n.localize('MMMOD.Bonuses.Resistance') } ${ game.i18n.localize('MMMOD.Bonuses.SavesVsMind') }`, subTarget: 'allSavingThrows'});
+        this.contextNotes.push({ text: `+[[${ this.level === 1 ? '2' : '4' }]] ${ game.i18n.localize('MMMOD.Bonuses.Resistance') } ${ game.i18n.localize('MMMOD.Bonuses.SavesVsMind') }`, subTarget: 'allSavingThrows' });
 
         // Build the html preview
         let newHtml = `${ !!data.polymorphBase ? '<p><span class="previewLabel">' + game.i18n.localize('MMMOD.UI.BaseSizeAdjust') + ': </span><span id="polymorphScores">' + data.polymorphBase + '</span></p>' : '' }
