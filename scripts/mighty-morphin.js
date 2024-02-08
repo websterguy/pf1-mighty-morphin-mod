@@ -1459,11 +1459,11 @@ export class MightyMorphinApp {
         // Create extra attacks if the attack count is over 1, label the extras starting at 2 (Claw 2)
         let extraAttacks = [];
         for (let i = 1; i < attack.count; i++) {
-            extraAttacks = extraAttacks.concat([['', `${ attack.name } ${ i + 1 }`]]);
+            extraAttacks = extraAttacks.concat([['', `${ game.i18n.localize('MMMOD.Attacks.' + attack.name) } ${ i + 1 }`]]);
         }
         if (!!extraAttacks.length) {
             subAction['attackParts'] = extraAttacks;
-            subAction['attackName'] = `${ attack.name } 1`;
+            subAction['attackName'] = `${ game.i18n.localize('MMMOD.Attacks.' + attack.name) } 1`;
         }
 
         // set attack notes for each special
@@ -1849,7 +1849,7 @@ export class MightyMorphinApp {
         
         if (aspect instanceof Array) {
             for (const singleAspect of aspect) {
-                const found = MorphinOptions.shifterWildShape.find(o => o.name === singleAspect);
+                const found = MorphinOptions.shifterWildShape.some(o => o.name === singleAspect);
                 if (!found) {
                     foundForm = false;
                     aspect = singleAspect;
@@ -1858,7 +1858,7 @@ export class MightyMorphinApp {
             }
         }
         else {
-            MorphinOptions.shifterWildShape.find(o => o.name === aspect);
+            foundForm = MorphinOptions.shifterWildShape.some(o => o.name === aspect);
         }
         
         if (foundForm) type = 'shifterWildShape';
@@ -1874,6 +1874,83 @@ export class MightyMorphinApp {
         else {
             dia.buildPreviewTemplate(aspect, form, type);
             dia.applyChanges(null, aspect);
+        }
+    }
+
+    /**
+     * Creates the Beast Shape buff and effects on the actor using the MorphinBeastShape class
+     * 
+     * @param {number} [level=1] The level of beast shape spell being cast (1-4)
+     * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
+     * @param {string} [source='Shifter Wild Shape'] The source of the beast shape spell effect
+     * @param {string} [form=null] The name of the form to change into. Must match option from morphin-options exactly.
+     * @param {string} [image = null] The file name for a custom image file without the file extension
+     */
+    static async shifterClawsOn({ aspect = null } = { }) {
+        let shifter = MightyMorphinApp.getSingleActor();
+
+        if (!shifter.classes.shifter) return ui.notifications.error('You must have the Shifter class to use this.');
+    
+        let foundForm = true;
+        let alternates = new Set();
+        
+        if (!!aspect && aspect instanceof Array) {
+            for (const singleAspect of aspect) {
+                const found = MorphinOptions.shifterWildShape.some(o => o.name === singleAspect);
+                if (!found) {
+                    foundForm = false;
+                    aspect = singleAspect;
+                    break;
+                }
+                MorphinChanges.changes.shifterWildShape[singleAspect].alternates.forEach(o => alternates.add(o));
+            }
+        }
+        else if (!!aspect) {
+            foundForm = MorphinOptions.shifterWildShape.some(o => o.name === aspect);
+            if (foundForm) MorphinChanges.changes.shifterWildShape[singleAspect].alternates.forEach(o => alternates.add(o));
+        }
+        
+        if (!foundForm) {
+            ui.notifications.error(aspect + ' ' + game.i18n.localize('MMMOD.ShifterInvalidWarning'));
+            return;
+        }
+
+        const clawsData = {};
+        for (const level of Object.keys(MorphinChanges.changes.shifterWildShape.claws)) {
+            if (shifter.classes.shifter.level >= level) mergeObject(clawsData, MorphinChanges.changes.shifterWildShape.claws[level]);
+        }
+
+        clawsData.primaryAttack = true;
+
+        const attack = MightyMorphinApp.createAttack(shifter.uuid, 'med', clawsData, false, []);
+
+        if (alternates.size > 0) {
+
+            const buttons = {
+                claw: {
+                    label: game.i18n.localize('MMMOD.Attacks.Claw'), callback: async () => await shifter.createEmbeddedDocuments('Item', [attack])
+                }
+            };
+
+            for (const alternate of alternates) {
+                const altData = duplicate(clawsData);
+                altData['type'] = MightyMorphinApp.naturalAttacks[alternate].type;
+                const altAttack = MightyMorphinApp.createAttack(shifter.uuid, 'med', altData, false, []);
+                altAttack.name = altAttack.name + ` (${ game.i18n.localize('MMMOD.Attacks.' + alternate) })`;
+                buttons[alternate] = { label: game.i18n.localize('MMMOD.Attacks.' + alternate), callback: async () => await shifter.createEmbeddedDocuments('Item', [altAttack]) };
+            }
+
+            const dialog = new Dialog({
+                title: 'Choose an effect',
+                content: 'Choose an effect to revert.',
+                buttons: buttons
+              });
+          
+              dialog.render(true);
+
+        }
+        else {
+            await shifter.createEmbeddedDocuments('Item', [attack]);
         }
     }
 
