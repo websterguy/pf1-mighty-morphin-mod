@@ -19,6 +19,7 @@ Hooks.once('init', () => {
   game.mightyMorphin.verminShape = MightyMorphinApp.verminShape;
   game.mightyMorphin.shifterWildShape = MightyMorphinApp.shifterWildShape;
   game.mightyMorphin.maulerBattleForm = MightyMorphinApp.maulerBattleForm;
+  game.mightyMorphin.shifterClawsOn = MightyMorphinApp.shifterClawsOn;
 });
 
 // Set up static sizes from the system's info

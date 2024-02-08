@@ -949,7 +949,7 @@ MorphinChanges.changes = {
                 }
             },
             alternates: [
-                'Bite', 'Talon'
+                'Bite', 'Talons'
             ]
         },
         'Dolphin': {
@@ -1244,7 +1244,7 @@ MorphinChanges.changes = {
                 }
             },
             alternates: [
-                'Gore', 'Talon'
+                'Gore', 'Talons'
             ]
         },
         'Frog': {
@@ -2328,7 +2328,7 @@ MorphinChanges.changes = {
             ]
         },
         claws: {
-            1: { name: 'Shifter Claws', diceCount: 1, diceSize: 4, count: 2, type: ['piercing', 'slashing'] },
+            1: { name: 'ShifterClaws', diceCount: 1, diceSize: 4, count: 2, type: ['piercing', 'slashing'] },
             3: { notes: 'Claws ignore DR/cold iton, DR/magic, DR/silver' },
             7: { diceCount: 1, diceSize: 6 },
             11: { diceCount: 1, diceSize: 8 },
