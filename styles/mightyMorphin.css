@@ -1,4 +1,4 @@
-#mighty-morphin-beastShape form, #mighty-morphin-elementalBody form, #mighty-morphin-plantShape form, #mighty-morphin-verminShape form, #mighty-morphin-magicalBeastShape form {
+#mighty-morphin-beastShape form, #mighty-morphin-elementalBody form, #mighty-morphin-plantShape form, #mighty-morphin-verminShape form, #mighty-morphin-magicalBeastShape form, #mighty-morphin-giantForm form {
     min-height: 100%;
     display: flex;
     flex-direction: column;
@@ -44,6 +44,12 @@
 }
 
 #mighty-morphin-magicalBeastShape #changePreview .previewLabel {
+    display: inline-block;
+    width: 140px;
+    font-weight: bold;
+}
+
+#mighty-morphin-giantForm #changePreview .previewLabel {
     display: inline-block;
     width: 140px;
     font-weight: bold;
