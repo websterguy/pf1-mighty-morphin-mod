@@ -12654,6 +12654,7 @@ MorphinChanges.buffIcons = {
     elementalBody: 'systems/pf1/icons/spells/wind-grasp-magenta-2.jpg',
     verminShape: 'systems/pf1/icons/races/creature-types/vermin.png',
     giantForm: 'systems/pf1/icons/skills/red_01.jpg',
+    giantFormII: 'systems/pf1/icons/skills/red_01.jpg',
     shifterWildShape: 'icons/magic/nature/wolf-paw-glow-green.webp'
 };
 
