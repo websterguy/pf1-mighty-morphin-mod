@@ -389,6 +389,43 @@ MorphinChanges.changes = {
             }
         }
     },
+    giantForm: {
+        giant: {
+            lg: {
+                changes: [
+                    { formula: '6', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'size', priority: 0, value: 6 },
+                    { formula: '4', operator: 'add', target: 'ability', subTarget: 'con', modifier: 'size', priority: 0, value: 4 },
+                    { formula: '-2', operator: 'add', target: 'ability', subTarget: 'dex', modifier: 'untyped', priority: 0, value: -2 },
+                    { formula: '4', operator: 'add', subTarget: 'nac', modifier: 'untyped', priority: 0, value: 4 }
+                ],
+                size: 'lg'
+            }
+        }
+    },
+    giantFormII: {
+        giant: {
+            lg: {
+                changes: [
+                    { formula: '8', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'size', priority: 0, value: 8 },
+                    { formula: '6', operator: 'add', target: 'ability', subTarget: 'con', modifier: 'size', priority: 0, value: 6 },
+                    { formula: '-2', operator: 'add', target: 'ability', subTarget: 'dex', modifier: 'untyped', priority: 0, value: -2 },
+                    { formula: '6', operator: 'add', subTarget: 'nac', modifier: 'untyped', priority: 0, value: 6 },
+                    { formula: '10', operator: 'add', subTarget: 'landSpeed', modifier: 'enh', priority: 0, value: 10 }
+                ],
+                size: 'lg'
+            },
+            huge: {
+                changes: [
+                    { formula: '8', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'size', priority: 0, value: 8 },
+                    { formula: '6', operator: 'add', target: 'ability', subTarget: 'con', modifier: 'size', priority: 0, value: 6 },
+                    { formula: '-2', operator: 'add', target: 'ability', subTarget: 'dex', modifier: 'untyped', priority: 0, value: -2 },
+                    { formula: '6', operator: 'add', subTarget: 'nac', modifier: 'untyped', priority: 0, value: 6 },
+                    { formula: '10', operator: 'add', subTarget: 'landSpeed', modifier: 'enh', priority: 0, value: 10 }
+                ],
+                size: 'lg'
+            }
+        }
+    },
     polymorphSize: {
         fine: [
             { formula: '6', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'untyped', priority: 0, value: 6 },
@@ -1380,7 +1417,7 @@ MorphinChanges.changes = {
                         { name: 'Endurance', uuid: 'Compendium.pf1.feats.Item.ehqx8txNRGMaNOPt' }
                     ],
                     changes: [
-                        { formula: '5', operator: 'add', subTarget: 'landSpeed', modifier: 'enh', priority: 0, value: 5 },
+                        { formula: '5', operator: 'add', subTarget: 'landSpeed', modifier: 'enh', priority: 0, value: 5 }
                     ]
                 },
                 8: {
@@ -1391,7 +1428,7 @@ MorphinChanges.changes = {
                 },
                 15: {
                     changes: [
-                        { formula: '15', operator: 'add', subTarget: 'landSpeed', modifier: 'enh', priority: 0, value: 15 },
+                        { formula: '15', operator: 'add', subTarget: 'landSpeed', modifier: 'enh', priority: 0, value: 15 }
                     ]
                 }
             },
@@ -11571,7 +11608,973 @@ MorphinChanges.changes = {
             'Poison': { note: 'Poison (Ex) - Bite—injury; save Fort DC 10+SL+Mod; frequency 1/round for 4 rounds; effect 1 Str; cure 1 save.', type: 'fort', saveDesc: 'Fort Cures' }
         }
     },
-
+    'Ash Giant': {
+        size: 'lg',
+        attacks: [
+            { name: 'Slam', diceCount: 1, diceSize: 8, count: 2 }
+        ],
+        specialAttack: [
+            { name: 'RockThrow', diceCount: 2, diceSize: 8, count: 1, damageAbility: 'str', type: ['bludgeoning'], mult: 1.5, attackType: 'rwak', range: 120, increment: 5, attackBonus: '1[RockThrowing]' }
+        ],
+        speed: {
+            land: 40
+        },
+        senses: [
+            1
+        ],
+        special: [
+            'RockThrowing', 'RockCatching'
+        ]
+    },
+    'Cliff Giant': {
+        size: 'lg',
+        attacks: [
+            { name: 'Slam', diceCount: 1, diceSize: 8, count: 2 }
+        ],
+        specialAttack: [
+            { name: 'RockThrow', diceCount: 1, diceSize: 8, count: 1, damageAbility: 'str', type: ['bludgeoning'], mult: 1.5, attackType: 'rwak', range: 120, increment: 5, attackBonus: '1[RockThrowing]' }
+        ],
+        speed: {
+            land: 40
+        },
+        senses: [
+            1, 29
+        ],
+        eres: [
+            { amount: 10, operator: true, types: ['acid', ''] },
+            { amount: 10, operator: true, types: ['fire', ''] }
+        ],
+        special: [
+            'RockThrowing', 'RockCatching'
+        ]
+    },
+    'Cyclops Grand-Eye': {
+        size: 'lg',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 8, count: 2 }
+        ],
+        speed: {
+            land: 20
+        },
+        senses: [
+            1
+        ]
+    },
+    'Cyclops Lorekeeper': {
+        size: 'lg',
+        attacks: [ ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            1
+        ]
+    },
+    'Desert Giant': {
+        size: 'lg',
+        attacks: [
+            { name: 'Slam', diceCount: 1, diceSize: 8, count: 2 }
+        ],
+        specialAttack: [
+            { name: 'RockThrow', diceCount: 2, diceSize: 8, count: 1, damageAbility: 'str', type: ['bludgeoning'], mult: 1.5, attackType: 'rwak', range: 100, increment: 5, attackBonus: '1[RockThrowing]' }
+        ],
+        speed: {
+            land: 50
+        },
+        senses: [
+            1
+        ],
+        eres: [
+            { amount: 10, operator: true, types: ['cold', ''] }
+        ],
+        di: [
+            'fire'
+        ],
+        special: [
+            'RockThrowing', 'RockCatching'
+        ]
+    },
+    'Ettin': {
+        size: 'lg',
+        attacks: [ ],
+        speed: {
+            land: 40
+        },
+        senses: [
+            1
+        ]
+    },
+    'Firbolg': {
+        size: 'lg',
+        attacks: [
+            { name: 'Slam', diceCount: 1, diceSize: 8, count: 2 }
+        ],
+        specialAttack: [
+            { name: 'RockThrow', diceCount: 2, diceSize: 6, count: 1, damageAbility: 'str', type: ['bludgeoning'], mult: 1.5, attackType: 'rwak', range: 120, increment: 5, attackBonus: '1[RockThrowing]' }
+        ],
+        speed: {
+            land: 40
+        },
+        senses: [
+            1
+        ],
+        special: [
+            'RockThrowing'
+        ]
+    },
+    'Fire Giant Doombringer': {
+        size: 'lg',
+        attacks: [ ],
+        specialAttack: [
+            { name: 'RockThrow', diceCount: 1, diceSize: 8, count: 1, damageAbility: 'str', type: ['bludgeoning'], mult: 1.5, attackType: 'rwak', range: 120, increment: 5, attackBonus: '1[RockThrowing]' }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            1
+        ],
+        di: [
+            'fire'
+        ],
+        dv: [
+            'cold'
+        ],
+        special: [
+            'RockThrowing', 'RockCatching'
+        ]
+    },
+    'Fire Giant Glaive': {
+        size: 'lg',
+        attacks: [ ],
+        specialAttack: [
+            { name: 'RockThrow', diceCount: 1, diceSize: 8, count: 1, damageAbility: 'str', type: ['bludgeoning'], mult: 1.5, attackType: 'rwak', range: 120, increment: 5, attackBonus: '1[RockThrowing]' }
+        ],
+        speed: {
+            land: 40
+        },
+        senses: [
+            1
+        ],
+        di: [
+            'fire'
+        ],
+        dv: [
+            'cold'
+        ],
+        special: [
+            'RockThrowing', 'RockCatching'
+        ]
+    },
+    'Fire Giant King': {
+        size: 'lg',
+        attacks: [
+            { name: 'Slam', diceCount: 1, diceSize: 8, count: 2 }
+        ],
+        specialAttack: [
+            { name: 'RockThrow', diceCount: 1, diceSize: 8, count: 1, damageAbility: 'str', type: ['bludgeoning'], mult: 1.5, attackType: 'rwak', range: 120, increment: 5, attackBonus: '1[RockThrowing]' }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            1
+        ],
+        di: [
+            'fire'
+        ],
+        dv: [
+            'cold'
+        ],
+        special: [
+            'RockThrowing', 'RockCatching'
+        ]
+    },
+    'Fire Giant Lieutenant': {
+        size: 'lg',
+        attacks: [
+            { name: 'Slam', diceCount: 1, diceSize: 8, count: 2 }
+        ],
+        specialAttack: [
+            { name: 'RockThrow', diceCount: 1, diceSize: 8, count: 1, damageAbility: 'str', type: ['bludgeoning'], mult: 1.5, attackType: 'rwak', range: 120, increment: 5, attackBonus: '1[RockThrowing]' }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            1
+        ],
+        di: [
+            'fire'
+        ],
+        dv: [
+            'cold'
+        ],
+        special: [
+            'RockThrowing', 'RockCatching'
+        ]
+    },
+    'Fire Giant Queen': {
+        size: 'lg',
+        attacks: [ ],
+        specialAttack: [
+            { name: 'RockThrow', diceCount: 1, diceSize: 8, count: 1, damageAbility: 'str', type: ['bludgeoning'], mult: 1.5, attackType: 'rwak', range: 120, increment: 5, attackBonus: '1[RockThrowing]' }
+        ],
+        speed: {
+            land: 40
+        },
+        senses: [
+            1
+        ],
+        di: [
+            'fire'
+        ],
+        dv: [
+            'cold'
+        ],
+        special: [
+            'RockThrowing', 'RockCatching'
+        ]
+    },
+    'Freshwater Merrow': {
+        size: 'lg',
+        attacks: [
+            { name: 'Claw', diceCount: 1, diceSize: 6, count: 2 }
+        ],
+        speed: {
+            land: 40,
+            swim: 40
+        },
+        senses: [
+            1
+        ]
+    },
+    'Frost Giant Battle Priest': {
+        size: 'lg',
+        attacks: [ ],
+        specialAttack: [
+            { name: 'RockThrow', diceCount: 1, diceSize: 8, count: 1, damageAbility: 'str', type: ['bludgeoning'], mult: 1.5, attackType: 'rwak', range: 120, increment: 5, attackBonus: '1[RockThrowing]' }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            1
+        ],
+        di: [
+            'cold'
+        ],
+        dv: [
+            'fire'
+        ],
+        special: [
+            'RockThrowing', 'RockCatching'
+        ]
+    },
+    'Frost Giant Elite Scout': {
+        size: 'lg',
+        attacks: [ ],
+        specialAttack: [
+            { name: 'RockThrow', diceCount: 1, diceSize: 8, count: 1, damageAbility: 'str', type: ['bludgeoning'], mult: 1.5, attackType: 'rwak', range: 120, increment: 5, attackBonus: '1[RockThrowing]' }
+        ],
+        speed: {
+            land: 40
+        },
+        senses: [
+            1
+        ],
+        di: [
+            'cold'
+        ],
+        dv: [
+            'fire'
+        ],
+        special: [
+            'RockThrowing', 'RockCatching'
+        ]
+    },
+    'Frost Giant Hunter': {
+        size: 'lg',
+        attacks: [ ],
+        specialAttack: [
+            { name: 'RockThrow', diceCount: 2, diceSize: 8, count: 1, damageAbility: 'str', type: ['bludgeoning'], mult: 1.5, attackType: 'rwak', range: 140, increment: 5, attackBonus: '1[RockThrowing]' }
+        ],
+        speed: {
+            land: 40
+        },
+        senses: [
+            1
+        ],
+        di: [
+            'cold'
+        ],
+        dv: [
+            'fire'
+        ],
+        special: [
+            'RockThrowing', 'RockCatching'
+        ]
+    },
+    'Hill Giant': {
+        size: 'lg',
+        attacks: [
+            { name: 'Slam', diceCount: 1, diceSize: 8, count: 2 }
+        ],
+        specialAttack: [
+            { name: 'RockThrow', diceCount: 1, diceSize: 8, count: 1, damageAbility: 'str', type: ['bludgeoning'], mult: 1.5, attackType: 'rwak', range: 120, increment: 5, attackBonus: '1[RockThrowing]' }
+        ],
+        speed: {
+            land: 40
+        },
+        senses: [
+            1
+        ],
+        special: [
+            'RockThrowing', 'RockCatching'
+        ]
+    },
+    'Kabandha': {
+        size: 'lg',
+        attacks: [
+            { name: 'Slam', diceCount: 1, diceSize: 6, count: 2 },
+            { name: 'Bite', diceCount: 1, diceSize: 8, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'RockThrow', diceCount: 1, diceSize: 8, count: 1, damageAbility: 'str', type: ['bludgeoning'], mult: 1.5, attackType: 'rwak', range: 60, increment: 5, attackBonus: '1[RockThrowing]' }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            1, 7
+        ],
+        special: [
+            'RockThrowing'
+        ]
+    },
+    'Marsh Giant': {
+        size: 'lg',
+        attacks: [
+            { name: 'Slam', diceCount: 1, diceSize: 6, count: 2 }
+        ],
+        specialAttack: [
+            { name: 'RockThrow', diceCount: 2, diceSize: 6, count: 1, damageAbility: 'str', type: ['bludgeoning'], mult: 1.5, attackType: 'rwak', range: 120, increment: 5, attackBonus: '1[RockThrowing]' }
+        ],
+        speed: {
+            land: 40,
+            swim: 20
+        },
+        senses: [
+            1
+        ],
+        special: [
+            'RockThrowing', 'RockCatching'
+        ]
+    },
+    'Moss Troll': {
+        size: 'lg',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 4, count: 1 },
+            { name: 'Claw', diceCount: 1, diceSize: 4, count: 2 }
+        ],
+        speed: {
+            land: 30,
+            climb: 10
+        },
+        senses: [
+            1, 7, 14
+        ],
+        regen: [
+            { value: 5, counter: ['fire'] }
+        ],
+        dv: [
+            'fire'
+        ]
+    },
+    'Ogre': {
+        size: 'lg',
+        attacks: [ ],
+        speed: {
+            land: 40
+        },
+        senses: [
+            1, 7
+        ]
+    },
+    'Ogre Boss': {
+        size: 'lg',
+        attacks: [ ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            1, 7
+        ]
+    },
+    'Ogre Glutton': {
+        size: 'lg',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 8, count: 2 }
+        ],
+        speed: {
+            land: 50
+        },
+        senses: [
+            1, 7
+        ]
+    },
+    'Ogre Hunter': {
+        size: 'lg',
+        attacks: [ ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            1, 7
+        ]
+    },
+    'Ogre Mancatcher': {
+        size: 'lg',
+        attacks: [ ],
+        speed: {
+            land: 40
+        },
+        senses: [
+            1, 7
+        ]
+    },
+    'Ogre Priest': {
+        size: 'lg',
+        attacks: [ ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            1, 7
+        ]
+    },
+    'Ogre Stalker': {
+        size: 'lg',
+        attacks: [ ],
+        speed: {
+            land: 40
+        },
+        senses: [
+            1, 7
+        ]
+    },
+    'Oracular Cyclops': {
+        size: 'lg',
+        attacks: [ ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            1
+        ]
+    },
+    'Shadow Giant': {
+        size: 'lg',
+        attacks: [
+            { name: 'Slam', diceCount: 1, diceSize: 8, count: 2 }
+        ],
+        specialAttack: [
+            { name: 'RockThrow', diceCount: 1, diceSize: 8, count: 1, damageAbility: 'str', type: ['bludgeoning'], mult: 1.5, attackType: 'rwak', range: 180, increment: 5, attackBonus: '1[RockThrowing]' }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            1, 11
+        ],
+        special: [
+            'RockThrowing', 'RockCatching'
+        ]
+    },
+    'Slag Giant': {
+        size: 'lg',
+        attacks: [
+            { name: 'Slam', diceCount: 1, diceSize: 8, count: 2 }
+        ],
+        specialAttack: [
+            { name: 'RockThrow', diceCount: 1, diceSize: 8, count: 1, damageAbility: 'str', type: ['bludgeoning'], mult: 1.5, attackType: 'rwak', range: 120, increment: 5, attackBonus: '1[RockThrowing]' }
+        ],
+        speed: {
+            land: 40
+        },
+        senses: [
+            1
+        ],
+        eres: [
+            { amount: 30, operator: true, types: ['fire', ''] }
+        ],
+        special: [
+            'RockThrowing', 'RockCatching'
+        ]
+    },
+    'Stone Giant': {
+        size: 'lg',
+        attacks: [
+            { name: 'Slam', diceCount: 1, diceSize: 8, count: 2 }
+        ],
+        specialAttack: [
+            { name: 'RockThrow', diceCount: 1, diceSize: 8, count: 1, damageAbility: 'str', type: ['bludgeoning'], mult: 1.5, attackType: 'rwak', range: 180, increment: 5, attackBonus: '1[RockThrowing]' }
+        ],
+        speed: {
+            land: 40
+        },
+        senses: [
+            1, 7
+        ],
+        special: [
+            'RockThrowing', 'RockCatching'
+        ]
+    },
+    'Tomb Giant': {
+        size: 'lg',
+        attacks: [
+            { name: 'Slam', diceCount: 1, diceSize: 6, count: 2 }
+        ],
+        specialAttack: [
+            { name: 'RockThrow', diceCount: 1, diceSize: 8, count: 1, damageAbility: 'str', type: ['bludgeoning'], mult: 1.5, attackType: 'rwak', range: 120, increment: 5, attackBonus: '1[RockThrowing]' }
+        ],
+        speed: {
+            land: 40
+        },
+        senses: [
+            1, 7
+        ],
+        special: [
+            'RockThrowing', 'RockCatching'
+        ]
+    },
+    'Troll': {
+        size: 'lg',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 1, diceSize: 6, count: 2, special: ['Rend'] }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            1, 7, 14
+        ],
+        regen: [
+            { value: 5, counter: ['acid','fire'] }
+        ],
+        effect: {
+            'Rend': { note: 'Rend if both claws hit, added to second claw damage. [[/d sizeRoll(1, 6, @size, 5) # Rend damage added to second claw]]{{Roll Rend Damage}}' }
+        }
+    },
+    'Troll Acolyte': {
+        size: 'lg',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 1, diceSize: 6, count: 2, special: ['Rend'] }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            1, 7, 14
+        ],
+        regen: [
+            { value: 5, counter: ['acid','fire'] }
+        ],
+        effect: {
+            'Rend': { note: 'Rend if both claws hit, added to second claw damage. [[/d sizeRoll(1, 6, @size, 5) # Rend damage added to second claw]]{{Roll Rend Damage}}' }
+        }
+    },
+    'Troll Berserker': {
+        size: 'lg',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 1, diceSize: 6, count: 2, special: ['Rend'] }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            1, 7, 14
+        ],
+        regen: [
+            { value: 5, counter: ['acid','fire'] }
+        ],
+        effect: {
+            'Rend': { note: 'Rend if both claws hit, added to second claw damage. [[/d sizeRoll(1, 6, @size, 5) # Rend damage added to second claw]]{{Roll Rend Damage}}' }
+        }
+    },
+    'Troll Elder Matron': {
+        size: 'lg',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 1, diceSize: 6, count: 2, special: ['Rend'] }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            1, 7, 14
+        ],
+        regen: [
+            { value: 5, counter: ['acid','fire'] }
+        ],
+        eres: [
+            { amount: 10, operator: true, types: ['cold', ''] }
+        ],
+        effect: {
+            'Rend': { note: 'Rend if both claws hit, added to second claw damage. [[/d sizeRoll(1, 6, @size, 5) # Rend damage added to second claw]]{{Roll Rend Damage}}' }
+        }
+    },
+    'Troll Fury': {
+        size: 'lg',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 1, diceSize: 6, count: 2, special: ['Rend'] }
+        ],
+        speed: {
+            land: 20
+        },
+        senses: [
+            1, 7, 14
+        ],
+        regen: [
+            { value: 5, counter: ['acid','fire'] }
+        ],
+        effect: {
+            'Rend': { note: 'Rend if both claws hit, added to second claw damage. [[/d sizeRoll(1, 6, @size, 5) # Rend damage added to second claw]]{{Roll Rend Damage}}' }
+        }
+    },
+    'Wood Giant': {
+        size: 'lg',
+        attacks: [
+            { name: 'Slam', diceCount: 1, diceSize: 6, count: 2 }
+        ],
+        speed: {
+            land: 40
+        },
+        senses: [
+            1
+        ],
+        special: [
+            'RockCatching'
+        ]
+    },
+    'Athach': {
+        size: 'huge',
+        attacks: [
+            { name: 'Slam', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'RockThrow', diceCount: 2, diceSize: 6, count: 1, damageAbility: 'str', type: ['bludgeoning'], mult: 1.5, attackType: 'rwak', range: 140, increment: 5, attackBonus: '1[RockThrowing]' }
+        ],
+        speed: {
+            land: 50
+        },
+        senses: [
+            1, 7
+        ],
+        eres: [
+            { amount: 10, operator: true, types: ['cold', ''] }
+        ],
+        special: [
+            'RockThrowing'
+        ]
+    },
+    'Cloud Giant': {
+        size: 'huge',
+        attacks: [
+            { name: 'Slam', diceCount: 2, diceSize: 6, count: 2 }
+        ],
+        specialAttack: [
+            { name: 'RockThrow', diceCount: 2, diceSize: 6, count: 1, damageAbility: 'str', type: ['bludgeoning'], mult: 1.5, attackType: 'rwak', range: 140, increment: 5, attackBonus: '1[RockThrowing]' }
+        ],
+        speed: {
+            land: 50
+        },
+        senses: [
+            1, 14
+        ],
+        special: [
+            'RockThrowing', 'RockCatching'
+        ]
+    },
+    'Great Cyclops': {
+        size: 'huge',
+        attacks: [
+            { name: 'Slam', diceCount: 2, diceSize: 6, count: 2 },
+            { name: 'Gore', diceCount: 1, diceSize: 8, count: 2 }
+        ],
+        specialAttack: [
+            { name: 'RockThrow', diceCount: 2, diceSize: 6, count: 1, damageAbility: 'str', type: ['bludgeoning'], mult: 1.5, attackType: 'rwak', range: 120, increment: 5, attackBonus: '1[RockThrowing]' }
+        ],
+        speed: {
+            land: 50
+        },
+        senses: [
+            1
+        ],
+        special: [
+            'RockThrowing'
+        ]
+    },
+    'Inverted Giant': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 1, diceSize: 8, count: 1 }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            42
+        ],
+        eres: [
+            { amount: 10, operator: true, types: ['cold', ''] },
+            { amount: 10, operator: true, types: ['electric', ''] },
+            { amount: 10, operator: true, types: ['fire', ''] }
+        ],
+        special: [
+            'RockThrowing', 'RockCatching'
+        ]
+    },
+    'Jotund Troll': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 6, count: 1 },
+            { name: 'Claw', diceCount: 1, diceSize: 8, count: 2 }
+        ],
+        specialAttack: [
+            { name: 'RockThrow', diceCount: 2, diceSize: 8, count: 1, damageAbility: 'str', type: ['bludgeoning'], mult: 1.5, attackType: 'rwak', range: 120, increment: 5, attackBonus: '1[RockThrowing]' }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            1, 14
+        ],
+        regen: [
+            { value: 10, counter: ['acid','fire'] }
+        ],
+        special: [
+            'RockThrowing'
+        ]
+    },
+    'Jungle Giant': {
+        size: 'huge',
+        attacks: [
+            { name: 'Slam', diceCount: 2, diceSize: 6, count: 2 }
+        ],
+        speed: {
+            land: 40
+        },
+        senses: [
+            1
+        ],
+        special: [
+            'RockCatching'
+        ]
+    },
+    'Moon Giant': {
+        size: 'huge',
+        attacks: [
+            { name: 'Slam', diceCount: 3, diceSize: 8, count: 2 }
+        ],
+        specialAttack: [
+            { name: 'RockThrow', diceCount: 2, diceSize: 6, count: 1, damageAbility: 'str', type: ['bludgeoning'], mult: 1.5, attackType: 'rwak', range: 180, increment: 5, attackBonus: '1[RockThrowing]' }
+        ],
+        speed: {
+            land: 50
+        },
+        senses: [
+            1
+        ],
+        eres: [
+            { amount: 30, operator: true, types: ['cold', ''] },
+            { amount: 30, operator: true, types: ['fire', ''] }
+        ],
+        special: [
+            'RockThrowing', 'RockCatching'
+        ]
+    },
+    'Mountain Troll': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 10, count: 1 },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2, special: ['Rend'] }
+        ],
+        specialAttack: [
+            { name: 'RockThrow', diceCount: 2, diceSize: 8, count: 1, damageAbility: 'str', type: ['bludgeoning'], mult: 1.5, attackType: 'rwak', range: 120, increment: 5, attackBonus: '1[RockThrowing]' }
+        ],
+        speed: {
+            land: 40,
+            burrow: 10,
+            climb: 40
+        },
+        senses: [
+            1, 7, 14
+        ],
+        regen: [
+            { value: 10, counter: ['acid','fire'] }
+        ],
+        dv: [
+            'sonic'
+        ],
+        special: [
+            'RockThrowing', 'RockCatching'
+        ],
+        effect: {
+            'Rend': { note: 'Rend if both claws hit, added to second claw damage. [[/d sizeRoll(2, 6, @size, 6) # Rend damage added to second claw]]{{Roll Rend Damage}}' }
+        }
+    },
+    'Ocean Giant': {
+        size: 'huge',
+        attacks: [
+            { name: 'Slam', diceCount: 2, diceSize: 6, count: 2 }
+        ],
+        specialAttack: [
+            { name: 'RockThrow', diceCount: 2, diceSize: 8, count: 1, damageAbility: 'str', type: ['bludgeoning'], mult: 1.5, attackType: 'rwak', range: 110, increment: 5, attackBonus: '1[RockThrowing]' }
+        ],
+        speed: {
+            land: 50,
+            swim: 40
+        },
+        senses: [
+            1
+        ],
+        eres: [
+            { amount: 30, operator: true, types: ['cold', ''] },
+            { amount: 30, operator: true, types: ['electric', ''] }
+        ],
+        special: [
+            'RockThrowing'
+        ]
+    },
+    'Papinijuwari': {
+        size: 'huge',
+        attacks: [
+            { name: 'Slam', diceCount: 2, diceSize: 6, count: 2 }
+        ],
+        speed: {
+            land: 20,
+            fly: {
+                base: 60,
+                maneuverability: 'average'
+            }
+        },
+        senses: [
+            1, 11
+        ]
+    },
+    'Plague Giant': {
+        size: 'huge',
+        attacks: [
+            { name: 'Slam', diceCount: 1, diceSize: 8, count: 2 }
+        ],
+        specialAttack: [
+            { name: 'RockThrow', diceCount: 2, diceSize: 8, count: 1, damageAbility: 'str', type: ['bludgeoning'], mult: 1.5, attackType: 'rwak', range: 140, increment: 5, attackBonus: '1[RockThrowing]' }
+        ],
+        speed: {
+            land: 50
+        },
+        senses: [
+            1
+        ],
+        special: [
+            'RockThrowing', 'RockCatching'
+        ]
+    },
+    'Saltwater Merrow': {
+        size: 'huge',
+        attacks: [
+            { name: 'Claw', diceCount: 1, diceSize: 8, count: 2 }
+        ],
+        speed: {
+            land: 40,
+            swim: 40
+        },
+        senses: [
+            1
+        ]
+    },
+    'Savage Great Cyclops': {
+        size: 'huge',
+        attacks: [
+            { name: 'Gore', diceCount: 1, diceSize: 8, count: 1 },
+            { name: 'Slam', diceCount: 2, diceSize: 6, count: 2 }
+        ],
+        specialAttack: [
+            { name: 'RockThrow', diceCount: 2, diceSize: 6, count: 1, damageAbility: 'str', type: ['bludgeoning'], mult: 1.5, attackType: 'rwak', range: 120, increment: 5, attackBonus: '1[RockThrowing]' }
+        ],
+        speed: {
+            land: 60
+        },
+        senses: [
+            1
+        ],
+        special: [
+            'RockThrowing'
+        ]
+    },
+    'Storm Giant': {
+        size: 'huge',
+        attacks: [
+            { name: 'Slam', diceCount: 2, diceSize: 6, count: 2 }
+        ],
+        speed: {
+            land: 50,
+            swim: 40
+        },
+        senses: [
+            1
+        ],
+        di: [
+            'electric'
+        ]
+    },
+    'Sun Giant': {
+        size: 'huge',
+        attacks: [
+            { name: 'Slam', diceCount: 2, diceSize: 6, count: 2 }
+        ],
+        speed: {
+            land: 50
+        },
+        senses: [
+            1
+        ],
+        eres: [
+            { amount: 30, operator: true, types: ['cold', ''] },
+            { amount: 30, operator: true, types: ['electric', ''] }
+        ],
+        di: [
+            'fire'
+        ],
+        special: [
+            'RockCatching'
+        ]
+    },
+    'Taiga Giant': {
+        size: 'huge',
+        attacks: [
+            { name: 'Slam', diceCount: 1, diceSize: 8, count: 2 }
+        ],
+        specialAttack: [
+            { name: 'RockThrow', diceCount: 2, diceSize: 6, count: 1, damageAbility: 'str', type: ['bludgeoning'], mult: 1.5, attackType: 'rwak', range: 140, increment: 5, attackBonus: '1[RockThrowing]' }
+        ],
+        speed: {
+            land: 40
+        },
+        senses: [
+            1
+        ],
+        special: [
+            'RockThrowing', 'RockCatching'
+        ]
+    }
 };
 
 MorphinChanges.allowedSpecials = {
@@ -11600,6 +12603,12 @@ MorphinChanges.allowedSpecials = {
     verminShape: {
         '1': ['Touch', 'Lunge'],
         '2': ['Touch', 'BloodDrain', 'Constrict', 'Grab', 'Lunge', 'Poison', 'Pull', 'Trample', 'Web']
+    },
+    giantForm: {
+        '1': ['Rend', 'RockCatching', 'RockThrowing']
+    },
+    giantFormII: {
+        '2': ['Rend', 'RockCatching', 'RockThrowing']
     }
 };
 
@@ -11628,6 +12637,12 @@ MorphinChanges.allowedSenses = {
     verminShape: {
         '1': { 'dv': { static: 'DARKVISION', value: 60 }, 'll': { static:'LOWLIGHT', value: true }, 'sc': { static: 'SCENT', value: 30 } },
         '2': { 'dv': { static: 'DARKVISION', value: 60 }, 'll': { static:'LOWLIGHT', value: true }, 'sc': { static: 'SCENT', value: 30 }, 'ts': { static: 'TREMORSENSE', value: 30 } }
+    },
+    giantForm: {
+        '1': { 'dv': { static: 'DARKVISION', value: 60 }, 'll': { static:'LOWLIGHT', value: true } }
+    },
+    giantFormII: {
+        '2': { 'dv': { static: 'DARKVISION', value: 60 }, 'll': { static:'LOWLIGHT', value: true } }
     }
 };
 
@@ -11638,6 +12653,8 @@ MorphinChanges.buffIcons = {
     plantShape: 'systems/pf1/icons/spells/vines-plain-2.jpg',
     elementalBody: 'systems/pf1/icons/spells/wind-grasp-magenta-2.jpg',
     verminShape: 'systems/pf1/icons/races/creature-types/vermin.png',
+    giantForm: 'systems/pf1/icons/skills/red_01.jpg',
+    giantFormII: 'systems/pf1/icons/skills/red_01.jpg',
     shifterWildShape: 'icons/magic/nature/wolf-paw-glow-green.webp'
 };
 
@@ -11682,7 +12699,8 @@ MorphinChanges.SENSES = Object.freeze({
     BLINDSIGHT90: { value: 38, name: 'Blindsight90', setting: { bs: 90 } },
     BLINDSIGHT120: { value: 39, name: 'Blindsight120', setting: { bs: 120 } },
     SEEINDARKNESS: { value: 40, name: 'SeeInDarkness', setting: { sid: true } },
-    TREMORSENSE90: { value: 41, name: 'Tremorsense90', setting: { ts: 90 } }
+    TREMORSENSE90: { value: 41, name: 'Tremorsense90', setting: { ts: 90 } },
+    BLINDSIGHT60: { value: 42, name: 'Blindsight60', setting: { bs: 60 } } 
 });
 
 MorphinChanges.flightManeuverability = ['clumsy', 'poor', 'average', 'good', 'perfect'];

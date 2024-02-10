@@ -33,6 +33,7 @@ export class MorphinPolymorphDialog extends FormApplication {
         this.energizedTypes = energizedTypes;
         this.mutated = (!!fromUuidSync(actorId).items.getName(game.i18n.localize('MMMOD.MutatedShape')));
         this.mutatedType = mutatedType;
+        this.keepArmor = false;
     }
 
     /** @inheritdoc */
@@ -251,7 +252,7 @@ export class MorphinPolymorphDialog extends FormApplication {
             if (!!originalArmor) {
                 armorChangeFlag.push({ _id: item.id, data: originalArmor });
                 // take off armor if it's not wild armor or this is not from wild shape
-                let equipChange = (armorIsWild && this.wildShape) ? {} : { equipped: false };
+                let equipChange = ((armorIsWild && this.wildShape) || this.keepArmor) ? {} : { equipped: false };
                 let armorChange = armorChangeNeeded ? (smallSizes.includes(this.actorSize) ? { armor: { value: item.system.armor.value * 2 } } : { armor: { value: Math.floor(item.system.armor.value / 2) } }) : {};
                 equipChange = mergeObject(equipChange, armorChange);
                 armorToChange.push({ _id: item.id, system: equipChange });
