@@ -5,6 +5,7 @@ import { MorphinElementalBody } from './morphin-elemental-body.js';
 import { MorphinPlantShape } from './morphin-plant-shape.js';
 import { MorphinVerminShape } from './morphin-vermin-shape.js';
 import { MorphinShifterShape } from './morphin-shifter-shape.js';
+import { MorphinGiantForm } from './morphin-giant-form.js';
 import DirectoryPicker from './DirectoryPicker.js';
 import { MorphinOptions } from './morphin-options.js';
 
@@ -625,7 +626,7 @@ export class MightyMorphinApp {
                 buffData.scriptCalls.push(scriptCall);
             }
 
-            buff = await Item.create({ 'img': 'systems/pf1/icons/skills/red_01.jpg', name: game.i18n.localize('MMMOD.Buffs.RighteousMight.Name'), type: 'buff', system: buffData }, { temporary: true });
+            buff = await Item.create({ 'img': 'systems/pf1/icons/skills/light_05.jpg', name: game.i18n.localize('MMMOD.Buffs.RighteousMight.Name'), type: 'buff', system: buffData }, { temporary: true });
             
             let strChange = 0;
             for (let i = 0; i < changeData.changes.length; i++) {
@@ -1441,6 +1442,15 @@ export class MightyMorphinApp {
         subAction['actionType'] = attack.attackType || 'mwak'; // melee, ranged, save, combat man., etc
         subAction['activation']['type'] = 'attack';
         subAction['activation']['unchained'] = { 'cost': 1, 'type': 'action' };
+        if (!!attack.attackBonus) {
+            const labels = attack.attackBonus.match(/\[([a-zA-Z]*?)\]/g);
+            for (const label of labels) {
+                let strippedLabel = label.substring(1, label.length - 1);
+                let translatedLabel = game.i18n.localize('MMMOD.Attacks.' + strippedLabel);
+                attack.attackBonus = attack.attackBonus.replace(label, `[${ translatedLabel }]`);
+            }
+        }
+        subAction['attackBonus'] = attack.attackBonus || '';
         subAction['duration']['units'] = 'inst';
         subAction['range']['value'] = '' + (attack.range ?? '');
         subAction['range']['units'] = attack.attackType === 'none' ? 'none' : attack.attackType === 'rwak' ? 'ft' : 'melee'; // if ranged attack, range in feet. Else melee
@@ -1793,6 +1803,60 @@ export class MightyMorphinApp {
             
             if (!dia.shapeOptions[type].some(o => o.name === form)) {
                 ui.notifications.error(form + ' ' + game.i18n.localize('MMMOD.VerminInvalidWarning') + ' ' + level);
+                return;
+            }
+
+            dia.buildPreviewTemplate(form, type);
+            dia.applyChanges(null, form);
+        }
+        else dia.render(true);
+    }
+    
+    /**
+     * Creates the Giant Form buff and effects on the actor using the MorphinElementalBody class
+     * 
+     * @param {number} [level=1] The level of plant shape spell being cast (1-3)
+     * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
+     * @param {string} [source='Giant Form'] The source of the splant shape spell effect
+     * @param {string} [form=null] The name of the form to change into. Must match option from morphin-options exactly.
+     * @param {string} [image = null] The file name for a custom image file without the file extension
+     */
+    static async giantForm({ level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.GiantForm.Name'), form = null, image = null, planarType = null, energizedTypes = null, mutatedType = null } = { }) {
+        let shifter = MightyMorphinApp.getSingleActor();
+
+        // Create plant shape form if a single actor chosen not already under effects from this mod
+        let existing;
+        if (!!shifter.flags['pf1-mighty-morphin']) {
+            for (const change of Object.keys(shifter.flags['pf1-mighty-morphin'])) {
+                if (MightyMorphinApp.shapeSpells.includes(change) || MightyMorphinApp.otherTransmutations.includes(change)) {
+                    existing = change;
+                    break;
+                }
+            }
+        }
+
+        if (!!existing) {
+            return ui.notifications.warn(`${ shifter.name } ${ game.i18n.localize('MMMOD.EffectWarning') } ${ shifter.flags['pf1-mighty-morphin'][existing].source }`);
+        }
+
+        let dia = new MorphinGiantForm(level, durationLevel, shifter.uuid, source, { planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType });
+
+        if (!!image) {
+            dia.customImage = image;
+        }
+
+        if (!!form) {
+            let type;
+            let foundForm = MorphinOptions.giant.find(o => o.name === form);
+            if (foundForm) type = 'giant';
+            
+            if (!foundForm) {
+                ui.notifications.error(form + ' ' + game.i18n.localize('MMMOD.GiantInvalidWarning'));
+                return;
+            }
+            
+            if (!dia.shapeOptions[type].some(o => o.name === form)) {
+                ui.notifications.error(form + ' ' + game.i18n.localize('MMMOD.GiantInvalidWarning') + ' ' + level);
                 return;
             }
 

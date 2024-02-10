@@ -56,6 +56,9 @@
             "Rake6Claws": "Rake (6 Claws)",
             "Rend": "Rend",
             "Roar": "Roar",
+            "RockCatching": "Rock Catching",
+            "RockThrow": "Rock Throw",
+            "RockThrowing": "Rock Throwing",
             "Root": "Root",
             "ShifterClaws": "Shifter Claws",
             "Slam": "Slam",
@@ -108,6 +111,9 @@
             },
             "FrightfulAspect": {
                 "Name": "Frightful Aspect"
+            },
+            "GiantForm": {
+                "Name": "Giant Form"
             },
             "LegendaryProportions": {
                 "Name": "Legendary Proportions"
@@ -190,6 +196,7 @@
         "FrightfulShape": "Frightful Shape",
         "FrightfulShapeAttackSuccess": "Frightful Shape Attack Success",
         "From": "from",
+        "GiantInvalidWarning": "is not a valid option for Giant Form",
         "InputCasterLevel": "Input Caster Level",
         "MagicalBeastInvalidWarning": "is not a valid option for Magical Beast Shape",
         "ManyTokensWarning": "Too many actors selected. Choose one token",
@@ -217,6 +224,7 @@
             "Blindsight15": "Blindsight 15ft",
             "Blindsight20": "Blindsight 20ft",
             "Blindsight30": "Blindsight 30ft",
+            "Blindsight60": "Blindsight 60ft",
             "Blindsight90": "Blindsight 90ft",
             "Blindsight120": "Blindsight 120ft",
             "bs": "Blindsight",
@@ -298,6 +306,8 @@
             "FastHealing": "Fast Healing",
             "fly": "Fly",
             "ft": "ft",
+            "Giant": "Giant",
+            "GiantDialogName": "Mighty Morphin Giant Form",
             "good": "good",
             "land": "Land",
             "MagicalBeast": "Magical Beast",
@@ -319,6 +329,7 @@
             "SelectElementalSize": "Select Elemental Size",
             "SelectEnergizedTypes": "Select Energized Wild Shape Types",
             "SelectForm": "Select Form",
+            "SelectGiantSize": "Select Giant Size",
             "SelectMagicalBeastSize": "Select Magical Beast Size",
             "SelectMutatedLimb": "Select Mutated Limb Attack",
             "SelectPlanarType": "Select Planar Wild Shape Template",
