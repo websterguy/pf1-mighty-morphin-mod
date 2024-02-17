@@ -2042,7 +2042,7 @@ MorphinChanges.changes = {
             },
             major: {
                 1: {
-                    size: 'large',
+                    size: 'lg',
                     attacks: [
                         { name: 'Bite', diceCount: 1, diceSize: 8, count: 1, mult: 1.5 }
                     ],
@@ -2061,7 +2061,7 @@ MorphinChanges.changes = {
                 },
                 15: {
                     dr: [
-                        '5/silver'
+                        '5/Silver'
                     ]
                 }
             },
@@ -5809,7 +5809,7 @@ MorphinChanges.changes = {
         special: [
             'Ferocity', 'Rake4Claws'
         ],
-        di: [
+        ci: [
             'poison'
         ],
         eres: [
@@ -6493,7 +6493,7 @@ MorphinChanges.changes = {
         senses: [
             1, 7, 14, 21, 32
         ],
-        di: [
+        ci: [
             'poison'
         ],
         eres: [
@@ -6654,7 +6654,10 @@ MorphinChanges.changes = {
             { amount: 15, operator: true, types: ['sonic', ''] }
         ],
         di: [
-            'cold', 'fire', 'poison'
+            'cold', 'fire'
+        ],
+        ci: [
+            'poison'
         ],
         special: [
             'NoBreath'
@@ -6872,7 +6875,7 @@ MorphinChanges.changes = {
         senses: [
             1, 7, 14
         ],
-        di: [
+        ci: [
             'poison'
         ],
         eres: [
@@ -6964,7 +6967,7 @@ MorphinChanges.changes = {
         senses: [
             1, 7, 14
         ],
-        di: [
+        ci: [
             'poison'
         ]
     },
@@ -7018,7 +7021,7 @@ MorphinChanges.changes = {
             { name: 'Claw', diceCount: 2, diceSize: 4, count: 2 }
         ],
         specialAttack: [
-            { name: 'Spikes', diceCount: 1, diceSize: 6, count: 4, attackType: 'rwak', charges: 6, range: 180, increment: 1 }
+            { name: 'Spikes', diceCount: 1, diceSize: 6, count: 4, attackType: 'rwak', special: ['Spikes'], charges: 6, range: 180, increment: 1 }
         ],
         speed: {
             land: 30,
@@ -7427,7 +7430,7 @@ MorphinChanges.changes = {
         senses: [
             1, 7, 14
         ],
-        di: [
+        ci: [
             'poison'
         ],
         effect: {
@@ -7548,7 +7551,7 @@ MorphinChanges.changes = {
             1, 7
         ],
         fastHealing: 2,
-        di: [
+        ci: [
             'poison'
         ],
         eres: [
@@ -7655,7 +7658,7 @@ MorphinChanges.changes = {
         senses: [
             1, 7
         ],
-        di: [
+        ci: [
             'poison'
         ],
         effect: {
@@ -7691,7 +7694,7 @@ MorphinChanges.changes = {
         senses: [
             1, 7
         ],
-        di: [
+        ci: [
             'poison'
         ]
     },
@@ -7986,7 +7989,7 @@ MorphinChanges.changes = {
         effect: {
             'Poison': { note: 'Poison (Ex) - Sting—injury; save Fort DC 10+SL+Mod; frequency 1/round for 6 rounds; effect [[/r 1d4]] Con and nauseated for 1 round; cure 2 consecutive saves.', type: 'fort', saveDesc: 'Fort Cures' }
         },
-        di: [
+        ci: [
             'poison'
         ],
         eres: [
@@ -8157,7 +8160,7 @@ MorphinChanges.changes = {
         senses: [
             1, 7
         ],
-        di: [
+        ci: [
             'poison'
         ],
         special: [
@@ -8179,7 +8182,7 @@ MorphinChanges.changes = {
         senses: [
             1, 7, 14
         ],
-        di: [
+        ci: [
             'poison'
         ],
         eres: [
@@ -8205,7 +8208,7 @@ MorphinChanges.changes = {
         senses: [
             1, 10
         ],
-        di: [
+        ci: [
             'poison'
         ],
         eres: [
@@ -8318,7 +8321,10 @@ MorphinChanges.changes = {
             1, 7, 14
         ],
         di: [
-            'fire', 'poison'
+            'fire'
+        ],
+        ci: [
+            'poison'
         ],
         effect: {
             'Breath': { note: 'Breath area: 60ft cone. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds.</p>' }
@@ -8341,7 +8347,10 @@ MorphinChanges.changes = {
             1, 7, 32
         ],
         di: [
-            'cold', 'poison'
+            'cold'
+        ],
+        ci: [
+            'poison'
         ],
         fastHealing: 10,
         effect: {
@@ -8473,7 +8482,10 @@ MorphinChanges.changes = {
             1, 7, 14
         ],
         di: [
-            'acid', 'poison'
+            'acid'
+        ],
+        ci: [
+            'poison'
         ],
         effect: {
             'Poison': { note: 'Poison (Ex) - Bite—injury; save Fort DC 10+SL+Mod; frequency 1/round for 10 rounds; effect [[/d 1d8]] acid and [[/r 1d4]] Con drain; cure 2 consecutive saves.', type: 'fort', saveDesc: 'Fort Cures' }
@@ -8683,7 +8695,7 @@ MorphinChanges.changes = {
         senses: [
             1, 7
         ],
-        di: [
+        ci: [
             'poison'
         ],
         eres: [
@@ -8829,8 +8841,8 @@ MorphinChanges.changes = {
         effect: {
             'Whirlwind': { note: '10-50 ft. DC 10+SL+Mod. One save to avoid damage, second save to avoid being lifted', type: 'ref', saveDesc: 'Reflex avoids', description: '<p>Some creatures can transform themselves into whirlwinds and remain in that form for up to 1 round for every 2 HD they have. If the creature has a fly speed, it can continue to fly at that same speed while in whirlwind form; otherwise it gains a fly speed equal to its base land speed (average maneuverability) while in whirlwind form.</p><p>The whirlwind is always 5 feet wide at its base, but its height and width at the top vary from creature to creature (minimum 10 feet high). A whirlwind\'s width at its peak is always equal to half of its height. The creature controls the exact height, but it must be at least 10 feet high.</p><p>The whirlwind form does not provoke attacks of opportunity, even if the creature enters the space another creature occupies. Another creature might be caught in the whirlwind if it touches or enters the whirlwind, or if the whirlwind moves into or through the creature\'s space. A creature in whirlwind form cannot make its normal attacks and does not threaten the area around it.</p><p>Creatures one or more size categories smaller than the whirlwind might take damage when caught in the whirlwind (generally damage equal to the monster\'s slam attack for a creature of its size) and may be lifted into the air. An affected creature must succeed on a Reflex save (DC 10 + half monster\'s HD + the monster\'s Strength modifier) when it comes into contact with the whirlwind or take damage as if it were hit by the whirlwind creature\'s slam attack. It must also succeed on a second Reflex save or be picked up bodily and held suspended in the powerful winds, automatically taking the indicated damage each round. A creature that can fly is allowed a Reflex save each round to escape the whirlwind. The creature still takes damage but can leave if the save is successful.</p><p>Creatures trapped in the whirlwind cannot move except to go where the whirlwind carries them or to escape the whirlwind. Trapped creatures can otherwise act normally, but must succeed on a concentration check (DC 15 + spell level) to cast a spell. Creatures caught in the whirlwind take a -4 penalty to Dexterity and a -2 penalty on attack rolls. The whirlwind can have only as many creatures trapped inside at one time as will fit inside the whirlwind\'s volume. The whirlwind can eject any carried creatures whenever it wishes as a free action, depositing them in its space.</p><p>If the whirlwind\'s base touches the ground, it creates a swirling cloud of debris. This cloud is centered on the creature and has a diameter equal to half the whirlwind\'s height. The cloud obscures all vision, including darkvision, beyond 5 feet. Creatures 5 feet away have concealment, while those farther away have total concealment. Those caught in the cloud of debris must succeed on a concentration check (DC 15 + spell level) to cast a spell.</p>' }
         },
-        di: [
-            'bleed', 'critical', 'sneak attack'
+        ci: [
+            'bleed', 'critical', 'sneakAttack'
         ],
         dr: [
             { amount: 5, operator: true, types: ['', ''] }
@@ -8851,8 +8863,8 @@ MorphinChanges.changes = {
         special: [
             'EarthGlide'
         ],
-        di: [
-            'bleed', 'critical', 'sneak attack'
+        ci: [
+            'bleed', 'critical', 'sneakAttack'
         ],
         dr: [
             { amount: 5, operator: true, types: ['', ''] }
@@ -8878,8 +8890,8 @@ MorphinChanges.changes = {
         special: [
             'Burn'
         ],
-        di: [
-            'bleed', 'critical', 'sneak attack'
+        ci: [
+            'bleed', 'critical', 'sneakAttack'
         ],
         dr: [
             { amount: 5, operator: true, types: ['', ''] }
@@ -8909,8 +8921,8 @@ MorphinChanges.changes = {
         effect: {
             'Vortex': { note: '10-60 ft. DC 10+SL+Mod. One save to avoid damage, second save to avoid being lifted', type: 'ref', saveDesc: 'Reflex avoids', description: '<p>A water elemental can create a whirlpool as a standard action, at will. This ability functions identically to the whirlwind special attack, but can only form underwater and cannot leave the water.</p><p>Some creatures can transform themselves into whirlwinds and remain in that form for up to 1 round for every 2 HD they have. If the creature has a fly speed, it can continue to fly at that same speed while in whirlwind form; otherwise it gains a fly speed equal to its base land speed (average maneuverability) while in whirlwind form.</p><p>The whirlwind is always 5 feet wide at its base, but its height and width at the top vary from creature to creature (minimum 10 feet high). A whirlwind\'s width at its peak is always equal to half of its height. The creature controls the exact height, but it must be at least 10 feet high.</p><p>The whirlwind form does not provoke attacks of opportunity, even if the creature enters the space another creature occupies. Another creature might be caught in the whirlwind if it touches or enters the whirlwind, or if the whirlwind moves into or through the creature\'s space. A creature in whirlwind form cannot make its normal attacks and does not threaten the area around it.</p><p>Creatures one or more size categories smaller than the whirlwind might take damage when caught in the whirlwind (generally damage equal to the monster\'s slam attack for a creature of its size) and may be lifted into the air. An affected creature must succeed on a Reflex save (DC 10 + half monster\'s HD + the monster\'s Strength modifier) when it comes into contact with the whirlwind or take damage as if it were hit by the whirlwind creature\'s slam attack. It must also succeed on a second Reflex save or be picked up bodily and held suspended in the powerful winds, automatically taking the indicated damage each round. A creature that can fly is allowed a Reflex save each round to escape the whirlwind. The creature still takes damage but can leave if the save is successful.</p><p>Creatures trapped in the whirlwind cannot move except to go where the whirlwind carries them or to escape the whirlwind. Trapped creatures can otherwise act normally, but must succeed on a concentration check (DC 15 + spell level) to cast a spell. Creatures caught in the whirlwind take a -4 penalty to Dexterity and a -2 penalty on attack rolls. The whirlwind can have only as many creatures trapped inside at one time as will fit inside the whirlwind\'s volume. The whirlwind can eject any carried creatures whenever it wishes as a free action, depositing them in its space.</p><p>If the whirlwind\'s base touches the ground, it creates a swirling cloud of debris. This cloud is centered on the creature and has a diameter equal to half the whirlwind\'s height. The cloud obscures all vision, including darkvision, beyond 5 feet. Creatures 5 feet away have concealment, while those farther away have total concealment. Those caught in the cloud of debris must succeed on a concentration check (DC 15 + spell level) to cast a spell.</p>' }
         },
-        di: [
-            'bleed', 'critical', 'sneak attack'
+        ci: [
+            'bleed', 'critical', 'sneakAttack'
         ],
         dr: [
             { amount: 5, operator: true, types: ['', ''] }
@@ -8936,8 +8948,11 @@ MorphinChanges.changes = {
         effect: {
             'Whirlwind': { note: '10-40 ft. DC 10+SL+Mod. One save to avoid damage, second save to avoid being lifted', type: 'ref', saveDesc: 'Reflex avoids', description: '<p>Some creatures can transform themselves into whirlwinds and remain in that form for up to 1 round for every 2 HD they have. If the creature has a fly speed, it can continue to fly at that same speed while in whirlwind form; otherwise it gains a fly speed equal to its base land speed (average maneuverability) while in whirlwind form.</p><p>The whirlwind is always 5 feet wide at its base, but its height and width at the top vary from creature to creature (minimum 10 feet high). A whirlwind\'s width at its peak is always equal to half of its height. The creature controls the exact height, but it must be at least 10 feet high.</p><p>The whirlwind form does not provoke attacks of opportunity, even if the creature enters the space another creature occupies. Another creature might be caught in the whirlwind if it touches or enters the whirlwind, or if the whirlwind moves into or through the creature\'s space. A creature in whirlwind form cannot make its normal attacks and does not threaten the area around it.</p><p>Creatures one or more size categories smaller than the whirlwind might take damage when caught in the whirlwind (generally damage equal to the monster\'s slam attack for a creature of its size) and may be lifted into the air. An affected creature must succeed on a Reflex save (DC 10 + half monster\'s HD + the monster\'s Strength modifier) when it comes into contact with the whirlwind or take damage as if it were hit by the whirlwind creature\'s slam attack. It must also succeed on a second Reflex save or be picked up bodily and held suspended in the powerful winds, automatically taking the indicated damage each round. A creature that can fly is allowed a Reflex save each round to escape the whirlwind. The creature still takes damage but can leave if the save is successful.</p><p>Creatures trapped in the whirlwind cannot move except to go where the whirlwind carries them or to escape the whirlwind. Trapped creatures can otherwise act normally, but must succeed on a concentration check (DC 15 + spell level) to cast a spell. Creatures caught in the whirlwind take a -4 penalty to Dexterity and a -2 penalty on attack rolls. The whirlwind can have only as many creatures trapped inside at one time as will fit inside the whirlwind\'s volume. The whirlwind can eject any carried creatures whenever it wishes as a free action, depositing them in its space.</p><p>If the whirlwind\'s base touches the ground, it creates a swirling cloud of debris. This cloud is centered on the creature and has a diameter equal to half the whirlwind\'s height. The cloud obscures all vision, including darkvision, beyond 5 feet. Creatures 5 feet away have concealment, while those farther away have total concealment. Those caught in the cloud of debris must succeed on a concentration check (DC 15 + spell level) to cast a spell.</p>' }
         },
-        di: [
-            'bleed', 'critical', 'sneak attack'
+        ci: [
+            'bleed', 'critical', 'sneakAttack'
+        ],
+        dr: [
+            { amount: 5, operator: true, types: ['', ''] }
         ]
     },
     'Large Earth Elemental': {
@@ -8955,8 +8970,8 @@ MorphinChanges.changes = {
         special: [
             'EarthGlide'
         ],
-        di: [
-            'bleed', 'critical', 'sneak attack'
+        ci: [
+            'bleed', 'critical', 'sneakAttack'
         ],
         dr: [
             { amount: 5, operator: true, types: ['', ''] }
@@ -8982,8 +8997,8 @@ MorphinChanges.changes = {
         special: [
             'Burn'
         ],
-        di: [
-            'bleed', 'critical', 'sneak attack'
+        ci: [
+            'bleed', 'critical', 'sneakAttack'
         ],
         dr: [
             { amount: 5, operator: true, types: ['', ''] }
@@ -9013,8 +9028,8 @@ MorphinChanges.changes = {
         effect: {
             'Vortex': { note: '10-40 ft. DC 10+SL+Mod. One save to avoid damage, second save to avoid being lifted', type: 'ref', saveDesc: 'Reflex avoids', description: '<p>A water elemental can create a whirlpool as a standard action, at will. This ability functions identically to the whirlwind special attack, but can only form underwater and cannot leave the water.</p><p>Some creatures can transform themselves into whirlwinds and remain in that form for up to 1 round for every 2 HD they have. If the creature has a fly speed, it can continue to fly at that same speed while in whirlwind form; otherwise it gains a fly speed equal to its base land speed (average maneuverability) while in whirlwind form.</p><p>The whirlwind is always 5 feet wide at its base, but its height and width at the top vary from creature to creature (minimum 10 feet high). A whirlwind\'s width at its peak is always equal to half of its height. The creature controls the exact height, but it must be at least 10 feet high.</p><p>The whirlwind form does not provoke attacks of opportunity, even if the creature enters the space another creature occupies. Another creature might be caught in the whirlwind if it touches or enters the whirlwind, or if the whirlwind moves into or through the creature\'s space. A creature in whirlwind form cannot make its normal attacks and does not threaten the area around it.</p><p>Creatures one or more size categories smaller than the whirlwind might take damage when caught in the whirlwind (generally damage equal to the monster\'s slam attack for a creature of its size) and may be lifted into the air. An affected creature must succeed on a Reflex save (DC 10 + half monster\'s HD + the monster\'s Strength modifier) when it comes into contact with the whirlwind or take damage as if it were hit by the whirlwind creature\'s slam attack. It must also succeed on a second Reflex save or be picked up bodily and held suspended in the powerful winds, automatically taking the indicated damage each round. A creature that can fly is allowed a Reflex save each round to escape the whirlwind. The creature still takes damage but can leave if the save is successful.</p><p>Creatures trapped in the whirlwind cannot move except to go where the whirlwind carries them or to escape the whirlwind. Trapped creatures can otherwise act normally, but must succeed on a concentration check (DC 15 + spell level) to cast a spell. Creatures caught in the whirlwind take a -4 penalty to Dexterity and a -2 penalty on attack rolls. The whirlwind can have only as many creatures trapped inside at one time as will fit inside the whirlwind\'s volume. The whirlwind can eject any carried creatures whenever it wishes as a free action, depositing them in its space.</p><p>If the whirlwind\'s base touches the ground, it creates a swirling cloud of debris. This cloud is centered on the creature and has a diameter equal to half the whirlwind\'s height. The cloud obscures all vision, including darkvision, beyond 5 feet. Creatures 5 feet away have concealment, while those farther away have total concealment. Those caught in the cloud of debris must succeed on a concentration check (DC 15 + spell level) to cast a spell.</p>' }
         },
-        di: [
-            'bleed', 'critical', 'sneak attack'
+        ci: [
+            'bleed', 'critical', 'sneakAttack'
         ],
         dr: [
             { amount: 5, operator: true, types: ['', ''] }
@@ -9040,8 +9055,11 @@ MorphinChanges.changes = {
         effect: {
             'Whirlwind': { note: '10-30 ft. DC 10+SL+Mod. One save to avoid damage, second save to avoid being lifted', type: 'ref', saveDesc: 'Reflex avoids', description: '<p>Some creatures can transform themselves into whirlwinds and remain in that form for up to 1 round for every 2 HD they have. If the creature has a fly speed, it can continue to fly at that same speed while in whirlwind form; otherwise it gains a fly speed equal to its base land speed (average maneuverability) while in whirlwind form.</p><p>The whirlwind is always 5 feet wide at its base, but its height and width at the top vary from creature to creature (minimum 10 feet high). A whirlwind\'s width at its peak is always equal to half of its height. The creature controls the exact height, but it must be at least 10 feet high.</p><p>The whirlwind form does not provoke attacks of opportunity, even if the creature enters the space another creature occupies. Another creature might be caught in the whirlwind if it touches or enters the whirlwind, or if the whirlwind moves into or through the creature\'s space. A creature in whirlwind form cannot make its normal attacks and does not threaten the area around it.</p><p>Creatures one or more size categories smaller than the whirlwind might take damage when caught in the whirlwind (generally damage equal to the monster\'s slam attack for a creature of its size) and may be lifted into the air. An affected creature must succeed on a Reflex save (DC 10 + half monster\'s HD + the monster\'s Strength modifier) when it comes into contact with the whirlwind or take damage as if it were hit by the whirlwind creature\'s slam attack. It must also succeed on a second Reflex save or be picked up bodily and held suspended in the powerful winds, automatically taking the indicated damage each round. A creature that can fly is allowed a Reflex save each round to escape the whirlwind. The creature still takes damage but can leave if the save is successful.</p><p>Creatures trapped in the whirlwind cannot move except to go where the whirlwind carries them or to escape the whirlwind. Trapped creatures can otherwise act normally, but must succeed on a concentration check (DC 15 + spell level) to cast a spell. Creatures caught in the whirlwind take a -4 penalty to Dexterity and a -2 penalty on attack rolls. The whirlwind can have only as many creatures trapped inside at one time as will fit inside the whirlwind\'s volume. The whirlwind can eject any carried creatures whenever it wishes as a free action, depositing them in its space.</p><p>If the whirlwind\'s base touches the ground, it creates a swirling cloud of debris. This cloud is centered on the creature and has a diameter equal to half the whirlwind\'s height. The cloud obscures all vision, including darkvision, beyond 5 feet. Creatures 5 feet away have concealment, while those farther away have total concealment. Those caught in the cloud of debris must succeed on a concentration check (DC 15 + spell level) to cast a spell.</p>' }
         },
-        di: [
-            'bleed', 'critical', 'sneak attack'
+        ci: [
+            'bleed', 'critical', 'sneakAttack'
+        ],
+        dr: [
+            { amount: 5, operator: true, types: ['', ''] }
         ]
     },
     'Medium Earth Elemental': {
@@ -9059,8 +9077,11 @@ MorphinChanges.changes = {
         special: [
             'EarthGlide'
         ],
-        di: [
-            'bleed', 'critical', 'sneak attack'
+        ci: [
+            'bleed', 'critical', 'sneakAttack'
+        ],
+        dr: [
+            { amount: 5, operator: true, types: ['', ''] }
         ]
     },
     'Medium Fire Elemental': {
@@ -9083,8 +9104,11 @@ MorphinChanges.changes = {
         special: [
             'Burn'
         ],
-        di: [
-            'bleed', 'critical', 'sneak attack'
+        ci: [
+            'bleed', 'critical', 'sneakAttack'
+        ],
+        dr: [
+            { amount: 5, operator: true, types: ['', ''] }
         ],
         eres: [
             { amount: 20, operator: true, types: ['fire', ''] }
@@ -9111,8 +9135,11 @@ MorphinChanges.changes = {
         effect: {
             'Vortex': { note: '10-30 ft. DC 10+SL+Mod. One save to avoid damage, second save to avoid being lifted', type: 'ref', saveDesc: 'Reflex avoids', description: '<p>A water elemental can create a whirlpool as a standard action, at will. This ability functions identically to the whirlwind special attack, but can only form underwater and cannot leave the water.</p><p>Some creatures can transform themselves into whirlwinds and remain in that form for up to 1 round for every 2 HD they have. If the creature has a fly speed, it can continue to fly at that same speed while in whirlwind form; otherwise it gains a fly speed equal to its base land speed (average maneuverability) while in whirlwind form.</p><p>The whirlwind is always 5 feet wide at its base, but its height and width at the top vary from creature to creature (minimum 10 feet high). A whirlwind\'s width at its peak is always equal to half of its height. The creature controls the exact height, but it must be at least 10 feet high.</p><p>The whirlwind form does not provoke attacks of opportunity, even if the creature enters the space another creature occupies. Another creature might be caught in the whirlwind if it touches or enters the whirlwind, or if the whirlwind moves into or through the creature\'s space. A creature in whirlwind form cannot make its normal attacks and does not threaten the area around it.</p><p>Creatures one or more size categories smaller than the whirlwind might take damage when caught in the whirlwind (generally damage equal to the monster\'s slam attack for a creature of its size) and may be lifted into the air. An affected creature must succeed on a Reflex save (DC 10 + half monster\'s HD + the monster\'s Strength modifier) when it comes into contact with the whirlwind or take damage as if it were hit by the whirlwind creature\'s slam attack. It must also succeed on a second Reflex save or be picked up bodily and held suspended in the powerful winds, automatically taking the indicated damage each round. A creature that can fly is allowed a Reflex save each round to escape the whirlwind. The creature still takes damage but can leave if the save is successful.</p><p>Creatures trapped in the whirlwind cannot move except to go where the whirlwind carries them or to escape the whirlwind. Trapped creatures can otherwise act normally, but must succeed on a concentration check (DC 15 + spell level) to cast a spell. Creatures caught in the whirlwind take a -4 penalty to Dexterity and a -2 penalty on attack rolls. The whirlwind can have only as many creatures trapped inside at one time as will fit inside the whirlwind\'s volume. The whirlwind can eject any carried creatures whenever it wishes as a free action, depositing them in its space.</p><p>If the whirlwind\'s base touches the ground, it creates a swirling cloud of debris. This cloud is centered on the creature and has a diameter equal to half the whirlwind\'s height. The cloud obscures all vision, including darkvision, beyond 5 feet. Creatures 5 feet away have concealment, while those farther away have total concealment. Those caught in the cloud of debris must succeed on a concentration check (DC 15 + spell level) to cast a spell.</p>' }
         },
-        di: [
-            'bleed', 'critical', 'sneak attack'
+        ci: [
+            'bleed', 'critical', 'sneakAttack'
+        ],
+        dr: [
+            { amount: 5, operator: true, types: ['', ''] }
         ]
     },
     'Small Air Elemental': {
@@ -9135,8 +9162,11 @@ MorphinChanges.changes = {
         effect: {
             'Whirlwind': { note: '10-20 ft. DC 10+SL+Mod. One save to avoid damage, second save to avoid being lifted', type: 'ref', saveDesc: 'Reflex avoids', description: '<p>Some creatures can transform themselves into whirlwinds and remain in that form for up to 1 round for every 2 HD they have. If the creature has a fly speed, it can continue to fly at that same speed while in whirlwind form; otherwise it gains a fly speed equal to its base land speed (average maneuverability) while in whirlwind form.</p><p>The whirlwind is always 5 feet wide at its base, but its height and width at the top vary from creature to creature (minimum 10 feet high). A whirlwind\'s width at its peak is always equal to half of its height. The creature controls the exact height, but it must be at least 10 feet high.</p><p>The whirlwind form does not provoke attacks of opportunity, even if the creature enters the space another creature occupies. Another creature might be caught in the whirlwind if it touches or enters the whirlwind, or if the whirlwind moves into or through the creature\'s space. A creature in whirlwind form cannot make its normal attacks and does not threaten the area around it.</p><p>Creatures one or more size categories smaller than the whirlwind might take damage when caught in the whirlwind (generally damage equal to the monster\'s slam attack for a creature of its size) and may be lifted into the air. An affected creature must succeed on a Reflex save (DC 10 + half monster\'s HD + the monster\'s Strength modifier) when it comes into contact with the whirlwind or take damage as if it were hit by the whirlwind creature\'s slam attack. It must also succeed on a second Reflex save or be picked up bodily and held suspended in the powerful winds, automatically taking the indicated damage each round. A creature that can fly is allowed a Reflex save each round to escape the whirlwind. The creature still takes damage but can leave if the save is successful.</p><p>Creatures trapped in the whirlwind cannot move except to go where the whirlwind carries them or to escape the whirlwind. Trapped creatures can otherwise act normally, but must succeed on a concentration check (DC 15 + spell level) to cast a spell. Creatures caught in the whirlwind take a -4 penalty to Dexterity and a -2 penalty on attack rolls. The whirlwind can have only as many creatures trapped inside at one time as will fit inside the whirlwind\'s volume. The whirlwind can eject any carried creatures whenever it wishes as a free action, depositing them in its space.</p><p>If the whirlwind\'s base touches the ground, it creates a swirling cloud of debris. This cloud is centered on the creature and has a diameter equal to half the whirlwind\'s height. The cloud obscures all vision, including darkvision, beyond 5 feet. Creatures 5 feet away have concealment, while those farther away have total concealment. Those caught in the cloud of debris must succeed on a concentration check (DC 15 + spell level) to cast a spell.</p>' }
         },
-        di: [
-            'bleed', 'critical', 'sneak attack'
+        ci: [
+            'bleed', 'critical', 'sneakAttack'
+        ],
+        dr: [
+            { amount: 5, operator: true, types: ['', ''] }
         ]
     },
     'Small Earth Elemental': {
@@ -9154,8 +9184,11 @@ MorphinChanges.changes = {
         special: [
             'EarthGlide'
         ],
-        di: [
-            'bleed', 'critical', 'sneak attack'
+        ci: [
+            'bleed', 'critical', 'sneakAttack'
+        ],
+        dr: [
+            { amount: 5, operator: true, types: ['', ''] }
         ]
     },
     'Small Fire Elemental': {
@@ -9178,8 +9211,11 @@ MorphinChanges.changes = {
         special: [
             'Burn'
         ],
-        di: [
-            'bleed', 'critical', 'sneak attack'
+        ci: [
+            'bleed', 'critical', 'sneakAttack'
+        ],
+        dr: [
+            { amount: 5, operator: true, types: ['', ''] }
         ],
         eres: [
             { amount: 20, operator: true, types: ['fire', ''] }
@@ -9206,8 +9242,11 @@ MorphinChanges.changes = {
         effect: {
             'Vortex': { note: '10-20 ft. DC 10+SL+Mod. One save to avoid damage, second save to avoid being lifted', type: 'ref', saveDesc: 'Reflex avoids', description: '<p>A water elemental can create a whirlpool as a standard action, at will. This ability functions identically to the whirlwind special attack, but can only form underwater and cannot leave the water.</p><p>Some creatures can transform themselves into whirlwinds and remain in that form for up to 1 round for every 2 HD they have. If the creature has a fly speed, it can continue to fly at that same speed while in whirlwind form; otherwise it gains a fly speed equal to its base land speed (average maneuverability) while in whirlwind form.</p><p>The whirlwind is always 5 feet wide at its base, but its height and width at the top vary from creature to creature (minimum 10 feet high). A whirlwind\'s width at its peak is always equal to half of its height. The creature controls the exact height, but it must be at least 10 feet high.</p><p>The whirlwind form does not provoke attacks of opportunity, even if the creature enters the space another creature occupies. Another creature might be caught in the whirlwind if it touches or enters the whirlwind, or if the whirlwind moves into or through the creature\'s space. A creature in whirlwind form cannot make its normal attacks and does not threaten the area around it.</p><p>Creatures one or more size categories smaller than the whirlwind might take damage when caught in the whirlwind (generally damage equal to the monster\'s slam attack for a creature of its size) and may be lifted into the air. An affected creature must succeed on a Reflex save (DC 10 + half monster\'s HD + the monster\'s Strength modifier) when it comes into contact with the whirlwind or take damage as if it were hit by the whirlwind creature\'s slam attack. It must also succeed on a second Reflex save or be picked up bodily and held suspended in the powerful winds, automatically taking the indicated damage each round. A creature that can fly is allowed a Reflex save each round to escape the whirlwind. The creature still takes damage but can leave if the save is successful.</p><p>Creatures trapped in the whirlwind cannot move except to go where the whirlwind carries them or to escape the whirlwind. Trapped creatures can otherwise act normally, but must succeed on a concentration check (DC 15 + spell level) to cast a spell. Creatures caught in the whirlwind take a -4 penalty to Dexterity and a -2 penalty on attack rolls. The whirlwind can have only as many creatures trapped inside at one time as will fit inside the whirlwind\'s volume. The whirlwind can eject any carried creatures whenever it wishes as a free action, depositing them in its space.</p><p>If the whirlwind\'s base touches the ground, it creates a swirling cloud of debris. This cloud is centered on the creature and has a diameter equal to half the whirlwind\'s height. The cloud obscures all vision, including darkvision, beyond 5 feet. Creatures 5 feet away have concealment, while those farther away have total concealment. Those caught in the cloud of debris must succeed on a concentration check (DC 15 + spell level) to cast a spell.</p>' }
         },
-        di: [
-            'bleed', 'critical', 'sneak attack'
+        ci: [
+            'bleed', 'critical', 'sneakAttack'
+        ],
+        dr: [
+            { amount: 5, operator: true, types: ['', ''] }
         ]
     },
     'Bloodplate Burster': {
@@ -9503,7 +9542,7 @@ MorphinChanges.changes = {
             'fire'
         ],
         dr: [
-            '10/magic, slashing, or bludgeoning'
+            '10/Magic, Slashing, or Bludgeoning'
         ],
         effect: {
             'Constrict': { note: 'Constrict: Same damage as Slam' }
@@ -9671,7 +9710,7 @@ MorphinChanges.changes = {
             1
         ],
         dr: [
-            '10/magic and slashing'
+            '10/Magic and Slashing'
         ],
         eres: [
             { amount: 10, operator: true, types: ['cold', ''] },
@@ -9712,7 +9751,7 @@ MorphinChanges.changes = {
             { value: 5, counter: ['cold'] }
         ],
         dr: [
-            '15/magic and slashing'
+            '15/Magic and Slashing'
         ],
         eres: [
             { amount: 30, operator: true, types: ['electric', ''] }
@@ -9950,7 +9989,7 @@ MorphinChanges.changes = {
             1, 7
         ],
         dr: [
-            '10/cold iron'
+            '10/Cold Iron'
         ]
     },
     'Fungus Queen': {
@@ -9966,7 +10005,7 @@ MorphinChanges.changes = {
             1, 7
         ],
         dr: [
-            '10/cold iron or good'
+            '10/Cold Iron or Good'
         ],
         di: [
             'electric'
@@ -12586,7 +12625,7 @@ MorphinChanges.allowedSpecials = {
     },
     magicalBeastShape: {
         '1': ['Touch', 'Grab', 'Pounce', 'Trip', 'Constrict', 'Ferocity', 'Jet90', 'Jet200', 'Jet240', 'Jet260', 'Jet300', 'Poison', 'Rake1Claw', 'Rake2Claws', 'Rake4Claws','Rake6Claws', 
-            'Rake2Talons', 'Trample', 'Web', 'BreathWeapon','Breath', 'BreathWeaponBlack', 'BreathWeaponBlue', 'BreathWeaponGreen', 'BreathWeaponRed', 'BreathWeaponWhite', 'Rend', 'Roar', 'Spikes', 'BloodDrain', 'BloodFrenzy', 'HoldBreath', 'NoBreath',
+            'Rake2Talons', 'Trample', 'Web', 'BreathWeapon', 'Breath', 'BreathWeaponBlack', 'BreathWeaponBlue', 'BreathWeaponGreen', 'BreathWeaponRed', 'BreathWeaponWhite', 'Rend', 'Roar', 'Spikes', 'BloodDrain', 'BloodFrenzy', 'HoldBreath', 'NoBreath',
             'PowefulCharge', 'Pull']
     },
     plantShape: {
@@ -12646,6 +12685,80 @@ MorphinChanges.allowedSenses = {
     }
 };
 
+MorphinChanges.allowedSpeeds = {
+    beastShape: {
+        '1': { climb: 30, fly: { base: 30, maneuverability: 'average' }, swim: 30 },
+        '2': { climb: 60, fly: { base: 60, maneuverability: 'good' }, swim: 60 },
+        '3': { burrow: 30, climb: 90, fly: { base: 90, maneuverability: 'good' }, swim: 90 } ,
+        '4': { burrow: 60, climb: 90, fly: { base: 120, maneuverability: 'good' }, swim: 120 }
+    },
+    magicalBeastShape: {
+        '1': { burrow: 60, climb: 90, fly: { base: 120, maneuverability: 'good' }, swim: 120 }
+    },
+    plantShape: {
+        '1': { },
+        '2': { },
+        '3': { },
+    },
+    elementalBody: {
+        '1': { fly: { base: 60, maneuverability: 'perfect' }, swim: 60 },
+        '2': { fly: { base: 60, maneuverability: 'perfect' }, swim: 60 },
+        '3': { fly: { base: 60, maneuverability: 'perfect' }, swim: 60 },
+        '4': { fly: { base: 120, maneuverability: 'perfect' }, swim: 120 }
+    },
+    verminShape: {
+        '1': { climb: 30, fly: { base: 30, maneuverability: 'average' }, swim: 30 },
+        '2': { burrow: 30, climb: 60, fly: { base: 60, maneuverability: 'good' }, swim: 60 }
+    },
+    giantForm: {
+        '1': { }
+    },
+    giantFormII: {
+        '2': { swim: 60 }
+    }
+};
+
+MorphinChanges.elementTypes = {
+    elements: ['acid', 'cold', 'electric', 'fire', 'sonic'],
+    energies: ['acid', 'cold', 'electric', 'fire', 'sonic', 'positive', 'negative']
+};
+
+MorphinChanges.allowedAttributes = {
+    beastShape: {
+        '1': { },
+        '2': { },
+        '3': { },
+        '4': { di: { elements: MorphinChanges.elementTypes.elements, max: 20 }, eres: { elements: MorphinChanges.elementTypes.elements, max: 20 }, dv: { elements: MorphinChanges.elementTypes.elements } }
+    },
+    magicalBeastShape: {
+        '1': { fastHealing: { max: 5 }, di: { elements: MorphinChanges.elementTypes.energies, max: 20 }, eres: { elements: MorphinChanges.elementTypes.energies, max: 20 }, dv: { elements: MorphinChanges.elementTypes.energies } }
+    },
+    plantShape: {
+        '1': { dv: { elements: MorphinChanges.elementTypes.elements } },
+        '2': { di: { elements: MorphinChanges.elementTypes.elements, max: 20 }, eres: { elements: MorphinChanges.elementTypes.elements, max: 20 }, dv: { elements: MorphinChanges.elementTypes.elements } },
+        '3': { dr: true, regen: { max: 5 }, di: { elements: MorphinChanges.elementTypes.elements, max: 20 }, eres: { elements: MorphinChanges.elementTypes.elements, max: 20 }, dv: { elements: MorphinChanges.elementTypes.elements } }
+    },
+    elementalBody: {
+        '1': { eres: { elements: ['fire'] }, dv: { elements: ['cold'] } },
+        '2': { eres: { elements: ['fire'] }, dv: { elements: ['cold'] } },
+        '3': { ci: { elements: ['bleed', 'sneakAttack', 'critical'] }, eres: { elements: ['fire'] }, dv: { elements: ['cold'] } },
+        '4': { dr: true, ci: { elements: ['bleed', 'sneakAttack', 'critical'] }, eres: { elements: ['fire'] }, dv: { elements: ['cold'] } }
+    },
+    verminShape: {
+        '1': { },
+        '2': { }
+    },
+    giantForm: {
+        '1': { regen: { max: 5 }, di: { elements: MorphinChanges.elementTypes.elements, max: 20 }, eres: { elements: MorphinChanges.elementTypes.elements, max: 20 }, dv: { elements: MorphinChanges.elementTypes.elements } }
+    },
+    giantFormII: {
+        '2': { regen: { max: 5 }, di: { elements: MorphinChanges.elementTypes.elements }, eres: { elements: MorphinChanges.elementTypes.elements }, dv: { elements: MorphinChanges.elementTypes.elements } }
+    },
+    shifterWildShape: {
+        '1': { dr: true, regen: true, di: { elements: MorphinChanges.elementTypes.energies }, eres: { elements: MorphinChanges.elementTypes.energies }, dv: { elements: MorphinChanges.elementTypes.energies }, fastHealing: true }
+    }
+};
+
 MorphinChanges.buffIcons = {
     beastShape: 'systems/pf1/icons/spells/wild-jade-3.jpg',
     magicalBeastShape: 'systems/pf1/icons/spells/wild-eerie-3.jpg',
@@ -12672,10 +12785,10 @@ MorphinChanges.SENSES = Object.freeze({
     DARKVISION120: { value: 11, name: 'Darkvision120', setting: { dv: 120 } },
     SCENT10: { value: 12, name: 'Scent10', setting: { sc: 10 } },
     SCENT20: { value: 13, name: 'Scent20', setting: { sc: 20 } },
-    SCENT: { value: 14, name: 'Scent30', setting: { sc: 30 } },
+    SCENT30: { value: 14, name: 'Scent30', setting: { sc: 30 } },
     SCENT40: { value: 15, name: 'Scent40', setting: { sc: 40 } },
-    SCENT50: { value: 16, name: 'Scent40', setting: { sc: 50 } },
-    SCENT60: { value: 17, name: 'Scent40', setting: { sc: 60 } },
+    SCENT50: { value: 16, name: 'Scent50', setting: { sc: 50 } },
+    SCENT60: { value: 17, name: 'Scent60', setting: { sc: 60 } },
     BLINDSENSE10: { value: 18, name: 'Blindsense10', setting: { bse: 10 } },
     BLINDSENSE15: { value: 19, name: 'Blindsense15', setting: { bse: 15 } },
     BLINDSENSE20: { value: 20, name: 'Blindsense20', setting: { bse: 20 } },
