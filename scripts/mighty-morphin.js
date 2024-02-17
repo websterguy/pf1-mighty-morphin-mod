@@ -62,12 +62,12 @@ export class MightyMorphinApp {
             if (game.settings.get('pf1-mighty-morphin', 'createScriptCall')) {
                 let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
                 scriptCall.category = 'toggle';
-                scriptCall.name = game.i18n.localize('MMMODDeactivateScriptCallName');
+                scriptCall.name = game.i18n.localize('MMMOD.DeactivateScriptCallName');
                 scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"][item.name.slugify()]) game.mightyMorphin.revert({actor: actor, buff: item.name});';
                 buffData.scriptCalls.push(scriptCall);
             }
 
-            buff = await Item.create({ 'img': 'systems/pf1/icons/skills/yellow_14.jpg', name: game.i18n.localize('MMMOD.Buffs.EnlargePerson.Name'), type: 'buff', system: buffData }, { temporary: true });
+            buff = await Item.create({ img: 'systems/pf1/icons/skills/yellow_14.jpg', name: game.i18n.localize('MMMOD.Buffs.EnlargePerson.Name'), type: 'buff', system: buffData }, { temporary: true });
 
             let strChange = 0;
             for (let i = 0; i < changeData.changes.length; i++) {
@@ -201,7 +201,7 @@ export class MightyMorphinApp {
                 buffData.scriptCalls.push(scriptCall);
             }
 
-            buff = await Item.create({ 'img': 'systems/pf1/icons/spells/wild-orange-3.jpg', name: game.i18n.localize('MMMOD.Buffs.AnimalGrowth.Name'), type: 'buff', system: buffData }, { temporary: true });
+            buff = await Item.create({ img: 'systems/pf1/icons/spells/wild-orange-3.jpg', name: game.i18n.localize('MMMOD.Buffs.AnimalGrowth.Name'), type: 'buff', system: buffData }, { temporary: true });
 
             let strChange = 0;
             for (let i = 0; i < changeData.changes.length; i++) {
@@ -333,7 +333,7 @@ export class MightyMorphinApp {
                 buffData.scriptCalls.push(scriptCall);
             }
 
-            buff = await Item.create({ 'img': 'systems/pf1/icons/skills/yellow_14.jpg', name: game.i18n.localize('MMMOD.Buffs.LegendaryProportions.Name'), type: 'buff', system: buffData }, { temporary: true });
+            buff = await Item.create({ img: 'systems/pf1/icons/skills/yellow_14.jpg', name: game.i18n.localize('MMMOD.Buffs.LegendaryProportions.Name'), type: 'buff', system: buffData }, { temporary: true });
             
             let strChange = 0;
             for (let i = 0; i < changeData.changes.length; i++) {
@@ -478,7 +478,7 @@ export class MightyMorphinApp {
                 buffData.scriptCalls.push(scriptCall);
             }
 
-            buff = await Item.create({ 'img': 'systems/pf1/icons/skills/affliction_08.jpg', name: game.i18n.localize('MMMOD.Buffs.FrightfulAspect.Name'), type: 'buff', system: buffData }, { temporary: true });
+            buff = await Item.create({ img: 'systems/pf1/icons/skills/affliction_08.jpg', name: game.i18n.localize('MMMOD.Buffs.FrightfulAspect.Name'), type: 'buff', system: buffData }, { temporary: true });
             
             let strChange = 0;
             for (let i = 0; i < changeData.changes.length; i++) {
@@ -626,7 +626,7 @@ export class MightyMorphinApp {
                 buffData.scriptCalls.push(scriptCall);
             }
 
-            buff = await Item.create({ 'img': 'systems/pf1/icons/skills/light_05.jpg', name: game.i18n.localize('MMMOD.Buffs.RighteousMight.Name'), type: 'buff', system: buffData }, { temporary: true });
+            buff = await Item.create({ img: 'systems/pf1/icons/skills/light_05.jpg', name: game.i18n.localize('MMMOD.Buffs.RighteousMight.Name'), type: 'buff', system: buffData }, { temporary: true });
             
             let strChange = 0;
             for (let i = 0; i < changeData.changes.length; i++) {
@@ -762,7 +762,7 @@ export class MightyMorphinApp {
                 buffData.scriptCalls.push(scriptCall);
             }
 
-            buff = await Item.create({ 'img': 'systems/pf1/icons/races/ratfolk.png', name: game.i18n.localize('MMMOD.Buffs.ReducePerson.Name'), type: 'buff', system: buffData }, { temporary: true });
+            buff = await Item.create({ img: 'systems/pf1/icons/races/ratfolk.png', name: game.i18n.localize('MMMOD.Buffs.ReducePerson.Name'), type: 'buff', system: buffData }, { temporary: true });
             
             let strChange = 0;
             for (let i = 0; i < changeData.changes.length; i++) {
@@ -899,7 +899,7 @@ export class MightyMorphinApp {
                 buffData.scriptCalls.push(scriptCall);
             }
 
-            buff = await Item.create({ 'img': 'systems/pf1/icons/spells/wild-orange-3.jpg', name: game.i18n.localize('MMMOD.Buffs.MaulerBattleForm.Name'), type: 'buff', system: buffData }, { temporary: true });
+            buff = await Item.create({ img: 'systems/pf1/icons/spells/wild-orange-3.jpg', name: game.i18n.localize('MMMOD.Buffs.MaulerBattleForm.Name'), type: 'buff', system: buffData }, { temporary: true });
 
             let strChange = 0;
             for (let i = 0; i < changeData.changes.length; i++) {
@@ -1095,7 +1095,7 @@ export class MightyMorphinApp {
                 buffData.scriptCalls.push(scriptCall);
             }
 
-            buff = await Item.create({ name: source, type: 'buff', system: buffData, 'img': MorphinChanges.buffIcons.shifterWildShape }, { temporary: true });
+            buff = await Item.create({ name: source, type: 'buff', system: buffData, img: MorphinChanges.buffIcons.shifterWildShape }, { temporary: true });
             //buff.system.changes = changes;
             //buff.system.contextNotes = contextNotes;
 
@@ -2132,4 +2132,42 @@ MightyMorphinApp.naturalAttacks = {
     'Slam': { img: 'systems/pf1/icons/items/inventory/monster-forearm.jpg', type: ['bludgeoning'], primaryAttack: true },
     'Sting': { img: 'systems/pf1/icons/items/inventory/monster-scorpion.jpg', type: ['piercing'], primaryAttack: true },
     'Talons': { img: 'systems/pf1/icons/items/inventory/monster-talon-green.jpg', type: ['slashing'], primaryAttack: true }
+};
+
+MightyMorphinApp.specialUUIDs = {
+    'BloodDrain': 'Compendium.pf-content.pf-universal-monster-rules.Item.2L7pvHVWFGzx03n7',
+    'Breath': 'Compendium.pf-content.pf-universal-monster-rules.Item.w2WoppZqJOZRY4xI',
+    'BreathWeapon': 'Compendium.pf-content.pf-universal-monster-rules.Item.w2WoppZqJOZRY4xI',
+    'BreathWeaponBlack': 'Compendium.pf-content.pf-universal-monster-rules.Item.w2WoppZqJOZRY4xI',
+    'BreathWeaponBlue': 'Compendium.pf-content.pf-universal-monster-rules.Item.w2WoppZqJOZRY4xI',
+    'BreathWeaponGreen': 'Compendium.pf-content.pf-universal-monster-rules.Item.w2WoppZqJOZRY4xI',
+    'BreathWeaponRed': 'Compendium.pf-content.pf-universal-monster-rules.Item.w2WoppZqJOZRY4xI',
+    'BreathWeaponWhite': 'Compendium.pf-content.pf-universal-monster-rules.Item.w2WoppZqJOZRY4xI',
+    'Burn': 'Compendium.pf-content.pf-universal-monster-rules.Item.pxGfnJIlADL0UpyO',
+    'Constrict': 'Compendium.pf-content.pf-universal-monster-rules.Item.uiMteAicpAgqnmVr',
+    'Ferocity': 'Compendium.pf-content.pf-universal-monster-rules.Item.itiLDlB5BHlUB8os',
+    'Grab': 'Compendium.pf-content.pf-universal-monster-rules.Item.gliqmaokX6kcR9eU',
+    'HoldBreath': 'Compendium.pf-content.pf-universal-monster-rules.Item.tO1RgCbgjBt3Kmkw',
+    'Jet200': 'Compendium.pf-content.pf-universal-monster-rules.Item.qg6hgwgShcrxvT36',
+    'Jet240': 'Compendium.pf-content.pf-universal-monster-rules.Item.qg6hgwgShcrxvT36',
+    'Jet260': 'Compendium.pf-content.pf-universal-monster-rules.Item.qg6hgwgShcrxvT36',
+    'Jet300': 'Compendium.pf-content.pf-universal-monster-rules.Item.qg6hgwgShcrxvT36',
+    'Jet90': 'Compendium.pf-content.pf-universal-monster-rules.Item.qg6hgwgShcrxvT36',
+    'NoBreath': 'Compendium.pf-content.pf-universal-monster-rules.Item.ja2x2DmUJp3aUzP1',
+    'Poison': 'Compendium.pf-content.pf-universal-monster-rules.Item.Xo1XZAVxRo4m6ayA',
+    'Pounce': 'Compendium.pf-content.pf-universal-monster-rules.Item.iPIk1grlc7ilT8iX',
+    'PowerfulCharge': 'Compendium.pf-content.pf-universal-monster-rules.Item.7MyJ5teWASJfFwN6',
+    'Pull': 'Compendium.pf-content.pf-universal-monster-rules.Item.mpBvgTQGi0KX13tF',
+    'Rake1Claw': 'Compendium.pf-content.pf-universal-monster-rules.Item.oCNZwfsQJ8DXfOdY',
+    'Rake2Claws': 'Compendium.pf-content.pf-universal-monster-rules.Item.oCNZwfsQJ8DXfOdY',
+    'Rake2Talons': 'Compendium.pf-content.pf-universal-monster-rules.Item.oCNZwfsQJ8DXfOdY',
+    'Rake4Claws': 'Compendium.pf-content.pf-universal-monster-rules.Item.oCNZwfsQJ8DXfOdY',
+    'Rake6Claws': 'Compendium.pf-content.pf-universal-monster-rules.Item.oCNZwfsQJ8DXfOdY',
+    'Rend': 'Compendium.pf-content.pf-universal-monster-rules.Item.N6x2eWgqlAtfV5bn',
+    'RockCatching': 'Compendium.pf-content.pf-universal-monster-rules.Item.uyC8oF6hePVPbvP4',
+    'RockThrowing': 'Compendium.pf-content.pf-universal-monster-rules.Item.JyjfSUJPBDU8V6dD',
+    'Trample': 'Compendium.pf-content.pf-universal-monster-rules.Item.PEe7E2mccDX0TkTf',
+    'Trip': 'Compendium.pf-content.pf-universal-monster-rules.Item.RClhBMb3VuAWhqRQ',
+    'Web': 'Compendium.pf-content.pf-universal-monster-rules.Item.TsIdL0QgosZ2bcew',
+    'Whirlwind': 'Compendium.pf-content.pf-universal-monster-rules.Item.AIXVFMNYu9NMvgvV'
 };

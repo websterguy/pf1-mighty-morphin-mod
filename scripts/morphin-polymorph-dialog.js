@@ -1,6 +1,5 @@
 import { MightyMorphinApp } from './mighty-morphin.js';
 import { MorphinChanges } from './morphin-changes.js';
-import { MorphinOptions } from './morphin-options.js';
 
 /**
  * Application shared function with all polymorph effect dialogs
@@ -72,18 +71,18 @@ export class MorphinPolymorphDialog extends FormApplication {
      */
     async applyChanges(event, chosenForm) {
         let shifter = fromUuidSync(this.actorId);
-        let newSize = this.shifterWildShape ? this.totalChanges.size || shifter.system.traits.size : MorphinChanges.changes[chosenForm].size;
+        let newSize = this.shifterWildShape ? this.formData.size || shifter.system.traits.size : this.formData.size;
         let flagSlug = this.source.slugify();
 
         let itemsToEmbed = [];
         // Find out if this is the only natural attack the form has
-        let oneAttack = this.shifterWildShape ? this.totalChanges.attacks?.length === 1 :MorphinChanges.changes[chosenForm].attacks.length === 1;
+        let oneAttack = this.formData.attacks?.length === 1;
 
         // Loop over the attacks and create the items
         const amuletItem = shifter.items.find(o => o.name.toLowerCase().includes(game.i18n.localize('MMMOD.AmuletOfMightyFists').toLowerCase()) && o.system.equipped);
         let bonusSearch = /\+(\d+)/.exec(amuletItem?.name);
         let amuletBonus = !!bonusSearch ? bonusSearch[1] : null;
-        this.attacks = this.shifterWildShape ? this.totalChanges.attacks || [] : duplicate(MorphinChanges.changes[chosenForm].attacks);
+        this.attacks = this.shifterWildShape ? this.formData.attacks || [] : duplicate(this.formData.attacks);
         for (let i = 0; i < this.attacks.length; i++) {
             let attack = this.attacks[i]; // get the attack data
             attack.enh = parseInt(amuletBonus);
@@ -93,7 +92,7 @@ export class MorphinPolymorphDialog extends FormApplication {
                     const specialElement = attack.special[j];
 
                     if (!this.shifterWildShape && !MorphinChanges.allowedSpecials[this.spell][this.level].includes(specialElement)) {
-                        delete (attack.special[i]);
+                        delete (attack.special[j]);
                     }
                 }
             }
@@ -112,19 +111,19 @@ export class MorphinPolymorphDialog extends FormApplication {
                 // }
                 if (!!this.clawsData.notes) attack.notes = this.clawsData.notes;
                 if (!!this.clawsData.critMult) attack.critMult = Math.min(4, attack.critMult + this.clawsData.critMult - 2);
-                if (attack.usedClaws && attack.special?.includes('Rend')) this.totalChanges.effect['Rend'].note = this.totalChanges.effect['Rend'].note.replace(/sizeRoll\([0-9]+, [0-9]+/g, `sizeRoll(${attack.diceCount}, ${attack.diceSize}`);
+                if (attack.usedClaws && attack.special?.includes('Rend')) this.formData.effect['Rend'].note = this.formData.effect['Rend'].note.replace(/sizeRoll\([0-9]+, [0-9]+/g, `sizeRoll(${attack.diceCount}, ${attack.diceSize}`);
             }
 
-            const createdAttack = MightyMorphinApp.createAttack(this.actorId, newSize, attack, oneAttack, this.shifterWildShape ? this.totalChanges.effect : MorphinChanges.changes[chosenForm].effect, this.source, 'natural');
+            const createdAttack = MightyMorphinApp.createAttack(this.actorId, newSize, attack, oneAttack, this.formData.effect, this.source, 'natural');
             if (!!attack.usedClaws) createdAttack.name += ` (${game.i18n.localize('Shifter Claws')})`;
-            if (!!this.shifterWildShape && !!this.totalChanges.conditionals) createdAttack.system.actions[0]?.conditionals.push(...this.totalChanges.conditionals);
+            if (!!this.shifterWildShape && !!this.formData.conditionals) createdAttack.system.actions[0]?.conditionals.push(...this.formData.conditionals);
             itemsToEmbed.push(createdAttack);
 
         }
 
         // Loop over special attacks and create the items
-        if ((this.shifterWildShape && this.totalChanges.specialAttack) || !!MorphinChanges.changes[chosenForm]?.specialAttack) {
-            this.specialAttack = this.shifterWildShape ? this.totalChanges.specialAttack || [] : duplicate(MorphinChanges.changes[chosenForm].specialAttack);
+        if ((this.shifterWildShape && this.formData.specialAttack) || !!this.formData?.specialAttack) {
+            this.specialAttack = this.shifterWildShape ? this.formData.specialAttack || [] : this.formData.specialAttack;
             for (let i = 0; i < this.specialAttack.length; i++) {
                 let attack = this.specialAttack[i];
 
@@ -133,7 +132,7 @@ export class MorphinPolymorphDialog extends FormApplication {
                     for (let j = 0; j < attack.special.length; j++) {
                         const specialElement = attack.special[j];
                         if (!this.shifterWildShape && !MorphinChanges.allowedSpecials[this.spell][this.level].includes(specialElement)) {
-                            delete (attack.special[i]);
+                            delete (attack.special[j]);
                         }
                     }
                 }
@@ -154,20 +153,20 @@ export class MorphinPolymorphDialog extends FormApplication {
                     if (!!this.clawsData.critMult) attack.critMult = Math.min(4, attack.critMult + this.clawsData.critMult - 2);
                 }
 
-                if (this.spell === 'magicalBeastShape' && attack.name.includes('BreathWeapon') && !!attack.nonCrit) {
-                    const breathDamage = attack.nonCrit.formula.split('d');
-                    let limited = false;
-                    if (parseInt(breathDamage[0]) >= 12) {
-                        breathDamage[0] = '12';
-                        limited = true;
-                    }
-                    if (limited && parseInt(breathDamage[1]) > 6) {
-                        breathDamage[1] = '6';
-                    }
-                    if (limited) attack.nonCrit.formula = breathDamage.join('d');
-                }
+                // if (this.spell === 'magicalBeastShape' && attack.name.includes('BreathWeapon') && !!attack.nonCrit) {
+                //     const breathDamage = attack.nonCrit.formula.split('d');
+                //     let limited = false;
+                //     if (parseInt(breathDamage[0]) >= 12) {
+                //         breathDamage[0] = '12';
+                //         limited = true;
+                //     }
+                //     if (limited && parseInt(breathDamage[1]) > 6) {
+                //         breathDamage[1] = '6';
+                //     }
+                //     if (limited) attack.nonCrit.formula = breathDamage.join('d');
+                // }
 
-                const createdAttack = MightyMorphinApp.createAttack(this.actorId, newSize, attack, false, this.shifterWildShape ? this.totalChanges.effect : MorphinChanges.changes[chosenForm].effect, this.source, 'misc');
+                const createdAttack = MightyMorphinApp.createAttack(this.actorId, newSize, attack, false, this.formData.effect, this.source, 'misc');
                 if (!!attack.usedClaws) createdAttack.name += ` (${game.i18n.localize('Shifter Claws')})`;
                 itemsToEmbed.push(createdAttack);
             }
@@ -215,10 +214,10 @@ export class MorphinPolymorphDialog extends FormApplication {
         let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
         this.changes.push(...carryBonusChanges);
 
-        if (!!this.shifterWildShape && !!this.totalChanges.changes) this.changes.push(...this.totalChanges.changes);
+        if (!!this.shifterWildShape && !!this.formData.changes) this.changes.push(...this.formData.changes);
 
-        if (!!this.shifterWildShape && !!this.totalChanges.feats) {
-            for (const feat of this.totalChanges.feats) {
+        if (!!this.shifterWildShape && !!this.formData.feats) {
+            for (const feat of this.formData.feats) {
                 let featData = await fromUuid(feat.uuid);
                 if (!featData) {
                     featData = await Item.create({ name: feat.name, type: 'feat' }, { temporary: true });
@@ -229,7 +228,7 @@ export class MorphinPolymorphDialog extends FormApplication {
             }
         }
 
-        if (!!this.shifterWildShape && !!this.totalChanges.contextNotes) this.contextNotes.push(...this.totalChanges.contextNotes);
+        if (!!this.shifterWildShape && !!this.formData.contextNotes) this.contextNotes.push(...this.formData.contextNotes);
 
         
 
@@ -322,53 +321,34 @@ export class MorphinPolymorphDialog extends FormApplication {
 
         // Process DR changes
         let originalDr = { 'system.traits.dr': shifter.system.traits.dr };
-        let drObject = this.processDr(this.dr) || { value: [], custom: '' };
+        let drObject = this.dr;
 
         // Process resistances changes
         let originalEres = { 'system.traits.eres': shifter.system.traits.eres };
-        let eresString = this.processEres(this.eres) || { value: [], custom: '' };
+        let newEres = { value: this.eres || [], custom: '' };
 
         // Process vulnerabilities changes
         let originalDv = { 'system.traits.dv': shifter.system.traits.dv };
-        let newDv = { value: [], custom: '' };
-        if (!!this.dv) {
-            for (let i = 0; i < this.dv.length; i++) {
-                const vulnerability = this.dv[i];
-
-                // If it's a system known damage type, can toggle its setting. Otherwise add it as a custom
-                if (!!CONFIG.PF1.damageTypes[vulnerability]) newDv.value.push(vulnerability);
-                else newDv.custom += (newDv.custom.length > 0 ? '; ' : '') + vulnerability;
-            }
-        }
-
-        newDv = this.processDv(newDv);
+        let newDv = { value: this.dv || [], custom: '' };
 
         // Process immunities changes        
         let originalDi = { 'system.traits.di': shifter.system.traits.di };
-        let newDi = { value: [], custom: '' };
-        if (this.level === 3)
-        if (!!this.di) {
-            for (let i = 0; i < this.di.length; i++) {
-                const immunity = this.di[i];
-
-                // If it's a system known damage type, can toggle its setting. Otherwise add it as a custom
-                if (!!CONFIG.PF1.damageTypes[immunity]) newDi.value.push(immunity);
-                else newDi.custom += (newDi.custom.length > 0 ? '; ' : '') + immunity;
-            }
-        }
+        let newDi = { value: this.di || [], custom: '' };
 
         newDi = this.processDi(newDi);
 
         // Process regen changes
         let originalRegen = { 'system.traits.regen': shifter.system.traits.regen };
-        let regenString = this.processRegen(this.regen) || '';
+        let regenString = this.regen || '';
 
         let originalFastHealing = { 'system.traits.fastHealing': shifter.system.traits.fastHealing };
-        let fastHealingString = this.processFastHealing(this.fastHealing) || '';
+        let fastHealingString = this.fastHealing || '';
 
+        let originalCi = { 'system.traits.ci': shifter.system.traits.ci };
+        let newCi = this.ci || { value: [], custom: '' };
 
-        originalSenses = mergeObject(originalSenses, mergeObject(originalDi, mergeObject(originalDr, mergeObject(originalRegen, mergeObject(originalFastHealing, mergeObject(originalEres, originalDv))))));
-        sensesChanges = mergeObject(sensesChanges, mergeObject({ 'system.traits.di': newDi }, mergeObject({ 'system.traits.dr': drObject }, mergeObject({ 'system.traits.regen': regenString }, mergeObject({ 'system.traits.fastHealing': fastHealingString }, mergeObject({ 'system.traits.eres': eresString }, { 'system.traits.dv': newDv }))))));
+        originalSenses = mergeObject(originalSenses, mergeObject(originalDi, mergeObject(originalDr, mergeObject(originalRegen, mergeObject(originalFastHealing, mergeObject(originalEres, mergeObject(originalCi, originalDv)))))));
+        sensesChanges = mergeObject(sensesChanges, mergeObject({ 'system.traits.di': newDi }, mergeObject({ 'system.traits.dr': drObject }, mergeObject({ 'system.traits.regen': regenString }, mergeObject({ 'system.traits.fastHealing': fastHealingString }, mergeObject({ 'system.traits.eres': newEres }, mergeObject({ 'system.traits.ci': newCi }, { 'system.traits.dv': newDv })))))));
 
         // Create special ability features
         if (!!this.special) {
@@ -383,11 +363,17 @@ export class MorphinPolymorphDialog extends FormApplication {
             specialData.system.featType = 'misc';
 
             for (let i = 0; i < this.special.length; i++) {
-                const specialName = this.special[i];
+                const specialName = `${game.i18n.localize('MMMOD.Attacks.' + this.special[i])} (${this.source})` ;
+                let compendiumData = await fromUuid(MightyMorphinApp.specialUUIDs[this.special[i]]);
 
-                if (!!specialName) { // make sure it wasn't deleted for being invalid at this spell level
+                if (!!compendiumData) {
+                    compendiumData = compendiumData.toObject();
+                    compendiumData.name = specialName;
+                    itemsToEmbed.push(compendiumData);
+                }
+                else if (!!specialName) { // make sure it wasn't deleted for being invalid at this spell level
                     let specialToCreate = duplicate(specialData);
-                    specialToCreate.name = `${game.i18n.localize('MMMOD.Attacks.' + specialName)} (${this.source})`;
+                    specialToCreate.name = specialName;
                     itemsToEmbed.push(specialToCreate);
                 }
             }
@@ -651,76 +637,439 @@ export class MorphinPolymorphDialog extends FormApplication {
     }
 
     /**
-     * Validates that this specific spell gives the resistances passed
+     * Builds a string of html that shows all the changes that will be done
      * 
-     * @param {object[]} dr The damage resistance from the chosen form
-     * @returns The damage resistance applicable for this spell
+     * @param {String} data the object containing the data of all changes to be done
+     * @returns string of html to display all changes to be done
      */
-    processDr(dr) {
-        let drObject = { value: [], custom: '' };
-        for (const entry of dr) {
-            if (typeof(entry) === 'string') {
-                if (drObject.custom.length > 0) drObject.custom += '; ';
-                drObject.custom += entry;
-            }
-            else {
-                drObject.value.push(entry);
-            }
-        }
-        return drObject;
+    buildHtml(data) {
+        return `${ !!data.polymorphBase ? '<p><span class="previewLabel">' + game.i18n.localize('MMMOD.UI.BaseSizeAdjust') + ': </span><span id="polymorphScores">' + data.polymorphBase + '</span></p>' : '' }
+            <p><span class="previewLabel">${ game.i18n.localize('MMMOD.UI.AbilityScores') }: </span><span id="abilityScores">${ data.scoreChanges }</span></p>
+            <p><span class="previewLabel">${ game.i18n.localize('MMMOD.UI.Attacks') }: </span><span id="attacks">${ data.attacks }</span></p>
+            <p><span class="previewLabel">${ game.i18n.localize('MMMOD.UI.SpecialAttacks') }: </span><span id="specialAttacks">${ data.specialAttacks }</span></p>
+            <p><span class="previewLabel">${ game.i18n.localize('MMMOD.UI.Speeds') }: </span><span id="speeds">${ data.speedChanges }</span></p>
+            <p><span class="previewLabel">${ game.i18n.localize('MMMOD.UI.Senses') }: </span><span id="senses">${ data.senses }</span></p>
+            <p><span class="previewLabel">${ game.i18n.localize('MMMOD.UI.SpecialAbilities') }: </span><span id="specials">${ data.special }</span></p>
+            ${!!data.eres ? `<p><span class="previewLabel">${ game.i18n.localize('MMMOD.UI.EnergyResistances') }: </span><span id="eres">${ data.eres }</span></p>` : ''}
+            ${!!data.di ? `<p><span class="previewLabel">${ game.i18n.localize('MMMOD.UI.DamageImmunities') }: </span><span id="di">${ data.di }</span></p>` : ''}
+            ${!!data.dv ? `<p><span class="previewLabel">${ game.i18n.localize('MMMOD.UI.Vulnerabilities') }: </span><span id="dv">${ data.dv }</span></p>` : ''}
+            ${!!data.dr ? `<p><span class="previewLabel">${ game.i18n.localize('MMMOD.UI.DamageResistances') }: </span><span id="dr">${ data.dr }</span></p>` : ''}
+            ${!!data.ci ? `<p><span class="previewLabel">${ game.i18n.localize('MMMOD.UI.OtherImmunities') }: </span><span id="ci">${ data.ci }</span></p>` : ''}
+            ${!!data.fastHealing ? `<p><span class="previewLabel">${ game.i18n.localize('MMMOD.UI.FastHealing') }: </span><span id="fastHealing">${ data.fastHealing }</span></p>` : ''}
+            ${!!data.regen ? `<p><span class="previewLabel">${ game.i18n.localize('MMMOD.UI.Regeneration') }: </span><span id="regen">${ data.regen }</span></p>` : ''}
+            ${!!data.saves ? `<p><span class="previewLabel">${ game.i18n.localize('MMMOD.UI.SaveBonuses') }: </span><span id="saves">${ data.saves }</span></p>` : ''}`;
     }
 
     /**
-     * Validates that this specific spell gives the resistances passed
+     * Processes attribute changes for the form and spell. DR, energy res, weakness, damage immunity, condition immunity, fast healing, regen.
      * 
-     * @param {object[]} eres The energy resistance from the chosen form
-     * @returns The energy resistance applicable for this spell
+     * @returns object containing strings that show the applicable changes to attributes for this spell and form. Only contains keys for allowed changes.
      */
-    processEres(eres) {
-        let eresObject = { value: [], custom: '' };
-        for (const entry of eres) {
-            if (typeof(entry) === 'string') {
-                if (eresObject.custom.length > 0) eresObject.custom += '; ';
-                eresObject.custom += entry;
-            }
-            else {
-                eresObject.value.push(entry);
-            }
+    processAttributes() {
+        const data = {};
+        
+        const eres = []; // allows holding eres and di converted to eres before deciding if there's any eres to push to data or if it's None
+        delete this.eres;
+        if (MorphinChanges.allowedAttributes[this.spell][this.level].di) {
+            this.di = [];
+            const di = this.processDi();
+            eres.push(...di.resistances);
+            data.di = di.immunities.length > 0 ? di.immunities.join(', ') : game.i18n.localize('MMMOD.UI.None');
         }
-        return eresObject;
+        
+        if (!!MorphinChanges.allowedAttributes[this.spell][this.level].eres) {
+            this.eres = this.eres || [];
+            eres.push(...this.processEres());
+            data.eres = eres.length > 0 ? eres.toSorted().join(', ') : game.i18n.localize('MMMOD.UI.None');
+        }
+
+        if (!!MorphinChanges.allowedAttributes[this.spell][this.level].dv) {
+            const dv = this.processDv();
+            data.dv = dv.length > 0 ? dv.toSorted().join(', ') : game.i18n.localize('MMMOD.UI.None');
+        }
+        
+        if (!!MorphinChanges.allowedAttributes[this.spell][this.level].regen) {
+            const regen = this.processRegen();
+            data.regen = regen.length > 0 ? regen.toSorted().join(', ') : game.i18n.localize('MMMOD.UI.None');
+        }
+
+        if (!!MorphinChanges.allowedAttributes[this.spell][this.level].dr) {
+            const dr = this.processDr();
+            data.dr = dr.length > 0 ? dr.toSorted().join(', ') : game.i18n.localize('MMMOD.UI.None');
+        }
+
+        if (!!MorphinChanges.allowedAttributes[this.spell][this.level].fastHealing) {
+            data.fastHealing = this.processFastHealing();
+        }
+
+        if (!!MorphinChanges.allowedAttributes[this.spell][this.level].ci) {
+            const ci = this.processCi();
+            data.ci = ci.length > 0 ? ci.toSorted().join(', ') : game.i18n.localize('MMMOD.UI.None');
+        }
+
+        return data;
     }
 
     /**
-     * Validates that this specific spell gives the vulnerabilities passed
+     * Validates that this specific spell gives the resistances the form contains
      * 
-     * @param {string[]} dv The damage vulnerability from the chosen form
-     * @returns The damage vulnerability applicable for this spell
+     * @returns Array of the damage resistances applicable for this spell
      */
-    processDv(dv) { }
+    processDr() {
+        this.dr = { value: [], custom: '' };
+        const allowedDr = MorphinChanges.allowedAttributes[this.spell][this.level].dr;
+        const resistances = [];
+        const customResistances = [];
+        if (!!this.formData.dr && !!allowedDr) {            
+            for (const resistance of this.formData.dr) {
+                if (typeof resistance === 'string') {
+                    customResistances.push(resistance);
+                    resistances.push(resistance);
+                }
+                else {
+                    this.dr.value.push(resistance);
+                    resistances.push(`${ resistance.amount }/${ resistance.types[0].length === 0 ? '-' : game.i18n.localize('MMMOD.DamageTypes.' + resistance.types[0].capitalize()) }${ resistance.types[1].length > 0 ? ' ' + (resistance.operator ? game.i18n.localize('MMMOD.UI.or') : game.i18n.localize('MMMOD.UI.and')) + ' ' + game.i18n.localize('MMMOD.DamageTypes.' + resistance.types[1].capitalize()) : '' }`);
+                }
+            }
+            this.dr.custom = customResistances.toSorted().join(';');
+        }
+        return resistances;
+    }
+
+    /**
+     * Validates that this specific spell gives the resistances the form contains
+     * 
+     * @returns Array of energy resistance applicable for this spell
+     */
+    processEres() {
+        const allowedEres = MorphinChanges.allowedAttributes[this.spell][this.level].eres;
+        const resistances = [];
+        if (!!this.formData.eres && !!allowedEres) {            
+            for (const resistance of this.formData.eres) {
+                if (allowedEres.elements.includes(resistance.types[0])) {
+                    if (!!allowedEres.max) {
+                        resistance.amount = Math.min(allowedEres.max, resistance.amount);
+                    }
+
+                    this.eres.push(resistance);
+                    resistances.push(game.i18n.localize('MMMOD.DamageTypes.' + resistance.types[0].capitalize()) + ' ' + resistance.amount);
+                }
+            }
+        }
+        return resistances;
+    }
+
+    /**
+     * Validates that this specific spell gives the vulnerabilities the form contains
+     * 
+     * @returns Array containing the damage vulnerability applicable for this spell
+     */
+    processDv() {
+        const allowedDv = MorphinChanges.allowedAttributes[this.spell][this.level].dv;
+        this.dv = [];
+        const weaknesses = [];
+        if (!!this.formData.dv && !!allowedDv) {            
+            for (const weakness of this.formData.dv) {
+                if (allowedDv.elements.includes(weakness)) {
+                    this.dv.push(weakness);
+                    weaknesses.push(game.i18n.localize('MMMOD.DamageTypes.' + weakness.capitalize()));
+                }
+            }
+        }
+        return weaknesses;
+    }
     
     /**
-     * Validates that this specific spell gives the immunities passed
+     * Validates that this specific spell gives the immunities the form contains. Converts them to limited resistances if that's what the spell provides.
      * 
-     * @param {string[]} di The damage immunities from the chosen form
-     * @returns The damage immunities applicable for this spell
+     * @returns Object containing arrays of the damage immunities and converted resistances applicable for this spell
      */
-    processDi(di) { }
+    processDi() {
+        const allowedDi = MorphinChanges.allowedAttributes[this.spell][this.level].di;
+        const immunities = [];
+        const resistances = [];
+        this.eres = [];
+        if (!!this.formData.di && !!allowedDi) {
+            for (const immunity of this.formData.di) {
+                if (allowedDi.elements.includes(immunity)) {
+                    if (!!allowedDi.max) {
+                        resistances.push(game.i18n.localize('MMMOD.DamageTypes.' + immunity.capitalize()) + ' ' + 20);
+                        this.eres.push({ amount: 20, operator: true, types: [immunity, ''] });
+                    }
+                    else {
+                        immunities.push(immunity.capitalize());
+                        this.di.push(immunity);
+                    }
+                }
+            }
+        }
+        return { immunities: immunities, resistances: resistances };
+    }
+    
+    /**
+     * Validates that this specific spell gives the immunities the form contains.
+     * 
+     * @returns Object containing array of the condition immunities applicable for the spell
+     */
+    processCi() {
+        const allowedCi = MorphinChanges.allowedAttributes[this.spell][this.level].ci;
+        const immunities = [];
+        const customImmunities = [];
+        this.ci = { value: [], custom: ''};
+        if (!!this.formData.ci && !!allowedCi) {
+            for (const immunity of this.formData.ci) {
+                if (allowedCi.elements.includes(immunity)) {
+                    if (!!pf1.config.conditionTypes[immunity]) this.ci.value.push(immunity);
+                    else customImmunities.push(game.i18n.localize('MMMOD.DamageTypes.' + immunity.capitalize()));
+                }
+                immunities.push(game.i18n.localize('MMMOD.DamageTypes.' + immunity.capitalize()));
+            }
+            this.ci.custom = customImmunities.join(';');
+        }
+        return immunities;
+    }
 
     /**
-     * Validates that this specific spell gives the regen passed
+     * Validates that this specific spell gives the regen the form has
      * 
-     * @param {string} regen The regen from the chosen form
-     * @returns The regen applicable for this spell
+     * @returns Array of the regen applicable for this spell
      */
-    processRegen(regen) { }
+    processRegen() {
+        const regens = [];
+        const allowedRegen = !!MorphinChanges.allowedAttributes[this.spell][this.level].regen;
+        if (!!this.formData.regen && allowedRegen) {
+            for (const regen of this.formData.regen) {
+                if (!!allowedRegen.max) {
+                    regen.value = Math.min(allowedRegen.max, regen.value);
+                }
+                regens.push(`${ regen.value } (${regen.counter.map(c => game.i18n.localize('MMMOD.DamageTypes.' + c).capitalize()).join(` ${ game.i18n.localize('MMMOD.UI.or') } `) })`);
+            }
+        }
+        this.regen = regens.join(';');
+        return regens;
+    }
 
     /**
-     * Validates that this specific spell gives the fast healing passed
+     * Validates that this specific spell gives the fast healing this form has
      * 
-     * @param {string} fastHealing The fast healing from the chosen form
-     * @returns The fast healing applicable for this spell
+     * @returns String of fast healing applicable for this spell
      */
-    processFastHealing(fastHealing) { }
+    processFastHealing() {
+        const allowedFastHealing = !!MorphinChanges.allowedAttributes[this.spell][this.level].fastHealing;
+        if (!!this.formData.fastHealing && allowedFastHealing) {
+            if (!!allowedFastHealing.max) {
+                this.formData.fastHealing = Math.min(allowedFastHealing.max, this.formData.fastHealing.max);
+            }
+            this.fastHealing = this.formData.fastHealing;
+            return this.formData.fastHealing;
+        }
+        return game.i18n.localize('MMMOD.UI.None');
+    }
+
+    /**
+     * Limits all speeds based on spell and spell level
+     * 
+     * @param {Object} speeds
+     * @returns The string representing the speed changes to be applied
+     */
+    processSpeeds(speeds) {
+        let speedChanges = '';
+        this.speeds = { };
+
+        for (const speed in speeds) {
+            if (!!MorphinChanges.allowedSpeeds[this.spell][this.level][speed] || speed === 'land') {
+                if (speed === 'land') {
+                    this.speeds[speed] = speeds[speed];
+                }
+                else if (speed === 'fly') {
+                    this.speeds[speed] = { };
+                    this.speeds[speed].base = Math.min(MorphinChanges.allowedSpeeds[this.spell][this.level][speed].base, speeds[speed].base);
+                    if (MorphinChanges.flightManeuverability.indexOf(MorphinChanges.allowedSpeeds[this.spell][this.level][speed].maneuverability) < MorphinChanges.flightManeuverability.indexOf(speeds[speed].maneuverability)) {
+                        this.speeds[speed].maneuverability = MorphinChanges.allowedSpeeds[this.spell][this.level][speed].maneuverability;
+                    }
+                    else {
+                        this.speeds[speed].maneuverability = speeds[speed].maneuverability;
+                    }
+                }
+                else {
+                    this.speeds[speed] = Math.min(MorphinChanges.allowedSpeeds[this.spell][this.level][speed], speeds[speed]);
+                }
+    
+                if (speedChanges.length > 1) speedChanges += ', ';
+                speedChanges += `${ game.i18n.localize('MMMOD.UI.' + speed) } ${ speed === 'fly' ? this.speeds[speed].base : this.speeds[speed] }
+                    ${ game.i18n.localize('MMMOD.UI.ft') }${ speed === 'fly' ? ' (' + game.i18n.localize('MMMOD.UI.' + this.speeds[speed].maneuverability) + ')' : '' }`;
+            }
+        }
+
+        return speedChanges;
+    }
+
+    /**
+     * Processes what changes will be applied if changing size from something other than small or medium as per base polymorph effect rules
+     * 
+     * @returns String showing the base polymorph size stat changes to be applied
+     */
+    processPolymorphChanges() {
+        let polymorphBase = '';
+        this.polymorphChanges = duplicate(MorphinChanges.changes.polymorphSize[this.actorSize] || {});
+        if (!!this.polymorphChanges) {
+            for (let i = 0; i < this.polymorphChanges.length; i++) {
+                const change = this.polymorphChanges[i];
+                if (!!change.target && change.target === 'ability') {
+                    if (polymorphBase.length > 0) polymorphBase += ', '; // comma between entries
+                    // text output of the stat (capitalized), and a + in front of positive numbers
+                    polymorphBase += `${ game.i18n.localize('MMMOD.UI.' + change.subTarget.capitalize()) } ${ (change.value > 0 ? '+' : '') }${ change.value }`;
+                }
+            }
+        }
+        return polymorphBase;
+    }
+    
+    /**
+     * Processes what changes will be applied to stats from the spell regardless of form
+     * 
+     * @returns String showing the stats to be changed
+     */
+    processScoreChanges() {
+        let scoreChanges = [];
+        for (let i = 0; i < this.changes.length; i++) {
+            const change = this.changes[i];
+
+            if (!!change.target && change.target === 'ability') { // stat change
+                scoreChanges.push(`${ game.i18n.localize('MMMOD.UI.' + change.subTarget.capitalize()) } ${ (change.value > 0 ? '+' : '') }${ change.value }`);
+            }
+            else if (!change.target && change.subTarget == 'nac') { // natural AC change
+                scoreChanges.push(`${ game.i18n.localize('MMMOD.UI.NaturalAC') } ${ (change.value > 0 ? '+' : '') }${ change.value }`);
+            }
+            else if (!change.target && change.subTarget === 'landSpeed') {
+                scoreChanges.push(`${ game.i18n.localize('MMMOD.UI.LandSpeed') } ${ (change.value > 0 ? '+' : '') }${ change.value }`);
+            }
+        }
+        return scoreChanges.join(', ');
+    }
+    
+    /**
+     * Processes what attacks will be created for form to show to the user
+     * 
+     * @returns String showing the summary of attacks to be created
+    */
+   processAttacks() {
+       const attackList = this.formData.attacks || [];
+       const attacks = [];
+       for (let i = 0; i < attackList.length; i++) {
+           const attack = attackList[i];
+           
+           let attackSpecial = '';
+           if (!!attack.special) { // process any specials associated with the attack
+            for (let j = 0; j < attack.special.length; j++) {
+                const specialName = attack.special[j];
+                if (MorphinChanges.allowedSpecials[this.spell][this.level].includes(specialName)) { // ignore specials the spell doesn't allow
+                    if (attackSpecial.length > 0) attackSpecial += ', ';
+                    attackSpecial += game.i18n.localize('MMMOD.Attacks.' + specialName);
+                }
+            }
+        }
+        let damageDice = attack.diceSize === 0 ? '' : `${ attack.diceCount }d${ attack.diceSize }`;
+        if (attack.nonCrit) damageDice += (!!damageDice.length ? ` ${ game.i18n.localize('MMMOD.UI.Plus') } ` : '') + `${ attack.nonCrit.formula } ${!!attack.nonCrit.type.values.toString() ?
+            game.i18n.localize('MMMOD.DamageTypes.' + attack.nonCrit.type.values.toString()).capitalize() : game.i18n.localize('MMMOD.DamageTypes.' + attack.nonCrit.type.custom).capitalize()}`;
+            attacks.push(`${ attack.count > 1 ? attack.count + ' ' : '' }${ game.i18n.localize('MMMOD.Attacks.' + attack.name) } (${ !!damageDice ? damageDice : '0' }${ !!attackSpecial ? ` ${game.i18n.localize('MMMOD.UI.Plus') } ` + attackSpecial : ''})`);
+        }
+        
+        if (attacks.length === 0) return game.i18n.localize('MMMOD.UI.None');
+        return attacks.join(', ');
+    }
+    
+    /**
+     * Processes what special attacks will be created for form to show to the user
+     * 
+     * @returns String showing the summary of special attacks to be created
+    */
+   processSpecialAttacks() {
+       const specialAttackList = this.formData.specialAttack;
+       const specialAttacks = [];
+       
+       for (let i = 0; i < specialAttackList.length; i++) {
+           const specialAttack = specialAttackList[i];
+           
+           // // Make sure the special attack is allowed at this level of spell before processing it
+           // let valid = true;
+           // for (let j = 0; j < (specialAttack.special?.length || 0); j++) {
+               //     const special = specialAttack.special[j];
+
+            //     if (!MorphinChanges.allowedSpecials[this.spell][this.level].includes(special)) valid = false;
+            // }
+            
+            // if (valid) {
+            let attackSpecial = '';
+            if (!!specialAttack.special) {
+                for (let j = 0; j < specialAttack.special.length; j++) {
+                    const specialName = specialAttack.special[j];
+                    if (MorphinChanges.allowedSpecials[this.spell][this.level].includes(specialName)) {
+                        if (attackSpecial.length > 0) attackSpecial += ', ';
+                        attackSpecial += game.i18n.localize('MMMOD.Attacks.' + specialName);
+                    }
+                }
+            }
+            let damageDice = specialAttack.diceSize === 0 ? '' : `${ specialAttack.diceCount }d${ specialAttack.diceSize }`;
+            if (specialAttack.nonCrit) damageDice += (!!damageDice.length ? ` ${ game.i18n.localize('MMMOD.UI.Plus') } ` : '') + `${ specialAttack.nonCrit.formula } ${!!specialAttack.nonCrit.type.values.toString() ? 
+                game.i18n.localize('MMMOD.DamageTypes.' + specialAttack.nonCrit.type.values.toString()).capitalize() : game.i18n.localize('MMMOD.DamageTypes.' + specialAttack.nonCrit.type.custom).capitalize()}`;
+                
+                specialAttacks.push(`${ specialAttack.count > 1 ? specialAttack.count + ' ' : '' }${ game.i18n.localize('MMMOD.Attacks.' + specialAttack.name) } (${ !!damageDice ? damageDice : '0' }${ !!attackSpecial ? ` ${game.i18n.localize('MMMOD.UI.Plus') } ` + attackSpecial : ''})`);
+            }
+            // }
+            
+            if (specialAttacks.length === 0) return game.i18n.localize('MMMOD.UI.None');
+            return specialAttacks.join(', ');
+        }
+        
+    /**
+     * Processes what senses will be applied for form to show to the user
+     * 
+     * @returns String showing the summary of senses the form will have
+     */
+    processSenses() {
+        this.senses = [];
+        const senseList = [];
+        for (let i = 0; i < this.formData.senses.length; i++) {
+            let senseEnumValue = this.formData.senses[i];
+            const senseEnums = Object.keys(MorphinChanges.SENSES);
+            const senseKey = Object.keys(MorphinChanges.SENSES[senseEnums[senseEnumValue - 1]].setting)[0];
+            const senseValue = MorphinChanges.SENSES[senseEnums[senseEnumValue - 1]].setting[senseKey];
+            
+            const allowedSenses = MorphinChanges.allowedSenses[this.spell][this.level];
+            if (!allowedSenses[senseKey]) continue;
+            
+            if (senseValue > allowedSenses[senseKey].value) {
+                senseEnumValue = MorphinChanges.SENSES[allowedSenses[senseKey].static + allowedSenses[senseKey].value].value;
+            }
+            this.senses.push(senseEnumValue);
+            
+            if (!!senseEnumValue && !!MorphinChanges.allowedSenses[this.spell][this.level][senseKey]) {
+                senseList.push(`${ game.i18n.localize('MMMOD.Senses.' + MorphinChanges.SENSES[senseEnums[senseEnumValue - 1]].name) }`); // enum value 1 = SENSES[0] = LOWLIGHT
+            }
+        }
+        
+        if (senseList.length === 0) return game.i18n.localize('MMMOD.UI.None');
+        return senseList.join(', ');
+    }
+    
+    /**
+     * Processes display of what special abilities are going to be added to the sheet
+     * 
+     * @returns String showing the summary of special abilities the form will have
+     */
+    processSpecials() {
+        this.special = this.formData.special?.filter(o => MorphinChanges.allowedSpecials[this.spell][this.level].some(p => o === p)) || [];
+        const specials = [];
+
+        if (this.special.length === 0) return game.i18n.localize('MMMOD.UI.None');
+
+        for (const special of this.special) {
+            specials.push(game.i18n.localize('MMMOD.Attacks.' + special));
+        }
+
+        return specials.join(', ');
+    }
 
     /**
      * Updates the options in the formSelect select input based on the type radio and the size clicked by the user in the event

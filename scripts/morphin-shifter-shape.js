@@ -109,47 +109,24 @@ export class MorphinShifterShape extends MorphinPolymorphDialog {
 
         if (chosenForm === 'major') {
             // Process stat changes for polymorphing smaller than small or larger than medium
-            data.polymorphBase = '';
-            this.polymorphChanges = MorphinChanges.changes.polymorphSize[this.actorSize] || {};
-            if (!!this.polymorphChanges) {
-                for (let i = 0; i < this.polymorphChanges.length; i++) {
-                    const change = this.polymorphChanges[i];
-                    if (!!change.target && change.target === 'ability') {
-                        if (data.polymorphBase.length > 0) data.polymorphBase += ', '; // comma between entries
-                        // text output of the stat (capitalized), and a + in front of positive numbers
-                        data.polymorphBase += `${ game.i18n.localize('MMMOD.UI.' + change.subTarget.charAt(0).toUpperCase() + change.subTarget.slice(1)) } ${ (change.value > 0 ? '+' : '') }${ change.value }`;
-                    }
-                }
-            }
+            data.polymorphBase = this.processPolymorphChanges();
 
 
             // Process stat changes from the spell based on spell level
-            data.scoreChanges = '';
             if (this.chosenAspect.source === 'beastShape') this.changes = duplicate(MorphinChanges.changes[this.chosenAspect.source].animal[this.chosenAspect.size].changes);
             else if (this.chosenAspect.source === 'verminShape') this.changes = duplicate(MorphinChanges.changes[this.chosenAspect.source].vermin[this.chosenAspect.size].changes);
-            for (let i = 0; i < this.changes.length; i++) {
-                const change = this.changes[i];
-
-                if (!!change.target && change.target === 'ability') { // stat change
-                    if (data.scoreChanges.length > 0) data.scoreChanges += ', ';
-                    data.scoreChanges += `${ game.i18n.localize('MMMOD.UI.' + change.subTarget.charAt(0).toUpperCase() + change.subTarget.slice(1)) } ${ (change.value > 0 ? '+' : '') }${ change.value }`;
-                }
-                else if (!change.target && change.subTarget == 'nac') { // natural AC change
-                    if (data.scoreChanges.length > 0) data.scoreChanges += ', ';
-                    data.scoreChanges += `${ game.i18n.localize('MMMOD.UI.NaturalAC') } ${ (change.value > 0 ? '+' : '') }${ change.value }`;
-                }
-            }
+            data.scoreChanges = this.processScoreChanges();
         }
         else {
             this.changes = [];
         }
 
-        this.totalChanges = {};
+        this.formData = {};
         const formData = duplicate(MorphinChanges.changes.shifterWildShape[this.chosenAspect.name][chosenForm]);
         const shifter = fromUuidSync(this.actorId);
 
         for (const level of Object.keys(formData)) {
-            if (shifter.classes.shifter.level >= level) mergeObject(this.totalChanges, formData[level]);
+            if (shifter.classes.shifter.level >= level) mergeObject(this.formData, formData[level]);
         }
 
         this.clawsData = {};
@@ -163,15 +140,15 @@ export class MorphinShifterShape extends MorphinPolymorphDialog {
             this.clawsData.diceSize = dice[1];
         }
 
-        if (!!this.totalChanges.conditionals) {
-            for (const conditional of this.totalChanges.conditionals) {
+        if (!!this.formData.conditionals) {
+            for (const conditional of this.formData.conditionals) {
                 conditional._id = randomID();
             }
         }
 
         // Process changes to speed, limited by maximum the spell level allows
         data.speedChanges = '';
-        this.speeds = this.totalChanges.speed || {};
+        this.speeds = this.formData.speed || {};
         for (let i = 0; i < Object.keys(this.speeds).length; i++) {
             const speedName = Object.keys(this.speeds)[i];
 
@@ -182,7 +159,7 @@ export class MorphinShifterShape extends MorphinPolymorphDialog {
 
         // Process the natural attacks
         data.attacks = '';
-        let attackList = this.totalChanges.attacks || [];
+        let attackList = this.formData.attacks || [];
         for (let i = 0; i < attackList.length; i++) {
             const attack = attackList[i];
 
@@ -217,7 +194,7 @@ export class MorphinShifterShape extends MorphinPolymorphDialog {
 
         // Process special attacks
         data.specialAttacks = '';
-        let specialAttackList = this.totalChanges.specialAttack || [];
+        let specialAttackList = this.formData.specialAttack || [];
         for (let i = 0; i < specialAttackList.length; i++) {
             const specialAttack = specialAttackList[i];
 
@@ -243,7 +220,7 @@ export class MorphinShifterShape extends MorphinPolymorphDialog {
         if (!data.specialAttacks.length) data.specialAttacks = game.i18n.localize('MMMOD.UI.None');
 
         // Process changes in senses limited by the spell level
-        this.senses = this.totalChanges.senses || {};
+        this.senses = this.formData.senses || {};
         data.senses = !!this.senses.length ? '' : game.i18n.localize('MMMOD.UI.None');
         for (let i = 0; i < this.senses.length; i++) {
             const senseEnumValue = this.senses[i];
@@ -257,7 +234,7 @@ export class MorphinShifterShape extends MorphinPolymorphDialog {
 
         // Process special qualities
         data.special = game.i18n.localize('MMMOD.UI.None');
-        this.special = this.totalChanges.special || [];
+        this.special = this.formData.special || [];
         for (let i = 0; i < this.special.length; i++) {
             const specialName = this.special[i];
 
@@ -265,6 +242,8 @@ export class MorphinShifterShape extends MorphinPolymorphDialog {
             if (data.special.length > 0) data.special += ', ';
             data.special += game.i18n.localize('MMMOD.Attacks.' + specialName);
         }
+
+        this.processAttributes();
 
         // Build the html preview
         let newHtml = `${ !!data.polymorphBase ? '<p><span class="previewLabel">' + game.i18n.localize('MMMOD.UI.BaseSizeAdjust') + ': </span><span id="polymorphScores">' + data.polymorphBase + '</span></p>' : '' }
@@ -278,36 +257,6 @@ export class MorphinShifterShape extends MorphinPolymorphDialog {
                 '<p><span class="previewLabel">' + game.i18n.localize('MMMOD.UI.Vulnerabilities') + ': </span><span id="dv">' + data.dv + '</span></p>' : ''}`;
 
         return newHtml;
-    }
-
-    /** @inheritdoc */
-    processDr(dr) {
-        if (!!this.totalChanges.dr) return super.processEres(this.totalChanges.dr);
-        else return { value: [], custom: '' };
-    }
-
-    /** @inheritdoc */
-    processEres(eres) {
-        if (!!this.totalChanges.eres) return super.processEres(this.totalChanges.eres);
-        else return { value: [], custom: '' };
-    }
-
-    /** @inheritdoc */
-    processDv(dv) {
-        if (!!this.totalChanges.dv) return super.processEres(this.totalChanges.dv);
-        else return { value: [], custom: '' };
-    }
-    
-    /** @inheritdoc */
-    processDi(di) {
-        if (!!this.totalChanges.di) return super.processEres(this.totalChanges.di);
-        else return { value: [], custom: '' };
-    }
-
-    /** @inheritdoc */
-    processRegen(regen) {
-        if (!!this.totalChanges.regen) return super.processEres(this.totalChanges.regen);
-        else return '';
     }
 
     /** @inheritdoc */
