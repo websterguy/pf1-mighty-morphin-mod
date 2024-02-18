@@ -203,26 +203,26 @@ MorphinChanges.changes = {
     },
     elementalBody: {
         air: {
-            sm: {
+            1: {
                 changes: [
                     { formula: '2', operator: 'add', target: 'ability', subTarget: 'dex', modifier: 'size', priority: 0, value: 2 },
                     { formula: '2', operator: 'add', subTarget: 'nac', modifier: 'untyped', priority: 0, value: 2 }
                 ]
             },
-            med: {
+            2: {
                 changes: [
                     { formula: '4', operator: 'add', target: 'ability', subTarget: 'dex', modifier: 'size', priority: 0, value: 4 },
                     { formula: '3', operator: 'add', subTarget: 'nac', modifier: 'untyped', priority: 0, value: 3 }
                 ]
             },
-            lg: {
+            3: {
                 changes: [
                     { formula: '2', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'size', priority: 0, value: 2 },
                     { formula: '4', operator: 'add', target: 'ability', subTarget: 'dex', modifier: 'size', priority: 0, value: 4 },
                     { formula: '4', operator: 'add', subTarget: 'nac', modifier: 'untyped', priority: 0, value: 4 }
                 ]
             },
-            huge: {
+            4: {
                 changes: [
                     { formula: '4', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'size', priority: 0, value: 4 },
                     { formula: '6', operator: 'add', target: 'ability', subTarget: 'dex', modifier: 'size', priority: 0, value: 6 },
@@ -231,19 +231,19 @@ MorphinChanges.changes = {
             }
         },
         earth: {
-            sm: {
+            1: {
                 changes: [
                     { formula: '2', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'size', priority: 0, value: 2 },
                     { formula: '4', operator: 'add', subTarget: 'nac', modifier: 'untyped', priority: 0, value: 4 }
                 ]
             },
-            med: {
+            2: {
                 changes: [
                     { formula: '4', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'size', priority: 0, value: 4 },
                     { formula: '5', operator: 'add', subTarget: 'nac', modifier: 'untyped', priority: 0, value: 5 }
                 ]
             },
-            lg: {
+            3: {
                 changes: [
                     { formula: '6', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'size', priority: 0, value: 6 },
                     { formula: '2', operator: 'add', target: 'ability', subTarget: 'con', modifier: 'size', priority: 0, value: 2 },
@@ -251,7 +251,7 @@ MorphinChanges.changes = {
                     { formula: '6', operator: 'add', subTarget: 'nac', modifier: 'untyped', priority: 0, value: 6 }
                 ]
             },
-            huge: {
+            4: {
                 changes: [
                     { formula: '8', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'size', priority: 0, value: 8 },
                     { formula: '4', operator: 'add', target: 'ability', subTarget: 'con', modifier: 'size', priority: 0, value: 4 },
@@ -261,26 +261,26 @@ MorphinChanges.changes = {
             }
         },
         fire: {
-            sm: {
+            1: {
                 changes: [
                     { formula: '2', operator: 'add', target: 'ability', subTarget: 'dex', modifier: 'size', priority: 0, value: 2 },
                     { formula: '2', operator: 'add', subTarget: 'nac', modifier: 'untyped', priority: 0, value: 2 }
                 ]
             },
-            med: {
+            2: {
                 changes: [
                     { formula: '4', operator: 'add', target: 'ability', subTarget: 'dex', modifier: 'size', priority: 0, value: 4 },
                     { formula: '3', operator: 'add', subTarget: 'nac', modifier: 'untyped', priority: 0, value: 3 }
                 ]
             },
-            lg: {
+            3: {
                 changes: [
                     { formula: '2', operator: 'add', target: 'ability', subTarget: 'con', modifier: 'size', priority: 0, value: 2 },
                     { formula: '4', operator: 'add', target: 'ability', subTarget: 'dex', modifier: 'size', priority: 0, value: 4 },
                     { formula: '4', operator: 'add', subTarget: 'nac', modifier: 'untyped', priority: 0, value: 4 }
                 ]
             },
-            huge: {
+            4: {
                 changes: [
                     { formula: '4', operator: 'add', target: 'ability', subTarget: 'con', modifier: 'size', priority: 0, value: 4 },
                     { formula: '6', operator: 'add', target: 'ability', subTarget: 'dex', modifier: 'size', priority: 0, value: 6 },
@@ -289,19 +289,19 @@ MorphinChanges.changes = {
             }
         },
         water: {
-            sm: {
+            1: {
                 changes: [
                     { formula: '2', operator: 'add', target: 'ability', subTarget: 'con', modifier: 'size', priority: 0, value: 2 },
                     { formula: '4', operator: 'add', subTarget: 'nac', modifier: 'untyped', priority: 0, value: 4 }
                 ]
             },
-            med: {
+            2: {
                 changes: [
                     { formula: '4', operator: 'add', target: 'ability', subTarget: 'con', modifier: 'size', priority: 0, value: 4 },
                     { formula: '5', operator: 'add', subTarget: 'nac', modifier: 'untyped', priority: 0, value: 5 }
                 ]
             },
-            lg: {
+            3: {
                 changes: [
                     { formula: '6', operator: 'add', target: 'ability', subTarget: 'con', modifier: 'size', priority: 0, value: 6 },
                     { formula: '2', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'size', priority: 0, value: 2 },
@@ -309,7 +309,7 @@ MorphinChanges.changes = {
                     { formula: '6', operator: 'add', subTarget: 'nac', modifier: 'untyped', priority: 0, value: 6 }
                 ]
             },
-            huge: {
+            4: {
                 changes: [
                     { formula: '8', operator: 'add', target: 'ability', subTarget: 'con', modifier: 'size', priority: 0, value: 8 },
                     { formula: '4', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'size', priority: 0, value: 4 },
@@ -391,38 +391,47 @@ MorphinChanges.changes = {
     },
     giantForm: {
         giant: {
-            lg: {
+            1: {
                 changes: [
                     { formula: '6', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'size', priority: 0, value: 6 },
                     { formula: '4', operator: 'add', target: 'ability', subTarget: 'con', modifier: 'size', priority: 0, value: 4 },
                     { formula: '-2', operator: 'add', target: 'ability', subTarget: 'dex', modifier: 'untyped', priority: 0, value: -2 },
                     { formula: '4', operator: 'add', subTarget: 'nac', modifier: 'untyped', priority: 0, value: 4 }
-                ],
-                size: 'lg'
+                ]
+            },
+            2: {
+                changes: [
+                    { formula: '8', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'size', priority: 0, value: 8 },
+                    { formula: '6', operator: 'add', target: 'ability', subTarget: 'con', modifier: 'size', priority: 0, value: 6 },
+                    { formula: '-2', operator: 'add', target: 'ability', subTarget: 'dex', modifier: 'untyped', priority: 0, value: -2 },
+                    { formula: '6', operator: 'add', subTarget: 'nac', modifier: 'untyped', priority: 0, value: 6 },
+                    { formula: '10', operator: 'add', subTarget: 'landSpeed', modifier: 'enh', priority: 0, value: 10 }
+                ]
             }
         }
     },
-    giantFormII: {
-        giant: {
-            lg: {
+    formOfTheDragon: {
+        dragon: {
+            1: {
                 changes: [
-                    { formula: '8', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'size', priority: 0, value: 8 },
-                    { formula: '6', operator: 'add', target: 'ability', subTarget: 'con', modifier: 'size', priority: 0, value: 6 },
-                    { formula: '-2', operator: 'add', target: 'ability', subTarget: 'dex', modifier: 'untyped', priority: 0, value: -2 },
-                    { formula: '6', operator: 'add', subTarget: 'nac', modifier: 'untyped', priority: 0, value: 6 },
-                    { formula: '10', operator: 'add', subTarget: 'landSpeed', modifier: 'enh', priority: 0, value: 10 }
-                ],
-                size: 'lg'
+                    { formula: '4', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'size', priority: 0, value: 4 },
+                    { formula: '2', operator: 'add', target: 'ability', subTarget: 'con', modifier: 'size', priority: 0, value: 2 },
+                    { formula: '4', operator: 'add', subTarget: 'nac', modifier: 'untyped', priority: 0, value: 4 }
+                ]
             },
-            huge: {
+            2: {
                 changes: [
-                    { formula: '8', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'size', priority: 0, value: 8 },
-                    { formula: '6', operator: 'add', target: 'ability', subTarget: 'con', modifier: 'size', priority: 0, value: 6 },
-                    { formula: '-2', operator: 'add', target: 'ability', subTarget: 'dex', modifier: 'untyped', priority: 0, value: -2 },
-                    { formula: '6', operator: 'add', subTarget: 'nac', modifier: 'untyped', priority: 0, value: 6 },
-                    { formula: '10', operator: 'add', subTarget: 'landSpeed', modifier: 'enh', priority: 0, value: 10 }
-                ],
-                size: 'lg'
+                    { formula: '6', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'size', priority: 0, value: 6 },
+                    { formula: '4', operator: 'add', target: 'ability', subTarget: 'con', modifier: 'size', priority: 0, value: 4 },
+                    { formula: '6', operator: 'add', subTarget: 'nac', modifier: 'untyped', priority: 0, value: 6 }
+                ]
+            },
+            3: {
+                changes: [
+                    { formula: '10', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'size', priority: 0, value: 10 },
+                    { formula: '8', operator: 'add', target: 'ability', subTarget: 'con', modifier: 'size', priority: 0, value: 8 },
+                    { formula: '8', operator: 'add', subTarget: 'nac', modifier: 'untyped', priority: 0, value: 8 }
+                ]
             }
         }
     },
@@ -13470,6 +13479,966 @@ MorphinChanges.changes = {
         senses: [
             7
         ]
+    },
+    'Medium Black Dragon': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2 },
+            { name: 'Wing', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '12d8', type: { values: ['acid'], custom: '' } }, damageAbility: '', area: '100-ft line', templateShape: 'ray',  templateSize: '100' },
+        ],
+        speed: {
+            land: 60,
+            swim: 60
+        },
+        senses: [
+            11, 24
+        ],
+        effect: {
+            'Breath': { note: 'Breath area: 100ft line. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds</p>' }
+        },
+        special: [
+            'FrightfulPresence300'
+        ],
+        eres: [
+            { amount: 20, operator: true, types: ['acid', ''] }
+        ],
+        di: [
+            'acid'
+        ]
+    },
+    'Medium Blue Dragon': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2 },
+            { name: 'Wing', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '12d8', type: { values: ['electric'], custom: '' } }, damageAbility: '', area: '100-ft line', templateShape: 'ray',  templateSize: '100' },
+        ],
+        speed: {
+            land: 40,
+            burrow: 20
+        },
+        senses: [
+            11, 24
+        ],
+        effect: {
+            'Breath': { note: 'Breath area: 100ft line. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds</p>' }
+        },
+        special: [
+            'FrightfulPresence300'
+        ],
+        eres: [
+            { amount: 20, operator: true, types: ['electric', ''] }
+        ],
+        di: [
+            'electric'
+        ]
+    },
+    'Medium Brass Dragon': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2 },
+            { name: 'Wing', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '12d8', type: { values: ['fire'], custom: '' } }, damageAbility: '', area: '100-ft line', templateShape: 'ray',  templateSize: '100' },
+        ],
+        speed: {
+            land: 60,
+            burrow: 30
+        },
+        senses: [
+            11, 24
+        ],
+        effect: {
+            'Breath': { note: 'Breath area: 100ft line. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds</p>' }
+        },
+        special: [
+            'FrightfulPresence300'
+        ],
+        eres: [
+            { amount: 20, operator: true, types: ['fire', ''] }
+        ],
+        di: [
+            'fire'
+        ],
+        dv: [
+            'cold'
+        ]
+    },
+    'Medium Bronze Dragon': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2 },
+            { name: 'Wing', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '12d8', type: { values: ['electric'], custom: '' } }, damageAbility: '', area: '100-ft line', templateShape: 'ray',  templateSize: '100' },
+        ],
+        speed: {
+            land: 40,
+            swim: 60
+        },
+        senses: [
+            11, 24
+        ],
+        effect: {
+            'Breath': { note: 'Breath area: 100ft line. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds</p>' }
+        },
+        special: [
+            'FrightfulPresence300'
+        ],
+        eres: [
+            { amount: 20, operator: true, types: ['electric', ''] }
+        ],
+        di: [
+            'electric'
+        ]
+    },
+    'Medium Copper Dragon': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2 },
+            { name: 'Wing', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '12d8', type: { values: ['acid'], custom: '' } }, damageAbility: '', area: '100-ft line', templateShape: 'ray',  templateSize: '100' },
+        ],
+        speed: {
+            land: 40,
+            climb: 20
+        },
+        senses: [
+            11, 24
+        ],
+        effect: {
+            'Breath': { note: 'Breath area: 100ft line. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds</p>' }
+        },
+        special: [
+            'FrightfulPresence300', 'SpiderClimbConstant'
+        ],
+        eres: [
+            { amount: 5, operator: true, types: ['electric', ''] }
+        ],
+        di: [
+            'acid'
+        ]
+    },
+    'Medium Gold Dragon': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2 },
+            { name: 'Wing', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '12d8', type: { values: ['fire'], custom: '' } }, damageAbility: '', area: '50-ft cone', templateShape: 'cone',  templateSize: '50' },
+        ],
+        speed: {
+            land: 60,
+            swim: 60
+        },
+        senses: [
+            11, 24
+        ],
+        effect: {
+            'Breath': { note: 'Breath area: 50ft cone. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds</p>' }
+        },
+        special: [
+            'FrightfulPresence300'
+        ],
+        eres: [
+            { amount: 20, operator: true, types: ['fire', ''] }
+        ],
+        di: [
+            'fire'
+        ]
+    },
+    'Medium Green Dragon': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2 },
+            { name: 'Wing', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '12d8', type: { values: ['acid'], custom: '' } }, damageAbility: '', area: '50-ft cone', templateShape: 'cone',  templateSize: '50' },
+        ],
+        speed: {
+            land: 40,
+            swim: 40
+        },
+        senses: [
+            11, 24
+        ],
+        effect: {
+            'Breath': { note: 'Breath area: 50ft cone. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds</p>' }
+        },
+        special: [
+            'FrightfulPresence300'
+        ],
+        eres: [
+            { amount: 20, operator: true, types: ['acid', ''] }
+        ],
+        di: [
+            'acid'
+        ]
+    },
+    'Medium Red Dragon': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2 },
+            { name: 'Wing', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '12d8', type: { values: ['fire'], custom: '' } }, damageAbility: '', area: '50-ft cone', templateShape: 'cone',  templateSize: '50' },
+        ],
+        speed: {
+            land: 40
+        },
+        senses: [
+            11, 24
+        ],
+        effect: {
+            'Breath': { note: 'Breath area: 50ft cone. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds</p>' }
+        },
+        special: [
+            'FrightfulPresence300'
+        ],
+        eres: [
+            { amount: 30, operator: true, types: ['fire', ''] }
+        ],
+        di: [
+            'fire'
+        ],
+        dv: [
+            'cold'
+        ]
+    },
+    'Medium Silver Dragon': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2 },
+            { name: 'Wing', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '12d8', type: { values: ['cold'], custom: '' } }, damageAbility: '', area: '50-ft cone', templateShape: 'cone',  templateSize: '50' },
+        ],
+        speed: {
+            land: 40
+        },
+        senses: [
+            11, 24
+        ],
+        effect: {
+            'Breath': { note: 'Breath area: 50ft cone. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds</p>' }
+        },
+        special: [
+            'FrightfulPresence300'
+        ],
+        eres: [
+            { amount: 30, operator: true, types: ['cold', ''] }
+        ],
+        di: [
+            'cold'
+        ],
+        dv: [
+            'fire'
+        ]
+    },
+    'Medium White Dragon': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2 },
+            { name: 'Wing', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '12d8', type: { values: ['cold'], custom: '' } }, damageAbility: '', area: '50-ft cone', templateShape: 'cone',  templateSize: '50' },
+        ],
+        speed: {
+            land: 60,
+            swim: 60
+        },
+        senses: [
+            11, 24
+        ],
+        effect: {
+            'Breath': { note: 'Breath area: 50ft cone. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds</p>' }
+        },
+        special: [
+            'FrightfulPresence300'
+        ],
+        eres: [
+            { amount: 20, operator: true, types: ['cold', ''] }
+        ],
+        di: [
+            'cold'
+        ],
+        dv: [
+            'fire'
+        ]
+    },
+    'Large Black Dragon': {
+        size: 'lg',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2 },
+            { name: 'Wing', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '12d8', type: { values: ['acid'], custom: '' } }, damageAbility: '', area: '100-ft line', templateShape: 'ray',  templateSize: '100' },
+        ],
+        speed: {
+            land: 60,
+            swim: 60
+        },
+        senses: [
+            11, 24
+        ],
+        effect: {
+            'Breath': { note: 'Breath area: 100ft line. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds</p>' }
+        },
+        special: [
+            'FrightfulPresence300'
+        ],
+        eres: [
+            { amount: 20, operator: true, types: ['acid', ''] }
+        ],
+        di: [
+            'acid'
+        ]
+    },
+    'Large Blue Dragon': {
+        size: 'lg',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2 },
+            { name: 'Wing', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '12d8', type: { values: ['electric'], custom: '' } }, damageAbility: '', area: '100-ft line', templateShape: 'ray',  templateSize: '100' },
+        ],
+        speed: {
+            land: 40,
+            burrow: 20
+        },
+        senses: [
+            11, 24
+        ],
+        effect: {
+            'Breath': { note: 'Breath area: 100ft line. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds</p>' }
+        },
+        special: [
+            'FrightfulPresence300'
+        ],
+        eres: [
+            { amount: 20, operator: true, types: ['electric', ''] }
+        ],
+        di: [
+            'electric'
+        ]
+    },
+    'Large Brass Dragon': {
+        size: 'lg',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2 },
+            { name: 'Wing', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '12d8', type: { values: ['fire'], custom: '' } }, damageAbility: '', area: '100-ft line', templateShape: 'ray',  templateSize: '100' },
+        ],
+        speed: {
+            land: 60,
+            burrow: 30
+        },
+        senses: [
+            11, 24
+        ],
+        effect: {
+            'Breath': { note: 'Breath area: 100ft line. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds</p>' }
+        },
+        special: [
+            'FrightfulPresence300'
+        ],
+        eres: [
+            { amount: 20, operator: true, types: ['fire', ''] }
+        ],
+        di: [
+            'fire'
+        ],
+        dv: [
+            'cold'
+        ]
+    },
+    'Large Bronze Dragon': {
+        size: 'lg',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2 },
+            { name: 'Wing', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '12d8', type: { values: ['electric'], custom: '' } }, damageAbility: '', area: '100-ft line', templateShape: 'ray',  templateSize: '100' },
+        ],
+        speed: {
+            land: 40,
+            swim: 60
+        },
+        senses: [
+            11, 24
+        ],
+        effect: {
+            'Breath': { note: 'Breath area: 100ft line. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds</p>' }
+        },
+        special: [
+            'FrightfulPresence300'
+        ],
+        eres: [
+            { amount: 20, operator: true, types: ['electric', ''] }
+        ],
+        di: [
+            'electric'
+        ]
+    },
+    'Large Copper Dragon': {
+        size: 'lg',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2 },
+            { name: 'Wing', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '12d8', type: { values: ['acid'], custom: '' } }, damageAbility: '', area: '100-ft line', templateShape: 'ray',  templateSize: '100' },
+        ],
+        speed: {
+            land: 40,
+            climb: 20
+        },
+        senses: [
+            11, 24
+        ],
+        effect: {
+            'Breath': { note: 'Breath area: 100ft line. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds</p>' }
+        },
+        special: [
+            'FrightfulPresence300', 'SpiderClimbConstant'
+        ],
+        eres: [
+            { amount: 5, operator: true, types: ['electric', ''] }
+        ],
+        di: [
+            'acid'
+        ]
+    },
+    'Large Gold Dragon': {
+        size: 'lg',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2 },
+            { name: 'Wing', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '12d8', type: { values: ['fire'], custom: '' } }, damageAbility: '', area: '50-ft cone', templateShape: 'cone',  templateSize: '50' },
+        ],
+        speed: {
+            land: 60,
+            swim: 60
+        },
+        senses: [
+            11, 24
+        ],
+        effect: {
+            'Breath': { note: 'Breath area: 50ft cone. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds</p>' }
+        },
+        special: [
+            'FrightfulPresence300'
+        ],
+        eres: [
+            { amount: 20, operator: true, types: ['fire', ''] }
+        ],
+        di: [
+            'fire'
+        ]
+    },
+    'Large Green Dragon': {
+        size: 'lg',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2 },
+            { name: 'Wing', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '12d8', type: { values: ['acid'], custom: '' } }, damageAbility: '', area: '50-ft cone', templateShape: 'cone',  templateSize: '50' },
+        ],
+        speed: {
+            land: 40,
+            swim: 40
+        },
+        senses: [
+            11, 24
+        ],
+        effect: {
+            'Breath': { note: 'Breath area: 50ft cone. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds</p>' }
+        },
+        special: [
+            'FrightfulPresence300'
+        ],
+        eres: [
+            { amount: 20, operator: true, types: ['acid', ''] }
+        ],
+        di: [
+            'acid'
+        ]
+    },
+    'Large Red Dragon': {
+        size: 'lg',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2 },
+            { name: 'Wing', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '12d8', type: { values: ['fire'], custom: '' } }, damageAbility: '', area: '50-ft cone', templateShape: 'cone',  templateSize: '50' },
+        ],
+        speed: {
+            land: 40
+        },
+        senses: [
+            11, 24
+        ],
+        effect: {
+            'Breath': { note: 'Breath area: 50ft cone. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds</p>' }
+        },
+        special: [
+            'FrightfulPresence300'
+        ],
+        eres: [
+            { amount: 30, operator: true, types: ['fire', ''] }
+        ],
+        di: [
+            'fire'
+        ],
+        dv: [
+            'cold'
+        ]
+    },
+    'Large Silver Dragon': {
+        size: 'lg',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2 },
+            { name: 'Wing', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '12d8', type: { values: ['cold'], custom: '' } }, damageAbility: '', area: '50-ft cone', templateShape: 'cone',  templateSize: '50' },
+        ],
+        speed: {
+            land: 40
+        },
+        senses: [
+            11, 24
+        ],
+        effect: {
+            'Breath': { note: 'Breath area: 50ft cone. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds</p>' }
+        },
+        special: [
+            'FrightfulPresence300'
+        ],
+        eres: [
+            { amount: 30, operator: true, types: ['cold', ''] }
+        ],
+        di: [
+            'cold'
+        ],
+        dv: [
+            'fire'
+        ]
+    },
+    'Large White Dragon': {
+        size: 'lg',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2 },
+            { name: 'Wing', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '12d8', type: { values: ['cold'], custom: '' } }, damageAbility: '', area: '50-ft cone', templateShape: 'cone',  templateSize: '50' },
+        ],
+        speed: {
+            land: 60,
+            swim: 60
+        },
+        senses: [
+            11, 24
+        ],
+        effect: {
+            'Breath': { note: 'Breath area: 50ft cone. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds</p>' }
+        },
+        special: [
+            'FrightfulPresence300'
+        ],
+        eres: [
+            { amount: 20, operator: true, types: ['cold', ''] }
+        ],
+        di: [
+            'cold'
+        ],
+        dv: [
+            'fire'
+        ]
+    },
+    'Huge Black Dragon': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2 },
+            { name: 'Wing', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '12d8', type: { values: ['acid'], custom: '' } }, damageAbility: '', area: '100-ft line', templateShape: 'ray',  templateSize: '100' },
+        ],
+        speed: {
+            land: 60,
+            swim: 60
+        },
+        senses: [
+            11, 24
+        ],
+        effect: {
+            'Breath': { note: 'Breath area: 100ft line. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds</p>' }
+        },
+        special: [
+            'FrightfulPresence300'
+        ],
+        eres: [
+            { amount: 20, operator: true, types: ['acid', ''] }
+        ],
+        di: [
+            'acid'
+        ]
+    },
+    'Huge Blue Dragon': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2 },
+            { name: 'Wing', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '12d8', type: { values: ['electric'], custom: '' } }, damageAbility: '', area: '100-ft line', templateShape: 'ray',  templateSize: '100' },
+        ],
+        speed: {
+            land: 40,
+            burrow: 20
+        },
+        senses: [
+            11, 24
+        ],
+        effect: {
+            'Breath': { note: 'Breath area: 100ft line. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds</p>' }
+        },
+        special: [
+            'FrightfulPresence300'
+        ],
+        eres: [
+            { amount: 20, operator: true, types: ['electric', ''] }
+        ],
+        di: [
+            'electric'
+        ]
+    },
+    'Huge Brass Dragon': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2 },
+            { name: 'Wing', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '12d8', type: { values: ['fire'], custom: '' } }, damageAbility: '', area: '100-ft line', templateShape: 'ray',  templateSize: '100' },
+        ],
+        speed: {
+            land: 60,
+            burrow: 30
+        },
+        senses: [
+            11, 24
+        ],
+        effect: {
+            'Breath': { note: 'Breath area: 100ft line. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds</p>' }
+        },
+        special: [
+            'FrightfulPresence300'
+        ],
+        eres: [
+            { amount: 20, operator: true, types: ['fire', ''] }
+        ],
+        di: [
+            'fire'
+        ],
+        dv: [
+            'cold'
+        ]
+    },
+    'Huge Bronze Dragon': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2 },
+            { name: 'Wing', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '12d8', type: { values: ['electric'], custom: '' } }, damageAbility: '', area: '100-ft line', templateShape: 'ray',  templateSize: '100' },
+        ],
+        speed: {
+            land: 40,
+            swim: 60
+        },
+        senses: [
+            11, 24
+        ],
+        effect: {
+            'Breath': { note: 'Breath area: 100ft line. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds</p>' }
+        },
+        special: [
+            'FrightfulPresence300'
+        ],
+        eres: [
+            { amount: 20, operator: true, types: ['electric', ''] }
+        ],
+        di: [
+            'electric'
+        ]
+    },
+    'Huge Copper Dragon': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2 },
+            { name: 'Wing', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '12d8', type: { values: ['acid'], custom: '' } }, damageAbility: '', area: '100-ft line', templateShape: 'ray',  templateSize: '100' },
+        ],
+        speed: {
+            land: 40,
+            climb: 20
+        },
+        senses: [
+            11, 24
+        ],
+        effect: {
+            'Breath': { note: 'Breath area: 100ft line. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds</p>' }
+        },
+        special: [
+            'FrightfulPresence300', 'SpiderClimbConstant'
+        ],
+        eres: [
+            { amount: 5, operator: true, types: ['electric', ''] }
+        ],
+        di: [
+            'acid'
+        ]
+    },
+    'Huge Gold Dragon': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2 },
+            { name: 'Wing', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '12d8', type: { values: ['fire'], custom: '' } }, damageAbility: '', area: '50-ft cone', templateShape: 'cone',  templateSize: '50' },
+        ],
+        speed: {
+            land: 60,
+            swim: 60
+        },
+        senses: [
+            11, 24
+        ],
+        effect: {
+            'Breath': { note: 'Breath area: 50ft cone. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds</p>' }
+        },
+        special: [
+            'FrightfulPresence300'
+        ],
+        eres: [
+            { amount: 20, operator: true, types: ['fire', ''] }
+        ],
+        di: [
+            'fire'
+        ]
+    },
+    'Huge Green Dragon': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2 },
+            { name: 'Wing', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '12d8', type: { values: ['acid'], custom: '' } }, damageAbility: '', area: '50-ft cone', templateShape: 'cone',  templateSize: '50' },
+        ],
+        speed: {
+            land: 40,
+            swim: 40
+        },
+        senses: [
+            11, 24
+        ],
+        effect: {
+            'Breath': { note: 'Breath area: 50ft cone. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds</p>' }
+        },
+        special: [
+            'FrightfulPresence300'
+        ],
+        eres: [
+            { amount: 20, operator: true, types: ['acid', ''] }
+        ],
+        di: [
+            'acid'
+        ]
+    },
+    'Huge Red Dragon': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2 },
+            { name: 'Wing', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '12d8', type: { values: ['fire'], custom: '' } }, damageAbility: '', area: '50-ft cone', templateShape: 'cone',  templateSize: '50' },
+        ],
+        speed: {
+            land: 40
+        },
+        senses: [
+            11, 24
+        ],
+        effect: {
+            'Breath': { note: 'Breath area: 50ft cone. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds</p>' }
+        },
+        special: [
+            'FrightfulPresence300'
+        ],
+        eres: [
+            { amount: 30, operator: true, types: ['fire', ''] }
+        ],
+        di: [
+            'fire'
+        ],
+        dv: [
+            'cold'
+        ]
+    },
+    'Huge Silver Dragon': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2 },
+            { name: 'Wing', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '12d8', type: { values: ['cold'], custom: '' } }, damageAbility: '', area: '50-ft cone', templateShape: 'cone',  templateSize: '50' },
+        ],
+        speed: {
+            land: 40
+        },
+        senses: [
+            11, 24
+        ],
+        effect: {
+            'Breath': { note: 'Breath area: 50ft cone. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds</p>' }
+        },
+        special: [
+            'FrightfulPresence300'
+        ],
+        eres: [
+            { amount: 30, operator: true, types: ['cold', ''] }
+        ],
+        di: [
+            'cold'
+        ],
+        dv: [
+            'fire'
+        ]
+    },
+    'Huge White Dragon': {
+        size: 'huge',
+        attacks: [
+            { name: 'Bite', diceCount: 2, diceSize: 8, count: 1 },
+            { name: 'Claw', diceCount: 2, diceSize: 6, count: 2 },
+            { name: 'Wing', diceCount: 1, diceSize: 8, count: 2 },
+            { name: 'TailSlap', diceCount: 2, diceSize: 6, count: 1 }
+        ],
+        specialAttack: [
+            { name: 'BreathWeapon', diceCount: 0, diceSize: 0, count: 1, special: ['Breath'], attackType: 'save', nonCrit: { formula: '12d8', type: { values: ['cold'], custom: '' } }, damageAbility: '', area: '50-ft cone', templateShape: 'cone',  templateSize: '50' },
+        ],
+        speed: {
+            land: 60,
+            swim: 60
+        },
+        senses: [
+            11, 24
+        ],
+        effect: {
+            'Breath': { note: 'Breath area: 50ft cone. DC 10+SL+Mod', type: 'ref', saveDesc: 'Reflex for half', description: '<p>Usable once every 1d4 rounds</p>' }
+        },
+        special: [
+            'FrightfulPresence300'
+        ],
+        eres: [
+            { amount: 20, operator: true, types: ['cold', ''] }
+        ],
+        di: [
+            'cold'
+        ],
+        dv: [
+            'fire'
+        ]
     }
 };
 
@@ -13501,13 +14470,16 @@ MorphinChanges.allowedSpecials = {
         '2': ['Touch', 'BloodDrain', 'Constrict', 'Grab', 'Lunge', 'Poison', 'Pull', 'Trample', 'Web']
     },
     giantForm: {
-        '1': ['Rend', 'RockCatching', 'RockThrowing']
-    },
-    giantFormII: {
+        '1': ['Rend', 'RockCatching', 'RockThrowing'],
         '2': ['Rend', 'RockCatching', 'RockThrowing']
     },
     alterSelf: {
         '1': [ ]
+    },
+    formOfTheDragon: {
+        '1': ['BreathWeapon', 'Breath', 'SpiderClimbConstant'],
+        '2': ['BreathWeapon', 'Breath', 'SpiderClimbConstant'],
+        '3': ['BreathWeapon', 'Breath', 'SpiderClimbConstant', 'FrightfulPresence300']
     }
 };
 
@@ -13538,13 +14510,16 @@ MorphinChanges.allowedSenses = {
         '2': { 'dv': { static: 'DARKVISION', value: 60 }, 'll': { static:'LOWLIGHT', value: true }, 'sc': { static: 'SCENT', value: 30 }, 'ts': { static: 'TREMORSENSE', value: 30 } }
     },
     giantForm: {
-        '1': { 'dv': { static: 'DARKVISION', value: 60 }, 'll': { static:'LOWLIGHT', value: true } }
-    },
-    giantFormII: {
+        '1': { 'dv': { static: 'DARKVISION', value: 60 }, 'll': { static:'LOWLIGHT', value: true } },
         '2': { 'dv': { static: 'DARKVISION', value: 60 }, 'll': { static:'LOWLIGHT', value: true } }
     },
     alterSelf: {
         '1': { 'dv': { static: 'DARKVISION', value: 60 }, 'll': { static:'LOWLIGHT', value: true }, 'sc': { static: 'SCENT', value: 30 } }
+    },
+    formOfTheDragon: {
+        '1': { 'dv': { static: 'DARKVISION', value: 60 } },
+        '2': { 'dv': { static: 'DARKVISION', value: 60 } },
+        '3': { 'dv': { static: 'DARKVISION', value: 120 }, 'bse': { static: 'BLINDSENSE', value: 60 } }
     }
 };
 
@@ -13574,13 +14549,16 @@ MorphinChanges.allowedSpeeds = {
         '2': { burrow: 30, climb: 60, fly: { base: 60, maneuverability: 'good' }, swim: 60 }
     },
     giantForm: {
-        '1': { }
-    },
-    giantFormII: {
+        '1': { },
         '2': { swim: 60 }
     },
     alterSelf: {
         '1': { swim: 30 }
+    },
+    formOfTheDragon: {
+        '1': { burrow: 30, climb: 20, fly: { base: 60, maneuverability: 'poor' }, swim: 60 },
+        '2': { burrow: 30, climb: 20, fly: { base: 90, maneuverability: 'poor' }, swim: 60 },
+        '3': { burrow: 30, climb: 20, fly: { base: 120, maneuverability: 'poor' }, swim: 60 }
     }
 };
 
@@ -13615,13 +14593,16 @@ MorphinChanges.allowedAttributes = {
         '2': { }
     },
     giantForm: {
-        '1': { regen: { max: 5 }, di: { elements: MorphinChanges.elementTypes.elements, max: 20 }, eres: { elements: MorphinChanges.elementTypes.elements, max: 20 }, dv: { elements: MorphinChanges.elementTypes.elements } }
-    },
-    giantFormII: {
+        '1': { regen: { max: 5 }, di: { elements: MorphinChanges.elementTypes.elements, max: 20 }, eres: { elements: MorphinChanges.elementTypes.elements, max: 20 }, dv: { elements: MorphinChanges.elementTypes.elements } },
         '2': { regen: { max: 5 }, di: { elements: MorphinChanges.elementTypes.elements }, eres: { elements: MorphinChanges.elementTypes.elements }, dv: { elements: MorphinChanges.elementTypes.elements } }
     },
     alterSelf: {
         '1': { }
+    },
+    formOfTheDragon: {
+        '1': { eres: { elements: MorphinChanges.elementTypes.elements }, dv: { elements: MorphinChanges.elementTypes.elements } },
+        '2': { eres: { elements: MorphinChanges.elementTypes.elements }, dv: { elements: MorphinChanges.elementTypes.elements }, dr: { max: 5 } },
+        '3': { di: { elements: MorphinChanges.elementTypes.elements }, dv: { elements: MorphinChanges.elementTypes.elements }, dr: { max: 10 } }
     },
     shifterWildShape: {
         '1': { dr: true, regen: true, di: { elements: MorphinChanges.elementTypes.energies }, eres: { elements: MorphinChanges.elementTypes.energies }, dv: { elements: MorphinChanges.elementTypes.energies }, fastHealing: true }
