@@ -1,5 +1,6 @@
 {
     "MMMOD": {
+        "AlterInvalidWarning": "is not a valid option for Alter Self",
         "AmuletOfMightyFists": "Amulet of Mighty Fists",
         "Attacks": {
             "Arm": "Arm",
@@ -97,6 +98,9 @@
             "SavesVsMind": "to Saves vs Mind-Affecting"
         },
         "Buffs": {
+            "AlterSelf": {
+                "Name": "Alter Self"
+            },
             "AnimalGrowth": {
                 "Name": "Animal Growth"
             },
@@ -290,6 +294,7 @@
         },
         "UI": {
             "AbilityScores": "Ability Scores",
+            "AlterDialogName": "Mighty Morphin Alter Self",
             "and": "and",
             "Animal": "Animal",
             "Attacks": "Attacks",
@@ -335,6 +340,7 @@
             "SelectEnergizedTypes": "Select Energized Wild Shape Types",
             "SelectForm": "Select Form",
             "SelectGiantSize": "Select Giant Size",
+            "SelectHumanoidSize": "Select Humanoid Size",
             "SelectMagicalBeastSize": "Select Magical Beast Size",
             "SelectMutatedLimb": "Select Mutated Limb Attack",
             "SelectPlanarType": "Select Planar Wild Shape Template",

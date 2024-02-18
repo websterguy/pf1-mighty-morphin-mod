@@ -82,7 +82,7 @@ export class MorphinPolymorphDialog extends FormApplication {
         const amuletItem = shifter.items.find(o => o.name.toLowerCase().includes(game.i18n.localize('MMMOD.AmuletOfMightyFists').toLowerCase()) && o.system.equipped);
         let bonusSearch = /\+(\d+)/.exec(amuletItem?.name);
         let amuletBonus = !!bonusSearch ? bonusSearch[1] : null;
-        this.attacks = this.shifterWildShape ? this.formData.attacks || [] : duplicate(this.formData.attacks);
+        this.attacks = this.shifterWildShape ? this.formData.attacks || [] : duplicate(this.formData.attacks || []);
         for (let i = 0; i < this.attacks.length; i++) {
             let attack = this.attacks[i]; // get the attack data
             attack.enh = parseInt(amuletBonus);
@@ -187,7 +187,7 @@ export class MorphinPolymorphDialog extends FormApplication {
             delete buffData.system.templates;
 
             // Populate needed data
-            buffData.name = this.source;
+            this.buffName = buffData.name = `${ this.source } (${ chosenForm })`;
             buffData.type = 'buff';
             buffData.img = MorphinChanges.buffIcons[this.spell];
 
@@ -601,7 +601,7 @@ export class MorphinPolymorphDialog extends FormApplication {
         itemsCreated = itemsCreated.map(o => o.id);
 
         // Turn on the buff created
-        buff = shifter.items.find(o => o.type === 'buff' && o.name === this.source);
+        buff = shifter.items.find(o => o.type === 'buff' && o.name === this.buffName);
         
         let durationData = {};
         if (!!this.durationLevel) {
