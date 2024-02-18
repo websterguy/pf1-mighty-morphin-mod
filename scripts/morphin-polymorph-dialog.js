@@ -455,7 +455,8 @@ export class MorphinPolymorphDialog extends FormApplication {
                     for (const resData of planarObject.eres[resLevel]) {
                         for (const resType of resData.types) {
                             if (!!resType && !implementedEnergies.includes(resType)) {
-                                if (sensesChanges.system.traits.eres.custom.length > 0) sensesChanges.system.traits.eres.custom += '; ';
+                                if (sensesChanges.system.traits.eres?.custom.length > 0) sensesChanges.system.traits.eres.custom += '; ';
+                                if (!sensesChanges.system.traits.eres?.custom) sensesChanges.system.traits['eres'] = { value: [], custom: ''};
                                 sensesChanges.system.traits.eres.custom += `${game.i18n.localize('MMMOD.DamageTypes.' + resType)} ${resData.amount}`;
                             }
                             else if (!!resType) {
