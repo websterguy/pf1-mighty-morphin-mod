@@ -4,7 +4,8 @@
 #mighty-morphin-verminShape form,
 #mighty-morphin-magicalBeastShape form,
 #mighty-morphin-giantForm form,
-#mighty-morphin-alterSelf form {
+#mighty-morphin-alterSelf form,
+#mighty-morphin-dragonForm form {
     min-height: 100%;
     display: flex;
     flex-direction: column;
@@ -62,6 +63,12 @@
 }
 
 #mighty-morphin-alterSelf #changePreview .previewLabel {
+    display: inline-block;
+    width: 140px;
+    font-weight: bold;
+}
+
+#mighty-morphin-dragonForm #changePreview .previewLabel {
     display: inline-block;
     width: 140px;
     font-weight: bold;

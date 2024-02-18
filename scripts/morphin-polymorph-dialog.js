@@ -335,8 +335,6 @@ export class MorphinPolymorphDialog extends FormApplication {
         let originalDi = { 'system.traits.di': shifter.system.traits.di };
         let newDi = { value: this.di || [], custom: '' };
 
-        newDi = this.processDi(newDi);
-
         // Process regen changes
         let originalRegen = { 'system.traits.regen': shifter.system.traits.regen };
         let regenString = this.regen || '';
@@ -439,7 +437,8 @@ export class MorphinPolymorphDialog extends FormApplication {
 
                     const resLevel = shifter.system.attributes.hd.total >= 11 ? '11' : '5';
                     for (const resData of planarObject.dr[resLevel]) {
-                        if (sensesChanges.system.traits.dr.custom.length > 0) sensesChanges.system.traits.dr.custom += '; ';
+                        if (sensesChanges.system.traits.dr?.custom.length > 0) sensesChanges.system.traits.dr.custom += '; ';
+                        if (!sensesChanges.system.traits.dr?.custom) sensesChanges.system.traits['dr'] = { value: [], custom: ''};
                         sensesChanges.system.traits.dr.custom += `${resData.amount}/${!!resData.types[0] ? resData.types[0] : '-'}${!!resData.types[1] ? (resData.operator ? ' or ' : ' and ') : resData.types[1]}`;
                         /* to avoid duplicates
                         for (const resType of resData.types) {
@@ -727,6 +726,9 @@ export class MorphinPolymorphDialog extends FormApplication {
                     resistances.push(resistance);
                 }
                 else {
+                    if (!!allowedDr.max) {
+                        resistance.amount = Math.min(resistance.amount, allowedDr.max);
+                    }
                     this.dr.value.push(resistance);
                     resistances.push(`${ resistance.amount }/${ resistance.types[0].length === 0 ? '-' : game.i18n.localize('MMMOD.DamageTypes.' + resistance.types[0].capitalize()) }${ resistance.types[1].length > 0 ? ' ' + (resistance.operator ? game.i18n.localize('MMMOD.UI.or') : game.i18n.localize('MMMOD.UI.and')) + ' ' + game.i18n.localize('MMMOD.DamageTypes.' + resistance.types[1].capitalize()) : '' }`);
                 }

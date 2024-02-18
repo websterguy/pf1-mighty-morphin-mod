@@ -19,6 +19,7 @@ Hooks.once('init', () => {
   game.mightyMorphin.verminShape = MightyMorphinApp.verminShape;
   game.mightyMorphin.giantForm = MightyMorphinApp.giantForm;
   game.mightyMorphin.alterSelf = MightyMorphinApp.alterSelf;
+  game.mightyMorphin.formOfTheDragon = MightyMorphinApp.formOfTheDragon;
   game.mightyMorphin.shifterWildShape = MightyMorphinApp.shifterWildShape;
   game.mightyMorphin.maulerBattleForm = MightyMorphinApp.maulerBattleForm;
   game.mightyMorphin.shifterClawsOn = MightyMorphinApp.shifterClawsOn;
@@ -29,15 +30,16 @@ Hooks.once('ready', async () => {
   MightyMorphinApp.sizes = Object.keys(CONFIG.PF1.actorSizes);
   
   MightyMorphinApp.shapeSpells = [
+    game.i18n.localize('MMMOD.Buffs.AlterSelf.Name').slugify(),
     game.i18n.localize('MMMOD.Buffs.BeastShape.Name').slugify(),
+    game.i18n.localize('MMMOD.Buffs.FormOfTheDragon.Name').slugify(),
+    game.i18n.localize('MMMOD.Buffs.ElementalBody.Name').slugify(),
+    game.i18n.localize('MMMOD.Buffs.GiantForm.Name').slugify(),
     game.i18n.localize('MMMOD.Buffs.MagicalBeastShape.Name').slugify(),
     game.i18n.localize('MMMOD.Buffs.PlantShape.Name').slugify(),
-    game.i18n.localize('MMMOD.Buffs.ElementalBody.Name').slugify(),
-    game.i18n.localize('MMMOD.Buffs.WildShape.Name').slugify(),
+    game.i18n.localize('MMMOD.Buffs.ShifterWildShape.Name').slugify(),
     game.i18n.localize('MMMOD.Buffs.VerminShape.Name').slugify(),
-    game.i18n.localize('MMMOD.Buffs.GiantForm.Name').slugify(),
-    game.i18n.localize('MMMOD.Buffs.AlterSelf.Name').slugify(),
-    game.i18n.localize('MMMOD.Buffs.ShifterWildShape.Name').slugify()
+    game.i18n.localize('MMMOD.Buffs.WildShape.Name').slugify()
   ];
 
   MightyMorphinApp.otherTransmutations = [

@@ -108,7 +108,7 @@ export class MorphinElementalBody extends MorphinPolymorphDialog {
 
         // Process stat changes from the spell based on spell level
         let chosenElement = chosenForm.split(' ')[1].toLowerCase();
-        this.changes = duplicate(MorphinChanges.changes[this.spell][chosenElement][this.chosenForm.size].changes);
+        this.changes = duplicate(MorphinChanges.changes[this.spell][chosenElement][this.level].changes);
         data.scoreChanges = this.processScoreChanges();
 
         // Process changes to speed, limited by maximum the spell level allows

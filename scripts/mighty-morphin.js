@@ -9,6 +9,7 @@ import { MorphinGiantForm } from './morphin-giant-form.js';
 import DirectoryPicker from './DirectoryPicker.js';
 import { MorphinOptions } from './morphin-options.js';
 import { MorphinAlterSelf } from './morphin-alter-self.js';
+import { MorphinFormOfTheDragon } from './morphin-form-of-the-dragon.js';
 
 /**
  * Class for functions exposed to users of pf1 system and helpers
@@ -1921,6 +1922,61 @@ export class MightyMorphinApp {
         else dia.render(true);
     }
 
+    
+    /**
+     * Creates the Giant Form buff and effects on the actor using the MorphinElementalBody class
+     * 
+     * @param {number} [level=1] The level of plant shape spell being cast (1-3)
+     * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
+     * @param {string} [source='Form of the Dragon'] The source of the splant shape spell effect
+     * @param {string} [form=null] The name of the form to change into. Must match option from morphin-options exactly.
+     * @param {string} [image = null] The file name for a custom image file without the file extension
+     */
+    static async formOfTheDragon({ level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.FormOfTheDragon.Name'), form = null, image = null, planarType = null, energizedTypes = null, mutatedType = null } = { }) {
+        let shifter = MightyMorphinApp.getSingleActor();
+
+        // Create plant shape form if a single actor chosen not already under effects from this mod
+        let existing;
+        if (!!shifter.flags['pf1-mighty-morphin']) {
+            for (const change of Object.keys(shifter.flags['pf1-mighty-morphin'])) {
+                if (MightyMorphinApp.shapeSpells.includes(change) || MightyMorphinApp.otherTransmutations.includes(change)) {
+                    existing = change;
+                    break;
+                }
+            }
+        }
+
+        if (!!existing) {
+            return ui.notifications.warn(`${ shifter.name } ${ game.i18n.localize('MMMOD.EffectWarning') } ${ shifter.flags['pf1-mighty-morphin'][existing].source }`);
+        }
+
+        let dia = new MorphinFormOfTheDragon(level, durationLevel, shifter.uuid, source, { planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType });
+
+        if (!!image) {
+            dia.customImage = image;
+        }
+
+        if (!!form) {
+            let type;
+            let foundForm = MorphinOptions.dragon.find(o => o.name === form);
+            if (foundForm) type = 'dragon';
+            
+            if (!foundForm) {
+                ui.notifications.error(form + ' ' + game.i18n.localize('MMMOD.DragonInvalidWarning'));
+                return;
+            }
+            
+            if (!dia.shapeOptions[type].some(o => o.name === form)) {
+                ui.notifications.error(form + ' ' + game.i18n.localize('MMMOD.DragonInvalidWarning') + ' ' + level);
+                return;
+            }
+
+            dia.buildPreviewTemplate(form, type);
+            dia.applyChanges(null, form);
+        }
+        else dia.render(true);
+    }
+
     /**
      * Creates the Beast Shape buff and effects on the actor using the MorphinBeastShape class
      * 
@@ -2201,6 +2257,7 @@ MightyMorphinApp.specialUUIDs = {
     'Burn': 'Compendium.pf-content.pf-universal-monster-rules.Item.pxGfnJIlADL0UpyO',
     'Constrict': 'Compendium.pf-content.pf-universal-monster-rules.Item.uiMteAicpAgqnmVr',
     'Ferocity': 'Compendium.pf-content.pf-universal-monster-rules.Item.itiLDlB5BHlUB8os',
+    'FrightfulPresence300': 'Compendium.pf-content.pf-universal-monster-rules.Item.tbYOVRDBl2uywz2o',
     'Grab': 'Compendium.pf-content.pf-universal-monster-rules.Item.gliqmaokX6kcR9eU',
     'HoldBreath': 'Compendium.pf-content.pf-universal-monster-rules.Item.tO1RgCbgjBt3Kmkw',
     'Jet200': 'Compendium.pf-content.pf-universal-monster-rules.Item.qg6hgwgShcrxvT36',

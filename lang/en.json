@@ -25,6 +25,7 @@
             "Filament": "Filament",
             "Flower": "Flower",
             "Foreclaws": "Foreclaws",
+            "FrightfulPresence300": "Frightful Presence (300ft)",
             "FrightfulShapeAttackSuccess": "Frightful Shape Attack Success",
             "Frond": "Frond",
             "Gore": "Gore",
@@ -64,6 +65,7 @@
             "ShifterClaws": "Shifter Claws",
             "Slam": "Slam",
             "Snatch": "Snatch",
+            "SpiderClimbConstant": "Spider Climb (Constant)",
             "Spikes": "Spikes",
             "Spine": "Spine",
             "Spit": "Spit",
@@ -106,6 +108,9 @@
             },
             "BeastShape": {
                 "Name": "Beast Shape"
+            },
+            "FormOfTheDragon": {
+                "Name": "Form of the Dragon"
             },
             "ElementalBody": {
                 "Name": "Elemental Body"
@@ -194,6 +199,7 @@
             "Sonic": "Sonic"
         },
         "DeactivateScriptCallName": "Revert Mighty Morphin Changes on Deactivation",
+        "DragonInvalidWarning": "is not a valid option for Form of the Dragon",
         "EffectWarning": "is already under the effects of a change from",
         "ElementalClaws": "Elemental Claws",
         "ElementalInvalidWarning": "is not a valid option for Elemental Body",
@@ -308,6 +314,8 @@
             "Dex": "Dex",
             "DamageImmunities": "Damage Immunities",
             "DamageResistances": "Damage Resistances",
+            "Dragon": "Dragon",
+            "DragonDialogName": "Mighty Morphin Form of the Dragon",
             "ElementalDialogName": "Mighty Morphin Elemental Body",
             "EnergizedUpgradeError": "Could not determine size upgrade for Energized Wild Shape for ability ",
             "EnergyResistances": "Energy Resistances",
@@ -336,6 +344,7 @@
             "SaveBonuses": "Save Bonuses",
             "SelectAnimalSize": "Select Animal Size",
             "SelectBeastType": "Select Beast Type",
+            "SelectDragonSize": "Select Dragon Size",
             "SelectElementalSize": "Select Elemental Size",
             "SelectEnergizedTypes": "Select Energized Wild Shape Types",
             "SelectForm": "Select Form",

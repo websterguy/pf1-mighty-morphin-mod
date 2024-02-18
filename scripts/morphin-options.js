@@ -240,6 +240,39 @@ MorphinOptions.animal = [
     { name: 'Weasel', size: 'tiny' }
 ];
 
+MorphinOptions.dragon = [
+    { name: 'Medium Black Dragon', size: 'med' },
+    { name: 'Medium Blue Dragon', size: 'med' },
+    { name: 'Medium Brass Dragon', size: 'med' },
+    { name: 'Medium Bronze Dragon', size: 'med' },
+    { name: 'Medium Copper Dragon', size: 'med' },
+    { name: 'Medium Gold Dragon', size: 'med' },
+    { name: 'Medium Green Dragon', size: 'med' },
+    { name: 'Medium Red Dragon', size: 'med' },
+    { name: 'Medium Silver Dragon', size: 'med' },
+    { name: 'Medium White Dragon', size: 'med' },
+    { name: 'Large Black Dragon', size: 'lg' },
+    { name: 'Large Blue Dragon', size: 'lg' },
+    { name: 'Large Brass Dragon', size: 'lg' },
+    { name: 'Large Bronze Dragon', size: 'lg' },
+    { name: 'Large Copper Dragon', size: 'lg' },
+    { name: 'Large Gold Dragon', size: 'lg' },
+    { name: 'Large Green Dragon', size: 'lg' },
+    { name: 'Large Red Dragon', size: 'lg' },
+    { name: 'Large Silver Dragon', size: 'lg' },
+    { name: 'Large White Dragon', size: 'lg' },
+    { name: 'Huge Black Dragon', size: 'huge' },
+    { name: 'Huge Blue Dragon', size: 'huge' },
+    { name: 'Huge Brass Dragon', size: 'huge' },
+    { name: 'Huge Bronze Dragon', size: 'huge' },
+    { name: 'Huge Copper Dragon', size: 'huge' },
+    { name: 'Huge Gold Dragon', size: 'huge' },
+    { name: 'Huge Green Dragon', size: 'huge' },
+    { name: 'Huge Red Dragon', size: 'huge' },
+    { name: 'Huge Silver Dragon', size: 'huge' },
+    { name: 'Huge White Dragon', size: 'huge' }
+];
+
 MorphinOptions.elemental = [
     { name: 'Huge Air Elemental', size: 'huge' },
     { name: 'Huge Earth Elemental', size: 'huge' },

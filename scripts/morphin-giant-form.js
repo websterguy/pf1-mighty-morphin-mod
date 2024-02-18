@@ -14,7 +14,7 @@ export class MorphinGiantForm extends MorphinPolymorphDialog {
      */
     constructor(level, durationLevel, actorId, source, {planarType = null, energizedTypes = null, mutatedType = null} = {}) {
         super(level, durationLevel, actorId, source, {planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType});
-        this.spell = level === 1 ? 'giantForm' : 'giantFormII';
+        this.spell = 'giantForm';
 
         // Add all possible sizes for the given spell level
         switch (level) {
@@ -103,7 +103,7 @@ export class MorphinGiantForm extends MorphinPolymorphDialog {
         data.polymorphBase = this.processPolymorphChanges();
 
         // Process stat changes from the spell based on spell level
-        this.changes = duplicate(MorphinChanges.changes[this.spell].giant[this.chosenForm.size].changes);
+        this.changes = duplicate(MorphinChanges.changes[this.spell].giant[this.level].changes);
         data.scoreChanges = this.processScoreChanges();        
 
         // Process changes to speed, limited by maximum the spell level allows
