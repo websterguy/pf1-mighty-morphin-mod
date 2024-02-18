@@ -426,6 +426,20 @@ MorphinChanges.changes = {
             }
         }
     },
+    alterSelf: {
+        humanoid: {
+            sm: {
+                changes: [
+                    { formula: '2', operator: 'add', target: 'ability', subTarget: 'dex', modifier: 'size', priority: 0, value: 2 }
+                ]
+            },
+            med: {
+                changes: [
+                    { formula: '2', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'size', priority: 0, value: 2 }
+                ]
+            }
+        }
+    },
     polymorphSize: {
         fine: [
             { formula: '6', operator: 'add', target: 'ability', subTarget: 'str', modifier: 'untyped', priority: 0, value: 6 },
@@ -12613,6 +12627,849 @@ MorphinChanges.changes = {
         special: [
             'RockThrowing', 'RockCatching'
         ]
+    },
+    'Charau-Ka': {
+        size: 'sm',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 3, count: 1 }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            1, 7, 14
+        ]
+    },
+    'Dark Creeper': {
+        size: 'sm',
+        speed: {
+            land: 30
+        },
+        senses: [
+            7
+        ]
+    },
+    'Dark Dancer': {
+        size: 'sm',
+        speed: {
+            land: 30
+        },
+        senses: [
+            7
+        ]
+    },
+    'Dark Slayer': {
+        size: 'sm',
+        speed: {
+            land: 30
+        },
+        senses: [
+            7
+        ]
+    },
+    'Dark Empath': {
+        size: 'sm',
+        speed: {
+            land: 30
+        },
+        senses: [
+            7
+        ]
+    },
+    'Derro': {
+        size: 'sm',
+        speed: {
+            land: 20
+        },
+        senses: [
+            7
+        ]
+    },
+    'Gnome': {
+        size: 'sm',
+        speed: {
+            land: 20
+        },
+        senses: [
+            1
+        ]
+    },
+    'Gnome (Darkvision)': {
+        size: 'sm',
+        speed: {
+            land: 20
+        },
+        senses: [
+            7
+        ]
+    },
+    'Goblin': {
+        size: 'sm',
+        speed: {
+            land: 30
+        },
+        senses: [
+            7
+        ]
+    },
+    'Goblin (Hard Head, Big Teeth)': {
+        size: 'sm',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 4, count: 1 }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            7
+        ]
+    },
+    'Goblin (Monkey)': {
+        size: 'sm',
+        speed: {
+            land: 30
+        },
+        senses: [
+            1
+        ]
+    },
+    'Gray': {
+        size: 'sm',
+        speed: {
+            land: 20
+        },
+        senses: [
+            4
+        ]
+    },
+    'Grippli': {
+        size: 'sm',
+        speed: {
+            land: 30
+        },
+        senses: [
+            7
+        ]
+    },
+    'Hafling': {
+        size: 'sm',
+        speed: {
+            land: 20
+        },
+        senses: [ ]
+    },
+    'Hafling (Fleet of Foot)': {
+        size: 'sm',
+        speed: {
+            land: 30
+        },
+        senses: [ ]
+    },
+    'Kijimuna': {
+        size: 'sm',
+        speed: {
+            land: 30
+        },
+        senses: [
+            7
+        ]
+    },
+    'Kobold': {
+        size: 'sm',
+        speed: {
+            land: 30
+        },
+        senses: [
+            7
+        ]
+    },
+    'Kobold (Day Raider)': {
+        size: 'sm',
+        speed: {
+            land: 30
+        },
+        senses: [
+            1
+        ]
+    },
+    'Kobold (Day Raider, Dragon Maw)': {
+        size: 'sm',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 4, count: 1 }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            1
+        ]
+    },
+    'Kobold (Dragon Maw)': {
+        size: 'sm',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 4, count: 1 }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            7
+        ]
+    },
+    'Ratfolk': {
+        size: 'sm',
+        speed: {
+            land: 20
+        },
+        senses: [
+            7, 14
+        ]
+    },
+    'Spriggan': {
+        size: 'sm',
+        speed: {
+            land: 20
+        },
+        senses: [
+            1
+        ]
+    },
+    'Svirfneblin': {
+        size: 'sm',
+        speed: {
+            land: 20
+        },
+        senses: [
+            1, 7
+        ]
+    },
+    'Wayang': {
+        size: 'sm',
+        speed: {
+            land: 20
+        },
+        senses: [
+            7, 14
+        ]
+    },
+    'Adlet': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 6, count: 1 }
+        ],
+        speed: {
+            land: 40
+        },
+        senses: [
+            1,14
+        ]
+    },
+    'Android': {
+        size: 'med',
+        speed: {
+            land: 30
+        },
+        senses: [
+            1, 7
+        ]
+    },
+    'Boggard': {
+        size: 'med',
+        speed: {
+            land: 30,
+            swim: 30
+        },
+        senses: [
+            1, 7
+        ]
+    },
+    'Bugbear': {
+        size: 'med',
+        speed: {
+            land: 30
+        },
+        senses: [
+            7, 14
+        ]
+    },
+    'Catfolk': {
+        size: 'med',
+        speed: {
+            land: 30
+        },
+        senses: [
+            1
+        ]
+    },
+    'Catfolk (Cat\'s Claw)': {
+        size: 'med',
+        attacks: [
+            { name: 'Claw', diceCount: 1, diceSize: 4, count: 2 }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            1
+        ]
+    },
+    'Catfolk (Cat\'s Claw, Scent)': {
+        size: 'med',
+        attacks: [
+            { name: 'Claw', diceCount: 1, diceSize: 4, count: 2 }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            14
+        ]
+    },
+    'Catfolk (Scent)': {
+        size: 'med',
+        speed: {
+            land: 30
+        },
+        senses: [
+            14
+        ]
+    },
+    'Changling': {
+        size: 'med',
+        attacks: [
+            { name: 'Claw', diceCount: 1, diceSize: 4, count: 2 }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            7
+        ]
+    },
+    'Dark Caller': {
+        size: 'med',
+        speed: {
+            land: 30
+        },
+        senses: [
+            7
+        ]
+    },
+    'Dark Stalker': {
+        size: 'med',
+        speed: {
+            land: 30
+        },
+        senses: [
+            7
+        ]
+    },
+    'Dhampir': {
+        size: 'med',
+        speed: {
+            land: 30
+        },
+        senses: [
+            1, 7
+        ]
+    },
+    'Dhampir (Fangs)': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 3, count: 1 }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            1, 7
+        ]
+    },
+    'Drow': {
+        size: 'med',
+        speed: {
+            land: 30
+        },
+        senses: [
+            7
+        ]
+    },
+    'Drow (Surface Infiltrator)': {
+        size: 'med',
+        speed: {
+            land: 30
+        },
+        senses: [
+            1
+        ]
+    },
+    'Drow Noble': {
+        size: 'med',
+        speed: {
+            land: 30
+        },
+        senses: [
+            7
+        ]
+    },
+    'Drow Noble (Surface Infiltrator)': {
+        size: 'med',
+        speed: {
+            land: 30
+        },
+        senses: [
+            1
+        ]
+    },
+    'Duergar': {
+        size: 'med',
+        speed: {
+            land: 20
+        },
+        senses: [
+            7
+        ]
+    },
+    'Dwarf': {
+        size: 'med',
+        speed: {
+            land: 20
+        },
+        senses: [
+            7
+        ]
+    },
+    'Elf': {
+        size: 'med',
+        speed: {
+            land: 30
+        },
+        senses: [
+            1
+        ]
+    },
+    'Elf (Darkvision)': {
+        size: 'med',
+        speed: {
+            land: 30
+        },
+        senses: [
+            7
+        ]
+    },
+    'Gillmen': {
+        size: 'med',
+        speed: {
+            land: 30,
+            swim: 30
+        },
+        senses: [ ]
+    },
+    'Gnoll': {
+        size: 'med',
+        speed: {
+            land: 30
+        },
+        senses: [
+            7
+        ]
+    },
+    'Half-Elf': {
+        size: 'med',
+        speed: {
+            land: 30
+        },
+        senses: [
+            1
+        ]
+    },
+    'Half-Elf (Drow Blooded)': {
+        size: 'med',
+        speed: {
+            land: 30
+        },
+        senses: [
+            7
+        ]
+    },
+    'Half-Orc': {
+        size: 'med',
+        speed: {
+            land: 30
+        },
+        senses: [
+            7
+        ]
+    },
+    'Half-Orc (Toothy)': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 4, count: 1 }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            7
+        ]
+    },
+    'Hobgoblin': {
+        size: 'med',
+        speed: {
+            land: 30
+        },
+        senses: [
+            7
+        ]
+    },
+    'Human': {
+        size: 'med',
+        speed: {
+            land: 30
+        },
+        senses: [ ]
+    },
+    'Kasatha': {
+        size: 'med',
+        speed: {
+            land: 30
+        },
+        senses: [ ]
+    },
+    'Kitsune': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 4, count: 1 }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            1
+        ]
+    },
+    'Kuru': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 6, count: 1 }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            1
+        ]
+    },
+    'Lashunta': {
+        size: 'med',
+        speed: {
+            land: 30
+        },
+        senses: [ ]
+    },
+    'Lizardfolk': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 4, count: 1 },
+            { name: 'Claw', diceCount: 1, diceSize: 4, count: 2 }
+        ],
+        speed: {
+            land: 30,
+            swim: 15
+        },
+        senses: [ ]
+    },
+    'Locathah': {
+        size: 'med',
+        speed: {
+            land: 10,
+            swim: 60
+        },
+        senses: [
+            1
+        ]
+    },
+    'Merfolk': {
+        size: 'med',
+        speed: {
+            land: 5,
+            swim: 50
+        },
+        senses: [
+            1
+        ]
+    },
+    'Merfolk (Darkvision)': {
+        size: 'med',
+        speed: {
+            land: 5,
+            swim: 50
+        },
+        senses: [
+            7
+        ]
+    },
+    'Merfolk (Darkvision, Strongtail)': {
+        size: 'med',
+        speed: {
+            land: 15,
+            swim: 30
+        },
+        senses: [
+            7
+        ]
+    },
+    'Merfolk (Strongtail)': {
+        size: 'med',
+        speed: {
+            land: 15,
+            swim: 30
+        },
+        senses: [
+            1
+        ]
+    },
+    'Munavri': {
+        size: 'med',
+        speed: {
+            land: 30
+        },
+        senses: [
+            7
+        ]
+    },
+    'Nagaji': {
+        size: 'med',
+        attacks: [
+            { name: 'Claw', diceCount: 1, diceSize: 4, count: 1 }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            1
+        ]
+    },
+    'Ogrekin': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 4, count: 1 }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            1
+        ]
+    },
+    'Orc': {
+        size: 'med',
+        speed: {
+            land: 30
+        },
+        senses: [
+            1, 7
+        ]
+    },
+    'Panotti': {
+        size: 'med',
+        attacks: [
+            { name: 'Wing', diceCount: 1, diceSize: 4, count: 2 }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [ ]
+    },
+    'Reptoid': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 3, count: 1 },
+            { name: 'Claw', diceCount: 1, diceSize: 3, count: 2 }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            1
+        ]
+    },
+    'Rougarou': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 4, count: 1 }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            1
+        ]
+    },
+    'Samsaran': {
+        size: 'med',
+        speed: {
+            land: 30
+        },
+        senses: [
+            1
+        ]
+    },
+    'Sasquatch': {
+        size: 'med',
+        attacks: [
+            { name: 'Slam', diceCount: 1, diceSize: 4, count: 1 }
+        ],
+        speed: {
+            land: 40
+        },
+        senses: [
+            1, 7, 14
+        ]
+    },
+    'Sewer Troll': {
+        size: 'med',
+        attacks: [
+            { name: 'Claw', diceCount: 1, diceSize: 4, count: 2 }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            1, 7, 14
+        ]
+    },
+    'Skulk': {
+        size: 'med',
+        speed: {
+            land: 30
+        },
+        senses: [
+            1
+        ]
+    },
+    'Strix': {
+        size: 'med',
+        speed: {
+            land: 30
+        },
+        senses: [
+            1, 7
+        ]
+    },
+    'Syrinx': {
+        size: 'med',
+        speed: {
+            land: 30
+        },
+        senses: [
+            1, 7
+        ]
+    },
+    'Tengu': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 3, count: 1 }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            1
+        ]
+    },
+    'Tengu (Claw Attack)': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 3, count: 1 },
+            { name: 'Claw', diceCount: 1, diceSize: 3, count: 2 }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            1
+        ]
+    },
+    'Triaxian': {
+        size: 'med',
+        speed: {
+            land: 30
+        },
+        senses: [
+            1
+        ]
+    },
+    'Troglodyte': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 4, count: 1 },
+            { name: 'Claw', diceCount: 1, diceSize: 4, count: 2 }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            7
+        ]
+    },
+    'Udeaus': {
+        size: 'med',
+        speed: {
+            land: 30
+        },
+        senses: [
+            1
+        ]
+    },
+    'Vanara': {
+        size: 'med',
+        speed: {
+            land: 30
+        },
+        senses: [
+            1
+        ]
+    },
+    'Vishkanya': {
+        size: 'med',
+        speed: {
+            land: 30
+        },
+        senses: [
+            1
+        ]
+    },
+    'Weremantis': {
+        size: 'med',
+        speed: {
+            land: 40
+        },
+        senses: [
+            7
+        ]
+    },
+    'Wikkawak': {
+        size: 'med',
+        speed: {
+            land: 30
+        },
+        senses: [
+            7, 14
+        ]
+    },
+    'Xulgath': {
+        size: 'med',
+        attacks: [
+            { name: 'Bite', diceCount: 1, diceSize: 6, count: 1 },
+            { name: 'Claw', diceCount: 1, diceSize: 4, count: 2 }
+        ],
+        speed: {
+            land: 30
+        },
+        senses: [
+            7
+        ]
     }
 };
 
@@ -12648,6 +13505,9 @@ MorphinChanges.allowedSpecials = {
     },
     giantFormII: {
         '2': ['Rend', 'RockCatching', 'RockThrowing']
+    },
+    alterSelf: {
+        '1': [ ]
     }
 };
 
@@ -12682,6 +13542,9 @@ MorphinChanges.allowedSenses = {
     },
     giantFormII: {
         '2': { 'dv': { static: 'DARKVISION', value: 60 }, 'll': { static:'LOWLIGHT', value: true } }
+    },
+    alterSelf: {
+        '1': { 'dv': { static: 'DARKVISION', value: 60 }, 'll': { static:'LOWLIGHT', value: true }, 'sc': { static: 'SCENT', value: 30 } }
     }
 };
 
@@ -12715,6 +13578,9 @@ MorphinChanges.allowedSpeeds = {
     },
     giantFormII: {
         '2': { swim: 60 }
+    },
+    alterSelf: {
+        '1': { swim: 30 }
     }
 };
 
@@ -12754,12 +13620,16 @@ MorphinChanges.allowedAttributes = {
     giantFormII: {
         '2': { regen: { max: 5 }, di: { elements: MorphinChanges.elementTypes.elements }, eres: { elements: MorphinChanges.elementTypes.elements }, dv: { elements: MorphinChanges.elementTypes.elements } }
     },
+    alterSelf: {
+        '1': { }
+    },
     shifterWildShape: {
         '1': { dr: true, regen: true, di: { elements: MorphinChanges.elementTypes.energies }, eres: { elements: MorphinChanges.elementTypes.energies }, dv: { elements: MorphinChanges.elementTypes.energies }, fastHealing: true }
     }
 };
 
 MorphinChanges.buffIcons = {
+    alterSelf: 'systems/pf1/icons/skills/blue_35.jpg',
     beastShape: 'systems/pf1/icons/spells/wild-jade-3.jpg',
     magicalBeastShape: 'systems/pf1/icons/spells/wild-eerie-3.jpg',
     wildShape: 'systems/pf1/icons/skills/green_21.jpg',

@@ -8,6 +8,7 @@ import { MorphinShifterShape } from './morphin-shifter-shape.js';
 import { MorphinGiantForm } from './morphin-giant-form.js';
 import DirectoryPicker from './DirectoryPicker.js';
 import { MorphinOptions } from './morphin-options.js';
+import { MorphinAlterSelf } from './morphin-alter-self.js';
 
 /**
  * Class for functions exposed to users of pf1 system and helpers
@@ -1857,6 +1858,60 @@ export class MightyMorphinApp {
             
             if (!dia.shapeOptions[type].some(o => o.name === form)) {
                 ui.notifications.error(form + ' ' + game.i18n.localize('MMMOD.GiantInvalidWarning') + ' ' + level);
+                return;
+            }
+
+            dia.buildPreviewTemplate(form, type);
+            dia.applyChanges(null, form);
+        }
+        else dia.render(true);
+    }
+    
+    /**
+     * Creates the Giant Form buff and effects on the actor using the MorphinElementalBody class
+     * 
+     * @param {number} [level=1] The level of plant shape spell being cast (1-3)
+     * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
+     * @param {string} [source='Alter Self'] The source of the splant shape spell effect
+     * @param {string} [form=null] The name of the form to change into. Must match option from morphin-options exactly.
+     * @param {string} [image = null] The file name for a custom image file without the file extension
+     */
+    static async alterSelf({ level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.AlterSelf.Name'), form = null, image = null, planarType = null, energizedTypes = null, mutatedType = null } = { }) {
+        let shifter = MightyMorphinApp.getSingleActor();
+
+        // Create plant shape form if a single actor chosen not already under effects from this mod
+        let existing;
+        if (!!shifter.flags['pf1-mighty-morphin']) {
+            for (const change of Object.keys(shifter.flags['pf1-mighty-morphin'])) {
+                if (MightyMorphinApp.shapeSpells.includes(change) || MightyMorphinApp.otherTransmutations.includes(change)) {
+                    existing = change;
+                    break;
+                }
+            }
+        }
+
+        if (!!existing) {
+            return ui.notifications.warn(`${ shifter.name } ${ game.i18n.localize('MMMOD.EffectWarning') } ${ shifter.flags['pf1-mighty-morphin'][existing].source }`);
+        }
+
+        let dia = new MorphinAlterSelf(level, durationLevel, shifter.uuid, source, { planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType });
+
+        if (!!image) {
+            dia.customImage = image;
+        }
+
+        if (!!form) {
+            let type;
+            let foundForm = MorphinOptions.humanoid.find(o => o.name === form);
+            if (foundForm) type = 'humanoid';
+            
+            if (!foundForm) {
+                ui.notifications.error(form + ' ' + game.i18n.localize('MMMOD.AlterInvalidWarning'));
+                return;
+            }
+            
+            if (!dia.shapeOptions[type].some(o => o.name === form)) {
+                ui.notifications.error(form + ' ' + game.i18n.localize('MMMOD.AlterInvalidWarning') + ' ' + level);
                 return;
             }
 

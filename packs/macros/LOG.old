@@ -1,3 +1,7 @@
-2024/02/14-20:12:42.887 98f0 Recovering log #457
-2024/02/14-20:12:42.897 98f0 Delete type=0 #457
-2024/02/14-20:12:42.897 98f0 Delete type=3 #456
+2024/02/17-12:34:12.754 3a38 Log #461: 0 ops saved to Table #462 OK
+2024/02/17-12:34:12.755 3a38 Archiving C:\Users\Kevin\AppData\Local\FoundryVTT\Data\modules\pf1-mighty-morphin\packs\macros/000461.log: OK
+2024/02/17-12:34:12.755 3a38 Table #420: 3 entries OK
+2024/02/17-12:34:12.759 3a38 Table #447: 1 entries OK
+2024/02/17-12:34:12.759 3a38 Table #451: 2 entries OK
+2024/02/17-12:34:12.765 3a38 Archiving C:\Users\Kevin\AppData\Local\FoundryVTT\Data\modules\pf1-mighty-morphin\packs\macros/MANIFEST-000460: OK
+2024/02/17-12:34:12.770 3a38 **** Repaired leveldb C:\Users\Kevin\AppData\Local\FoundryVTT\Data\modules\pf1-mighty-morphin\packs\macros; recovered 3 files; 15416 bytes. Some data may have been lost. ****

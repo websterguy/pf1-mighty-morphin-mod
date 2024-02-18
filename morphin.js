@@ -18,6 +18,7 @@ Hooks.once('init', () => {
   game.mightyMorphin.plantShape = MightyMorphinApp.plantShape;
   game.mightyMorphin.verminShape = MightyMorphinApp.verminShape;
   game.mightyMorphin.giantForm = MightyMorphinApp.giantForm;
+  game.mightyMorphin.alterSelf = MightyMorphinApp.alterSelf;
   game.mightyMorphin.shifterWildShape = MightyMorphinApp.shifterWildShape;
   game.mightyMorphin.maulerBattleForm = MightyMorphinApp.maulerBattleForm;
   game.mightyMorphin.shifterClawsOn = MightyMorphinApp.shifterClawsOn;
@@ -35,6 +36,7 @@ Hooks.once('ready', async () => {
     game.i18n.localize('MMMOD.Buffs.WildShape.Name').slugify(),
     game.i18n.localize('MMMOD.Buffs.VerminShape.Name').slugify(),
     game.i18n.localize('MMMOD.Buffs.GiantForm.Name').slugify(),
+    game.i18n.localize('MMMOD.Buffs.AlterSelf.Name').slugify(),
     game.i18n.localize('MMMOD.Buffs.ShifterWildShape.Name').slugify()
   ];
 
