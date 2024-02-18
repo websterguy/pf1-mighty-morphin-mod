@@ -21,6 +21,8 @@ Currently supports buff generation and application of effects of the following s
 * Elemental Body I-IV
 * Plant Shape I-III
 * Vermin Shape I-II
+* Giant Form I-II
+* Alter Self
 * Druid Wild Shape (As Beast Shape, Elemental Body, and Plant Shape)
   * Planar Shape, Energized Wild Shape, Elemental Claws, Frightful Shape, Mutated Shape
 * Shifter class Wild Shape major forms and Shifter Aspect minor forms
@@ -30,7 +32,7 @@ Effects such as Beast Shape include creating attacks, replacing speeds, replacin
 
 ## Future Plans
 
-* Implementing other form changes, such as Alter Self, Monstrous Physique, etc.
+* Implementing other form changes, such as Monstrous Physique, etc.
 
 ## Known Issues
 
