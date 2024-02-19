@@ -23,6 +23,7 @@ Hooks.once('init', () => {
   game.mightyMorphin.shifterWildShape = MightyMorphinApp.shifterWildShape;
   game.mightyMorphin.maulerBattleForm = MightyMorphinApp.maulerBattleForm;
   game.mightyMorphin.shifterClawsOn = MightyMorphinApp.shifterClawsOn;
+  game.mightyMorphin.addStrongJawConditionals = MightyMorphinApp.addStrongJawConditionals;
 });
 
 // Set up static sizes from the system's info

@@ -2225,6 +2225,28 @@ export class MightyMorphinApp {
             dialog.render(true);
           });
     }
+
+    /**
+     * 
+     */
+    static async addStrongJawConditionals() {
+        let shifter = MightyMorphinApp.getSingleActor();
+
+        let appliedSpells = Object.values(shifter.flags['pf1-mighty-morphin']).map(o => o.source);
+        const attacks = shifter.items.filter(o => o.type === 'attack' && o.system.subType === 'natural' && appliedSpells.some(p => o.name.includes(p)));
+        const conditional = { 'default': true, 'name': game.i18n.localize('MMMOD.StrongJaw'), 'modifiers': [{ 'formula': '2', 'target': 'size', 'subTarget': '', 'type': '', 'damageType': { 'values': [], 'custom': '' }, 'critical': '' } ] };
+        for (const attack of attacks) {
+            for (const action of attack.actions) {
+                conditional._id = randomID();
+                conditional.modifiers[0]._id = randomID();
+                const conditionals = action.data.conditionals;
+                conditionals.push(conditional);
+                action.update({'data.conditionals': conditionals});
+            }
+        }
+        if (attacks.length > 0) ui.notifications.info('Added Strong Jaw conditional modifiers to ' + attacks.map(o => o.name.split(' (')[0]).join(', '));
+        else ui.notifications.info('There were no attacks to modify');
+    }
 }
 
 // Image folder
