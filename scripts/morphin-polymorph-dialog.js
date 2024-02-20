@@ -195,7 +195,7 @@ export class MorphinPolymorphDialog extends FormApplication {
                 let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
                 scriptCall.category = 'toggle';
                 scriptCall.name = 'Revert Mighty Morphin Changes on Deactivation';
-                scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"][item.name.slugify()]) game.mightyMorphin.revert({actor: actor, buff: item.name});';
+                scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"][item.name.replace(/ \\(.*\\)/, "").slugify()]) game.mightyMorphin.revert({actor: actor, buff: item.name.replace(/ \\(.*\\)/, "")});';
                 buffData.system.scriptCalls.push(scriptCall);
             }
 
