@@ -173,7 +173,7 @@ export class MorphinPolymorphDialog extends FormApplication {
         }
 
         // Add base polymorph size stat changes to the spell's normal changes if necessary
-        if (!!this.polymorphChanges?.length) this.changes = this.changes.push(...this.polymorphChanges);
+        if (!!this.polymorphChanges?.length) this.changes.push(...this.polymorphChanges);
 
         let buff = shifter.items.find(o => o.type === 'buff' && o.name === this.source);
         // If the buff doesn't already exist on the actor, create it
