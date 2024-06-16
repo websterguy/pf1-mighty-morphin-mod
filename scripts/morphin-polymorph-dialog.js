@@ -75,8 +75,8 @@ export class MorphinPolymorphDialog extends FormApplication {
         let flagSlug = this.source.slugify();
 
         let itemsToEmbed = [];
-        // Find out if this is the only natural attack the form has
-        let oneAttack = this.formData.attacks?.length === 1;
+        // Find out if this is the only natural attack the form has and if there's only 1 per round
+        let oneAttack = this.formData.attacks?.length === 1 && this.formData.attacks[0].count === 1;
 
         // Loop over the attacks and create the items
         const amuletItem = shifter.items.find(o => o.name.toLowerCase().includes(game.i18n.localize('MMMOD.AmuletOfMightyFists').toLowerCase()) && o.system.equipped);
