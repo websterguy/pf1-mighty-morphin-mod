@@ -827,7 +827,7 @@ export class MorphinPolymorphDialog extends FormApplication {
                 }
                 immunities.push(game.i18n.localize('MMMOD.DamageTypes.' + immunity.capitalize()));
             }
-            this.ci.custom = customImmunities.join(';');
+            this.ci.custom = customImmunities;
         }
         return immunities;
     }
