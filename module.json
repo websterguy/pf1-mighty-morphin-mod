@@ -4,8 +4,9 @@
     "description": "Mod to automate polymorph effects for Foundry VTT PF1e system",
     "version": "0.5.0.0",
     "compatibility": {
-        "minimum": 11,
-        "verified": "11.306"
+        "minimum": "11.315",
+        "maximum" 11,
+        "verified": "11.315"
     },
     "authors": [
         {
@@ -20,8 +21,8 @@
               "id": "pf1",
               "type": "system",
               "compatibility": {
-                "minimum": "9.0",
-                "verified": "9.0"
+                "minimum": "10.0",
+                "verified": "10.0"
               }
             }
         ]
