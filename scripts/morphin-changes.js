@@ -2084,7 +2084,7 @@ MorphinChanges.changes = {
                 },
                 15: {
                     dr: [
-                        '5/Silver'
+                        { amount: 5, operator: true, types: ['silver', ''] }
                     ]
                 }
             },
@@ -9733,7 +9733,7 @@ MorphinChanges.changes = {
             1
         ],
         dr: [
-            '10/Magic and Slashing'
+            { amount: 10, operator: false, types: ['magic', 'slashing'] }
         ],
         eres: [
             { amount: 10, operator: true, types: ['cold', ''] },
@@ -9774,7 +9774,7 @@ MorphinChanges.changes = {
             { value: 5, counter: ['cold'] }
         ],
         dr: [
-            '15/Magic and Slashing'
+            { amount: 15, operator: false, types: ['magic', 'slashing'] }
         ],
         eres: [
             { amount: 30, operator: true, types: ['electric', ''] }
@@ -10012,7 +10012,7 @@ MorphinChanges.changes = {
             1, 7
         ],
         dr: [
-            '10/Cold Iron'
+            { amount: 10, operator: true, types: ['coldiron', ''] }
         ]
     },
     'Fungus Queen': {
@@ -10028,7 +10028,7 @@ MorphinChanges.changes = {
             1, 7
         ],
         dr: [
-            '10/Cold Iron or Good'
+            { amount: 10, operator: true, types: ['coldiron', 'good'] }
         ],
         di: [
             'electric'
