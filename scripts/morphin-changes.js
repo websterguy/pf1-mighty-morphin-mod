@@ -1765,7 +1765,7 @@ MorphinChanges.changes = {
                     size: 'sm',
                     attacks: [
                         { name: 'Bite', diceCount: 1, diceSize: 3, count: 1 },
-                        { name: 'Tentacles', diceCount: 0, diceSize: 0, count: 1, special: ['Grab'], claw: false }
+                        { name: 'Tentacle', diceCount: 0, diceSize: 0, count: 1, special: ['Grab'], claw: false }
                     ],
                     speed: {
                         swim: 30
@@ -1785,7 +1785,7 @@ MorphinChanges.changes = {
                 15: {
                     attacks: [
                         { name: 'Bite', diceCount: 1, diceSize: 3, count: 1 },
-                        { name: 'Tentacles', diceCount: 0, diceSize: 0, count: 1, special: ['Grab'], claw: true }
+                        { name: 'Tentacle', diceCount: 0, diceSize: 0, count: 1, special: ['Grab'], claw: true }
                     ],
                     specialAttack: [
                         { name: 'InkCloud', diceCount: 0, diceSize: 0, count: 1, special: ['Ink'], attackType: 'none', claw: false }
@@ -3223,7 +3223,7 @@ MorphinChanges.changes = {
         size: 'sm',
         attacks: [
             { name: 'Bite', diceCount: 1, diceSize: 3, count: 1, special: ['Poison'] },
-            { name: 'Tentacles', diceCount: 0, diceSize: 0, count: 1, special: ['Grab'] }
+            { name: 'Tentacle', diceCount: 0, diceSize: 0, count: 1, special: ['Grab'] }
         ],
         speed: {
             land: 20,
@@ -5048,7 +5048,7 @@ MorphinChanges.changes = {
         attacks: [
             { name: 'Bite', diceCount: 2, diceSize: 6, count: 1 },
             { name: 'Arm', diceCount: 1, diceSize: 6, count: 1 },
-            { name: 'Tentacles', diceCount: 4, diceSize: 6, count: 1, special: ['Grab', 'Constrict'] }
+            { name: 'Tentacle', diceCount: 4, diceSize: 6, count: 1, special: ['Grab', 'Constrict'] }
         ],
         speed: {
             swim: 60

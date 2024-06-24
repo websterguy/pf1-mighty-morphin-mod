@@ -1441,6 +1441,7 @@ export class MightyMorphinApp {
         let subAction = duplicate(globalThis.pf1.components.ItemAction.defaultData);
 
 
+        subAction['naturalAttack']['primaryAttack'] = ((attack.primaryAttack || (MightyMorphinApp.naturalAttacks[attack.name]?.primaryAttack)) || onlyAttack);
         subAction['actionType'] = attack.attackType || 'mwak'; // melee, ranged, save, combat man., etc
         subAction['activation']['type'] = 'attack';
         subAction['activation']['unchained'] = { 'cost': 1, 'type': 'action' };
@@ -1515,7 +1516,7 @@ export class MightyMorphinApp {
 
 
         // ability damage multiplier is the passed multiplier or 1.5 for an only attack, 1 for a primary attack, .5 secondary
-        subAction['ability']['damageMult'] = attack.mult || (onlyAttack ? 1.5 : (attackData.system.primaryAttack) ? 1 : 0.5);
+        subAction['ability']['damageMult'] = attack.mult || (onlyAttack ? 1.5 : 1);
 
         // Create attack sizeRoll with the passed dice stats, the actor's size, and the attack type's damage type (or '' if attack name not in naturalAttacks)
         if (attack.diceSize !== 0) {
