@@ -109,7 +109,6 @@ export class MorphinFormOfTheDragon extends MorphinPolymorphDialog {
 
         // Process changes to speed, limited by maximum the spell level allows
         const speeds = this.formData.speed;
-        data.speedChanges = this.processSpeeds(speeds);
 
         /**
          * change damage of natural attacks for level 1 and 2
@@ -139,6 +138,11 @@ export class MorphinFormOfTheDragon extends MorphinPolymorphDialog {
                 oldBreath['charges'] = 1;
                 this.formData.effect['Breath'].note = this.formData.effect['Breath'].note.replace(/100/, '60');
             }
+
+            speeds.fly =  {
+                base: 60,
+                maneuverability: 'poor'
+            };
         }
         else if (this.level === 2) {
             this.formData.attacks = [
@@ -168,12 +172,24 @@ export class MorphinFormOfTheDragon extends MorphinPolymorphDialog {
             this.formData.dr = [
                 '5/Magic'
             ];
+
+            speeds.fly =  {
+                base: 90,
+                maneuverability: 'poor'
+            };
         }
         else if (this.level === 3) {
             this.formData.dr = [
                 '10/Magic'
             ];
+            
+            speeds.fly =  {
+                base: 120,
+                maneuverability: 'poor'
+            };
         }
+        
+        data.speedChanges = this.processSpeeds(speeds);
 
         data.attacks = this.processAttacks();
 
