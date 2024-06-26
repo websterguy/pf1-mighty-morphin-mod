@@ -1,11 +1,8 @@
-2024/06/24-17:27:54.864 a610 Delete type=3 #1
-2024/06/25-20:08:26.999 9020 Level-0 table #595: started
-2024/06/25-20:08:26.999 9020 Level-0 table #595: 0 bytes OK
-2024/06/25-20:08:27.003 9020 Delete type=0 #593
-2024/06/25-20:08:27.008 9020 Manual compaction at level-0 from '!macros!DYCrMAwEKzOOAFkd' @ 72057594037927935 : 1 .. '!macros!tOeKncsmf6bJRT27' @ 0 : 0; will stop at '!macros!tOeKncsmf6bJRT27' @ 24 : 1
-2024/06/25-20:08:27.008 9020 Compacting 1@0 + 0@1 files
-2024/06/25-20:08:27.012 9020 Generated table #596@0: 4 keys, 8000 bytes
-2024/06/25-20:08:27.012 9020 Compacted 1@0 + 0@1 files => 8000 bytes
-2024/06/25-20:08:27.016 9020 compacted to: files[ 0 1 0 0 0 0 0 ]
-2024/06/25-20:08:27.016 9020 Delete type=2 #477
-2024/06/25-20:08:27.016 9020 Manual compaction at level-0 from '!macros!tOeKncsmf6bJRT27' @ 24 : 1 .. '!macros!tOeKncsmf6bJRT27' @ 0 : 0; will stop at (end)
+2024/06/26-00:01:18.058 2e4 Log #589: 0 ops saved to Table #599 OK
+2024/06/26-00:01:18.058 2e4 Archiving C:\Users\Kevin\AppData\Local\FoundryVTT\Data\modules\pf1-mighty-morphin\packs\macros/000589.log: OK
+2024/06/26-00:01:18.059 2e4 Log #598: 0 ops saved to Table #600 OK
+2024/06/26-00:01:18.059 2e4 Archiving C:\Users\Kevin\AppData\Local\FoundryVTT\Data\modules\pf1-mighty-morphin\packs\macros/000598.log: OK
+2024/06/26-00:01:18.060 2e4 Table #596: 4 entries OK
+2024/06/26-00:01:18.064 2e4 Archiving C:\Users\Kevin\AppData\Local\FoundryVTT\Data\modules\pf1-mighty-morphin\packs\macros/MANIFEST-000588: OK
+2024/06/26-00:01:18.064 2e4 Archiving C:\Users\Kevin\AppData\Local\FoundryVTT\Data\modules\pf1-mighty-morphin\packs\macros/MANIFEST-000597: OK
+2024/06/26-00:01:18.070 2e4 **** Repaired leveldb C:\Users\Kevin\AppData\Local\FoundryVTT\Data\modules\pf1-mighty-morphin\packs\macros; recovered 1 files; 8000 bytes. Some data may have been lost. ****
