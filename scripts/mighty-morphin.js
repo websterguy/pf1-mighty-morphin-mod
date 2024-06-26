@@ -75,7 +75,7 @@ export class MightyMorphinApp {
             for (let i = 0; i < changeData.changes.length; i++) {
                 const change = changeData.changes[i];
 
-                if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
+                if (!!change.target && change.target === 'str') strChange += parseInt(change.formula);
             }
 
             let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
@@ -83,23 +83,25 @@ export class MightyMorphinApp {
 
             // Create the buff on the actor, change the icon, populate the changes, turn it on
             let buffAdded = await shifter.createEmbeddedDocuments('Item', [buff]);
-            await buffAdded[0].update({ 'system.duration': durationData, 'system.changes': changes, 'system.active': true });
+            await pf1.components.ItemChange.create(changes, {parent: buffAdded[0]});
+            await buffAdded[0].update({ 'system.duration': durationData });
+            await buffAdded[0].setActive(true);
 
         }
         else {
-            let oldChanges = buff.system.changes;
-            let newChanges = [];
-            
             let strChange = 0;
-            for (const change of oldChanges) {
-                if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
-                if (!!change.subTarget && change.subTarget !== 'carryStr' && change.subTarget !== 'carryMult') newChanges.push(change);
+            for (let i = 0; i < changeData.changes.length; i++) {
+                const change = changeData.changes[i];
+
+                if (!!change.target && change.target === 'str') strChange += parseInt(change.formula);
             }
 
             let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
-            newChanges = newChanges.concat(carryBonusChanges);
-
-            buff.update({ 'system.duration': durationData, 'system.changes': newChanges, 'system.active': true });
+            let changes = changeData.changes.concat(carryBonusChanges);
+            
+            await buff.update({ 'system.duration': durationData, 'system.changes': [] });
+            await pf1.components.ItemChange.create(changes, {parent: buff});
+            await buff.setActive(true);
 
         }
 
@@ -209,7 +211,7 @@ export class MightyMorphinApp {
             for (let i = 0; i < changeData.changes.length; i++) {
                 const change = changeData.changes[i];
 
-                if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
+                if (!!change.target && change.target === 'str') strChange += parseInt(change.formula);
             }
 
             let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
@@ -217,23 +219,25 @@ export class MightyMorphinApp {
 
             // Create the buff on the actor, change the icon, populate the changes, turn it on
             let buffAdded = await shifter.createEmbeddedDocuments('Item', [buff]);
-            await buffAdded[0].update({ 'system.duration': durationData, 'system.changes': changes, 'system.active': true });
+            await pf1.components.ItemChange.create(changes, {parent: buffAdded[0]});
+            await buffAdded[0].update({ 'system.duration': durationData });
+            await buffAdded[0].setActive(true);
+
         }
         else {
-
-            let oldChanges = buff.system.changes;
-            let newChanges = [];
-            
             let strChange = 0;
-            for (const change of oldChanges) {
-                if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
-                if (!!change.subTarget && change.subTarget !== 'carryStr' && change.subTarget !== 'carryMult') newChanges.push(change);
+            for (let i = 0; i < changeData.changes.length; i++) {
+                const change = changeData.changes[i];
+
+                if (!!change.target && change.target === 'str') strChange += parseInt(change.formula);
             }
 
             let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
-            newChanges = newChanges.concat(carryBonusChanges);
-
-            buff.update({ 'system.duration': durationData, 'system.changes': newChanges, 'system.active': true });
+            let changes = changeData.changes.concat(carryBonusChanges);
+            
+            await buff.update({ 'system.duration': durationData, 'system.changes': [] });
+            await pf1.components.ItemChange.create(changes, {parent: buff});
+            await buff.setActive(true);
 
         }
 
@@ -341,7 +345,7 @@ export class MightyMorphinApp {
             for (let i = 0; i < changeData.changes.length; i++) {
                 const change = changeData.changes[i];
 
-                if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
+                if (!!change.target && change.target === 'str') strChange += parseInt(change.formula);
             }
 
             let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
@@ -349,23 +353,25 @@ export class MightyMorphinApp {
 
             // Create the buff on the actor, change the icon, populate the changes, turn it on
             let buffAdded = await shifter.createEmbeddedDocuments('Item', [buff]);
-            await buffAdded[0].update({ 'system.duration': durationData, 'system.changes': changes, 'system.active': true });
+            await pf1.components.ItemChange.create(changes, {parent: buffAdded[0]});
+            await buffAdded[0].update({ 'system.duration': durationData });
+            await buffAdded[0].setActive(true);
 
         }
         else {
-            let oldChanges = buff.system.changes;
-            let newChanges = [];
-            
             let strChange = 0;
-            for (const change of oldChanges) {
-                if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
-                if (!!change.subTarget && change.subTarget !== 'carryStr' && change.subTarget !== 'carryMult') newChanges.push(change);
+            for (let i = 0; i < changeData.changes.length; i++) {
+                const change = changeData.changes[i];
+
+                if (!!change.target && change.target === 'str') strChange += parseInt(change.formula);
             }
 
             let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
-            newChanges = newChanges.concat(carryBonusChanges);
-
-            buff.update({ 'system.duration': durationData, 'system.changes': newChanges, 'system.active': true});
+            let changes = changeData.changes.concat(carryBonusChanges);
+            
+            await buff.update({ 'system.duration': durationData, 'system.changes': [] });
+            await pf1.components.ItemChange.create(changes, {parent: buff});
+            await buff.setActive(true);
 
         }
 
@@ -486,7 +492,7 @@ export class MightyMorphinApp {
             for (let i = 0; i < changeData.changes.length; i++) {
                 const change = changeData.changes[i];
 
-                if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
+                if (!!change.target && change.target === 'str') strChange += parseInt(change.formula);
             }
 
             let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
@@ -494,21 +500,26 @@ export class MightyMorphinApp {
 
             // Create the buff on the actor, change the icon, populate the changes, turn it on
             let buffAdded = await shifter.createEmbeddedDocuments('Item', [buff]);
-            await buffAdded[0].update({ 'system.duration': durationData, 'system.changes': changes, 'system.active': true });
+            await pf1.components.ItemChange.create(changes, {parent: buffAdded[0]});
+            await buffAdded[0].update({ 'system.duration': durationData });
+            await buffAdded[0].setActive(true);
 
         }
-        else {                
+        else {
             let strChange = 0;
             for (let i = 0; i < changeData.changes.length; i++) {
                 const change = changeData.changes[i];
 
-                if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
+                if (!!change.target && change.target === 'str') strChange += parseInt(change.formula);
             }
 
             let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
             let changes = changeData.changes.concat(carryBonusChanges);
+            
+            await buff.update({ 'system.duration': durationData, 'system.changes': [] });
+            await pf1.components.ItemChange.create(changes, {parent: buff});
+            await buff.setActive(true);
 
-            buff.update({ 'system.duration': durationData, 'system.changes': changes, 'system.active': true });
         }
 
 
@@ -634,7 +645,7 @@ export class MightyMorphinApp {
             for (let i = 0; i < changeData.changes.length; i++) {
                 const change = changeData.changes[i];
 
-                if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
+                if (!!change.target && change.target === 'str') strChange += parseInt(change.formula);
             }
 
             let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
@@ -642,23 +653,26 @@ export class MightyMorphinApp {
 
             // Create the buff on the actor, change the icon, populate the changes, turn it on
             let buffAdded = await shifter.createEmbeddedDocuments('Item', [buff]);
-            await buffAdded[0].update({ 'system.duration': durationData, 'system.changes': changes, 'system.active': true });
+            await pf1.components.ItemChange.create(changes, {parent: buffAdded[0]});
+            await buffAdded[0].update({ 'system.duration': durationData });
+            await buffAdded[0].setActive(true);
 
         }
         else {
-            let oldChanges = buff.system.changes;
-            let newChanges = [];
-            
             let strChange = 0;
-            for (const change of oldChanges) {
-                if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
-                if (!!change.subTarget && change.subTarget !== 'carryStr' && change.subTarget !== 'carryMult') newChanges.push(change);
+            for (let i = 0; i < changeData.changes.length; i++) {
+                const change = changeData.changes[i];
+
+                if (!!change.target && change.target === 'str') strChange += parseInt(change.formula);
             }
 
             let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
-            newChanges = newChanges.concat(carryBonusChanges);
+            let changes = changeData.changes.concat(carryBonusChanges);
+            
+            await buff.update({ 'system.duration': durationData, 'system.changes': [] });
+            await pf1.components.ItemChange.create(changes, {parent: buff});
+            await buff.setActive(true);
 
-            buff.update({ 'system.duration': durationData, 'system.changes': newChanges, 'system.active': true });
         }
 
         let armorChangeFlag = [];
@@ -770,7 +784,7 @@ export class MightyMorphinApp {
             for (let i = 0; i < changeData.changes.length; i++) {
                 const change = changeData.changes[i];
 
-                if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
+                if (!!change.target && change.target === 'str') strChange += parseInt(change.formula);
             }
 
             let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
@@ -778,23 +792,25 @@ export class MightyMorphinApp {
 
             // Create the buff on the actor, change the icon, populate the changes, turn it on
             let buffAdded = await shifter.createEmbeddedDocuments('Item', [buff]);
-            await buffAdded[0].update({ 'system.duration': durationData, 'system.changes': changes, 'system.active': true });
+            await pf1.components.ItemChange.create(changes, {parent: buffAdded[0]});
+            await buffAdded[0].update({ 'system.duration': durationData });
+            await buffAdded[0].setActive(true);
 
         }
         else {
-            let oldChanges = buff.system.changes;
-            let newChanges = [];
-            
             let strChange = 0;
-            for (const change of oldChanges) {
-                if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
-                if (!!change.subTarget && change.subTarget !== 'carryStr' && change.subTarget !== 'carryMult') newChanges.push(change);
+            for (let i = 0; i < changeData.changes.length; i++) {
+                const change = changeData.changes[i];
+
+                if (!!change.target && change.target === 'str') strChange += parseInt(change.formula);
             }
 
             let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
-            newChanges = newChanges.concat(carryBonusChanges);
-
-            buff.update({ 'system.duration': durationData, 'system.changes': newChanges, 'system.active': true });
+            let changes = changeData.changes.concat(carryBonusChanges);
+            
+            await buff.update({ 'system.duration': durationData, 'system.changes': [] });
+            await pf1.components.ItemChange.create(changes, {parent: buff});
+            await buff.setActive(true);
 
         }
 
@@ -907,7 +923,7 @@ export class MightyMorphinApp {
             for (let i = 0; i < changeData.changes.length; i++) {
                 const change = changeData.changes[i];
 
-                if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
+                if (!!change.target && change.target === 'str') strChange += parseInt(change.formula);
             }
 
             let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
@@ -915,20 +931,26 @@ export class MightyMorphinApp {
 
             // Create the buff on the actor, change the icon, populate the changes, turn it on
             let buffAdded = await shifter.createEmbeddedDocuments('Item', [buff]);
-            await buffAdded[0].update({ 'system.duration': durationData, 'system.changes': changes, 'system.active': true });
+            await pf1.components.ItemChange.create(changes, {parent: buffAdded[0]});
+            await buffAdded[0].update({ 'system.duration': durationData });
+            await buffAdded[0].setActive(true);
+
         }
         else {
             let strChange = 0;
             for (let i = 0; i < changeData.changes.length; i++) {
                 const change = changeData.changes[i];
 
-                if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
+                if (!!change.target && change.target === 'str') strChange += parseInt(change.formula);
             }
 
             let carryBonusChanges = MightyMorphinApp.generateCapacityChange(shifter, newSize, strChange);
             let changes = changeData.changes.concat(carryBonusChanges);
+            
+            await buff.update({ 'system.duration': durationData, 'system.changes': [] });
+            await pf1.components.ItemChange.create(changes, {parent: buff});
+            await buff.setActive(true);
 
-            buff.update({ 'system.duration': durationData, 'system.changes': changes, 'system.active': true });
         }
 
         let armorChangeFlag = [];
@@ -1122,8 +1144,9 @@ export class MightyMorphinApp {
 
         
         const itemsAdded = await shifter.createEmbeddedDocuments('Item', itemsToEmbed);
-        buff = shifter.items.find(o => o.type === 'buff' && o.name === source);
-        buff.update({ 'system.duration': durationData, 'system.changes': changes, 'system.contextNotes': contextNotes, 'system.active': true });
+        buff = shifter.items.find(o => o.type === 'buff' && o.name === source);        
+        await pf1.components.ItemChange.create(changes, {parent: buff});
+        await buff.update({ 'system.duration': durationData, 'system.contextNotes': contextNotes, 'system.active': true });
 
         // Update the actor size and store flags
         let updates = { 'flags.pf1-mighty-morphin': { } };
@@ -1394,12 +1417,13 @@ export class MightyMorphinApp {
     static generateCapacityChange(shifter, newSize, strChange) {
         // Set up adjustments to strength carry bonus and carry multiplier so actor's encumbrance doesn't change
         // Subtract the buff strength change from current carry bonus, decreasing carry strength if buff adds or increasing carry strength if buff subtracts
-        let carryBonusChange = (!!shifter.system.details.carryCapacity.bonus.user ? shifter.system.details.carryCapacity.bonus.user : 0) - strChange ;
+        console.log(strChange);
+        let carryBonusChange = (!!shifter.system.details.carryCapacity.bonus.total ? shifter.system.details.carryCapacity.bonus.total : 0) - strChange;
         // Counteract the size change's natural increase or decrease to carry multiplier
         let carryMultChange = (shifter.system.details.carryCapacity.multiplier.total * CONFIG.PF1.encumbranceMultipliers.normal[shifter.system.traits.size] / CONFIG.PF1.encumbranceMultipliers.normal[newSize]) - shifter.system.details.carryCapacity.multiplier.total;
         let changes = [
-            { formula: carryBonusChange.toString(), operator: 'add', subTarget: 'carryStr', modifier: 'untyped', priority: 0, value: carryBonusChange },
-            { formula: carryMultChange.toString(), operator: 'add', subTarget: 'carryMult', modifier: 'untyped', priority: 0, value: carryMultChange }
+            { formula: carryBonusChange.toString(), operator: 'set', target: 'carryStr', modifier: 'untyped', priority: 0, value: carryBonusChange },
+            { formula: carryMultChange.toString(), operator: 'add', target: 'carryMult', modifier: 'untyped', priority: 0, value: carryMultChange }
         ];
         return changes;
     }

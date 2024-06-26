@@ -207,7 +207,7 @@ export class MorphinPolymorphDialog extends FormApplication {
         for (let i = 0; i < this.changes.length; i++) {
             const change = this.changes[i];
 
-            if (!!change.target && change.target === 'ability' && change.subTarget === 'str') strChange += parseInt(change.formula);
+            if (!!change.target && change.target === 'str') strChange += parseInt(change.formula);
         }
 
         // Set up adjustments to strength carry bonus and carry multiplier so actor's encumbrance doesn't change
@@ -274,7 +274,7 @@ export class MorphinPolymorphDialog extends FormApplication {
         for (let i = 0; i < speedTypes.length; i++) {
             // Find the speed the form gives for the type
             let speed = this.speeds[speedTypes[i]];
-            let speedChange = {formula: '0', operator: 'set', subTarget: speedTypes[i] + 'Speed', modifier: 'base', priority: 100, value: 0};
+            let speedChange = {formula: '0', operator: 'set', target: speedTypes[i] + 'Speed', modifier: 'base', priority: 100, value: 0};
             if (!!speed) { // if the form has this speed add it
                 if (speedTypes[i] === 'fly') {
                     maneuverabilityChange = {'system.attributes.speed.fly.maneuverability': speed.maneuverability};
@@ -608,7 +608,7 @@ export class MorphinPolymorphDialog extends FormApplication {
             durationData = {value: this.durationLevel.toString(), units: (this.source === game.i18n.localize('MMMOD.Buffs.WildShape.Name') || this.source === game.i18n.localize('MMMOD.Buffs.ShifterWildShape.Name') ? 'hour' : 'minute')};
         }
         
-        let buffUpdate = [{ _id: buff.id, 'system.duration': durationData, 'system.changes': this.changes, 'system.contextNotes': this.contextNotes,'system.active': true }];
+        let buffUpdate = [{ _id: buff.id, 'system.duration': durationData, 'system.changes': [], 'system.contextNotes': this.contextNotes, 'system.active': true }];
 
         // Set the flags for all changes made
         let dataFlag = mergeObject({ 'system.traits.size': this.actorSize }, mergeObject(originalSkillMod, mergeObject(originalManeuverability, originalSenses)));
@@ -630,6 +630,9 @@ export class MorphinPolymorphDialog extends FormApplication {
             await shifter.updateEmbeddedDocuments('Item', armorToChange);
         }
         else await shifter.updateEmbeddedDocuments('Item', buffUpdate);
+
+        await pf1.components.ItemChange.create(this.changes, {parent: buff});
+
         canvas.tokens.releaseAll();
         if (!!shifter.token) shifter.token.object.control();
         else canvas.tokens.ownedTokens.find(o => o.actor.id === fromUuidSync(this.actorId).id).control();
@@ -921,7 +924,7 @@ export class MorphinPolymorphDialog extends FormApplication {
                 if (!!change.target && change.target === 'ability') {
                     if (polymorphBase.length > 0) polymorphBase += ', '; // comma between entries
                     // text output of the stat (capitalized), and a + in front of positive numbers
-                    polymorphBase += `${ game.i18n.localize('MMMOD.UI.' + change.subTarget.capitalize()) } ${ (change.value > 0 ? '+' : '') }${ change.value }`;
+                    polymorphBase += `${ game.i18n.localize('MMMOD.UI.' + change.target.capitalize()) } ${ (change.value > 0 ? '+' : '') }${ change.value }`;
                 }
             }
         }
@@ -939,12 +942,12 @@ export class MorphinPolymorphDialog extends FormApplication {
             const change = this.changes[i];
 
             if (!!change.target && change.target === 'ability') { // stat change
-                scoreChanges.push(`${ game.i18n.localize('MMMOD.UI.' + change.subTarget.capitalize()) } ${ (change.value > 0 ? '+' : '') }${ change.value }`);
+                scoreChanges.push(`${ game.i18n.localize('MMMOD.UI.' + change.target.capitalize()) } ${ (change.value > 0 ? '+' : '') }${ change.value }`);
             }
-            else if (!change.target && change.subTarget == 'nac') { // natural AC change
+            else if (!!change.target && change.target == 'nac') { // natural AC change
                 scoreChanges.push(`${ game.i18n.localize('MMMOD.UI.NaturalAC') } ${ (change.value > 0 ? '+' : '') }${ change.value }`);
             }
-            else if (!change.target && change.subTarget === 'landSpeed') {
+            else if (!!change.target && change.target === 'landSpeed') {
                 scoreChanges.push(`${ game.i18n.localize('MMMOD.UI.LandSpeed') } ${ (change.value > 0 ? '+' : '') }${ change.value }`);
             }
         }
