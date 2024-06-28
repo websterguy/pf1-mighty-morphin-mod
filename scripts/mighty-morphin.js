@@ -1496,10 +1496,11 @@ export class MightyMorphinApp {
         // Create extra attacks if the attack count is over 1, label the extras starting at 2 (Claw 2)
         let extraAttacks = [];
         for (let i = 1; i < attack.count; i++) {
-            extraAttacks = extraAttacks.concat([['', `${ game.i18n.localize('MMMOD.Attacks.' + attack.name) } ${ i + 1 }`]]);
+            extraAttacks.push({formula: '', name: `${ game.i18n.localize('MMMOD.Attacks.' + attack.name) } ${ i + 1 }`});
         }
         if (!!extraAttacks.length) {
-            subAction['attackParts'] = extraAttacks;
+            subAction['extraAttacks']['type'] = 'custom';
+            subAction['extraAttacks']['manual'] = extraAttacks;
             subAction['attackName'] = `${ game.i18n.localize('MMMOD.Attacks.' + attack.name) } 1`;
         }
 
