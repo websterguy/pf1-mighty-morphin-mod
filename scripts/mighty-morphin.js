@@ -1483,7 +1483,7 @@ export class MightyMorphinApp {
         subAction['range']['units'] = attack.attackType === 'none' ? 'none' : attack.attackType === 'rwak' ? 'ft' : 'melee'; // if ranged attack, range in feet. Else melee
         subAction['ability']['critRange'] = attack.crit || 20;
         subAction['ability']['critMult'] = attack.critMult || 2;
-        subAction['range']['maxIncrements'] = attack.increment || '';
+        subAction['range']['maxIncrements'] = attack.increment || 1;
         attackData['system']['uses']['per'] = attack.charges ? 'day' : '';
         attackData['system']['uses']['maxFormula'] = '' + (attack.charges ?? '');
         attackData['system']['uses']['value'] = ((!!attack.charges && typeof(attack.charges) === 'string') ? RollPF.safeRoll(attack.charges, actorData.getRollData()).total : attack.charges) || 0;
