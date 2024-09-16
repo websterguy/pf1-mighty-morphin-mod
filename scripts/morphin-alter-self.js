@@ -12,8 +12,8 @@ export class MorphinAlterSelf extends MorphinPolymorphDialog {
      * @param {string} actorId The id of the actor that will change shape
      * @param {string} source The source of the elemental body effect
      */
-    constructor(level, durationLevel, actorId, source, {planarType = null, energizedTypes = null, mutatedType = null} = {}) {
-        super(level, durationLevel, actorId, source, {planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType});
+    constructor(level, durationLevel, actorId, source, nameOverride, {planarType = null, energizedTypes = null, mutatedType = null} = {}) {
+        super(level, durationLevel, actorId, source, nameOverride, {planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType});
         this.spell = 'alterSelf';
 
         // Add all possible sizes for the given spell level

@@ -13,8 +13,8 @@ export class MorphinShifterShape extends MorphinPolymorphDialog {
      * @param {string} actorId The id of the actor that will change shape
      * @param {string} source The source of the beast shape effect
      */
-    constructor(durationLevel, actorId, source, {planarType = null, energizedTypes = null, mutatedType = null} = {}) {
-        super(1, 1, actorId, source, {planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType});
+    constructor(durationLevel, actorId, source, nameOverride, {planarType = null, energizedTypes = null, mutatedType = null} = {}) {
+        super(1, 1, actorId, source, nameOverride, {planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType});
 
         this.spell = 'shifterWildShape';
 

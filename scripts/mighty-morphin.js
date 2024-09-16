@@ -1575,7 +1575,7 @@ export class MightyMorphinApp {
      * @param {string} [form=null] The name of the form to change into. Must match option from morphin-options exactly.
      * @param {string} [image = null] The file name for a custom image file without the file extension
      */
-    static async beastShape({ level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.BeastShape.Name'), form = null, image = null, planarType = null, energizedTypes = null, mutatedType = null } = { }) {
+    static async beastShape({ level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.BeastShape.Name'), nameOverride = null, form = null, image = null, planarType = null, energizedTypes = null, mutatedType = null } = { }) {
         let shifter = MightyMorphinApp.getSingleActor();
 
         // Create beast shape form if a single actor chosen not already under effects from this mod
@@ -1593,7 +1593,7 @@ export class MightyMorphinApp {
             return ui.notifications.warn(`${ shifter.name } ${ game.i18n.localize('MMMOD.EffectWarning') } ${ shifter.flags['pf1-mighty-morphin'][existing].source }`);
         }
 
-        let dia = new MorphinBeastShape(level, durationLevel, shifter.uuid, source, { planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType });
+        let dia = new MorphinBeastShape(level, durationLevel, shifter.uuid, source, nameOverride, { planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType });
 
         if (!!image) {
             dia.customImage = image;
@@ -1633,7 +1633,7 @@ export class MightyMorphinApp {
      * @param {string} [form=null] The name of the form to change into. Must match option from morphin-options exactly.
      * @param {string} [image = null] The file name for a custom image file without the file extension
      */
-    static async magicalBeastShape({ level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.MagicalBeastShape.Name'), form = null, image = null, planarType = null, energizedTypes = null, mutatedType = null } = { }) {
+    static async magicalBeastShape({ level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.MagicalBeastShape.Name'), nameOverride = null, form = null, image = null, planarType = null, energizedTypes = null, mutatedType = null } = { }) {
         let shifter = MightyMorphinApp.getSingleActor();
 
         // Create beast shape form if a single actor chosen not already under effects from this mod
@@ -1651,7 +1651,7 @@ export class MightyMorphinApp {
             return ui.notifications.warn(`${ shifter.name } ${ game.i18n.localize('MMMOD.EffectWarning') } ${ shifter.flags['pf1-mighty-morphin'][existing].source }`);
         }
 
-        let dia = new MorphinMagicalBeastShape(level, durationLevel, shifter.uuid, source, { planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType });
+        let dia = new MorphinMagicalBeastShape(level, durationLevel, shifter.uuid, source, nameOverride, { planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType });
 
         if (!!image) {
             dia.customImage = image;
@@ -1687,7 +1687,7 @@ export class MightyMorphinApp {
      * @param {string} [form=null] The name of the form to change into. Must match option from morphin-options exactly.
      * @param {string} [image = null] The file name for a custom image file without the file extension
      */
-    static async elementalBody({ level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.ElementalBody.Name'), form = null, image = null, planarType = null, energizedTypes = null, mutatedType = null } = { }) {
+    static async elementalBody({ level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.ElementalBody.Name'), nameOverride = null, form = null, image = null, planarType = null, energizedTypes = null, mutatedType = null } = { }) {
         let shifter = MightyMorphinApp.getSingleActor();
 
         // Create elemental body form if a single actor chosen not already under effects from this mod
@@ -1705,7 +1705,7 @@ export class MightyMorphinApp {
             return ui.notifications.warn(`${ shifter.name } ${ game.i18n.localize('MMMOD.EffectWarning') } ${ shifter.flags['pf1-mighty-morphin'][existing].source }`);
         }
 
-        let dia = new MorphinElementalBody(level, durationLevel, shifter.uuid, source, { planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType });
+        let dia = new MorphinElementalBody(level, durationLevel, shifter.uuid, source, nameOverride, { planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType });
 
         if (!!image) {
             dia.customImage = image;
@@ -1741,7 +1741,7 @@ export class MightyMorphinApp {
      * @param {string} [form=null] The name of the form to change into. Must match option from morphin-options exactly.
      * @param {string} [image = null] The file name for a custom image file without the file extension
      */
-    static async plantShape({ level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.PlantShape.Name'), form = null, image = null, planarType = null, energizedTypes = null, mutatedType = null } = { }) {
+    static async plantShape({ level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.PlantShape.Name'), nameOverride = null, form = null, image = null, planarType = null, energizedTypes = null, mutatedType = null } = { }) {
         let shifter = MightyMorphinApp.getSingleActor();
 
         // Create plant shape form if a single actor chosen not already under effects from this mod
@@ -1759,7 +1759,7 @@ export class MightyMorphinApp {
             return ui.notifications.warn(`${ shifter.name } ${ game.i18n.localize('MMMOD.EffectWarning') } ${ shifter.flags['pf1-mighty-morphin'][existing].source }`);
         }
         
-        let dia = new MorphinPlantShape(level, durationLevel, shifter.uuid, source, { planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType });
+        let dia = new MorphinPlantShape(level, durationLevel, shifter.uuid, source, nameOverride, { planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType });
 
         if (!!image) {
             dia.customImage = image;
@@ -1795,7 +1795,7 @@ export class MightyMorphinApp {
      * @param {string} [form=null] The name of the form to change into. Must match option from morphin-options exactly.
      * @param {string} [image = null] The file name for a custom image file without the file extension
      */
-    static async verminShape({ level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.VerminShape.Name'), form = null, image = null, planarType = null, energizedTypes = null, mutatedType = null } = { }) {
+    static async verminShape({ level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.VerminShape.Name'), nameOverride = null, form = null, image = null, planarType = null, energizedTypes = null, mutatedType = null } = { }) {
         let shifter = MightyMorphinApp.getSingleActor();
 
         // Create plant shape form if a single actor chosen not already under effects from this mod
@@ -1813,7 +1813,7 @@ export class MightyMorphinApp {
             return ui.notifications.warn(`${ shifter.name } ${ game.i18n.localize('MMMOD.EffectWarning') } ${ shifter.flags['pf1-mighty-morphin'][existing].source }`);
         }
 
-        let dia = new MorphinVerminShape(level, durationLevel, shifter.uuid, source, { planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType });
+        let dia = new MorphinVerminShape(level, durationLevel, shifter.uuid, source, nameOverride, { planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType });
 
         if (!!image) {
             dia.customImage = image;
@@ -1849,7 +1849,7 @@ export class MightyMorphinApp {
      * @param {string} [form=null] The name of the form to change into. Must match option from morphin-options exactly.
      * @param {string} [image = null] The file name for a custom image file without the file extension
      */
-    static async giantForm({ level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.GiantForm.Name'), form = null, image = null, planarType = null, energizedTypes = null, mutatedType = null } = { }) {
+    static async giantForm({ level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.GiantForm.Name'), nameOverride = null, form = null, image = null, planarType = null, energizedTypes = null, mutatedType = null } = { }) {
         let shifter = MightyMorphinApp.getSingleActor();
 
         // Create plant shape form if a single actor chosen not already under effects from this mod
@@ -1867,7 +1867,7 @@ export class MightyMorphinApp {
             return ui.notifications.warn(`${ shifter.name } ${ game.i18n.localize('MMMOD.EffectWarning') } ${ shifter.flags['pf1-mighty-morphin'][existing].source }`);
         }
 
-        let dia = new MorphinGiantForm(level, durationLevel, shifter.uuid, source, { planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType });
+        let dia = new MorphinGiantForm(level, durationLevel, shifter.uuid, source, nameOverride, { planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType });
 
         if (!!image) {
             dia.customImage = image;
@@ -1903,7 +1903,7 @@ export class MightyMorphinApp {
      * @param {string} [form=null] The name of the form to change into. Must match option from morphin-options exactly.
      * @param {string} [image = null] The file name for a custom image file without the file extension
      */
-    static async alterSelf({ level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.AlterSelf.Name'), form = null, image = null, planarType = null, energizedTypes = null, mutatedType = null } = { }) {
+    static async alterSelf({ level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.AlterSelf.Name'), nameOverride = null, form = null, image = null, planarType = null, energizedTypes = null, mutatedType = null } = { }) {
         let shifter = MightyMorphinApp.getSingleActor();
 
         // Create plant shape form if a single actor chosen not already under effects from this mod
@@ -1921,7 +1921,7 @@ export class MightyMorphinApp {
             return ui.notifications.warn(`${ shifter.name } ${ game.i18n.localize('MMMOD.EffectWarning') } ${ shifter.flags['pf1-mighty-morphin'][existing].source }`);
         }
 
-        let dia = new MorphinAlterSelf(level, durationLevel, shifter.uuid, source, { planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType });
+        let dia = new MorphinAlterSelf(level, durationLevel, shifter.uuid, source, nameOverride, { planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType });
 
         if (!!image) {
             dia.customImage = image;
@@ -1958,7 +1958,7 @@ export class MightyMorphinApp {
      * @param {string} [form=null] The name of the form to change into. Must match option from morphin-options exactly.
      * @param {string} [image = null] The file name for a custom image file without the file extension
      */
-    static async formOfTheDragon({ level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.FormOfTheDragon.Name'), form = null, image = null, planarType = null, energizedTypes = null, mutatedType = null } = { }) {
+    static async formOfTheDragon({ level = 1, durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.FormOfTheDragon.Name'), nameOverride = null, form = null, image = null, planarType = null, energizedTypes = null, mutatedType = null } = { }) {
         let shifter = MightyMorphinApp.getSingleActor();
 
         // Create plant shape form if a single actor chosen not already under effects from this mod
@@ -1976,7 +1976,7 @@ export class MightyMorphinApp {
             return ui.notifications.warn(`${ shifter.name } ${ game.i18n.localize('MMMOD.EffectWarning') } ${ shifter.flags['pf1-mighty-morphin'][existing].source }`);
         }
 
-        let dia = new MorphinFormOfTheDragon(level, durationLevel, shifter.uuid, source, { planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType });
+        let dia = new MorphinFormOfTheDragon(level, durationLevel, shifter.uuid, source, nameOverride, { planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType });
 
         if (!!image) {
             dia.customImage = image;
@@ -2012,7 +2012,7 @@ export class MightyMorphinApp {
      * @param {string} [form=null] The name of the form to change into. Must match option from morphin-options exactly.
      * @param {string} [image = null] The file name for a custom image file without the file extension
      */
-    static async shifterWildShape({ durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.ShifterWildShape.Name'), aspect = null, form = null, image = null, planarType = null, energizedTypes = null, mutatedType = null } = { }) {
+    static async shifterWildShape({ durationLevel = 0, source = game.i18n.localize('MMMOD.Buffs.ShifterWildShape.Name'), nameOverride = null, aspect = null, form = null, image = null, planarType = null, energizedTypes = null, mutatedType = null } = { }) {
         let shifter = MightyMorphinApp.getSingleActor();
 
         if (!aspect) return ui.notifications.error(game.i18n.localize('MMMOD.MustSpecifyAspect'));
@@ -2039,7 +2039,7 @@ export class MightyMorphinApp {
 
         if (!shifter.classes.shifter) return ui.notifications.error('You must have the Shifter class to use this.');
     
-        let dia = new MorphinShifterShape( durationLevel, shifter.uuid, source, { planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType });
+        let dia = new MorphinShifterShape( durationLevel, shifter.uuid, source, nameOverride, { planarType: planarType, energizedTypes: energizedTypes, mutatedType: mutatedType });
 
         if (!!image) {
             dia.customImage = image;
