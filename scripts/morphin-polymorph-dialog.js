@@ -11,7 +11,7 @@ export class MorphinPolymorphDialog extends FormApplication {
      * @param {string} actorId The id of the actor that will change shape
      * @param {string} source The source of the polymorph effect
      */
-    constructor(level, durationLevel, actorId, source, {planarType = null, energizedTypes = null, mutatedType = null}) {
+    constructor(level, durationLevel, actorId, source, nameOverride, {planarType = null, energizedTypes = null, mutatedType = null}) {
         super();
         this.level = level;
         this.durationLevel = durationLevel;
@@ -19,6 +19,7 @@ export class MorphinPolymorphDialog extends FormApplication {
         this.actorSize = fromUuidSync(actorId).system.traits.size;
         this.sizes = {};
         this.source = source;
+        this.nameOverride = nameOverride;
         this.shapeOptions = {};
         this.contextNotes = [];
         this.wildShape = (this.source === game.i18n.localize('MMMOD.WildShape'));
@@ -187,7 +188,7 @@ export class MorphinPolymorphDialog extends FormApplication {
             delete buffData.system.templates;
 
             // Populate needed data
-            this.buffName = buffData.name = `${ this.source } (${ chosenForm })`;
+            this.buffName = buffData.name = `${ this.nameOverride ?? this.source } (${ chosenForm })`;
             buffData.type = 'buff';
             buffData.img = MorphinChanges.buffIcons[this.spell];
 
@@ -612,7 +613,7 @@ export class MorphinPolymorphDialog extends FormApplication {
 
         // Set the flags for all changes made
         let dataFlag = mergeObject({ 'system.traits.size': this.actorSize }, mergeObject(originalSkillMod, mergeObject(originalManeuverability, originalSenses)));
-        let flags = { source: this.source, buffName: this.source, data: dataFlag, armor: armorChangeFlag, itemsCreated: itemsCreated };
+        let flags = { source: this.source, buffName: this.nameOverride ?? this.source, data: dataFlag, armor: armorChangeFlag, itemsCreated: itemsCreated };
         if (!!this.macroCreatedId) flags.macroCreatedId = this.macroCreatedId;
         if (!!newImage) { dataFlag = mergeObject(dataFlag, oldProtoImage); };
         if (!!newImage) { flags = mergeObject(flags, { tokenImg: oldImage }); };
