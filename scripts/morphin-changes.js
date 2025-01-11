@@ -20,6 +20,13 @@ MorphinChanges.changes = {
         ],
         size: 1
     },
+    enlargePersonMythic: {
+        changes: [
+            { formula: '4', operator: 'add', target: 'str', modifier: 'size', priority: 0, value: 4 },
+            { formula: '-4', operator: 'add', target: 'dex', modifier: 'size', priority: 0, value: -4 }
+        ],
+        size: 2
+    },
     animalGrowth: {
         changes: [
             { formula: '8', operator: 'add', target: 'str', modifier: 'size', priority: 0, value: 8 },
@@ -60,6 +67,13 @@ MorphinChanges.changes = {
             { formula: '2', operator: 'add', target: 'dex', modifier: 'size', priority: 0, value: 2 }
         ],
         size: -1
+    },
+    reducePersonMythic: {
+        changes: [
+            { formula: '-4', operator: 'add', target: 'str', modifier: 'size', priority: 0, value: -4 },
+            { formula: '4', operator: 'add', target: 'dex', modifier: 'size', priority: 0, value: 4 }
+        ],
+        size: -2
     },
     maulerBattleForm: {
         changes: [
@@ -8222,11 +8236,7 @@ MorphinChanges.changes = {
             { name: 'Claw', diceCount: 1, diceSize: 8, count: 2 }
         ],
         speed: {
-            land: 10,
-            fly: {
-                base: 60,
-                maneuverability: 'good'
-            }
+            land: 30
         },
         senses: [
             1, 10
