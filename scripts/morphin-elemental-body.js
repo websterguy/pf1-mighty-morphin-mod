@@ -101,14 +101,14 @@ export class MorphinElementalBody extends MorphinPolymorphDialog {
         let data = {};
         this.chosenForm = this.shapeOptions.elemental.find(o => o.name === chosenForm);
 
-        this.formData = duplicate(MorphinChanges.changes[this.chosenForm.name]);
+        this.formData = foundry.utils.duplicate(MorphinChanges.changes[this.chosenForm.name]);
 
         // Process stat changes for polymorphing smaller than small or larger than medium
         data.polymorphBase = this.processPolymorphChanges();
 
         // Process stat changes from the spell based on spell level
         let chosenElement = chosenForm.split(' ')[1].toLowerCase();
-        this.changes = duplicate(MorphinChanges.changes[this.spell][chosenElement][this.level].changes);
+        this.changes = foundry.utils.duplicate(MorphinChanges.changes[this.spell][chosenElement][this.level].changes);
         data.scoreChanges = this.processScoreChanges();
 
         // Process changes to speed, limited by maximum the spell level allows

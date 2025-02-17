@@ -16,7 +16,7 @@ export class MorphinPolymorphDialog extends FormApplication {
         this.level = level;
         this.durationLevel = durationLevel;
         this.actorId = actorId;
-        this.actorSize = fromUuidSync(actorId).system.traits.size;
+        this.actorSize = fromUuidSync(actorId).system.traits.size.base;
         this.sizes = {};
         this.source = source;
         this.nameOverride = nameOverride;
@@ -72,7 +72,7 @@ export class MorphinPolymorphDialog extends FormApplication {
      */
     async applyChanges(event, chosenForm) {
         let shifter = fromUuidSync(this.actorId);
-        let newSize = this.shifterWildShape ? this.formData.size || shifter.system.traits.size : this.formData.size;
+        let newSize = this.shifterWildShape ? this.formData.size || shifter.system.traits.size.base : this.formData.size;
         let flagSlug = this.source.slugify();
 
         let itemsToEmbed = [];
@@ -83,7 +83,7 @@ export class MorphinPolymorphDialog extends FormApplication {
         const amuletItem = shifter.items.find(o => o.name.toLowerCase().includes(game.i18n.localize('MMMOD.AmuletOfMightyFists').toLowerCase()) && o.system.equipped);
         let bonusSearch = /\+(\d+)/.exec(amuletItem?.name);
         let amuletBonus = !!bonusSearch ? bonusSearch[1] : null;
-        this.attacks = this.shifterWildShape ? this.formData.attacks || [] : duplicate(this.formData.attacks || []);
+        this.attacks = this.shifterWildShape ? this.formData.attacks || [] : foundry.utils.duplicate(this.formData.attacks || []);
         for (let i = 0; i < this.attacks.length; i++) {
             let attack = this.attacks[i]; // get the attack data
             attack.enh = parseInt(amuletBonus);
@@ -181,11 +181,11 @@ export class MorphinPolymorphDialog extends FormApplication {
         if (!buff) {
             // Create buff Item template
             let buffData = { system: {} };
-            buffData.system = duplicate(game.system.template.Item.buff);
-            for (let t of buffData.system.templates) {
-                mergeObject(buffData.system, duplicate(game.system.template.Item.templates[t]));
+            buffData.system = foundry.utils.duplicate(game.system.template.Item.buff);
+            /* for (let t of buffData.system.templates) {
+                mergeObject(buffData.system, foundry.utils.duplicate(game.system.template.Item.templates[t]));
             }
-            delete buffData.system.templates;
+            delete buffData.system.templates; */
 
             // Populate needed data
             this.buffName = buffData.name = `${ this.nameOverride ?? this.source } (${ chosenForm })`;
@@ -193,7 +193,7 @@ export class MorphinPolymorphDialog extends FormApplication {
             buffData.img = MorphinChanges.buffIcons[this.spell];
 
             if (game.settings.get('pf1-mighty-morphin', 'createScriptCall')) {
-                let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
+                let scriptCall = foundry.utils.duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
                 scriptCall.category = 'toggle';
                 scriptCall.name = 'Revert Mighty Morphin Changes on Deactivation';
                 scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"][item.name.replace(/ \\(.*\\)/, "").slugify()]) game.mightyMorphin.revert({actor: actor, buff: item.name.replace(/ \\(.*\\)/, "")});';
@@ -269,22 +269,22 @@ export class MorphinPolymorphDialog extends FormApplication {
 
         // Process speed changes
         let originalManeuverability = { 'system.attributes.speed.fly.maneuverability': shifter.system.attributes.speed.fly.maneuverability };
-        let newSpeeds = duplicate(shifter.system.attributes.speed);
+        let newSpeeds = foundry.utils.duplicate(shifter.system.attributes.speed);
         let speedTypes = Object.keys(newSpeeds);
         let maneuverabilityChange = {};
         for (let i = 0; i < speedTypes.length; i++) {
             // Find the speed the form gives for the type
             let speed = this.speeds[speedTypes[i]];
-            let speedChange = {formula: '0', operator: 'set', target: speedTypes[i] + 'Speed', modifier: 'base', priority: 100, value: 0};
+            let speedChange = {formula: '0', operator: 'set', target: speedTypes[i] + 'Speed', modifier: 'base', priority: 100/*, value: 0*/};
             if (!!speed) { // if the form has this speed add it
                 if (speedTypes[i] === 'fly') {
                     maneuverabilityChange = {'system.attributes.speed.fly.maneuverability': speed.maneuverability};
                     speedChange.formula = speed.base.toString();
-                    speedChange.value = speed.base;
+                    /* speedChange.value = speed.base; */
                 }
                 else {
                     speedChange.formula = speed.toString();
-                    speedChange.value = speed;
+                    /* speedChange.value = speed; */
                 }
             }
             this.changes.push(speedChange);
@@ -299,7 +299,7 @@ export class MorphinPolymorphDialog extends FormApplication {
                 senseObject = mergeObject(senseObject, MorphinChanges.SENSES[Object.keys(MorphinChanges.SENSES)[sensesEnumValue - 1]].setting); // element 1 = SENSES[0] = LOWLIGHT
             }
         }
-        let sensesChanges = { 'system.traits.senses': duplicate(senseObject) };
+        let sensesChanges = { 'system.traits.senses': foundry.utils.duplicate(senseObject) };
 
         let sensesChangedAlready = (!!shifter.flags['pf1-mighty-morphin'] && MightyMorphinApp.nonPolymorphs.includes(Object.keys(shifter.flags['pf1-mighty-morphin'])[0]) && !!Object.values(shifter.flags['pf1-mighty-morphin'])[0].data?.system?.traits?.senses);
         let imageChangedAlready = (!!shifter.flags['pf1-mighty-morphin'] && MightyMorphinApp.nonPolymorphs.includes(Object.keys(shifter.flags['pf1-mighty-morphin'])[0]) && !!Object.values(shifter.flags['pf1-mighty-morphin'])[0].tokenImg);
@@ -310,7 +310,7 @@ export class MorphinPolymorphDialog extends FormApplication {
 
         if (sensesChangedAlready) {
             const senseData = Object.values(shifter.flags['pf1-mighty-morphin'])[0].data.system.traits.senses;
-            actualOriginalSenses = duplicate(senseData); // store original actor sense
+            actualOriginalSenses = foundry.utils.duplicate(senseData); // store original actor sense
             // process what combined senses should be
             for (const senseKey of Object.keys(sensesChanges['system.traits.senses'])) {
                 if (typeof(sensesChanges['system.traits.senses'][senseKey]) === 'number' && sensesChanges['system.traits.senses'][senseKey] < originalSenses['system.traits.senses'][senseKey]) sensesChanges['system.traits.senses'][senseKey] = originalSenses['system.traits.senses'][senseKey];
@@ -353,11 +353,11 @@ export class MorphinPolymorphDialog extends FormApplication {
         if (!!this.special) {
             // create blank template for misc feature
             let specialData = { system: {} };
-            specialData.system = duplicate(game.system.template.Item.feat);
-            for (let t of specialData.system.templates) {
-                mergeObject(specialData.system, duplicate(game.system.template.Item.templates[t]));
+            specialData.system = foundry.utils.duplicate(game.system.template.Item.feat);
+            /* for (let t of specialData.system.templates) {
+                mergeObject(specialData.system, foundry.utils.duplicate(game.system.template.Item.templates[t]));
             }
-            delete specialData.system.templates;
+            delete specialData.system.templates; */
             specialData.type = 'feat';
             specialData.system.featType = 'misc';
 
@@ -371,7 +371,7 @@ export class MorphinPolymorphDialog extends FormApplication {
                     itemsToEmbed.push(compendiumData);
                 }
                 else if (!!specialName) { // make sure it wasn't deleted for being invalid at this spell level
-                    let specialToCreate = duplicate(specialData);
+                    let specialToCreate = foundry.utils.duplicate(specialData);
                     specialToCreate.name = specialName;
                     itemsToEmbed.push(specialToCreate);
                 }
@@ -414,7 +414,7 @@ export class MorphinPolymorphDialog extends FormApplication {
                         }
                     }
                     if (!exists) {
-                        const resData = duplicate(MorphinChanges.changes.wildShape.energized.eres[0]);
+                        const resData = foundry.utils.duplicate(MorphinChanges.changes.wildShape.energized.eres[0]);
                         resData.types[0] = energy;
                         sensesChanges.system.traits.eres.value.push(resData);
                     }
@@ -424,7 +424,7 @@ export class MorphinPolymorphDialog extends FormApplication {
             // Planar Wild Shape
             let planarObject;
             if (!!this.planar && !!this.planarType) {
-                planarObject = duplicate(MorphinChanges.changes.wildShape.planar[this.planarType] || null);
+                planarObject = foundry.utils.duplicate(MorphinChanges.changes.wildShape.planar[this.planarType] || null);
                 if (!!planarObject) {
                     this.changes.push(...planarObject.changes);
 
@@ -483,7 +483,7 @@ export class MorphinPolymorphDialog extends FormApplication {
 
             if (!!this.energized && !!this.energizedTypes) {
                 for (const energy of this.energizedTypes) {
-                    let conditional = duplicate(MorphinChanges.changes.wildShape.energized.conditionals)[0];
+                    let conditional = foundry.utils.duplicate(MorphinChanges.changes.wildShape.energized.conditionals)[0];
                     conditional.name += ` (${game.i18n.localize('MMMOD.DamageTypes.' + energy)})`;
                     conditional.modifiers[0].damageType.values = [energy];
                     conditional.modifiers[0]._id = randomID();
@@ -580,17 +580,17 @@ export class MorphinPolymorphDialog extends FormApplication {
             // frightful
             if (shifter.items.getName(game.i18n.localize('MMMOD.FrightfulShape'))) {
                 for (let i = 0; i < MorphinChanges.changes.wildShape.frightful.specialAttack.length; i++) {
-                    let attack = duplicate(MorphinChanges.changes.wildShape.frightful.specialAttack[i]);
+                    let attack = foundry.utils.duplicate(MorphinChanges.changes.wildShape.frightful.specialAttack[i]);
 
                     itemsToEmbed.push(MightyMorphinApp.createAttack(this.actorId, newSize, attack, false, MorphinChanges.changes.wildShape.frightful.effect, this.source, 'misc'));
                 }
 
-                const macroToCreate = duplicate(MorphinChanges.changes.wildShape.frightful.macro);
+                const macroToCreate = foundry.utils.duplicate(MorphinChanges.changes.wildShape.frightful.macro);
                 macroToCreate.name = game.i18n.localize('MMMOD.FrightfulShape');
                 macroToCreate.command = macroToCreate.command.replace(/ACTORUUIDHERE/g, this.actorId).replace(/FRIGHTFULSHAPE/g, game.i18n.localize('MMMOD.FrightfulShapeAttackSuccess') + (!!this.source ? ` (${this.source})` : ''));
                 macroToCreate.ownership = shifter.ownership;
                 const createdMacro = await Macro.createDocuments([macroToCreate]);
-                const contextNote = duplicate(MorphinChanges.changes.wildShape.frightful.contextNotes[0]);
+                const contextNote = foundry.utils.duplicate(MorphinChanges.changes.wildShape.frightful.contextNotes[0]);
                 contextNote.text = contextNote.text.replace(/MACROIDHERE/g, createdMacro[0].id);
                 this.contextNotes.push(contextNote);
                 this.macroCreatedId = createdMacro[0].id;
@@ -918,7 +918,7 @@ export class MorphinPolymorphDialog extends FormApplication {
      */
     processPolymorphChanges() {
         let polymorphBase = '';
-        this.polymorphChanges = duplicate(MorphinChanges.changes.polymorphSize[this.actorSize] || {});
+        this.polymorphChanges = foundry.utils.duplicate(MorphinChanges.changes.polymorphSize[this.actorSize] || {});
         if (!!this.polymorphChanges) {
             for (let i = 0; i < this.polymorphChanges.length; i++) {
                 const change = this.polymorphChanges[i];

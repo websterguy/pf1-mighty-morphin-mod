@@ -99,13 +99,13 @@ export class MorphinPlantShape extends MorphinPolymorphDialog {
         let data = {};
         this.chosenForm = this.shapeOptions.plant.find(o => o.name === chosenForm);
 
-        this.formData = duplicate(MorphinChanges.changes[this.chosenForm.name]);
+        this.formData = foundry.utils.duplicate(MorphinChanges.changes[this.chosenForm.name]);
 
         // Process stat changes for polymorphing smaller than small or larger than medium
         data.polymorphBase = this.processPolymorphChanges();
 
         // Process stat changes from the spell based on spell level
-        this.changes = duplicate(MorphinChanges.changes[this.spell].plant[this.chosenForm.size].changes);
+        this.changes = foundry.utils.duplicate(MorphinChanges.changes[this.spell].plant[this.chosenForm.size].changes);
         data.scoreChanges = this.processScoreChanges();
 
         // Process changes to speed, limited by maximum the spell level allows
