@@ -42,7 +42,7 @@ export class MightyMorphinApp {
         }
 
         let buff = shifter.items.find(o => o.type === 'buff' && o.name === game.i18n.localize('MMMOD.Buffs.EnlargePerson.Name'));
-        let shifterSize = shifter.system.traits.size;
+        let shifterSize = shifter.system.traits.size.base;
 
         // Find the size the number of steps away from current, number of steps provided by changeData
         let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
@@ -56,13 +56,13 @@ export class MightyMorphinApp {
         // Create the buff if it doesn't exist, otherwise toggle it on
         if (!buff) {
             // Create template buff Item
-            let buffData = duplicate(game.system.template.Item.buff);
-            for (let t of buffData.templates) {
-                mergeObject(buffData, duplicate(game.system.template.Item.templates[t]));
+            let buffData = foundry.utils.duplicate(game.system.template.Item.buff);
+            /* for (let t of buffData.templates) {
+                mergeObject(buffData, foundry.utils.duplicate(game.system.template.Item.templates[t]));
             }
-            delete buffData.templates;
+            delete buffData.templates; */
             if (game.settings.get('pf1-mighty-morphin', 'createScriptCall')) {
-                let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
+                let scriptCall = foundry.utils.duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
                 scriptCall.category = 'toggle';
                 scriptCall.name = game.i18n.localize('MMMOD.DeactivateScriptCallName');
                 scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"][item.name.slugify()]) game.mightyMorphin.revert({actor: actor, buff: item.name});';
@@ -177,7 +177,7 @@ export class MightyMorphinApp {
         }
 
         let buff = shifter.items.find(o => o.type === 'buff' && o.name === game.i18n.localize('MMMOD.Buffs.AnimalGrowth.Name'));
-        let shifterSize = shifter.system.traits.size;
+        let shifterSize = shifter.system.traits.size.base;
 
         // Find the size the number of steps away from current, number of steps provided by changeData
         let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
@@ -192,13 +192,13 @@ export class MightyMorphinApp {
         // Create the buff if it doesn't exist, otherwise toggle it on
         if (!buff) {
             // Create template buff Item
-            let buffData = duplicate(game.system.template.Item.buff);
-            for (let t of buffData.templates) {
-                mergeObject(buffData, duplicate(game.system.template.Item.templates[t]));
+            let buffData = foundry.utils.duplicate(game.system.template.Item.buff);
+            /* for (let t of buffData.templates) {
+                mergeObject(buffData, foundry.utils.duplicate(game.system.template.Item.templates[t]));
             }
-            delete buffData.templates;
+            delete buffData.templates; */
             if (game.settings.get('pf1-mighty-morphin', 'createScriptCall')) {
-                let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
+                let scriptCall = foundry.utils.duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
                 scriptCall.category = 'toggle';
                 scriptCall.name = game.i18n.localize('MMMOD.DeactivateScriptCallName');
                 scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"][item.name.slugify()]) game.mightyMorphin.revert({actor: actor, buff: item.name});';
@@ -313,7 +313,7 @@ export class MightyMorphinApp {
         }
 
         let buff = shifter.items.find(o => o.type === 'buff' && o.name === game.i18n.localize('MMMOD.Buffs.LegendaryProportions.Name'));
-        let shifterSize = shifter.system.traits.size;
+        let shifterSize = shifter.system.traits.size.base;
         
         let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
 
@@ -326,13 +326,13 @@ export class MightyMorphinApp {
         // Create the buff if it doesn't exist, otherwise toggle it on
         if (!buff) {
             // Create template buff Item
-            let buffData = duplicate(game.system.template.Item.buff);
-            for (let t of buffData.templates) {
-                mergeObject(buffData, duplicate(game.system.template.Item.templates[t]));
+            let buffData = foundry.utils.duplicate(game.system.template.Item.buff);
+            /* for (let t of buffData.templates) {
+                mergeObject(buffData, foundry.utils.duplicate(game.system.template.Item.templates[t]));
             }
-            delete buffData.templates;
+            delete buffData.templates; */
             if (game.settings.get('pf1-mighty-morphin', 'createScriptCall')) {
-                let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
+                let scriptCall = foundry.utils.duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
                 scriptCall.category = 'toggle';
                 scriptCall.name = game.i18n.localize('MMMOD.DeactivateScriptCallName');
                 scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"][item.name.slugify()]) game.mightyMorphin.revert({actor: actor, buff: item.name});';
@@ -433,7 +433,7 @@ export class MightyMorphinApp {
      */
     static async frightfulAspect({ cl = 0, durationLevel = 0, image = null } = { }) {
         let shifter = MightyMorphinApp.getSingleActor(); // Ensure only a single actor is being processed
-        let changeData = duplicate(MorphinChanges.changes.frightfulAspect); // get buff data
+        let changeData = foundry.utils.duplicate(MorphinChanges.changes.frightfulAspect); // get buff data
         const flagSlug = game.i18n.localize('MMMOD.Buffs.FrightfulAspect.Name').slugify();
 
         let existing;
@@ -451,7 +451,7 @@ export class MightyMorphinApp {
         }
 
         let buff = shifter.items.find(o => o.type === 'buff' && o.name === game.i18n.localize('MMMOD.Buffs.FrightfulAspect.Name'));
-        let shifterSize = shifter.system.traits.size;
+        let shifterSize = shifter.system.traits.size.base;
 
         let newSize = changeData.size;
 
@@ -473,13 +473,13 @@ export class MightyMorphinApp {
         // Create the buff if it doesn't exist, otherwise toggle it on
         if (!buff) {
             // Create template buff Item
-            let buffData = duplicate(game.system.template.Item.buff);
-            for (let t of buffData.templates) {
-                mergeObject(buffData, duplicate(game.system.template.Item.templates[t]));
+            let buffData = foundry.utils.duplicate(game.system.template.Item.buff);
+            /* for (let t of buffData.templates) {
+                mergeObject(buffData, foundry.utils.duplicate(game.system.template.Item.templates[t]));
             }
-            delete buffData.templates;
+            delete buffData.templates; */
             if (game.settings.get('pf1-mighty-morphin', 'createScriptCall')) {
-                let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
+                let scriptCall = foundry.utils.duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
                 scriptCall.category = 'toggle';
                 scriptCall.name = game.i18n.localize('MMMOD.DeactivateScriptCallName');
                 scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"][item.name.slugify()]) game.mightyMorphin.revert({actor: actor, buff: item.name});';
@@ -607,7 +607,7 @@ export class MightyMorphinApp {
         }
 
         let buff = shifter.items.find(o => o.type === 'buff' && o.name === game.i18n.localize('MMMOD.Buffs.RighteousMight.Name'));
-        let shifterSize = shifter.system.traits.size;
+        let shifterSize = shifter.system.traits.size.base;
 
         let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
 
@@ -626,13 +626,13 @@ export class MightyMorphinApp {
         // Create the buff if it doesn't exist, otherwise toggle it on
         if (!buff) {
             // Create template buff Item
-            let buffData = duplicate(game.system.template.Item.buff);
-            for (let t of buffData.templates) {
-                mergeObject(buffData, duplicate(game.system.template.Item.templates[t]));
+            let buffData = foundry.utils.duplicate(game.system.template.Item.buff);
+            /* for (let t of buffData.templates) {
+                mergeObject(buffData, foundry.utils.duplicate(game.system.template.Item.templates[t]));
             }
-            delete buffData.templates;
+            delete buffData.templates; */
             if (game.settings.get('pf1-mighty-morphin', 'createScriptCall')) {
-                let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
+                let scriptCall = foundry.utils.duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
                 scriptCall.category = 'toggle';
                 scriptCall.name = game.i18n.localize('MMMOD.DeactivateScriptCallName');
                 scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"][item.name.slugify()]) game.mightyMorphin.revert({actor: actor, buff: item.name});';
@@ -751,7 +751,7 @@ export class MightyMorphinApp {
         }
         
         let buff = shifter.items.find(o => o.type === 'buff' && o.name === game.i18n.localize('MMMOD.Buffs.ReducePerson.Name'));
-        let shifterSize = shifter.system.traits.size;
+        let shifterSize = shifter.system.traits.size.base;
 
         // Find the size the number of steps away from current, number of steps provided by changeData
         let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
@@ -765,13 +765,13 @@ export class MightyMorphinApp {
         // Create the buff if it doesn't exist, otherwise toggle it on
         if (!buff) {
             // Create template buff Item
-            let buffData = duplicate(game.system.template.Item.buff);
-            for (let t of buffData.templates) {
-                mergeObject(buffData, duplicate(game.system.template.Item.templates[t]));
+            let buffData = foundry.utils.duplicate(game.system.template.Item.buff);
+            /* for (let t of buffData.templates) {
+                mergeObject(buffData, foundry.utils.duplicate(game.system.template.Item.templates[t]));
             }
-            delete buffData.templates;
+            delete buffData.templates; */
             if (game.settings.get('pf1-mighty-morphin', 'createScriptCall')) {
-                let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
+                let scriptCall = foundry.utils.duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
                 scriptCall.category = 'toggle';
                 scriptCall.name = game.i18n.localize('MMMOD.DeactivateScriptCallName');
                 scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"][item.name.slugify()]) game.mightyMorphin.revert({actor: actor, buff: item.name});';
@@ -868,7 +868,7 @@ export class MightyMorphinApp {
      */
     static async maulerBattleForm({ durationLevel = 0, image = null } = { }) {
         let shifter = MightyMorphinApp.getSingleActor(); // Ensure only a single actor is being processed
-        let changeData = duplicate(MorphinChanges.changes.maulerBattleForm); // get buff data
+        let changeData = foundry.utils.duplicate(MorphinChanges.changes.maulerBattleForm); // get buff data
         const flagSlug = game.i18n.localize('MMMOD.Buffs.MaulerBattleForm.Name').slugify();
 
         let existing;
@@ -886,7 +886,7 @@ export class MightyMorphinApp {
         }
         
         let buff = shifter.items.find(o => o.type === 'buff' && o.name === game.i18n.localize('MMMOD.Buffs.MaulerBattleForm.Name'));
-        let shifterSize = shifter.system.traits.size;
+        let shifterSize = shifter.system.traits.size.base;
 
         // Find the size the number of steps away from current, number of steps provided by changeData
         let newSize = changeData.size;
@@ -904,13 +904,13 @@ export class MightyMorphinApp {
         // Create the buff if it doesn't exist, otherwise toggle it on
         if (!buff) {
             // Create template buff Item
-            let buffData = duplicate(game.system.template.Item.buff);
-            for (let t of buffData.templates) {
-                mergeObject(buffData, duplicate(game.system.template.Item.templates[t]));
+            let buffData = foundry.utils.duplicate(game.system.template.Item.buff);
+            /* for (let t of buffData.templates) {
+                mergeObject(buffData, foundry.utils.duplicate(game.system.template.Item.templates[t]));
             }
-            delete buffData.templates;
+            delete buffData.templates; */
             if (game.settings.get('pf1-mighty-morphin', 'createScriptCall')) {
-                let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
+                let scriptCall = foundry.utils.duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
                 scriptCall.category = 'toggle';
                 scriptCall.name = game.i18n.localize('MMMOD.DeactivateScriptCallName');
                 scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"][item.name.slugify()]) game.mightyMorphin.revert({actor: actor, buff: item.name});';
@@ -1022,7 +1022,7 @@ export class MightyMorphinApp {
         if (aspect instanceof Array) {
             for (const singleAspect of aspect) {
                 const changeData = { };
-                const aspectData = duplicate(MorphinChanges.changes.shifterWildShape[singleAspect].minor);
+                const aspectData = foundry.utils.duplicate(MorphinChanges.changes.shifterWildShape[singleAspect].minor);
                 for (const level of Object.keys(aspectData)) {
                     if (shifter.classes.shifter.level >= level) mergeObject(changeData, aspectData[level]);
                 }
@@ -1038,7 +1038,7 @@ export class MightyMorphinApp {
             }
         }
         else {
-            const aspectData = duplicate(MorphinChanges.changes.shifterWildShape[aspect].minor);
+            const aspectData = foundry.utils.duplicate(MorphinChanges.changes.shifterWildShape[aspect].minor);
             for (const level of Object.keys(aspectData)) {
                 if (shifter.classes.shifter.level >= level) mergeObject(totalChanges, aspectData[level]);
             }
@@ -1079,7 +1079,7 @@ export class MightyMorphinApp {
                 }
             }
         }
-        if (!!senseObject) sensesChanges = { 'system.traits.senses': duplicate(senseObject) };
+        if (!!senseObject) sensesChanges = { 'system.traits.senses': foundry.utils.duplicate(senseObject) };
 
         let otherSource;
 
@@ -1087,7 +1087,7 @@ export class MightyMorphinApp {
 
         if (polymorphedWithSenses && !!totalChanges.senses) {
             const senseData = Object.values(shifter.flags['pf1-mighty-morphin'])[0].data.system.traits.senses;
-            actualOriginalSenses = duplicate(senseData); // store original actor sense
+            actualOriginalSenses = foundry.utils.duplicate(senseData); // store original actor sense
             // process what combined senses should be
             for (const senseKey of Object.keys(sensesChanges['system.traits.senses'])) {
                 if (typeof(sensesChanges['system.traits.senses'][senseKey]) === 'number' && sensesChanges['system.traits.senses'][senseKey] < originalSenses['system.traits.senses'][senseKey]) sensesChanges['system.traits.senses'][senseKey] = originalSenses['system.traits.senses'][senseKey];
@@ -1106,13 +1106,13 @@ export class MightyMorphinApp {
         // Create the buff if it doesn't exist, otherwise toggle it on
         if (!buff) {
             // Create template buff Item
-            let buffData = duplicate(game.system.template.Item.buff);
-            for (let t of buffData.templates) {
-                mergeObject(buffData, duplicate(game.system.template.Item.templates[t]));
+            let buffData = foundry.utils.duplicate(game.system.template.Item.buff);
+            /* for (let t of buffData.templates) {
+                mergeObject(buffData, foundry.utils.duplicate(game.system.template.Item.templates[t]));
             }
-            delete buffData.templates;
+            delete buffData.templates; */
             if (game.settings.get('pf1-mighty-morphin', 'createScriptCall')) {
-                let scriptCall = duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
+                let scriptCall = foundry.utils.duplicate(globalThis.pf1.components.ItemScriptCall.defaultData);
                 scriptCall.category = 'toggle';
                 scriptCall.name = game.i18n.localize('MMMOD.DeactivateScriptCallName');
                 scriptCall.value = 'if (!state && !!actor.flags["pf1-mighty-morphin"][item.name.slugify()]) game.mightyMorphin.revert({actor: actor, buff: item.name});';
@@ -1180,7 +1180,7 @@ export class MightyMorphinApp {
         }
 
         // Get flags from the actor with the changes applied to it
-        let changes = duplicate(shifter.flags['pf1-mighty-morphin']);
+        let changes = foundry.utils.duplicate(shifter.flags['pf1-mighty-morphin']);
         
         if (!!buff) changes = { [buff.slugify()]: changes[buff.slugify()] };
 
@@ -1420,10 +1420,10 @@ export class MightyMorphinApp {
         console.log(strChange);
         let carryBonusChange = (!!shifter.system.details.carryCapacity.bonus.total ? shifter.system.details.carryCapacity.bonus.total : 0) - strChange;
         // Counteract the size change's natural increase or decrease to carry multiplier
-        let carryMultChange = (shifter.system.details.carryCapacity.multiplier.total * CONFIG.PF1.encumbranceMultipliers.normal[shifter.system.traits.size] / CONFIG.PF1.encumbranceMultipliers.normal[newSize]) - shifter.system.details.carryCapacity.multiplier.total;
+        let carryMultChange = (shifter.system.details.carryCapacity.multiplier.total * CONFIG.PF1.encumbranceMultipliers.normal[shifter.system.traits.size.base] / CONFIG.PF1.encumbranceMultipliers.normal[newSize]) - shifter.system.details.carryCapacity.multiplier.total;
         let changes = [
-            { formula: carryBonusChange.toString(), operator: 'set', target: 'carryStr', modifier: 'untyped', priority: 0, value: carryBonusChange },
-            { formula: carryMultChange.toString(), operator: 'add', target: 'carryMult', modifier: 'untyped', priority: 0, value: carryMultChange }
+            { formula: carryBonusChange.toString(), operator: 'set', target: 'carryStr', modifier: 'untyped', priority: 0/* , value: carryBonusChange */ },
+            { formula: carryMultChange.toString(), operator: 'add', target: 'carryMult', modifier: 'untyped', priority: 0/* , value: carryMultChange  */}
         ];
         return changes;
     }
@@ -1446,11 +1446,11 @@ export class MightyMorphinApp {
         const actorData = fromUuidSync(actorId); // get actor's data for reference
 
         // Create attack Item template
-        for (const template of game.system.template.Item.attack.templates) {
-            mergeObject(attackData.system, duplicate(game.system.template.Item.templates[template]));
-        }
-        mergeObject(attackData.system, duplicate(game.system.template.Item.attack));
-        delete attackData.system.templates;
+        // for (const template of game.system.template.Item.attack.templates) {
+        //     mergeObject(attackData.system, foundry.utils.duplicate(game.system.template.Item.templates[template]));
+        // }
+        mergeObject(attackData.system, foundry.utils.duplicate(game.system.template.Item.attack));
+        // delete attackData.system.templates;
 
         // Begin filling in data
         attackData['name'] = game.i18n.localize('MMMOD.Attacks.' + attack.name) + (!!source ? ` (${ source })` : ''); // Add source to the attack name if there is a source
@@ -1462,7 +1462,7 @@ export class MightyMorphinApp {
         attackData['system']['subType'] = type; // weapon, natural, misc, class ability, etc
         if (!!attack.notes) attackData['system']['attackNotes'].push(attack.notes);
 
-        let subAction = duplicate(globalThis.pf1.components.ItemAction.defaultData);
+        let subAction = foundry.utils.duplicate(globalThis.pf1.components.ItemAction.defaultData);
 
 
         subAction['naturalAttack']['primaryAttack'] = ((attack.primaryAttack || (MightyMorphinApp.naturalAttacks[attack.name]?.primaryAttack)) || onlyAttack);
@@ -1513,7 +1513,7 @@ export class MightyMorphinApp {
                 if (!!specialName) {
                     // If there's details about this special in the effects object, process it. Otherwise the note is just the special name
                     if (!!effects[specialName]) {
-                        subAction.effectNotes.push(effects[specialName].note);
+                        subAction.notes.effect.push(effects[specialName].note);
                         // Set the save if it exists
                         if (effects[specialName].saveDesc) {
                             subAction.save.type = effects[specialName].type;
@@ -1522,7 +1522,7 @@ export class MightyMorphinApp {
                         }
                     }
                     else {
-                        subAction.effectNotes.push(specialName);
+                        subAction.notes.effect.push(specialName);
                     }
 
                     // Set the description for the whole attack if there is a description
@@ -1545,7 +1545,7 @@ export class MightyMorphinApp {
 
         // Create attack sizeRoll with the passed dice stats, the actor's size, and the attack type's damage type (or '' if attack name not in naturalAttacks)
         if (attack.diceSize !== 0) {
-            subAction['damage']['parts'] = [{ formula: `sizeRoll(${ attack.diceCount }, ${ attack.diceSize }, @size, ${ attack.usedClaws ? MightyMorphinApp.sizes.indexOf(actorData.system.traits.size) : MightyMorphinApp.sizes.indexOf(formSize) })`, type: {values: ((attack.type || MightyMorphinApp.naturalAttacks[attack.name]?.type) || []), custom: ''} }];
+            subAction['damage']['parts'] = [{ formula: `sizeRoll(${ attack.diceCount }, ${ attack.diceSize }, @size, ${ attack.usedClaws ? MightyMorphinApp.sizes.indexOf(actorData.system.traits.size.base) : MightyMorphinApp.sizes.indexOf(formSize) })`, type: {values: ((attack.type || MightyMorphinApp.naturalAttacks[attack.name]?.type) || []), custom: ''} }];
 
             // Create non-crit bonus damage
             if (attack.nonCrit) subAction['damage']['nonCritParts'] = [attack.nonCrit];
@@ -2134,7 +2134,7 @@ export class MightyMorphinApp {
             };
 
             for (const alternate of alternates) {
-                const altData = duplicate(clawsData);
+                const altData = foundry.utils.duplicate(clawsData);
                 altData['type'] = MightyMorphinApp.naturalAttacks[alternate].type;
                 const altAttack = MightyMorphinApp.createAttack(shifter.uuid, 'med', altData, false, []);
                 altAttack.name = altAttack.name + ` (${ game.i18n.localize('MMMOD.Attacks.' + alternate) })`;

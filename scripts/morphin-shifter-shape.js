@@ -113,8 +113,8 @@ export class MorphinShifterShape extends MorphinPolymorphDialog {
 
 
             // Process stat changes from the spell based on spell level
-            if (this.chosenAspect.source === 'beastShape') this.changes = duplicate(MorphinChanges.changes[this.chosenAspect.source].animal[this.chosenAspect.size].changes);
-            else if (this.chosenAspect.source === 'verminShape') this.changes = duplicate(MorphinChanges.changes[this.chosenAspect.source].vermin[this.chosenAspect.size].changes);
+            if (this.chosenAspect.source === 'beastShape') this.changes = foundry.utils.duplicate(MorphinChanges.changes[this.chosenAspect.source].animal[this.chosenAspect.size].changes);
+            else if (this.chosenAspect.source === 'verminShape') this.changes = foundry.utils.duplicate(MorphinChanges.changes[this.chosenAspect.source].vermin[this.chosenAspect.size].changes);
             data.scoreChanges = this.processScoreChanges();
         }
         else {
@@ -122,7 +122,7 @@ export class MorphinShifterShape extends MorphinPolymorphDialog {
         }
 
         this.formData = {};
-        const formData = duplicate(MorphinChanges.changes.shifterWildShape[this.chosenAspect.name][chosenForm]);
+        const formData = foundry.utils.duplicate(MorphinChanges.changes.shifterWildShape[this.chosenAspect.name][chosenForm]);
         const shifter = fromUuidSync(this.actorId);
 
         for (const level of Object.keys(formData)) {
