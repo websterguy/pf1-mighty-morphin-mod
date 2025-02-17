@@ -1,6 +1,10 @@
-<<<<<<< Updated upstream
-2024/09/09-17:53:49.319 11338 Recovering log #677
-2024/09/09-17:53:49.330 11338 Delete type=0 #677
-2024/09/09-17:53:49.330 11338 Delete type=3 #675
-=======
->>>>>>> Stashed changes
+2025/02/16-17:31:56.766 194ec Log #682: 0 ops saved to Table #742 OK
+2025/02/16-17:31:56.767 194ec Archiving C:\Users\Kevin\foundryv12\Data\modules\pf1-mighty-morphin\packs\macros/000682.log: OK
+2025/02/16-17:31:56.773 194ec Log #741: 4 ops saved to Table #743 OK
+2025/02/16-17:31:56.773 194ec Archiving C:\Users\Kevin\foundryv12\Data\modules\pf1-mighty-morphin\packs\macros/000741.log: OK
+2025/02/16-17:31:56.773 194ec Table #620: 4 entries OK
+2025/02/16-17:31:56.773 194ec Table #732: 4 entries OK
+2025/02/16-17:31:56.773 194ec Table #743: 4 entries OK
+2025/02/16-17:31:56.779 194ec Archiving C:\Users\Kevin\foundryv12\Data\modules\pf1-mighty-morphin\packs\macros/MANIFEST-000681: OK
+2025/02/16-17:31:56.779 194ec Archiving C:\Users\Kevin\foundryv12\Data\modules\pf1-mighty-morphin\packs\macros/MANIFEST-000740: OK
+2025/02/16-17:31:56.784 194ec **** Repaired leveldb C:\Users\Kevin\foundryv12\Data\modules\pf1-mighty-morphin\packs\macros; recovered 3 files; 24219 bytes. Some data may have been lost. ****

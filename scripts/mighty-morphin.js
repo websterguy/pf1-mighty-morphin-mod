@@ -21,10 +21,11 @@ export class MightyMorphinApp {
      * 
      * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
      * @param {string} [image = null] The file name for a custom image file without the file extension
+     * @param {string} [variant = null] The variant of the spell to cast, ie "mythic"
      */
-    static async enlargePerson({ durationLevel = 0, image = null } = { }) {
+    static async enlargePerson({ durationLevel = 0, image = null, variant = null } = { }) {
         let shifter = MightyMorphinApp.getSingleActor(); // Ensure only a single actor is being processed
-        let changeData = MorphinChanges.changes.enlargePerson; // get buff data
+        let changeData = variant === 'mythic' ? MorphinChanges.changes.enlargePersonMythic : MorphinChanges.changes.enlargePerson; // get buff data
         const flagSlug = game.i18n.localize('MMMOD.Buffs.EnlargePerson.Name').slugify();
 
         let existing;
@@ -46,6 +47,7 @@ export class MightyMorphinApp {
 
         // Find the size the number of steps away from current, number of steps provided by changeData
         let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
+        if (variant === 'mythic ' && Object.keys(pf1.config.actorSizes.indexOf(newSize) > 6)) newSize = 'huge';
 
         let durationData = { };
         if (!!durationLevel) {
@@ -108,7 +110,7 @@ export class MightyMorphinApp {
         let armorChangeFlag = [];
         let armorToChange = [];
         // Double armor and shield AC when moving from tiny to small (tiny and below armor AC is half normal)
-        if (shifterSize === 'tiny') {
+        if (shifterSize === 'tiny' || (variant === 'mythic' && shifterSize === 'dim')) {
             let armorAndShields = shifter.items.filter(o => o.type === 'equipment' && (o.system.subType === 'armor' || o.system.subType === 'shield'));
 
             for (let item of armorAndShields) {
@@ -731,9 +733,9 @@ export class MightyMorphinApp {
      * @param {number} [durationLevel=0] The level to be used in the duration calculation for the buff if desired
      * @param {string} [image = null] The file name for a custom image file without the file extension
      */
-    static async reducePerson({ durationLevel = 0, image = null } = { }) {
+    static async reducePerson({ durationLevel = 0, image = null, variant = null } = { }) {
         let shifter = MightyMorphinApp.getSingleActor(); // Ensure only a single actor is being processed
-        let changeData = MorphinChanges.changes.reducePerson; // get buff data
+        let changeData = variant === 'mythic' ? MorphinChanges.changes.reducePersonMythic : MorphinChanges.changes.reducePerson; // get buff data
         const flagSlug = game.i18n.localize('MMMOD.Buffs.ReducePerson.Name').slugify();
 
         let existing;
@@ -755,6 +757,7 @@ export class MightyMorphinApp {
 
         // Find the size the number of steps away from current, number of steps provided by changeData
         let newSize = MightyMorphinApp.getNewSize(shifterSize, changeData.size);
+        if (variant === 'mythic ' && Object.keys(pf1.config.actorSizes.indexOf(newSize) < 2)) newSize = 'tiny';
 
         let durationData = { };
         if (!!durationLevel) {
@@ -817,7 +820,7 @@ export class MightyMorphinApp {
         let armorChangeFlag = [];
         let armorToChange = [];
         // Halve armor and shield AC when moving from small to tiny (tiny and below armor AC is half normal)
-        if (shifterSize === 'sm') {
+        if (shifterSize === 'sm' || (variant === 'mythic' && shifterSize === 'med')) {
             let armorAndShields = shifter.items.filter(o => o.type === 'equipment' && (o.system.subType === 'armor' || o.system.subType === 'shield'));
 
             for (let item of armorAndShields) {

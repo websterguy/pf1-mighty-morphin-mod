@@ -20,8 +20,6 @@ MorphinChanges.changes = {
         ],
         size: 1
     },
-<<<<<<< Updated upstream
-=======
     enlargePersonMythic: {
         changes: [
             { formula: '4', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 4 */ },
@@ -29,7 +27,6 @@ MorphinChanges.changes = {
         ],
         size: 2
     },
->>>>>>> Stashed changes
     animalGrowth: {
         changes: [
             { formula: '8', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 8 */ },
@@ -71,8 +68,6 @@ MorphinChanges.changes = {
         ],
         size: -1
     },
-<<<<<<< Updated upstream
-=======
     reducePersonMythic: {
         changes: [
             { formula: '-4', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: -4 */ },
@@ -80,7 +75,6 @@ MorphinChanges.changes = {
         ],
         size: -2
     },
->>>>>>> Stashed changes
     maulerBattleForm: {
         changes: [
             { formula: '2', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: -2 */ }
