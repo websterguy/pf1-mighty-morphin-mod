@@ -537,7 +537,7 @@ export class MorphinPolymorphDialog extends FormApplication {
                                         const sizeDie = globalThis.pf1.config.sizeDie;
                                         let formulaIndex = sizeDie.indexOf(parameters[0].toString() + 'd' + parameters[1].toString());
                                         if (formulaIndex < 0 || formulaIndex === (sizeDie.length - 1)) {
-                                            let sizeRollUpgrade = Roll.fromTerms(pf1.utils.rollPreProcess.sizeRoll(parameters[0], parameters[1], 5, 4)).formula;
+                                            let sizeRollUpgrade = Roll.fromTerms(pf1.utils.roll.sizeRoll(parameters[0], parameters[1], 5, 4)).formula;
                                             formulaIndex = sizeDie.indexOf(sizeRollUpgrade);
                                             if (formulaIndex < 0 || sizeRollUpgrade === (parameters[0].toString() + 'd' + parameters[1].toString())) {
                                                 ui.notifications.warn('Mighty Morphin Mod: ' + game.i18n.localize('MMMOD.UI.EnergizedUpgradeError') + attack.name + ', ' + formula);
