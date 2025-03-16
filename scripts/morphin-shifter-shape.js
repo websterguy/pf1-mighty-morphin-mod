@@ -135,7 +135,7 @@ export class MorphinShifterShape extends MorphinPolymorphDialog {
         }
         if (shifter.system.traits.size != 'med') {
             const size = Object.keys(pf1.config.actorSizes).indexOf(shifter.system.traits.size);
-            const dice = Roll.fromTerms(pf1.utils.rollPreProcess.sizeRoll(this.clawsData.diceCount, this.clawsData.diceSize, size)).formula.split('d');
+            const dice = Roll.fromTerms(pf1.utils.roll.sizeRoll(this.clawsData.diceCount, this.clawsData.diceSize, size)).formula.split('d');
             this.clawsData.diceCount = dice[0];
             this.clawsData.diceSize = dice[1];
         }
@@ -179,7 +179,7 @@ export class MorphinShifterShape extends MorphinPolymorphDialog {
             }
 
             if (!!attack.improved) {
-                const newDamage = Roll.fromTerms(pf1.utils.rollPreProcess.sizeRoll(attack.diceCount, attack.diceSize, 5, 4)).formula.split('d');
+                const newDamage = Roll.fromTerms(pf1.utils.roll.sizeRoll(attack.diceCount, attack.diceSize, 5, 4)).formula.split('d');
                 attack.diceCount = newDamage[0];
                 attack.diceSize = newDamage[1];
             }
