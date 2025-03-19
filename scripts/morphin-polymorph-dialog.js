@@ -292,7 +292,7 @@ export class MorphinPolymorphDialog extends FormApplication {
 
         // Process senses changes
         let originalSenses = { 'system.traits.senses': shifter.system.traits.senses };
-        let senseObject = { 'dv': 0, 'ts': 0, 'bs': 0, 'bse': 0, 'll': { 'enabled': false, 'multiplier': { 'dim': 2, 'bright': 2 } }, 'sid': false, 'tr': false, 'si': false, 'sc': 0, 'custom': '' };
+        let senseObject = { 'dv': { 'value': 0 }, 'ts': { 'value': 0 }, 'bs': { 'value': 0 }, 'bse': { 'value': 0 }, 'll': { 'enabled': false, 'multiplier': { 'dim': 2, 'bright': 2 } }, 'sid': false, 'tr': { 'value': 0 }, 'si': false, 'sc': { 'value': 0 }, 'custom': '' };
         for (let i = 0; i < this.senses.length; i++) {
             const sensesEnumValue = this.senses[i];
             if (!!sensesEnumValue) {
@@ -322,7 +322,7 @@ export class MorphinPolymorphDialog extends FormApplication {
 
         // Process DR changes
         let originalDr = { 'system.traits.dr': shifter.system.traits.dr };
-        let drObject = this.dr;
+        let drObject = { value: this.dr || [], custom: '' };
 
         // Process resistances changes
         let originalEres = { 'system.traits.eres': shifter.system.traits.eres };
@@ -330,11 +330,11 @@ export class MorphinPolymorphDialog extends FormApplication {
 
         // Process vulnerabilities changes
         let originalDv = { 'system.traits.dv': shifter.system.traits.dv };
-        let newDv = { value: this.dv || [], custom: '' };
+        let newDv = this.dv || [];
 
         // Process immunities changes        
         let originalDi = { 'system.traits.di': shifter.system.traits.di };
-        let newDi = { value: this.di || [], custom: '' };
+        let newDi = this.di || [];
 
         // Process regen changes
         let originalRegen = { 'system.traits.regen': shifter.system.traits.regen };
@@ -344,7 +344,7 @@ export class MorphinPolymorphDialog extends FormApplication {
         let fastHealingString = this.fastHealing || '';
 
         let originalCi = { 'system.traits.ci': shifter.system.traits.ci };
-        let newCi = this.ci || { value: [], custom: '' };
+        let newCi = this.ci || [];
 
         originalSenses = mergeObject(originalSenses, mergeObject(originalDi, mergeObject(originalDr, mergeObject(originalRegen, mergeObject(originalFastHealing, mergeObject(originalEres, mergeObject(originalCi, originalDv)))))));
         sensesChanges = mergeObject(sensesChanges, mergeObject({ 'system.traits.di': newDi }, mergeObject({ 'system.traits.dr': drObject }, mergeObject({ 'system.traits.regen': regenString }, mergeObject({ 'system.traits.fastHealing': fastHealingString }, mergeObject({ 'system.traits.eres': newEres }, mergeObject({ 'system.traits.ci': newCi }, { 'system.traits.dv': newDv })))))));
@@ -821,17 +821,14 @@ export class MorphinPolymorphDialog extends FormApplication {
     processCi() {
         const allowedCi = MorphinChanges.allowedAttributes[this.spell][this.level].ci;
         const immunities = [];
-        const customImmunities = [];
-        this.ci = { value: [], custom: ''};
+        this.ci = [];
         if (!!this.formData.ci && !!allowedCi) {
             for (const immunity of this.formData.ci) {
                 if (allowedCi.elements.includes(immunity)) {
-                    if (!!pf1.config.conditionTypes[immunity]) this.ci.value.push(immunity);
-                    else customImmunities.push(game.i18n.localize('MMMOD.DamageTypes.' + immunity.capitalize()));
+                    this.ci.push(immunity);
+                    immunities.push(game.i18n.localize('MMMOD.DamageTypes.' + immunity.capitalize()));
                 }
-                immunities.push(game.i18n.localize('MMMOD.DamageTypes.' + immunity.capitalize()));
             }
-            this.ci.custom = customImmunities;
         }
         return immunities;
     }
@@ -922,10 +919,10 @@ export class MorphinPolymorphDialog extends FormApplication {
         if (!!this.polymorphChanges) {
             for (let i = 0; i < this.polymorphChanges.length; i++) {
                 const change = this.polymorphChanges[i];
-                if (!!change.target && change.target === 'ability') {
+                if (!!change.target && ['str', 'dex', 'con', 'wis', 'int', 'cha'].includes(change.target)) {
                     if (polymorphBase.length > 0) polymorphBase += ', '; // comma between entries
                     // text output of the stat (capitalized), and a + in front of positive numbers
-                    polymorphBase += `${ game.i18n.localize('MMMOD.UI.' + change.target.capitalize()) } ${ (change.value > 0 ? '+' : '') }${ change.value }`;
+                    polymorphBase += `${ game.i18n.localize('MMMOD.UI.' + change.target.capitalize()) } ${ (change.formula > 0 ? '+' : '') }${ change.formula }`;
                 }
             }
         }
@@ -942,14 +939,14 @@ export class MorphinPolymorphDialog extends FormApplication {
         for (let i = 0; i < this.changes.length; i++) {
             const change = this.changes[i];
 
-            if (!!change.target && change.target === 'ability') { // stat change
-                scoreChanges.push(`${ game.i18n.localize('MMMOD.UI.' + change.target.capitalize()) } ${ (change.value > 0 ? '+' : '') }${ change.value }`);
+            if (!!change.target && ['str', 'dex', 'con', 'wis', 'int', 'cha'].includes(change.target)) { // stat change
+                scoreChanges.push(`${ game.i18n.localize('MMMOD.UI.' + change.target.capitalize()) } ${ (change.formula > 0 ? '+' : '') }${ change.formula }`);
             }
             else if (!!change.target && change.target == 'nac') { // natural AC change
-                scoreChanges.push(`${ game.i18n.localize('MMMOD.UI.NaturalAC') } ${ (change.value > 0 ? '+' : '') }${ change.value }`);
+                scoreChanges.push(`${ game.i18n.localize('MMMOD.UI.NaturalAC') } ${ (change.formula > 0 ? '+' : '') }${ change.formula }`);
             }
             else if (!!change.target && change.target === 'landSpeed') {
-                scoreChanges.push(`${ game.i18n.localize('MMMOD.UI.LandSpeed') } ${ (change.value > 0 ? '+' : '') }${ change.value }`);
+                scoreChanges.push(`${ game.i18n.localize('MMMOD.UI.LandSpeed') } ${ (change.formula > 0 ? '+' : '') }${ change.formula }`);
             }
         }
         return scoreChanges.join(', ');
