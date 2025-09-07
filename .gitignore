@@ -3906,3 +3906,7 @@ package.json
 pf1-mighty-morphin.lock
 foundry.js
 jsconfig.json
+packs/macros/*.log
+packs/macros/LOCK
+packs/macros/MANIFEST*
+packs/macros/LOG*
