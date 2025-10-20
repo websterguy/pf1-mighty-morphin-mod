@@ -71,7 +71,8 @@ export class MorphinPolymorphDialog extends FormApplication {
      * @param {string} chosenForm The name of the form chosen
      */
     async applyChanges(event, chosenForm) {
-        let shifter = fromUuidSync(this.actorId);
+        const shifter = fromUuidSync(this.actorId);
+        const shifterData = shifter.toObject();
         let newSize = this.shifterWildShape ? this.formData.size || shifter.system.traits.size.base : this.formData.size;
         let flagSlug = this.source.slugify();
 
@@ -250,7 +251,7 @@ export class MorphinPolymorphDialog extends FormApplication {
             originalArmor = mergeObject(originalArmor, originalEquipped);
 
             if (!!originalArmor) {
-                armorChangeFlag.push({ _id: item.id, data: originalArmor });
+                armorChangeFlag.push({ _id: item.id, system: originalArmor });
                 // take off armor if it's not wild armor or this is not from wild shape
                 let equipChange = ((armorIsWild && (this.wildShape || this.shifterWildShape)) || this.keepArmor) ? {} : { equipped: false };
                 let armorChange = armorChangeNeeded ? (smallSizes.includes(this.actorSize) ? { armor: { value: item.system.armor.value * 2 } } : { armor: { value: Math.floor(item.system.armor.value / 2) } }) : {};
@@ -263,13 +264,13 @@ export class MorphinPolymorphDialog extends FormApplication {
         let originalSkillMod = {};
         let skillModChange = {};
         if (armorChangeNeeded) {
-            originalSkillMod = { 'system.skills.clm.ability': shifter.system.skills.clm.ability, 'system.skills.swm.ability': shifter.system.skills.swm.ability };
+            originalSkillMod = { 'system.skills.clm.ability': shifterData.system.skills.clm.ability, 'system.skills.swm.ability': shifterData.system.skills.swm.ability };
             skillModChange = { 'system.skills.clm.ability': (smallSizes.includes(this.actorSize) ? 'str' : 'dex'), 'system.skills.swm.ability': (smallSizes.includes(this.actorSize) ? 'str' : 'dex') };
         }
 
         // Process speed changes
-        let originalManeuverability = { 'system.attributes.speed.fly.maneuverability': shifter.system.attributes.speed.fly.maneuverability };
-        let newSpeeds = foundry.utils.duplicate(shifter.system.attributes.speed);
+        let originalManeuverability = { 'system.attributes.speed.fly.maneuverability': shifterData.system.attributes.speed.fly.maneuverability };
+        let newSpeeds = foundry.utils.duplicate(shifterData.system.attributes.speed);
         let speedTypes = Object.keys(newSpeeds);
         let maneuverabilityChange = {};
         for (let i = 0; i < speedTypes.length; i++) {
@@ -291,7 +292,7 @@ export class MorphinPolymorphDialog extends FormApplication {
         }
 
         // Process senses changes
-        let originalSenses = { 'system.traits.senses': shifter.system.traits.senses };
+        let originalSenses = { 'system.traits.senses': shifterData.system.traits.senses };
         let senseObject = { 'dv': { 'value': 0 }, 'ts': { 'value': 0 }, 'bs': { 'value': 0 }, 'bse': { 'value': 0 }, 'll': { 'enabled': false, 'multiplier': { 'dim': 2, 'bright': 2 } }, 'sid': false, 'tr': { 'value': 0 }, 'si': false, 'sc': { 'value': 0 }, 'custom': '' };
         for (let i = 0; i < this.senses.length; i++) {
             const sensesEnumValue = this.senses[i];
@@ -321,29 +322,29 @@ export class MorphinPolymorphDialog extends FormApplication {
         }
 
         // Process DR changes
-        let originalDr = { 'system.traits.dr': shifter.system.traits.dr };
+        let originalDr = { 'system.traits.dr': shifterData.system.traits.dr };
         let drObject = { value: this.dr || [], custom: '' };
 
         // Process resistances changes
-        let originalEres = { 'system.traits.eres': shifter.system.traits.eres };
+        let originalEres = { 'system.traits.eres': shifterData.system.traits.eres };
         let newEres = { value: this.eres || [], custom: '' };
 
         // Process vulnerabilities changes
-        let originalDv = { 'system.traits.dv': shifter.system.traits.dv };
+        let originalDv = { 'system.traits.dv': shifterData.system.traits.dv };
         let newDv = this.dv || [];
 
         // Process immunities changes        
-        let originalDi = { 'system.traits.di': shifter.system.traits.di };
+        let originalDi = { 'system.traits.di': shifterData.system.traits.di };
         let newDi = this.di || [];
 
         // Process regen changes
-        let originalRegen = { 'system.traits.regen': shifter.system.traits.regen };
+        let originalRegen = { 'system.traits.regen': shifterData.system.traits.regen };
         let regenString = this.regen || '';
 
-        let originalFastHealing = { 'system.traits.fastHealing': shifter.system.traits.fastHealing };
+        let originalFastHealing = { 'system.traits.fastHealing': shifterData.system.traits.fastHealing };
         let fastHealingString = this.fastHealing || '';
 
-        let originalCi = { 'system.traits.ci': shifter.system.traits.ci };
+        let originalCi = { 'system.traits.ci': shifterData.system.traits.ci };
         let newCi = this.ci || [];
 
         originalSenses = mergeObject(originalSenses, mergeObject(originalDi, mergeObject(originalDr, mergeObject(originalRegen, mergeObject(originalFastHealing, mergeObject(originalEres, mergeObject(originalCi, originalDv)))))));

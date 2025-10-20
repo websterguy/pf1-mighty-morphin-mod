@@ -3910,3 +3910,5 @@ packs/macros/*.log
 packs/macros/LOCK
 packs/macros/MANIFEST*
 packs/macros/LOG*
+packs/macros/lost/
+packs/macros/lost/*
