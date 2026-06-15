@@ -96,3 +96,10 @@ export const initializeSettings = function () {
   DirectoryPicker.verifyPath(DirectoryPicker.parse(game.settings.get('pf1-mighty-morphin', 'imagePath')));
   MightyMorphinApp.imageFolder = DirectoryPicker.parse(game.settings.get('pf1-mighty-morphin', 'imagePath'));
 };
+
+/**
+ * Store numerical value relating to base size of actor in flags for usage in Changes
+ */
+Hooks.on('pf1PrepareBaseActorData', (actor) => {
+	actor.system.traits.baseSize = ['fine','dim','tiny','sm','med','lg','huge','grg','col'].indexOf(actor.system.traits.size);
+});
