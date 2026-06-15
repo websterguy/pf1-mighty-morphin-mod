@@ -1,7 +1,7 @@
-import { MightyMorphinApp } from './mighty-morphin.js';
 import { MorphinChanges } from './morphin-changes.js';
 import { MorphinOptions } from './morphin-options.js';
 import { MorphinPolymorphDialog } from './morphin-polymorph-dialog.js';
+const fu = foundry.utils;
 
 /**
  * Application for selecting a shape from the Beast Shape spell to change into and then applying that shape to an actor
@@ -24,7 +24,7 @@ export class MorphinShifterShape extends MorphinPolymorphDialog {
 
     /** @inheritdoc */
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return fu.mergeObject(super.defaultOptions, {
             classes: ['mightyMorphinDialog'],
             popOut: true,
             template: 'modules/pf1-mighty-morphin/templates/beastShapeDialog.html',
@@ -113,8 +113,8 @@ export class MorphinShifterShape extends MorphinPolymorphDialog {
 
 
             // Process stat changes from the spell based on spell level
-            if (this.chosenAspect.source === 'beastShape') this.changes = foundry.utils.duplicate(MorphinChanges.changes[this.chosenAspect.source].animal[this.chosenAspect.size].changes);
-            else if (this.chosenAspect.source === 'verminShape') this.changes = foundry.utils.duplicate(MorphinChanges.changes[this.chosenAspect.source].vermin[this.chosenAspect.size].changes);
+            if (this.chosenAspect.source === 'beastShape') this.changes =  fu.duplicate(MorphinChanges.changes[this.chosenAspect.source].animal[this.chosenAspect.size].changes);
+            else if (this.chosenAspect.source === 'verminShape') this.changes =  fu.duplicate(MorphinChanges.changes[this.chosenAspect.source].vermin[this.chosenAspect.size].changes);
             data.scoreChanges = this.processScoreChanges();
         }
         else {
@@ -122,16 +122,16 @@ export class MorphinShifterShape extends MorphinPolymorphDialog {
         }
 
         this.formData = {};
-        const formData = foundry.utils.duplicate(MorphinChanges.changes.shifterWildShape[this.chosenAspect.name][chosenForm]);
+        const formData =  fu.duplicate(MorphinChanges.changes.shifterWildShape[this.chosenAspect.name][chosenForm]);
         const shifter = fromUuidSync(this.actorId);
 
         for (const level of Object.keys(formData)) {
-            if (shifter.classes.shifter.level >= level) mergeObject(this.formData, formData[level]);
+            if (shifter.classes.shifter.level >= level) fu.mergeObject(this.formData, formData[level]);
         }
 
         this.clawsData = {};
         for (const level of Object.keys(MorphinChanges.changes.shifterWildShape.claws)) {
-            if (shifter.classes.shifter.level >= level) mergeObject(this.clawsData, MorphinChanges.changes.shifterWildShape.claws[level]);
+            if (shifter.classes.shifter.level >= level) fu.mergeObject(this.clawsData, MorphinChanges.changes.shifterWildShape.claws[level]);
         }
         if (shifter.system.traits.size != 'med') {
             const size = Object.keys(pf1.config.actorSizes).indexOf(shifter.system.traits.size);

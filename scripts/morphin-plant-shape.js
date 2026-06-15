@@ -1,6 +1,7 @@
 import { MorphinChanges } from './morphin-changes.js';
 import { MorphinOptions } from './morphin-options.js';
 import { MorphinPolymorphDialog } from './morphin-polymorph-dialog.js';
+const fu = foundry.utils;
 
 /**
  * Application for selecting a shape from the Plant Shape spell to change into and then applying that shape to an actor
@@ -37,7 +38,7 @@ export class MorphinPlantShape extends MorphinPolymorphDialog {
 
     /** @inheritdoc */
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return fu.mergeObject(super.defaultOptions, {
             classes: ['mightyMorphinDialog'],
             popOut: true,
             template: 'modules/pf1-mighty-morphin/templates/plantShapeDialog.html',
@@ -99,13 +100,13 @@ export class MorphinPlantShape extends MorphinPolymorphDialog {
         let data = {};
         this.chosenForm = this.shapeOptions.plant.find(o => o.name === chosenForm);
 
-        this.formData = foundry.utils.duplicate(MorphinChanges.changes[this.chosenForm.name]);
+        this.formData =  fu.duplicate(MorphinChanges.changes[this.chosenForm.name]);
 
         // Process stat changes for polymorphing smaller than small or larger than medium
         data.polymorphBase = this.processPolymorphChanges();
 
         // Process stat changes from the spell based on spell level
-        this.changes = foundry.utils.duplicate(MorphinChanges.changes[this.spell].plant[this.chosenForm.size].changes);
+        this.changes =  fu.duplicate(MorphinChanges.changes[this.spell].plant[this.chosenForm.size].changes);
         data.scoreChanges = this.processScoreChanges();
 
         // Process changes to speed, limited by maximum the spell level allows
@@ -125,7 +126,7 @@ export class MorphinPlantShape extends MorphinPolymorphDialog {
         // Process special qualities
         data.special = this.processSpecials();
 
-        mergeObject(data, this.processAttributes());
+        fu.mergeObject(data, this.processAttributes());
 
         // Build the html preview
         return this.buildHtml(data);

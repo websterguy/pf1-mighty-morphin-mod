@@ -15,69 +15,69 @@ export class MorphinChanges {
 MorphinChanges.changes = {
     enlargePerson: {
         changes: [
-            { formula: '2', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 2 */ },
-            { formula: '-2', operator: 'add', target: 'dex', modifier: 'size', priority: 0/* , value: -2 */ }
+            { formula: '2', operator: 'add', target: 'str', modifier: 'size', priority: 0 },
+            { formula: '-2', operator: 'add', target: 'dex', modifier: 'size', priority: 0 }
         ],
         size: 1
     },
     enlargePersonMythic: {
         changes: [
-            { formula: '4', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 4 */ },
-            { formula: '-4', operator: 'add', target: 'dex', modifier: 'size', priority: 0/* , value: -4 */ }
+            { formula: '4', operator: 'add', target: 'str', modifier: 'size', priority: 0 },
+            { formula: '-4', operator: 'add', target: 'dex', modifier: 'size', priority: 0 }
         ],
         size: 2
     },
     animalGrowth: {
         changes: [
-            { formula: '8', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 8 */ },
-            { formula: '4', operator: 'add', target: 'con', modifier: 'size', priority: 0/* , value: 4 */ },
-            { formula: '-2', operator: 'add', target: 'dex', modifier: 'size', priority: 0/* , value: -2 */ },
-            { formula: '2', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 6 */ }
+            { formula: '8', operator: 'add', target: 'str', modifier: 'size', priority: 0 },
+            { formula: '4', operator: 'add', target: 'con', modifier: 'size', priority: 0 },
+            { formula: '-2', operator: 'add', target: 'dex', modifier: 'size', priority: 0 },
+            { formula: '2', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
         ],
         size: 1
     },
     legendaryProportions: {
         changes: [
-            { formula: '6', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 6 */ },
-            { formula: '4', operator: 'add', target: 'con', modifier: 'size', priority: 0/* , value: 4 */ },
-            { formula: '6', operator: 'add', target: 'nac', modifier: 'size', priority: 0/* , value: 6 */ }
+            { formula: '6', operator: 'add', target: 'str', modifier: 'size', priority: 0 },
+            { formula: '4', operator: 'add', target: 'con', modifier: 'size', priority: 0 },
+            { formula: '6', operator: 'add', target: 'nac', modifier: 'size', priority: 0 }
         ],
         size: 1
     },
     frightfulAspect: {
         changes: [
-            { formula: '6', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 6 */ },
-            { formula: '4', operator: 'add', target: 'con', modifier: 'size', priority: 0/* , value: 4 */ },
-            { formula: '6', operator: 'add', target: 'nac', modifier: 'size', priority: 0/* , value: 6 */ }
+            { formula: '6', operator: 'add', target: 'str', modifier: 'size', priority: 0 },
+            { formula: '4', operator: 'add', target: 'con', modifier: 'size', priority: 0 },
+            { formula: '6', operator: 'add', target: 'nac', modifier: 'size', priority: 0 }
         ],
         size: 'lg'
     },
     righteousMight: {
         changes: [
-            { formula: '4', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 4 */ },
-            { formula: '4', operator: 'add', target: 'con', modifier: 'size', priority: 0/* , value: 4 */ },
-            { formula: '-2', operator: 'add', target: 'dex', modifier: 'size', priority: 0/* , value: -2 */ },
-            { formula: '2', operator: 'add', target: 'nac', modifier: 'enh', priority: 0/* , value: 2 */ }
+            { formula: '4', operator: 'add', target: 'str', modifier: 'size', priority: 0 },
+            { formula: '4', operator: 'add', target: 'con', modifier: 'size', priority: 0 },
+            { formula: '-2', operator: 'add', target: 'dex', modifier: 'size', priority: 0 },
+            { formula: '2', operator: 'add', target: 'nac', modifier: 'enh', priority: 0 }
         ],
         size: 1
     },
     reducePerson: {
         changes: [
-            { formula: '-2', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: -2 */ },
-            { formula: '2', operator: 'add', target: 'dex', modifier: 'size', priority: 0/* , value: 2 */ }
+            { formula: '-2', operator: 'add', target: 'str', modifier: 'size', priority: 0 },
+            { formula: '2', operator: 'add', target: 'dex', modifier: 'size', priority: 0 }
         ],
         size: -1
     },
     reducePersonMythic: {
         changes: [
-            { formula: '-4', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: -4 */ },
-            { formula: '4', operator: 'add', target: 'dex', modifier: 'size', priority: 0/* , value: 4 */ }
+            { formula: '-4', operator: 'add', target: 'str', modifier: 'size', priority: 0 },
+            { formula: '4', operator: 'add', target: 'dex', modifier: 'size', priority: 0 }
         ],
         size: -2
     },
     maulerBattleForm: {
         changes: [
-            { formula: '2', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: -2 */ }
+            { formula: '2', operator: 'add', target: 'str', modifier: 'size', priority: 0 }
         ],
         size: 'med'
     },
@@ -85,47 +85,47 @@ MorphinChanges.changes = {
         animal: {
             sm: {
                 changes: [
-                    { formula: '2', operator: 'add', target: 'dex', modifier: 'size', priority: 0/* , value: 2 */ },
-                    { formula: '1', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 1 */ }
+                    { formula: '2', operator: 'add', target: 'dex', modifier: 'size', priority: 0 },
+                    { formula: '1', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ],
                 size: 'sm'
             },
             med: {
                 changes: [
-                    { formula: '2', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 2 */ },
-                    { formula: '2', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 2 */ }
+                    { formula: '2', operator: 'add', target: 'str', modifier: 'size', priority: 0 },
+                    { formula: '2', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ],
                 size: 'med'
             },
             tiny: {
                 changes: [
-                    { formula: '4', operator: 'add', target: 'dex', modifier: 'size', priority: 0/* , value: 4 */ },
-                    { formula: '-2', operator: 'add', target: 'str', modifier: 'untyped', priority: 0/* , value: -2 */ },
-                    { formula: '1', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 1 */ }
+                    { formula: '4', operator: 'add', target: 'dex', modifier: 'size', priority: 0 },
+                    { formula: '-2', operator: 'add', target: 'str', modifier: 'untyped', priority: 0 },
+                    { formula: '1', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ],
                 size: 'tiny'
             },
             lg: {
                 changes: [
-                    { formula: '4', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 4 */ },
-                    { formula: '-2', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0/* , value: -2 */ },
-                    { formula: '4', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 4 */ }
+                    { formula: '4', operator: 'add', target: 'str', modifier: 'size', priority: 0 },
+                    { formula: '-2', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0 },
+                    { formula: '4', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ],
                 size: 'lg'
             },
             dim: {
                 changes: [
-                    { formula: '6', operator: 'add', target: 'dex', modifier: 'size', priority: 0/* , value: 6 */ },
-                    { formula: '-4', operator: 'add', target: 'str', modifier: 'untyped', priority: 0/* , value: -4 */ },
-                    { formula: '1', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 1 */ }
+                    { formula: '6', operator: 'add', target: 'dex', modifier: 'size', priority: 0 },
+                    { formula: '-4', operator: 'add', target: 'str', modifier: 'untyped', priority: 0 },
+                    { formula: '1', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ],
                 size: 'dim'
             },
             huge: {
                 changes: [
-                    { formula: '6', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 6 */ },
-                    { formula: '-4', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0/* , value: -4 */ },
-                    { formula: '6', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 6 */ }
+                    { formula: '6', operator: 'add', target: 'str', modifier: 'size', priority: 0 },
+                    { formula: '-4', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0 },
+                    { formula: '6', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ],
                 size: 'huge'
             }
@@ -133,32 +133,32 @@ MorphinChanges.changes = {
         magicalBeast: {
             sm: {
                 changes: [
-                    { formula: '4', operator: 'add', target: 'dex', modifier: 'size', priority: 0/* , value: 4 */ },
-                    { formula: '2', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 2 */ }
+                    { formula: '4', operator: 'add', target: 'dex', modifier: 'size', priority: 0 },
+                    { formula: '2', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ],
                 size: 'sm'
             },
             med: {
                 changes: [
-                    { formula: '4', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 4 */ },
-                    { formula: '4', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 4 */ }
+                    { formula: '4', operator: 'add', target: 'str', modifier: 'size', priority: 0 },
+                    { formula: '4', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ],
                 size: 'med'
             },
             tiny: {
                 changes: [
-                    { formula: '8', operator: 'add', target: 'dex', modifier: 'size', priority: 0/* , value: 8 */ },
-                    { formula: '-2', operator: 'add', target: 'str', modifier: 'untyped', priority: 0/* , value: -2 */ },
-                    { formula: '3', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 3 */ }
+                    { formula: '8', operator: 'add', target: 'dex', modifier: 'size', priority: 0 },
+                    { formula: '-2', operator: 'add', target: 'str', modifier: 'untyped', priority: 0 },
+                    { formula: '3', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ],
                 size: 'tiny'
             },
             lg: {
                 changes: [
-                    { formula: '6', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 6 */ },
-                    { formula: '2', operator: 'add', target: 'con', modifier: 'size', priority: 0/* , value: 2 */ },
-                    { formula: '-2', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0/* , value: -2 */ },
-                    { formula: '6', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 6 */ }
+                    { formula: '6', operator: 'add', target: 'str', modifier: 'size', priority: 0 },
+                    { formula: '2', operator: 'add', target: 'con', modifier: 'size', priority: 0 },
+                    { formula: '-2', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0 },
+                    { formula: '6', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ],
                 size: 'lg'
             }
@@ -168,48 +168,48 @@ MorphinChanges.changes = {
         magicalBeast: {
             sm: {
                 changes: [
-                    { formula: '4', operator: 'add', target: 'dex', modifier: 'size', priority: 0/* , value: 4 */ },
-                    { formula: '2', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 2 */ }
+                    { formula: '4', operator: 'add', target: 'dex', modifier: 'size', priority: 0 },
+                    { formula: '2', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ],
                 size: 'sm'
             },
             med: {
                 changes: [
-                    { formula: '4', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 4 */ },
-                    { formula: '4', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 4 */ }
+                    { formula: '4', operator: 'add', target: 'str', modifier: 'size', priority: 0 },
+                    { formula: '4', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ],
                 size: 'med'
             },
             tiny: {
                 changes: [
-                    { formula: '8', operator: 'add', target: 'dex', modifier: 'size', priority: 0/* , value: 8 */ },
-                    { formula: '-2', operator: 'add', target: 'str', modifier: 'untyped', priority: 0/* , value: -2 */ },
-                    { formula: '3', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 3 */ }
+                    { formula: '8', operator: 'add', target: 'dex', modifier: 'size', priority: 0 },
+                    { formula: '-2', operator: 'add', target: 'str', modifier: 'untyped', priority: 0 },
+                    { formula: '3', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ],
                 size: 'tiny'
             },
             lg: {
                 changes: [
-                    { formula: '6', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 6 */ },
-                    { formula: '2', operator: 'add', target: 'con', modifier: 'size', priority: 0/* , value: 2 */ },
-                    { formula: '-2', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0/* , value: -2 */ },
-                    { formula: '6', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 6 */ }
+                    { formula: '6', operator: 'add', target: 'str', modifier: 'size', priority: 0 },
+                    { formula: '2', operator: 'add', target: 'con', modifier: 'size', priority: 0 },
+                    { formula: '-2', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0 },
+                    { formula: '6', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ],
                 size: 'lg'
             },
             dim: {
                 changes: [
-                    { formula: '10', operator: 'add', target: 'dex', modifier: 'size', priority: 0/* , value: 10 */ },
-                    { formula: '-4', operator: 'add', target: 'str', modifier: 'untyped', priority: 0/* , value: -4 */ }
+                    { formula: '10', operator: 'add', target: 'dex', modifier: 'size', priority: 0 },
+                    { formula: '-4', operator: 'add', target: 'str', modifier: 'untyped', priority: 0 }
                 ],
                 size: 'dim'
             },
             huge: {
                 changes: [
-                    { formula: '8', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 8 */ },
-                    { formula: '2', operator: 'add', target: 'con', modifier: 'size', priority: 0/* , value: 2 */ },
-                    { formula: '-4', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0/* , value: -4 */ },
-                    { formula: '7', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 7 */ }
+                    { formula: '8', operator: 'add', target: 'str', modifier: 'size', priority: 0 },
+                    { formula: '2', operator: 'add', target: 'con', modifier: 'size', priority: 0 },
+                    { formula: '-4', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0 },
+                    { formula: '7', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ],
                 size: 'huge'
             }
@@ -219,116 +219,116 @@ MorphinChanges.changes = {
         air: {
             1: {
                 changes: [
-                    { formula: '2', operator: 'add', target: 'dex', modifier: 'size', priority: 0/* , value: 2 */ },
-                    { formula: '2', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 2 */ }
+                    { formula: '2', operator: 'add', target: 'dex', modifier: 'size', priority: 0 },
+                    { formula: '2', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ]
             },
             2: {
                 changes: [
-                    { formula: '4', operator: 'add', target: 'dex', modifier: 'size', priority: 0/* , value: 4 */ },
-                    { formula: '3', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 3 */ }
+                    { formula: '4', operator: 'add', target: 'dex', modifier: 'size', priority: 0 },
+                    { formula: '3', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ]
             },
             3: {
                 changes: [
-                    { formula: '2', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 2 */ },
-                    { formula: '4', operator: 'add', target: 'dex', modifier: 'size', priority: 0/* , value: 4 */ },
-                    { formula: '4', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 4 */ }
+                    { formula: '2', operator: 'add', target: 'str', modifier: 'size', priority: 0 },
+                    { formula: '4', operator: 'add', target: 'dex', modifier: 'size', priority: 0 },
+                    { formula: '4', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ]
             },
             4: {
                 changes: [
-                    { formula: '4', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 4 */ },
-                    { formula: '6', operator: 'add', target: 'dex', modifier: 'size', priority: 0/* , value: 6 */ },
-                    { formula: '4', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 4 */ }
+                    { formula: '4', operator: 'add', target: 'str', modifier: 'size', priority: 0 },
+                    { formula: '6', operator: 'add', target: 'dex', modifier: 'size', priority: 0 },
+                    { formula: '4', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ]
             }
         },
         earth: {
             1: {
                 changes: [
-                    { formula: '2', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 2 */ },
-                    { formula: '4', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 4 */ }
+                    { formula: '2', operator: 'add', target: 'str', modifier: 'size', priority: 0 },
+                    { formula: '4', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ]
             },
             2: {
                 changes: [
-                    { formula: '4', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 4 */ },
-                    { formula: '5', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 5 */ }
+                    { formula: '4', operator: 'add', target: 'str', modifier: 'size', priority: 0 },
+                    { formula: '5', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ]
             },
             3: {
                 changes: [
-                    { formula: '6', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 6 */ },
-                    { formula: '2', operator: 'add', target: 'con', modifier: 'size', priority: 0/* , value: 2 */ },
-                    { formula: '-2', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0/* , value: -2 */ },
-                    { formula: '6', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 6 */ }
+                    { formula: '6', operator: 'add', target: 'str', modifier: 'size', priority: 0 },
+                    { formula: '2', operator: 'add', target: 'con', modifier: 'size', priority: 0 },
+                    { formula: '-2', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0 },
+                    { formula: '6', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ]
             },
             4: {
                 changes: [
-                    { formula: '8', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 8 */ },
-                    { formula: '4', operator: 'add', target: 'con', modifier: 'size', priority: 0/* , value: 4 */ },
-                    { formula: '-2', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0/* , value: -2 */ },
-                    { formula: '6', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 6 */ }
+                    { formula: '8', operator: 'add', target: 'str', modifier: 'size', priority: 0 },
+                    { formula: '4', operator: 'add', target: 'con', modifier: 'size', priority: 0 },
+                    { formula: '-2', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0 },
+                    { formula: '6', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ]
             }
         },
         fire: {
             1: {
                 changes: [
-                    { formula: '2', operator: 'add', target: 'dex', modifier: 'size', priority: 0/* , value: 2 */ },
-                    { formula: '2', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 2 */ }
+                    { formula: '2', operator: 'add', target: 'dex', modifier: 'size', priority: 0 },
+                    { formula: '2', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ]
             },
             2: {
                 changes: [
-                    { formula: '4', operator: 'add', target: 'dex', modifier: 'size', priority: 0/* , value: 4 */ },
-                    { formula: '3', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 3 */ }
+                    { formula: '4', operator: 'add', target: 'dex', modifier: 'size', priority: 0 },
+                    { formula: '3', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ]
             },
             3: {
                 changes: [
-                    { formula: '2', operator: 'add', target: 'con', modifier: 'size', priority: 0/* , value: 2 */ },
-                    { formula: '4', operator: 'add', target: 'dex', modifier: 'size', priority: 0/* , value: 4 */ },
-                    { formula: '4', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 4 */ }
+                    { formula: '2', operator: 'add', target: 'con', modifier: 'size', priority: 0 },
+                    { formula: '4', operator: 'add', target: 'dex', modifier: 'size', priority: 0 },
+                    { formula: '4', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ]
             },
             4: {
                 changes: [
-                    { formula: '4', operator: 'add', target: 'con', modifier: 'size', priority: 0/* , value: 4 */ },
-                    { formula: '6', operator: 'add', target: 'dex', modifier: 'size', priority: 0/* , value: 6 */ },
-                    { formula: '4', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 4 */ }
+                    { formula: '4', operator: 'add', target: 'con', modifier: 'size', priority: 0 },
+                    { formula: '6', operator: 'add', target: 'dex', modifier: 'size', priority: 0 },
+                    { formula: '4', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ]
             }
         },
         water: {
             1: {
                 changes: [
-                    { formula: '2', operator: 'add', target: 'con', modifier: 'size', priority: 0/* , value: 2 */ },
-                    { formula: '4', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 4 */ }
+                    { formula: '2', operator: 'add', target: 'con', modifier: 'size', priority: 0 },
+                    { formula: '4', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ]
             },
             2: {
                 changes: [
-                    { formula: '4', operator: 'add', target: 'con', modifier: 'size', priority: 0/* , value: 4 */ },
-                    { formula: '5', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 5 */ }
+                    { formula: '4', operator: 'add', target: 'con', modifier: 'size', priority: 0 },
+                    { formula: '5', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ]
             },
             3: {
                 changes: [
-                    { formula: '6', operator: 'add', target: 'con', modifier: 'size', priority: 0/* , value: 6 */ },
-                    { formula: '2', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 2 */ },
-                    { formula: '-2', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0/* , value: -2 */ },
-                    { formula: '6', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 6 */ }
+                    { formula: '6', operator: 'add', target: 'con', modifier: 'size', priority: 0 },
+                    { formula: '2', operator: 'add', target: 'str', modifier: 'size', priority: 0 },
+                    { formula: '-2', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0 },
+                    { formula: '6', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ]
             },
             4: {
                 changes: [
-                    { formula: '8', operator: 'add', target: 'con', modifier: 'size', priority: 0/* , value: 8 */ },
-                    { formula: '4', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 4 */ },
-                    { formula: '-2', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0/* , value: -2 */ },
-                    { formula: '6', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 6 */ }
+                    { formula: '8', operator: 'add', target: 'con', modifier: 'size', priority: 0 },
+                    { formula: '4', operator: 'add', target: 'str', modifier: 'size', priority: 0 },
+                    { formula: '-2', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0 },
+                    { formula: '6', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ]
             }
         }
@@ -337,33 +337,33 @@ MorphinChanges.changes = {
         plant: {
             sm: {
                 changes: [
-                    { formula: '2', operator: 'add', target: 'con', modifier: 'size', priority: 0/* , value: 2 */ },
-                    { formula: '2', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 2 */ }
+                    { formula: '2', operator: 'add', target: 'con', modifier: 'size', priority: 0 },
+                    { formula: '2', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ],
                 size: 'sm'
             },
             med: {
                 changes: [
-                    { formula: '2', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 2 */ },
-                    { formula: '2', operator: 'add', target: 'con', modifier: 'enh', priority: 0/* , value: 2 */ },
-                    { formula: '2', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 2 */ }
+                    { formula: '2', operator: 'add', target: 'str', modifier: 'size', priority: 0 },
+                    { formula: '2', operator: 'add', target: 'con', modifier: 'enh', priority: 0 },
+                    { formula: '2', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ],
                 size: 'med'
             },
             lg: {
                 changes: [
-                    { formula: '4', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 4 */ },
-                    { formula: '2', operator: 'add', target: 'con', modifier: 'size', priority: 0/* , value: 2 */ },
-                    { formula: '4', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 4 */ }
+                    { formula: '4', operator: 'add', target: 'str', modifier: 'size', priority: 0 },
+                    { formula: '2', operator: 'add', target: 'con', modifier: 'size', priority: 0 },
+                    { formula: '4', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ],
                 size: 'lg'
             },
             huge: {
                 changes: [
-                    { formula: '8', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 8 */ },
-                    { formula: '4', operator: 'add', target: 'con', modifier: 'size', priority: 0/* , value: 4 */ },
-                    { formula: '-2', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0/* , value: -2 */ },
-                    { formula: '6', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 6 */ }
+                    { formula: '8', operator: 'add', target: 'str', modifier: 'size', priority: 0 },
+                    { formula: '4', operator: 'add', target: 'con', modifier: 'size', priority: 0 },
+                    { formula: '-2', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0 },
+                    { formula: '6', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ],
                 size: 'huge'
             }
@@ -373,31 +373,31 @@ MorphinChanges.changes = {
         vermin: {
             sm: {
                 changes: [
-                    { formula: '2', operator: 'add', target: 'dex', modifier: 'size', priority: 0/* , value: 2 */ },
-                    { formula: '2', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 2 */ }
+                    { formula: '2', operator: 'add', target: 'dex', modifier: 'size', priority: 0 },
+                    { formula: '2', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ],
                 size: 'sm'
             },
             med: {
                 changes: [
-                    { formula: '2', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 2 */ },
-                    { formula: '3', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 3 */ }
+                    { formula: '2', operator: 'add', target: 'str', modifier: 'size', priority: 0 },
+                    { formula: '3', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ],
                 size: 'med'
             },
             lg: {
                 changes: [
-                    { formula: '4', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 4 */ },
-                    { formula: '-2', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0/* , value: -2 */ },
-                    { formula: '5', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 5 */ }
+                    { formula: '4', operator: 'add', target: 'str', modifier: 'size', priority: 0 },
+                    { formula: '-2', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0 },
+                    { formula: '5', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ],
                 size: 'lg'
             },
             tiny: {
                 changes: [
-                    { formula: '-2', operator: 'add', target: 'str', modifier: 'untyped', priority: 0/* , value: -2 */ },
-                    { formula: '4', operator: 'add', target: 'dex', modifier: 'size', priority: 0/* , value: 4 */ },
-                    { formula: '1', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 1 */ }
+                    { formula: '-2', operator: 'add', target: 'str', modifier: 'untyped', priority: 0 },
+                    { formula: '4', operator: 'add', target: 'dex', modifier: 'size', priority: 0 },
+                    { formula: '1', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ],
                 size: 'huge'
             }
@@ -407,19 +407,19 @@ MorphinChanges.changes = {
         giant: {
             1: {
                 changes: [
-                    { formula: '6', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 6 */ },
-                    { formula: '4', operator: 'add', target: 'con', modifier: 'size', priority: 0/* , value: 4 */ },
-                    { formula: '-2', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0/* , value: -2 */ },
-                    { formula: '4', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 4 */ }
+                    { formula: '6', operator: 'add', target: 'str', modifier: 'size', priority: 0 },
+                    { formula: '4', operator: 'add', target: 'con', modifier: 'size', priority: 0 },
+                    { formula: '-2', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0 },
+                    { formula: '4', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ]
             },
             2: {
                 changes: [
-                    { formula: '8', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 8 */ },
-                    { formula: '6', operator: 'add', target: 'con', modifier: 'size', priority: 0/* , value: 6 */ },
-                    { formula: '-2', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0/* , value: -2 */ },
-                    { formula: '6', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 6 */ },
-                    { formula: '10', operator: 'add', target: 'landSpeed', modifier: 'enh', priority: 0/* , value: 10 */ }
+                    { formula: '8', operator: 'add', target: 'str', modifier: 'size', priority: 0 },
+                    { formula: '6', operator: 'add', target: 'con', modifier: 'size', priority: 0 },
+                    { formula: '-2', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0 },
+                    { formula: '6', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 },
+                    { formula: '10', operator: 'add', target: 'landSpeed', modifier: 'enh', priority: 0 }
                 ]
             }
         }
@@ -428,23 +428,23 @@ MorphinChanges.changes = {
         dragon: {
             1: {
                 changes: [
-                    { formula: '4', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 4 */ },
-                    { formula: '2', operator: 'add', target: 'con', modifier: 'size', priority: 0/* , value: 2 */ },
-                    { formula: '4', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 4 */ }
+                    { formula: '4', operator: 'add', target: 'str', modifier: 'size', priority: 0 },
+                    { formula: '2', operator: 'add', target: 'con', modifier: 'size', priority: 0 },
+                    { formula: '4', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ]
             },
             2: {
                 changes: [
-                    { formula: '6', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 6 */ },
-                    { formula: '4', operator: 'add', target: 'con', modifier: 'size', priority: 0/* , value: 4 */ },
-                    { formula: '6', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 6 */ }
+                    { formula: '6', operator: 'add', target: 'str', modifier: 'size', priority: 0 },
+                    { formula: '4', operator: 'add', target: 'con', modifier: 'size', priority: 0 },
+                    { formula: '6', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ]
             },
             3: {
                 changes: [
-                    { formula: '10', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 10 */ },
-                    { formula: '8', operator: 'add', target: 'con', modifier: 'size', priority: 0/* , value: 8 */ },
-                    { formula: '8', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0/* , value: 8 */ }
+                    { formula: '10', operator: 'add', target: 'str', modifier: 'size', priority: 0 },
+                    { formula: '8', operator: 'add', target: 'con', modifier: 'size', priority: 0 },
+                    { formula: '8', operator: 'add', target: 'nac', modifier: 'untyped', priority: 0 }
                 ]
             }
         }
@@ -453,48 +453,48 @@ MorphinChanges.changes = {
         humanoid: {
             sm: {
                 changes: [
-                    { formula: '2', operator: 'add', target: 'dex', modifier: 'size', priority: 0/* , value: 2 */ }
+                    { formula: '2', operator: 'add', target: 'dex', modifier: 'size', priority: 0 }
                 ]
             },
             med: {
                 changes: [
-                    { formula: '2', operator: 'add', target: 'str', modifier: 'size', priority: 0/* , value: 2 */ }
+                    { formula: '2', operator: 'add', target: 'str', modifier: 'size', priority: 0 }
                 ]
             }
         }
     },
     polymorphSize: {
         fine: [
-            { formula: '6', operator: 'add', target: 'str', modifier: 'untyped', priority: 0/* , value: 6 */ },
-            { formula: '-6', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0/* , value: -6 */ }
+            { formula: '6', operator: 'add', target: 'str', modifier: 'untyped', priority: 0 },
+            { formula: '-6', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0 }
         ],
         dim: [
-            { formula: '6', operator: 'add', target: 'str', modifier: 'untyped', priority: 0/* , value: 6 */ },
-            { formula: '-4', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0/* , value: -4 */ }
+            { formula: '6', operator: 'add', target: 'str', modifier: 'untyped', priority: 0 },
+            { formula: '-4', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0 }
         ],
         tiny: [
-            { formula: '4', operator: 'add', target: 'str', modifier: 'untyped', priority: 0/* , value: 4 */ },
-            { formula: '-2', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0/* , value: -2 */ }
+            { formula: '4', operator: 'add', target: 'str', modifier: 'untyped', priority: 0 },
+            { formula: '-2', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0 }
         ],
         lg: [
-            { formula: '-4', operator: 'add', target: 'str', modifier: 'untyped', priority: 0/* , value: -4 */ },
-            { formula: '2', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0/* , value: 2 */ },
-            { formula: '-2', operator: 'add', target: 'con', modifier: 'untyped', priority: 0/* , value: -2 */ }
+            { formula: '-4', operator: 'add', target: 'str', modifier: 'untyped', priority: 0 },
+            { formula: '2', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0 },
+            { formula: '-2', operator: 'add', target: 'con', modifier: 'untyped', priority: 0 }
         ],
         huge: [
-            { formula: '-8', operator: 'add', target: 'str', modifier: 'untyped', priority: 0/* , value: -8 */ },
-            { formula: '4', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0/* , value: 4 */ },
-            { formula: '-4', operator: 'add', target: 'con', modifier: 'untyped', priority: 0/* , value: -4 */ }
+            { formula: '-8', operator: 'add', target: 'str', modifier: 'untyped', priority: 0 },
+            { formula: '4', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0 },
+            { formula: '-4', operator: 'add', target: 'con', modifier: 'untyped', priority: 0 }
         ],
         col: [
-            { formula: '-16', operator: 'add', target: 'str', modifier: 'untyped', priority: 0/* , value: -16 */ },
-            { formula: '4', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0/* , value: 4 */ },
-            { formula: '-8', operator: 'add', target: 'con', modifier: 'untyped', priority: 0/* , value: -8 */ }
+            { formula: '-16', operator: 'add', target: 'str', modifier: 'untyped', priority: 0 },
+            { formula: '4', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0 },
+            { formula: '-8', operator: 'add', target: 'con', modifier: 'untyped', priority: 0 }
         ],
         grg: [
-            { formula: '-12', operator: 'add', target: 'str', modifier: 'untyped', priority: 0/* , value: -12 */ },
-            { formula: '4', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0/* , value: 4 */ },
-            { formula: '-6', operator: 'add', target: 'con', modifier: 'untyped', priority: 0/* , value: -6 */ }
+            { formula: '-12', operator: 'add', target: 'str', modifier: 'untyped', priority: 0 },
+            { formula: '4', operator: 'add', target: 'dex', modifier: 'untyped', priority: 0 },
+            { formula: '-6', operator: 'add', target: 'con', modifier: 'untyped', priority: 0 }
         ]
     },
     wildShape: {
@@ -671,18 +671,19 @@ MorphinChanges.changes = {
             source: 'beastShape',
             minor: {
                 1: {
-                    senses: [
-                        7
+                    changes: [
+                        { target: 'sensedv', formula: 'ifelse(gte(@traits.senses.dv.total,60),@traits.senses.dv.total + 30, 60)', priority: 0, operator: 'set', modifier: 'untyped' }
                     ]
                 },
                 8: {
-                    senses: [
-                        10
+                    changes: [
+                        { target: 'sensedv', formula: 'ifelse(gte(@traits.senses.dv.total,90),@traits.senses.dv.total + 30, 90)', priority: 0, operator: 'set', modifier: 'untyped' }
                     ]
                 },
                 15: {
-                    senses: [
-                        10, 19
+                    changes: [
+                        { target: 'sensedv', formula: 'ifelse(gte(@traits.senses.dv.total,90),@traits.senses.dv.total + 30, 90)', priority: 0, operator: 'set', modifier: 'untyped' },
+                        { target: 'sensebse', formula: 'ifelse(gte(@traits.senses.bse.total,15),@traits.senses.bse.total + 10, 15)', priority: 0, operator: 'set', modifier: 'untyped' }
                     ]
                 }
             },
@@ -697,11 +698,11 @@ MorphinChanges.changes = {
                         fly: {
                             base: 40,
                             maneuverability: 'clumsy'
-                        },
-                        senses: [
-                            18
-                        ]
-                    }
+                        }
+                    },
+                    senses: [
+                        18
+                    ]
                 },
                 8: {
                     senses: [
@@ -733,17 +734,17 @@ MorphinChanges.changes = {
             minor: {
                 1: {
                     changes: [
-                        { formula: '2', operator: 'add', target: 'con', modifier: 'enh', priority: 0/* , value: 2 */ }
+                        { formula: '2', operator: 'add', target: 'con', modifier: 'enh', priority: 0 }
                     ]
                 },
                 8: {
                     changes: [
-                        { formula: '4', operator: 'add', target: 'con', modifier: 'enh', priority: 0/* , value: 4 */ }
+                        { formula: '4', operator: 'add', target: 'con', modifier: 'enh', priority: 0 }
                     ]
                 },
                 15: {
                     changes: [
-                        { formula: '6', operator: 'add', target: 'con', modifier: 'enh', priority: 0/* , value: 6 */ }
+                        { formula: '6', operator: 'add', target: 'con', modifier: 'enh', priority: 0 }
                     ]
                 }
             },
@@ -843,17 +844,17 @@ MorphinChanges.changes = {
             minor: {
                 1: {
                     changes: [
-                        { formula: '2', operator: 'add', target: 'str', modifier: 'enh', priority: 0/* , value: 2 */ }
+                        { formula: '2', operator: 'add', target: 'str', modifier: 'enh', priority: 0 }
                     ]
                 },
                 8: {
                     changes: [
-                        { formula: '4', operator: 'add', target: 'str', modifier: 'enh', priority: 0/* , value: 4 */ }
+                        { formula: '4', operator: 'add', target: 'str', modifier: 'enh', priority: 0 }
                     ]
                 },
                 15: {
                     changes: [
-                        { formula: '6', operator: 'add', target: 'str', modifier: 'enh', priority: 0/* , value: 6 */ }
+                        { formula: '6', operator: 'add', target: 'str', modifier: 'enh', priority: 0 }
                     ]
                 }
             },
@@ -905,7 +906,7 @@ MorphinChanges.changes = {
             minor: {
                 1: {
                     changes: [
-                        { formula: '2', operator: 'add', target: 'skill.swm', modifier: 'competence', priority: 0/* , value: 2 */ }
+                        { formula: '2', operator: 'add', target: 'skill.swm', modifier: 'competence', priority: 0 }
                     ],
                     contextNotes: [
                         { text: '+[[2]] to grapple', target: 'cmb' }
@@ -913,7 +914,7 @@ MorphinChanges.changes = {
                 },
                 8: {
                     changes: [
-                        { formula: '4', operator: 'add', target: 'skill.swm', modifier: 'competence', priority: 0/* , value: 4 */ }
+                        { formula: '4', operator: 'add', target: 'skill.swm', modifier: 'competence', priority: 0 }
                     ],
                     contextNotes: [
                         { text: '+[[4]] to grapple', target: 'cmb' }
@@ -921,7 +922,7 @@ MorphinChanges.changes = {
                 },
                 15: {
                     changes: [
-                        { formula: '6', operator: 'add', target: 'skill.swm', modifier: 'competence', priority: 0/* , value: 6 */ }
+                        { formula: '6', operator: 'add', target: 'skill.swm', modifier: 'competence', priority: 0 }
                     ],
                     contextNotes: [
                         { text: '+[[6]] to grapple', target: 'cmb' }
@@ -972,17 +973,17 @@ MorphinChanges.changes = {
             minor: {
                 1: {
                     changes: [
-                        { formula: '2', operator: 'add', target: 'init', modifier: 'untyped', priority: 0/* , value: 2 */ }
+                        { formula: '2', operator: 'add', target: 'init', modifier: 'untyped', priority: 0 }
                     ]
                 },
                 8: {
                     changes: [
-                        { formula: '4', operator: 'add', target: 'init', modifier: 'untyped', priority: 0/* , value: 4 */ }
+                        { formula: '4', operator: 'add', target: 'init', modifier: 'untyped', priority: 0 }
                     ]
                 },
                 15: {
                     changes: [
-                        { formula: '6', operator: 'add', target: 'init', modifier: 'untyped', priority: 0/* , value: 6 */ }
+                        { formula: '6', operator: 'add', target: 'init', modifier: 'untyped', priority: 0 }
                     ]
                 }
             },
@@ -1010,7 +1011,7 @@ MorphinChanges.changes = {
                         { name: 'Foreclaws', diceCount: 1, diceSize: 4, count: 1, claw: false }
                     ],
                     changes: [
-                        { formula: '4', operator: 'add', target: 'skill.acr', modifier: 'racial', priority: 0/* , value: 4 */ }
+                        { formula: '4', operator: 'add', target: 'skill.acr', modifier: 'racial', priority: 0 }
                     ]
                 },
                 15: {
@@ -1018,7 +1019,7 @@ MorphinChanges.changes = {
                         { name: 'Spring Attack', uuid: 'Compendium.pf1.feats.Item.ugQyUpqPBDsqLyra' }
                     ],
                     changes: [
-                        { formula: '1', operator: 'add', target: 'ac', modifier: 'dodge', priority: 0/* , value: 1 */ }
+                        { formula: '1', operator: 'add', target: 'ac', modifier: 'dodge', priority: 0 }
                     ]
                 }
             },
@@ -1083,13 +1084,19 @@ MorphinChanges.changes = {
             source: 'verminShape',
             minor: {
                 1: {
-
+                    contextNotes: [
+                        { text: '+[[10]] enhancement to base speed when charging' , target: 'landSpeed' }
+                    ]
                 },
                 8: {
-
+                    contextNotes: [
+                        { text: '+[[20]] enhancement to base speed when charging' , target: 'landSpeed' }
+                    ]
                 },
                 15: {
-
+                    contextNotes: [
+                        { text: '+[[30]] enhancement to base speed when charging' , target: 'landSpeed' }
+                    ]
                 }
             },
             major: {
@@ -1180,7 +1187,7 @@ MorphinChanges.changes = {
                         { amount: 10, operator: true, types: ['electric', ''] }
                     ],
                     changes: [
-                        { formula: '4', operator: 'add', target: 'skill.esc', modifier: 'racial', priority: 0/* , value: 1 */ }
+                        { formula: '4', operator: 'add', target: 'skill.esc', modifier: 'racial', priority: 0 }
                     ]
                 },
                 15: {
@@ -1230,8 +1237,8 @@ MorphinChanges.changes = {
                         1, 14
                     ],
                     changes: [
-                        { formula: '2', operator: 'add', target: 'str', modifier: 'racial', priority: 0/* , value: 2 */ },
-                        { formula: '2', operator: 'add', target: 'nac', modifier: 'racial', priority: 0/* , value: 2 */ }
+                        { formula: '2', operator: 'add', target: 'str', modifier: 'racial', priority: 0 },
+                        { formula: '2', operator: 'add', target: 'nac', modifier: 'racial', priority: 0 }
                     ]
                 },
                 8: {
@@ -1247,8 +1254,8 @@ MorphinChanges.changes = {
                         { name: 'Improved Bull Rush', uuid: 'Compendium.pf1.feats.Item.dn2KgHFQRbuoNRx0' }
                     ],
                     changes: [
-                        { formula: '4', operator: 'add', target: 'str', modifier: 'racial', priority: 0/* , value: 4 */ },
-                        { formula: '4', operator: 'add', target: 'nac', modifier: 'racial', priority: 0/* , value: 4 */ }
+                        { formula: '4', operator: 'add', target: 'str', modifier: 'racial', priority: 0 },
+                        { formula: '4', operator: 'add', target: 'nac', modifier: 'racial', priority: 0 }
                     ]
                 }
             },
@@ -1261,17 +1268,17 @@ MorphinChanges.changes = {
             minor: {
                 1: {
                     changes: [
-                        { formula: '4', operator: 'add', target: 'skill.per', modifier: 'competence', priority: 0/* , value: 4 */ }
+                        { formula: '4', operator: 'add', target: 'skill.per', modifier: 'competence', priority: 0 }
                     ]
                 },
                 8: {
                     changes: [
-                        { formula: '6', operator: 'add', target: 'skill.per', modifier: 'competence', priority: 0/* , value: 6 */ }
+                        { formula: '6', operator: 'add', target: 'skill.per', modifier: 'competence', priority: 0 }
                     ]
                 },
                 15: {
                     changes: [
-                        { formula: '8', operator: 'add', target: 'skill.per', modifier: 'competence', priority: 0/* , value: 8 */ }
+                        { formula: '8', operator: 'add', target: 'skill.per', modifier: 'competence', priority: 0 }
                     ]
                 }
             },
@@ -1326,7 +1333,7 @@ MorphinChanges.changes = {
             minor: {
                 1: {
                     changes: [
-                        { formula: '4', operator: 'add', target: 'skill.swm', modifier: 'competence', priority: 0/* , value: 4 */ }
+                        { formula: '4', operator: 'add', target: 'skill.swm', modifier: 'competence', priority: 0 }
                     ],
                     contextNotes: [
                         { text: '+[[4]] competence to jump', target: 'skill.acr' }
@@ -1334,7 +1341,7 @@ MorphinChanges.changes = {
                 },
                 8: {
                     changes: [
-                        { formula: '6', operator: 'add', target: 'skill.swm', modifier: 'competence', priority: 0/* , value: 6 */ }
+                        { formula: '6', operator: 'add', target: 'skill.swm', modifier: 'competence', priority: 0 }
                     ],
                     contextNotes: [
                         { text: '+[[6]] competence to jump', target: 'skill.acr' }
@@ -1342,7 +1349,7 @@ MorphinChanges.changes = {
                 },
                 15: {
                     changes: [
-                        { formula: '8', operator: 'add', target: 'skill.swm', modifier: 'competence', priority: 0/* , value: 8 */ }
+                        { formula: '8', operator: 'add', target: 'skill.swm', modifier: 'competence', priority: 0 }
                     ],
                     contextNotes: [
                         { text: '+[[8]] competence to jump', target: 'skill.acr' }
@@ -1454,7 +1461,7 @@ MorphinChanges.changes = {
                         { name: 'Endurance', uuid: 'Compendium.pf1.feats.Item.ehqx8txNRGMaNOPt' }
                     ],
                     changes: [
-                        { formula: '5', operator: 'add', target: 'landSpeed', modifier: 'enh', priority: 0/* , value: 5 */ }
+                        { formula: '5', operator: 'add', target: 'landSpeed', modifier: 'enh', priority: 0 }
                     ]
                 },
                 8: {
@@ -1465,7 +1472,7 @@ MorphinChanges.changes = {
                 },
                 15: {
                     changes: [
-                        { formula: '15', operator: 'add', target: 'landSpeed', modifier: 'enh', priority: 0/* , value: 15 */ }
+                        { formula: '15', operator: 'add', target: 'landSpeed', modifier: 'enh', priority: 0 }
                     ]
                 }
             },
@@ -1508,17 +1515,17 @@ MorphinChanges.changes = {
             minor: {
                 1: {
                     changes: [
-                        { formula: '4', operator: 'add', target: 'skill.int', modifier: 'competence', priority: 0/* , value: 4 */ }
+                        { formula: '4', operator: 'add', target: 'skill.int', modifier: 'competence', priority: 0 }
                     ]
                 },
                 8: {
                     changes: [
-                        { formula: '6', operator: 'add', target: 'skill.int', modifier: 'competence', priority: 0/* , value: 4 */ }
+                        { formula: '6', operator: 'add', target: 'skill.int', modifier: 'competence', priority: 0 }
                     ]
                 },
                 15: {
                     changes: [
-                        { formula: '8', operator: 'add', target: 'skill.int', modifier: 'competence', priority: 0/* , value: 4 */ }
+                        { formula: '8', operator: 'add', target: 'skill.int', modifier: 'competence', priority: 0 }
                     ]
                 }
             },
@@ -1570,17 +1577,17 @@ MorphinChanges.changes = {
             minor: {
                 1: {
                     changes: [
-                        { formula: '4', operator: 'add', target: 'skill.acr', modifier: 'competence', priority: 0/* , value: 4 */ }
+                        { formula: '4', operator: 'add', target: 'skill.acr', modifier: 'competence', priority: 0 }
                     ]
                 },
                 8: {
                     changes: [
-                        { formula: '6', operator: 'add', target: 'skill.acr', modifier: 'competence', priority: 0/* , value: 4 */ }
+                        { formula: '6', operator: 'add', target: 'skill.acr', modifier: 'competence', priority: 0 }
                     ]
                 },
                 15: {
                     changes: [
-                        { formula: '8', operator: 'add', target: 'skill.acr', modifier: 'competence', priority: 0/* , value: 4 */ }
+                        { formula: '8', operator: 'add', target: 'skill.acr', modifier: 'competence', priority: 0 }
                     ]
                 }
             },
@@ -1643,7 +1650,7 @@ MorphinChanges.changes = {
                         7
                     ],
                     changes: [
-                        { formula: '2', operator: 'add', target: 'init', modifier: 'racial', priority: 0/* , value: 2 */ }
+                        { formula: '2', operator: 'add', target: 'init', modifier: 'racial', priority: 0 }
                     ]
                 },
                 8: {
@@ -1662,17 +1669,17 @@ MorphinChanges.changes = {
             minor: {
                 1: {
                     changes: [
-                        { formula: '4', operator: 'add', target: 'skill.clm', modifier: 'competence', priority: 0/* , value: 4 */ }
+                        { formula: '4', operator: 'add', target: 'skill.clm', modifier: 'competence', priority: 0 }
                     ]
                 },
                 8: {
                     changes: [
-                        { formula: '6', operator: 'add', target: 'skill.clm', modifier: 'competence', priority: 0/* , value: 6 */ }
+                        { formula: '6', operator: 'add', target: 'skill.clm', modifier: 'competence', priority: 0 }
                     ]
                 },
                 15: {
                     changes: [
-                        { formula: '8', operator: 'add', target: 'skill.clm', modifier: 'competence', priority: 0/* , value: 8 */ }
+                        { formula: '8', operator: 'add', target: 'skill.clm', modifier: 'competence', priority: 0 }
                     ]
                 }
             },
@@ -1760,17 +1767,17 @@ MorphinChanges.changes = {
             minor: {
                 1: {
                     changes: [
-                        { formula: '4', operator: 'add', target: 'skill.esc', modifier: 'competence', priority: 0/* , value: 4 */ }
+                        { formula: '4', operator: 'add', target: 'skill.esc', modifier: 'competence', priority: 0 }
                     ]
                 },
                 8: {
                     changes: [
-                        { formula: '6', operator: 'add', target: 'skill.esc', modifier: 'competence', priority: 0/* , value: 6 */ }
+                        { formula: '6', operator: 'add', target: 'skill.esc', modifier: 'competence', priority: 0 }
                     ]
                 },
                 15: {
                     changes: [
-                        { formula: '8', operator: 'add', target: 'skill.esc', modifier: 'competence', priority: 0/* , value: 8 */ }
+                        { formula: '8', operator: 'add', target: 'skill.esc', modifier: 'competence', priority: 0 }
                     ]
                 }
             },
@@ -1818,17 +1825,17 @@ MorphinChanges.changes = {
             minor: {
                 1: {
                     changes: [
-                        { formula: '4', operator: 'add', target: 'skill.ste', modifier: 'competence', priority: 0/* , value: 4 */ }
+                        { formula: '4', operator: 'add', target: 'skill.ste', modifier: 'competence', priority: 0 }
                     ]
                 },
                 8: {
                     changes: [
-                        { formula: '6', operator: 'add', target: 'skill.ste', modifier: 'competence', priority: 0/* , value: 6 */ }
+                        { formula: '6', operator: 'add', target: 'skill.ste', modifier: 'competence', priority: 0 }
                     ]
                 },
                 15: {
                     changes: [
-                        { formula: '8', operator: 'add', target: 'skill.ste', modifier: 'competence', priority: 0/* , value: 8 */ }
+                        { formula: '8', operator: 'add', target: 'skill.ste', modifier: 'competence', priority: 0 }
                     ]
                 }
             },
@@ -1849,7 +1856,7 @@ MorphinChanges.changes = {
                         7
                     ],
                     changes: [
-                        { formula: '2', operator: 'add', target: 'skill.ste', modifier: 'racial', priority: 0/* , value: 2 */ }
+                        { formula: '2', operator: 'add', target: 'skill.ste', modifier: 'racial', priority: 0 }
                     ]
                 },
                 8: {
@@ -1882,17 +1889,17 @@ MorphinChanges.changes = {
             minor: {
                 1: {
                     changes: [
-                        { formula: '2', operator: 'add', target: 'cha', modifier: 'enh', priority: 0/* , value: 2 */ },
+                        { formula: '2', operator: 'add', target: 'cha', modifier: 'enh', priority: 0 },
                     ]
                 },
                 8: {
                     changes: [
-                        { formula: '4', operator: 'add', target: 'cha', modifier: 'enh', priority: 0/* , value: 4 */ },
+                        { formula: '4', operator: 'add', target: 'cha', modifier: 'enh', priority: 0 },
                     ]
                 },
                 15: {
                     changes: [
-                        { formula: '6', operator: 'add', target: 'cha', modifier: 'enh', priority: 0/* , value: 6 */ },
+                        { formula: '6', operator: 'add', target: 'cha', modifier: 'enh', priority: 0 },
                     ]
                 }
             },
@@ -1916,7 +1923,7 @@ MorphinChanges.changes = {
                         }
                     },
                     changes: [
-                        { formula: '4', operator: 'add', target: 'skill.ste', modifier: 'racial', priority: 0/* , value: 4 */ }
+                        { formula: '4', operator: 'add', target: 'skill.ste', modifier: 'racial', priority: 0 }
                     ]
                 },
                 8: {
@@ -1939,7 +1946,7 @@ MorphinChanges.changes = {
             minor: {
                 1: {
                     changes: [
-                        { formula: '2', operator: 'add', target: 'skill.ste', modifier: 'competence', priority: 0/* , value: 2 */ }
+                        { formula: '2', operator: 'add', target: 'skill.ste', modifier: 'competence', priority: 0 }
                     ],
                     contextNotes: [
                         { text: '+[[2]] to grapple', target: 'cmb' }
@@ -1947,7 +1954,7 @@ MorphinChanges.changes = {
                 },
                 8: {
                     changes: [
-                        { formula: '4', operator: 'add', target: 'skill.ste', modifier: 'competence', priority: 0/* , value: 4 */ }
+                        { formula: '4', operator: 'add', target: 'skill.ste', modifier: 'competence', priority: 0 }
                     ],
                     contextNotes: [
                         { text: '+[[4]] to grapple', target: 'cmb' }
@@ -1955,7 +1962,7 @@ MorphinChanges.changes = {
                 },
                 15: {
                     changes: [
-                        { formula: '6', operator: 'add', target: 'skill.ste', modifier: 'competence', priority: 0/* , value: 6 */ }
+                        { formula: '6', operator: 'add', target: 'skill.ste', modifier: 'competence', priority: 0 }
                     ],
                     contextNotes: [
                         { text: '+[[6]] to grapple', target: 'cmb' }
@@ -1981,8 +1988,8 @@ MorphinChanges.changes = {
             7, 28
         ],
                     changes: [
-                        { formula: '4', operator: 'add', target: 'skill.clm', modifier: 'racial', priority: 0/* , value: 4 */ },
-                        { formula: '4', operator: 'add', target: 'skill.per', modifier: 'racial', priority: 0/* , value: 4 */ }
+                        { formula: '4', operator: 'add', target: 'skill.clm', modifier: 'racial', priority: 0 },
+                        { formula: '4', operator: 'add', target: 'skill.per', modifier: 'racial', priority: 0 }
                     ]
                 },
                 15: {
@@ -2041,8 +2048,8 @@ MorphinChanges.changes = {
                 },
                 8: {
                     changes: [
-                        { formula: '4', operator: 'add', target: 'skill.acr', modifier: 'racial', priority: 0/* , value: 4 */ },
-                        { formula: '4', operator: 'add', target: 'skill.ste', modifier: 'racial', priority: 0/* , value: 4 */ }
+                        { formula: '4', operator: 'add', target: 'skill.acr', modifier: 'racial', priority: 0 },
+                        { formula: '4', operator: 'add', target: 'skill.ste', modifier: 'racial', priority: 0 }
                     ]
                 },
                 15: {
@@ -2063,17 +2070,17 @@ MorphinChanges.changes = {
             minor: {
                 1: {
                     changes: [
-                        { formula: '2', operator: 'add', target: 'wis', modifier: 'enh', priority: 0/* , value: 2 */ },
+                        { formula: '2', operator: 'add', target: 'wis', modifier: 'enh', priority: 0 },
                     ]
                 },
                 8: {
                     changes: [
-                        { formula: '4', operator: 'add', target: 'wis', modifier: 'enh', priority: 0/* , value: 4 */ },
+                        { formula: '4', operator: 'add', target: 'wis', modifier: 'enh', priority: 0 },
                     ]
                 },
                 15: {
                     changes: [
-                        { formula: '6', operator: 'add', target: 'wis', modifier: 'enh', priority: 0/* , value: 6 */ },
+                        { formula: '6', operator: 'add', target: 'wis', modifier: 'enh', priority: 0 },
                     ]
                 }
             },
@@ -2111,8 +2118,8 @@ MorphinChanges.changes = {
             minor: {
                 1: {
                     changes: [
-                        { formula: '2', operator: 'add', target: 'skill.clm', modifier: 'competence', priority: 0/* , value: 2 */ },
-                        { formula: '2', operator: 'add', target: 'skill.ste', modifier: 'competence', priority: 0/* , value: 2 */ }
+                        { formula: '2', operator: 'add', target: 'skill.clm', modifier: 'competence', priority: 0 },
+                        { formula: '2', operator: 'add', target: 'skill.ste', modifier: 'competence', priority: 0 }
                     ],
                     contextNotes: [
                         { text: '+[[2]] competence to saves v webs', target: 'allSavingThrows' },
@@ -2121,8 +2128,8 @@ MorphinChanges.changes = {
                 },
                 8: {
                     changes: [
-                        { formula: '4', operator: 'add', target: 'skill.clm', modifier: 'competence', priority: 0/* , value: 4 */ },
-                        { formula: '4', operator: 'add', target: 'skill.ste', modifier: 'competence', priority: 0/* , value: 4 */ }
+                        { formula: '4', operator: 'add', target: 'skill.clm', modifier: 'competence', priority: 0 },
+                        { formula: '4', operator: 'add', target: 'skill.ste', modifier: 'competence', priority: 0 }
                     ],
                     contextNotes: [
                         { text: '+[[4]] competence to saves v webs', target: 'allSavingThrows' },
@@ -2131,8 +2138,8 @@ MorphinChanges.changes = {
                 },
                 15: {
                     changes: [
-                        { formula: '6', operator: 'add', target: 'skill.clm', modifier: 'competence', priority: 0/* , value: 6 */ },
-                        { formula: '6', operator: 'add', target: 'skill.ste', modifier: 'competence', priority: 0/* , value: 6 */ }
+                        { formula: '6', operator: 'add', target: 'skill.clm', modifier: 'competence', priority: 0 },
+                        { formula: '6', operator: 'add', target: 'skill.ste', modifier: 'competence', priority: 0 }
                     ],
                     contextNotes: [
                         { text: '+[[6]] competence to saves v webs', target: 'allSavingThrows' },
@@ -2163,7 +2170,7 @@ MorphinChanges.changes = {
                 },
                 8: {
                     changes: [
-                        { formula: '4', operator: 'add', target: 'skill.per', modifier: 'racial', priority: 0/* , value: 4 */ }
+                        { formula: '4', operator: 'add', target: 'skill.per', modifier: 'racial', priority: 0 }
                     ],
                     senses: [
                         7, 28
@@ -2190,17 +2197,17 @@ MorphinChanges.changes = {
             minor: {
                 1: {
                     changes: [
-                        { formula: '5', operator: 'add', target: 'landSpeed', modifier: 'enh', priority: 0/* , value: 5 */ }
+                        { formula: '5', operator: 'add', target: 'landSpeed', modifier: 'enh', priority: 0 }
                     ]
                 },
                 8: {
                     changes: [
-                        { formula: '10', operator: 'add', target: 'landSpeed', modifier: 'enh', priority: 0/* , value: 10 */ }
+                        { formula: '10', operator: 'add', target: 'landSpeed', modifier: 'enh', priority: 0 }
                     ]
                 },
                 15: {
                     changes: [
-                        { formula: '15', operator: 'add', target: 'landSpeed', modifier: 'enh', priority: 0/* , value: 15 */ }
+                        { formula: '15', operator: 'add', target: 'landSpeed', modifier: 'enh', priority: 0 }
                     ]
                 }
             },
@@ -2243,17 +2250,17 @@ MorphinChanges.changes = {
             minor: {
                 1: {
                     changes: [
-                        { formula: '2', operator: 'add', target: 'dex', modifier: 'size', priority: 0/* , value: 2 */ }
+                        { formula: '2', operator: 'add', target: 'dex', modifier: 'size', priority: 0 }
                     ]
                 },
                 8: {
                     changes: [
-                        { formula: '4', operator: 'add', target: 'dex', modifier: 'size', priority: 0/* , value: 4 */ }
+                        { formula: '4', operator: 'add', target: 'dex', modifier: 'size', priority: 0 }
                     ]
                 },
                 15: {
                     changes: [
-                        { formula: '6', operator: 'add', target: 'dex', modifier: 'size', priority: 0/* , value: 6 */ }
+                        { formula: '6', operator: 'add', target: 'dex', modifier: 'size', priority: 0 }
                     ]
                 }
             },
@@ -2276,7 +2283,7 @@ MorphinChanges.changes = {
                 },
                 8: {
                     changes: [
-                        { formula: '4', operator: 'add', target: 'skill.ste', modifier: 'racial', priority: 0/* , value: 4 */ }
+                        { formula: '4', operator: 'add', target: 'skill.ste', modifier: 'racial', priority: 0 }
                     ]
                 },
                 15: {
@@ -2293,28 +2300,19 @@ MorphinChanges.changes = {
             source: 'beastShape',
             minor: {
                 1: {
-                    senses: [
-                        12
-                    ],
-                    senseUpgrade: {
-                        'sc': 10
-                    }
+                    changes: [
+                        { target: 'sensesc', formula: '10', priority: 0, operator: 'add', modifier: 'untyped' }
+                    ]
                 },
                 8: {
-                    senses: [
-                        13
-                    ],
-                    senseUpgrade: {
-                        'sc': 20
-                    }
+                    changes: [
+                        { target: 'sensesc', formula: '20', priority: 0, operator: 'add', modifier: 'untyped' }
+                    ]
                 },
                 15: {
-                    senses: [
-                        14
-                    ],
-                    senseUpgrade: {
-                        'sc': 30
-                    }
+                    changes: [
+                        { target: 'sensesc', formula: '30', priority: 0, operator: 'add', modifier: 'untyped' }
+                    ]
                 }
             },
             major: {
@@ -14637,48 +14635,48 @@ MorphinChanges.buffIcons = {
 };
 
 MorphinChanges.SENSES = Object.freeze({
-    LOWLIGHT: { value: 1, name: 'LowLightVision', setting: { ll: {enabled: true } } },
-    DARKVISION10: { value: 2, name: 'Darkvision10', setting: { dv: { value: 10 } } },
-    DARKVISION20: { value: 3, name: 'Darkvision20', setting: { dv: { value: 20 } } },
-    DARKVISION30: { value: 4, name: 'Darkvision30', setting: { dv: { value: 30 } } },
-    DARKVISION40: { value: 5, name: 'Darkvision40', setting: { dv: { value: 40 } } },
-    DARKVISION50: { value: 6, name: 'Darkvision50', setting: { dv: { value: 50 } } },
-    DARKVISION60: { value: 7, name: 'Darkvision60', setting: { dv: { value: 60 } } },
-    DARKVISION70: { value: 8, name: 'Darkvision70', setting: { dv: { value: 70 } } },
-    DARKVISION80: { value: 9, name: 'Darkvision80', setting: { dv: { value: 80 } } },
-    DARKVISION90: { value: 10, name: 'Darkvision90', setting: { dv: { value: 90 } } },
-    DARKVISION120: { value: 11, name: 'Darkvision120', setting: { dv: { value: 120 } } },
-    SCENT10: { value: 12, name: 'Scent10', setting: { sc: { value: 10 } } },
-    SCENT20: { value: 13, name: 'Scent20', setting: { sc: { value: 20 } } },
-    SCENT30: { value: 14, name: 'Scent30', setting: { sc: { value: 30 } } },
-    SCENT40: { value: 15, name: 'Scent40', setting: { sc: { value: 40 } } },
-    SCENT50: { value: 16, name: 'Scent50', setting: { sc: { value: 50 } } },
-    SCENT60: { value: 17, name: 'Scent60', setting: { sc: { value: 60 } } },
-    BLINDSENSE10: { value: 18, name: 'Blindsense10', setting: { bse: { value: 10 } } },
-    BLINDSENSE15: { value: 19, name: 'Blindsense15', setting: { bse: { value: 15 } } },
-    BLINDSENSE20: { value: 20, name: 'Blindsense20', setting: { bse: { value: 20 } } },
-    BLINDSENSE30: { value: 21, name: 'Blindsense30', setting: { bse: { value: 30 } } },
-    BLINDSENSE40: { value: 22, name: 'Blindsense40', setting: { bse: { value: 40 } } },
-    BLINDSENSE50: { value: 23, name: 'Blindsense50', setting: { bse: { value: 50 } } },
-    BLINDSENSE60: { value: 24, name: 'Blindsense60', setting: { bse: { value: 60 } } },
-    BLINDSENSE120: { value: 25, name: 'Blindsense120', setting: { bse: { value: 120 } } },
-    TREMORSENSE10: { value: 26, name: 'Tremorsense10', setting: { ts: { value: 10 } } },
-    TREMORSENSE15: { value: 27, name: 'Tremorsense15', setting: { ts: { value: 15 } } },
-    TREMORSENSE20: { value: 28, name: 'Tremorsense20', setting: { ts: { value: 20 } } },
-    TREMORSENSE30: { value: 29, name: 'Tremorsense30', setting: { ts: { value: 30 } } },
-    TREMORSENSE40: { value: 30, name: 'Tremorsense40', setting: { ts: { value: 40 } } },
-    TREMORSENSE50: { value: 31, name: 'Tremorsense50', setting: { ts: { value: 50 } } },
-    TREMORSENSE60: { value: 32, name: 'Tremorsense60', setting: { ts: { value: 60 } } },
-    TREMORSENSE120: { value: 33, name: 'Tremorsense120', setting: { ts: { value: 120 } } },
-    BLINDSIGHT10: { value: 34, name: 'Blindsight10', setting: { bs: { value: 10 } } },
-    BLINDSIGHT15: { value: 35, name: 'Blindsight15', setting: { bs: { value: 15 } } },
-    BLINDSIGHT20: { value: 36, name: 'Blindsight20', setting: { bs: { value: 20 } } },
-    BLINDSIGHT30: { value: 37, name: 'Blindsight30', setting: { bs: { value: 30 } } },
-    BLINDSIGHT90: { value: 38, name: 'Blindsight90', setting: { bs: { value: 90 } } },
-    BLINDSIGHT120: { value: 39, name: 'Blindsight120', setting: { bs: { value: 120 } } },
-    SEEINDARKNESS: { value: 40, name: 'SeeInDarkness', setting: { sid: true } },
-    TREMORSENSE90: { value: 41, name: 'Tremorsense90', setting: { ts: { value: 90 } } },
-    BLINDSIGHT60: { value: 42, name: 'Blindsight60', setting: { bs: { value: 60 } } }
+    LOWLIGHT: { value: 1, name: 'LowLightVision', setting: { ll: { enabled: true } }, changeFlags: { lowLightVision: true } },
+    DARKVISION10: { value: 2, name: 'Darkvision10', setting: { dv: { value: 10 } }, change: { target: 'sensedv', formula: '10' } },
+    DARKVISION20: { value: 3, name: 'Darkvision20', setting: { dv: { value: 20 } }, change: { target: 'sensedv', formula: '20' } },
+    DARKVISION30: { value: 4, name: 'Darkvision30', setting: { dv: { value: 30 } }, change: { target: 'sensedv', formula: '30' } },
+    DARKVISION40: { value: 5, name: 'Darkvision40', setting: { dv: { value: 40 } }, change: { target: 'sensedv', formula: '40' } },
+    DARKVISION50: { value: 6, name: 'Darkvision50', setting: { dv: { value: 50 } }, change: { target: 'sensedv', formula: '50' } },
+    DARKVISION60: { value: 7, name: 'Darkvision60', setting: { dv: { value: 60 } }, change: { target: 'sensedv', formula: '60' } },
+    DARKVISION70: { value: 8, name: 'Darkvision70', setting: { dv: { value: 70 } }, change: { target: 'sensedv', formula: '70' } },
+    DARKVISION80: { value: 9, name: 'Darkvision80', setting: { dv: { value: 80 } }, change: { target: 'sensedv', formula: '80' } },
+    DARKVISION90: { value: 10, name: 'Darkvision90', setting: { dv: { value: 90 } }, change: { target: 'sensedv', formula: '90' } },
+    DARKVISION120: { value: 11, name: 'Darkvision120', setting: { dv: { value: 120 }, change: { target: 'sensedv', formula: '120' } } },
+    SCENT10: { value: 12, name: 'Scent10', setting: { sc: { value: 10 } }, change: { target: 'sensesc', formula: '10' } },
+    SCENT20: { value: 13, name: 'Scent20', setting: { sc: { value: 20 } }, change: { target: 'sensesc', formula: '20' } },
+    SCENT30: { value: 14, name: 'Scent30', setting: { sc: { value: 30 } }, change: { target: 'sensesc', formula: '30' } },
+    SCENT40: { value: 15, name: 'Scent40', setting: { sc: { value: 40 } }, change: { target: 'sensesc', formula: '40' } },
+    SCENT50: { value: 16, name: 'Scent50', setting: { sc: { value: 50 } }, change: { target: 'sensesc', formula: '50' } },
+    SCENT60: { value: 17, name: 'Scent60', setting: { sc: { value: 60 } }, change: { target: 'sensesc', formula: '60' } },
+    BLINDSENSE10: { value: 18, name: 'Blindsense10', setting: { bse: { value: 10 } }, change: { target: 'sensebse', formula: '10' } },
+    BLINDSENSE15: { value: 19, name: 'Blindsense15', setting: { bse: { value: 15 } }, change: { target: 'sensebse', formula: '15' } },
+    BLINDSENSE20: { value: 20, name: 'Blindsense20', setting: { bse: { value: 20 } }, change: { target: 'sensebse', formula: '20' } },
+    BLINDSENSE30: { value: 21, name: 'Blindsense30', setting: { bse: { value: 30 } }, change: { target: 'sensebse', formula: '30' } },
+    BLINDSENSE40: { value: 22, name: 'Blindsense40', setting: { bse: { value: 40 } }, change: { target: 'sensebse', formula: '40' } },
+    BLINDSENSE50: { value: 23, name: 'Blindsense50', setting: { bse: { value: 50 } }, change: { target: 'sensebse', formula: '50' } },
+    BLINDSENSE60: { value: 24, name: 'Blindsense60', setting: { bse: { value: 60 } }, change: { target: 'sensebse', formula: '60' } },
+    BLINDSENSE120: { value: 25, name: 'Blindsense120', setting: { bse: { value: 120 } }, change: { target: 'sensebse', formula: '120' } },
+    TREMORSENSE10: { value: 26, name: 'Tremorsense10', setting: { ts: { value: 10 } }, change: { target: 'sensets', formula: '10' } },
+    TREMORSENSE15: { value: 27, name: 'Tremorsense15', setting: { ts: { value: 15 } }, change: { target: 'sensets', formula: '15' } },
+    TREMORSENSE20: { value: 28, name: 'Tremorsense20', setting: { ts: { value: 20 } }, change: { target: 'sensets', formula: '20' } },
+    TREMORSENSE30: { value: 29, name: 'Tremorsense30', setting: { ts: { value: 30 } }, change: { target: 'sensets', formula: '30' } },
+    TREMORSENSE40: { value: 30, name: 'Tremorsense40', setting: { ts: { value: 40 } }, change: { target: 'sensets', formula: '40' } },
+    TREMORSENSE50: { value: 31, name: 'Tremorsense50', setting: { ts: { value: 50 } }, change: { target: 'sensets', formula: '50' } },
+    TREMORSENSE60: { value: 32, name: 'Tremorsense60', setting: { ts: { value: 60 } }, change: { target: 'sensets', formula: '60' } },
+    TREMORSENSE120: { value: 33, name: 'Tremorsense120', setting: { ts: { value: 120 }, change: { target: 'sensets', formula: '120' } } },
+    BLINDSIGHT10: { value: 34, name: 'Blindsight10', setting: { bs: { value: 10 } }, change: { target: 'sensebs', formula: '10' } },
+    BLINDSIGHT15: { value: 35, name: 'Blindsight15', setting: { bs: { value: 15 } }, change: { target: 'sensebs', formula: '15' } },
+    BLINDSIGHT20: { value: 36, name: 'Blindsight20', setting: { bs: { value: 20 } }, change: { target: 'sensebs', formula: '20' } },
+    BLINDSIGHT30: { value: 37, name: 'Blindsight30', setting: { bs: { value: 30 } }, change: { target: 'sensebs', formula: '30' } },
+    BLINDSIGHT90: { value: 38, name: 'Blindsight90', setting: { bs: { value: 90 } }, change: { target: 'sensebs', formula: '90' } },
+    BLINDSIGHT120: { value: 39, name: 'Blindsight120', setting: { bs: { value: 120 } }, change: { target: 'sensebs', formula: '120' } },
+    SEEINDARKNESS: { value: 40, name: 'SeeInDarkness', setting: { sid: true }, changeFlags: { SEEINDARKNESS: true } },
+    TREMORSENSE90: { value: 41, name: 'Tremorsense90', setting: { ts: { value: 90 } }, change: { target: 'sensets', formula: '90' } },
+    BLINDSIGHT60: { value: 42, name: 'Blindsight60', setting: { bs: { value: 60 } }, change: { target: 'sensebs', formula: '60' } }
 });
 
 MorphinChanges.flightManeuverability = ['clumsy', 'poor', 'average', 'good', 'perfect'];
